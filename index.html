@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================
+     NOME DEL BRAND: adesso è "Italiano con Fabio".
+     Cercalo nel file e cambialo ovunque quando decidi il nome vero.
+     ============================================================ -->
+<title>Italiano con Fabio</title>
+<meta name="description" content="One-to-one Italian lessons with a linguist. You speak from minute one. Free exercises, real conversation, no textbook theatre.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+/* ============================================================
+   1. TOKEN — cambia i colori qui e cambiano ovunque
+   ============================================================ */
+:root{
+  --ink:        #16233F;
+  --ink-soft:   #4A5670;
+  --paper:      #F7F4EC;
+  --paper-2:    #FFFDF8;
+  --rule:       #DFD8C7;
+  --saffron:    #E8A33D;
+  --rosso:      #C4312B;
+  --verde:      #2E5E4E;
+
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "Newsreader", Georgia, "Times New Roman", serif;
+  --pen: "Caveat", "Segoe Script", cursive;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+
+  --wrap: 1140px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:1.0625rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+p{ margin:0; }
+
+:focus-visible{ outline:3px solid var(--rosso); outline-offset:3px; border-radius:2px; }
+
+/* ============================================================
+   2. TIPOGRAFIA — scala con più contrasto
+   ============================================================ */
+h1,h2,h3{
+  font-family:var(--display);
+  font-weight:800;
+  line-height:1.0;
+  letter-spacing:-0.03em;
+  text-wrap:balance;
+  margin:0;
+}
+
+h1{ font-size:clamp(2.5rem, 5.4vw, 4.2rem); line-height:1.04; }
+h1 .l{ display:block; }
+h1 .l-fix{ padding-top:0.52em; }
+
+h2{ font-size:clamp(2.2rem, 4.6vw, 3.5rem); line-height:1.02; }
+h3{ font-size:1.42rem; letter-spacing:-0.02em; line-height:1.12; }
+
+/* Parola evidenziata: pennarello giallo sul chiaro, giallo pieno sullo scuro */
+.hl{
+  background-image:linear-gradient(transparent 66%, color-mix(in srgb, var(--saffron) 55%, transparent) 66%);
+  padding-inline:0.06em;
+}
+.dark .hl, .book .hl{ background-image:none; color:var(--saffron); }
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:0.74rem;
+  font-weight:500;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--rosso);
+  margin:0;
+}
+
+.lead{
+  font-size:clamp(1.14rem,1.8vw,1.34rem);
+  color:var(--ink-soft);
+  max-width:54ch;
+}
+
+.wrap{ width:100%; max-width:var(--wrap); margin-inline:auto; padding-inline:24px; }
+
+/* ============================================================
+   3. BOTTONI
+   ============================================================ */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:0.55em;
+  font-family:var(--display);
+  font-weight:700;
+  font-size:1.02rem;
+  letter-spacing:-0.015em;
+  text-decoration:none;
+  padding:1em 1.6em;
+  border-radius:999px;
+  border:2px solid var(--ink);
+  transition:transform .16s ease, background-color .16s ease, color .16s ease, border-color .16s ease;
+}
+.btn-primary{ background:var(--ink); color:var(--paper-2); }
+.btn-primary:hover{ transform:translateY(-2px); background:var(--rosso); border-color:var(--rosso); }
+.btn-ghost{ background:transparent; color:var(--ink); }
+.btn-ghost:hover{ transform:translateY(-2px); background:var(--saffron); border-color:var(--saffron); }
+.btn-light{ background:var(--saffron); color:var(--ink); border-color:var(--saffron); }
+.btn-light:hover{ transform:translateY(-2px); background:var(--paper-2); border-color:var(--paper-2); }
+.btn-outline-light{ background:transparent; color:var(--paper-2); border-color:var(--paper-2); }
+.btn-outline-light:hover{ transform:translateY(-2px); background:var(--paper-2); color:var(--verde); }
+
+/* ============================================================
+   4. NAVIGAZIONE
+   ============================================================ */
+.nav{
+  position:sticky; top:0; z-index:50;
+  background:color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);
+}
+.nav-in{ display:flex; align-items:center; justify-content:space-between; gap:24px; height:72px; }
+.logo{
+  font-family:var(--display); font-weight:800; font-size:1.15rem;
+  letter-spacing:-0.035em; text-decoration:none;
+  display:flex; align-items:center; gap:0.5em;
+}
+.logo-mark{
+  width:26px; height:26px; border-radius:50%; flex:none;
+  background:conic-gradient(from 180deg, var(--verde) 0 25%, var(--saffron) 0 50%, var(--rosso) 0 75%, var(--ink) 0);
+}
+.nav-links{
+  display:flex; align-items:center; gap:30px;
+  font-family:var(--display); font-weight:500; font-size:0.96rem;
+}
+.nav-links a{ text-decoration:none; }
+.nav-links a:hover{ color:var(--rosso); }
+.nav .btn{ padding:0.72em 1.2em; font-size:0.94rem; }
+@media (max-width:960px){ .nav-links{ display:none; } }
+
+/* ============================================================
+   5. HERO
+   ============================================================ */
+.hero{ position:relative; overflow:hidden; padding:clamp(44px,6vw,76px) 0 clamp(28px,3vw,40px); }
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image:repeating-linear-gradient(to bottom, transparent 0 33px, color-mix(in srgb, var(--ink) 8%, transparent) 33px 34px);
+  opacity:.5; pointer-events:none;
+}
+.hero-in{
+  position:relative;
+  display:grid;
+  grid-template-columns:1.12fr 0.88fr;
+  gap:clamp(32px,5vw,64px);
+  align-items:center;
+}
+@media (max-width:960px){ .hero-in{ grid-template-columns:1fr; } }
+
+.hero-copy{ position:relative; padding-left:clamp(20px,3vw,38px); }
+.hero-copy::before{
+  content:""; position:absolute; left:0; top:-6px; bottom:-6px;
+  width:2px; background:var(--rosso); opacity:.75;
+}
+.hero h1{ margin-bottom:24px; }
+.hero-cta{ display:flex; flex-wrap:wrap; gap:14px; margin-top:32px; }
+
+.credentials{
+  display:flex; flex-wrap:wrap; gap:10px 26px;
+  margin-top:34px; padding-top:22px; border-top:1px solid var(--rule);
+  font-family:var(--mono); font-size:0.76rem; letter-spacing:0.05em;
+  text-transform:uppercase; color:var(--ink-soft);
+}
+.credentials span{ display:flex; align-items:center; gap:0.5em; }
+.credentials span::before{
+  content:""; width:7px; height:7px; border-radius:50%;
+  background:var(--saffron); flex:none;
+}
+
+/* --- La correzione: parola cancellata + "dire" scritto sopra --- */
+.fix{ position:relative; display:inline-block; white-space:nowrap; }
+.struck{ position:relative; color:var(--ink-soft); }
+.strike-line{
+  position:absolute; left:-4%; right:-4%; top:0.54em; height:0.08em;
+  background:var(--rosso); border-radius:99px; transform-origin:left center;
+}
+.pen-word{
+  position:absolute;
+  left:46%; top:-0.60em;
+  transform:translateX(-50%) rotate(-5deg);
+  transform-origin:center bottom;
+  font-family:var(--pen); font-weight:700;
+  font-size:0.72em; line-height:1;
+  color:var(--rosso);
+  white-space:nowrap;
+  pointer-events:none;
+}
+.pen{
+  position:absolute; left:0; top:0;
+  width:1.05em; height:1.05em;
+  color:var(--rosso);
+  pointer-events:none;
+  opacity:0;
+}
+
+/* --- Invito a scorrere --- */
+.scroll-cue{
+  position:relative;
+  display:flex; align-items:center; justify-content:center; gap:12px;
+  margin-top:clamp(24px,3vw,40px);
+  font-family:var(--pen); font-weight:600;
+  font-size:1.5rem; color:var(--rosso);
+  text-decoration:none;
+}
+.scroll-cue svg{ width:20px; height:20px; }
+
+/* ============================================================
+   6. SCHEDA "COM'È UNA LEZIONE"
+   ============================================================ */
+.lesson-card{
+  position:relative;
+  background:var(--paper-2);
+  border:2px solid var(--ink);
+  border-radius:22px;
+  padding:28px;
+  box-shadow:14px 14px 0 color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.lesson-head{ padding-bottom:18px; border-bottom:1px solid var(--rule); }
+.lesson-head h3{ margin-bottom:6px; }
+.lesson-list{
+  list-style:none; margin:18px 0 0; padding:0;
+  display:flex; flex-direction:column; gap:12px; font-size:1.02rem;
+}
+.lesson-list li{ display:flex; gap:11px; align-items:flex-start; line-height:1.45; }
+.lesson-list li::before{
+  content:""; flex:none; width:18px; height:18px; margin-top:4px; border-radius:50%;
+  background:var(--verde);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%23000' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/76% no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='%23000' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/76% no-repeat;
+}
+.lesson-note{
+  margin-top:20px; padding-top:16px; border-top:1px solid var(--rule);
+  font-size:0.97rem; color:var(--ink-soft);
+}
+
+/* ============================================================
+   7. FASCIA A MATTONELLE
+   ============================================================ */
+.tiles{
+  height:72px;
+  background-color:var(--saffron);
+  background-image:
+    radial-gradient(circle at 0 100%,  var(--verde) 49.5%, transparent 50%),
+    radial-gradient(circle at 100% 0,  var(--paper) 49.5%, transparent 50%);
+  background-size:72px 72px;
+}
+
+/* ============================================================
+   8. SEZIONI
+   ============================================================ */
+.section{ padding:clamp(64px,8vw,110px) 0; }
+.section-head{
+  max-width:64ch;
+  margin-bottom:clamp(36px,4.5vw,60px);
+  display:flex; flex-direction:column; gap:16px;
+}
+/* Variante a due colonne: titolo grande a sinistra, testo a destra.
+   Riempie la riga invece di lasciare mezza pagina vuota. */
+.section-head.split{
+  max-width:none;
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  column-gap:clamp(28px,5vw,72px);
+  row-gap:18px;
+  align-items:end;
+}
+.section-head.split .eyebrow{ grid-column:1 / -1; }
+.section-head.split h2{ margin-bottom:0; }
+.section-head.split .lead{ max-width:46ch; padding-bottom:0.3em; }
+@media (max-width:900px){
+  .section-head.split{ grid-template-columns:1fr; align-items:start; }
+}
+
+.grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+@media (max-width:880px){ .grid-3{ grid-template-columns:1fr; } }
+
+.card{
+  background:var(--paper-2); border:1px solid var(--rule);
+  border-radius:18px; padding:28px;
+  display:flex; flex-direction:column; gap:12px;
+}
+.card p{ color:var(--ink-soft); }
+.card .quote{ font-style:italic; font-size:1.14rem; color:var(--ink); line-height:1.45; }
+.card-tag{
+  font-family:var(--mono); font-size:0.7rem; font-weight:500;
+  letter-spacing:0.15em; text-transform:uppercase; color:var(--rosso);
+}
+
+/* ============================================================
+   9. METODO — sezione scura
+   ============================================================ */
+.dark{ background:var(--ink); color:var(--paper); }
+.dark h2, .dark h3{ color:var(--paper-2); }
+.dark .eyebrow{ color:var(--saffron); }
+.dark .lead{ color:color-mix(in srgb, var(--paper) 76%, transparent); }
+
+.steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
+@media (max-width:900px){ .steps{ grid-template-columns:1fr; } }
+
+.step{
+  position:relative;
+  padding:26px 26px 32px 0;
+  border-top:2px solid color-mix(in srgb, var(--paper) 20%, transparent);
+  border-right:1px solid color-mix(in srgb, var(--paper) 14%, transparent);
+  display:flex; flex-direction:column; gap:12px;
+}
+.step::before{
+  content:""; position:absolute; top:-2px; left:0;
+  width:0; height:2px; background:var(--saffron);
+  transition:width .9s cubic-bezier(.22,.7,.25,1);
+  transition-delay:var(--d,0s);
+}
+.step:last-child{ border-right:none; }
+@media (min-width:901px){ .step + .step{ padding-left:26px; } }
+@media (max-width:900px){
+  .step{ border-right:none; padding-right:0; }
+}
+
+.step h3{ font-size:1.52rem; }
+.step p{ color:color-mix(in srgb, var(--paper) 68%, transparent); font-size:1rem; }
+
+/* Deve stare DOPO ".step p", altrimenti quella regola è più specifica
+   e i numeri restano piccoli e grigi. */
+.step .step-n{
+  font-family:var(--display); font-weight:800;
+  font-size:clamp(3rem,4.6vw,4.2rem);
+  line-height:0.82; letter-spacing:-0.05em;
+  color:transparent;
+  -webkit-text-stroke:1.8px color-mix(in srgb, var(--saffron) 60%, transparent);
+  transition:color .6s ease, -webkit-text-stroke-color .6s ease;
+  transition-delay:calc(var(--d,0s) + .2s);
+}
+
+/* ============================================================
+   10. MATERIALI GRATUITI
+   ============================================================ */
+.materials{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+@media (max-width:880px){ .materials{ grid-template-columns:1fr; } }
+
+.mat{
+  position:relative; display:flex; flex-direction:column; gap:10px;
+  text-decoration:none; background:var(--paper-2);
+  border:1px solid var(--rule); border-radius:18px;
+  padding:0 0 26px; overflow:hidden;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.mat:hover{
+  transform:translateY(-5px);
+  border-color:var(--ink);
+  box-shadow:0 16px 34px color-mix(in srgb, var(--ink) 16%, transparent);
+}
+.mat-top{
+  height:104px;
+  background-color:var(--paper);
+  background-image:
+    radial-gradient(circle at 0 0,    color-mix(in srgb, var(--verde) 28%, transparent) 49.5%, transparent 50%),
+    radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--saffron) 55%, transparent) 49.5%, transparent 50%);
+  background-size:34px 34px;
+  border-bottom:1px solid var(--rule);
+}
+.mat-top.v2{
+  background-image:
+    radial-gradient(circle at 100% 0,  color-mix(in srgb, var(--verde) 26%, transparent) 49.5%, transparent 50%),
+    radial-gradient(circle at 0 100%, color-mix(in srgb, var(--saffron) 55%, transparent) 49.5%, transparent 50%);
+}
+.mat-top.v3{
+  background-image:
+    radial-gradient(circle at 0 0,     color-mix(in srgb, var(--ink) 20%, transparent) 49.5%, transparent 50%),
+    radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--saffron) 55%, transparent) 49.5%, transparent 50%);
+}
+.mat > *{ padding-inline:24px; }
+.mat-top{ padding:0; }
+.mat h3{ margin-top:18px; }
+.mat p{ color:var(--ink-soft); font-size:1rem; }
+.mat-go{
+  margin-top:auto; font-family:var(--display); font-weight:700;
+  font-size:0.96rem; color:var(--rosso);
+}
+
+/* ============================================================
+   11. PACCHETTI
+   ============================================================ */
+.plans{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:stretch; }
+@media (max-width:880px){ .plans{ grid-template-columns:1fr; } }
+
+.plan{
+  position:relative;
+  background:var(--paper-2);
+  border:1px solid var(--rule);
+  border-radius:20px;
+  padding:30px 26px 28px;
+  display:flex; flex-direction:column; gap:14px;
+}
+.plan-best{
+  border:2px solid var(--ink);
+  background:var(--ink);
+  color:var(--paper);
+  box-shadow:0 18px 40px color-mix(in srgb, var(--ink) 22%, transparent);
+}
+.plan-best h3{ color:var(--paper-2); }
+.plan-best .plan-each, .plan-best .plan-note{ color:color-mix(in srgb, var(--paper) 70%, transparent); }
+.plan-flag{
+  position:absolute; top:-13px; left:26px;
+  font-family:var(--mono); font-size:0.68rem; font-weight:500;
+  letter-spacing:0.14em; text-transform:uppercase;
+  background:var(--saffron); color:var(--ink);
+  padding:5px 12px; border-radius:999px;
+}
+.plan-price{
+  font-family:var(--display); font-weight:800;
+  font-size:clamp(2.6rem,3.6vw,3.2rem);
+  line-height:0.9; letter-spacing:-0.04em;
+  font-variant-numeric:tabular-nums;
+}
+.plan-each{
+  font-family:var(--mono); font-size:0.76rem;
+  letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft);
+}
+.plan-note{ color:var(--ink-soft); font-size:1rem; }
+.plan .btn{ margin-top:auto; justify-content:center; }
+
+/* ============================================================
+   12. CHI SONO
+   ============================================================ */
+.about{ display:grid; grid-template-columns:0.8fr 1.2fr; gap:clamp(28px,5vw,64px); align-items:center; }
+@media (max-width:880px){ .about{ grid-template-columns:1fr; } }
+
+/* Segnaposto della foto: volutamente sobrio, si vede che è un buco da riempire. */
+.portrait{
+  aspect-ratio:4/5; border-radius:20px;
+  border:2px dashed var(--rule);
+  background:var(--paper-2);
+  display:flex; align-items:center; justify-content:center; padding:22px;
+  color:var(--ink-soft); font-family:var(--mono); font-size:0.72rem;
+  letter-spacing:0.1em; text-transform:uppercase; text-align:center;
+}
+.about-body{ display:flex; flex-direction:column; gap:18px; }
+.about-body p{ color:var(--ink-soft); max-width:56ch; }
+.about-body p strong{ color:var(--ink); font-weight:500; }
+
+/* ============================================================
+   13. RECENSIONI
+   ============================================================ */
+.placeholder-note{
+  font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--rosso);
+  border:1px dashed var(--rosso); border-radius:8px;
+  padding:6px 10px; display:inline-block;
+}
+
+/* ============================================================
+   14. PRENOTAZIONE
+   ============================================================ */
+.book{
+  background:var(--verde); color:var(--paper-2);
+  border-radius:26px; padding:clamp(34px,5vw,62px);
+  display:grid; grid-template-columns:1.1fr 0.9fr;
+  gap:clamp(26px,4vw,54px); align-items:center;
+}
+@media (max-width:880px){ .book{ grid-template-columns:1fr; } }
+.book h2{ color:var(--paper-2); }
+.book p{ color:color-mix(in srgb, var(--paper) 80%, transparent); }
+.book .eyebrow{ color:var(--saffron); }
+.book-copy{ display:flex; flex-direction:column; gap:16px; }
+.book-cta{ display:flex; flex-wrap:wrap; gap:14px; margin-top:8px; }
+.calendar-slot{
+  background:var(--paper-2); border-radius:18px; min-height:270px;
+  padding:24px; color:var(--ink);
+  display:flex; flex-direction:column; gap:12px;
+  justify-content:center; align-items:flex-start;
+}
+
+/* ============================================================
+   15. FOOTER
+   ============================================================ */
+.footer{ border-top:1px solid var(--rule); padding:44px 0 56px; margin-top:clamp(56px,7vw,96px); }
+.footer-in{
+  display:flex; flex-wrap:wrap; gap:24px;
+  justify-content:space-between; align-items:center;
+  font-size:0.95rem; color:var(--ink-soft);
+}
+.footer-links{ display:flex; flex-wrap:wrap; gap:22px; font-family:var(--display); font-weight:500; }
+.footer-links a{ text-decoration:none; }
+.footer-links a:hover{ color:var(--rosso); }
+
+/* ============================================================
+   16. ANIMAZIONI
+   Senza JavaScript la pagina resta tutta visibile: nascondiamo
+   qualcosa solo dopo che lo script ha aggiunto .js all'HTML.
+   ============================================================ */
+.progress{
+  position:fixed; top:0; left:0; right:0; height:3px;
+  background:var(--rosso); transform:scaleX(0);
+  transform-origin:0 50%; z-index:100;
+}
+@supports (animation-timeline:scroll()){
+  @media (prefers-reduced-motion:no-preference){
+    .progress{ animation:progress-grow linear both; animation-timeline:scroll(root block); }
+    .tiles{ animation:tiles-slide linear both; animation-timeline:scroll(root block); }
+  }
+}
+@keyframes progress-grow{ to{ transform:scaleX(1); } }
+@keyframes tiles-slide{ to{ background-position:432px 0; } }
+
+.js [data-reveal],
+.js .step,
+.js .mat,
+.js .plan,
+.js .book,
+.js .portrait,
+.js .about-body,
+.js .card{
+  opacity:0; transform:translateY(22px);
+  transition:opacity .75s cubic-bezier(.22,.7,.25,1), transform .75s cubic-bezier(.22,.7,.25,1);
+  transition-delay:var(--d,0s);
+}
+.js .in{ opacity:1 !important; transform:none !important; }
+.js .step.in::before{ width:100%; }
+.js .step.in .step-n{ color:var(--saffron); -webkit-text-stroke-color:transparent; }
+.js .plan.in .plan-price{ transition:none; }
+
+/* --- LA PENNA CHE CORREGGE ---
+   Tre animazioni sincronizzate sulla stessa durata:
+   la penna si muove, la riga rossa cresce sotto di lei,
+   e "dire" viene scoperto da sinistra a destra come se lo scrivesse. */
+.js .strike-line{ transform:scaleX(0); }
+.js .pen-word{ clip-path:inset(0 100% -30% 0); }
+
+.js .hero-ready .strike-line{ animation:strike 2.4s .45s linear forwards; }
+.js .hero-ready .pen-word{  animation:write  2.4s .45s linear forwards; }
+.js .hero-ready .pen{       animation:pen-move 2.4s .45s cubic-bezier(.4,.1,.5,1) forwards; }
+
+@keyframes strike{
+  0%,  6%  { transform:scaleX(0); }
+  30%, 100%{ transform:scaleX(1); }
+}
+@keyframes write{
+  0%,  40% { clip-path:inset(0 100% -30% 0); }
+  74%, 100%{ clip-path:inset(0 -8% -30% 0); }
+}
+@keyframes pen-move{
+  0%   { opacity:0; transform:translate(-1.1em, 0.30em) rotate(-32deg); }
+  5%   { opacity:1; transform:translate(-0.75em, 0.24em) rotate(-32deg); }
+  30%  { opacity:1; transform:translate( 1.35em, 0.18em) rotate(-32deg); }
+  38%  { opacity:1; transform:translate( 0.10em,-0.55em) rotate(-26deg); }
+  74%  { opacity:1; transform:translate( 1.30em,-0.62em) rotate(-26deg); }
+  88%  { opacity:0; transform:translate( 1.95em,-0.95em) rotate(-20deg); }
+  100% { opacity:0; }
+}
+
+/* Invito a scorrere: oscilla piano */
+.js .scroll-cue svg{ animation:nudge 1.9s ease-in-out infinite; }
+@keyframes nudge{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(7px); } }
+
+/* --- Le schede che si accavallano ---
+   Lo spazio fra una scheda e l'altra NON si fa con i margini (lo sticky
+   li conta nella sua corsa e la scheda si stacca troppo presto) né con
+   il padding del contenitore (lo sticky lo ignora): si fa con i div
+   distanziatori qui sotto. */
+.stack{ display:block; }
+.stack-gap{ height:30vh; }
+.stack-tail{ height:44vh; }
+
+.stack-card{
+  position:sticky;
+  top:calc(96px + var(--i,0) * 62px);
+  background:var(--paper-2);
+  border:2px solid var(--ink);
+  border-radius:22px;
+  padding:clamp(26px,3.2vw,42px);
+  display:grid;
+  grid-template-columns:8px minmax(0,1.05fr) minmax(0,0.95fr);
+  column-gap:clamp(22px,3.2vw,48px);
+  row-gap:14px;
+  box-shadow:0 20px 44px color-mix(in srgb, var(--ink) 15%, transparent);
+}
+.stack-card::before{
+  content:""; grid-column:1; grid-row:1 / span 2;
+  border-radius:99px; background:var(--accent,var(--saffron));
+}
+.stack-card .card-tag{ grid-column:2; grid-row:1; align-self:start; }
+.stack-card .quote{
+  grid-column:2; grid-row:2;
+  font-size:clamp(1.32rem,2.3vw,1.8rem);
+  font-style:italic; line-height:1.28; margin:0; align-self:start;
+}
+.stack-card p:last-child{
+  grid-column:3; grid-row:1 / span 2; align-self:center;
+  color:var(--ink-soft);
+  border-left:1px solid var(--rule);
+  padding-left:clamp(20px,2.4vw,34px);
+}
+@media (max-width:900px){
+  .stack{ display:flex; flex-direction:column; gap:18px; }
+  .stack-gap, .stack-tail{ display:none; }
+  .stack-card{ position:static; box-shadow:none; grid-template-columns:8px minmax(0,1fr); }
+  .stack-card p:last-child{ grid-column:2; grid-row:3; border-left:none; padding-left:0; }
+  .stack-card::before{ grid-row:1 / span 3; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  *{ transition:none !important; animation:none !important; }
+  .js [data-reveal]{ opacity:1 !important; transform:none !important; }
+  .js .strike-line{ transform:scaleX(1) !important; }
+  .js .pen-word{ clip-path:none !important; }
+  .js .pen{ display:none; }
+  .progress{ display:none; }
+}
+</style>
+
+<script>
+  /* Se questa riga non gira, la pagina resta tutta visibile e statica. */
+  document.documentElement.classList.add("js");
+</script>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"></div>
+
+<!-- ============================ NAV ============================ -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Italiano con Fabio
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#familiar">Who it's for</a>
+      <a href="#method">The method</a>
+      <a href="#materials">Free exercises</a>
+      <a href="#plans">Lessons</a>
+      <a href="#about">About me</a>
+    </nav>
+    <a class="btn btn-primary" href="#book">Book a lesson</a>
+  </div>
+</header>
+
+<!-- ============================ HERO ============================ -->
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-in">
+
+    <div class="hero-copy">
+      <p class="eyebrow">One&#8209;to&#8209;one Italian &middot; online &middot; all levels</p>
+      <h1>
+        <span class="l">You already know</span>
+        <span class="l">more Italian than</span>
+        <span class="l l-fix">you can <span class="fix"><span class="pen-word" aria-hidden="true">dire</span><span class="struck">say<span class="strike-line" aria-hidden="true"></span></span><svg class="pen" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 21l1.2-4.2L15.6 5.4a2 2 0 0 1 2.8 0l1.2 1.2a2 2 0 0 1 0 2.8L8.2 20.8 4 22z" fill="currentColor"/><path d="M14.4 6.6l3 3" stroke="#FFFDF8" stroke-width="1.3"/><path d="M3 21l1.2-4.2 3 3z" fill="#16233F"/></svg></span>.</span>
+      </h1>
+      <p class="lead">
+        Most people don't need more grammar. They need someone to make them
+        <em>talk</em>, and to catch them when they fall. That's the whole lesson:
+        you speak from minute one, I correct as we go, and the rules arrive when
+        you actually need them.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#book">Book a first lesson</a>
+        <a class="btn btn-ghost" href="#materials">Try the free exercises</a>
+      </div>
+
+      <!-- SOSTITUISCI: metti i tuoi dati veri. Il terzo è un segnaposto. -->
+      <div class="credentials">
+        <span>Super Tutor on Preply</span>
+        <span>MA Linguistics, University of Turin</span>
+        <span>Students in 14 countries</span>
+      </div>
+    </div>
+
+    <aside class="lesson-card" aria-label="What a lesson looks like">
+      <div class="lesson-head">
+        <h3>What a lesson looks like</h3>
+        <p class="eyebrow" style="color:var(--ink-soft);">50 minutes &middot; video call</p>
+      </div>
+      <ul class="lesson-list">
+        <li><span>A real task to complete in Italian, not a chapter to read</span></li>
+        <li><span>Live corrections, written down as we speak</span></li>
+        <li><span>A short recap page you keep forever</span></li>
+        <li><span>Exercises built around the mistakes <em>you</em> actually make</span></li>
+      </ul>
+      <p class="lesson-note">
+        The first lesson is a conversation, not a test. We find out where you are
+        and what's blocking you, then we start from there.
+      </p>
+    </aside>
+
+  </div>
+
+  <a class="scroll-cue" href="#familiar">
+    keep going
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 4v15m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</section>
+
+<div class="tiles" aria-hidden="true"></div>
+
+<!-- ======================= CHI SI RICONOSCE ======================= -->
+<section class="section" id="familiar">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">Sound familiar?</p>
+      <h2>Three people usually <span class="hl">write to me</span>.</h2>
+      <p class="lead">You'll probably recognise yourself in one of them.</p>
+    </div>
+
+    <div class="stack">
+      <article class="stack-card" style="--accent:var(--saffron); --i:0;">
+        <p class="card-tag">The one who got stuck</p>
+        <p class="quote">&ldquo;Six hundred days on the app. I understand everything and I can't say a word.&rdquo;</p>
+        <p>
+          You've collected vocabulary you never use. What's missing isn't knowledge,
+          it's the mileage of speaking badly for a while with someone who doesn't
+          let you drift. That takes weeks, not years.
+        </p>
+      </article>
+      <div class="stack-gap" aria-hidden="true"></div>
+
+      <article class="stack-card" style="--accent:var(--verde); --i:1;">
+        <p class="card-tag">The one starting from zero</p>
+        <p class="quote">&ldquo;Everyone says Italian is easy. So why can't I order a coffee?&rdquo;</p>
+        <p>
+          Because you were handed the present tense of <em>essere</em> instead of a
+          reason to open your mouth. We start with things you'll say this week,
+          and the grammar comes in behind them, quietly.
+        </p>
+      </article>
+      <div class="stack-gap" aria-hidden="true"></div>
+
+      <article class="stack-card" style="--accent:var(--rosso); --i:2;">
+        <p class="card-tag">The one who loves Italy</p>
+        <p class="quote">&ldquo;My grandmother spoke it. I want it back.&rdquo;</p>
+        <p>
+          A house in the hills, a family name, someone you love, a move you're
+          planning. The motivation is already there and it's the strongest kind.
+          It just needs a structure around it.
+        </p>
+      </article>
+      <div class="stack-tail" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ METODO ============================ -->
+<section class="section dark" id="method">
+  <div class="wrap">
+    <div class="section-head split" data-reveal>
+      <p class="eyebrow">The method</p>
+      <h2>You don't study the language.<br>You <span class="hl">use it</span>, and it sticks.</h2>
+      <p class="lead">
+        It's called task&#8209;based teaching, and it's what the research has pointed at for
+        thirty years. Every lesson is built around something you have to actually get
+        done in Italian. The grammar shows up as the tool you need to finish the job.
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <p class="step-n">01</p>
+        <h3>The task</h3>
+        <p>Rent a flat in Bologna. Argue about a bill. Tell me about your weekend so I believe you. Something with a real outcome.</p>
+      </div>
+      <div class="step">
+        <p class="step-n">02</p>
+        <h3>You try it</h3>
+        <p>Badly, at first. That's the point. I write down every slip without stopping you, because interrupting kills fluency.</p>
+      </div>
+      <div class="step">
+        <p class="step-n">03</p>
+        <h3>We fix what broke</h3>
+        <p>Now the grammar, and only the piece that got in your way. Ten focused minutes beat a chapter you'll forget.</p>
+      </div>
+      <div class="step">
+        <p class="step-n">04</p>
+        <h3>You do it again</h3>
+        <p>Same task, new version, and you feel the difference in your own mouth. That feeling is what keeps people coming back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= MATERIALI GRATUITI ======================= -->
+<section class="section" id="materials">
+  <div class="wrap">
+    <div class="section-head split" data-reveal>
+      <p class="eyebrow">Free &middot; no sign&#8209;up &middot; no email</p>
+      <h2>Exercises I built for <span class="hl">my own students</span>.</h2>
+      <p class="lead">
+        Open them, use them, come back to them. Nothing to register for and nothing
+        to pay. If they help you, you'll know what a lesson feels like.
+      </p>
+    </div>
+
+    <!-- SOSTITUISCI i link quando gli esercizi saranno online -->
+    <div class="materials">
+      <a class="mat" href="esercizi/passato-prossimo/">
+        <span class="mat-top" aria-hidden="true"></span>
+        <p class="card-tag">A2 &middot; Grammar</p>
+        <h3>Passato prossimo, without the panic</h3>
+        <p>The past tense Italians actually use all day. Twenty sentences, instant correction.</p>
+        <p class="mat-go">Open the exercise &rarr;</p>
+      </a>
+
+      <a class="mat" href="esercizi/parole-quotidiane/">
+        <span class="mat-top v2" aria-hidden="true"></span>
+        <p class="card-tag">A1 &rarr; B1 &middot; Vocabulary</p>
+        <h3>300 words you'll hear on day one</h3>
+        <p>Spaced repetition that remembers what you keep forgetting. Progress stays on your device.</p>
+        <p class="mat-go">Start training &rarr;</p>
+      </a>
+
+      <a class="mat" href="esercizi/ascolto/">
+        <span class="mat-top v3" aria-hidden="true"></span>
+        <p class="card-tag">B1 &middot; Listening</p>
+        <h3>Italians speaking at normal speed</h3>
+        <p>Short clips, no slow-motion voice. Listen, guess, reveal, listen again.</p>
+        <p class="mat-go">Open the exercise &rarr;</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PACCHETTI ============================ -->
+<section class="section" id="plans" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head split" data-reveal>
+      <p class="eyebrow">Lessons</p>
+      <h2>People who book a block <span class="hl">actually get there</span>.</h2>
+      <p class="lead">
+        One lesson is a conversation. Progress is what happens over eight of them,
+        so the block is where the real work fits. Same me, same 50 minutes, better price.
+      </p>
+    </div>
+
+    <!-- ============================================================
+         SOSTITUISCI TUTTI I PREZZI QUI SOTTO CON I TUOI.
+         Sono numeri di esempio, non pubblicarli così.
+         ============================================================ -->
+    <div class="plans">
+      <div class="plan">
+        <h3>Single lesson</h3>
+        <p class="plan-price">&euro;55</p>
+        <p class="plan-each">50 minutes &middot; one lesson</p>
+        <p class="plan-note">To try me out, or when you just need a hand before a trip or an exam.</p>
+        <a class="btn btn-ghost" href="#book">Book one</a>
+      </div>
+
+      <div class="plan">
+        <h3>4 lessons</h3>
+        <p class="plan-price">&euro;200</p>
+        <p class="plan-each">&euro;50 per lesson &middot; save &euro;20</p>
+        <p class="plan-note">A month to fix one specific thing that's been blocking you for years.</p>
+        <a class="btn btn-ghost" href="#book">Take four</a>
+      </div>
+
+      <div class="plan plan-best">
+        <span class="plan-flag">Most chosen</span>
+        <h3>8 lessons</h3>
+        <p class="plan-price">&euro;376</p>
+        <p class="plan-each">&euro;47 per lesson &middot; save &euro;64</p>
+        <p class="plan-note">Two months of steady work. This is the one where people stop translating in their head.</p>
+        <a class="btn btn-light" href="#book">Start the block</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CHI SONO ============================ -->
+<section class="section about-section" id="about" style="padding-top:0;">
+  <div class="wrap about">
+    <!-- SOSTITUISCI: al posto di questo riquadro va la tua foto.
+         <img src="img/fabio.jpg" alt="Fabio" class="portrait"> -->
+    <div class="portrait"><span>Your photo goes here</span></div>
+
+    <div class="about-body">
+      <p class="eyebrow">Piacere, io sono Fabio</p>
+      <h2>A linguist who'd rather <span class="hl">hear you talk</span>.</h2>
+      <p>
+        I have a master's in linguistics from the University of Turin, which mostly
+        means I know exactly <strong>why</strong> a thing is hard for you before you
+        can explain it to me. I teach Italian online full time, and I'm a Super Tutor
+        on Preply, which is a polite way of saying people keep coming back.
+      </p>
+      <p>
+        I live near Pinerolo, in Piedmont, where the mountains start. I'm not going
+        to teach you the Italy of postcards. I'll teach you the language people use
+        to complain about the trains, order the second coffee, and tell a story badly
+        at dinner. <strong>That's the one you actually want.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ RECENSIONI ============================ -->
+<section class="section" id="reviews" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">What students say</p>
+      <h2>In their words.</h2>
+      <!-- SOSTITUISCI con recensioni vere copiate dal tuo profilo Preply.
+           Non pubblicare la pagina con questi segnaposto. -->
+      <p class="placeholder-note">Da sostituire con recensioni vere</p>
+    </div>
+
+    <div class="grid-3">
+      <article class="card">
+        <p class="quote">&ldquo;Here goes the real review of a real student.&rdquo;</p>
+        <p class="card-tag">Name &middot; Country</p>
+      </article>
+      <article class="card">
+        <p class="quote">&ldquo;Here goes the real review of a real student.&rdquo;</p>
+        <p class="card-tag">Name &middot; Country</p>
+      </article>
+      <article class="card">
+        <p class="quote">&ldquo;Here goes the real review of a real student.&rdquo;</p>
+        <p class="card-tag">Name &middot; Country</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PRENOTAZIONE ============================ -->
+<section class="section" id="book" style="padding-top:0;">
+  <div class="wrap">
+    <div class="book">
+      <div class="book-copy">
+        <p class="eyebrow">Allora, cominciamo</p>
+        <h2>Pick a time. <span class="hl">We'll talk.</span></h2>
+        <p>
+          Tell me where you are and what's in the way. If we're not a good fit,
+          I'll say so and point you to someone who is.
+        </p>
+        <div class="book-cta">
+          <!-- SOSTITUISCI con il tuo link Cal.com e la tua email -->
+          <a class="btn btn-light" href="#">See my calendar</a>
+          <a class="btn btn-outline-light" href="mailto:tuaemail@esempio.com">Write to me first</a>
+        </div>
+      </div>
+
+      <!-- SOSTITUISCI questo riquadro con il calendario Cal.com incorporato -->
+      <div class="calendar-slot">
+        <p class="eyebrow">Booking calendar</p>
+        <p style="color:var(--ink-soft);">Qui va incorporato il calendario di Cal.com. Finché non c'è, il bottone porta alla mail.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="wrap footer-in">
+    <div>
+      <a class="logo" href="#top">
+        <span class="logo-mark" aria-hidden="true"></span>
+        Italiano con Fabio
+      </a>
+      <p style="font-size:0.9rem;margin-top:8px;">Online Italian lessons from Piedmont, Italy.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#method">The method</a>
+      <a href="#materials">Free exercises</a>
+      <a href="#plans">Lessons</a>
+      <a href="#book">Book a lesson</a>
+      <!-- SOSTITUISCI con il tuo profilo Instagram -->
+      <a href="#">Instagram</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var root = document.documentElement;
+
+  if (reduced || !("IntersectionObserver" in window)) {
+    root.classList.remove("js");
+    return;
+  }
+
+  /* 1. La penna corregge all'apertura, e riparte ogni volta che si torna su. */
+  var hero = document.querySelector(".hero-copy");
+  if (hero) {
+    requestAnimationFrame(function () { hero.classList.add("hero-ready"); });
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          hero.classList.remove("hero-ready");
+          void hero.offsetWidth;
+          hero.classList.add("hero-ready");
+        }
+      });
+    }, { threshold: 0.55 }).observe(hero);
+  }
+
+  /* 2. Comparse scorrendo. */
+  var targets = document.querySelectorAll(
+    "[data-reveal], .step, .mat, .plan, .book, .portrait, .about-body, .card"
+  );
+
+  [".steps", ".materials", ".plans", ".grid-3"].forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (group) {
+      Array.prototype.forEach.call(group.children, function (child, i) {
+        child.style.setProperty("--d", (i * 0.09) + "s");
+      });
+    });
+  });
+
+  /* Va avanti scendendo e indietro risalendo. Togliamo la classe solo a
+     quello che esce dal BASSO: quello uscito dall'alto resta visibile,
+     altrimenti risalendo la pagina lampeggia. */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in");
+      } else if (entry.boundingClientRect.top > 0) {
+        entry.target.classList.remove("in");
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+  targets.forEach(function (el) { io.observe(el); });
+
+  /* 3. Barra di avanzamento per i browser senza animazioni legate allo scroll. */
+  var bar = document.querySelector(".progress");
+  if (bar && !CSS.supports("animation-timeline: scroll()")) {
+    var ticking = false;
+    var update = function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = "scaleX(" + (max > 0 ? window.scrollY / max : 0).toFixed(4) + ")";
+      ticking = false;
+    };
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+  }
+})();
+</script>
+
+</body>
+</html>
