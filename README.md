@@ -1,4 +1,4 @@
-[index.html](https://github.com/user-attachments/files/31925824/index.html)
+[index_2.html](https://github.com/user-attachments/files/31926314/index_2.html)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,10 +107,18 @@ p{ margin:0; }
 
 /* Parola cancellata dalla penna */
 .struck{
+  position:relative;
   color:var(--ink-soft);
-  text-decoration:line-through;
-  text-decoration-color:var(--rosso);
-  text-decoration-thickness:0.09em;
+}
+.strike-line{
+  position:absolute;
+  left:-3%;
+  right:-3%;
+  top:0.54em;
+  height:0.075em;
+  background:var(--rosso);
+  border-radius:99px;
+  transform-origin:left center;
 }
 
 .lead{
@@ -627,13 +635,165 @@ p{ margin:0; }
 .footer-links a{ text-decoration:none; }
 .footer-links a:hover{ color:var(--rosso); }
 
+/* ============================================================
+   13. ANIMAZIONI
+   Regola di sicurezza: senza JavaScript la pagina resta
+   completamente visibile. Nascondiamo qualcosa solo dopo che
+   lo script ha aggiunto la classe .js all'HTML.
+   ============================================================ */
+
+/* --- Barra di avanzamento della lettura, in cima --- */
+.progress{
+  position:fixed;
+  top:0; left:0; right:0;
+  height:3px;
+  background:var(--rosso);
+  transform:scaleX(0);
+  transform-origin:0 50%;
+  z-index:100;
+}
+@supports (animation-timeline:scroll()){
+  @media (prefers-reduced-motion:no-preference){
+    .progress{
+      animation:progress-grow linear both;
+      animation-timeline:scroll(root block);
+    }
+  }
+}
+@keyframes progress-grow{ to{ transform:scaleX(1); } }
+
+/* --- Comparse morbide al primo passaggio --- */
+.js [data-reveal],
+.js .step,
+.js .mat,
+.js .stack-card,
+.js .book,
+.js .portrait,
+.js .about-body,
+.js .card{
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity .75s cubic-bezier(.22,.7,.25,1), transform .75s cubic-bezier(.22,.7,.25,1);
+  transition-delay:var(--d,0s);
+}
+.js .in{ opacity:1 !important; transform:none !important; }
+
+/* --- La penna che corregge, all'apertura della pagina --- */
+.js .strike-line{ transform:scaleX(0); }
+.js .hero-ready .strike-line{
+  animation:strike-through .42s .55s cubic-bezier(.65,0,.35,1) forwards;
+}
+@keyframes strike-through{ to{ transform:scaleX(1); } }
+
+.js .fix .pen{ opacity:0; }
+.js .hero-ready .fix .pen{
+  animation:hand-write .5s 1s cubic-bezier(.2,.8,.3,1) forwards;
+}
+@keyframes hand-write{
+  from{ opacity:0; transform:translateX(-50%) rotate(-14deg) translateY(7px) scale(.85); }
+  to{   opacity:1; transform:translateX(-50%) rotate(-4deg); }
+}
+
+/* --- La fascia di mattonelle che scorre di lato --- */
+@supports (animation-timeline:scroll()){
+  @media (prefers-reduced-motion:no-preference){
+    .tiles{
+      animation:tiles-slide linear both;
+      animation-timeline:scroll(root block);
+    }
+  }
+}
+@keyframes tiles-slide{ to{ background-position:432px 0; } }
+
+/* --- Le schede che si accavallano una sull'altra --- */
+.stack{
+  display:flex;
+  flex-direction:column;
+  padding-bottom:8vh;
+}
+
+.stack-card{
+  position:sticky;
+  top:calc(102px + var(--i,0) * 16px);
+  background:var(--paper-2);
+  border:2px solid var(--ink);
+  border-radius:22px;
+  padding:clamp(26px,3.2vw,42px);
+  margin-bottom:34vh;
+  display:grid;
+  grid-template-columns:8px minmax(0,1.05fr) minmax(0,0.95fr);
+  column-gap:clamp(22px,3.2vw,48px);
+  row-gap:14px;
+  box-shadow:0 20px 44px color-mix(in srgb, var(--ink) 15%, transparent);
+}
+.stack-card:last-child{ margin-bottom:0; }
+
+.stack-card::before{
+  content:"";
+  grid-column:1;
+  grid-row:1 / span 2;
+  border-radius:99px;
+  background:var(--accent,var(--saffron));
+}
+.stack-card .card-tag{ grid-column:2; grid-row:1; align-self:start; }
+.stack-card .quote{
+  grid-column:2;
+  grid-row:2;
+  font-size:clamp(1.28rem,2.2vw,1.72rem);
+  font-style:italic;
+  line-height:1.3;
+  margin:0;
+  align-self:start;
+}
+.stack-card p:last-child{
+  grid-column:3;
+  grid-row:1 / span 2;
+  align-self:center;
+  color:var(--ink-soft);
+  border-left:1px solid var(--rule);
+  padding-left:clamp(20px,2.4vw,34px);
+}
+
+@media (max-width:900px){
+  .stack{ gap:18px; padding-bottom:0; }
+  .stack-card{
+    position:static;
+    margin-bottom:0;
+    box-shadow:none;
+    grid-template-columns:8px minmax(0,1fr);
+  }
+  .stack-card p:last-child{
+    grid-column:2;
+    grid-row:3;
+    border-left:none;
+    padding-left:0;
+  }
+  .stack-card::before{ grid-row:1 / span 3; }
+}
+
+/* --- I passi del metodo che si accendono uno dopo l'altro --- */
+.js .step .step-n{ color:color-mix(in srgb, var(--paper) 40%, transparent); transition:color .6s ease; transition-delay:calc(var(--d,0s) + .25s); }
+.js .step.in .step-n{ color:var(--saffron); }
+
 @media (prefers-reduced-motion:reduce){
   html{ scroll-behavior:auto; }
   *{ transition:none !important; animation:none !important; }
+  .js [data-reveal]{ opacity:1 !important; transform:none !important; }
+  .js .strike-line{ transform:scaleX(1) !important; }
+  .js .fix .pen{ opacity:1 !important; }
+  .progress{ display:none; }
 }
 </style>
+
+<script>
+  /* Segna subito che il JavaScript funziona, prima che la pagina si disegni.
+     Se questa riga non gira, la pagina resta tutta visibile e statica. */
+  document.documentElement.classList.add("js");
+</script>
 </head>
 <body>
+
+<div class="progress" aria-hidden="true"></div>
 
 <!-- ============================ NAV ============================ -->
 <header class="nav">
@@ -662,7 +822,7 @@ p{ margin:0; }
       <h1>
         <span class="l">You already know</span>
         <span class="l">more Italian than</span>
-        <span class="l l-fix">you can <span class="fix"><span class="pen" aria-hidden="true">dire</span><span class="struck">say</span></span>.</span>
+        <span class="l l-fix">you can <span class="fix"><span class="pen" aria-hidden="true">dire</span><span class="struck">say<span class="strike-line" aria-hidden="true"></span></span></span>.</span>
       </h1>
       <p class="lead">
         Most people don't need more grammar. They need someone to make them
@@ -712,14 +872,14 @@ p{ margin:0; }
 <!-- ======================= CHI SI RICONOSCE ======================= -->
 <section class="section" id="familiar">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <p class="eyebrow">Sound familiar?</p>
       <h2>Three people usually write to me.</h2>
       <p class="lead">You'll probably recognise yourself in one of them.</p>
     </div>
 
-    <div class="grid-3">
-      <article class="card">
+    <div class="stack">
+      <article class="stack-card" style="--accent:var(--saffron); --i:0;">
         <p class="card-tag">The one who got stuck</p>
         <p class="quote">&ldquo;Six hundred days on the app. I understand everything and I can't say a word.&rdquo;</p>
         <p>
@@ -729,7 +889,7 @@ p{ margin:0; }
         </p>
       </article>
 
-      <article class="card">
+      <article class="stack-card" style="--accent:var(--verde); --i:1;">
         <p class="card-tag">The one starting from zero</p>
         <p class="quote">&ldquo;Everyone says Italian is easy. So why can't I order a coffee?&rdquo;</p>
         <p>
@@ -739,7 +899,7 @@ p{ margin:0; }
         </p>
       </article>
 
-      <article class="card">
+      <article class="stack-card" style="--accent:var(--rosso); --i:2;">
         <p class="card-tag">The one who loves Italy</p>
         <p class="quote">&ldquo;My grandmother spoke it. I want it back.&rdquo;</p>
         <p>
@@ -755,7 +915,7 @@ p{ margin:0; }
 <!-- ============================ METODO ============================ -->
 <section class="section dark" id="method">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <p class="eyebrow">The method</p>
       <h2>You don't study the language.<br>You use it, and it sticks.</h2>
       <p class="lead">
@@ -793,7 +953,7 @@ p{ margin:0; }
 <!-- ======================= MATERIALI GRATUITI ======================= -->
 <section class="section" id="materials">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <p class="eyebrow">Free, no sign&#8209;up, no email</p>
       <h2>Exercises I built for my own students.</h2>
       <p class="lead">
@@ -860,7 +1020,7 @@ p{ margin:0; }
 <!-- ============================ RECENSIONI ============================ -->
 <section class="section" id="reviews" style="padding-top:0;">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <p class="eyebrow">What students say</p>
       <h2>In their words.</h2>
       <!-- SOSTITUISCI con recensioni vere copiate dal tuo profilo Preply.
@@ -933,6 +1093,68 @@ p{ margin:0; }
     </nav>
   </div>
 </footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var root = document.documentElement;
+
+  /* Chi ha chiesto meno movimento vede la pagina ferma e completa. */
+  if (reduced || !("IntersectionObserver" in window)) {
+    root.classList.remove("js");
+    return;
+  }
+
+  /* 1. La penna che corregge, subito dopo l'apertura. */
+  var hero = document.querySelector(".hero-copy");
+  if (hero) { requestAnimationFrame(function(){ hero.classList.add("hero-ready"); }); }
+
+  /* 2. Tutto quello che compare scorrendo. */
+  var targets = document.querySelectorAll(
+    "[data-reveal], .step, .mat, .stack-card, .book, .portrait, .about-body, .card"
+  );
+
+  /* Gli elementi vicini partono a catena, non tutti insieme. */
+  var groups = [".steps", ".materials", ".grid-3", ".stack"];
+  groups.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (group) {
+      Array.prototype.forEach.call(group.children, function (child, i) {
+        var el = child.matches(".step, .mat, .card, .stack-card") ? child : child.querySelector(".stack-card");
+        if (el) { el.style.setProperty("--d", (i * 0.09) + "s"); }
+      });
+    });
+  });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+  targets.forEach(function (el) { io.observe(el); });
+
+  /* 3. Barra di avanzamento, per i browser senza le animazioni CSS legate allo scroll. */
+  var bar = document.querySelector(".progress");
+  if (bar && !CSS.supports("animation-timeline: scroll()")) {
+    var ticking = false;
+    var update = function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var p = max > 0 ? window.scrollY / max : 0;
+      bar.style.transform = "scaleX(" + p.toFixed(4) + ")";
+      ticking = false;
+    };
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+  }
+})();
+</script>
 
 </body>
 </html>
