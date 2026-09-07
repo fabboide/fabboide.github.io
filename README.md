@@ -1,4 +1,4 @@
-[index_3.html](https://github.com/user-attachments/files/31926766/index_3.html)
+[index_4.html](https://github.com/user-attachments/files/31927016/index_4.html)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -666,7 +666,6 @@ p{ margin:0; }
 .js [data-reveal],
 .js .step,
 .js .mat,
-.js .stack-card,
 .js .book,
 .js .portrait,
 .js .about-body,
@@ -706,28 +705,31 @@ p{ margin:0; }
 @keyframes tiles-slide{ to{ background-position:432px 0; } }
 
 /* --- Le schede che si accavallano una sull'altra --- */
-.stack{
-  display:flex;
-  flex-direction:column;
-  padding-bottom:8vh;
-}
+/* Contenitore a blocco, non flex: dentro un flex la proprietà sticky
+   fa i capricci e le schede si spingono a vicenda.
+   Lo spazio fra una scheda e l'altra NON si fa con i margini: il margine
+   fa parte della scheda e le ruba la corsa, così si stacca troppo presto.
+   E nemmeno con il padding del contenitore, che lo sticky ignora.
+   Si fa con dei distanziatori veri, i div qui sotto. */
+.stack{ display:block; }
+.stack-gap{ height:30vh; }
+.stack-tail{ height:44vh; }
 
 .stack-card{
   position:sticky;
-  top:calc(102px + var(--i,0) * 16px);
+  /* Ogni scheda si ferma più in basso della precedente, così restano
+     visibili le etichette di quelle già lette e i tre motivi si sommano. */
+  top:calc(96px + var(--i,0) * 62px);
   background:var(--paper-2);
   border:2px solid var(--ink);
   border-radius:22px;
   padding:clamp(26px,3.2vw,42px);
-  margin-bottom:34vh;
   display:grid;
   grid-template-columns:8px minmax(0,1.05fr) minmax(0,0.95fr);
   column-gap:clamp(22px,3.2vw,48px);
   row-gap:14px;
   box-shadow:0 20px 44px color-mix(in srgb, var(--ink) 15%, transparent);
 }
-.stack-card:last-child{ margin-bottom:0; }
-
 .stack-card::before{
   content:"";
   grid-column:1;
@@ -755,10 +757,10 @@ p{ margin:0; }
 }
 
 @media (max-width:900px){
-  .stack{ gap:18px; padding-bottom:0; }
+  .stack{ display:flex; flex-direction:column; gap:18px; }
+  .stack-gap, .stack-tail{ display:none; }
   .stack-card{
     position:static;
-    margin-bottom:0;
     box-shadow:none;
     grid-template-columns:8px minmax(0,1fr);
   }
@@ -888,6 +890,7 @@ p{ margin:0; }
           let you drift. That takes weeks, not years.
         </p>
       </article>
+      <div class="stack-gap" aria-hidden="true"></div>
 
       <article class="stack-card" style="--accent:var(--verde); --i:1;">
         <p class="card-tag">The one starting from zero</p>
@@ -898,6 +901,7 @@ p{ margin:0; }
           and the grammar comes in behind them, quietly.
         </p>
       </article>
+      <div class="stack-gap" aria-hidden="true"></div>
 
       <article class="stack-card" style="--accent:var(--rosso); --i:2;">
         <p class="card-tag">The one who loves Italy</p>
@@ -908,6 +912,7 @@ p{ margin:0; }
           It just needs a structure around it.
         </p>
       </article>
+      <div class="stack-tail" aria-hidden="true"></div>
     </div>
   </div>
 </section>
@@ -1107,13 +1112,27 @@ p{ margin:0; }
     return;
   }
 
-  /* 1. La penna che corregge, subito dopo l'apertura. */
+  /* 1. La penna che corregge, subito dopo l'apertura.
+        Si riscrive ogni volta che si torna in cima alla pagina. */
   var hero = document.querySelector(".hero-copy");
-  if (hero) { requestAnimationFrame(function(){ hero.classList.add("hero-ready"); }); }
+  if (hero) {
+    requestAnimationFrame(function () { hero.classList.add("hero-ready"); });
+
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          hero.classList.remove("hero-ready");
+          /* forza il browser a ricalcolare, altrimenti non riparte */
+          void hero.offsetWidth;
+          hero.classList.add("hero-ready");
+        }
+      });
+    }, { threshold: 0.55 }).observe(hero);
+  }
 
   /* 2. Tutto quello che compare scorrendo. */
   var targets = document.querySelectorAll(
-    "[data-reveal], .step, .mat, .stack-card, .book, .portrait, .about-body, .card"
+    "[data-reveal], .step, .mat, .book, .portrait, .about-body, .card"
   );
 
   /* Gli elementi vicini partono a catena, non tutti insieme. */
@@ -1127,11 +1146,16 @@ p{ margin:0; }
     });
   });
 
+  /* L'animazione va avanti scendendo e indietro risalendo.
+     Attenzione a un dettaglio: togliamo la classe solo agli elementi
+     usciti dal BASSO dello schermo. Quelli usciti dall'alto restano
+     visibili, altrimenti scrollando in su la pagina lampeggerebbe. */
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add("in");
-        io.unobserve(entry.target);
+      } else if (entry.boundingClientRect.top > 0) {
+        entry.target.classList.remove("in");
       }
     });
   }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
