@@ -497,6 +497,49 @@ h3{ font-size:1.42rem; letter-spacing:-0.02em; line-height:1.12; }
 /* ============================================================
    13. RECENSIONI
    ============================================================ */
+.reviews .card{
+  position:relative;
+  gap:18px;
+  padding-top:34px;
+  border-left:6px solid var(--accent,var(--saffron));
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.reviews .card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 34px color-mix(in srgb, var(--ink) 13%, transparent);
+}
+/* Virgolettone decorativo in alto */
+.reviews .card::before{
+  content:"\201C";
+  position:absolute; top:6px; left:24px;
+  font-family:var(--body); font-weight:500;
+  font-size:4.4rem; line-height:1;
+  color:color-mix(in srgb, var(--accent,var(--saffron)) 42%, transparent);
+  pointer-events:none;
+}
+.reviews .quote{ font-size:1.06rem; position:relative; }
+/* Le frasi che contano, in tondo e in nero pieno: staccano dal corsivo */
+/* Niente sottolineatura: sembrerebbero link rotti. Il contrasto lo fa il
+   passaggio da corsivo grigio a tondo nero, che è più forte e più pulito. */
+.reviews .quote b{
+  font-style:normal;
+  font-weight:600;
+  color:var(--ink);
+}
+.reviews .who{
+  margin-top:auto;
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--display); font-weight:700;
+  font-size:1rem; color:var(--ink);
+}
+.reviews .flag{ font-size:1.3rem; line-height:1; }
+.reviews .when{
+  margin-left:auto;
+  font-family:var(--mono); font-weight:400;
+  font-size:0.72rem; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--ink-soft);
+}
+
 .placeholder-note{
   font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em;
   text-transform:uppercase; color:var(--rosso);
@@ -526,10 +569,13 @@ h3{ font-size:1.42rem; letter-spacing:-0.02em; line-height:1.12; }
 .book-side{ display:flex; flex-direction:column; gap:16px; }
 
 /* Contenitore del calendario Cal.com */
+/* min-height è solo un pavimento: Cal.com poi si regola da solo sull'altezza
+   del suo contenuto. Tenendolo basso il riquadro bianco resta aderente e la
+   striscia col logo in fondo non galleggia in mezzo al vuoto. */
 .calendar-slot{
   background:var(--paper-2);
   border-radius:18px;
-  min-height:620px;
+  min-height:460px;
   overflow:hidden;
   position:relative;
 }
@@ -540,7 +586,14 @@ h3{ font-size:1.42rem; letter-spacing:-0.02em; line-height:1.12; }
   padding:30px; color:var(--ink-soft);
 }
 .calendar-fallback strong{ color:var(--ink); font-weight:500; }
-@media (max-width:700px){ .calendar-slot{ min-height:560px; } }
+@media (max-width:700px){ .calendar-slot{ min-height:420px; } }
+
+/* Indirizzo mail scritto in chiaro sotto al bottone, per chi non usa Gmail */
+.mail-plain{
+  font-family:var(--mono); font-size:0.78rem; letter-spacing:0.04em;
+  color:color-mix(in srgb, var(--paper) 72%, transparent);
+}
+.mail-plain a{ color:inherit; }
 
 /* ============================================================
    15. FOOTER
@@ -738,11 +791,10 @@ h3{ font-size:1.42rem; letter-spacing:-0.02em; line-height:1.12; }
         <a class="btn btn-ghost" href="#materials">Try the free exercises</a>
       </div>
 
-      <!-- SOSTITUISCI: metti i tuoi dati veri. Il terzo è un segnaposto. -->
       <div class="credentials">
         <span>Super Tutor on Preply</span>
         <span>MA Linguistics, University of Turin</span>
-        <span>Students in 14 countries</span>
+        <span>Students in 21 countries</span>
       </div>
     </div>
 
@@ -986,26 +1038,26 @@ h3{ font-size:1.42rem; letter-spacing:-0.02em; line-height:1.12; }
 <!-- ============================ RECENSIONI ============================ -->
 <section class="section" id="reviews" style="padding-top:0;">
   <div class="wrap">
-    <div class="section-head" data-reveal>
+    <div class="section-head split" data-reveal>
       <p class="eyebrow">What students say</p>
-      <h2>In their words.</h2>
-      <!-- SOSTITUISCI con recensioni vere copiate dal tuo profilo Preply.
-           Non pubblicare la pagina con questi segnaposto. -->
-      <p class="placeholder-note">Da sostituire con recensioni vere</p>
+      <h2>Not my words. <span class="hl">Theirs</span>.</h2>
+      <p class="lead">
+        Three of the reviews my students left me. Nothing edited, nothing invented.
+      </p>
     </div>
 
-    <div class="grid-3">
-      <article class="card">
-        <p class="quote">&ldquo;Here goes the real review of a real student.&rdquo;</p>
-        <p class="card-tag">Name &middot; Country</p>
+    <div class="grid-3 reviews">
+      <article class="card" style="--accent:var(--saffron);">
+        <p class="quote">Fabio is <b>by far the best tutor I have ever had</b>. Not only is he extremely good at teaching, he's uplifting, he shows true care and interest, and he <b>personalizes the lessons extremely well</b>. I have learned so much Italian in the span of only a few months thanks to him, and the lessons are fun and enjoyable.</p>
+        <p class="who"><span class="flag">&#127482;&#127480;</span> Ari <span class="when">July 2026</span></p>
       </article>
-      <article class="card">
-        <p class="quote">&ldquo;Here goes the real review of a real student.&rdquo;</p>
-        <p class="card-tag">Name &middot; Country</p>
+      <article class="card" style="--accent:var(--verde);">
+        <p class="quote">Fabio is an excellent teacher! He is patient, encouraging, and <b>explains everything in a very clear and easy-to-understand way</b>. He creates a relaxed atmosphere that makes learning Italian enjoyable and <b>gives me confidence to speak</b>. I already learned so much in my first lessons, and I'm looking forward to every class.</p>
+        <p class="who"><span class="flag">&#127465;&#127466;</span> Rafaela <span class="when">July 2026</span></p>
       </article>
-      <article class="card">
-        <p class="quote">&ldquo;Here goes the real review of a real student.&rdquo;</p>
-        <p class="card-tag">Name &middot; Country</p>
+      <article class="card" style="--accent:var(--rosso);">
+        <p class="quote">What an amazing teacher! <b>Already making a lot of progress and it's only the second lesson.</b> Fabio knows his craft and has a good methodology. I highly recommend!</p>
+        <p class="who"><span class="flag">&#127474;&#127462;</span> Samy <span class="when">May 2026</span></p>
       </article>
     </div>
   </div>
@@ -1027,9 +1079,20 @@ h3{ font-size:1.42rem; letter-spacing:-0.02em; line-height:1.12; }
         <div class="book-side">
           <p>Prefer to ask something first? That's fine too.</p>
           <div class="book-cta">
-            <!-- SOSTITUISCI con la tua email vera -->
-            <a class="btn btn-outline-light" href="mailto:tuaemail@esempio.com">Write to me first</a>
+            <!-- ================================================================
+                 SOSTITUISCI boccuzzifabio@gmail.com in TUTTI E TRE i punti qui sotto
+                 con il tuo indirizzo vero.
+                 Il bottone apre la finestra di scrittura di Gmail in una scheda
+                 nuova, non il programma di posta del computer. Sotto c'è
+                 l'indirizzo in chiaro per chi Gmail non ce l'ha.
+                 ================================================================ -->
+            <a class="btn btn-outline-light"
+               href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=boccuzzifabio@gmail.com&amp;su=Italian%20lessons"
+               target="_blank" rel="noopener">Write to me first</a>
           </div>
+          <p class="mail-plain">
+            or just copy it: <a href="mailto:boccuzzifabio@gmail.com">boccuzzifabio@gmail.com</a>
+          </p>
         </div>
       </div>
 
