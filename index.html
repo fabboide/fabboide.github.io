@@ -509,22 +509,38 @@ h3{ font-size:1.42rem; letter-spacing:-0.02em; line-height:1.12; }
    ============================================================ */
 .book{
   background:var(--verde); color:var(--paper-2);
-  border-radius:26px; padding:clamp(34px,5vw,62px);
-  display:grid; grid-template-columns:1.1fr 0.9fr;
-  gap:clamp(26px,4vw,54px); align-items:center;
+  border-radius:26px; padding:clamp(28px,4vw,48px);
 }
-@media (max-width:880px){ .book{ grid-template-columns:1fr; } }
 .book h2{ color:var(--paper-2); }
 .book p{ color:color-mix(in srgb, var(--paper) 80%, transparent); }
 .book .eyebrow{ color:var(--saffron); }
-.book-copy{ display:flex; flex-direction:column; gap:16px; }
-.book-cta{ display:flex; flex-wrap:wrap; gap:14px; margin-top:8px; }
-.calendar-slot{
-  background:var(--paper-2); border-radius:18px; min-height:270px;
-  padding:24px; color:var(--ink);
-  display:flex; flex-direction:column; gap:12px;
-  justify-content:center; align-items:flex-start;
+
+.book-head{
+  display:grid; grid-template-columns:1.15fr 0.85fr;
+  gap:clamp(24px,4vw,54px); align-items:end;
+  margin-bottom:clamp(26px,3vw,40px);
 }
+@media (max-width:880px){ .book-head{ grid-template-columns:1fr; align-items:start; } }
+.book-copy{ display:flex; flex-direction:column; gap:16px; }
+.book-cta{ display:flex; flex-wrap:wrap; gap:14px; }
+.book-side{ display:flex; flex-direction:column; gap:16px; }
+
+/* Contenitore del calendario Cal.com */
+.calendar-slot{
+  background:var(--paper-2);
+  border-radius:18px;
+  min-height:620px;
+  overflow:hidden;
+  position:relative;
+}
+.calendar-fallback{
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; gap:12px;
+  justify-content:center; align-items:center; text-align:center;
+  padding:30px; color:var(--ink-soft);
+}
+.calendar-fallback strong{ color:var(--ink); font-weight:500; }
+@media (max-width:700px){ .calendar-slot{ min-height:560px; } }
 
 /* ============================================================
    15. FOOTER
@@ -999,24 +1015,30 @@ h3{ font-size:1.42rem; letter-spacing:-0.02em; line-height:1.12; }
 <section class="section" id="book" style="padding-top:0;">
   <div class="wrap">
     <div class="book">
-      <div class="book-copy">
-        <p class="eyebrow">Allora, cominciamo</p>
-        <h2>Pick a time. <span class="hl">We'll talk.</span></h2>
-        <p>
-          Tell me where you are and what's in the way. If we're not a good fit,
-          I'll say so and point you to someone who is.
-        </p>
-        <div class="book-cta">
-          <!-- SOSTITUISCI con il tuo link Cal.com e la tua email -->
-          <a class="btn btn-light" href="#">See my calendar</a>
-          <a class="btn btn-outline-light" href="mailto:tuaemail@esempio.com">Write to me first</a>
+      <div class="book-head">
+        <div class="book-copy">
+          <p class="eyebrow">Allora, cominciamo</p>
+          <h2>Pick a time. <span class="hl">We'll talk.</span></h2>
+          <p>
+            Tell me where you are and what's in the way. If we're not a good fit,
+            I'll say so and point you to someone who is.
+          </p>
+        </div>
+        <div class="book-side">
+          <p>Prefer to ask something first? That's fine too.</p>
+          <div class="book-cta">
+            <!-- SOSTITUISCI con la tua email vera -->
+            <a class="btn btn-outline-light" href="mailto:tuaemail@esempio.com">Write to me first</a>
+          </div>
         </div>
       </div>
 
-      <!-- SOSTITUISCI questo riquadro con il calendario Cal.com incorporato -->
-      <div class="calendar-slot">
-        <p class="eyebrow">Booking calendar</p>
-        <p style="color:var(--ink-soft);">Qui va incorporato il calendario di Cal.com. Finché non c'è, il bottone porta alla mail.</p>
+      <!-- Il calendario Cal.com si carica qui dentro. -->
+      <div class="calendar-slot" id="my-cal-inline">
+        <div class="calendar-fallback" id="cal-fallback">
+          <strong>The booking calendar is loading.</strong>
+          <p>If it doesn't appear, just write to me and we'll find a time by email.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1043,6 +1065,69 @@ h3{ font-size:1.42rem; letter-spacing:-0.02em; line-height:1.12; }
     </nav>
   </div>
 </footer>
+
+<!-- ============================================================
+     CALENDARIO CAL.COM
+     Cambia SOLO la riga qui sotto con il tuo link, nel formato
+     "nomeutente/nome-evento" (senza https://cal.com/ davanti).
+     Esempio: se il tuo link è https://cal.com/fabboide/italian-lesson
+     allora qui scrivi   fabboide/italian-lesson
+     ============================================================ -->
+<script>
+  var CAL_LINK = "fabboide/italian-lesson";
+</script>
+
+<script>
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init");
+  Cal("inline", {
+    elementOrSelector: "#my-cal-inline",
+    calLink: CAL_LINK,
+    layout: "month_view"
+  });
+  Cal("ui", {
+    hideEventTypeDetails: false,
+    layout: "month_view",
+    styles: { branding: { brandColor: "#16233F" } }
+  });
+
+  /* Quando il calendario è dentro, togliamo il messaggio di attesa. */
+  (function () {
+    var slot = document.getElementById("my-cal-inline");
+    var msg = document.getElementById("cal-fallback");
+    if (!slot || !msg) return;
+    var stop = setInterval(function () {
+      if (slot.querySelector("iframe")) { msg.remove(); clearInterval(stop); }
+    }, 400);
+    setTimeout(function () { clearInterval(stop); }, 15000);
+  })();
+</script>
 
 <script>
 (function () {
