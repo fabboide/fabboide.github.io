@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Your first 80 phrases — Italiano con Fabio</title>
+<meta name="description" content="The 80 Italian phrases you will actually use in your first week. Not words: whole sentences, ready to say, grouped by the moment you need them.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+/* ============================================================
+   Stessi token del sito.
+   ============================================================ */
+:root{
+  --ink:#16233F;
+  --ink-soft:#4A5670;
+  --paper:#F7F4EC;
+  --paper-2:#FFFDF8;
+  --rule:#DFD8C7;
+  --saffron:#E8A33D;
+  --rosso:#C4312B;
+  --verde:#2E5E4E;
+
+  --ok:#2E5E4E;
+  --ok-bg:rgba(46,94,78,.12);
+  --no:#C4312B;
+  --no-bg:rgba(196,49,43,.10);
+
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --pen:"Caveat","Segoe Script",cursive;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+
+  --wrap:920px;
+  --mode:var(--rosso);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0; min-height:100vh;
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:1.0625rem; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    linear-gradient(to right, transparent 0 62px, color-mix(in srgb, var(--rosso) 30%, transparent) 62px 64px, transparent 64px),
+    repeating-linear-gradient(to bottom, transparent 0 33px, color-mix(in srgb, var(--ink) 7%, transparent) 33px 34px);
+  background-size:100% 100%, 100% 34px;
+  background-repeat:no-repeat, repeat;
+}
+@media (max-width:720px){
+  body{ background-image:repeating-linear-gradient(to bottom, transparent 0 33px, color-mix(in srgb, var(--ink) 7%, transparent) 33px 34px); }
+}
+
+h1,h2,h3{ font-family:var(--display); font-weight:800; line-height:1.03; letter-spacing:-0.03em; text-wrap:balance; margin:0; }
+p{ margin:0; }
+button{ font-family:inherit; }
+a{ color:inherit; }
+:focus-visible{ outline:3px solid var(--rosso); outline-offset:3px; border-radius:6px; }
+
+.eyebrow{ font-family:var(--mono); font-size:.72rem; font-weight:500; letter-spacing:.17em; text-transform:uppercase; color:var(--rosso); }
+.en{ font-family:var(--body); font-style:italic; color:var(--ink-soft); }
+
+/* ---------- Barra in alto ---------- */
+.topbar{
+  position:sticky; top:0; z-index:20;
+  background:color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter:blur(8px); border-bottom:1px solid var(--rule);
+}
+.topbar-in{ max-width:var(--wrap); margin:0 auto; padding:0 20px; height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.logo{ font-family:var(--display); font-weight:800; font-size:1.05rem; letter-spacing:-0.035em; text-decoration:none; display:flex; align-items:center; gap:.5em; }
+.logo-mark{ width:22px; height:22px; border-radius:50%; flex:none; background:conic-gradient(from 180deg, var(--verde) 0 25%, var(--saffron) 0 50%, var(--rosso) 0 75%, var(--ink) 0); }
+.back-link{ font-family:var(--display); font-weight:500; font-size:.94rem; text-decoration:none; color:var(--ink-soft); }
+.back-link:hover{ color:var(--rosso); }
+
+#app{ max-width:var(--wrap); margin:0 auto; padding:34px 20px 90px; }
+.screen{ display:none; }
+.screen.active{ display:block; animation:fade .32s ease both; }
+@keyframes fade{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:none;} }
+
+/* ---------- Bottoni ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:.5em;
+  font-family:var(--display); font-weight:700; font-size:1rem;
+  letter-spacing:-0.015em; text-decoration:none;
+  padding:.85em 1.45em; border-radius:999px;
+  border:2px solid var(--ink); background:var(--ink); color:var(--paper-2);
+  cursor:pointer; transition:transform .15s ease, background-color .15s ease, border-color .15s ease;
+}
+.btn:hover{ transform:translateY(-2px); background:var(--mode); border-color:var(--mode); }
+.btn .sub{ font-family:var(--mono); font-size:.66rem; font-weight:500; letter-spacing:.08em; opacity:.8; }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--ink); }
+.btn-ghost:hover{ background:var(--saffron); border-color:var(--saffron); color:var(--ink); }
+.btn[disabled]{ opacity:.4; cursor:default; transform:none; }
+
+/* ---------- Schermata iniziale ---------- */
+.intro{ max-width:660px; margin-bottom:34px; }
+.intro h1{ font-size:clamp(2.2rem,5.2vw,3.4rem); margin:12px 0 16px; }
+.intro .lede{ font-size:1.12rem; }
+.intro .lede-en{ margin-top:8px; font-size:.95rem; }
+
+.mode-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+.mode-card{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:22px;
+  padding:24px; display:flex; flex-direction:column; gap:11px;
+  box-shadow:9px 9px 0 color-mix(in srgb, var(--mode) 20%, transparent);
+}
+.mode-tag{ font-family:var(--mono); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--mode); }
+.mode-card h2{ font-size:1.6rem; }
+.mode-card p{ font-size:.97rem; color:var(--ink-soft); }
+.mode-ex{
+  font-family:var(--pen); font-size:1.3rem; color:var(--rosso); line-height:1.3;
+}
+.mode-card .btn{ margin-top:auto; align-self:flex-start; background:var(--mode); border-color:var(--mode); }
+.mode-card .btn:hover{ background:var(--ink); border-color:var(--ink); }
+.mode-card[data-m="build"] .btn{ color:var(--ink); }
+.mode-card[data-m="build"] .btn:hover{ color:var(--paper-2); }
+
+/* ---------- Livelli e filtro ---------- */
+.back-row{ margin-bottom:16px; }
+.back-btn{ background:none; border:none; padding:0; cursor:pointer; font-family:var(--display); font-weight:500; font-size:.95rem; color:var(--ink-soft); }
+.back-btn:hover{ color:var(--rosso); }
+
+.mode-head{ display:flex; align-items:center; gap:12px; }
+.swatch{ width:14px; height:14px; border-radius:4px; background:var(--mode); flex:none; }
+.mode-head h2{ font-size:clamp(1.9rem,4.4vw,2.6rem); }
+
+.howto{
+  background:var(--paper-2); border:1px solid var(--rule);
+  border-left:5px solid var(--mode); border-radius:16px;
+  padding:18px 22px; margin:16px 0 24px;
+}
+.howto p + p{ margin-top:6px; }
+
+.filter{ margin-bottom:26px; }
+.filter-label{ font-family:var(--mono); font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px; }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{
+  font-family:var(--display); font-weight:700; font-size:.88rem;
+  padding:.48em .95em; border-radius:999px;
+  border:1.5px solid var(--rule); background:var(--paper-2);
+  color:var(--ink-soft); cursor:pointer;
+  transition:background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+.chip:hover{ border-color:var(--ink); color:var(--ink); }
+.chip[aria-pressed="true"]{ background:var(--ink); border-color:var(--ink); color:var(--paper-2); }
+.chip .n{ font-family:var(--mono); font-size:.72em; opacity:.7; margin-left:.4em; }
+
+.level-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px; }
+.level-card{
+  background:var(--paper-2); border:1px solid var(--rule); border-radius:20px;
+  padding:24px; display:flex; flex-direction:column; gap:10px;
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.level-card:hover{ transform:translateY(-4px); border-color:var(--ink); box-shadow:0 16px 32px color-mix(in srgb, var(--ink) 14%, transparent); }
+.level-icon{ width:36px; height:36px; color:var(--mode); }
+.level-card h3{ font-size:1.2rem; }
+.level-en{ font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
+.level-desc{ font-size:.93rem; color:var(--ink-soft); }
+.record{
+  align-self:flex-start; font-family:var(--mono); font-size:.72rem; letter-spacing:.05em;
+  color:var(--saffron); border:1px solid var(--saffron);
+  background:color-mix(in srgb, var(--saffron) 12%, transparent);
+  padding:4px 11px; border-radius:999px;
+}
+.level-card .btn{ margin-top:6px; align-self:flex-start; background:var(--mode); border-color:var(--mode); }
+.level-card .btn:hover{ background:var(--ink); border-color:var(--ink); }
+
+/* ---------- Partita ---------- */
+.topline{ display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:20px; }
+.dots{ display:flex; gap:6px; }
+.dot{ width:9px; height:9px; border-radius:50%; background:var(--rule); }
+.dot.done{ background:var(--mode); }
+.dot.current{ background:var(--mode); box-shadow:0 0 0 3px color-mix(in srgb, var(--mode) 25%, transparent); }
+.timer{ font-family:var(--mono); font-size:1.3rem; font-weight:600; font-variant-numeric:tabular-nums; background:var(--paper-2); border:1.5px solid var(--rule); border-radius:999px; padding:5px 15px; }
+.timer.low{ color:var(--rosso); border-color:var(--rosso); }
+.score{ font-family:var(--mono); font-size:.88rem; color:var(--ink-soft); }
+.score b{ color:var(--ink); }
+.sit-tag{
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink-soft); border:1px solid var(--rule); border-radius:6px; padding:3px 8px;
+}
+
+.prompt-card{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:22px;
+  padding:clamp(28px,4.5vw,42px) clamp(20px,4vw,34px);
+  min-height:140px; display:flex; flex-direction:column; gap:12px;
+  align-items:center; justify-content:center; text-align:center; margin-bottom:22px;
+  box-shadow:8px 8px 0 color-mix(in srgb, var(--mode) 16%, transparent);
+}
+.prompt-key{ font-family:var(--mono); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+.prompt-main{ font-size:clamp(1.4rem,3.4vw,2rem); line-height:1.35; font-weight:500; }
+.prompt-main.it{ font-family:var(--body); }
+
+.options{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+@media (max-width:600px){ .options{ grid-template-columns:1fr; } }
+.opt{
+  background:var(--paper-2); border:2px solid var(--rule); border-radius:14px;
+  padding:15px 16px; font-family:var(--body); font-size:1.05rem; line-height:1.35;
+  color:var(--ink); cursor:pointer; text-align:left;
+  transition:transform .12s ease, border-color .12s ease, background-color .12s ease;
+}
+.opt:hover:not(:disabled){ transform:translateY(-2px); border-color:var(--ink); }
+.opt.ok{ background:var(--ok-bg); border-color:var(--ok); color:var(--ok); }
+.opt.no{ background:var(--no-bg); border-color:var(--no); color:var(--no); }
+.opt:disabled{ cursor:default; }
+
+/* ---------- Modalità costruisci ---------- */
+.build-line{
+  min-height:64px; border:2px dashed var(--rule); border-radius:14px;
+  background:var(--paper-2);
+  padding:12px; display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  margin-bottom:14px;
+}
+.build-line.filled{ border-style:solid; }
+.build-line.ok{ border-color:var(--ok); background:var(--ok-bg); }
+.build-line.no{ border-color:var(--no); background:var(--no-bg); }
+.build-empty{ font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); padding-left:6px; }
+.pool{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; min-height:48px; }
+.word{
+  font-family:var(--display); font-weight:700; font-size:1.02rem;
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:11px;
+  padding:9px 14px; cursor:pointer; color:var(--ink);
+  transition:transform .12s ease, background-color .12s ease;
+}
+.word:hover:not(:disabled){ transform:translateY(-2px); background:var(--saffron); }
+/* Quando una parola viene usata resta il buco al suo posto, così la riga
+   in alto e il serbatoio in basso non si somigliano più. */
+.word.used{
+  background:transparent; border-style:dashed;
+  border-color:var(--rule); color:transparent;
+  cursor:default; transform:none;
+}
+.word.used:hover{ transform:none; background:transparent; }
+.line-word{
+  font-family:var(--display); font-weight:700; font-size:1.02rem;
+  background:var(--ink); color:var(--paper-2);
+  border:2px solid var(--ink); border-radius:11px;
+  padding:9px 14px; cursor:pointer;
+  transition:background-color .12s ease, transform .12s ease;
+}
+.line-word:hover:not(:disabled){ background:var(--rosso); border-color:var(--rosso); transform:translateY(-2px); }
+.line-word:disabled{ cursor:default; }
+.word:disabled{ cursor:default; transform:none; }
+.build-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+
+/* ---------- Riscontro ---------- */
+.feedback{ margin-top:18px; padding:16px 18px; border-radius:14px; font-size:.97rem; display:none; }
+.feedback.show{ display:block; animation:fade .22s ease both; }
+.feedback.ok{ background:var(--ok-bg); color:var(--ok); }
+.feedback.no{ background:var(--no-bg); color:var(--no); }
+.fb-it{ font-family:var(--body); font-size:1.15rem; font-weight:500; color:var(--ink); }
+.fb-en{ display:block; margin-top:4px; font-style:italic; color:var(--ink-soft); }
+.fb-note{
+  display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+  margin-top:12px; padding-top:12px;
+  border-top:1px solid color-mix(in srgb, currentColor 22%, transparent);
+  color:var(--ink); font-size:.97rem;
+}
+.fb-key{
+  font-family:var(--mono); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft); border:1px solid var(--rule); border-radius:5px; padding:3px 7px; flex:none;
+}
+.actions{ display:flex; justify-content:center; margin-top:20px; }
+
+.countdown{ position:fixed; inset:0; z-index:60; background:color-mix(in srgb, var(--paper) 82%, transparent); backdrop-filter:blur(5px); display:flex; align-items:center; justify-content:center; }
+.count-num{ font-family:var(--display); font-weight:800; font-size:6rem; color:var(--mode); animation:pop .45s ease; }
+@keyframes pop{ from{ transform:scale(.55); opacity:0;} to{ transform:scale(1); opacity:1;} }
+
+/* ---------- Risultati ---------- */
+.results{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:clamp(32px,5vw,48px); text-align:center;
+  box-shadow:10px 10px 0 color-mix(in srgb, var(--mode) 20%, transparent);
+}
+.res-score{ font-family:var(--display); font-weight:800; font-size:clamp(3.2rem,11vw,5rem); line-height:1; color:var(--mode); letter-spacing:-0.04em; }
+.res-sub{ color:var(--ink-soft); margin-top:6px; font-size:.98rem; }
+.res-badge{
+  display:inline-flex; align-items:center; gap:8px; margin-top:18px;
+  font-family:var(--mono); font-size:.78rem; letter-spacing:.06em;
+  padding:7px 16px; border-radius:999px;
+  background:color-mix(in srgb, var(--saffron) 16%, transparent);
+  color:var(--saffron); border:1px solid var(--saffron);
+}
+.res-badge.quiet{ background:transparent; color:var(--ink-soft); border-color:var(--rule); }
+.res-msg{ margin-top:20px; font-size:1.05rem; }
+.res-miss{
+  margin-top:24px; text-align:left; border-top:1px solid var(--rule); padding-top:20px;
+}
+.res-miss h3{ font-size:1.05rem; margin-bottom:12px; }
+.miss-row{ display:flex; gap:12px; align-items:baseline; padding:7px 0; border-bottom:1px solid var(--rule); }
+.miss-row:last-child{ border-bottom:none; }
+.miss-it{ font-weight:500; }
+.miss-en{ color:var(--ink-soft); font-style:italic; font-size:.94rem; margin-left:auto; text-align:right; }
+.res-actions{ margin-top:26px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+@media (prefers-reduced-motion:reduce){ *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="../../">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Italiano con Fabio
+    </a>
+    <a class="back-link" href="../">&larr; All exercises</a>
+  </div>
+</header>
+
+<main id="app">
+
+  <section id="screen-hub" class="screen active">
+    <div class="intro">
+      <p class="eyebrow">A1 &middot; 80 phrases &middot; no grammar required</p>
+      <h1>Your first 80 phrases.</h1>
+      <p class="lede">
+        Not words: whole sentences, ready to use. This is the stuff you say in your
+        first week in Italy, grouped by the moment you need it. Learn them whole,
+        the grammar settles in later by itself.
+      </p>
+      <p class="lede en">
+        Pick how you want to train, choose a situation if you like, and go. Your record
+        stays on this device.
+      </p>
+    </div>
+    <div class="mode-grid">
+      <article class="mode-card" data-m="recognise" style="--mode:var(--verde)">
+        <div class="mode-tag">Modalit&agrave; 1</div>
+        <h2>What does it mean?</h2>
+        <p>You see the Italian, you pick the meaning. The easiest way in: start here on day one.</p>
+        <p class="mode-ex">Non ho capito &rarr; ?</p>
+        <button class="btn" data-action="open-mode" data-mode="recognise">Start <span class="sub">easy</span></button>
+      </article>
+
+      <article class="mode-card" data-m="produce" style="--mode:var(--rosso)">
+        <div class="mode-tag">Modalit&agrave; 2</div>
+        <h2>How do you say it?</h2>
+        <p>You get the situation in English, you find the Italian phrase. Harder, and closer to real life.</p>
+        <p class="mode-ex">? &larr; The bill, please</p>
+        <button class="btn" data-action="open-mode" data-mode="produce">Start <span class="sub">medium</span></button>
+      </article>
+
+      <article class="mode-card" data-m="build" style="--mode:var(--saffron)">
+        <div class="mode-tag">Modalit&agrave; 3</div>
+        <h2>Build the phrase</h2>
+        <p>The words are there, in the wrong order. Put them back. This is where word order stops being a mystery.</p>
+        <p class="mode-ex">favore &middot; il &middot; conto &middot; per</p>
+        <button class="btn" data-action="open-mode" data-mode="build">Start <span class="sub">hard</span></button>
+      </article>
+    </div>
+  </section>
+
+  <section id="screen-levels" class="screen"></section>
+  <section id="screen-game" class="screen"></section>
+  <section id="screen-results" class="screen"></section>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ==========================================================
+     LE FRASI
+
+     Scelte seguendo le funzioni comunicative previste per l'A1
+     (salutare, presentarsi, chiedere e dare informazioni, chiedere
+     qualcosa, chiedere il prezzo, orientarsi, esprimere gusti,
+     e soprattutto farsi capire quando non si capisce).
+
+     Ogni voce ha:
+       it    la frase in italiano
+       en    cosa vuol dire
+       sit   la situazione, serve per il filtro
+       note  quando c'è, il perché o la trappola: è la parte da
+             insegnante, quella che una lista di parole non ha
+     ========================================================== */
+  var CHUNKS = [
+    /* ---- presentarsi ---- */
+    {it:"Ciao!", en:"Hi! / Bye!", sit:"hello", note:"Serve sia per salutare che per andare via. Solo con chi dai del tu."},
+    {it:"Buongiorno", en:"Good morning / Hello", sit:"hello", note:"Si usa fino al primo pomeriggio. È il saluto sicuro con chi non conosci."},
+    {it:"Buonasera", en:"Good evening", sit:"hello", note:"Dal tardo pomeriggio in poi, anche entrando in un negozio."},
+    {it:"Come ti chiami?", en:"What's your name?", sit:"hello", note:"Informale. Con una persona che non conosci: «Come si chiama?»"},
+    {it:"Mi chiamo Marco", en:"My name is Marco", sit:"hello", note:"Alla lettera è «io mi chiamo», gli italiani si chiamano da soli."},
+    {it:"Piacere!", en:"Nice to meet you!", sit:"hello", note:"Una parola sola e hai chiuso la presentazione. Si dice stringendo la mano."},
+    {it:"Come stai?", en:"How are you?", sit:"hello", note:"Informale. Formale: «Come sta?»"},
+    {it:"Sto bene, grazie", en:"I'm fine, thanks", sit:"hello"},
+    {it:"Di dove sei?", en:"Where are you from?", sit:"hello", note:"Non «da dove»: in italiano si chiede «di dove»."},
+    {it:"Sono americana", en:"I'm American", sit:"hello", note:"Se sei un uomo: «sono americano». La nazionalità si accorda con te."},
+    {it:"Parlo un po' d'italiano", en:"I speak a little Italian", sit:"hello", note:"Frase magica: abbassa le aspettative e la gente rallenta."},
+    {it:"Sto imparando", en:"I'm learning", sit:"hello", note:"Da dire subito dopo il primo errore. Funziona sempre."},
+    {it:"Ci vediamo!", en:"See you!", sit:"hello"},
+    {it:"A domani!", en:"See you tomorrow!", sit:"hello"},
+    {it:"Arrivederci", en:"Goodbye", sit:"hello", note:"La versione educata di «ciao» quando te ne vai."},
+    {it:"Buonanotte", en:"Good night", sit:"hello", note:"Solo quando uno dei due va a dormire, non per salutare la sera."},
+
+    /* ---- capirsi ---- */
+    {it:"Non capisco", en:"I don't understand", sit:"help", note:"Le due parole più utili di tutte. Impara queste prima di ogni altra cosa."},
+    {it:"Non ho capito", en:"I didn't catch that", sit:"help", note:"Diverso da «non capisco»: qui è una cosa sola che ti è sfuggita."},
+    {it:"Può ripetere, per favore?", en:"Could you repeat that, please?", sit:"help", note:"Con un amico: «Puoi ripetere?»"},
+    {it:"Può parlare più lentamente?", en:"Could you speak more slowly?", sit:"help", note:"Gli italiani accelerano senza accorgersene. Chiederlo è normale."},
+    {it:"Più lentamente, per favore", en:"More slowly, please", sit:"help", note:"La versione corta, quando sei già in difficoltà."},
+    {it:"Come si dice in italiano?", en:"How do you say it in Italian?", sit:"help", note:"Il modo per farti insegnare una parola da chi hai davanti."},
+    {it:"Che cosa significa?", en:"What does it mean?", sit:"help"},
+    {it:"Come si scrive?", en:"How do you spell it?", sit:"help", note:"Utile per nomi, indirizzi e cognomi al telefono."},
+    {it:"Parla inglese?", en:"Do you speak English?", sit:"help", note:"Da tenere per il vero momento di emergenza, non come prima frase."},
+    {it:"Non lo so", en:"I don't know", sit:"help"},
+    {it:"Può scriverlo?", en:"Could you write it down?", sit:"help", note:"Quando l'orecchio non ce la fa, l'occhio sì."},
+    {it:"Cosa vuol dire questo?", en:"What does this mean?", sit:"help", note:"Indicando la parola sul menù o sul cartello."},
+
+    /* ---- cortesia ---- */
+    {it:"Per favore", en:"Please", sit:"polite"},
+    {it:"Grazie mille", en:"Thanks a lot", sit:"polite"},
+    {it:"Prego", en:"You're welcome / Go ahead", sit:"polite", note:"Fa tre lavori: risponde a grazie, ti fa passare, ti invita a parlare."},
+    {it:"Scusi", en:"Excuse me", sit:"polite", note:"Per fermare uno sconosciuto. Con un amico: «scusa»."},
+    {it:"Mi scusi, posso?", en:"Excuse me, may I?", sit:"polite", note:"Per passare in mezzo alla gente senza sembrare maleducato."},
+    {it:"Va bene", en:"OK / That's fine", sit:"polite", note:"Il sì più usato d'Italia."},
+    {it:"Non c'è problema", en:"No problem", sit:"polite"},
+    {it:"Certo!", en:"Of course!", sit:"polite"},
+    {it:"Volentieri", en:"I'd love to", sit:"polite", note:"La risposta calda a un invito. Molto più bella di «sì»."},
+    {it:"Mi dispiace", en:"I'm sorry", sit:"polite", note:"Per dispiacersi. Per chiedere scusa di un errore: «scusi»."},
+
+    /* ---- al bar ---- */
+    {it:"Un caffè, per favore", en:"A coffee, please", sit:"bar", note:"In Italia «un caffè» è un espresso. Sempre."},
+    {it:"Vorrei un cappuccino", en:"I'd like a cappuccino", sit:"bar", note:"«Vorrei» è più educato di «voglio», che suona da bambino capriccioso."},
+    {it:"Prendo questo", en:"I'll have this one", sit:"bar", note:"Con il dito sul menù risolvi mezza cena."},
+    {it:"Un tavolo per due", en:"A table for two", sit:"bar"},
+    {it:"Che cosa mi consiglia?", en:"What do you recommend?", sit:"bar", note:"La frase che ti fa mangiare meglio in tutta Italia."},
+    {it:"Il conto, per favore", en:"The bill, please", sit:"bar", note:"In Italia il conto non arriva da solo: devi chiederlo."},
+    {it:"Posso avere dell'acqua?", en:"Can I have some water?", sit:"bar"},
+    {it:"Sono vegetariana", en:"I'm vegetarian", sit:"bar", note:"Se sei un uomo: «sono vegetariano»."},
+    {it:"Senza glutine", en:"Gluten free", sit:"bar"},
+    {it:"Era buonissimo!", en:"That was delicious!", sit:"bar", note:"Dillo e ti vorranno bene."},
+    {it:"Basta così, grazie", en:"That's enough, thanks", sit:"bar", note:"Per fermare chi ti riempie il piatto. Ti servirà."},
+    {it:"Un'acqua naturale", en:"A still water", sit:"bar", note:"Frizzante se la vuoi con le bollicine."},
+
+    /* ---- comprare ---- */
+    {it:"Quanto costa?", en:"How much is it?", sit:"shop"},
+    {it:"Quanto viene in tutto?", en:"How much is it altogether?", sit:"shop"},
+    {it:"È troppo caro", en:"It's too expensive", sit:"shop"},
+    {it:"Posso pagare con la carta?", en:"Can I pay by card?", sit:"shop", note:"Nei bar piccoli chiedilo prima di ordinare."},
+    {it:"Sto solo guardando", en:"I'm just looking", sit:"shop", note:"Da usare appena entri, se no il commesso ti segue."},
+    {it:"Lo prendo", en:"I'll take it", sit:"shop"},
+    {it:"Avete questo in un'altra taglia?", en:"Do you have this in another size?", sit:"shop"},
+    {it:"Posso provarlo?", en:"Can I try it on?", sit:"shop"},
+
+    /* ---- orientarsi ---- */
+    {it:"Dov'è il bagno?", en:"Where is the toilet?", sit:"street", note:"Nei bar si chiede prima di ordinare, non dopo."},
+    {it:"Dov'è la stazione?", en:"Where is the station?", sit:"street"},
+    {it:"Come si arriva in centro?", en:"How do I get to the centre?", sit:"street"},
+    {it:"È lontano?", en:"Is it far?", sit:"street"},
+    {it:"Mi sono persa", en:"I'm lost", sit:"street", note:"Se sei un uomo: «mi sono perso»."},
+    {it:"A che ora apre?", en:"What time does it open?", sit:"street"},
+    {it:"A che ora chiude?", en:"What time does it close?", sit:"street", note:"In Italia serve davvero: molti posti chiudono nel pomeriggio."},
+    {it:"Quanto ci vuole?", en:"How long does it take?", sit:"street"},
+    {it:"È qui vicino", en:"It's nearby", sit:"street", note:"La risposta che sentirai più spesso. Non fidarti troppo."},
+    {it:"Sempre dritto", en:"Straight on", sit:"street", note:"L'altra risposta che sentirai sempre."},
+
+    /* ---- dire cosa vuoi ---- */
+    {it:"Mi piace", en:"I like it", sit:"want", note:"Alla lettera è «mi è piacevole»: in italiano la cosa che piace è il soggetto."},
+    {it:"Non mi piace", en:"I don't like it", sit:"want"},
+    {it:"Mi piace molto", en:"I like it a lot", sit:"want", note:"Qui «molto» non cambia mai: accompagna il verbo."},
+    {it:"Vorrei questo", en:"I'd like this one", sit:"want"},
+    {it:"Ho bisogno di aiuto", en:"I need help", sit:"want"},
+    {it:"Preferisco questo", en:"I prefer this one", sit:"want"},
+    {it:"Ho fame", en:"I'm hungry", sit:"want", note:"Alla lettera «ho fame»: in italiano la fame si ha, non si è."},
+    {it:"Ho sete", en:"I'm thirsty", sit:"want", note:"Stessa logica: si ha sete."},
+    {it:"Sono stanca", en:"I'm tired", sit:"want", note:"Se sei un uomo: «sono stanco»."},
+    {it:"Che bello!", en:"How lovely!", sit:"want", note:"Serve per tutto: un posto, una notizia, una foto."},
+    {it:"Non importa", en:"It doesn't matter", sit:"want"},
+    {it:"Ho una domanda", en:"I have a question", sit:"want"}
+  ];
+
+  var SITUATIONS = [
+    {k:"all",    label:"Tutte"},
+    {k:"hello",  label:"Presentarsi"},
+    {k:"help",   label:"Non capire"},
+    {k:"polite", label:"Cortesia"},
+    {k:"bar",    label:"Al bar"},
+    {k:"shop",   label:"Comprare"},
+    {k:"street", label:"Orientarsi"},
+    {k:"want",   label:"Dire cosa vuoi"}
+  ];
+
+  var MODES = {
+    recognise:{ key:"recognise", color:"var(--verde)", title:"What does it mean?",
+      how:["Vedi la frase in italiano e scegli cosa vuol dire.",
+           "You see the Italian phrase and pick what it means. Start here if you have never studied Italian."] },
+    produce:{ key:"produce", color:"var(--rosso)", title:"How do you say it?",
+      how:["Leggi la situazione in inglese e trovi la frase italiana giusta.",
+           "You read the meaning in English and find the right Italian phrase. This is the one that helps you speak."] },
+    build:{ key:"build", color:"var(--saffron)", title:"Build the phrase",
+      how:["Le parole ci sono già, ma sono in disordine: rimettile in fila. Clicca una parola per usarla, ricliccala per toglierla.",
+           "The words are all there, in the wrong order. Click a word to place it, click it again to take it back."] },
+    // eslint-disable-next-line
+    _:null
+  };
+
+  var LEVELS = [
+    {num:1, name:"Riscaldamento", nameEn:"Warm-up", desc:"Dieci frasi, con calma e con le spiegazioni.", descEn:"Ten phrases, no clock, with the notes.", count:10, timed:false,
+     icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17.5 15.5 6l2.5 2.5L6.5 20H4v-2.5Z"/><path d="M13 8.5 15.5 11"/></svg>'},
+    {num:2, name:"Sfida a tempo", nameEn:"Timed challenge", desc:"60 secondi, il più possibile corrette. Batti il tuo record.", descEn:"60 seconds, as many as you can. Beat your record.", timed:true,
+     icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="13.5" r="8"/><path d="M12 13.5V9M9 3h6M12 3v2"/></svg>'}
+  ];
+
+  /* ---------------- AIUTI ---------------- */
+  function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function shuffle(a){
+    var x=a.slice(), i, j, t;
+    for(i=x.length-1;i>0;i--){ j=Math.floor(Math.random()*(i+1)); t=x[i]; x[i]=x[j]; x[j]=t; }
+    return x;
+  }
+  function words(s){ return s.split(/\s+/).filter(Boolean); }
+  /* Le tessere non portano la punteggiatura: la virgola diceva "sono la seconda"
+     e il punto interrogativo diceva "sono l'ultima". Così l'ordine va pensato. */
+  function tiles(s){
+    return words(s).map(function(w){ return w.replace(/[,.!?;:]+$/,""); }).filter(Boolean);
+  }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function norm(s){
+    return String(s).toLowerCase()
+      .normalize("NFD").replace(/[̀-ͯ]/g,"")
+      .replace(/[’`]/g,"'")
+      .replace(/[!?.,]/g,"")
+      .replace(/\s+/g," ").trim();
+  }
+  function sitLabel(k){
+    for(var i=0;i<SITUATIONS.length;i++){ if(SITUATIONS[i].k===k) return SITUATIONS[i].label; }
+    return "";
+  }
+  /* Per costruire servono almeno tre parole, se no non c'è niente da rimettere in ordine */
+  function poolFor(modeKey, sit){
+    return CHUNKS.filter(function(c){
+      if(sit!=="all" && c.sit!==sit) return false;
+      if(modeKey==="build" && words(c.it).length < 3) return false;
+      return true;
+    });
+  }
+
+  /* ---------------- RECORD ---------------- */
+  var STORE = "icf_frasi_records";
+  function getRecords(){ try{ var r=localStorage.getItem(STORE); return r?JSON.parse(r):{}; }catch(e){ return {}; } }
+  function getRecord(k){ var r=getRecords(); return (r[k]&&r[k].best)||0; }
+  function setRecord(k,v){
+    try{ var r=getRecords(); var p=(r[k]&&r[k].best)||0;
+      if(v>p){ r[k]={best:v}; localStorage.setItem(STORE, JSON.stringify(r)); return true; } }catch(e){}
+    return false;
+  }
+
+  /* ---------------- STATO ---------------- */
+  var screens = {
+    hub:document.getElementById("screen-hub"),
+    levels:document.getElementById("screen-levels"),
+    game:document.getElementById("screen-game"),
+    results:document.getElementById("screen-results")
+  };
+  var state = { modeKey:null, sit:"all", level:null, items:[], idx:0, score:0,
+                answered:false, timeLeft:60, timerId:null, active:false,
+                item:null, placed:[], missed:[] };
+
+  function showScreen(n){
+    Object.keys(screens).forEach(function(k){ screens[k].classList.toggle("active", k===n); });
+    window.scrollTo(0,0);
+  }
+
+  document.getElementById("app").addEventListener("click", function(e){
+    var b = e.target.closest("[data-action]");
+    if(!b) return;
+    var a = b.getAttribute("data-action");
+    if(a==="open-mode"){ state.sit="all"; openLevels(b.getAttribute("data-mode")); }
+    if(a==="back-hub"){ stopTimer(); showScreen("hub"); }
+    if(a==="start-level") startLevel(parseInt(b.getAttribute("data-level"),10));
+    if(a==="retry") startLevel(state.level.num);
+    if(a==="levels"){ stopTimer(); openLevels(state.modeKey); }
+  });
+
+  /* ---------------- LIVELLI ---------------- */
+  function openLevels(modeKey){
+    state.modeKey = modeKey;
+    var mode = MODES[modeKey];
+    if(!mode) return;
+    var h='';
+    h += '<div class="back-row"><button class="back-btn" data-action="back-hub">&larr; Le tre modalit&agrave;</button></div>';
+    h += '<div class="mode-head" style="--mode:'+mode.color+'"><span class="swatch"></span><h2>'+mode.title+'</h2></div>';
+    h += '<div class="howto" style="--mode:'+mode.color+'"><p>'+mode.how[0]+'</p><p class="en">'+mode.how[1]+'</p></div>';
+
+    h += '<div class="filter"><p class="filter-label">Scegli una situazione &middot; pick a situation</p><div class="chips" id="sitChips">';
+    SITUATIONS.forEach(function(s){
+      var n = poolFor(modeKey, s.k).length;
+      if(!n) return;
+      h += '<button class="chip" type="button" data-sit="'+s.k+'" aria-pressed="'+(s.k===state.sit)+'">'+s.label+'<span class="n">'+n+'</span></button>';
+    });
+    h += '</div></div>';
+
+    h += '<div class="level-grid">';
+    LEVELS.forEach(function(lv){
+      h += '<article class="level-card" style="--mode:'+mode.color+'">';
+      h += '<div class="level-icon">'+lv.icon+'</div>';
+      h += '<h3>Livello '+lv.num+' &middot; '+lv.name+'</h3>';
+      h += '<div class="level-en">'+lv.nameEn+'</div>';
+      h += '<p class="level-desc">'+lv.desc+'<br><span class="en">'+lv.descEn+'</span></p>';
+      if(lv.timed) h += '<span class="record">&#9733; Record: '+getRecord(modeKey)+'</span>';
+      h += '<button class="btn" data-action="start-level" data-level="'+lv.num+'">Inizia <span class="sub">start</span></button>';
+      h += '</article>';
+    });
+    h += '</div>';
+    screens.levels.innerHTML = h;
+
+    var chips = document.getElementById("sitChips");
+    chips.addEventListener("click", function(e){
+      var c = e.target.closest(".chip");
+      if(!c) return;
+      state.sit = c.getAttribute("data-sit");
+      Array.prototype.forEach.call(chips.querySelectorAll(".chip"), function(x){
+        x.setAttribute("aria-pressed", String(x===c));
+      });
+    });
+    showScreen("levels");
+  }
+
+  /* ---------------- PARTITA ---------------- */
+  function stopTimer(){ if(state.timerId){ clearInterval(state.timerId); state.timerId=null; } }
+
+  function startLevel(levelNum){
+    stopTimer();
+    var mode = MODES[state.modeKey];
+    var level = LEVELS.filter(function(l){ return l.num===levelNum; })[0];
+    var pool = poolFor(state.modeKey, state.sit);
+    state.level=level; state.score=0; state.idx=0; state.answered=false; state.missed=[];
+
+    if(level.timed){
+      state.items=[];
+      renderShell(mode, level);
+      countdown(mode, function(){
+        state.timeLeft=60; state.active=true;
+        nextItem();
+        state.timerId=setInterval(function(){
+          state.timeLeft--; updateTimer();
+          if(state.timeLeft<=0) endRound();
+        },1000);
+      });
+    } else {
+      var n = Math.min(level.count, pool.length);
+      state.items = shuffle(pool).slice(0, n);
+      state.total = n;
+      state.active = true;
+      renderShell(mode, level);
+      nextItem();
+    }
+  }
+
+  function countdown(mode, cb){
+    var ov=document.createElement("div");
+    ov.className="countdown";
+    ov.innerHTML='<div class="count-num" style="--mode:'+mode.color+'">3</div>';
+    document.body.appendChild(ov);
+    var seq=["3","2","1","Via!"], i=0;
+    var el=ov.querySelector(".count-num");
+    var iv=setInterval(function(){
+      i++;
+      if(i<seq.length){ el.textContent=seq[i]; el.style.animation="none"; void el.offsetWidth; el.style.animation="pop .45s ease"; }
+      else { clearInterval(iv); if(ov.parentNode) ov.parentNode.removeChild(ov); cb(); }
+    },620);
+  }
+
+  function renderShell(mode, level){
+    var h='';
+    h += '<div class="topline">';
+    if(level.timed){
+      h += '<span class="score">Corrette: <b id="live">0</b></span>';
+      h += '<span class="timer" id="timer">60s</span>';
+    } else {
+      h += '<div class="dots" id="dots"></div>';
+      h += '<span class="score" id="live-un"><b>0</b> / '+state.total+'</span>';
+    }
+    h += '</div>';
+    h += '<div class="prompt-card" id="prompt"></div>';
+    h += '<div id="zone"></div>';
+    h += '<div class="feedback" id="feedback"></div>';
+    h += '<div class="actions" id="actions"></div>';
+    screens.game.innerHTML = h;
+    screens.game.style.setProperty("--mode", mode.color);
+    showScreen("game");
+    if(!level.timed) renderDots(state.total, 0);
+  }
+
+  function renderDots(count, cur){
+    var w=document.getElementById("dots");
+    if(!w) return;
+    var h='', i;
+    for(i=0;i<count;i++){ h += '<span class="dot'+(i<cur?" done":"")+(i===cur?" current":"")+'"></span>'; }
+    w.innerHTML=h;
+  }
+
+  function updateTimer(){
+    var el=document.getElementById("timer");
+    if(!el) return;
+    el.textContent=state.timeLeft+"s";
+    el.classList.toggle("low", state.timeLeft<=10);
+  }
+
+  function distractors(item, field){
+    var same = CHUNKS.filter(function(c){ return c.sit===item.sit && c!==item; });
+    var rest = CHUNKS.filter(function(c){ return c.sit!==item.sit; });
+    var picked = shuffle(same).slice(0,3);
+    var extra = shuffle(rest);
+    while(picked.length<3 && extra.length){ picked.push(extra.shift()); }
+    return picked.map(function(c){ return c[field]; });
+  }
+
+  function nextItem(){
+    var pool = poolFor(state.modeKey, state.sit);
+    var it = state.level.timed ? pick(pool) : state.items[state.idx];
+    state.item = it;
+    state.answered = false;
+    state.placed = [];
+
+    var prompt = document.getElementById("prompt");
+    var zone = document.getElementById("zone");
+    var fb = document.getElementById("feedback");
+    fb.className="feedback"; fb.innerHTML="";
+    document.getElementById("actions").innerHTML="";
+
+    if(state.modeKey==="recognise"){
+      prompt.innerHTML = '<p class="prompt-key">'+esc(sitLabel(it.sit))+'</p>'+
+        '<p class="prompt-main it">&laquo;'+esc(it.it)+'&raquo;</p>';
+      renderOptions(shuffle([it.en].concat(distractors(it,"en"))), it.en);
+    } else if(state.modeKey==="produce"){
+      prompt.innerHTML = '<p class="prompt-key">Come si dice &middot; how do you say</p>'+
+        '<p class="prompt-main">'+esc(it.en)+'</p>';
+      renderOptions(shuffle([it.it].concat(distractors(it,"it"))), it.it);
+    } else {
+      prompt.innerHTML = '<p class="prompt-key">Costruisci la frase &middot; build it</p>'+
+        '<p class="prompt-main">'+esc(it.en)+'</p>';
+      renderBuild(it);
+    }
+
+    if(!state.level.timed) renderDots(state.total, state.idx);
+  }
+
+  function renderOptions(opts, correct){
+    var zone=document.getElementById("zone");
+    var h='<div class="options">';
+    opts.forEach(function(o){ h += '<button class="opt" data-v="'+esc(o)+'">'+esc(o)+'</button>'; });
+    h += '</div>';
+    zone.innerHTML=h;
+    Array.prototype.forEach.call(zone.querySelectorAll(".opt"), function(b){
+      b.addEventListener("click", function(){ answer(b.getAttribute("data-v"), b, correct); });
+    });
+  }
+
+  function renderBuild(it){
+    var zone=document.getElementById("zone");
+    var w = shuffle(tiles(it.it));
+    zone.innerHTML =
+      '<div class="build-line" id="line"><span class="build-empty">clicca le parole qui sotto &middot; tap the words below</span></div>'+
+      '<div class="pool" id="pool"></div>'+
+      '<div class="build-actions">'+
+        '<button class="btn" id="checkBtn" disabled>Controlla <span class="sub">check</span></button>'+
+        '<button class="btn btn-ghost" id="clearBtn">Ricomincia <span class="sub">clear</span></button>'+
+      '</div>';
+    var pool=document.getElementById("pool");
+    w.forEach(function(word, i){
+      var b=document.createElement("button");
+      b.className="word"; b.textContent=word; b.setAttribute("data-i", String(i));
+      b.addEventListener("click", function(){ placeWord(i, word); });
+      pool.appendChild(b);
+    });
+    document.getElementById("checkBtn").addEventListener("click", function(){
+      answer(state.placed.map(function(x){ return x.w; }).join(" "), null, it.it);
+    });
+    document.getElementById("clearBtn").addEventListener("click", function(){
+      if(state.answered) return;
+      state.placed=[];
+      Array.prototype.forEach.call(pool.querySelectorAll(".word"), function(x){ x.classList.remove("used"); x.disabled=false; });
+      syncLine();
+    });
+  }
+
+  function poolBtn(i){ return document.querySelector('.pool .word[data-i="'+i+'"]'); }
+
+  function placeWord(i, word){
+    if(state.answered) return;
+    var b = poolBtn(i);
+    if(!b || b.classList.contains("used")) return;
+    b.classList.add("used"); b.disabled = true;
+    state.placed.push({w:word, i:i});
+    syncLine();
+  }
+
+  function removeWord(pos){
+    if(state.answered) return;
+    var entry = state.placed.splice(pos,1)[0];
+    if(entry){
+      var b = poolBtn(entry.i);
+      if(b){ b.classList.remove("used"); b.disabled = false; }
+    }
+    syncLine();
+  }
+
+  function syncLine(){
+    var line=document.getElementById("line");
+    var check=document.getElementById("checkBtn");
+    if(!line) return;
+    if(!state.placed.length){
+      line.className="build-line";
+      line.innerHTML='<span class="build-empty">clicca le parole qui sotto &middot; tap the words below</span>';
+    } else {
+      line.className="build-line filled";
+      line.innerHTML = state.placed.map(function(x, pos){
+        return '<button class="line-word" data-pos="'+pos+'">'+esc(x.w)+'</button>';
+      }).join("");
+      Array.prototype.forEach.call(line.querySelectorAll(".line-word"), function(b){
+        b.addEventListener("click", function(){ removeWord(parseInt(b.getAttribute("data-pos"),10)); });
+      });
+    }
+    if(check) check.disabled = !state.placed.length;
+  }
+
+  function answer(given, tile, correct){
+    if(state.answered) return;
+    state.answered = true;
+    var it = state.item;
+    var ok = norm(given) === norm(correct);
+
+    if(state.modeKey==="build"){
+      var line=document.getElementById("line");
+      if(line) line.classList.add(ok?"ok":"no");
+      Array.prototype.forEach.call(document.querySelectorAll(".pool .word"), function(x){ x.disabled=true; });
+      Array.prototype.forEach.call(document.querySelectorAll(".line-word"), function(x){ x.disabled=true; });
+      var cb=document.getElementById("checkBtn"); if(cb) cb.disabled=true;
+      var clb=document.getElementById("clearBtn"); if(clb) clb.disabled=true;
+    } else {
+      Array.prototype.forEach.call(document.querySelectorAll(".opt"), function(b){
+        b.disabled=true;
+        if(b.getAttribute("data-v")===correct) b.classList.add("ok");
+        else if(b===tile) b.classList.add("no");
+      });
+    }
+
+    if(ok) state.score++;
+    else state.missed.push(it);
+
+    var fb=document.getElementById("feedback");
+    fb.className="feedback show "+(ok?"ok":"no");
+    var head = ok ? "Giusto!" : "Quasi.";
+    fb.innerHTML = '<p>'+head+'</p>'+
+      '<p class="fb-it">&laquo;'+esc(it.it)+'&raquo;<span class="fb-en">'+esc(it.en)+'</span></p>'+
+      (it.note ? '<p class="fb-note"><span class="fb-key">da sapere</span>'+esc(it.note)+'</p>' : '');
+
+    if(state.level.timed){
+      var live=document.getElementById("live");
+      if(live) live.textContent=state.score;
+      setTimeout(function(){ if(state.active) nextItem(); }, ok ? 700 : 1600);
+    } else {
+      var last = state.idx >= state.total-1;
+      document.getElementById("actions").innerHTML =
+        '<button class="btn" id="next">'+(last?"Vedi risultati":"Avanti")+' <span class="sub">'+(last?"results":"next")+'</span></button>';
+      document.getElementById("next").addEventListener("click", function(){
+        state.idx++;
+        var un=document.getElementById("live-un");
+        if(un) un.innerHTML="<b>"+state.score+"</b> / "+state.total;
+        if(state.idx >= state.total) endRound(); else nextItem();
+      });
+    }
+  }
+
+  function endRound(){
+    stopTimer();
+    state.active=false;
+    var mode=MODES[state.modeKey], level=state.level;
+    var prev = level.timed ? getRecord(state.modeKey) : 0;
+    var isRecord = level.timed ? setRecord(state.modeKey, state.score) : false;
+
+    var msgIt=["Continua così, si sta fissando.",
+               "Bel ritmo: ripeti fra un paio di giorni e restano.",
+               "Ogni ripetizione le rende più automatiche.",
+               "Ottimo lavoro, queste frasi cominciano a uscire da sole."];
+    var msgEn=["Keep going, it's sinking in.",
+               "Nice pace. Come back in a couple of days and they stick.",
+               "Every repetition makes them more automatic.",
+               "Great work, these are starting to come out by themselves."];
+    var i=Math.floor(Math.random()*msgIt.length);
+
+    var h='<div class="results" style="--mode:'+mode.color+'">';
+    if(level.timed){
+      h += '<p class="eyebrow">Sfida a tempo &middot; timed challenge</p>';
+      h += '<div class="res-score">'+state.score+'</div>';
+      h += '<p class="res-sub">frasi giuste in 60 secondi<br><span class="en">correct in 60 seconds</span></p>';
+      h += isRecord ? '<div class="res-badge">&#9733; Nuovo record! &middot; new record</div>'
+                    : '<div class="res-badge quiet">Record da battere: '+prev+'</div>';
+    } else {
+      h += '<p class="eyebrow">'+mode.title+'</p>';
+      h += '<div class="res-score">'+state.score+'/'+state.total+'</div>';
+      h += '<p class="res-sub">frasi giuste &middot; <span class="en">correct</span></p>';
+    }
+    h += '<p class="res-msg">'+msgIt[i]+'<br><span class="en" style="font-size:.92rem">'+msgEn[i]+'</span></p>';
+
+    /* Le frasi sbagliate, tutte insieme: è la parte che serve davvero */
+    var seen={}, list=[];
+    state.missed.forEach(function(c){ if(!seen[c.it]){ seen[c.it]=true; list.push(c); } });
+    if(list.length){
+      h += '<div class="res-miss"><h3>Da ripassare &middot; <span class="en">worth another look</span></h3>';
+      list.forEach(function(c){
+        h += '<div class="miss-row"><span class="miss-it">'+esc(c.it)+'</span><span class="miss-en">'+esc(c.en)+'</span></div>';
+      });
+      h += '</div>';
+    }
+
+    h += '<div class="res-actions">';
+    h += '<button class="btn" data-action="retry">Riprova <span class="sub">retry</span></button>';
+    h += '<button class="btn btn-ghost" data-action="levels">Cambia situazione <span class="sub">change</span></button>';
+    h += '</div></div>';
+    screens.results.innerHTML=h;
+    showScreen("results");
+  }
+
+  /* Si può arrivare dritti a una modalità con ?mode=build */
+  var wanted = (location.search.match(/[?&]mode=([a-z]+)/i) || [])[1];
+  if(wanted && MODES[wanted] && wanted!=="_") openLevels(wanted); else showScreen("hub");
+})();
+</script>
+
+</body>
+</html>
