@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Palestra di grammatica — Italiano con Fabio</title>
+<meta name="description" content="Two Italian grammar drills: when molto changes and when it doesn't, and how adjectives, verbs and tutto agree. Hundreds of sentences, never the same round twice.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+/* ============================================================
+   Stessi token del sito. Se cambi un colore nella home,
+   cambialo anche qui.
+   ============================================================ */
+:root{
+  --ink:#16233F;
+  --ink-soft:#4A5670;
+  --paper:#F7F4EC;
+  --paper-2:#FFFDF8;
+  --rule:#DFD8C7;
+  --saffron:#E8A33D;
+  --rosso:#C4312B;
+  --verde:#2E5E4E;
+
+  --ok:#2E5E4E;
+  --ok-bg:rgba(46,94,78,.12);
+  --no:#C4312B;
+  --no-bg:rgba(196,49,43,.10);
+
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --pen:"Caveat","Segoe Script",cursive;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+
+  --wrap:920px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:1.0625rem;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  /* il quaderno: righe orizzontali e margine rosso, come nella home */
+  background-image:
+    linear-gradient(to right, transparent 0 62px, color-mix(in srgb, var(--rosso) 30%, transparent) 62px 64px, transparent 64px),
+    repeating-linear-gradient(to bottom, transparent 0 33px, color-mix(in srgb, var(--ink) 7%, transparent) 33px 34px);
+  background-size:100% 100%, 100% 34px;
+  background-repeat:no-repeat, repeat;
+}
+@media (max-width:720px){
+  body{ background-image:repeating-linear-gradient(to bottom, transparent 0 33px, color-mix(in srgb, var(--ink) 7%, transparent) 33px 34px); }
+}
+
+h1,h2,h3{
+  font-family:var(--display); font-weight:800;
+  line-height:1.03; letter-spacing:-0.03em;
+  text-wrap:balance; margin:0;
+}
+p{ margin:0; }
+button{ font-family:inherit; }
+a{ color:inherit; }
+:focus-visible{ outline:3px solid var(--rosso); outline-offset:3px; border-radius:6px; }
+
+.eyebrow{
+  font-family:var(--mono); font-size:.72rem; font-weight:500;
+  letter-spacing:.17em; text-transform:uppercase; color:var(--rosso);
+}
+.en{ font-family:var(--body); font-style:italic; color:var(--ink-soft); }
+
+/* ---------- Barra in alto ---------- */
+.topbar{
+  position:sticky; top:0; z-index:20;
+  background:color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);
+}
+.topbar-in{
+  max-width:var(--wrap); margin:0 auto; padding:0 20px;
+  height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+.logo{
+  font-family:var(--display); font-weight:800; font-size:1.05rem;
+  letter-spacing:-0.035em; text-decoration:none;
+  display:flex; align-items:center; gap:.5em;
+}
+.logo-mark{
+  width:22px; height:22px; border-radius:50%; flex:none;
+  background:conic-gradient(from 180deg, var(--verde) 0 25%, var(--saffron) 0 50%, var(--rosso) 0 75%, var(--ink) 0);
+}
+.back-link{
+  font-family:var(--display); font-weight:500; font-size:.94rem;
+  text-decoration:none; color:var(--ink-soft);
+}
+.back-link:hover{ color:var(--rosso); }
+
+/* ---------- Impaginazione ---------- */
+#app{ max-width:var(--wrap); margin:0 auto; padding:34px 20px 90px; }
+.screen{ display:none; }
+.screen.active{ display:block; animation:fade .32s ease both; }
+@keyframes fade{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:none;} }
+
+/* ---------- Bottoni ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:.5em;
+  font-family:var(--display); font-weight:700; font-size:1rem;
+  letter-spacing:-0.015em; text-decoration:none;
+  padding:.85em 1.45em; border-radius:999px;
+  border:2px solid var(--ink); background:var(--ink); color:var(--paper-2);
+  cursor:pointer;
+  transition:transform .15s ease, background-color .15s ease, border-color .15s ease;
+}
+.btn:hover{ transform:translateY(-2px); background:var(--mode,var(--rosso)); border-color:var(--mode,var(--rosso)); }
+.btn .sub{ font-family:var(--mono); font-size:.66rem; font-weight:500; letter-spacing:.08em; opacity:.8; }
+.btn-ghost{
+  background:transparent; color:var(--ink); border-color:var(--ink);
+}
+.btn-ghost:hover{ background:var(--saffron); border-color:var(--saffron); color:var(--ink); }
+
+/* ---------- Schermata iniziale ---------- */
+.intro{ max-width:640px; margin-bottom:34px; }
+.intro h1{ font-size:clamp(2.2rem,5.2vw,3.4rem); margin:12px 0 16px; }
+.intro .lede{ font-size:1.12rem; }
+.intro .lede-en{ margin-top:8px; font-size:.95rem; }
+
+.mode-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; }
+.mode-card{
+  background:var(--paper-2);
+  border:2px solid var(--ink); border-radius:22px;
+  padding:26px; display:flex; flex-direction:column; gap:12px;
+  box-shadow:10px 10px 0 color-mix(in srgb, var(--mode) 18%, transparent);
+}
+.mode-tag{
+  font-family:var(--mono); font-size:.68rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--mode);
+}
+.mode-card h2{ font-size:1.85rem; }
+.mode-rule{ font-size:.99rem; }
+.mode-ex{
+  font-size:.95rem; color:var(--ink-soft); font-style:italic;
+  border-left:3px solid color-mix(in srgb, var(--mode) 45%, transparent);
+  padding-left:12px;
+}
+.mode-card .btn{ margin-top:auto; align-self:flex-start; background:var(--mode); border-color:var(--mode); }
+.mode-card .btn:hover{ background:var(--ink); border-color:var(--ink); }
+
+/* ---------- Regola ---------- */
+.back-row{ margin-bottom:16px; }
+.back-btn{
+  background:none; border:none; padding:0; cursor:pointer;
+  font-family:var(--display); font-weight:500; font-size:.95rem; color:var(--ink-soft);
+}
+.back-btn:hover{ color:var(--rosso); }
+
+.mode-head{ display:flex; align-items:center; gap:12px; }
+.swatch{ width:14px; height:14px; border-radius:4px; background:var(--mode); flex:none; }
+.mode-head h2{ font-size:clamp(1.9rem,4.4vw,2.6rem); }
+
+.rulebox{
+  background:var(--paper-2);
+  border:1px solid var(--rule);
+  border-left:5px solid var(--mode);
+  border-radius:16px; padding:20px 22px; margin:18px 0 28px;
+  display:flex; flex-direction:column; gap:12px;
+}
+.rule-line{ display:flex; gap:12px; align-items:flex-start; }
+.rule-key{
+  flex:none; font-family:var(--mono); font-size:.66rem; letter-spacing:.1em;
+  text-transform:uppercase; padding:4px 9px; border-radius:6px;
+  background:var(--mode); color:var(--paper-2); margin-top:3px;
+}
+.rule-en{ font-size:.9rem; }
+.rule-ex{ font-family:var(--pen); font-size:1.35rem; color:var(--rosso); line-height:1.35; }
+.rule-ex b{ font-weight:700; }
+
+/* ---------- Livelli ---------- */
+.level-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px; }
+.level-card{
+  background:var(--paper-2); border:1px solid var(--rule); border-radius:20px;
+  padding:24px; display:flex; flex-direction:column; gap:10px;
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.level-card:hover{
+  transform:translateY(-4px); border-color:var(--ink);
+  box-shadow:0 16px 32px color-mix(in srgb, var(--ink) 14%, transparent);
+}
+.level-icon{ width:38px; height:38px; color:var(--mode); }
+.level-card h3{ font-size:1.24rem; }
+.level-en{ font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
+.level-desc{ font-size:.94rem; color:var(--ink-soft); }
+.record{
+  align-self:flex-start;
+  font-family:var(--mono); font-size:.74rem; letter-spacing:.05em;
+  color:var(--saffron); border:1px solid var(--saffron);
+  background:color-mix(in srgb, var(--saffron) 12%, transparent);
+  padding:4px 11px; border-radius:999px;
+}
+.level-card .btn{ margin-top:6px; align-self:flex-start; background:var(--mode); border-color:var(--mode); }
+.level-card .btn:hover{ background:var(--ink); border-color:var(--ink); }
+
+/* ---------- Partita ---------- */
+.topline{ display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:20px; }
+.dots{ display:flex; gap:6px; }
+.dot{ width:9px; height:9px; border-radius:50%; background:var(--rule); }
+.dot.done{ background:var(--mode); }
+.dot.current{ background:var(--mode); box-shadow:0 0 0 3px color-mix(in srgb, var(--mode) 25%, transparent); }
+.timer{
+  font-family:var(--mono); font-size:1.3rem; font-weight:600;
+  font-variant-numeric:tabular-nums;
+  background:var(--paper-2); border:1.5px solid var(--rule);
+  border-radius:999px; padding:5px 15px;
+}
+.timer.low{ color:var(--rosso); border-color:var(--rosso); }
+.score{ font-family:var(--mono); font-size:.88rem; color:var(--ink-soft); }
+.score b{ color:var(--ink); }
+
+.sentence-card{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:22px;
+  padding:clamp(30px,5vw,46px) clamp(20px,4vw,34px);
+  min-height:150px; display:flex; align-items:center; justify-content:center;
+  text-align:center; margin-bottom:22px;
+  box-shadow:8px 8px 0 color-mix(in srgb, var(--mode) 16%, transparent);
+}
+.sentence{ font-size:clamp(1.3rem,3.3vw,1.75rem); line-height:1.5; }
+.blank{
+  display:inline-block; min-width:2.6em; padding:0 8px;
+  border-bottom:3px solid var(--mode); color:var(--mode); font-weight:600;
+}
+.blank.ok{ color:var(--ok); border-color:var(--ok); }
+.blank.no{ color:var(--no); border-color:var(--no); }
+
+.options{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.options.n3{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+@media (max-width:560px){ .options.n3{ grid-template-columns:1fr 1fr; } }
+.opt{
+  background:var(--paper-2); border:2px solid var(--rule); border-radius:14px;
+  padding:15px 12px; font-family:var(--display); font-weight:700; font-size:1.08rem;
+  color:var(--ink); cursor:pointer;
+  transition:transform .12s ease, border-color .12s ease, background-color .12s ease;
+}
+.opt:hover:not(:disabled){ transform:translateY(-2px); border-color:var(--ink); }
+.opt.ok{ background:var(--ok-bg); border-color:var(--ok); color:var(--ok); }
+.opt.no{ background:var(--no-bg); border-color:var(--no); color:var(--no); }
+.opt:disabled{ cursor:default; }
+
+.type-row{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.type-input{
+  font-family:var(--display); font-weight:700; font-size:1.1rem;
+  padding:14px 18px; border-radius:14px;
+  border:2px solid var(--rule); background:var(--paper-2); color:var(--ink);
+  min-width:230px; text-align:center;
+}
+.type-input:focus{ border-color:var(--mode); }
+.type-input.ok{ border-color:var(--ok); background:var(--ok-bg); }
+.type-input.no{ border-color:var(--no); background:var(--no-bg); }
+
+.feedback{
+  margin-top:18px; padding:16px 18px; border-radius:14px;
+  font-size:.97rem; display:none;
+}
+.feedback.show{ display:block; animation:fade .22s ease both; }
+.feedback.ok{ background:var(--ok-bg); color:var(--ok); }
+.feedback.no{ background:var(--no-bg); color:var(--no); }
+.feedback .fb-en{ display:block; margin-top:6px; font-style:italic; opacity:.85; font-size:.9rem; }
+
+.actions{ display:flex; justify-content:center; margin-top:20px; }
+
+.countdown{
+  position:fixed; inset:0; z-index:60;
+  background:color-mix(in srgb, var(--paper) 82%, transparent);
+  backdrop-filter:blur(5px);
+  display:flex; align-items:center; justify-content:center;
+}
+.count-num{
+  font-family:var(--display); font-weight:800; font-size:6rem;
+  color:var(--mode); animation:pop .45s ease;
+}
+@keyframes pop{ from{ transform:scale(.55); opacity:0;} to{ transform:scale(1); opacity:1;} }
+
+/* ---------- Risultati ---------- */
+.results{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:clamp(32px,5vw,48px); text-align:center;
+  box-shadow:10px 10px 0 color-mix(in srgb, var(--mode) 18%, transparent);
+}
+.res-score{
+  font-family:var(--display); font-weight:800;
+  font-size:clamp(3.2rem,11vw,5rem); line-height:1; color:var(--mode);
+  letter-spacing:-0.04em;
+}
+.res-sub{ color:var(--ink-soft); margin-top:6px; font-size:.98rem; }
+.res-badge{
+  display:inline-flex; align-items:center; gap:8px; margin-top:18px;
+  font-family:var(--mono); font-size:.78rem; letter-spacing:.06em;
+  padding:7px 16px; border-radius:999px;
+  background:color-mix(in srgb, var(--saffron) 16%, transparent);
+  color:var(--saffron); border:1px solid var(--saffron);
+}
+.res-badge.quiet{ background:transparent; color:var(--ink-soft); border-color:var(--rule); }
+.res-msg{ margin-top:20px; font-size:1.05rem; }
+.res-actions{ margin-top:26px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+@media (prefers-reduced-motion:reduce){
+  *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="../../">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Italiano con Fabio
+    </a>
+    <a class="back-link" href="../">&larr; All exercises</a>
+  </div>
+</header>
+
+<main id="app">
+
+  <section id="screen-hub" class="screen active">
+    <div class="intro">
+      <p class="eyebrow">Allenamento intensivo &middot; intensive drills</p>
+      <h1>Due regole, zero scuse.</h1>
+      <p class="lede">
+        Scegli una modalit&agrave;, scalda con il Livello 1 e sali fino alla sfida a tempo.
+        Centinaia di frasi diverse: ogni allenamento &egrave; nuovo. Il tuo record resta
+        salvato su questo dispositivo.
+      </p>
+      <p class="lede en">
+        Pick a mode, warm up at Level 1 and climb to the timed challenge. Hundreds of
+        different sentences, so no two rounds feel the same. Your record stays on this device.
+      </p>
+    </div>
+    <div class="mode-grid">
+      <article class="mode-card" style="--mode:var(--rosso)">
+        <div class="mode-tag">Modalit&agrave; 1 &middot; mode 1</div>
+        <h2>Molto</h2>
+        <p class="mode-rule">
+          <b>&laquo;Molto&raquo; = very</b> non cambia mai. <b>&laquo;Molto&raquo; = a lot of</b>
+          si accorda: molto, molta, molti, molte.
+        </p>
+        <p class="mode-ex">La barista era <b>molto</b> simpatica. &middot; Ho <b>molti</b> amici qui.</p>
+        <button class="btn" data-action="open-mode" data-mode="molto">Allenati <span class="sub">train</span></button>
+      </article>
+
+      <article class="mode-card" style="--mode:var(--verde)">
+        <div class="mode-tag">Modalit&agrave; 2 &middot; mode 2</div>
+        <h2>L'accordo</h2>
+        <p class="mode-rule">
+          Aggettivi, <i>questo</i>, <i>tutto</i> e <i>c'&egrave; / ci sono</i> si accordano
+          sempre in genere e numero con la parola a cui si riferiscono.
+        </p>
+        <p class="mode-ex">Tutti i camerieri erano gentili. &middot; Ieri c'erano molte persone.</p>
+        <button class="btn" data-action="open-mode" data-mode="accordo">Allenati <span class="sub">train</span></button>
+      </article>
+    </div>
+  </section>
+
+  <section id="screen-levels" class="screen"></section>
+  <section id="screen-game" class="screen"></section>
+  <section id="screen-results" class="screen"></section>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ==========================================================
+     COME FUNZIONA IL SENSO DELLE FRASI
+
+     Ogni soggetto ha una categoria (person, food, place, media,
+     object, event) e ogni aggettivo dichiara a quali categorie
+     può riferirsi. Le frasi si costruiscono solo abbinando cose
+     compatibili, così non escono mai frasi come "il vino era
+     rumoroso" o "tutte le idee erano puntuali".
+
+     Le forme degli aggettivi sono scritte a mano tutte e quattro
+     (maschile singolare, femminile singolare, maschile plurale,
+     femminile plurale) invece di essere calcolate: così i plurali
+     irregolari (stanco → stanchi, antico → antichi ma antica →
+     antiche) sono sempre giusti.
+     ========================================================== */
+
+  /* ---------------- SOGGETTI ----------------
+     Le categorie sono strette apposta: "venue" (posti dove si entra, si
+     dorme, si paga) è diverso da "outdoor" (spazi aperti), e libri, musica,
+     film e foto sono separati. Se fossero tutti "media" uscirebbero frasi
+     come "la canzone è utile" o "il parco era caro". */
+  var SUBJECTS = [
+    /* persone */
+    {t:"La barista", g:"f", n:"s", cat:"person"},
+    {t:"Il cameriere", g:"m", n:"s", cat:"person"},
+    {t:"I camerieri", g:"m", n:"p", cat:"person"},
+    {t:"Le mie amiche", g:"f", n:"p", cat:"person"},
+    {t:"Il professore", g:"m", n:"s", cat:"person"},
+    {t:"La dottoressa", g:"f", n:"s", cat:"person"},
+    {t:"I miei vicini", g:"m", n:"p", cat:"person"},
+    {t:"Sua sorella", g:"f", n:"s", cat:"person"},
+    {t:"Suo fratello", g:"m", n:"s", cat:"person"},
+    {t:"Gli studenti", g:"m", n:"p", cat:"person"},
+    {t:"Le turiste", g:"f", n:"p", cat:"person"},
+    {t:"Mio nonno", g:"m", n:"s", cat:"person"},
+    {t:"Mia nonna", g:"f", n:"s", cat:"person"},
+    {t:"I bambini", g:"m", n:"p", cat:"person"},
+    {t:"La commessa", g:"f", n:"s", cat:"person"},
+    {t:"Il tassista", g:"m", n:"s", cat:"person"},
+    {t:"Le maestre", g:"f", n:"p", cat:"person"},
+    {t:"I miei colleghi", g:"m", n:"p", cat:"person"},
+    {t:"La mia collega", g:"f", n:"s", cat:"person"},
+    {t:"I ragazzi", g:"m", n:"p", cat:"person"},
+
+    /* cibo */
+    {t:"La pizza", g:"f", n:"s", cat:"food"},
+    {t:"Il caffè", g:"m", n:"s", cat:"drink"},
+    {t:"Il vino", g:"m", n:"s", cat:"drink"},
+    {t:"La cena", g:"f", n:"s", cat:"food"},
+    {t:"I dolci", g:"m", n:"p", cat:"food"},
+    {t:"Le lasagne", g:"f", n:"p", cat:"food"},
+    {t:"Il gelato", g:"m", n:"s", cat:"food"},
+    {t:"La colazione", g:"f", n:"s", cat:"food"},
+    {t:"Gli antipasti", g:"m", n:"p", cat:"food"},
+    {t:"Le verdure", g:"f", n:"p", cat:"food"},
+
+    /* posti in cui si entra */
+    {t:"La casa", g:"f", n:"s", cat:"venue"},
+    {t:"I ristoranti", g:"m", n:"p", cat:"venue"},
+    {t:"Il quartiere", g:"m", n:"s", cat:"venue"},
+    {t:"La città", g:"f", n:"s", cat:"venue"},
+    {t:"Gli hotel", g:"m", n:"p", cat:"venue"},
+    {t:"Le camere", g:"f", n:"p", cat:"venue"},
+    {t:"I negozi", g:"m", n:"p", cat:"venue"},
+
+    /* spazi aperti */
+    {t:"Il parco", g:"m", n:"s", cat:"outdoor"},
+    {t:"La spiaggia", g:"f", n:"s", cat:"outdoor"},
+    {t:"I giardini", g:"m", n:"p", cat:"outdoor"},
+
+    /* libri, film, musica, foto */
+    {t:"Il film", g:"m", n:"s", cat:"film"},
+    {t:"Il documentario", g:"m", n:"s", cat:"film"},
+    {t:"I libri", g:"m", n:"p", cat:"text"},
+    {t:"L'articolo", g:"m", n:"s", cat:"text"},
+    {t:"La musica", g:"f", n:"s", cat:"music"},
+    {t:"La canzone", g:"f", n:"s", cat:"music"},
+    {t:"Le foto", g:"f", n:"p", cat:"image"},
+
+    /* oggetti */
+    {t:"La macchina", g:"f", n:"s", cat:"object"},
+    {t:"Il telefono", g:"m", n:"s", cat:"object"},
+    {t:"Le scarpe", g:"f", n:"p", cat:"object"},
+    {t:"I bagagli", g:"m", n:"p", cat:"object"},
+    {t:"La valigia", g:"f", n:"s", cat:"object"},
+    {t:"Il divano", g:"m", n:"s", cat:"object"},
+
+    /* cose che succedono */
+    {t:"Il viaggio", g:"m", n:"s", cat:"event"},
+    {t:"Le vacanze", g:"f", n:"p", cat:"event"},
+    {t:"La festa", g:"f", n:"s", cat:"event"},
+    {t:"La lezione", g:"f", n:"s", cat:"study"},
+    {t:"Il corso", g:"m", n:"s", cat:"study"},
+
+    /* impegni */
+    {t:"I compiti", g:"m", n:"p", cat:"task"},
+    {t:"La riunione", g:"f", n:"s", cat:"task"},
+    {t:"Gli esercizi", g:"m", n:"p", cat:"task"}
+  ];
+
+  /* ---------------- AGGETTIVI ----------------
+     f: [maschile sing., femminile sing., maschile plur., femminile plur.]
+     Le quattro forme sono scritte a mano, così i plurali irregolari
+     (stanco → stanchi, antico → antichi ma antica → antiche) sono
+     sempre giusti invece di essere indovinati da una regola.
+     noMolto: in italiano è già assoluto, non si dice "molto ...". */
+  var ADJ = [
+    /* persone */
+    {f:["simpatico","simpatica","simpatici","simpatiche"], cats:["person"]},
+    {f:["nervoso","nervosa","nervosi","nervose"], cats:["person"]},
+    {f:["stanco","stanca","stanchi","stanche"], cats:["person"]},
+    {f:["occupato","occupata","occupati","occupate"], cats:["person"]},
+    {f:["curioso","curiosa","curiosi","curiose"], cats:["person"]},
+    {f:["generoso","generosa","generosi","generose"], cats:["person"]},
+    {f:["timido","timida","timidi","timide"], cats:["person"]},
+    {f:["distratto","distratta","distratti","distratte"], cats:["person"]},
+    {f:["allegro","allegra","allegri","allegre"], cats:["person"]},
+    {f:["testardo","testarda","testardi","testarde"], cats:["person"]},
+    {f:["goloso","golosa","golosi","golose"], cats:["person"]},
+    {f:["preciso","precisa","precisi","precise"], cats:["person"]},
+    {f:["disordinato","disordinata","disordinati","disordinate"], cats:["person"]},
+    {f:["gentile","gentile","gentili","gentili"], cats:["person"]},
+    {f:["paziente","paziente","pazienti","pazienti"], cats:["person"]},
+    {f:["disponibile","disponibile","disponibili","disponibili"], cats:["person"]},
+    {f:["puntuale","puntuale","puntuali","puntuali"], cats:["person"]},
+    {f:["intelligente","intelligente","intelligenti","intelligenti"], cats:["person"]},
+    {f:["socievole","socievole","socievoli","socievoli"], cats:["person"]},
+
+    /* cibo e bevande */
+    {f:["buono","buona","buoni","buone"], cats:["food","drink"]},
+    {f:["delizioso","deliziosa","deliziosi","deliziose"], cats:["food"], noMolto:true},
+    {f:["salato","salata","salati","salate"], cats:["food"]},
+    {f:["saporito","saporita","saporiti","saporite"], cats:["food"]},
+    {f:["caldo","calda","caldi","calde"], cats:["food","drink"]},
+    {f:["freddo","fredda","freddi","fredde"], cats:["food","drink"]},
+    {f:["fresco","fresca","freschi","fresche"], cats:["food","drink"]},
+    {f:["leggero","leggera","leggeri","leggere"], cats:["food","drink","object"]},
+    {f:["pesante","pesante","pesanti","pesanti"], cats:["food","object"]},
+    {f:["squisito","squisita","squisiti","squisite"], cats:["food"], noMolto:true},
+    {f:["abbondante","abbondante","abbondanti","abbondanti"], cats:["food"]},
+    {f:["forte","forte","forti","forti"], cats:["drink"]},
+
+    /* posti in cui si entra */
+    {f:["rumoroso","rumorosa","rumorosi","rumorose"], cats:["venue","outdoor"]},
+    {f:["affollato","affollata","affollati","affollate"], cats:["venue","outdoor"]},
+    {f:["pulito","pulita","puliti","pulite"], cats:["venue","outdoor","object"]},
+    {f:["sporco","sporca","sporchi","sporche"], cats:["venue","outdoor","object"]},
+    {f:["antico","antica","antichi","antiche"], cats:["venue","outdoor"]},
+    {f:["moderno","moderna","moderni","moderne"], cats:["venue","object"]},
+    {f:["luminoso","luminosa","luminosi","luminose"], cats:["venue","image"]},
+    {f:["accogliente","accogliente","accoglienti","accoglienti"], cats:["venue"]},
+    {f:["tranquillo","tranquilla","tranquilli","tranquille"], cats:["person","venue","outdoor"]},
+    {f:["rilassante","rilassante","rilassanti","rilassanti"], cats:["outdoor","venue","event"]},
+    {f:["verde","verde","verdi","verdi"], cats:["outdoor"]},
+
+    /* libri, film, musica, foto */
+    {f:["famoso","famosa","famosi","famose"], cats:["text","film","music","image"]},
+    {f:["divertente","divertente","divertenti","divertenti"], cats:["text","film","music","event","study","task"]},
+    {f:["commovente","commovente","commoventi","commoventi"], cats:["text","film","music"]},
+    {f:["complicato","complicata","complicati","complicate"], cats:["text","film","task","study"]},
+    {f:["difficile","difficile","difficili","difficili"], cats:["text","film","music","study","task"]},
+    {f:["noioso","noiosa","noiosi","noiose"], cats:["text","film","music","event","study","task","venue"]},
+    {f:["interessante","interessante","interessanti","interessanti"], cats:["text","film","event","study","task","image"]},
+    {f:["lungo","lunga","lunghi","lunghe"], cats:["text","film","music","event","study","task"]},
+    {f:["breve","breve","brevi","brevi"], cats:["text","film","music","event","study","task"]},
+    {f:["utile","utile","utili","utili"], cats:["text","study","task"]},
+    {f:["indimenticabile","indimenticabile","indimenticabili","indimenticabili"], cats:["text","film","music","event","study","image"], noMolto:true},
+
+    /* oggetti */
+    {f:["nuovo","nuova","nuovi","nuove"], cats:["object","image"], noMolto:true},
+    {f:["vecchio","vecchia","vecchi","vecchie"], cats:["object","venue","image"]},
+    {f:["comodo","comoda","comodi","comode"], cats:["object"]},
+    {f:["scomodo","scomoda","scomodi","scomode"], cats:["object"]},
+    {f:["rotto","rotta","rotti","rotte"], cats:["object"], noMolto:true},
+
+    /* impegni */
+    {f:["faticoso","faticosa","faticosi","faticose"], cats:["event","study","task"]},
+
+    /* trasversali */
+    {f:["bello","bella","belli","belle"], cats:["venue","outdoor","text","film","music","object","event","image"]},
+    {f:["caro","cara","cari","care"], cats:["food","drink","venue","object","event","study"]},
+    {f:["economico","economica","economici","economiche"], cats:["food","drink","venue","object","event","study"]},
+    {f:["grande","grande","grandi","grandi"], cats:["venue","outdoor","object","event","image"]},
+    {f:["piccolo","piccola","piccoli","piccole"], cats:["venue","object","image"]}
+  ];
+
+  /* ---------------- NOMI PER "MOLTO + NOME" ----------------
+     Divisi per come si usano: alcuni stanno bene dopo "ho",
+     altri solo dopo "c'è". "Ho molto rumore" non si dice. */
+  var HAVE_NOUNS = [
+    {n:"fame", g:"f", num:"s"}, {n:"sete", g:"f", num:"s"},
+    {n:"sonno", g:"m", num:"s"}, {n:"tempo", g:"m", num:"s"},
+    {n:"lavoro", g:"m", num:"s"}, {n:"pazienza", g:"f", num:"s"},
+    {n:"fretta", g:"f", num:"s"}, {n:"voglia", g:"f", num:"s"},
+    {n:"paura", g:"f", num:"s"}, {n:"energia", g:"f", num:"s"},
+    {n:"esperienza", g:"f", num:"s"}, {n:"fortuna", g:"f", num:"s"},
+    {n:"amici", g:"m", num:"p"}, {n:"soldi", g:"m", num:"p"},
+    {n:"problemi", g:"m", num:"p"}, {n:"bagagli", g:"m", num:"p"},
+    {n:"compiti", g:"m", num:"p"}, {n:"impegni", g:"m", num:"p"},
+    {n:"amiche", g:"f", num:"p"}, {n:"idee", g:"f", num:"p"},
+    {n:"cose da fare", g:"f", num:"p"}, {n:"domande", g:"f", num:"p"}
+  ];
+  /* Un'unica lista per "c'è/ci sono" e per "molto + nome": ogni voce sa
+     il suo genere, il suo numero e dove ha senso trovarla. */
+  var THERE_ITEMS = [
+    {n:"rumore", g:"m", num:"s", where:"any"},
+    {n:"confusione", g:"f", num:"s", where:"any"},
+    {n:"gente", g:"f", num:"s", where:"any"},
+    {n:"coda", g:"f", num:"s", where:"any"},
+    {n:"musica", g:"f", num:"s", where:"in"},
+    {n:"posto", g:"m", num:"s", where:"in"},
+    {n:"traffico", g:"m", num:"s", where:"street"},
+    {n:"vento", g:"m", num:"s", where:"out"},
+    {n:"nebbia", g:"f", num:"s", where:"out"},
+    {n:"sole", g:"m", num:"s", where:"out"},
+    {n:"turisti", g:"m", num:"p", where:"any"},
+    {n:"bambini", g:"m", num:"p", where:"any"},
+    {n:"persone", g:"f", num:"p", where:"any"},
+    {n:"ragazzi", g:"m", num:"p", where:"any"},
+    {n:"luci", g:"f", num:"p", where:"any"},
+    {n:"macchine", g:"f", num:"p", where:"street"},
+    {n:"biciclette", g:"f", num:"p", where:"street"},
+    {n:"tavoli liberi", g:"m", num:"p", where:"in"},
+    {n:"sedie", g:"f", num:"p", where:"in"},
+    {n:"negozi aperti", g:"m", num:"p", where:"street"}
+  ];
+  var MOLTO_FORM = {ms:"molto", fs:"molta", mp:"molti", fp:"molte"};
+
+  /* verbi per il "molto" avverbio (molto + verbo = a lot) */
+  var VERB_PHRASES = [
+    {before:"Mi piace", after:" questa città.", hint:"mi piace"},
+    {before:"Studio", after:" la sera.", hint:"studio"},
+    {before:"Lavoriamo", after:" in questo periodo.", hint:"lavoriamo"},
+    {before:"Mio nonno parla", after:" a tavola.", hint:"parla"},
+    {before:"I bambini dormono", after:" d'estate.", hint:"dormono"},
+    {before:"Viaggio", after:" per lavoro.", hint:"viaggio"},
+    {before:"Le mie amiche ridono", after:" insieme.", hint:"ridono"},
+    {before:"Cammino", after:" quando sono a Roma.", hint:"cammino"}
+  ];
+
+  /* ---------------- LUOGHI ----------------
+     Ogni luogo va con certe cose: il traffico sta in strada, non in spiaggia. */
+  var PLACES = {
+    any:    ["qui","in centro","in piazza","davanti alla scuola","alla stazione"],
+    street: ["in centro","in piazza","sulla strada","davanti alla scuola"],
+    out:    ["in spiaggia","nel parco","in centro","in montagna"],
+    "in":   ["al bar","in ufficio","in aula","al ristorante","in negozio"]
+  };
+  function placeFor(where){ return pick(PLACES[where] || PLACES.any); }
+
+  /* ---------------- NOMI PLURALI PER "TUTTO" ---------------- */
+  var TUTTO_NOUNS = [
+    {n:"camerieri", art:"tutti i", g:"m", cat:"person"},
+    {n:"studenti", art:"tutti gli", g:"m", cat:"person"},
+    {n:"bambini", art:"tutti i", g:"m", cat:"person"},
+    {n:"maestre", art:"tutte le", g:"f", cat:"person"},
+    {n:"turiste", art:"tutte le", g:"f", cat:"person"},
+    {n:"ristoranti", art:"tutti i", g:"m", cat:"venue"},
+    {n:"negozi", art:"tutti i", g:"m", cat:"venue"},
+    {n:"hotel", art:"tutti gli", g:"m", cat:"venue"},
+    {n:"camere", art:"tutte le", g:"f", cat:"venue"},
+    {n:"spiagge", art:"tutte le", g:"f", cat:"outdoor"},
+    {n:"libri", art:"tutti i", g:"m", cat:"text"},
+    {n:"film", art:"tutti i", g:"m", cat:"film"},
+    {n:"foto", art:"tutte le", g:"f", cat:"image"},
+    {n:"canzoni", art:"tutte le", g:"f", cat:"music"},
+    {n:"dolci", art:"tutti i", g:"m", cat:"food"},
+    {n:"antipasti", art:"tutti gli", g:"m", cat:"food"},
+    {n:"verdure", art:"tutte le", g:"f", cat:"food"},
+    {n:"bagagli", art:"tutti i", g:"m", cat:"object"},
+    {n:"scarpe", art:"tutte le", g:"f", cat:"object"},
+    {n:"compiti", art:"tutti i", g:"m", cat:"task"},
+    {n:"lezioni", art:"tutte le", g:"f", cat:"study"},
+    {n:"vacanze", art:"tutte le", g:"f", cat:"event"}
+  ];
+
+  /* ---------------- NOMI PER "QUESTO" ---------------- */
+  var QUESTO_NOUNS = [
+    {n:"pizza", g:"f", num:"s", cat:"food"}, {n:"caffè", g:"m", num:"s", cat:"drink"},
+    {n:"dolci", g:"m", num:"p", cat:"food"}, {n:"verdure", g:"f", num:"p", cat:"food"},
+    {n:"città", g:"f", num:"s", cat:"venue"}, {n:"quartiere", g:"m", num:"s", cat:"venue"},
+    {n:"camere", g:"f", num:"p", cat:"venue"}, {n:"ristoranti", g:"m", num:"p", cat:"venue"},
+    {n:"film", g:"m", num:"s", cat:"film"}, {n:"canzone", g:"f", num:"s", cat:"music"},
+    {n:"libri", g:"m", num:"p", cat:"text"}, {n:"foto", g:"f", num:"p", cat:"image"},
+    {n:"telefono", g:"m", num:"s", cat:"object"}, {n:"macchina", g:"f", num:"s", cat:"object"},
+    {n:"scarpe", g:"f", num:"p", cat:"object"}, {n:"bagagli", g:"m", num:"p", cat:"object"},
+    {n:"lezione", g:"f", num:"s", cat:"study"}, {n:"corso", g:"m", num:"s", cat:"study"},
+    {n:"compiti", g:"m", num:"p", cat:"task"}, {n:"vacanze", g:"f", num:"p", cat:"event"}
+  ];
+  var QUESTO_FORM = {ms:"questo", fs:"questa", mp:"questi", fp:"queste"};
+
+  var LABEL = {
+    m:{s:"maschile singolare", p:"maschile plurale"},
+    f:{s:"femminile singolare", p:"femminile plurale"}
+  };
+  var LABEL_EN = {
+    m:{s:"masculine singular", p:"masculine plural"},
+    f:{s:"feminine singular", p:"feminine plural"}
+  };
+
+  /* ---------------- AIUTI ---------------- */
+  function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function shuffle(a){
+    var x=a.slice(), i, j, t;
+    for(i=x.length-1;i>0;i--){ j=Math.floor(Math.random()*(i+1)); t=x[i]; x[i]=x[j]; x[j]=t; }
+    return x;
+  }
+  function uniq(a){
+    var out=[], i;
+    for(i=0;i<a.length;i++){ if(out.indexOf(a[i])===-1) out.push(a[i]); }
+    return out;
+  }
+  function formOf(entry, g, n){
+    return entry.f[ g==="m" ? (n==="s"?0:2) : (n==="s"?1:3) ];
+  }
+  function adjOptions(entry){ return shuffle(uniq(entry.f)); }
+  function adjsFor(cat, opts){
+    var list = ADJ.filter(function(a){
+      if(a.cats.indexOf(cat)===-1) return false;
+      if(opts && opts.moltoSafe && a.noMolto) return false;
+      return true;
+    });
+    return list.length ? list : ADJ;
+  }
+  function norm(s){
+    return String(s).toLowerCase()
+      .normalize("NFD").replace(/[̀-ͯ]/g,"")
+      .replace(/['’`]/g,"'")
+      .replace(/\s+/g," ").trim();
+  }
+  function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+
+  /* ==========================================================
+     GENERATORE 1 — MOLTO
+     Tre casi, con probabilità diverse:
+       55%  molto + aggettivo   (= very)      → invariabile
+       15%  molto + verbo       (= a lot)     → invariabile
+       30%  molto + nome        (= a lot of)  → si accorda
+     ========================================================== */
+  function genMolto(){
+    var r = Math.random();
+
+    /* caso 1: molto + aggettivo */
+    if(r < 0.55){
+      var subj = pick(SUBJECTS);
+      var entry = pick(adjsFor(subj.cat, {moltoSafe:true}));
+      var verb = subj.n==="s" ? (Math.random()<0.5?"è":"era") : (Math.random()<0.5?"sono":"erano");
+      var adj = formOf(entry, subj.g, subj.n);
+      return {
+        before: subj.t+" "+verb,
+        after: " "+adj+".",
+        correct: "molto",
+        options: shuffle(["molto","molta","molti","molte"]),
+        explainIt: "Qui &laquo;molto&raquo; accompagna l'aggettivo &laquo;"+adj+"&raquo; e vuol dire <b>very</b>: non cambia mai.",
+        explainEn: "Here &laquo;molto&raquo; modifies the adjective &laquo;"+adj+"&raquo; and means <b>very</b>, so it never changes."
+      };
+    }
+
+    /* caso 2: molto + verbo */
+    if(r < 0.70){
+      var vp = pick(VERB_PHRASES);
+      return {
+        before: vp.before,
+        after: vp.after,
+        correct: "molto",
+        options: shuffle(["molto","molta","molti","molte"]),
+        explainIt: "Qui &laquo;molto&raquo; accompagna il verbo &laquo;"+vp.hint+"&raquo; e vuol dire <b>a lot</b>: anche qui non cambia mai.",
+        explainEn: "Here &laquo;molto&raquo; goes with the verb &laquo;"+vp.hint+"&raquo; and means <b>a lot</b>. It never changes either."
+      };
+    }
+
+    /* caso 3: molto + nome */
+    var useHave = Math.random() < 0.6;
+    var noun, before, after;
+    if(useHave){
+      noun = pick(HAVE_NOUNS);
+      before = pick(["Ho","Non ho","Abbiamo","Oggi ho"]);
+      after = " "+noun.n+".";
+    } else {
+      noun = pick(THERE_ITEMS);
+      before = noun.num==="s"
+        ? pick(["C'è","Ieri c'era"])
+        : pick(["Ci sono","Ieri c'erano"]);
+      after = " "+noun.n+" "+placeFor(noun.where)+".";
+    }
+    var key = noun.g + noun.num;
+    var correct = MOLTO_FORM[key];
+    return {
+      before: before,
+      after: after,
+      correct: correct,
+      options: shuffle(["molto","molta","molti","molte"]),
+      explainIt: "Qui &laquo;molto&raquo; accompagna il nome &laquo;"+noun.n+"&raquo; ("+LABEL[noun.g][noun.num]+") e vuol dire <b>a lot of</b>: si accorda, quindi &laquo;"+correct+"&raquo;.",
+      explainEn: "Here &laquo;molto&raquo; modifies the noun &laquo;"+noun.n+"&raquo; ("+LABEL_EN[noun.g][noun.num]+") and means <b>a lot of</b>, so it agrees: &laquo;"+correct+"&raquo;."
+    };
+  }
+
+  /* ==========================================================
+     GENERATORE 2 — L'ACCORDO
+     Quattro tipi di frase:
+       40%  aggettivo dopo essere
+       22%  c'è / c'era / ci sono / c'erano
+       20%  tutti i / tutti gli / tutte le
+       18%  questo / questa / questi / queste
+     ========================================================== */
+  function genAccordo(){
+    var r = Math.random();
+
+    /* aggettivo */
+    if(r < 0.40){
+      var subj = pick(SUBJECTS);
+      var entry = pick(adjsFor(subj.cat));
+      var verb = subj.n==="s" ? (Math.random()<0.5?"è":"era") : (Math.random()<0.5?"sono":"erano");
+      var correct = formOf(entry, subj.g, subj.n);
+      return {
+        before: subj.t+" "+verb,
+        after: ".",
+        correct: correct,
+        options: adjOptions(entry),
+        explainIt: "&laquo;"+subj.t+"&raquo; è "+LABEL[subj.g][subj.n]+", quindi l'aggettivo diventa &laquo;"+correct+"&raquo;.",
+        explainEn: "&laquo;"+subj.t+"&raquo; is "+LABEL_EN[subj.g][subj.n]+", so the adjective becomes &laquo;"+correct+"&raquo;."
+      };
+    }
+
+    /* c'è / ci sono */
+    if(r < 0.62){
+      var item = pick(THERE_ITEMS);
+      var place = placeFor(item.where);
+      var past = Math.random() < 0.5;
+      var correct2 = past
+        ? (item.num==="s" ? "c'era" : "c'erano")
+        : (item.num==="s" ? "c'è" : "ci sono");
+      return {
+        before: past ? "Ieri" : "Adesso",
+        after: " "+item.n+" "+place+".",
+        correct: correct2,
+        options: shuffle(["c'è","c'era","ci sono","c'erano"]),
+        explainIt: "&laquo;"+cap(item.n)+"&raquo; è "+(item.num==="s"?"singolare":"plurale")+" e la frase è al "+(past?"passato":"presente")+", quindi &laquo;"+correct2+"&raquo;.",
+        explainEn: "&laquo;"+cap(item.n)+"&raquo; is "+(item.num==="s"?"singular":"plural")+" and the sentence is in the "+(past?"past":"present")+", so &laquo;"+correct2+"&raquo;."
+      };
+    }
+
+    /* tutti i / tutte le */
+    if(r < 0.82){
+      var tn = pick(TUTTO_NOUNS);
+      var tEntry = pick(adjsFor(tn.cat));
+      var tAdj = formOf(tEntry, tn.g, "p");
+      var verb2 = Math.random() < 0.5 ? "sono" : "erano";
+      return {
+        before: "",
+        after: " "+tn.n+" "+verb2+" "+tAdj+".",
+        correct: tn.art,
+        options: shuffle(["tutti i","tutti gli","tutte le"]),
+        explainIt: "&laquo;"+cap(tn.n)+"&raquo; è "+LABEL[tn.g].p+" e vuole l'articolo &laquo;"+tn.art+"&raquo;: anche &laquo;tutto&raquo; si accorda.",
+        explainEn: "&laquo;"+cap(tn.n)+"&raquo; is "+LABEL_EN[tn.g].p+" and takes &laquo;"+tn.art+"&raquo;. &laquo;Tutto&raquo; agrees too."
+      };
+    }
+
+    /* questo / questa / questi / queste */
+    var qn = pick(QUESTO_NOUNS);
+    var qEntry = pick(adjsFor(qn.cat));
+    var qAdj = formOf(qEntry, qn.g, qn.num);
+    var qVerb = qn.num==="s" ? "è" : "sono";
+    var qCorrect = QUESTO_FORM[qn.g + qn.num];
+    return {
+      before: "",
+      after: " "+qn.n+" "+qVerb+" "+qAdj+".",
+      correct: qCorrect,
+      options: shuffle(["questo","questa","questi","queste"]),
+      explainIt: "&laquo;"+cap(qn.n)+"&raquo; è "+LABEL[qn.g][qn.num]+", quindi &laquo;"+qCorrect+"&raquo;.",
+      explainEn: "&laquo;"+cap(qn.n)+"&raquo; is "+LABEL_EN[qn.g][qn.num]+", so &laquo;"+qCorrect+"&raquo;."
+    };
+  }
+
+  /* ---------------- LIVELLI ---------------- */
+  var ICON_PENCIL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17.5 15.5 6l2.5 2.5L6.5 20H4v-2.5Z"/><path d="M13 8.5 15.5 11"/></svg>';
+  var ICON_WRITE  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 4h9l3 3v13H6z"/><path d="M9 10h6M9 13h6M9 16h4"/></svg>';
+  var ICON_CLOCK  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="13.5" r="8"/><path d="M12 13.5V9M9 3h6M12 3v2"/></svg>';
+
+  var LEVELS_MOLTO = [
+    {num:1, name:"Riscaldamento", nameEn:"Warm-up", desc:"Scelta multipla, con spiegazione. Nessun limite di tempo.", descEn:"Multiple choice with explanations. Untimed.", mode:"mc", count:10, timed:false, icon:ICON_PENCIL},
+    {num:2, name:"Sfida a tempo", nameEn:"Timed challenge", desc:"60 secondi, il più possibile corrette. Batti il tuo record.", descEn:"60 seconds, as many as you can. Beat your record.", mode:"mc", timed:true, icon:ICON_CLOCK}
+  ];
+  var LEVELS_ACCORDO = [
+    {num:1, name:"Riscaldamento", nameEn:"Warm-up", desc:"Scelta multipla, con spiegazione. Nessun limite di tempo.", descEn:"Multiple choice with explanations. Untimed.", mode:"mc", count:10, timed:false, icon:ICON_PENCIL},
+    {num:2, name:"Allenamento", nameEn:"Workout", desc:"Scrivi la risposta a memoria. Nessun limite di tempo.", descEn:"Type the answer from memory. Untimed.", mode:"type", count:10, timed:false, icon:ICON_WRITE},
+    {num:3, name:"Sfida a tempo", nameEn:"Timed challenge", desc:"60 secondi, il più possibile corrette. Batti il tuo record.", descEn:"60 seconds, as many as you can. Beat your record.", mode:"type", timed:true, icon:ICON_CLOCK}
+  ];
+
+  var MODES = {
+    molto: {
+      key:"molto", color:"var(--rosso)", title:"Molto", titleEn:"Molto",
+      rules:[
+        {k:"very", it:"Quando &laquo;molto&raquo; accompagna un <b>aggettivo</b> o un <b>verbo</b>, vuol dire <b>very</b> o <b>a lot</b> e non cambia mai. Resta &laquo;molto&raquo; sempre.",
+         en:"When &laquo;molto&raquo; goes with an adjective or a verb, it means <b>very</b> or <b>a lot</b> and never changes.",
+         ex:"Era molto stanca &middot; Studio molto"},
+        {k:"a lot of", it:"Quando &laquo;molto&raquo; accompagna un <b>nome</b>, vuol dire <b>a lot of</b> e si comporta come un aggettivo: si accorda in genere e numero. Molto, molta, molti, molte.",
+         en:"When &laquo;molto&raquo; goes with a noun, it means <b>a lot of</b> and behaves like an adjective: it agrees in gender and number.",
+         ex:"Ho molta fame &middot; Ci sono molte persone"}
+      ],
+      gen: genMolto, levels: LEVELS_MOLTO
+    },
+    accordo: {
+      key:"accordo", color:"var(--verde)", title:"L'accordo", titleEn:"Agreement",
+      rules:[
+        {k:"aggettivi", it:"L'aggettivo si accorda sempre con la parola che descrive, in <b>genere</b> (maschile o femminile) e <b>numero</b> (singolare o plurale).",
+         en:"The adjective always agrees with the word it describes, in gender and number.",
+         ex:"Le camere erano luminose"},
+        {k:"c'è / ci sono", it:"Anche &laquo;c'è / ci sono&raquo; segue il numero: singolare &rarr; c'è e c'era, plurale &rarr; ci sono e c'erano.",
+         en:"&laquo;C'è / ci sono&raquo; follows the number too: singular takes c'è and c'era, plural takes ci sono and c'erano.",
+         ex:"Ieri c'erano molti turisti in piazza"},
+        {k:"questo / tutto", it:"&laquo;Questo&raquo; e &laquo;tutto&raquo; si accordano con il nome che accompagnano, esattamente come un aggettivo.",
+         en:"&laquo;Questo&raquo; and &laquo;tutto&raquo; agree with the noun they accompany, exactly like an adjective.",
+         ex:"Tutte le lezioni &middot; Questi libri"}
+      ],
+      gen: genAccordo, levels: LEVELS_ACCORDO
+    }
+  };
+
+  /* ---------------- RECORD ---------------- */
+  var STORE = "icf_palestra_records";
+  function getRecords(){
+    try{ var raw = localStorage.getItem(STORE); return raw ? JSON.parse(raw) : {}; }
+    catch(e){ return {}; }
+  }
+  function getRecord(k){ var r=getRecords(); return (r[k] && r[k].best) || 0; }
+  function setRecord(k, score){
+    try{
+      var r=getRecords(); var prev=(r[k] && r[k].best)||0;
+      if(score>prev){ r[k]={best:score}; localStorage.setItem(STORE, JSON.stringify(r)); return true; }
+    }catch(e){}
+    return false;
+  }
+
+  /* ---------------- STATO E NAVIGAZIONE ---------------- */
+  var screens = {
+    hub:     document.getElementById("screen-hub"),
+    levels:  document.getElementById("screen-levels"),
+    game:    document.getElementById("screen-game"),
+    results: document.getElementById("screen-results")
+  };
+  var state = { modeKey:null, level:null, items:[], idx:0, score:0, answered:false, timeLeft:60, timerId:null, active:false, item:null };
+
+  function showScreen(name){
+    Object.keys(screens).forEach(function(k){ screens[k].classList.toggle("active", k===name); });
+    window.scrollTo(0,0);
+  }
+
+  document.getElementById("app").addEventListener("click", function(e){
+    var btn = e.target.closest("[data-action]");
+    if(!btn) return;
+    var a = btn.getAttribute("data-action");
+    if(a==="open-mode")   openLevels(btn.getAttribute("data-mode"));
+    if(a==="back-hub")    { stopTimer(); showScreen("hub"); }
+    if(a==="start-level") startLevel(btn.getAttribute("data-mode"), parseInt(btn.getAttribute("data-level"),10));
+    if(a==="retry")       startLevel(state.modeKey, state.level.num);
+    if(a==="levels")      { stopTimer(); openLevels(state.modeKey); }
+  });
+
+  /* ---------------- SCHERMATA LIVELLI ---------------- */
+  function openLevels(modeKey){
+    var mode = MODES[modeKey];
+    if(!mode) return;
+    var h = '';
+    h += '<div class="back-row"><button class="back-btn" data-action="back-hub">&larr; Le due modalit&agrave;</button></div>';
+    h += '<div class="mode-head" style="--mode:'+mode.color+'"><span class="swatch"></span><h2>'+mode.title+'</h2></div>';
+    h += '<div class="rulebox" style="--mode:'+mode.color+'">';
+    mode.rules.forEach(function(rule){
+      h += '<div class="rule-line"><span class="rule-key">'+rule.k+'</span><div>';
+      h += '<p>'+rule.it+'</p>';
+      h += '<p class="en rule-en">'+rule.en+'</p>';
+      h += '<p class="rule-ex">'+rule.ex+'</p>';
+      h += '</div></div>';
+    });
+    h += '</div>';
+    h += '<div class="level-grid">';
+    mode.levels.forEach(function(lv){
+      h += '<article class="level-card" style="--mode:'+mode.color+'">';
+      h += '<div class="level-icon">'+lv.icon+'</div>';
+      h += '<h3>Livello '+lv.num+' &middot; '+lv.name+'</h3>';
+      h += '<div class="level-en">'+lv.nameEn+'</div>';
+      h += '<p class="level-desc">'+lv.desc+'<br><span class="en">'+lv.descEn+'</span></p>';
+      if(lv.timed) h += '<span class="record">&#9733; Record: '+getRecord(modeKey)+'</span>';
+      h += '<button class="btn" data-action="start-level" data-mode="'+modeKey+'" data-level="'+lv.num+'">Inizia <span class="sub">start</span></button>';
+      h += '</article>';
+    });
+    h += '</div>';
+    screens.levels.innerHTML = h;
+    showScreen("levels");
+  }
+
+  /* ---------------- PARTITA ---------------- */
+  function stopTimer(){ if(state.timerId){ clearInterval(state.timerId); state.timerId=null; } }
+
+  function startLevel(modeKey, levelNum){
+    stopTimer();
+    var mode = MODES[modeKey];
+    var level = mode.levels.filter(function(l){ return l.num===levelNum; })[0];
+    state.modeKey=modeKey; state.level=level; state.score=0; state.idx=0; state.answered=false;
+
+    if(level.timed){
+      state.items=[];
+      renderShell(mode, level);
+      countdown(mode, function(){
+        state.timeLeft=60; state.active=true;
+        nextItem();
+        state.timerId = setInterval(function(){
+          state.timeLeft--; updateTimer();
+          if(state.timeLeft<=0) endRound();
+        }, 1000);
+      });
+    } else {
+      var seen={}, items=[], guard=0;
+      while(items.length < level.count && guard < 5000){
+        guard++;
+        var it = mode.gen();
+        var sig = it.before+"|"+it.after+"|"+it.correct;
+        if(!seen[sig]){ seen[sig]=true; items.push(it); }
+      }
+      state.items = items;
+      state.active = true;
+      renderShell(mode, level);
+      nextItem();
+    }
+  }
+
+  function countdown(mode, cb){
+    var ov = document.createElement("div");
+    ov.className="countdown";
+    ov.innerHTML = '<div class="count-num" style="--mode:'+mode.color+'">3</div>';
+    document.body.appendChild(ov);
+    var seq=["3","2","1","Via!"], i=0;
+    var el = ov.querySelector(".count-num");
+    var iv = setInterval(function(){
+      i++;
+      if(i<seq.length){
+        el.textContent = seq[i];
+        el.style.animation="none"; void el.offsetWidth; el.style.animation="pop .45s ease";
+      } else {
+        clearInterval(iv);
+        if(ov.parentNode) ov.parentNode.removeChild(ov);
+        cb();
+      }
+    }, 620);
+  }
+
+  function renderShell(mode, level){
+    var h='';
+    h += '<div class="topline">';
+    if(level.timed){
+      h += '<span class="score">Corrette: <b id="live">0</b></span>';
+      h += '<span class="timer" id="timer">60s</span>';
+    } else {
+      h += '<div class="dots" id="dots"></div>';
+      h += '<span class="score" id="live-un"><b>0</b> / '+level.count+'</span>';
+    }
+    h += '</div>';
+    h += '<div class="sentence-card"><p class="sentence" id="sentence"></p></div>';
+    h += '<div id="zone"></div>';
+    h += '<div class="feedback" id="feedback"></div>';
+    h += '<div class="actions" id="actions"></div>';
+    screens.game.innerHTML = h;
+    screens.game.style.setProperty("--mode", mode.color);
+    showScreen("game");
+    if(!level.timed) renderDots(level.count, 0);
+  }
+
+  function renderDots(count, cur){
+    var w = document.getElementById("dots");
+    if(!w) return;
+    var h='', i;
+    for(i=0;i<count;i++){
+      h += '<span class="dot'+(i<cur?" done":"")+(i===cur?" current":"")+'"></span>';
+    }
+    w.innerHTML=h;
+  }
+
+  function updateTimer(){
+    var el = document.getElementById("timer");
+    if(!el) return;
+    el.textContent = state.timeLeft+"s";
+    el.classList.toggle("low", state.timeLeft<=10);
+  }
+
+  function nextItem(){
+    var mode = MODES[state.modeKey];
+    var it = state.level.timed ? mode.gen() : state.items[state.idx];
+    state.item = it;
+    state.answered = false;
+
+    document.getElementById("sentence").innerHTML =
+      esc(it.before) + ' <span class="blank" id="blank">____</span>' + esc(it.after);
+
+    var zone = document.getElementById("zone");
+    var fb = document.getElementById("feedback");
+    fb.className="feedback"; fb.innerHTML="";
+    document.getElementById("actions").innerHTML="";
+
+    if(state.level.mode==="mc"){
+      var cls = it.options.length===3 ? "options n3" : "options";
+      var h = '<div class="'+cls+'">';
+      it.options.forEach(function(o){
+        h += '<button class="opt" data-v="'+esc(o)+'">'+esc(o)+'</button>';
+      });
+      h += '</div>';
+      zone.innerHTML = h;
+      Array.prototype.forEach.call(zone.querySelectorAll(".opt"), function(b){
+        b.addEventListener("click", function(){ answer(b.getAttribute("data-v"), b); });
+      });
+    } else {
+      zone.innerHTML = '<div class="type-row">'+
+        '<input class="type-input" id="typed" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="scrivi qui">'+
+        (state.level.timed ? '' : '<button class="btn" id="check">Controlla <span class="sub">check</span></button>')+
+        '</div>';
+      var inp = document.getElementById("typed");
+      inp.focus();
+      inp.addEventListener("keydown", function(e){ if(e.key==="Enter") answer(inp.value, null); });
+      var ck = document.getElementById("check");
+      if(ck) ck.addEventListener("click", function(){ answer(inp.value, null); });
+    }
+    if(!state.level.timed) renderDots(state.level.count, state.idx);
+  }
+
+  function answer(raw, tile){
+    if(state.answered) return;
+    state.answered = true;
+    var it = state.item;
+    var ok = norm(raw) === norm(it.correct);
+
+    var blank = document.getElementById("blank");
+    blank.textContent = it.correct;
+    blank.classList.add(ok ? "ok" : "no");
+
+    if(state.level.mode==="mc"){
+      Array.prototype.forEach.call(document.querySelectorAll(".opt"), function(b){
+        b.disabled = true;
+        if(b.getAttribute("data-v")===it.correct) b.classList.add("ok");
+        else if(b===tile) b.classList.add("no");
+      });
+    } else {
+      var inp = document.getElementById("typed");
+      if(inp){ inp.classList.add(ok?"ok":"no"); inp.disabled=true; }
+    }
+
+    if(ok) state.score++;
+
+    var fb = document.getElementById("feedback");
+    fb.className = "feedback show " + (ok?"ok":"no");
+    fb.innerHTML = (ok ? "Giusto! " : "Quasi &middot; era &laquo;"+it.correct+"&raquo;. ") + it.explainIt +
+      '<span class="fb-en">'+it.explainEn+'</span>';
+
+    if(state.level.timed){
+      var live = document.getElementById("live");
+      if(live) live.textContent = state.score;
+      setTimeout(function(){ if(state.active) nextItem(); }, ok ? 480 : 1150);
+    } else {
+      var last = state.idx >= state.level.count-1;
+      document.getElementById("actions").innerHTML =
+        '<button class="btn" id="next">'+(last?"Vedi risultati":"Avanti")+' <span class="sub">'+(last?"results":"next")+'</span></button>';
+      document.getElementById("next").addEventListener("click", function(){
+        state.idx++;
+        var un = document.getElementById("live-un");
+        if(un) un.innerHTML = "<b>"+state.score+"</b> / "+state.level.count;
+        if(state.idx >= state.level.count) endRound(); else nextItem();
+      });
+    }
+  }
+
+  function endRound(){
+    stopTimer();
+    state.active = false;
+    var mode = MODES[state.modeKey], level = state.level;
+    var prev = level.timed ? getRecord(state.modeKey) : 0;
+    var isRecord = level.timed ? setRecord(state.modeKey, state.score) : false;
+
+    var msgIt = ["Continua così, si sta fissando.",
+                 "Bel ritmo: ripeti fra un paio di giorni e resta.",
+                 "Ogni ripetizione lo rende più automatico.",
+                 "Ottimo lavoro, la regola sta entrando da sola."];
+    var msgEn = ["Keep going, it's sinking in.",
+                 "Nice pace. Come back in a couple of days and it sticks.",
+                 "Every repetition makes it more automatic.",
+                 "Great work, the rule is starting to run by itself."];
+    var i = Math.floor(Math.random()*msgIt.length);
+
+    var h = '<div class="results" style="--mode:'+mode.color+'">';
+    if(level.timed){
+      h += '<p class="eyebrow">Sfida a tempo &middot; timed challenge</p>';
+      h += '<div class="res-score">'+state.score+'</div>';
+      h += '<p class="res-sub">risposte corrette in 60 secondi<br><span class="en">correct answers in 60 seconds</span></p>';
+      h += isRecord
+        ? '<div class="res-badge">&#9733; Nuovo record! &middot; new record</div>'
+        : '<div class="res-badge quiet">Record da battere: '+prev+'</div>';
+    } else {
+      h += '<p class="eyebrow">Livello '+level.num+' &middot; '+level.name+'</p>';
+      h += '<div class="res-score">'+state.score+'/'+level.count+'</div>';
+      h += '<p class="res-sub">risposte corrette &middot; <span class="en">correct answers</span></p>';
+    }
+    h += '<p class="res-msg">'+msgIt[i]+'<br><span class="en" style="font-size:.92rem">'+msgEn[i]+'</span></p>';
+    h += '<div class="res-actions">';
+    h += '<button class="btn" data-action="retry">Riprova <span class="sub">retry</span></button>';
+    h += '<button class="btn btn-ghost" data-action="levels">Altri livelli <span class="sub">more levels</span></button>';
+    h += '</div></div>';
+    screens.results.innerHTML = h;
+    showScreen("results");
+  }
+
+  function esc(s){
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+
+  /* Si può arrivare dritti a una modalità con ?mode=molto o ?mode=accordo */
+  var wanted = (location.search.match(/[?&]mode=([a-z]+)/i) || [])[1];
+  if(wanted && MODES[wanted]) openLevels(wanted); else showScreen("hub");
+})();
+</script>
+
+</body>
+</html>
