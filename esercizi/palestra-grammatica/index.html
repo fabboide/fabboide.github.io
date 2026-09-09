@@ -233,7 +233,7 @@ a{ color:inherit; }
 }
 .sentence{ font-size:clamp(1.3rem,3.3vw,1.75rem); line-height:1.5; }
 .blank{
-  display:inline-block; min-width:2.6em; padding:0 8px;
+  display:inline-block; min-width:2.6em; padding:0 5px;
   border-bottom:3px solid var(--mode); color:var(--mode); font-weight:600;
 }
 .blank.ok{ color:var(--ok); border-color:var(--ok); }
@@ -272,6 +272,21 @@ a{ color:inherit; }
 .feedback.ok{ background:var(--ok-bg); color:var(--ok); }
 .feedback.no{ background:var(--no-bg); color:var(--no); }
 .feedback .fb-en{ display:block; margin-top:6px; font-style:italic; opacity:.85; font-size:.9rem; }
+.feedback .fb-tr{
+  display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+  margin-top:12px; padding-top:12px;
+  border-top:1px solid color-mix(in srgb, currentColor 22%, transparent);
+  font-size:1rem; color:var(--ink);
+}
+.feedback .fb-tr-key{
+  font-family:var(--mono); font-size:.62rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-soft);
+  border:1px solid var(--rule); border-radius:5px; padding:3px 7px;
+}
+.hint{
+  font-family:var(--mono); font-size:.6em;
+  color:var(--ink-soft); letter-spacing:.02em;
+}
 
 .actions{ display:flex; justify-content:center; margin-top:20px; }
 
@@ -395,277 +410,294 @@ a{ color:inherit; }
      ========================================================== */
 
   /* ---------------- SOGGETTI ----------------
-     Le categorie sono strette apposta: "venue" (posti dove si entra, si
-     dorme, si paga) è diverso da "outdoor" (spazi aperti), e libri, musica,
-     film e foto sono separati. Se fossero tutti "media" uscirebbero frasi
-     come "la canzone è utile" o "il parco era caro". */
+     cat  = categoria semantica, decide quali aggettivi possono toccarlo
+     en   = come si dice in inglese
+     enS  = true quando in inglese il verbo va al singolare anche se in
+            italiano il soggetto è plurale (i compiti → the homework was) */
   var SUBJECTS = [
-    /* persone */
-    {t:"La barista", g:"f", n:"s", cat:"person"},
-    {t:"Il cameriere", g:"m", n:"s", cat:"person"},
-    {t:"I camerieri", g:"m", n:"p", cat:"person"},
-    {t:"Le mie amiche", g:"f", n:"p", cat:"person"},
-    {t:"Il professore", g:"m", n:"s", cat:"person"},
-    {t:"La dottoressa", g:"f", n:"s", cat:"person"},
-    {t:"I miei vicini", g:"m", n:"p", cat:"person"},
-    {t:"Sua sorella", g:"f", n:"s", cat:"person"},
-    {t:"Suo fratello", g:"m", n:"s", cat:"person"},
-    {t:"Gli studenti", g:"m", n:"p", cat:"person"},
-    {t:"Le turiste", g:"f", n:"p", cat:"person"},
-    {t:"Mio nonno", g:"m", n:"s", cat:"person"},
-    {t:"Mia nonna", g:"f", n:"s", cat:"person"},
-    {t:"I bambini", g:"m", n:"p", cat:"person"},
-    {t:"La commessa", g:"f", n:"s", cat:"person"},
-    {t:"Il tassista", g:"m", n:"s", cat:"person"},
-    {t:"Le maestre", g:"f", n:"p", cat:"person"},
-    {t:"I miei colleghi", g:"m", n:"p", cat:"person"},
-    {t:"La mia collega", g:"f", n:"s", cat:"person"},
-    {t:"I ragazzi", g:"m", n:"p", cat:"person"},
+    {t:"La barista", g:"f", n:"s", cat:"person", en:"The barista"},
+    {t:"Il cameriere", g:"m", n:"s", cat:"person", en:"The waiter"},
+    {t:"I camerieri", g:"m", n:"p", cat:"person", en:"The waiters"},
+    {t:"Le mie amiche", g:"f", n:"p", cat:"person", en:"My friends"},
+    {t:"Il professore", g:"m", n:"s", cat:"person", en:"The teacher"},
+    {t:"La dottoressa", g:"f", n:"s", cat:"person", en:"The doctor"},
+    {t:"I miei vicini", g:"m", n:"p", cat:"person", en:"My neighbours"},
+    {t:"Mia sorella", g:"f", n:"s", cat:"person", en:"My sister"},
+    {t:"Mio fratello", g:"m", n:"s", cat:"person", en:"My brother"},
+    {t:"Gli studenti", g:"m", n:"p", cat:"person", en:"The students"},
+    {t:"Le turiste", g:"f", n:"p", cat:"person", en:"The tourists"},
+    {t:"Mio nonno", g:"m", n:"s", cat:"person", en:"My grandfather"},
+    {t:"Mia nonna", g:"f", n:"s", cat:"person", en:"My grandmother"},
+    {t:"I bambini", g:"m", n:"p", cat:"person", en:"The children"},
+    {t:"La commessa", g:"f", n:"s", cat:"person", en:"The shop assistant"},
+    {t:"Il tassista", g:"m", n:"s", cat:"person", en:"The taxi driver"},
+    {t:"Le maestre", g:"f", n:"p", cat:"person", en:"The teachers"},
+    {t:"I miei colleghi", g:"m", n:"p", cat:"person", en:"My colleagues"},
+    {t:"La mia collega", g:"f", n:"s", cat:"person", en:"My colleague"},
+    {t:"I ragazzi", g:"m", n:"p", cat:"person", en:"The guys"},
 
-    /* cibo */
-    {t:"La pizza", g:"f", n:"s", cat:"food"},
-    {t:"Il caffè", g:"m", n:"s", cat:"drink"},
-    {t:"Il vino", g:"m", n:"s", cat:"drink"},
-    {t:"La cena", g:"f", n:"s", cat:"food"},
-    {t:"I dolci", g:"m", n:"p", cat:"food"},
-    {t:"Le lasagne", g:"f", n:"p", cat:"food"},
-    {t:"Il gelato", g:"m", n:"s", cat:"food"},
-    {t:"La colazione", g:"f", n:"s", cat:"food"},
-    {t:"Gli antipasti", g:"m", n:"p", cat:"food"},
-    {t:"Le verdure", g:"f", n:"p", cat:"food"},
+    {t:"La pizza", g:"f", n:"s", cat:"food", en:"The pizza"},
+    {t:"Il caffè", g:"m", n:"s", cat:"drink", en:"The coffee"},
+    {t:"Il vino", g:"m", n:"s", cat:"drink", en:"The wine"},
+    {t:"La cena", g:"f", n:"s", cat:"food", en:"The dinner"},
+    {t:"I dolci", g:"m", n:"p", cat:"food", en:"The desserts"},
+    {t:"Le lasagne", g:"f", n:"p", cat:"food", en:"The lasagne", enS:true},
+    {t:"Il gelato", g:"m", n:"s", cat:"food", en:"The ice cream"},
+    {t:"La colazione", g:"f", n:"s", cat:"food", en:"Breakfast"},
+    {t:"Gli antipasti", g:"m", n:"p", cat:"food", en:"The starters"},
+    {t:"Le verdure", g:"f", n:"p", cat:"food", en:"The vegetables"},
 
-    /* posti in cui si entra */
-    {t:"La casa", g:"f", n:"s", cat:"venue"},
-    {t:"I ristoranti", g:"m", n:"p", cat:"venue"},
-    {t:"Il quartiere", g:"m", n:"s", cat:"venue"},
-    {t:"La città", g:"f", n:"s", cat:"venue"},
-    {t:"Gli hotel", g:"m", n:"p", cat:"venue"},
-    {t:"Le camere", g:"f", n:"p", cat:"venue"},
-    {t:"I negozi", g:"m", n:"p", cat:"venue"},
+    {t:"La casa", g:"f", n:"s", cat:"venue", en:"The house"},
+    {t:"I ristoranti", g:"m", n:"p", cat:"venue", en:"The restaurants"},
+    {t:"Il quartiere", g:"m", n:"s", cat:"venue", en:"The neighbourhood"},
+    {t:"La città", g:"f", n:"s", cat:"venue", en:"The city"},
+    {t:"Gli hotel", g:"m", n:"p", cat:"venue", en:"The hotels"},
+    {t:"Le camere", g:"f", n:"p", cat:"venue", en:"The rooms"},
+    {t:"I negozi", g:"m", n:"p", cat:"venue", en:"The shops"},
 
-    /* spazi aperti */
-    {t:"Il parco", g:"m", n:"s", cat:"outdoor"},
-    {t:"La spiaggia", g:"f", n:"s", cat:"outdoor"},
-    {t:"I giardini", g:"m", n:"p", cat:"outdoor"},
+    {t:"Il parco", g:"m", n:"s", cat:"outdoor", en:"The park"},
+    {t:"La spiaggia", g:"f", n:"s", cat:"outdoor", en:"The beach"},
+    {t:"I giardini", g:"m", n:"p", cat:"outdoor", en:"The gardens"},
 
-    /* libri, film, musica, foto */
-    {t:"Il film", g:"m", n:"s", cat:"film"},
-    {t:"Il documentario", g:"m", n:"s", cat:"film"},
-    {t:"I libri", g:"m", n:"p", cat:"text"},
-    {t:"L'articolo", g:"m", n:"s", cat:"text"},
-    {t:"La musica", g:"f", n:"s", cat:"music"},
-    {t:"La canzone", g:"f", n:"s", cat:"music"},
-    {t:"Le foto", g:"f", n:"p", cat:"image"},
+    {t:"Il film", g:"m", n:"s", cat:"film", en:"The film"},
+    {t:"Il documentario", g:"m", n:"s", cat:"film", en:"The documentary"},
+    {t:"I libri", g:"m", n:"p", cat:"text", en:"The books"},
+    {t:"L'articolo", g:"m", n:"s", cat:"text", en:"The article"},
+    {t:"La musica", g:"f", n:"s", cat:"music", en:"The music"},
+    {t:"La canzone", g:"f", n:"s", cat:"music", en:"The song"},
+    {t:"Le foto", g:"f", n:"p", cat:"image", en:"The photos"},
 
-    /* oggetti */
-    {t:"La macchina", g:"f", n:"s", cat:"object"},
-    {t:"Il telefono", g:"m", n:"s", cat:"object"},
-    {t:"Le scarpe", g:"f", n:"p", cat:"object"},
-    {t:"I bagagli", g:"m", n:"p", cat:"object"},
-    {t:"La valigia", g:"f", n:"s", cat:"object"},
-    {t:"Il divano", g:"m", n:"s", cat:"object"},
+    {t:"La macchina", g:"f", n:"s", cat:"object", en:"The car"},
+    {t:"Il telefono", g:"m", n:"s", cat:"object", en:"The phone"},
+    {t:"Le scarpe", g:"f", n:"p", cat:"object", en:"The shoes"},
+    {t:"I bagagli", g:"m", n:"p", cat:"object", en:"The bags"},
+    {t:"La valigia", g:"f", n:"s", cat:"object", en:"The suitcase"},
+    {t:"Il divano", g:"m", n:"s", cat:"object", en:"The sofa"},
 
-    /* cose che succedono */
-    {t:"Il viaggio", g:"m", n:"s", cat:"event"},
-    {t:"Le vacanze", g:"f", n:"p", cat:"event"},
-    {t:"La festa", g:"f", n:"s", cat:"event"},
-    {t:"La lezione", g:"f", n:"s", cat:"study"},
-    {t:"Il corso", g:"m", n:"s", cat:"study"},
+    {t:"Il viaggio", g:"m", n:"s", cat:"event", en:"The trip"},
+    {t:"Le vacanze", g:"f", n:"p", cat:"event", en:"The holidays"},
+    {t:"La festa", g:"f", n:"s", cat:"event", en:"The party"},
+    {t:"La lezione", g:"f", n:"s", cat:"study", en:"The lesson"},
+    {t:"Il corso", g:"m", n:"s", cat:"study", en:"The course"},
 
-    /* impegni */
-    {t:"I compiti", g:"m", n:"p", cat:"task"},
-    {t:"La riunione", g:"f", n:"s", cat:"task"},
-    {t:"Gli esercizi", g:"m", n:"p", cat:"task"}
+    {t:"I compiti", g:"m", n:"p", cat:"task", en:"The homework", enS:true},
+    {t:"La riunione", g:"f", n:"s", cat:"task", en:"The meeting"},
+    {t:"Gli esercizi", g:"m", n:"p", cat:"task", en:"The exercises"}
   ];
 
   /* ---------------- AGGETTIVI ----------------
      f: [maschile sing., femminile sing., maschile plur., femminile plur.]
-     Le quattro forme sono scritte a mano, così i plurali irregolari
+     Le quattro forme sono scritte a mano: così i plurali irregolari
      (stanco → stanchi, antico → antichi ma antica → antiche) sono
      sempre giusti invece di essere indovinati da una regola.
      noMolto: in italiano è già assoluto, non si dice "molto ...". */
   var ADJ = [
-    /* persone */
-    {f:["simpatico","simpatica","simpatici","simpatiche"], cats:["person"]},
-    {f:["nervoso","nervosa","nervosi","nervose"], cats:["person"]},
-    {f:["stanco","stanca","stanchi","stanche"], cats:["person"]},
-    {f:["occupato","occupata","occupati","occupate"], cats:["person"]},
-    {f:["curioso","curiosa","curiosi","curiose"], cats:["person"]},
-    {f:["generoso","generosa","generosi","generose"], cats:["person"]},
-    {f:["timido","timida","timidi","timide"], cats:["person"]},
-    {f:["distratto","distratta","distratti","distratte"], cats:["person"]},
-    {f:["allegro","allegra","allegri","allegre"], cats:["person"]},
-    {f:["testardo","testarda","testardi","testarde"], cats:["person"]},
-    {f:["goloso","golosa","golosi","golose"], cats:["person"]},
-    {f:["preciso","precisa","precisi","precise"], cats:["person"]},
-    {f:["disordinato","disordinata","disordinati","disordinate"], cats:["person"]},
-    {f:["gentile","gentile","gentili","gentili"], cats:["person"]},
-    {f:["paziente","paziente","pazienti","pazienti"], cats:["person"]},
-    {f:["disponibile","disponibile","disponibili","disponibili"], cats:["person"]},
-    {f:["puntuale","puntuale","puntuali","puntuali"], cats:["person"]},
-    {f:["intelligente","intelligente","intelligenti","intelligenti"], cats:["person"]},
-    {f:["socievole","socievole","socievoli","socievoli"], cats:["person"]},
+    {f:["simpatico","simpatica","simpatici","simpatiche"], en:"nice", cats:["person"]},
+    {f:["nervoso","nervosa","nervosi","nervose"], en:"nervous", cats:["person"]},
+    {f:["stanco","stanca","stanchi","stanche"], en:"tired", cats:["person"]},
+    {f:["occupato","occupata","occupati","occupate"], en:"busy", cats:["person"]},
+    {f:["curioso","curiosa","curiosi","curiose"], en:"curious", cats:["person"]},
+    {f:["generoso","generosa","generosi","generose"], en:"generous", cats:["person"]},
+    {f:["timido","timida","timidi","timide"], en:"shy", cats:["person"]},
+    {f:["distratto","distratta","distratti","distratte"], en:"absent-minded", cats:["person"]},
+    {f:["allegro","allegra","allegri","allegre"], en:"cheerful", cats:["person"]},
+    {f:["testardo","testarda","testardi","testarde"], en:"stubborn", cats:["person"]},
+    {f:["goloso","golosa","golosi","golose"], en:"sweet-toothed", cats:["person"]},
+    {f:["preciso","precisa","precisi","precise"], en:"precise", cats:["person"]},
+    {f:["disordinato","disordinata","disordinati","disordinate"], en:"messy", cats:["person"]},
+    {f:["gentile","gentile","gentili","gentili"], en:"kind", cats:["person"]},
+    {f:["paziente","paziente","pazienti","pazienti"], en:"patient", cats:["person"]},
+    {f:["disponibile","disponibile","disponibili","disponibili"], en:"helpful", cats:["person"]},
+    {f:["puntuale","puntuale","puntuali","puntuali"], en:"punctual", cats:["person"]},
+    {f:["intelligente","intelligente","intelligenti","intelligenti"], en:"clever", cats:["person"]},
+    {f:["socievole","socievole","socievoli","socievoli"], en:"sociable", cats:["person"]},
 
-    /* cibo e bevande */
-    {f:["buono","buona","buoni","buone"], cats:["food","drink"]},
-    {f:["delizioso","deliziosa","deliziosi","deliziose"], cats:["food"], noMolto:true},
-    {f:["salato","salata","salati","salate"], cats:["food"]},
-    {f:["saporito","saporita","saporiti","saporite"], cats:["food"]},
-    {f:["caldo","calda","caldi","calde"], cats:["food","drink"]},
-    {f:["freddo","fredda","freddi","fredde"], cats:["food","drink"]},
-    {f:["fresco","fresca","freschi","fresche"], cats:["food","drink"]},
-    {f:["leggero","leggera","leggeri","leggere"], cats:["food","drink","object"]},
-    {f:["pesante","pesante","pesanti","pesanti"], cats:["food","object"]},
-    {f:["squisito","squisita","squisiti","squisite"], cats:["food"], noMolto:true},
-    {f:["abbondante","abbondante","abbondanti","abbondanti"], cats:["food"]},
-    {f:["forte","forte","forti","forti"], cats:["drink"]},
+    {f:["buono","buona","buoni","buone"], en:"good", cats:["food","drink"]},
+    {f:["delizioso","deliziosa","deliziosi","deliziose"], en:"delicious", cats:["food"], noMolto:true},
+    {f:["salato","salata","salati","salate"], en:"salty", cats:["food"]},
+    {f:["saporito","saporita","saporiti","saporite"], en:"tasty", cats:["food"]},
+    {f:["caldo","calda","caldi","calde"], en:"hot", cats:["food","drink"]},
+    {f:["freddo","fredda","freddi","fredde"], en:"cold", cats:["food","drink"]},
+    {f:["fresco","fresca","freschi","fresche"], en:"fresh", cats:["food","drink"]},
+    {f:["leggero","leggera","leggeri","leggere"], en:"light", cats:["food","drink","object"]},
+    {f:["pesante","pesante","pesanti","pesanti"], en:"heavy", cats:["food","object"]},
+    {f:["squisito","squisita","squisiti","squisite"], en:"exquisite", cats:["food"], noMolto:true},
+    {f:["abbondante","abbondante","abbondanti","abbondanti"], en:"plentiful", cats:["food"]},
+    {f:["forte","forte","forti","forti"], en:"strong", cats:["drink"]},
 
-    /* posti in cui si entra */
-    {f:["rumoroso","rumorosa","rumorosi","rumorose"], cats:["venue","outdoor"]},
-    {f:["affollato","affollata","affollati","affollate"], cats:["venue","outdoor"]},
-    {f:["pulito","pulita","puliti","pulite"], cats:["venue","outdoor","object"]},
-    {f:["sporco","sporca","sporchi","sporche"], cats:["venue","outdoor","object"]},
-    {f:["antico","antica","antichi","antiche"], cats:["venue","outdoor"]},
-    {f:["moderno","moderna","moderni","moderne"], cats:["venue","object"]},
-    {f:["luminoso","luminosa","luminosi","luminose"], cats:["venue","image"]},
-    {f:["accogliente","accogliente","accoglienti","accoglienti"], cats:["venue"]},
-    {f:["tranquillo","tranquilla","tranquilli","tranquille"], cats:["person","venue","outdoor"]},
-    {f:["rilassante","rilassante","rilassanti","rilassanti"], cats:["outdoor","venue","event"]},
-    {f:["verde","verde","verdi","verdi"], cats:["outdoor"]},
+    {f:["rumoroso","rumorosa","rumorosi","rumorose"], en:"noisy", cats:["venue","outdoor"]},
+    {f:["affollato","affollata","affollati","affollate"], en:"crowded", cats:["venue","outdoor"]},
+    {f:["pulito","pulita","puliti","pulite"], en:"clean", cats:["venue","outdoor","object"]},
+    {f:["sporco","sporca","sporchi","sporche"], en:"dirty", cats:["venue","outdoor","object"]},
+    {f:["antico","antica","antichi","antiche"], en:"ancient", cats:["venue","outdoor"]},
+    {f:["moderno","moderna","moderni","moderne"], en:"modern", cats:["venue","object"]},
+    {f:["luminoso","luminosa","luminosi","luminose"], en:"bright", cats:["venue","image"]},
+    {f:["accogliente","accogliente","accoglienti","accoglienti"], en:"welcoming", cats:["venue"]},
+    {f:["tranquillo","tranquilla","tranquilli","tranquille"], en:"quiet", cats:["person","venue","outdoor"]},
+    {f:["rilassante","rilassante","rilassanti","rilassanti"], en:"relaxing", cats:["outdoor","venue","event"]},
+    {f:["verde","verde","verdi","verdi"], en:"green", cats:["outdoor"]},
 
-    /* libri, film, musica, foto */
-    {f:["famoso","famosa","famosi","famose"], cats:["text","film","music","image"]},
-    {f:["divertente","divertente","divertenti","divertenti"], cats:["text","film","music","event","study","task"]},
-    {f:["commovente","commovente","commoventi","commoventi"], cats:["text","film","music"]},
-    {f:["complicato","complicata","complicati","complicate"], cats:["text","film","task","study"]},
-    {f:["difficile","difficile","difficili","difficili"], cats:["text","film","music","study","task"]},
-    {f:["noioso","noiosa","noiosi","noiose"], cats:["text","film","music","event","study","task","venue"]},
-    {f:["interessante","interessante","interessanti","interessanti"], cats:["text","film","event","study","task","image"]},
-    {f:["lungo","lunga","lunghi","lunghe"], cats:["text","film","music","event","study","task"]},
-    {f:["breve","breve","brevi","brevi"], cats:["text","film","music","event","study","task"]},
-    {f:["utile","utile","utili","utili"], cats:["text","study","task"]},
-    {f:["indimenticabile","indimenticabile","indimenticabili","indimenticabili"], cats:["text","film","music","event","study","image"], noMolto:true},
+    {f:["famoso","famosa","famosi","famose"], en:"famous", cats:["text","film","music","image"]},
+    {f:["divertente","divertente","divertenti","divertenti"], en:"funny", cats:["text","film","music","event","study","task"]},
+    {f:["commovente","commovente","commoventi","commoventi"], en:"moving", cats:["text","film","music"]},
+    {f:["complicato","complicata","complicati","complicate"], en:"complicated", cats:["text","film","task","study"]},
+    {f:["difficile","difficile","difficili","difficili"], en:"difficult", cats:["text","film","music","study","task"]},
+    {f:["noioso","noiosa","noiosi","noiose"], en:"boring", cats:["text","film","music","event","study","task","venue"]},
+    {f:["interessante","interessante","interessanti","interessanti"], en:"interesting", cats:["text","film","event","study","task","image"]},
+    {f:["lungo","lunga","lunghi","lunghe"], en:"long", cats:["text","film","music","event","study","task"]},
+    {f:["breve","breve","brevi","brevi"], en:"short", cats:["text","film","music","event","study","task"]},
+    {f:["utile","utile","utili","utili"], en:"useful", cats:["text","study","task"]},
+    {f:["indimenticabile","indimenticabile","indimenticabili","indimenticabili"], en:"unforgettable", cats:["text","film","music","event","study","image"], noMolto:true},
 
-    /* oggetti */
-    {f:["nuovo","nuova","nuovi","nuove"], cats:["object","image"], noMolto:true},
-    {f:["vecchio","vecchia","vecchi","vecchie"], cats:["object","venue","image"]},
-    {f:["comodo","comoda","comodi","comode"], cats:["object"]},
-    {f:["scomodo","scomoda","scomodi","scomode"], cats:["object"]},
-    {f:["rotto","rotta","rotti","rotte"], cats:["object"], noMolto:true},
+    {f:["nuovo","nuova","nuovi","nuove"], en:"new", cats:["object","image"], noMolto:true},
+    {f:["vecchio","vecchia","vecchi","vecchie"], en:"old", cats:["object","venue","image"]},
+    {f:["comodo","comoda","comodi","comode"], en:"comfortable", cats:["object"]},
+    {f:["scomodo","scomoda","scomodi","scomode"], en:"uncomfortable", cats:["object"]},
+    {f:["rotto","rotta","rotti","rotte"], en:"broken", cats:["object"], noMolto:true},
 
-    /* impegni */
-    {f:["faticoso","faticosa","faticosi","faticose"], cats:["event","study","task"]},
+    {f:["faticoso","faticosa","faticosi","faticose"], en:"tiring", cats:["event","study","task"]},
 
-    /* trasversali */
-    {f:["bello","bella","belli","belle"], cats:["venue","outdoor","text","film","music","object","event","image"]},
-    {f:["caro","cara","cari","care"], cats:["food","drink","venue","object","event","study"]},
-    {f:["economico","economica","economici","economiche"], cats:["food","drink","venue","object","event","study"]},
-    {f:["grande","grande","grandi","grandi"], cats:["venue","outdoor","object","event","image"]},
-    {f:["piccolo","piccola","piccoli","piccole"], cats:["venue","object","image"]}
+    {f:["bello","bella","belli","belle"], en:"beautiful", cats:["venue","outdoor","text","film","music","object","event","image"]},
+    {f:["caro","cara","cari","care"], en:"expensive", cats:["food","drink","venue","object","event","study"]},
+    {f:["economico","economica","economici","economiche"], en:"cheap", cats:["food","drink","venue","object","event","study"]},
+    {f:["grande","grande","grandi","grandi"], en:"big", cats:["venue","outdoor","object","event","image"]},
+    {f:["piccolo","piccola","piccoli","piccole"], en:"small", cats:["venue","object","image"]}
   ];
 
-  /* ---------------- NOMI PER "MOLTO + NOME" ----------------
-     Divisi per come si usano: alcuni stanno bene dopo "ho",
-     altri solo dopo "c'è". "Ho molto rumore" non si dice. */
+  /* ---------------- NOMI PER "HO MOLTO..." ----------------
+     Solo nomi che in inglese reggono "I have a lot of X". Le espressioni
+     idiomatiche (ho fame, ho sonno) stanno più sotto, tradotte a mano. */
   var HAVE_NOUNS = [
-    {n:"fame", g:"f", num:"s"}, {n:"sete", g:"f", num:"s"},
-    {n:"sonno", g:"m", num:"s"}, {n:"tempo", g:"m", num:"s"},
-    {n:"lavoro", g:"m", num:"s"}, {n:"pazienza", g:"f", num:"s"},
-    {n:"fretta", g:"f", num:"s"}, {n:"voglia", g:"f", num:"s"},
-    {n:"paura", g:"f", num:"s"}, {n:"energia", g:"f", num:"s"},
-    {n:"esperienza", g:"f", num:"s"}, {n:"fortuna", g:"f", num:"s"},
-    {n:"amici", g:"m", num:"p"}, {n:"soldi", g:"m", num:"p"},
-    {n:"problemi", g:"m", num:"p"}, {n:"bagagli", g:"m", num:"p"},
-    {n:"compiti", g:"m", num:"p"}, {n:"impegni", g:"m", num:"p"},
-    {n:"amiche", g:"f", num:"p"}, {n:"idee", g:"f", num:"p"},
-    {n:"cose da fare", g:"f", num:"p"}, {n:"domande", g:"f", num:"p"}
+    {n:"tempo", g:"m", num:"s", en:"time"},
+    {n:"lavoro", g:"m", num:"s", en:"work"},
+    {n:"pazienza", g:"f", num:"s", en:"patience"},
+    {n:"energia", g:"f", num:"s", en:"energy"},
+    {n:"esperienza", g:"f", num:"s", en:"experience"},
+    {n:"fortuna", g:"f", num:"s", en:"luck"},
+    {n:"amici", g:"m", num:"p", en:"friends"},
+    {n:"soldi", g:"m", num:"p", en:"money"},
+    {n:"problemi", g:"m", num:"p", en:"problems"},
+    {n:"bagagli", g:"m", num:"p", en:"bags"},
+    {n:"compiti", g:"m", num:"p", en:"homework"},
+    {n:"impegni", g:"m", num:"p", en:"commitments"},
+    {n:"amiche", g:"f", num:"p", en:"friends"},
+    {n:"idee", g:"f", num:"p", en:"ideas"},
+    {n:"domande", g:"f", num:"p", en:"questions"}
   ];
-  /* Un'unica lista per "c'è/ci sono" e per "molto + nome": ogni voce sa
-     il suo genere, il suo numero e dove ha senso trovarla. */
-  var THERE_ITEMS = [
-    {n:"rumore", g:"m", num:"s", where:"any"},
-    {n:"confusione", g:"f", num:"s", where:"any"},
-    {n:"gente", g:"f", num:"s", where:"any"},
-    {n:"coda", g:"f", num:"s", where:"any"},
-    {n:"musica", g:"f", num:"s", where:"in"},
-    {n:"posto", g:"m", num:"s", where:"in"},
-    {n:"traffico", g:"m", num:"s", where:"street"},
-    {n:"vento", g:"m", num:"s", where:"out"},
-    {n:"nebbia", g:"f", num:"s", where:"out"},
-    {n:"sole", g:"m", num:"s", where:"out"},
-    {n:"turisti", g:"m", num:"p", where:"any"},
-    {n:"bambini", g:"m", num:"p", where:"any"},
-    {n:"persone", g:"f", num:"p", where:"any"},
-    {n:"ragazzi", g:"m", num:"p", where:"any"},
-    {n:"luci", g:"f", num:"p", where:"any"},
-    {n:"macchine", g:"f", num:"p", where:"street"},
-    {n:"biciclette", g:"f", num:"p", where:"street"},
-    {n:"tavoli liberi", g:"m", num:"p", where:"in"},
-    {n:"sedie", g:"f", num:"p", where:"in"},
-    {n:"negozi aperti", g:"m", num:"p", where:"street"}
+  var HAVE_PREFIX = [
+    {it:"Ho", en:"I have", neg:false},
+    {it:"Abbiamo", en:"We have", neg:false},
+    {it:"Oggi ho", en:"Today I have", neg:false},
+    {it:"Non ho", en:"I don't have", neg:true}
   ];
+
+  /* Espressioni fatte: la traduzione inglese è scritta a mano perché
+     "ho molta fame" non è "I have a lot of hunger". */
+  var MOLTO_IDIOMS = [
+    {before:"Ho", after:" fame.", correct:"molta", noun:"fame", en:"I'm very hungry."},
+    {before:"Abbiamo", after:" sete.", correct:"molta", noun:"sete", en:"We're very thirsty."},
+    {before:"Ho", after:" sonno.", correct:"molto", noun:"sonno", en:"I'm very sleepy."},
+    {before:"Ho", after:" fretta.", correct:"molta", noun:"fretta", en:"I'm in a real hurry."},
+    {before:"I bambini hanno", after:" paura.", correct:"molta", noun:"paura", en:"The children are very scared."},
+    {before:"Ho", after:" voglia di un caffè.", correct:"molta", noun:"voglia", en:"I really feel like a coffee."}
+  ];
+
   var MOLTO_FORM = {ms:"molto", fs:"molta", mp:"molti", fp:"molte"};
 
-  /* verbi per il "molto" avverbio (molto + verbo = a lot) */
+  /* ---------------- MOLTO + VERBO ---------------- */
   var VERB_PHRASES = [
-    {before:"Mi piace", after:" questa città.", hint:"mi piace"},
-    {before:"Studio", after:" la sera.", hint:"studio"},
-    {before:"Lavoriamo", after:" in questo periodo.", hint:"lavoriamo"},
-    {before:"Mio nonno parla", after:" a tavola.", hint:"parla"},
-    {before:"I bambini dormono", after:" d'estate.", hint:"dormono"},
-    {before:"Viaggio", after:" per lavoro.", hint:"viaggio"},
-    {before:"Le mie amiche ridono", after:" insieme.", hint:"ridono"},
-    {before:"Cammino", after:" quando sono a Roma.", hint:"cammino"}
+    {before:"Mi piace", after:" questa città.", hint:"mi piace", en:"I like this city a lot."},
+    {before:"Studio", after:" la sera.", hint:"studio", en:"I study a lot in the evening."},
+    {before:"Lavoriamo", after:" in questo periodo.", hint:"lavoriamo", en:"We're working a lot at the moment."},
+    {before:"Mio nonno parla", after:" a tavola.", hint:"parla", en:"My grandfather talks a lot at the table."},
+    {before:"I bambini dormono", after:" d'estate.", hint:"dormono", en:"The children sleep a lot in summer."},
+    {before:"Viaggio", after:" per lavoro.", hint:"viaggio", en:"I travel a lot for work."},
+    {before:"Le mie amiche ridono", after:" insieme.", hint:"ridono", en:"My friends laugh a lot together."},
+    {before:"Cammino", after:" quando sono a Roma.", hint:"cammino", en:"I walk a lot when I'm in Rome."}
+  ];
+
+  /* ---------------- C'È / CI SONO ---------------- */
+  var THERE_ITEMS = [
+    {n:"rumore", g:"m", num:"s", where:"any", en:"noise"},
+    {n:"confusione", g:"f", num:"s", where:"any", en:"chaos"},
+    {n:"gente", g:"f", num:"s", where:"any", en:"people", enP:true},
+    {n:"coda", g:"f", num:"s", where:"any", en:"a queue"},
+    {n:"musica", g:"f", num:"s", where:"in", en:"music"},
+    {n:"posto", g:"m", num:"s", where:"in", en:"room"},
+    {n:"traffico", g:"m", num:"s", where:"street", en:"traffic"},
+    {n:"vento", g:"m", num:"s", where:"out", en:"wind"},
+    {n:"nebbia", g:"f", num:"s", where:"out", en:"fog"},
+    {n:"sole", g:"m", num:"s", where:"out", en:"sun"},
+    {n:"turisti", g:"m", num:"p", where:"any", en:"tourists"},
+    {n:"bambini", g:"m", num:"p", where:"any", en:"children"},
+    {n:"persone", g:"f", num:"p", where:"any", en:"people"},
+    {n:"ragazzi", g:"m", num:"p", where:"any", en:"guys"},
+    {n:"luci", g:"f", num:"p", where:"any", en:"lights"},
+    {n:"macchine", g:"f", num:"p", where:"street", en:"cars"},
+    {n:"biciclette", g:"f", num:"p", where:"street", en:"bikes"},
+    {n:"tavoli liberi", g:"m", num:"p", where:"in", en:"free tables"},
+    {n:"sedie", g:"f", num:"p", where:"in", en:"chairs"},
+    {n:"negozi aperti", g:"m", num:"p", where:"street", en:"open shops"}
   ];
 
   /* ---------------- LUOGHI ----------------
-     Ogni luogo va con certe cose: il traffico sta in strada, non in spiaggia. */
+     Il traffico sta in strada, non in spiaggia. */
   var PLACES = {
-    any:    ["qui","in centro","in piazza","davanti alla scuola","alla stazione"],
-    street: ["in centro","in piazza","sulla strada","davanti alla scuola"],
-    out:    ["in spiaggia","nel parco","in centro","in montagna"],
-    "in":   ["al bar","in ufficio","in aula","al ristorante","in negozio"]
+    any:    [{it:"qui", en:"here"},{it:"in centro", en:"in the centre"},{it:"in piazza", en:"in the square"},{it:"davanti alla scuola", en:"in front of the school"},{it:"alla stazione", en:"at the station"}],
+    street: [{it:"in centro", en:"in the centre"},{it:"in piazza", en:"in the square"},{it:"sulla strada", en:"on the road"},{it:"davanti alla scuola", en:"in front of the school"}],
+    out:    [{it:"in spiaggia", en:"on the beach"},{it:"nel parco", en:"in the park"},{it:"in centro", en:"in the centre"},{it:"in montagna", en:"in the mountains"}],
+    "in":   [{it:"al bar", en:"at the bar"},{it:"in ufficio", en:"in the office"},{it:"in aula", en:"in the classroom"},{it:"al ristorante", en:"at the restaurant"},{it:"in negozio", en:"in the shop"}]
   };
   function placeFor(where){ return pick(PLACES[where] || PLACES.any); }
 
-  /* ---------------- NOMI PLURALI PER "TUTTO" ---------------- */
+  /* ---------------- TUTTO ---------------- */
   var TUTTO_NOUNS = [
-    {n:"camerieri", art:"tutti i", g:"m", cat:"person"},
-    {n:"studenti", art:"tutti gli", g:"m", cat:"person"},
-    {n:"bambini", art:"tutti i", g:"m", cat:"person"},
-    {n:"maestre", art:"tutte le", g:"f", cat:"person"},
-    {n:"turiste", art:"tutte le", g:"f", cat:"person"},
-    {n:"ristoranti", art:"tutti i", g:"m", cat:"venue"},
-    {n:"negozi", art:"tutti i", g:"m", cat:"venue"},
-    {n:"hotel", art:"tutti gli", g:"m", cat:"venue"},
-    {n:"camere", art:"tutte le", g:"f", cat:"venue"},
-    {n:"spiagge", art:"tutte le", g:"f", cat:"outdoor"},
-    {n:"libri", art:"tutti i", g:"m", cat:"text"},
-    {n:"film", art:"tutti i", g:"m", cat:"film"},
-    {n:"foto", art:"tutte le", g:"f", cat:"image"},
-    {n:"canzoni", art:"tutte le", g:"f", cat:"music"},
-    {n:"dolci", art:"tutti i", g:"m", cat:"food"},
-    {n:"antipasti", art:"tutti gli", g:"m", cat:"food"},
-    {n:"verdure", art:"tutte le", g:"f", cat:"food"},
-    {n:"bagagli", art:"tutti i", g:"m", cat:"object"},
-    {n:"scarpe", art:"tutte le", g:"f", cat:"object"},
-    {n:"compiti", art:"tutti i", g:"m", cat:"task"},
-    {n:"lezioni", art:"tutte le", g:"f", cat:"study"},
-    {n:"vacanze", art:"tutte le", g:"f", cat:"event"}
+    {n:"camerieri", art:"tutti i", g:"m", cat:"person", en:"waiters"},
+    {n:"studenti", art:"tutti gli", g:"m", cat:"person", en:"students"},
+    {n:"bambini", art:"tutti i", g:"m", cat:"person", en:"children"},
+    {n:"maestre", art:"tutte le", g:"f", cat:"person", en:"teachers"},
+    {n:"turiste", art:"tutte le", g:"f", cat:"person", en:"tourists"},
+    {n:"ristoranti", art:"tutti i", g:"m", cat:"venue", en:"restaurants"},
+    {n:"negozi", art:"tutti i", g:"m", cat:"venue", en:"shops"},
+    {n:"hotel", art:"tutti gli", g:"m", cat:"venue", en:"hotels"},
+    {n:"camere", art:"tutte le", g:"f", cat:"venue", en:"rooms"},
+    {n:"spiagge", art:"tutte le", g:"f", cat:"outdoor", en:"beaches"},
+    {n:"libri", art:"tutti i", g:"m", cat:"text", en:"books"},
+    {n:"film", art:"tutti i", g:"m", cat:"film", en:"films"},
+    {n:"foto", art:"tutte le", g:"f", cat:"image", en:"photos"},
+    {n:"canzoni", art:"tutte le", g:"f", cat:"music", en:"songs"},
+    {n:"dolci", art:"tutti i", g:"m", cat:"food", en:"desserts"},
+    {n:"antipasti", art:"tutti gli", g:"m", cat:"food", en:"starters"},
+    {n:"verdure", art:"tutte le", g:"f", cat:"food", en:"vegetables"},
+    {n:"bagagli", art:"tutti i", g:"m", cat:"object", en:"bags"},
+    {n:"scarpe", art:"tutte le", g:"f", cat:"object", en:"shoes"},
+    {n:"compiti", art:"tutti i", g:"m", cat:"task", en:"homework", enS:true},
+    {n:"lezioni", art:"tutte le", g:"f", cat:"study", en:"lessons"},
+    {n:"vacanze", art:"tutte le", g:"f", cat:"event", en:"holidays"}
   ];
 
-  /* ---------------- NOMI PER "QUESTO" ---------------- */
+  /* ---------------- QUESTO ---------------- */
   var QUESTO_NOUNS = [
-    {n:"pizza", g:"f", num:"s", cat:"food"}, {n:"caffè", g:"m", num:"s", cat:"drink"},
-    {n:"dolci", g:"m", num:"p", cat:"food"}, {n:"verdure", g:"f", num:"p", cat:"food"},
-    {n:"città", g:"f", num:"s", cat:"venue"}, {n:"quartiere", g:"m", num:"s", cat:"venue"},
-    {n:"camere", g:"f", num:"p", cat:"venue"}, {n:"ristoranti", g:"m", num:"p", cat:"venue"},
-    {n:"film", g:"m", num:"s", cat:"film"}, {n:"canzone", g:"f", num:"s", cat:"music"},
-    {n:"libri", g:"m", num:"p", cat:"text"}, {n:"foto", g:"f", num:"p", cat:"image"},
-    {n:"telefono", g:"m", num:"s", cat:"object"}, {n:"macchina", g:"f", num:"s", cat:"object"},
-    {n:"scarpe", g:"f", num:"p", cat:"object"}, {n:"bagagli", g:"m", num:"p", cat:"object"},
-    {n:"lezione", g:"f", num:"s", cat:"study"}, {n:"corso", g:"m", num:"s", cat:"study"},
-    {n:"compiti", g:"m", num:"p", cat:"task"}, {n:"vacanze", g:"f", num:"p", cat:"event"}
+    {n:"pizza", g:"f", num:"s", cat:"food", en:"pizza"},
+    {n:"caffè", g:"m", num:"s", cat:"drink", en:"coffee"},
+    {n:"dolci", g:"m", num:"p", cat:"food", en:"desserts"},
+    {n:"verdure", g:"f", num:"p", cat:"food", en:"vegetables"},
+    {n:"città", g:"f", num:"s", cat:"venue", en:"city"},
+    {n:"quartiere", g:"m", num:"s", cat:"venue", en:"neighbourhood"},
+    {n:"camere", g:"f", num:"p", cat:"venue", en:"rooms"},
+    {n:"ristoranti", g:"m", num:"p", cat:"venue", en:"restaurants"},
+    {n:"film", g:"m", num:"s", cat:"film", en:"film"},
+    {n:"canzone", g:"f", num:"s", cat:"music", en:"song"},
+    {n:"libri", g:"m", num:"p", cat:"text", en:"books"},
+    {n:"foto", g:"f", num:"p", cat:"image", en:"photos"},
+    {n:"telefono", g:"m", num:"s", cat:"object", en:"phone"},
+    {n:"macchina", g:"f", num:"s", cat:"object", en:"car"},
+    {n:"scarpe", g:"f", num:"p", cat:"object", en:"shoes"},
+    {n:"bagagli", g:"m", num:"p", cat:"object", en:"bags"},
+    {n:"lezione", g:"f", num:"s", cat:"study", en:"lesson"},
+    {n:"corso", g:"m", num:"s", cat:"study", en:"course"},
+    {n:"compiti", g:"m", num:"p", cat:"task", en:"homework", enS:true},
+    {n:"vacanze", g:"f", num:"p", cat:"event", en:"holidays"}
   ];
   var QUESTO_FORM = {ms:"questo", fs:"questa", mp:"questi", fp:"queste"};
 
@@ -702,6 +734,13 @@ a{ color:inherit; }
     });
     return list.length ? list : ADJ;
   }
+  /* was / were / is / are, tenendo conto dei soggetti che in inglese
+     vanno al singolare anche se in italiano sono plurali */
+  function beEn(subj, past){
+    var plural = subj.n==="p" && !subj.enS;
+    if(past) return plural ? "were" : "was";
+    return plural ? "are" : "is";
+  }
   function norm(s){
     return String(s).toLowerCase()
       .normalize("NFD").replace(/[̀-ͯ]/g,"")
@@ -712,143 +751,181 @@ a{ color:inherit; }
 
   /* ==========================================================
      GENERATORE 1 — MOLTO
-     Tre casi, con probabilità diverse:
-       55%  molto + aggettivo   (= very)      → invariabile
-       15%  molto + verbo       (= a lot)     → invariabile
-       30%  molto + nome        (= a lot of)  → si accorda
+       50%  molto + aggettivo   (= very)      invariabile
+       14%  molto + verbo       (= a lot)     invariabile
+       10%  espressioni fatte   (ho fame...)  si accorda
+       26%  molto + nome        (= a lot of)  si accorda
      ========================================================== */
   function genMolto(){
     var r = Math.random();
 
-    /* caso 1: molto + aggettivo */
-    if(r < 0.55){
+    if(r < 0.50){
       var subj = pick(SUBJECTS);
       var entry = pick(adjsFor(subj.cat, {moltoSafe:true}));
-      var verb = subj.n==="s" ? (Math.random()<0.5?"è":"era") : (Math.random()<0.5?"sono":"erano");
+      var past = Math.random() < 0.5;
+      var verb = subj.n==="s" ? (past?"era":"è") : (past?"erano":"sono");
       var adj = formOf(entry, subj.g, subj.n);
       return {
         before: subj.t+" "+verb,
         after: " "+adj+".",
         correct: "molto",
         options: shuffle(["molto","molta","molti","molte"]),
+        typable: true,
         explainIt: "Qui &laquo;molto&raquo; accompagna l'aggettivo &laquo;"+adj+"&raquo; e vuol dire <b>very</b>: non cambia mai.",
-        explainEn: "Here &laquo;molto&raquo; modifies the adjective &laquo;"+adj+"&raquo; and means <b>very</b>, so it never changes."
+        explainEn: "Here &laquo;molto&raquo; modifies the adjective &laquo;"+adj+"&raquo; and means <b>very</b>, so it never changes.",
+        translation: subj.en+" "+beEn(subj, past)+" very "+entry.en+"."
       };
     }
 
-    /* caso 2: molto + verbo */
-    if(r < 0.70){
+    if(r < 0.64){
       var vp = pick(VERB_PHRASES);
       return {
         before: vp.before,
         after: vp.after,
         correct: "molto",
         options: shuffle(["molto","molta","molti","molte"]),
+        typable: true,
         explainIt: "Qui &laquo;molto&raquo; accompagna il verbo &laquo;"+vp.hint+"&raquo; e vuol dire <b>a lot</b>: anche qui non cambia mai.",
-        explainEn: "Here &laquo;molto&raquo; goes with the verb &laquo;"+vp.hint+"&raquo; and means <b>a lot</b>. It never changes either."
+        explainEn: "Here &laquo;molto&raquo; goes with the verb &laquo;"+vp.hint+"&raquo; and means <b>a lot</b>. It never changes either.",
+        translation: vp.en
       };
     }
 
-    /* caso 3: molto + nome */
-    var useHave = Math.random() < 0.6;
-    var noun, before, after;
-    if(useHave){
-      noun = pick(HAVE_NOUNS);
-      before = pick(["Ho","Non ho","Abbiamo","Oggi ho"]);
-      after = " "+noun.n+".";
-    } else {
-      noun = pick(THERE_ITEMS);
-      before = noun.num==="s"
-        ? pick(["C'è","Ieri c'era"])
-        : pick(["Ci sono","Ieri c'erano"]);
-      after = " "+noun.n+" "+placeFor(noun.where)+".";
+    if(r < 0.74){
+      var id = pick(MOLTO_IDIOMS);
+      return {
+        before: id.before,
+        after: id.after,
+        correct: id.correct,
+        options: shuffle(["molto","molta","molti","molte"]),
+        typable: true,
+        explainIt: "&laquo;"+cap(id.noun)+"&raquo; è un nome, quindi &laquo;molto&raquo; si accorda: &laquo;"+id.correct+"&raquo;.",
+        explainEn: "&laquo;"+cap(id.noun)+"&raquo; is a noun, so &laquo;molto&raquo; agrees with it: &laquo;"+id.correct+"&raquo;.",
+        translation: id.en
+      };
     }
-    var key = noun.g + noun.num;
-    var correct = MOLTO_FORM[key];
+
+    var useHave = Math.random() < 0.55;
+    if(useHave){
+      var noun = pick(HAVE_NOUNS);
+      var pre = pick(HAVE_PREFIX);
+      var correct = MOLTO_FORM[noun.g + noun.num];
+      var much = pre.neg ? (noun.num==="p" ? "many " : "much ") : "a lot of ";
+      return {
+        before: pre.it,
+        after: " "+noun.n+".",
+        correct: correct,
+        options: shuffle(["molto","molta","molti","molte"]),
+        typable: true,
+        explainIt: "Qui &laquo;molto&raquo; accompagna il nome &laquo;"+noun.n+"&raquo; ("+LABEL[noun.g][noun.num]+") e vuol dire <b>a lot of</b>: si accorda, quindi &laquo;"+correct+"&raquo;.",
+        explainEn: "Here &laquo;molto&raquo; modifies the noun &laquo;"+noun.n+"&raquo; ("+LABEL_EN[noun.g][noun.num]+") and means <b>a lot of</b>, so it agrees: &laquo;"+correct+"&raquo;.",
+        translation: pre.en+" "+much+noun.en+"."
+      };
+    }
+
+    var item = pick(THERE_ITEMS);
+    var place = placeFor(item.where);
+    var wasPast = Math.random() < 0.5;
+    var enPlural = item.num==="p" || item.enP;
+    var correct2 = MOLTO_FORM[item.g + item.num];
     return {
-      before: before,
-      after: after,
-      correct: correct,
+      before: item.num==="s" ? (wasPast?"Ieri c'era":"C'è") : (wasPast?"Ieri c'erano":"Ci sono"),
+      after: " "+item.n+" "+place.it+".",
+      correct: correct2,
       options: shuffle(["molto","molta","molti","molte"]),
-      explainIt: "Qui &laquo;molto&raquo; accompagna il nome &laquo;"+noun.n+"&raquo; ("+LABEL[noun.g][noun.num]+") e vuol dire <b>a lot of</b>: si accorda, quindi &laquo;"+correct+"&raquo;.",
-      explainEn: "Here &laquo;molto&raquo; modifies the noun &laquo;"+noun.n+"&raquo; ("+LABEL_EN[noun.g][noun.num]+") and means <b>a lot of</b>, so it agrees: &laquo;"+correct+"&raquo;."
+      typable: true,
+      explainIt: "Qui &laquo;molto&raquo; accompagna il nome &laquo;"+item.n+"&raquo; ("+LABEL[item.g][item.num]+") e vuol dire <b>a lot of</b>: si accorda, quindi &laquo;"+correct2+"&raquo;.",
+      explainEn: "Here &laquo;molto&raquo; modifies the noun &laquo;"+item.n+"&raquo; ("+LABEL_EN[item.g][item.num]+") and means <b>a lot of</b>, so it agrees: &laquo;"+correct2+"&raquo;.",
+      translation: (wasPast?"Yesterday there ":"There ") + (wasPast ? (enPlural?"were":"was") : (enPlural?"are":"is")) + " a lot of "+item.en+" "+place.en+"."
     };
   }
 
   /* ==========================================================
      GENERATORE 2 — L'ACCORDO
-     Quattro tipi di frase:
-       40%  aggettivo dopo essere
-       22%  c'è / c'era / ci sono / c'erano
-       20%  tutti i / tutti gli / tutte le
-       18%  questo / questa / questi / queste
+
+     typable dice se la frase si può usare anche nel livello in cui
+     si scrive la risposta. "___ bambini erano curiosi" NON è typable:
+     potrebbe essere "tutti i" o "questi" e non c'è modo di saperlo.
+     Quelle frasi restano solo a scelta multipla, dove le opzioni
+     stesse dicono di che parola si tratta.
      ========================================================== */
   function genAccordo(){
     var r = Math.random();
 
-    /* aggettivo */
-    if(r < 0.40){
+    if(r < 0.44){
       var subj = pick(SUBJECTS);
       var entry = pick(adjsFor(subj.cat));
-      var verb = subj.n==="s" ? (Math.random()<0.5?"è":"era") : (Math.random()<0.5?"sono":"erano");
+      var past = Math.random() < 0.5;
+      var verb = subj.n==="s" ? (past?"era":"è") : (past?"erano":"sono");
       var correct = formOf(entry, subj.g, subj.n);
       return {
         before: subj.t+" "+verb,
         after: ".",
         correct: correct,
         options: adjOptions(entry),
+        typable: true,
+        hint: entry.f[0],
         explainIt: "&laquo;"+subj.t+"&raquo; è "+LABEL[subj.g][subj.n]+", quindi l'aggettivo diventa &laquo;"+correct+"&raquo;.",
-        explainEn: "&laquo;"+subj.t+"&raquo; is "+LABEL_EN[subj.g][subj.n]+", so the adjective becomes &laquo;"+correct+"&raquo;."
+        explainEn: "&laquo;"+subj.t+"&raquo; is "+LABEL_EN[subj.g][subj.n]+", so the adjective becomes &laquo;"+correct+"&raquo;.",
+        translation: subj.en+" "+beEn(subj, past)+" "+entry.en+"."
       };
     }
 
-    /* c'è / ci sono */
-    if(r < 0.62){
+    if(r < 0.66){
       var item = pick(THERE_ITEMS);
       var place = placeFor(item.where);
-      var past = Math.random() < 0.5;
-      var correct2 = past
+      var wasPast = Math.random() < 0.5;
+      var enPlural = item.num==="p" || item.enP;
+      var correct2 = wasPast
         ? (item.num==="s" ? "c'era" : "c'erano")
         : (item.num==="s" ? "c'è" : "ci sono");
       return {
-        before: past ? "Ieri" : "Adesso",
-        after: " "+item.n+" "+place+".",
+        before: wasPast ? "Ieri" : "Adesso",
+        after: " "+item.n+" "+place.it+".",
         correct: correct2,
         options: shuffle(["c'è","c'era","ci sono","c'erano"]),
-        explainIt: "&laquo;"+cap(item.n)+"&raquo; è "+(item.num==="s"?"singolare":"plurale")+" e la frase è al "+(past?"passato":"presente")+", quindi &laquo;"+correct2+"&raquo;.",
-        explainEn: "&laquo;"+cap(item.n)+"&raquo; is "+(item.num==="s"?"singular":"plural")+" and the sentence is in the "+(past?"past":"present")+", so &laquo;"+correct2+"&raquo;."
+        typable: true,
+        explainIt: "&laquo;"+cap(item.n)+"&raquo; è "+(item.num==="s"?"singolare":"plurale")+" e la frase è al "+(wasPast?"passato":"presente")+", quindi &laquo;"+correct2+"&raquo;.",
+        explainEn: "&laquo;"+cap(item.n)+"&raquo; is "+(item.num==="s"?"singular":"plural")+" and the sentence is in the "+(wasPast?"past":"present")+", so &laquo;"+correct2+"&raquo;.",
+        translation: (wasPast?"Yesterday there ":"Right now there ") + (wasPast ? (enPlural?"were":"was") : (enPlural?"are":"is")) + " "+item.en+" "+place.en+"."
       };
     }
 
-    /* tutti i / tutte le */
-    if(r < 0.82){
+    if(r < 0.84){
       var tn = pick(TUTTO_NOUNS);
       var tEntry = pick(adjsFor(tn.cat));
       var tAdj = formOf(tEntry, tn.g, "p");
-      var verb2 = Math.random() < 0.5 ? "sono" : "erano";
+      var tPast = Math.random() < 0.5;
+      var verb2 = tPast ? "erano" : "sono";
       return {
         before: "",
         after: " "+tn.n+" "+verb2+" "+tAdj+".",
         correct: tn.art,
         options: shuffle(["tutti i","tutti gli","tutte le"]),
+        typable: false,
         explainIt: "&laquo;"+cap(tn.n)+"&raquo; è "+LABEL[tn.g].p+" e vuole l'articolo &laquo;"+tn.art+"&raquo;: anche &laquo;tutto&raquo; si accorda.",
-        explainEn: "&laquo;"+cap(tn.n)+"&raquo; is "+LABEL_EN[tn.g].p+" and takes &laquo;"+tn.art+"&raquo;. &laquo;Tutto&raquo; agrees too."
+        explainEn: "&laquo;"+cap(tn.n)+"&raquo; is "+LABEL_EN[tn.g].p+" and takes &laquo;"+tn.art+"&raquo;. &laquo;Tutto&raquo; agrees too.",
+        translation: "All the "+tn.en+" "+(tn.enS ? (tPast?"was":"is") : (tPast?"were":"are"))+" "+tEntry.en+"."
       };
     }
 
-    /* questo / questa / questi / queste */
     var qn = pick(QUESTO_NOUNS);
     var qEntry = pick(adjsFor(qn.cat));
     var qAdj = formOf(qEntry, qn.g, qn.num);
-    var qVerb = qn.num==="s" ? "è" : "sono";
+    var qPast = Math.random() < 0.5;
+    var qVerb = qn.num==="s" ? (qPast?"era":"è") : (qPast?"erano":"sono");
     var qCorrect = QUESTO_FORM[qn.g + qn.num];
     return {
       before: "",
       after: " "+qn.n+" "+qVerb+" "+qAdj+".",
       correct: qCorrect,
       options: shuffle(["questo","questa","questi","queste"]),
+      typable: false,
       explainIt: "&laquo;"+cap(qn.n)+"&raquo; è "+LABEL[qn.g][qn.num]+", quindi &laquo;"+qCorrect+"&raquo;.",
-      explainEn: "&laquo;"+cap(qn.n)+"&raquo; is "+LABEL_EN[qn.g][qn.num]+", so &laquo;"+qCorrect+"&raquo;."
+      explainEn: "&laquo;"+cap(qn.n)+"&raquo; is "+LABEL_EN[qn.g][qn.num]+", so &laquo;"+qCorrect+"&raquo;.",
+      /* i compiti in inglese sono singolari: "this homework is", non "these homework are" */
+      translation: (qn.enS || qn.num==="s" ? "This " : "These ")+qn.en+" "+
+        ((qn.enS || qn.num==="s") ? (qPast?"was":"is") : (qPast?"were":"are"))+" "+qEntry.en+"."
     };
   }
 
@@ -972,6 +1049,15 @@ a{ color:inherit; }
   /* ---------------- PARTITA ---------------- */
   function stopTimer(){ if(state.timerId){ clearInterval(state.timerId); state.timerId=null; } }
 
+  /* Nei livelli in cui si scrive la risposta servono solo frasi con una
+     soluzione unica. "___ bambini erano curiosi" potrebbe essere "tutti i"
+     o "questi": va bene a scelta multipla, non da scrivere. */
+  function genFor(mode, level){
+    var it = mode.gen(), guard = 0;
+    while(level.mode==="type" && !it.typable && guard < 200){ it = mode.gen(); guard++; }
+    return it;
+  }
+
   function startLevel(modeKey, levelNum){
     stopTimer();
     var mode = MODES[modeKey];
@@ -993,7 +1079,7 @@ a{ color:inherit; }
       var seen={}, items=[], guard=0;
       while(items.length < level.count && guard < 5000){
         guard++;
-        var it = mode.gen();
+        var it = genFor(mode, level);
         var sig = it.before+"|"+it.after+"|"+it.correct;
         if(!seen[sig]){ seen[sig]=true; items.push(it); }
       }
@@ -1064,12 +1150,14 @@ a{ color:inherit; }
 
   function nextItem(){
     var mode = MODES[state.modeKey];
-    var it = state.level.timed ? mode.gen() : state.items[state.idx];
+    var it = state.level.timed ? genFor(mode, state.level) : state.items[state.idx];
     state.item = it;
     state.answered = false;
 
+    var hintHtml = (state.level.mode==="type" && it.hint)
+      ? ' <span class="hint">(' + esc(it.hint) + ')</span>' : '';
     document.getElementById("sentence").innerHTML =
-      esc(it.before) + ' <span class="blank" id="blank">____</span>' + esc(it.after);
+      esc(it.before) + ' <span class="blank" id="blank">____</span>' + esc(it.after) + hintHtml;
 
     var zone = document.getElementById("zone");
     var fb = document.getElementById("feedback");
@@ -1127,7 +1215,8 @@ a{ color:inherit; }
     var fb = document.getElementById("feedback");
     fb.className = "feedback show " + (ok?"ok":"no");
     fb.innerHTML = (ok ? "Giusto! " : "Quasi &middot; era &laquo;"+it.correct+"&raquo;. ") + it.explainIt +
-      '<span class="fb-en">'+it.explainEn+'</span>';
+      '<span class="fb-en">'+it.explainEn+'</span>' +
+      (it.translation ? '<span class="fb-tr"><span class="fb-tr-key">in inglese</span>'+esc(it.translation)+'</span>' : '');
 
     if(state.level.timed){
       var live = document.getElementById("live");
