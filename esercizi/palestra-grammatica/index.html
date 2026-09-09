@@ -107,7 +107,11 @@ a{ color:inherit; }
 /* ---------- Impaginazione ---------- */
 #app{ max-width:var(--wrap); margin:0 auto; padding:34px 20px 90px; }
 .screen{ display:none; }
-.screen.active{ display:block; animation:fade .32s ease both; }
+/* Niente "both": con il riempimento l'animazione lascia una trasformazione
+   sull'elemento anche da ferma, e un elemento trasformato diventa il
+   riferimento per quello che contiene. Con "both" il cassetto in basso
+   si ancorava a questo box invece che allo schermo. */
+.screen.active{ display:block; animation:fade .32s ease; }
 @keyframes fade{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:none;} }
 
 /* ---------- Bottoni ---------- */
@@ -324,6 +328,41 @@ a{ color:inherit; }
 .res-badge.quiet{ background:transparent; color:var(--ink-soft); border-color:var(--rule); }
 .res-msg{ margin-top:20px; font-size:1.05rem; }
 .res-actions{ margin-top:26px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+/* ============================================================
+   TELEFONO
+   La partita sta in una schermata sola: frase e opzioni in alto,
+   riscontro e "Avanti" in un cassetto fisso in fondo. Prima
+   bisognava scorrere a ogni singola domanda.
+   ============================================================ */
+@media (max-width:720px){
+  .topbar-in{ height:54px; }
+  #app{ padding:16px 16px 28px; }
+
+  .sentence-card{
+    min-height:0; padding:26px 18px; margin-bottom:14px;
+    box-shadow:5px 5px 0 color-mix(in srgb, var(--mode) 16%, transparent);
+  }
+  .sentence{ font-size:1.3rem; }
+  .options{ gap:9px; }
+  .opt{ padding:13px 12px; font-size:1.02rem; }
+  .type-input{ min-width:0; width:100%; }
+  .type-row{ flex-direction:column; }
+  .type-row .btn{ width:100%; justify-content:center; }
+
+  .tray.on{
+    position:fixed; left:0; right:0; bottom:0; z-index:40;
+    background:var(--paper);
+    border-top:1px solid var(--rule);
+    border-radius:18px 18px 0 0;
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+    box-shadow:0 -10px 28px color-mix(in srgb, var(--ink) 16%, transparent);
+    max-height:70vh; overflow-y:auto;
+  }
+  .tray.on .feedback{ margin-top:0; padding:14px 15px; }
+  .tray.on .actions{ margin-top:12px; }
+  .tray.on .actions .btn{ width:100%; justify-content:center; padding:1em 1.4em; }
+}
 
 @media (prefers-reduced-motion:reduce){
   *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
@@ -1123,8 +1162,12 @@ a{ color:inherit; }
     h += '</div>';
     h += '<div class="sentence-card"><p class="sentence" id="sentence"></p></div>';
     h += '<div id="zone"></div>';
-    h += '<div class="feedback" id="feedback"></div>';
-    h += '<div class="actions" id="actions"></div>';
+    /* Riscontro e bottone insieme: su telefono diventano un cassetto fisso
+       in fondo, così "Avanti" è sempre raggiungibile senza scorrere. */
+    h += '<div class="tray" id="tray">';
+    h +=   '<div class="feedback" id="feedback"></div>';
+    h +=   '<div class="actions" id="actions"></div>';
+    h += '</div>';
     screens.game.innerHTML = h;
     screens.game.style.setProperty("--mode", mode.color);
     showScreen("game");
@@ -1163,6 +1206,8 @@ a{ color:inherit; }
     var fb = document.getElementById("feedback");
     fb.className="feedback"; fb.innerHTML="";
     document.getElementById("actions").innerHTML="";
+    var tray = document.getElementById("tray");
+    if(tray) tray.classList.remove("on");
 
     if(state.level.mode==="mc"){
       var cls = it.options.length===3 ? "options n3" : "options";
@@ -1212,6 +1257,8 @@ a{ color:inherit; }
 
     if(ok) state.score++;
 
+    var tray = document.getElementById("tray");
+    if(tray) tray.classList.add("on");
     var fb = document.getElementById("feedback");
     fb.className = "feedback show " + (ok?"ok":"no");
     fb.innerHTML = (ok ? "Giusto! " : "Quasi &middot; era &laquo;"+it.correct+"&raquo;. ") + it.explainIt +
