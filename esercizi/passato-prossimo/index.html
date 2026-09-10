@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Passato prossimo — Italiano con Fabio</title>
+<meta name="description" content="Essere or avere? And which past participle? Three drills that build the Italian past tense one piece at a time, with hundreds of sentences.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+:root{
+  --ink:#16233F; --ink-soft:#4A5670; --paper:#F7F4EC; --paper-2:#FFFDF8;
+  --rule:#DFD8C7; --saffron:#E8A33D; --rosso:#C4312B; --verde:#2E5E4E;
+  --ok:#2E5E4E; --ok-bg:rgba(46,94,78,.12); --no:#C4312B; --no-bg:rgba(196,49,43,.10);
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --pen:"Caveat","Segoe Script",cursive;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+  --wrap:920px; --mode:var(--rosso);
+}
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+body{
+  margin:0; min-height:100vh; background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:1.0625rem; line-height:1.6; -webkit-font-smoothing:antialiased;
+  background-image:
+    linear-gradient(to right, transparent 0 62px, color-mix(in srgb, var(--rosso) 30%, transparent) 62px 64px, transparent 64px),
+    repeating-linear-gradient(to bottom, transparent 0 33px, color-mix(in srgb, var(--ink) 7%, transparent) 33px 34px);
+  background-size:100% 100%, 100% 34px; background-repeat:no-repeat, repeat;
+}
+@media (max-width:720px){
+  body{ background-image:repeating-linear-gradient(to bottom, transparent 0 33px, color-mix(in srgb, var(--ink) 7%, transparent) 33px 34px); }
+}
+h1,h2,h3{ font-family:var(--display); font-weight:800; line-height:1.03; letter-spacing:-0.03em; text-wrap:balance; margin:0; }
+p{ margin:0; } button{ font-family:inherit; } a{ color:inherit; }
+:focus-visible{ outline:3px solid var(--rosso); outline-offset:3px; border-radius:6px; }
+.eyebrow{ font-family:var(--mono); font-size:.72rem; font-weight:500; letter-spacing:.17em; text-transform:uppercase; color:var(--rosso); }
+.en{ font-family:var(--body); font-style:italic; color:var(--ink-soft); }
+
+.topbar{ position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule); }
+.topbar-in{ max-width:var(--wrap); margin:0 auto; padding:0 20px; height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.logo{ font-family:var(--display); font-weight:800; font-size:1.05rem; letter-spacing:-0.035em; text-decoration:none; display:flex; align-items:center; gap:.5em; }
+.logo-mark{ width:22px; height:22px; border-radius:50%; flex:none; background:conic-gradient(from 180deg, var(--verde) 0 25%, var(--saffron) 0 50%, var(--rosso) 0 75%, var(--ink) 0); }
+.back-link{ font-family:var(--display); font-weight:500; font-size:.94rem; text-decoration:none; color:var(--ink-soft); }
+.back-link:hover{ color:var(--rosso); }
+
+#app{ max-width:var(--wrap); margin:0 auto; padding:34px 20px 90px; }
+.screen{ display:none; }
+/* Niente "both": il riempimento lascia una trasformazione sull'elemento
+   anche da fermo, e questo impedisce al cassetto in basso di ancorarsi
+   allo schermo su telefono. */
+.screen.active{ display:block; animation:fade .32s ease; }
+@keyframes fade{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:none;} }
+
+.btn{
+  display:inline-flex; align-items:center; gap:.5em;
+  font-family:var(--display); font-weight:700; font-size:1rem; letter-spacing:-0.015em;
+  text-decoration:none; padding:.85em 1.45em; border-radius:999px;
+  border:2px solid var(--ink); background:var(--ink); color:var(--paper-2);
+  cursor:pointer; transition:transform .15s ease, background-color .15s ease, border-color .15s ease;
+}
+.btn:hover{ transform:translateY(-2px); background:var(--mode); border-color:var(--mode); }
+.btn .sub{ font-family:var(--mono); font-size:.66rem; font-weight:500; letter-spacing:.08em; opacity:.8; }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--ink); }
+.btn-ghost:hover{ background:var(--saffron); border-color:var(--saffron); color:var(--ink); }
+.btn[disabled]{ opacity:.4; cursor:default; transform:none; }
+
+.intro{ max-width:660px; margin-bottom:32px; }
+.intro h1{ font-size:clamp(2.2rem,5.2vw,3.4rem); margin:12px 0 16px; }
+.intro .lede{ font-size:1.12rem; }
+.intro .lede-en{ margin-top:8px; font-size:.95rem; }
+
+.mode-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+.mode-card{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:22px;
+  padding:24px; display:flex; flex-direction:column; gap:11px;
+  box-shadow:9px 9px 0 color-mix(in srgb, var(--mode) 20%, transparent);
+}
+.mode-tag{ font-family:var(--mono); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--mode); }
+.mode-card h2{ font-size:1.55rem; }
+.mode-card p{ font-size:.97rem; color:var(--ink-soft); }
+.mode-ex{ font-family:var(--pen); font-size:1.3rem; color:var(--rosso); line-height:1.3; }
+.mode-card .btn{ margin-top:auto; align-self:flex-start; background:var(--mode); border-color:var(--mode); }
+.mode-card .btn:hover{ background:var(--ink); border-color:var(--ink); }
+.mode-card[data-m="part"] .btn{ color:var(--ink); }
+.mode-card[data-m="part"] .btn:hover{ color:var(--paper-2); }
+
+.back-row{ margin-bottom:16px; }
+.back-btn{ background:none; border:none; padding:0; cursor:pointer; font-family:var(--display); font-weight:500; font-size:.95rem; color:var(--ink-soft); }
+.back-btn:hover{ color:var(--rosso); }
+.mode-head{ display:flex; align-items:center; gap:12px; }
+.swatch{ width:14px; height:14px; border-radius:4px; background:var(--mode); flex:none; }
+.mode-head h2{ font-size:clamp(1.9rem,4.4vw,2.6rem); }
+
+.rulebox{
+  background:var(--paper-2); border:1px solid var(--rule); border-left:5px solid var(--mode);
+  border-radius:16px; padding:20px 22px; margin:16px 0 26px;
+  display:flex; flex-direction:column; gap:14px;
+}
+.rule-line{ display:flex; gap:12px; align-items:flex-start; }
+.rule-key{
+  flex:none; font-family:var(--mono); font-size:.62rem; letter-spacing:.1em; text-transform:uppercase;
+  padding:4px 9px; border-radius:6px; background:var(--mode); color:var(--paper-2); margin-top:3px;
+}
+.mode-head[data-m="part"] .rule-key{ color:var(--ink); }
+.rule-en{ font-size:.9rem; }
+.rule-ex{ font-family:var(--pen); font-size:1.3rem; color:var(--rosso); line-height:1.35; }
+
+.level-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+.level-card{
+  background:var(--paper-2); border:1px solid var(--rule); border-radius:20px;
+  padding:24px; display:flex; flex-direction:column; gap:10px;
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.level-card:hover{ transform:translateY(-4px); border-color:var(--ink); box-shadow:0 16px 32px color-mix(in srgb, var(--ink) 14%, transparent); }
+.level-icon{ width:36px; height:36px; color:var(--mode); }
+.level-card h3{ font-size:1.2rem; }
+.level-en{ font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
+.level-desc{ font-size:.93rem; color:var(--ink-soft); }
+.record{
+  align-self:flex-start; font-family:var(--mono); font-size:.72rem; letter-spacing:.05em;
+  color:var(--saffron); border:1px solid var(--saffron);
+  background:color-mix(in srgb, var(--saffron) 12%, transparent); padding:4px 11px; border-radius:999px;
+}
+.level-card .btn{ margin-top:6px; align-self:flex-start; background:var(--mode); border-color:var(--mode); }
+.level-card .btn:hover{ background:var(--ink); border-color:var(--ink); }
+.mode-head[data-m="part"] ~ .level-grid .btn{ color:var(--ink); }
+
+.topline{ display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:20px; }
+.dots{ display:flex; gap:6px; }
+.dot{ width:9px; height:9px; border-radius:50%; background:var(--rule); }
+.dot.done{ background:var(--mode); }
+.dot.current{ background:var(--mode); box-shadow:0 0 0 3px color-mix(in srgb, var(--mode) 25%, transparent); }
+.timer{ font-family:var(--mono); font-size:1.3rem; font-weight:600; font-variant-numeric:tabular-nums; background:var(--paper-2); border:1.5px solid var(--rule); border-radius:999px; padding:5px 15px; }
+.timer.low{ color:var(--rosso); border-color:var(--rosso); }
+.score{ font-family:var(--mono); font-size:.88rem; color:var(--ink-soft); }
+.score b{ color:var(--ink); }
+
+.sentence-card{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:22px;
+  padding:clamp(30px,5vw,44px) clamp(20px,4vw,34px);
+  min-height:140px; display:flex; align-items:center; justify-content:center;
+  text-align:center; margin-bottom:20px;
+  box-shadow:8px 8px 0 color-mix(in srgb, var(--mode) 16%, transparent);
+}
+.sentence{ font-size:clamp(1.28rem,3.2vw,1.7rem); line-height:1.5; }
+.blank{ display:inline-block; min-width:2.6em; padding:0 5px; border-bottom:3px solid var(--mode); color:var(--mode); font-weight:600; }
+.blank.wide{ min-width:4.6em; }
+.blank.ok{ color:var(--ok); border-color:var(--ok); }
+.blank.no{ color:var(--no); border-color:var(--no); }
+.hint{ font-family:var(--mono); font-size:.58em; color:var(--ink-soft); }
+
+.options{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.options.n3{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+@media (max-width:600px){ .options, .options.n3{ grid-template-columns:1fr 1fr; } }
+.opt{
+  background:var(--paper-2); border:2px solid var(--rule); border-radius:14px;
+  padding:15px 12px; font-family:var(--display); font-weight:700; font-size:1.06rem;
+  color:var(--ink); cursor:pointer;
+  transition:transform .12s ease, border-color .12s ease, background-color .12s ease;
+}
+.opt:hover:not(:disabled){ transform:translateY(-2px); border-color:var(--ink); }
+.opt.ok{ background:var(--ok-bg); border-color:var(--ok); color:var(--ok); }
+.opt.no{ background:var(--no-bg); border-color:var(--no); color:var(--no); }
+.opt:disabled{ cursor:default; }
+
+.type-row{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.type-input{
+  font-family:var(--display); font-weight:700; font-size:1.1rem;
+  padding:14px 18px; border-radius:14px; border:2px solid var(--rule);
+  background:var(--paper-2); color:var(--ink); min-width:240px; text-align:center;
+}
+.type-input:focus{ border-color:var(--mode); }
+.type-input.ok{ border-color:var(--ok); background:var(--ok-bg); }
+.type-input.no{ border-color:var(--no); background:var(--no-bg); }
+
+.feedback{ margin-top:18px; padding:16px 18px; border-radius:14px; font-size:.97rem; display:none; }
+.feedback.show{ display:block; animation:fade .22s ease both; }
+.feedback.ok{ background:var(--ok-bg); color:var(--ok); }
+.feedback.no{ background:var(--no-bg); color:var(--no); }
+.fb-en{ display:block; margin-top:6px; font-style:italic; opacity:.85; font-size:.9rem; }
+.fb-tr{
+  display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+  margin-top:12px; padding-top:12px;
+  border-top:1px solid color-mix(in srgb, currentColor 22%, transparent);
+  font-size:1rem; color:var(--ink);
+}
+.fb-key{
+  font-family:var(--mono); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft); border:1px solid var(--rule); border-radius:5px; padding:3px 7px; flex:none;
+}
+.actions{ display:flex; justify-content:center; margin-top:20px; }
+
+.countdown{ position:fixed; inset:0; z-index:60; background:color-mix(in srgb, var(--paper) 82%, transparent); backdrop-filter:blur(5px); display:flex; align-items:center; justify-content:center; }
+.count-num{ font-family:var(--display); font-weight:800; font-size:6rem; color:var(--mode); animation:pop .45s ease; }
+@keyframes pop{ from{ transform:scale(.55); opacity:0;} to{ transform:scale(1); opacity:1;} }
+
+.results{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:clamp(32px,5vw,48px); text-align:center;
+  box-shadow:10px 10px 0 color-mix(in srgb, var(--mode) 20%, transparent);
+}
+.res-score{ font-family:var(--display); font-weight:800; font-size:clamp(3.2rem,11vw,5rem); line-height:1; color:var(--mode); letter-spacing:-0.04em; }
+.res-sub{ color:var(--ink-soft); margin-top:6px; font-size:.98rem; }
+.res-badge{
+  display:inline-flex; align-items:center; gap:8px; margin-top:18px;
+  font-family:var(--mono); font-size:.78rem; letter-spacing:.06em; padding:7px 16px; border-radius:999px;
+  background:color-mix(in srgb, var(--saffron) 16%, transparent); color:var(--saffron); border:1px solid var(--saffron);
+}
+.res-badge.quiet{ background:transparent; color:var(--ink-soft); border-color:var(--rule); }
+.res-msg{ margin-top:20px; font-size:1.05rem; }
+.res-miss{ margin-top:24px; text-align:left; border-top:1px solid var(--rule); padding-top:20px; }
+.res-miss h3{ font-size:1.05rem; margin-bottom:12px; }
+.miss-row{ display:flex; gap:12px; align-items:baseline; padding:7px 0; border-bottom:1px solid var(--rule); }
+.miss-row:last-child{ border-bottom:none; }
+.miss-it{ font-weight:500; }
+.miss-en{ color:var(--ink-soft); font-style:italic; font-size:.92rem; margin-left:auto; text-align:right; }
+.res-actions{ margin-top:26px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+/* ============================================================
+   TELEFONO: la partita in una schermata sola, con riscontro e
+   "Avanti" in un cassetto fisso in fondo.
+   ============================================================ */
+@media (max-width:720px){
+  .topbar-in{ height:54px; }
+  #app{ padding:16px 16px 28px; }
+  .sentence-card{ min-height:0; padding:24px 18px; margin-bottom:14px; box-shadow:5px 5px 0 color-mix(in srgb, var(--mode) 16%, transparent); }
+  .sentence{ font-size:1.24rem; }
+  .options{ gap:9px; }
+  .opt{ padding:13px 10px; font-size:1rem; }
+  .type-input{ min-width:0; width:100%; }
+  .type-row{ flex-direction:column; }
+  .type-row .btn{ width:100%; justify-content:center; }
+  .tray.on{
+    position:fixed; left:0; right:0; bottom:0; z-index:40;
+    background:var(--paper); border-top:1px solid var(--rule); border-radius:18px 18px 0 0;
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+    box-shadow:0 -10px 28px color-mix(in srgb, var(--ink) 16%, transparent);
+  }
+  /* La spiegazione qui e lunga: scorre dentro il cassetto, così
+     "Avanti" resta sempre visibile senza scrollare la pagina. */
+  .tray.on .feedback{ margin-top:0; padding:14px 15px; max-height:38vh; overflow-y:auto; }
+  .tray.on .actions{ margin-top:12px; }
+  .tray.on .actions .btn{ width:100%; justify-content:center; padding:1em 1.4em; }
+}
+@media (prefers-reduced-motion:reduce){ *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="../../"><span class="logo-mark" aria-hidden="true"></span>Italiano con Fabio</a>
+    <a class="back-link" href="../">&larr; All exercises</a>
+  </div>
+</header>
+
+<main id="app">
+  <section id="screen-hub" class="screen active">
+    <div class="intro">
+      <p class="eyebrow">A2 &middot; il passato che si usa davvero</p>
+      <h1>Passato prossimo, un pezzo alla volta.</h1>
+      <p class="lede">
+        Il passato prossimo è fatto di due pezzi: l'ausiliare e il participio.
+        Qui li impari separati e poi li rimetti insieme. Centinaia di frasi diverse,
+        nessun giro uguale al precedente.
+      </p>
+      <p class="lede en">
+        The Italian past tense has two parts: the auxiliary and the participle.
+        Learn them one at a time, then put them together. Your record stays on this device.
+      </p>
+    </div>
+    <div class="mode-grid">
+      <article class="mode-card" data-m="aux" style="--mode:var(--verde)">
+        <div class="mode-tag">Passo 1</div>
+        <h2>Essere o avere?</h2>
+        <p>Scegli l'ausiliare giusto e coniugalo. Il participio te lo do io.</p>
+        <p class="mode-ex">Ieri Anna ___ andata al mare</p>
+        <button class="btn" data-action="open-mode" data-mode="aux">Inizia <span class="sub">step 1</span></button>
+      </article>
+      <article class="mode-card" data-m="part" style="--mode:var(--saffron)">
+        <div class="mode-tag">Passo 2</div>
+        <h2>Il participio</h2>
+        <p>Regolari e i pochi irregolari che servono davvero. Con essere si accorda.</p>
+        <p class="mode-ex">Ieri Marco ha ___ (leggere)</p>
+        <button class="btn" data-action="open-mode" data-mode="part">Inizia <span class="sub">step 2</span></button>
+      </article>
+      <article class="mode-card" data-m="all" style="--mode:var(--rosso)">
+        <div class="mode-tag">Passo 3</div>
+        <h2>Tutto insieme</h2>
+        <p>Ausiliare e participio in una volta sola, accordo compreso. Il passo vero.</p>
+        <p class="mode-ex">Ieri Anna ___ (andare) al mare</p>
+        <button class="btn" data-action="open-mode" data-mode="all">Inizia <span class="sub">step 3</span></button>
+      </article>
+    </div>
+  </section>
+
+  <section id="screen-levels" class="screen"></section>
+  <section id="screen-game" class="screen"></section>
+  <section id="screen-results" class="screen"></section>
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+/* ============================================================
+   DATI DELL'ESERCIZIO SUL PASSATO PROSSIMO
+
+   Questo file viene incollato dentro index.html: lo tengo separato
+   solo mentre lavoro, per rileggere i verbi senza scorrere tutto.
+
+   Regola che ho seguito nella scelta dei verbi: NIENTE verbi con
+   ausiliare doppio (cominciare, finire, correre, vivere, passare,
+   salire, scendere, cambiare). A questo livello confondono e basta:
+   "ho finito" e "e finito" sono entrambi giusti a seconda della
+   frase, e uno studente A2 non ha gli strumenti per distinguerli.
+   ============================================================ */
+
+/* p  = persona (1s 2s 3s 1p 2p 3p)
+   g/n = genere e numero, servono per l'accordo con essere
+   itl = la forma minuscola, perche la frase comincia sempre con
+         l'espressione di tempo: "Ieri io ho..." non "Ieri Io ho..."
+   enl = lo stesso in inglese
+   any = soggetto utilizzabile anche con essere. Con essere il
+         participio si accorda, quindi servono soggetti di genere
+         noto: "io sono andato/andata" non ha una risposta sola. */
+var SUBJECTS = [
+  {it:"Io",             itl:"io",             en:"I",              enl:"I",               p:"1s", any:false},
+  {it:"Tu",             itl:"tu",             en:"You",            enl:"you",             p:"2s", any:false},
+  {it:"Noi",            itl:"noi",            en:"We",             enl:"we",              p:"1p", any:false},
+  {it:"Voi",            itl:"voi",            en:"You",            enl:"you",             p:"2p", any:false},
+  {it:"Marco",          itl:"Marco",          en:"Marco",          enl:"Marco",           p:"3s", g:"m", n:"s", any:true},
+  {it:"Anna",           itl:"Anna",           en:"Anna",           enl:"Anna",            p:"3s", g:"f", n:"s", any:true},
+  {it:"Mio fratello",   itl:"mio fratello",   en:"My brother",     enl:"my brother",      p:"3s", g:"m", n:"s", any:true},
+  {it:"Mia sorella",    itl:"mia sorella",    en:"My sister",      enl:"my sister",       p:"3s", g:"f", n:"s", any:true},
+  {it:"Il professore",  itl:"il professore",  en:"The teacher",    enl:"the teacher",     p:"3s", g:"m", n:"s", any:true},
+  {it:"La mia collega", itl:"la mia collega", en:"My colleague",   enl:"my colleague",    p:"3s", g:"f", n:"s", any:true},
+  {it:"I miei amici",   itl:"i miei amici",   en:"My friends",     enl:"my friends",      p:"3p", g:"m", n:"p", any:true},
+  {it:"Le mie amiche",  itl:"le mie amiche",  en:"My friends",     enl:"my friends",      p:"3p", g:"f", n:"p", any:true},
+  {it:"Marco e Luca",   itl:"Marco e Luca",   en:"Marco and Luca", enl:"Marco and Luca",  p:"3p", g:"m", n:"p", any:true},
+  {it:"Anna e Sofia",   itl:"Anna e Sofia",   en:"Anna and Sofia", enl:"Anna and Sofia",  p:"3p", g:"f", n:"p", any:true}
+];
+
+var AUX = {
+  avere:  {"1s":"ho", "2s":"hai", "3s":"ha", "1p":"abbiamo", "2p":"avete", "3p":"hanno"},
+  essere: {"1s":"sono","2s":"sei", "3s":"è",  "1p":"siamo",   "2p":"siete",  "3p":"sono"}
+};
+
+var WHEN = [
+  {it:"Ieri",                en:"Yesterday"},
+  {it:"Ieri sera",           en:"Yesterday evening"},
+  {it:"Stamattina",          en:"This morning"},
+  {it:"Sabato",              en:"On Saturday"},
+  {it:"Domenica",            en:"On Sunday"},
+  {it:"La settimana scorsa", en:"Last week"},
+  {it:"Due giorni fa",       en:"Two days ago"},
+  {it:"Il mese scorso",      en:"Last month"},
+  {it:"L'anno scorso",       en:"Last year"}
+];
+
+/* Non tutte le espressioni di tempo stanno bene con tutti i verbi:
+   "Stamattina ho cenato" e "Ieri sera mi sono svegliato presto" sono
+   frasi giuste in grammatica e sbagliate nella testa di chi legge. */
+var W_NOT_MORNING = WHEN.filter(function(w){ return w.it!=="Stamattina"; });
+var W_NOT_EVENING = WHEN.filter(function(w){ return w.it!=="Ieri sera"; });
+var W_WHOLE_DAY   = WHEN.filter(function(w){ return w.it!=="Stamattina" && w.it!=="Ieri sera"; });
+/* Per quello che e durato piu di un giorno: "Stamattina e restato due giorni" no. */
+var W_LONG = WHEN.filter(function(w){ return /scors/.test(w.it); });
+
+/* inf   infinito
+   pp    participio al maschile singolare (l'accordo si calcola da qui)
+   aux   "avere" o "essere"
+   irr   participio irregolare: serve per segnalarlo nella spiegazione
+   refl  verbo riflessivo: vuole "si" davanti all'ausiliare
+   enP   il passato inglese, per la traduzione
+   enPl  la forma inglese con you/we/they (serve solo per was -> were)
+   w     espressioni di tempo ammesse, se il verbo non le regge tutte
+   c     complementi possibili, ognuno con la sua traduzione.
+         ev = verbo inglese diverso, quando la coppia verbo+complemento
+         in inglese non si dice come in italiano ("fare colazione" non
+         e "did breakfast" ma "had breakfast"). */
+var VERBS = [
+  /* ---------------- AVERE, participio regolare ---------------- */
+  {inf:"mangiare", pp:"mangiato", aux:"avere", enP:"ate", c:[
+    {it:"una pizza", en:"a pizza"},{it:"un panino", en:"a sandwich"},{it:"al ristorante", en:"at a restaurant"}]},
+  {inf:"comprare", pp:"comprato", aux:"avere", enP:"bought", c:[
+    {it:"il pane", en:"the bread"},{it:"un regalo", en:"a present"},{it:"delle scarpe nuove", en:"new shoes"}]},
+  {inf:"studiare", pp:"studiato", aux:"avere", enP:"studied", c:[
+    {it:"italiano", en:"Italian"},{it:"per l'esame", en:"for the exam"},{it:"tutto il pomeriggio", en:"all afternoon", w:W_NOT_MORNING}]},
+  {inf:"lavorare", pp:"lavorato", aux:"avere", enP:"worked", c:[
+    {it:"fino a tardi", en:"until late", w:W_NOT_MORNING},{it:"tutto il giorno", en:"all day", w:W_WHOLE_DAY},{it:"da casa", en:"from home"}]},
+  {inf:"parlare", pp:"parlato", aux:"avere", enP:"spoke", c:[
+    {it:"con il direttore", en:"to the manager"},{it:"al telefono", en:"on the phone"},{it:"troppo", en:"too much"}]},
+  {inf:"ascoltare", pp:"ascoltato", aux:"avere", enP:"listened to", c:[
+    {it:"la radio", en:"the radio"},{it:"un podcast", en:"a podcast"},{it:"un disco vecchio", en:"an old record"}]},
+  {inf:"guardare", pp:"guardato", aux:"avere", enP:"watched", c:[
+    {it:"la partita", en:"the match"},{it:"un film italiano", en:"an Italian film"},{it:"le foto", en:"the photos", ev:"looked at"}]},
+  {inf:"aspettare", pp:"aspettato", aux:"avere", enP:"waited for", c:[
+    {it:"l'autobus", en:"the bus"},{it:"mezz'ora", en:"half an hour"},{it:"il treno", en:"the train"}]},
+  {inf:"pagare", pp:"pagato", aux:"avere", enP:"paid", c:[
+    {it:"il conto", en:"the bill"},{it:"con la carta", en:"by card"},{it:"in contanti", en:"in cash"}]},
+  {inf:"giocare", pp:"giocato", aux:"avere", enP:"played", c:[
+    {it:"a calcio", en:"football"},{it:"a carte", en:"cards"},{it:"tutta la sera", en:"all evening", w:W_NOT_MORNING}]},
+  {inf:"ballare", pp:"ballato", aux:"avere", enP:"danced", c:[
+    {it:"tutta la notte", en:"all night", w:W_NOT_MORNING},{it:"alla festa", en:"at the party", w:W_NOT_MORNING}]},
+  {inf:"cantare", pp:"cantato", aux:"avere", enP:"sang", c:[
+    {it:"una canzone", en:"a song"},{it:"sotto la doccia", en:"in the shower"}]},
+  {inf:"telefonare", pp:"telefonato", aux:"avere", enP:"phoned", c:[
+    {it:"a mia madre", en:"my mother"},{it:"in banca", en:"the bank"}]},
+  {inf:"cenare", pp:"cenato", aux:"avere", enP:"had dinner", w:W_NOT_MORNING, c:[
+    {it:"fuori", en:"out"},{it:"in pizzeria", en:"at a pizzeria"},{it:"tardi", en:"late"}]},
+  {inf:"viaggiare", pp:"viaggiato", aux:"avere", enP:"travelled", c:[
+    {it:"in treno", en:"by train"},{it:"tutto il mese", en:"all month", w:[{it:"Il mese scorso", en:"Last month"},{it:"L'anno scorso", en:"Last year"}]}]},
+  {inf:"camminare", pp:"camminato", aux:"avere", enP:"walked", c:[
+    {it:"per due ore", en:"for two hours"},{it:"in montagna", en:"in the mountains"}]},
+  {inf:"cucinare", pp:"cucinato", aux:"avere", enP:"cooked", c:[
+    {it:"la pasta", en:"pasta"},{it:"per tutti", en:"for everyone"}]},
+  {inf:"incontrare", pp:"incontrato", aux:"avere", enP:"met", c:[
+    {it:"un vecchio amico", en:"an old friend"},{it:"il vicino di casa", en:"the neighbour"}]},
+  {inf:"trovare", pp:"trovato", aux:"avere", enP:"found", c:[
+    {it:"un lavoro", en:"a job"},{it:"le chiavi", en:"the keys"},{it:"un bel posto", en:"a nice place"}]},
+  {inf:"portare", pp:"portato", aux:"avere", enP:"brought", c:[
+    {it:"il dolce", en:"the dessert"},{it:"un regalo", en:"a present"}]},
+  {inf:"ripetere", pp:"ripetuto", aux:"avere", enP:"repeated", c:[
+    {it:"la domanda", en:"the question"},{it:"la stessa frase", en:"the same sentence"}]},
+  {inf:"ricevere", pp:"ricevuto", aux:"avere", enP:"received", c:[
+    {it:"una bella notizia", en:"good news"},{it:"un pacco", en:"a parcel"}]},
+  {inf:"vendere", pp:"venduto", aux:"avere", enP:"sold", c:[
+    {it:"la macchina", en:"the car"},{it:"la casa al mare", en:"the house by the sea"}]},
+  {inf:"pulire", pp:"pulito", aux:"avere", enP:"cleaned", c:[
+    {it:"la casa", en:"the house"},{it:"la cucina", en:"the kitchen"}]},
+  {inf:"dormire", pp:"dormito", aux:"avere", enP:"slept", c:[
+    {it:"otto ore", en:"for eight hours"},{it:"poco", en:"very little"},{it:"male", en:"badly"}]},
+  {inf:"capire", pp:"capito", aux:"avere", enP:"understood", c:[
+    {it:"tutto", en:"everything"},{it:"la domanda", en:"the question"},{it:"il problema", en:"the problem"}]},
+
+  /* ---------------- AVERE, participio irregolare ---------------- */
+  {inf:"fare", pp:"fatto", aux:"avere", irr:true, enP:"did", c:[
+    {it:"la spesa", en:"the shopping"},{it:"i compiti", en:"the homework"},
+    {it:"una passeggiata", en:"for a walk", ev:"went"},{it:"colazione", en:"breakfast", ev:"had", w:W_NOT_EVENING}]},
+  {inf:"dire", pp:"detto", aux:"avere", irr:true, enP:"said", c:[
+    {it:"la verità", en:"the truth", ev:"told"},{it:"una bugia", en:"a lie", ev:"told"},{it:"tutto", en:"everything"}]},
+  {inf:"vedere", pp:"visto", aux:"avere", irr:true, enP:"saw", c:[
+    {it:"un bel film", en:"a good film"},{it:"i tuoi amici", en:"your friends"},{it:"il mare", en:"the sea"}]},
+  {inf:"leggere", pp:"letto", aux:"avere", irr:true, enP:"read", c:[
+    {it:"un libro", en:"a book"},{it:"il giornale", en:"the newspaper"},{it:"un articolo", en:"an article"}]},
+  {inf:"scrivere", pp:"scritto", aux:"avere", irr:true, enP:"wrote", c:[
+    {it:"una mail", en:"an email"},{it:"un messaggio", en:"a message"},{it:"una lettera", en:"a letter"}]},
+  {inf:"bere", pp:"bevuto", aux:"avere", irr:true, enP:"drank", c:[
+    {it:"un caffè", en:"a coffee"},{it:"troppo vino", en:"too much wine"},{it:"una birra", en:"a beer"}]},
+  {inf:"prendere", pp:"preso", aux:"avere", irr:true, enP:"took", c:[
+    {it:"il treno", en:"the train"},{it:"un caffè", en:"a coffee", ev:"had"},{it:"l'autobus", en:"the bus"}]},
+  {inf:"mettere", pp:"messo", aux:"avere", irr:true, enP:"put", c:[
+    {it:"la giacca nell'armadio", en:"the jacket in the wardrobe"},{it:"tutto in valigia", en:"everything in the suitcase"}]},
+  {inf:"aprire", pp:"aperto", aux:"avere", irr:true, enP:"opened", c:[
+    {it:"la finestra", en:"the window"},{it:"il negozio", en:"the shop"}]},
+  {inf:"chiudere", pp:"chiuso", aux:"avere", irr:true, enP:"closed", c:[
+    {it:"la porta", en:"the door"},{it:"il computer", en:"the laptop"}]},
+  {inf:"chiedere", pp:"chiesto", aux:"avere", irr:true, enP:"asked for", c:[
+    {it:"il conto", en:"the bill"},{it:"un'informazione", en:"some information"},{it:"aiuto", en:"help"}]},
+  {inf:"rispondere", pp:"risposto", aux:"avere", irr:true, enP:"answered", c:[
+    {it:"al telefono", en:"the phone"},{it:"alla mail", en:"the email"},{it:"subito", en:"straight away"}]},
+  {inf:"perdere", pp:"perso", aux:"avere", irr:true, enP:"lost", c:[
+    {it:"le chiavi", en:"the keys"},{it:"il treno", en:"the train"},{it:"la pazienza", en:"patience"}]},
+  {inf:"vincere", pp:"vinto", aux:"avere", irr:true, enP:"won", c:[
+    {it:"la partita", en:"the match"},{it:"un premio", en:"a prize"}]},
+  {inf:"offrire", pp:"offerto", aux:"avere", irr:true, enP:"offered", c:[
+    {it:"il caffè a tutti", en:"coffee to everyone"},{it:"la cena a tutti", en:"dinner to everyone"}]},
+
+  /* ---------------- ESSERE ---------------- */
+  {inf:"andare", pp:"andato", aux:"essere", enP:"went", c:[
+    {it:"al mare", en:"to the seaside"},{it:"a Roma", en:"to Rome"},{it:"al lavoro", en:"to work"},{it:"in centro", en:"into town"}]},
+  {inf:"arrivare", pp:"arrivato", aux:"essere", enP:"arrived", c:[
+    {it:"tardi", en:"late"},{it:"in orario", en:"on time"},{it:"alle otto", en:"at eight"}]},
+  {inf:"partire", pp:"partito", aux:"essere", enP:"left", c:[
+    {it:"presto", en:"early"},{it:"per Napoli", en:"for Naples"},{it:"senza salutare", en:"without saying goodbye"}]},
+  {inf:"tornare", pp:"tornato", aux:"essere", enP:"came back", c:[
+    {it:"a casa", en:"home"},{it:"tardi", en:"late"},{it:"dalle vacanze", en:"from holiday"}]},
+  {inf:"entrare", pp:"entrato", aux:"essere", enP:"went into", c:[
+    {it:"nel negozio", en:"the shop"},{it:"in classe", en:"the classroom"}]},
+  {inf:"uscire", pp:"uscito", aux:"essere", enP:"went out", c:[
+    {it:"con gli amici", en:"with friends"},{it:"presto", en:"early"},{it:"a fare due passi", en:"for a short walk"}]},
+  {inf:"restare", pp:"restato", aux:"essere", enP:"stayed", c:[
+    {it:"a casa", en:"at home"},{it:"due giorni", en:"for two days", w:W_LONG}]},
+  {inf:"cadere", pp:"caduto", aux:"essere", enP:"fell", c:[
+    {it:"dalla bici", en:"off the bike"},{it:"per strada", en:"in the street"}]},
+  {inf:"venire", pp:"venuto", aux:"essere", irr:true, enP:"came", c:[
+    {it:"a casa mia", en:"to my house"},{it:"alla festa", en:"to the party"}]},
+  {inf:"rimanere", pp:"rimasto", aux:"essere", irr:true, enP:"stayed", c:[
+    {it:"a casa", en:"at home"},{it:"in silenzio", en:"silent"}]},
+  {inf:"nascere", pp:"nato", aux:"essere", irr:true, enP:"was born", enPl:"were born",
+    w:[{it:"Nel 1988", en:"In 1988"},{it:"Nel 1994", en:"In 1994"},{it:"Nel 2001", en:"In 2001"},{it:"Molti anni fa", en:"Many years ago"}], c:[
+    {it:"a Torino", en:"in Turin"},{it:"in ospedale", en:"in hospital"}]},
+  {inf:"stare", pp:"stato", aux:"essere", irr:true, enP:"stayed", c:[
+    {it:"a casa tutto il giorno", en:"at home all day", w:W_WHOLE_DAY},{it:"a letto fino a tardi", en:"in bed until late", w:W_NOT_EVENING}]},
+  {inf:"essere", pp:"stato", aux:"essere", irr:true, enP:"was", enPl:"were", c:[
+    {it:"in Italia", en:"in Italy", w:W_LONG},{it:"al mare", en:"at the seaside", w:W_WHOLE_DAY},{it:"in ufficio", en:"at the office"}]},
+
+  /* ---------------- RIFLESSIVI (sempre essere) ----------------
+     Solo terze persone, cosi il pronome e sempre "si": arrivano
+     dal filtro any:true, che vale per tutti i verbi con essere. */
+  {inf:"svegliarsi", pp:"svegliato", aux:"essere", refl:true, enP:"woke up", w:W_NOT_EVENING, c:[
+    {it:"presto", en:"early"},{it:"alle sei", en:"at six"},{it:"tardi", en:"late"}]},
+  {inf:"alzarsi", pp:"alzato", aux:"essere", refl:true, enP:"got up", w:W_NOT_EVENING, c:[
+    {it:"subito", en:"straight away"},{it:"alle sette", en:"at seven"}]},
+  {inf:"divertirsi", pp:"divertito", aux:"essere", refl:true, enP:"had fun", c:[
+    {it:"molto", en:"a lot of fun", ev:"had"},{it:"alla festa", en:"at the party", w:W_NOT_MORNING}]},
+  {inf:"riposarsi", pp:"riposato", aux:"essere", refl:true, enP:"rested", c:[
+    {it:"un po'", en:"a bit"},{it:"tutto il giorno", en:"all day", w:W_WHOLE_DAY}]},
+  {inf:"fermarsi", pp:"fermato", aux:"essere", refl:true, enP:"stopped", c:[
+    {it:"al bar", en:"at the bar"},{it:"a metà strada", en:"halfway"}]},
+  {inf:"addormentarsi", pp:"addormentato", aux:"essere", refl:true, enP:"fell asleep", c:[
+    {it:"sul divano", en:"on the sofa"},{it:"davanti alla TV", en:"in front of the TV"}]},
+  {inf:"sposarsi", pp:"sposato", aux:"essere", refl:true, enP:"got married", c:[
+    {it:"in comune", en:"at the town hall"},{it:"in campagna", en:"in the countryside"}]}
+];
+
+
+  /* ---------------- AIUTI ---------------- */
+  function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function shuffle(a){ var x=a.slice(),i,j,t; for(i=x.length-1;i>0;i--){ j=Math.floor(Math.random()*(i+1)); t=x[i];x[i]=x[j];x[j]=t; } return x; }
+  function uniq(a){ var o=[],i; for(i=0;i<a.length;i++){ if(o.indexOf(a[i])===-1) o.push(a[i]); } return o; }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function norm(s){
+    return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")
+      .replace(/[’`]/g,"'").replace(/[!?.,]/g,"").replace(/\s+/g," ").trim();
+  }
+  /* Il participio finisce sempre in -o al maschile singolare, quindi
+     l'accordo si fa cambiando l'ultima lettera: andato, andata, andati, andate. */
+  function agree(pp, g, n){
+    var end = g==="m" ? (n==="s"?"o":"i") : (n==="s"?"a":"e");
+    return pp.slice(0,-1) + end;
+  }
+  /* Il participio come sarebbe se il verbo fosse regolare: serve per
+     costruire l'errore tipico dello studente, non per insegnarlo. */
+  function regularPP(inf){
+    var base = inf.replace(/si$/,"e");
+    if(/are$/.test(base)) return base.slice(0,-3)+"ato";
+    if(/ere$/.test(base)) return base.slice(0,-3)+"uto";
+    return base.slice(0,-3)+"ito";
+  }
+  function wrongEndings(inf){
+    var base = inf.replace(/si$/,"e"), stem = base.slice(0,-3);
+    var ends = ["ato","uto","ito"], right = regularPP(inf);
+    return ends.map(function(e){ return stem+e; }).filter(function(x){ return x!==right; });
+  }
+  /* Per un participio irregolare i distrattori migliori sono altri
+     participi irregolari: se accanto a "letto" metto "telefonato" la
+     risposta si trova senza sapere niente. */
+  function otherPP(v, howMany, g, n){
+    var same = VERBS.filter(function(x){ return x.pp!==v.pp && x.aux===v.aux && !!x.irr===!!v.irr; });
+    var pool = same.length>=howMany ? same : VERBS.filter(function(x){ return x.pp!==v.pp && x.aux===v.aux; });
+    return shuffle(pool).slice(0,howMany).map(function(x){
+      return x.aux==="essere" ? agree(x.pp,g,n) : x.pp;
+    });
+  }
+  var PERSON_IT = {"1s":"prima persona singolare","2s":"seconda persona singolare","3s":"terza persona singolare",
+                   "1p":"prima persona plurale","2p":"seconda persona plurale","3p":"terza persona plurale"};
+  var GEN_IT = {m:{s:"maschile singolare",p:"maschile plurale"}, f:{s:"femminile singolare",p:"femminile plurale"}};
+  var GEN_EN = {m:{s:"masculine singular",p:"masculine plural"}, f:{s:"feminine singular",p:"feminine plural"}};
+
+  /* ---------------- COSTRUZIONE DELLA FRASE ---------------- */
+  function makeItem(modeKey){
+    var v = pick(VERBS);
+    /* Con essere il participio si accorda, quindi servono soggetti di cui
+       si conosce il genere: "io sono andato/andata" non ha una risposta sola. */
+    var subs = v.aux==="essere" ? SUBJECTS.filter(function(s){ return s.any; }) : SUBJECTS;
+    var subj = pick(subs);
+    var comp = pick(v.c);
+    var when = pick(comp.w || v.w || WHEN);
+
+    var aux = AUX[v.aux][subj.p];
+    var part = v.aux==="essere" ? agree(v.pp, subj.g, subj.n) : v.pp;
+    var si = v.refl ? " si" : "";
+    /* La frase comincia con l'espressione di tempo, quindi il soggetto
+       va in minuscolo: "Ieri io ho..." e non "Ieri Io ho...". */
+    var head = when.it + " " + subj.itl + si;
+    var tail = " " + comp.it + ".";
+
+    /* In inglese solo was/were cambia con la persona: I/he was, you/we/they were. */
+    var were = !(subj.p==="1s" || subj.p==="3s");
+    var enVerb = comp.ev || (were && v.enPl ? v.enPl : v.enP);
+    var translation = when.en + " " + subj.enl + " " + enVerb + " " + comp.en + ".";
+
+    var it = { v:v, subj:subj, aux:aux, part:part, translation:translation,
+               full: aux + " " + part };
+
+    if(modeKey==="aux"){
+      it.before = head;
+      it.after = " " + part + tail;
+      it.correct = aux;
+      it.options = auxOptions(v, subj);
+      it.explainIt = auxWhy(v, subj, aux);
+      it.explainEn = auxWhyEn(v, subj, aux);
+      it.wide = false;
+    } else if(modeKey==="part"){
+      it.before = head + " " + aux;
+      it.after = tail;
+      it.correct = part;
+      it.options = partOptions(v, subj, part);
+      it.hint = v.inf;
+      it.explainIt = partWhy(v, subj, part);
+      it.explainEn = partWhyEn(v, subj, part);
+      it.wide = false;
+    } else {
+      it.before = head;
+      it.after = tail;
+      it.correct = aux + " " + part;
+      it.options = allOptions(v, subj, aux, part);
+      it.hint = v.inf;
+      it.explainIt = auxWhy(v, subj, aux) + " " + partWhy(v, subj, part);
+      it.explainEn = auxWhyEn(v, subj, aux) + " " + partWhyEn(v, subj, part);
+      it.wide = true;
+    }
+    return it;
+  }
+
+  /* Le opzioni sbagliate sono costruite apposta: l'ausiliare sbagliato
+     alla persona giusta, e l'ausiliare giusto alla persona sbagliata.
+     Così la scelta multipla mette alla prova tutte e due le cose. */
+  function auxOptions(v, subj){
+    var other = v.aux==="avere" ? "essere" : "avere";
+    var right = AUX[v.aux][subj.p];
+    var list = [right, AUX[other][subj.p]];
+    var persons = ["1s","2s","3s","1p","2p","3p"].filter(function(p){ return p!==subj.p; });
+    var p1 = pick(persons);
+    list.push(AUX[v.aux][p1]);
+    list.push(AUX[other][pick(persons)]);
+    list = uniq(list);
+    /* essere ha "sono" sia alla 1ª singolare che alla 3ª plurale: se i doppioni
+       riducono le scelte, riempio con altre forme. */
+    var all = shuffle([].concat(Object.keys(AUX.avere).map(function(k){return AUX.avere[k];}),
+                                Object.keys(AUX.essere).map(function(k){return AUX.essere[k];})));
+    var i=0;
+    while(list.length<4 && i<all.length){ if(list.indexOf(all[i])===-1) list.push(all[i]); i++; }
+    return shuffle(list.slice(0,4));
+  }
+
+  function partOptions(v, subj, part){
+    if(v.aux==="essere"){
+      /* Qui la difficoltà è l'accordo: metto tutte e quattro le forme. */
+      return shuffle(uniq([agree(v.pp,"m","s"), agree(v.pp,"f","s"), agree(v.pp,"m","p"), agree(v.pp,"f","p")]));
+    }
+    if(v.irr){
+      /* Irregolare: la sfida è ricordare la forma, quindi accanto metto
+         participi veri di altri verbi, non parole inventate. */
+      return shuffle(uniq([part].concat(otherPP(v,3,subj.g,subj.n))).slice(0,4));
+    }
+    /* Regolare: la sfida è la desinenza giusta, e l'errore tipico è
+       proprio scambiare -ato, -uto e -ito. */
+    return shuffle(uniq([part].concat(wrongEndings(v.inf))).slice(0,3));
+  }
+
+  function allOptions(v, subj, aux, part){
+    var other = v.aux==="avere" ? "essere" : "avere";
+    var list = [aux+" "+part];
+    list.push(AUX[other][subj.p]+" "+part);
+    if(v.aux==="essere"){
+      var wrongAgree = agree(v.pp, subj.g==="m"?"f":"m", subj.n);
+      list.push(aux+" "+wrongAgree);
+    } else {
+      /* con avere il participio NON si accorda: "ha letta" è l'errore da vedere */
+      list.push(aux+" "+agree(v.pp,"f","s"));
+    }
+    var persons = ["1s","2s","3s","1p","2p","3p"].filter(function(p){ return p!==subj.p; });
+    list.push(AUX[v.aux][pick(persons)]+" "+part);
+    list = uniq(list);
+    while(list.length<4){
+      var extra = AUX[v.aux][pick(persons)]+" "+agree(v.pp,"m","p");
+      if(list.indexOf(extra)===-1) list.push(extra); else break;
+    }
+    return shuffle(list.slice(0,4));
+  }
+
+  /* ---------------- SPIEGAZIONI ---------------- */
+  function auxWhy(v, subj, aux){
+    var why = v.refl
+      ? "I verbi riflessivi vogliono sempre <b>essere</b>."
+      : (v.aux==="essere"
+          ? "&laquo;"+v.inf+"&raquo; indica movimento, stato o cambiamento: vuole <b>essere</b>."
+          : "&laquo;"+v.inf+"&raquo; vuole <b>avere</b>, come la grande maggioranza dei verbi italiani.");
+    return why+" Il soggetto è &laquo;"+subj.it+"&raquo;, "+PERSON_IT[subj.p]+", quindi &laquo;"+aux+"&raquo;.";
+  }
+  function auxWhyEn(v, subj, aux){
+    var why = v.refl
+      ? "Reflexive verbs always take <b>essere</b>."
+      : (v.aux==="essere"
+          ? "&laquo;"+v.inf+"&raquo; is a verb of movement, state or change, so it takes <b>essere</b>."
+          : "&laquo;"+v.inf+"&raquo; takes <b>avere</b>, like the large majority of Italian verbs.");
+    return why+" The subject is &laquo;"+subj.it+"&raquo;, so the form is &laquo;"+aux+"&raquo;.";
+  }
+  function partWhy(v, subj, part){
+    var base;
+    if(v.irr) base = "&laquo;"+v.inf+"&raquo; ha il participio <b>irregolare</b>: &laquo;"+v.pp+"&raquo;. Questo si impara a memoria.";
+    else {
+      var inf = v.inf.replace(/si$/,"e");
+      var end = /are$/.test(inf) ? "-are &rarr; -ato" : (/ere$/.test(inf) ? "-ere &rarr; -uto" : "-ire &rarr; -ito");
+      base = "&laquo;"+v.inf+"&raquo; è regolare: "+end+", quindi &laquo;"+v.pp+"&raquo;.";
+    }
+    if(v.aux==="essere"){
+      base += " E con essere il participio si accorda con il soggetto ("+GEN_IT[subj.g][subj.n]+"), quindi &laquo;"+part+"&raquo;.";
+    } else {
+      base += " Con avere il participio non si accorda: resta &laquo;"+part+"&raquo;.";
+    }
+    return base;
+  }
+  function partWhyEn(v, subj, part){
+    var base;
+    if(v.irr) base = "&laquo;"+v.inf+"&raquo; has an <b>irregular</b> participle: &laquo;"+v.pp+"&raquo;.";
+    else base = "&laquo;"+v.inf+"&raquo; is regular, so the participle is &laquo;"+v.pp+"&raquo;.";
+    if(v.aux==="essere") base += " With essere the participle agrees with the subject ("+GEN_EN[subj.g][subj.n]+"): &laquo;"+part+"&raquo;.";
+    else base += " With avere it never agrees: &laquo;"+part+"&raquo;.";
+    return base;
+  }
+
+  /* ---------------- MODALITÀ E LIVELLI ---------------- */
+  var MODES = {
+    aux:{ key:"aux", color:"var(--verde)", title:"Essere o avere?",
+      rules:[
+        {k:"avere", it:"La maggior parte dei verbi vuole <b>avere</b>: tutti quelli che reggono un oggetto (mangiare, leggere, comprare) e molti altri.", en:"Most verbs take <b>avere</b>, in particular every verb that takes an object.", ex:"Ieri ho mangiato una pizza"},
+        {k:"essere", it:"Vogliono <b>essere</b> i verbi di movimento e di stato (andare, venire, arrivare, restare) e <b>tutti i riflessivi</b>.", en:"Verbs of movement and state take <b>essere</b>, and so does every reflexive verb.", ex:"Ieri Anna è andata al mare"},
+        {k:"attenzione", it:"L'ausiliare va coniugato con il soggetto: <b>ho, hai, ha, abbiamo, avete, hanno</b> e <b>sono, sei, è, siamo, siete, sono</b>.", en:"The auxiliary is conjugated to match the subject.", ex:"Noi abbiamo &middot; Loro sono"}
+      ]},
+    part:{ key:"part", color:"var(--saffron)", title:"Il participio",
+      rules:[
+        {k:"regolari", it:"I regolari seguono la fine dell'infinito: <b>-are &rarr; -ato</b>, <b>-ere &rarr; -uto</b>, <b>-ire &rarr; -ito</b>.", en:"Regular participles follow the infinitive ending.", ex:"parlato &middot; ricevuto &middot; dormito"},
+        {k:"irregolari", it:"Alcuni sono irregolari e vanno imparati a memoria. Qui trovi solo quelli che servono davvero: fatto, detto, visto, letto, scritto, preso, messo, aperto, chiuso, chiesto, risposto, perso, vinto, offerto, bevuto, venuto, rimasto, nato, stato.", en:"A few are irregular and have to be learnt. Only the useful ones appear here.", ex:"fare &rarr; fatto &middot; leggere &rarr; letto"},
+        {k:"accordo", it:"Con <b>essere</b> il participio si accorda con il soggetto: andato, andata, andati, andate. Con <b>avere</b> non si accorda mai.", en:"With <b>essere</b> the participle agrees with the subject. With <b>avere</b> it never does.", ex:"Anna è andata &middot; Anna ha mangiato"}
+      ]},
+    all:{ key:"all", color:"var(--rosso)", title:"Tutto insieme",
+      rules:[
+        {k:"i due pezzi", it:"Passato prossimo = <b>ausiliare coniugato</b> + <b>participio passato</b>. Devi azzeccarli tutti e due.", en:"Passato prossimo = conjugated auxiliary + past participle. You need both.", ex:"Anna è andata &middot; Marco ha letto"},
+        {k:"la trappola", it:"L'errore più comune è &laquo;ha andato&raquo;. L'altro è accordare il participio anche con avere: &laquo;ha letta&raquo; non esiste.", en:"The two classic mistakes: using avere with a movement verb, and making the participle agree after avere.", ex:"NO: ha andato &middot; NO: Anna ha letta"}
+      ]}
+  };
+
+  var ICON_PENCIL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17.5 15.5 6l2.5 2.5L6.5 20H4v-2.5Z"/><path d="M13 8.5 15.5 11"/></svg>';
+  var ICON_WRITE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 4h9l3 3v13H6z"/><path d="M9 10h6M9 13h6M9 16h4"/></svg>';
+  var ICON_CLOCK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="13.5" r="8"/><path d="M12 13.5V9M9 3h6M12 3v2"/></svg>';
+
+  var LEVELS = [
+    {num:1, name:"Riscaldamento", nameEn:"Warm-up", desc:"Dieci frasi a scelta multipla, con la spiegazione dopo ognuna.", descEn:"Ten multiple-choice sentences, with the reason after each one.", mode:"mc", count:10, timed:false, icon:ICON_PENCIL},
+    {num:2, name:"Allenamento", nameEn:"Workout", desc:"Dieci frasi, ma la risposta la scrivi tu.", descEn:"Ten sentences, but you type the answer.", mode:"type", count:10, timed:false, icon:ICON_WRITE},
+    {num:3, name:"Sfida a tempo", nameEn:"Timed challenge", desc:"60 secondi a scelta multipla. Batti il tuo record.", descEn:"60 seconds, multiple choice. Beat your record.", mode:"mc", timed:true, icon:ICON_CLOCK}
+  ];
+
+  /* ---------------- RECORD ---------------- */
+  var STORE="icf_pp_records";
+  function getRecords(){ try{ var r=localStorage.getItem(STORE); return r?JSON.parse(r):{}; }catch(e){ return {}; } }
+  function getRecord(k){ var r=getRecords(); return (r[k]&&r[k].best)||0; }
+  function setRecord(k,v){ try{ var r=getRecords(); var p=(r[k]&&r[k].best)||0; if(v>p){ r[k]={best:v}; localStorage.setItem(STORE,JSON.stringify(r)); return true; } }catch(e){} return false; }
+
+  /* ---------------- STATO ---------------- */
+  var screens={ hub:document.getElementById("screen-hub"), levels:document.getElementById("screen-levels"),
+                game:document.getElementById("screen-game"), results:document.getElementById("screen-results") };
+  var state={ modeKey:null, level:null, items:[], idx:0, score:0, answered:false,
+              timeLeft:60, timerId:null, active:false, item:null, missed:[], total:0 };
+
+  var appEl=document.getElementById("app");
+  /* Su telefono il cassetto è fisso in fondo e coprirebbe le opzioni:
+     gli lascio sotto esattamente lo spazio che occupa, così tutto
+     resta raggiungibile scorrendo. */
+  function padForTray(on){
+    var tray=document.getElementById("tray");
+    if(!on || !tray || !window.matchMedia("(max-width:720px)").matches){ appEl.style.paddingBottom=""; return; }
+    requestAnimationFrame(function(){ appEl.style.paddingBottom=(tray.offsetHeight+24)+"px"; });
+  }
+  function showScreen(n){ padForTray(false); Object.keys(screens).forEach(function(k){ screens[k].classList.toggle("active",k===n); }); window.scrollTo(0,0); }
+
+  document.getElementById("app").addEventListener("click", function(e){
+    var b=e.target.closest("[data-action]"); if(!b) return;
+    var a=b.getAttribute("data-action");
+    if(a==="open-mode") openLevels(b.getAttribute("data-mode"));
+    if(a==="back-hub"){ stopTimer(); showScreen("hub"); }
+    if(a==="start-level") startLevel(parseInt(b.getAttribute("data-level"),10));
+    if(a==="retry") startLevel(state.level.num);
+    if(a==="levels"){ stopTimer(); openLevels(state.modeKey); }
+  });
+
+  function openLevels(modeKey){
+    state.modeKey=modeKey;
+    var mode=MODES[modeKey]; if(!mode) return;
+    var h='';
+    h+='<div class="back-row"><button class="back-btn" data-action="back-hub">&larr; I tre passi</button></div>';
+    h+='<div class="mode-head" data-m="'+modeKey+'" style="--mode:'+mode.color+'"><span class="swatch"></span><h2>'+mode.title+'</h2></div>';
+    h+='<div class="rulebox" style="--mode:'+mode.color+'">';
+    mode.rules.forEach(function(r){
+      h+='<div class="rule-line"><span class="rule-key" style="'+(modeKey==="part"?"color:var(--ink)":"")+'">'+r.k+'</span><div>';
+      h+='<p>'+r.it+'</p><p class="en rule-en">'+r.en+'</p><p class="rule-ex">'+r.ex+'</p></div></div>';
+    });
+    h+='</div><div class="level-grid">';
+    LEVELS.forEach(function(lv){
+      h+='<article class="level-card" style="--mode:'+mode.color+'">';
+      h+='<div class="level-icon">'+lv.icon+'</div>';
+      h+='<h3>Livello '+lv.num+' &middot; '+lv.name+'</h3>';
+      h+='<div class="level-en">'+lv.nameEn+'</div>';
+      h+='<p class="level-desc">'+lv.desc+'<br><span class="en">'+lv.descEn+'</span></p>';
+      if(lv.timed) h+='<span class="record">&#9733; Record: '+getRecord(modeKey)+'</span>';
+      h+='<button class="btn" style="'+(modeKey==="part"?"color:var(--ink)":"")+'" data-action="start-level" data-level="'+lv.num+'">Inizia <span class="sub">start</span></button>';
+      h+='</article>';
+    });
+    h+='</div>';
+    screens.levels.innerHTML=h;
+    showScreen("levels");
+  }
+
+  function stopTimer(){ if(state.timerId){ clearInterval(state.timerId); state.timerId=null; } }
+
+  function startLevel(levelNum){
+    stopTimer();
+    var mode=MODES[state.modeKey];
+    var level=LEVELS.filter(function(l){ return l.num===levelNum; })[0];
+    state.level=level; state.score=0; state.idx=0; state.answered=false; state.missed=[];
+    if(level.timed){
+      state.items=[]; state.total=0;
+      renderShell(mode, level);
+      countdown(mode, function(){
+        state.timeLeft=60; state.active=true; nextItem();
+        state.timerId=setInterval(function(){ state.timeLeft--; updateTimer(); if(state.timeLeft<=0) endRound(); },1000);
+      });
+    } else {
+      var seen={}, items=[], guard=0;
+      while(items.length<level.count && guard<4000){
+        guard++;
+        var it=makeItem(state.modeKey);
+        var sig=it.before+"|"+it.after+"|"+it.correct;
+        if(!seen[sig]){ seen[sig]=true; items.push(it); }
+      }
+      state.items=items; state.total=items.length; state.active=true;
+      renderShell(mode, level); nextItem();
+    }
+  }
+
+  function countdown(mode, cb){
+    var ov=document.createElement("div"); ov.className="countdown";
+    ov.innerHTML='<div class="count-num" style="--mode:'+mode.color+'">3</div>';
+    document.body.appendChild(ov);
+    var seq=["3","2","1","Via!"], i=0, el=ov.querySelector(".count-num");
+    var iv=setInterval(function(){
+      i++;
+      if(i<seq.length){ el.textContent=seq[i]; el.style.animation="none"; void el.offsetWidth; el.style.animation="pop .45s ease"; }
+      else { clearInterval(iv); if(ov.parentNode) ov.parentNode.removeChild(ov); cb(); }
+    },620);
+  }
+
+  function renderShell(mode, level){
+    var h='<div class="topline">';
+    if(level.timed){ h+='<span class="score">Corrette: <b id="live">0</b></span><span class="timer" id="timer">60s</span>'; }
+    else { h+='<div class="dots" id="dots"></div><span class="score" id="live-un"><b>0</b> / '+state.total+'</span>'; }
+    h+='</div>';
+    h+='<div class="sentence-card"><p class="sentence" id="sentence"></p></div>';
+    h+='<div id="zone"></div>';
+    h+='<div class="tray" id="tray"><div class="feedback" id="feedback"></div><div class="actions" id="actions"></div></div>';
+    screens.game.innerHTML=h;
+    screens.game.style.setProperty("--mode", mode.color);
+    showScreen("game");
+    if(!level.timed) renderDots(state.total,0);
+  }
+
+  function renderDots(count,cur){
+    var w=document.getElementById("dots"); if(!w) return;
+    var h='',i; for(i=0;i<count;i++){ h+='<span class="dot'+(i<cur?" done":"")+(i===cur?" current":"")+'"></span>'; }
+    w.innerHTML=h;
+  }
+  function updateTimer(){
+    var el=document.getElementById("timer"); if(!el) return;
+    el.textContent=state.timeLeft+"s"; el.classList.toggle("low", state.timeLeft<=10);
+  }
+
+  function nextItem(){
+    var it = state.level.timed ? makeItem(state.modeKey) : state.items[state.idx];
+    state.item=it; state.answered=false;
+
+    var hintHtml = it.hint ? ' <span class="hint">('+esc(it.hint)+')</span>' : '';
+    document.getElementById("sentence").innerHTML =
+      esc(it.before)+' <span class="blank'+(it.wide?" wide":"")+'" id="blank">____</span>'+esc(it.after)+hintHtml;
+
+    var zone=document.getElementById("zone");
+    var fb=document.getElementById("feedback"); fb.className="feedback"; fb.innerHTML="";
+    document.getElementById("actions").innerHTML="";
+    var tray=document.getElementById("tray"); if(tray) tray.classList.remove("on");
+    padForTray(false);
+
+    if(state.level.mode==="mc"){
+      var cls = it.options.length===3 ? "options n3" : "options";
+      var h='<div class="'+cls+'">';
+      it.options.forEach(function(o){ h+='<button class="opt" data-v="'+esc(o)+'">'+esc(o)+'</button>'; });
+      h+='</div>';
+      zone.innerHTML=h;
+      Array.prototype.forEach.call(zone.querySelectorAll(".opt"), function(b){
+        b.addEventListener("click", function(){ answer(b.getAttribute("data-v"), b); });
+      });
+    } else {
+      zone.innerHTML='<div class="type-row"><input class="type-input" id="typed" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="scrivi qui">'+
+        '<button class="btn" id="check">Controlla <span class="sub">check</span></button></div>';
+      var inp=document.getElementById("typed"); inp.focus();
+      inp.addEventListener("keydown", function(e){ if(e.key==="Enter") answer(inp.value,null); });
+      document.getElementById("check").addEventListener("click", function(){ answer(inp.value,null); });
+    }
+    if(!state.level.timed) renderDots(state.total, state.idx);
+  }
+
+  function answer(given, tile){
+    if(state.answered) return;
+    state.answered=true;
+    var it=state.item;
+    var ok = norm(given)===norm(it.correct);
+
+    var blank=document.getElementById("blank");
+    blank.textContent=it.correct;
+    blank.classList.add(ok?"ok":"no");
+
+    if(state.level.mode==="mc"){
+      Array.prototype.forEach.call(document.querySelectorAll(".opt"), function(b){
+        b.disabled=true;
+        if(b.getAttribute("data-v")===it.correct) b.classList.add("ok");
+        else if(b===tile) b.classList.add("no");
+      });
+    } else {
+      var inp=document.getElementById("typed");
+      if(inp){ inp.classList.add(ok?"ok":"no"); inp.disabled=true; }
+      var ck=document.getElementById("check"); if(ck) ck.disabled=true;
+    }
+
+    if(ok) state.score++; else state.missed.push(it);
+
+    var tray=document.getElementById("tray"); if(tray) tray.classList.add("on");
+    var fb=document.getElementById("feedback");
+    fb.className="feedback show "+(ok?"ok":"no");
+    fb.innerHTML=(ok?"Giusto! ":"Quasi &middot; era &laquo;"+esc(it.correct)+"&raquo;. ")+it.explainIt+
+      '<span class="fb-en">'+it.explainEn+'</span>'+
+      '<span class="fb-tr"><span class="fb-key">in inglese</span>'+esc(it.translation)+'</span>';
+    padForTray(true);
+
+    if(state.level.timed){
+      var live=document.getElementById("live"); if(live) live.textContent=state.score;
+      setTimeout(function(){ if(state.active) nextItem(); }, ok?650:1700);
+    } else {
+      var last=state.idx>=state.total-1;
+      document.getElementById("actions").innerHTML=
+        '<button class="btn" id="next">'+(last?"Vedi risultati":"Avanti")+' <span class="sub">'+(last?"results":"next")+'</span></button>';
+      document.getElementById("next").addEventListener("click", function(){
+        state.idx++;
+        var un=document.getElementById("live-un"); if(un) un.innerHTML="<b>"+state.score+"</b> / "+state.total;
+        if(state.idx>=state.total) endRound(); else nextItem();
+      });
+    }
+  }
+
+  function endRound(){
+    stopTimer(); state.active=false;
+    var mode=MODES[state.modeKey], level=state.level;
+    var prev=level.timed?getRecord(state.modeKey):0;
+    var isRecord=level.timed?setRecord(state.modeKey,state.score):false;
+
+    var msgIt=["Continua così, si sta fissando.","Bel ritmo: ripeti fra un paio di giorni e resta.",
+               "Ogni ripetizione lo rende più automatico.","Ottimo lavoro, la regola sta entrando da sola."];
+    var msgEn=["Keep going, it's sinking in.","Nice pace. Come back in a couple of days and it sticks.",
+               "Every repetition makes it more automatic.","Great work, this is starting to run by itself."];
+    var i=Math.floor(Math.random()*msgIt.length);
+
+    var h='<div class="results" style="--mode:'+mode.color+'">';
+    if(level.timed){
+      h+='<p class="eyebrow">Sfida a tempo &middot; timed challenge</p>';
+      h+='<div class="res-score">'+state.score+'</div>';
+      h+='<p class="res-sub">risposte giuste in 60 secondi<br><span class="en">correct in 60 seconds</span></p>';
+      h+=isRecord?'<div class="res-badge">&#9733; Nuovo record! &middot; new record</div>':'<div class="res-badge quiet">Record da battere: '+prev+'</div>';
+    } else {
+      h+='<p class="eyebrow">'+mode.title+' &middot; livello '+level.num+'</p>';
+      h+='<div class="res-score">'+state.score+'/'+state.total+'</div>';
+      h+='<p class="res-sub">risposte giuste &middot; <span class="en">correct</span></p>';
+    }
+    h+='<p class="res-msg">'+msgIt[i]+'<br><span class="en" style="font-size:.92rem">'+msgEn[i]+'</span></p>';
+
+    if(state.missed.length){
+      var seen={}, list=[];
+      state.missed.forEach(function(m){ var k=m.v.inf; if(!seen[k]){ seen[k]=true; list.push(m); } });
+      h+='<div class="res-miss"><h3>Da ripassare &middot; <span class="en">worth another look</span></h3>';
+      list.forEach(function(m){
+        h+='<div class="miss-row"><span class="miss-it">'+esc(m.v.inf)+' &rarr; '+esc(m.full)+'</span><span class="miss-en">'+esc(m.v.aux)+(m.v.irr?" &middot; irregolare":"")+'</span></div>';
+      });
+      h+='</div>';
+    }
+
+    h+='<div class="res-actions">';
+    h+='<button class="btn" data-action="retry">Riprova <span class="sub">retry</span></button>';
+    h+='<button class="btn btn-ghost" data-action="levels">Altri livelli <span class="sub">more levels</span></button>';
+    h+='</div></div>';
+    screens.results.innerHTML=h;
+    showScreen("results");
+  }
+
+  var wanted=(location.search.match(/[?&]mode=([a-z]+)/i)||[])[1];
+  if(wanted && MODES[wanted]) openLevels(wanted); else showScreen("hub");
+})();
+</script>
+
+</body>
+</html>
