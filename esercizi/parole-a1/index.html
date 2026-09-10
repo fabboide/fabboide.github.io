@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>The first 186 words — Italiano con Fabio</title>
+<meta name="description" content="Flashcards for the words an Italian beginner meets first, with the article, a real sentence, and spaced repetition that brings back the ones you miss.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+:root{
+  --ink:#16233F; --ink-soft:#4A5670; --paper:#F7F4EC; --paper-2:#FFFDF8;
+  --rule:#DFD8C7; --saffron:#E8A33D; --rosso:#C4312B; --verde:#2E5E4E;
+  --ok:#2E5E4E; --ok-bg:rgba(46,94,78,.12); --no:#C4312B; --no-bg:rgba(196,49,43,.10);
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --pen:"Caveat","Segoe Script",cursive;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+  --wrap:920px; --mode:var(--saffron);
+}
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+body{
+  margin:0; min-height:100vh; background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:1.0625rem; line-height:1.6; -webkit-font-smoothing:antialiased;
+  background-image:
+    linear-gradient(to right, transparent 0 62px, color-mix(in srgb, var(--rosso) 30%, transparent) 62px 64px, transparent 64px),
+    repeating-linear-gradient(to bottom, transparent 0 33px, color-mix(in srgb, var(--ink) 7%, transparent) 33px 34px);
+  background-size:100% 100%, 100% 34px; background-repeat:no-repeat, repeat;
+}
+@media (max-width:720px){
+  body{ background-image:repeating-linear-gradient(to bottom, transparent 0 33px, color-mix(in srgb, var(--ink) 7%, transparent) 33px 34px); }
+}
+h1,h2,h3{ font-family:var(--display); font-weight:800; line-height:1.03; letter-spacing:-0.03em; text-wrap:balance; margin:0; }
+p{ margin:0; } button{ font-family:inherit; } a{ color:inherit; }
+:focus-visible{ outline:3px solid var(--rosso); outline-offset:3px; border-radius:6px; }
+.eyebrow{ font-family:var(--mono); font-size:.72rem; font-weight:500; letter-spacing:.17em; text-transform:uppercase; color:var(--rosso); }
+.en{ font-family:var(--body); font-style:italic; color:var(--ink-soft); }
+
+.topbar{ position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule); }
+.topbar-in{ max-width:var(--wrap); margin:0 auto; padding:0 20px; height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.logo{ font-family:var(--display); font-weight:800; font-size:1.05rem; letter-spacing:-0.035em; text-decoration:none; display:flex; align-items:center; gap:.5em; }
+.logo-mark{ width:22px; height:22px; border-radius:50%; flex:none; background:conic-gradient(from 180deg, var(--verde) 0 25%, var(--saffron) 0 50%, var(--rosso) 0 75%, var(--ink) 0); }
+.back-link{ font-family:var(--display); font-weight:500; font-size:.94rem; text-decoration:none; color:var(--ink-soft); }
+.back-link:hover{ color:var(--rosso); }
+
+#app{ max-width:var(--wrap); margin:0 auto; padding:34px 20px 90px; }
+.screen{ display:none; }
+/* Niente "both": lascerebbe una trasformazione sull'elemento anche da
+   fermo, e il cassetto in basso non si ancorerebbe piu allo schermo. */
+.screen.active{ display:block; animation:fade .32s ease; }
+@keyframes fade{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:none;} }
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5em;
+  font-family:var(--display); font-weight:700; font-size:1rem; letter-spacing:-0.015em;
+  text-decoration:none; padding:.85em 1.45em; border-radius:999px;
+  border:2px solid var(--ink); background:var(--ink); color:var(--paper-2);
+  cursor:pointer; transition:transform .15s ease, background-color .15s ease, border-color .15s ease;
+}
+.btn:hover{ transform:translateY(-2px); background:var(--mode); border-color:var(--mode); color:var(--ink); }
+.btn .sub{ font-family:var(--mono); font-size:.66rem; font-weight:500; letter-spacing:.08em; opacity:.8; }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--ink); }
+.btn-ghost:hover{ background:var(--saffron); border-color:var(--saffron); color:var(--ink); }
+.btn[disabled]{ opacity:.4; cursor:default; transform:none; }
+
+.intro{ max-width:680px; margin-bottom:26px; }
+.intro h1{ font-size:clamp(2.2rem,5.2vw,3.4rem); margin:12px 0 16px; }
+.intro .lede{ font-size:1.12rem; }
+.intro .lede.en{ margin-top:8px; font-size:.95rem; }
+
+/* riga con la situazione di oggi */
+.today{
+  display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+  background:var(--paper-2); border:1px solid var(--rule); border-left:5px solid var(--verde);
+  border-radius:16px; padding:16px 20px; margin-bottom:26px;
+}
+.today b{ font-family:var(--display); font-size:1.5rem; letter-spacing:-0.02em; }
+.today-txt{ font-size:.98rem; }
+.today .btn{ margin-left:auto; padding:.6em 1.15em; font-size:.92rem; }
+.pill{
+  font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
+  padding:4px 10px; border-radius:999px; border:1px solid var(--rule); color:var(--ink-soft);
+}
+.pill.hot{ border-color:var(--saffron); color:var(--saffron); background:color-mix(in srgb, var(--saffron) 12%, transparent); }
+.pill.done{ border-color:var(--verde); color:var(--verde); background:color-mix(in srgb, var(--verde) 12%, transparent); }
+
+.mode-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px; }
+.mode-card{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:22px;
+  padding:24px; display:flex; flex-direction:column; gap:11px;
+  box-shadow:9px 9px 0 color-mix(in srgb, var(--mode) 22%, transparent);
+}
+.mode-tag{ font-family:var(--mono); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--mode); }
+.mode-card h2{ font-size:1.5rem; }
+.mode-card p{ font-size:.97rem; color:var(--ink-soft); }
+.mode-ex{ font-family:var(--pen); font-size:1.3rem; color:var(--rosso); line-height:1.3; }
+.mode-card .btn{ margin-top:auto; align-self:flex-start; background:var(--mode); border-color:var(--mode); color:var(--ink); }
+.mode-card .btn:hover{ background:var(--ink); border-color:var(--ink); color:var(--paper-2); }
+
+.back-row{ margin-bottom:16px; }
+.back-btn{ background:none; border:none; padding:0; cursor:pointer; font-family:var(--display); font-weight:500; font-size:.95rem; color:var(--ink-soft); }
+.back-btn:hover{ color:var(--rosso); }
+.head-row{ display:flex; align-items:center; gap:12px; margin-bottom:6px; }
+.swatch{ width:14px; height:14px; border-radius:4px; background:var(--mode); flex:none; }
+.head-row h2{ font-size:clamp(1.8rem,4.2vw,2.5rem); }
+.head-sub{ color:var(--ink-soft); font-size:1rem; margin-bottom:22px; max-width:620px; }
+
+/* mazzi per tema */
+.deck-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
+.deck{
+  text-align:left; cursor:pointer; font-family:inherit; font-size:inherit; color:inherit;
+  background:var(--paper-2); border:1px solid var(--rule); border-radius:18px;
+  padding:18px 20px; display:flex; flex-direction:column; gap:7px;
+  transition:transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+.deck:hover{ transform:translateY(-4px); border-color:var(--ink); box-shadow:0 14px 28px color-mix(in srgb, var(--ink) 13%, transparent); }
+.deck.all{ border:2px solid var(--ink); }
+.deck h3{ font-size:1.12rem; }
+.deck .deck-en{ font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
+.deck-bar{ height:7px; border-radius:99px; background:var(--rule); overflow:hidden; margin-top:4px; }
+.deck-bar i{ display:block; height:100%; background:var(--verde); }
+.deck-nums{ font-family:var(--mono); font-size:.72rem; color:var(--ink-soft); display:flex; gap:10px; flex-wrap:wrap; }
+.deck-nums b{ color:var(--ink); }
+.deck-nums .due{ color:var(--saffron); }
+
+/* la carta */
+.topline{ display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:18px; }
+.bar{ flex:1; height:7px; border-radius:99px; background:var(--rule); overflow:hidden; }
+.bar i{ display:block; height:100%; background:var(--mode); transition:width .3s ease; }
+.count{ font-family:var(--mono); font-size:.82rem; color:var(--ink-soft); flex:none; }
+.timer{ font-family:var(--mono); font-size:1.3rem; font-weight:600; font-variant-numeric:tabular-nums; background:var(--paper-2); border:1.5px solid var(--rule); border-radius:999px; padding:5px 15px; }
+.timer.low{ color:var(--rosso); border-color:var(--rosso); }
+
+.card{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:clamp(28px,5vw,46px) clamp(20px,4vw,34px);
+  min-height:230px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:12px; text-align:center; cursor:pointer;
+  box-shadow:8px 8px 0 color-mix(in srgb, var(--mode) 20%, transparent);
+}
+.card-word{ font-family:var(--display); font-weight:800; font-size:clamp(2rem,6.5vw,3.1rem); letter-spacing:-0.035em; line-height:1.05; }
+.card-pos{ font-family:var(--mono); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+.card-hint{ font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; color:var(--ink-soft); margin-top:6px; opacity:.75; }
+.card-en{ font-family:var(--display); font-weight:700; font-size:clamp(1.3rem,4vw,1.9rem); color:var(--verde); letter-spacing:-0.02em; }
+.card-ex{ font-family:var(--pen); font-size:clamp(1.35rem,4vw,1.75rem); color:var(--rosso); line-height:1.3; margin-top:10px; }
+.card-ex-en{ font-size:.95rem; }
+.card-rule{ width:54px; height:2px; background:var(--rule); margin:6px 0 2px; }
+.box-dots{ display:flex; gap:5px; margin-top:10px; }
+.box-dot{ width:8px; height:8px; border-radius:50%; background:var(--rule); }
+.box-dot.on{ background:var(--verde); }
+
+.grade-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:18px; }
+.grade{
+  padding:14px 8px; border-radius:14px; cursor:pointer;
+  font-family:var(--display); font-weight:700; font-size:1rem;
+  background:var(--paper-2); border:2px solid var(--rule); color:var(--ink);
+  transition:transform .12s ease, border-color .12s ease, background-color .12s ease;
+  display:flex; flex-direction:column; align-items:center; gap:2px; line-height:1.2;
+}
+.grade small{ font-family:var(--mono); font-size:.58rem; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-soft); }
+.grade:hover{ transform:translateY(-2px); }
+.grade.no:hover{ border-color:var(--rosso); background:var(--no-bg); }
+.grade.mid:hover{ border-color:var(--saffron); background:color-mix(in srgb, var(--saffron) 14%, transparent); }
+.grade.ok:hover{ border-color:var(--verde); background:var(--ok-bg); }
+.flip-row{ margin-top:18px; display:flex; }
+.flip-row .btn{ flex:1; }
+
+/* quiz */
+.options{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.opt{
+  background:var(--paper-2); border:2px solid var(--rule); border-radius:14px;
+  padding:15px 12px; font-family:var(--display); font-weight:700; font-size:1.02rem;
+  color:var(--ink); cursor:pointer;
+  transition:transform .12s ease, border-color .12s ease, background-color .12s ease;
+}
+.opt:hover:not(:disabled){ transform:translateY(-2px); border-color:var(--ink); }
+.opt.ok{ background:var(--ok-bg); border-color:var(--ok); color:var(--ok); }
+.opt.no{ background:var(--no-bg); border-color:var(--no); color:var(--no); }
+.opt:disabled{ cursor:default; }
+.type-row{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.type-input{
+  font-family:var(--display); font-weight:700; font-size:1.1rem;
+  padding:14px 18px; border-radius:14px; border:2px solid var(--rule);
+  background:var(--paper-2); color:var(--ink); min-width:260px; text-align:center;
+}
+.type-input:focus{ border-color:var(--mode); }
+.type-input.ok{ border-color:var(--ok); background:var(--ok-bg); }
+.type-input.no{ border-color:var(--no); background:var(--no-bg); }
+
+.feedback{ margin-top:18px; padding:16px 18px; border-radius:14px; font-size:.97rem; display:none; }
+.feedback.show{ display:block; animation:fade .22s ease; }
+.feedback.ok{ background:var(--ok-bg); color:var(--ok); }
+.feedback.no{ background:var(--no-bg); color:var(--no); }
+.fb-ex{ display:block; margin-top:10px; padding-top:10px; border-top:1px solid color-mix(in srgb, currentColor 22%, transparent); color:var(--ink); }
+.fb-ex i{ font-family:var(--pen); font-style:normal; font-size:1.25rem; color:var(--rosso); }
+.fb-ex span{ display:block; font-style:italic; color:var(--ink-soft); font-size:.9rem; }
+.actions{ display:flex; justify-content:center; margin-top:18px; }
+
+.levels{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+.level-card{
+  background:var(--paper-2); border:1px solid var(--rule); border-radius:20px;
+  padding:24px; display:flex; flex-direction:column; gap:10px;
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.level-card:hover{ transform:translateY(-4px); border-color:var(--ink); box-shadow:0 16px 32px color-mix(in srgb, var(--ink) 14%, transparent); }
+.level-icon{ width:34px; height:34px; color:var(--mode); }
+.level-card h3{ font-size:1.15rem; }
+.level-en{ font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
+.level-desc{ font-size:.93rem; color:var(--ink-soft); }
+.record{
+  align-self:flex-start; font-family:var(--mono); font-size:.72rem; letter-spacing:.05em;
+  color:var(--saffron); border:1px solid var(--saffron);
+  background:color-mix(in srgb, var(--saffron) 12%, transparent); padding:4px 11px; border-radius:999px;
+}
+.level-card .btn{ margin-top:6px; align-self:flex-start; background:var(--mode); border-color:var(--mode); color:var(--ink); }
+.level-card .btn:hover{ background:var(--ink); border-color:var(--ink); color:var(--paper-2); }
+
+.countdown{ position:fixed; inset:0; z-index:60; background:color-mix(in srgb, var(--paper) 82%, transparent); backdrop-filter:blur(5px); display:flex; align-items:center; justify-content:center; }
+.count-num{ font-family:var(--display); font-weight:800; font-size:6rem; color:var(--mode); animation:pop .45s ease; }
+@keyframes pop{ from{ transform:scale(.55); opacity:0;} to{ transform:scale(1); opacity:1;} }
+
+.results{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:clamp(30px,5vw,46px); text-align:center;
+  box-shadow:10px 10px 0 color-mix(in srgb, var(--mode) 22%, transparent);
+}
+.res-score{ font-family:var(--display); font-weight:800; font-size:clamp(3rem,10vw,4.6rem); line-height:1; color:var(--mode); letter-spacing:-0.04em; }
+.res-sub{ color:var(--ink-soft); margin-top:6px; font-size:.98rem; }
+.res-badge{
+  display:inline-flex; align-items:center; gap:8px; margin-top:18px;
+  font-family:var(--mono); font-size:.78rem; letter-spacing:.06em; padding:7px 16px; border-radius:999px;
+  background:color-mix(in srgb, var(--saffron) 16%, transparent); color:var(--saffron); border:1px solid var(--saffron);
+}
+.res-badge.quiet{ background:transparent; color:var(--ink-soft); border-color:var(--rule); }
+.res-msg{ margin-top:20px; font-size:1.05rem; }
+.res-miss{ margin-top:24px; text-align:left; border-top:1px solid var(--rule); padding-top:20px; }
+.res-miss h3{ font-size:1.05rem; margin-bottom:12px; }
+.miss-row{ display:flex; gap:12px; align-items:baseline; padding:7px 0; border-bottom:1px solid var(--rule); }
+.miss-row:last-child{ border-bottom:none; }
+.miss-it{ font-weight:500; }
+.miss-en{ color:var(--ink-soft); font-style:italic; font-size:.92rem; margin-left:auto; text-align:right; }
+.res-actions{ margin-top:26px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+/* ============================================================
+   TELEFONO: una schermata sola. Il cassetto in fondo tiene sempre
+   il tasto che serve adesso, così non si scrolla mai per rispondere.
+   ============================================================ */
+@media (max-width:720px){
+  .topbar-in{ height:54px; }
+  #app{ padding:16px 16px 28px; }
+  .card{ min-height:0; padding:26px 18px; box-shadow:5px 5px 0 color-mix(in srgb, var(--mode) 20%, transparent); }
+  .card-word{ font-size:2rem; }
+  .options{ gap:9px; }
+  .opt{ padding:13px 10px; font-size:.98rem; }
+  .type-input{ min-width:0; width:100%; }
+  .type-row{ flex-direction:column; }
+  .type-row .btn{ width:100%; }
+  .today .btn{ margin-left:0; width:100%; }
+  .tray.on{
+    position:fixed; left:0; right:0; bottom:0; z-index:40;
+    background:var(--paper); border-top:1px solid var(--rule); border-radius:18px 18px 0 0;
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+    box-shadow:0 -10px 28px color-mix(in srgb, var(--ink) 16%, transparent);
+  }
+  .tray.on .feedback{ margin-top:0; padding:14px 15px; max-height:34vh; overflow-y:auto; }
+  .tray.on .actions{ margin-top:12px; }
+  .tray.on .actions .btn{ width:100%; }
+  .tray.on .grade-row, .tray.on .flip-row{ margin-top:0; }
+  .grade{ padding:12px 4px; font-size:.92rem; }
+}
+@media (prefers-reduced-motion:reduce){ *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="../../"><span class="logo-mark" aria-hidden="true"></span>Italiano con Fabio</a>
+    <a class="back-link" href="../">&larr; All exercises</a>
+  </div>
+</header>
+
+<main id="app">
+  <section id="screen-hub" class="screen active">
+    <div class="intro">
+      <p class="eyebrow">A1 &middot; le parole che incontri per prime</p>
+      <h1>Le prime parole, una carta alla volta.</h1>
+      <p class="lede">
+        Centottantasei parole: nomi con il loro articolo, verbi, aggettivi.
+        Ogni carta ti fa vedere la parola dentro una frase vera, perché una parola
+        da sola si dimentica in tre giorni.
+      </p>
+      <p class="lede en">
+        The words a beginner meets first, taken from the official A1 list. Nouns come with
+        their article, because in Italian &laquo;casa&raquo; without &laquo;la&raquo; is half a word.
+        The cards you miss come back sooner. Everything stays on this device.
+      </p>
+    </div>
+
+    <div class="today" id="today"></div>
+
+    <div class="mode-grid">
+      <article class="mode-card" data-m="carte" style="--mode:var(--saffron)">
+        <div class="mode-tag">Il mazzo</div>
+        <h2>Le carte</h2>
+        <p>Guardi la parola, provi a dirla, giri la carta. Quelle che sbagli tornano subito, quelle che sai tornano fra giorni.</p>
+        <p class="mode-ex">la settimana &rarr; week</p>
+        <button class="btn" data-action="open" data-mode="carte">Studia <span class="sub">study</span></button>
+      </article>
+      <article class="mode-card" data-m="riconosci" style="--mode:var(--verde)">
+        <div class="mode-tag">Prova 1</div>
+        <h2>Riconosci</h2>
+        <p>Vedi la parola italiana e scegli che cosa vuol dire. Escono per prime quelle che conosci meno.</p>
+        <p class="mode-ex">il pane &rarr; bread?</p>
+        <button class="btn" data-action="open" data-mode="riconosci">Inizia <span class="sub">start</span></button>
+      </article>
+      <article class="mode-card" data-m="scrivi" style="--mode:var(--rosso)">
+        <div class="mode-tag">Prova 2</div>
+        <h2>Scrivi</h2>
+        <p>Parti dall'inglese e scrivi la parola italiana, articolo compreso. È qui che il genere si impara davvero.</p>
+        <p class="mode-ex">bread &rarr; il pane</p>
+        <button class="btn" data-action="open" data-mode="scrivi">Inizia <span class="sub">start</span></button>
+      </article>
+    </div>
+  </section>
+
+  <section id="screen-decks" class="screen"></section>
+  <section id="screen-levels" class="screen"></section>
+  <section id="screen-study" class="screen"></section>
+  <section id="screen-game" class="screen"></section>
+  <section id="screen-results" class="screen"></section>
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+/* ============================================================
+   LE PAROLE DI BASE, LIVELLO A1
+
+   Da dove vengono: la lista lessicale A1 del "Profilo della lingua
+   italiana" (Universita per Stranieri di Perugia, per il Consiglio
+   d'Europa) incrociata con il vocabolario fondamentale di De Mauro.
+   Sono tutte parole piene: nomi, verbi, aggettivi.
+
+   Cosa NON c'e, di proposito:
+   - le parole grammaticali (che, se, anche, ogni, alcuni, chi).
+     Una carta con scritto "che" non insegna niente: quelle si
+     imparano usandole, ed e quello che fa gia "Your first 80 phrases".
+   - i saluti e le formule (ciao, grazie, buongiorno), che stanno
+     gia nell'esercizio delle 80 frasi: qui sarebbero un doppione.
+
+   Ogni carta ha:
+   w    la parola come si impara, cioe con l'articolo se e un nome
+   en   la traduzione
+   pos  n = nome, v = verbo, a = aggettivo, avv = avverbio
+   ex   una frase breve che la usa davvero
+   exEn la traduzione della frase
+   ============================================================ */
+
+var THEMES = [
+  {k:"tempo",    it:"Il tempo",           en:"Time"},
+  {k:"calendario", it:"Il calendario",    en:"Days and months"},
+  {k:"persone",  it:"Le persone",         en:"People and family"},
+  {k:"casa",     it:"La casa",            en:"The house"},
+  {k:"cibo",     it:"A tavola",           en:"Food and drink"},
+  {k:"corpo",    it:"Il corpo",           en:"The body"},
+  {k:"citta",    it:"Fuori casa",         en:"Town and travel"},
+  {k:"verbi",    it:"I verbi",            en:"Everyday verbs"},
+  {k:"aggettivi",it:"Gli aggettivi",      en:"Adjectives"}
+];
+
+var WORDS = [
+  /* ---------------- IL TEMPO ---------------- */
+  {t:"tempo", w:"il giorno", en:"day", pos:"n", ex:"Che giorno è oggi?", exEn:"What day is it today?"},
+  {t:"tempo", w:"la settimana", en:"week", pos:"n", ex:"Questa settimana lavoro molto.", exEn:"This week I'm working a lot."},
+  {t:"tempo", w:"il mese", en:"month", pos:"n", ex:"Il mese prossimo vado in Italia.", exEn:"Next month I'm going to Italy."},
+  {t:"tempo", w:"l'anno", en:"year", pos:"n", ex:"Studio italiano da un anno.", exEn:"I've been studying Italian for a year."},
+  {t:"tempo", w:"l'ora", en:"hour", pos:"n", ex:"Che ora è?", exEn:"What time is it?"},
+  {t:"tempo", w:"il minuto", en:"minute", pos:"n", ex:"Arrivo tra cinque minuti.", exEn:"I'll be there in five minutes."},
+  {t:"tempo", w:"la mattina", en:"morning", pos:"n", ex:"La mattina bevo un caffè.", exEn:"In the morning I have a coffee."},
+  {t:"tempo", w:"il pomeriggio", en:"afternoon", pos:"n", ex:"Nel pomeriggio studio.", exEn:"In the afternoon I study."},
+  {t:"tempo", w:"la sera", en:"evening", pos:"n", ex:"La sera guardo un film.", exEn:"In the evening I watch a film."},
+  {t:"tempo", w:"la notte", en:"night", pos:"n", ex:"Di notte dormo poco.", exEn:"At night I don't sleep much."},
+  {t:"tempo", w:"l'orologio", en:"watch, clock", pos:"n", ex:"Il mio orologio è rotto.", exEn:"My watch is broken."},
+  {t:"tempo", w:"il tempo", en:"time; weather", pos:"n", ex:"Oggi non ho tempo.", exEn:"I don't have time today."},
+  {t:"tempo", w:"oggi", en:"today", pos:"avv", ex:"Oggi non lavoro.", exEn:"Today I'm not working."},
+  {t:"tempo", w:"domani", en:"tomorrow", pos:"avv", ex:"Domani ho una lezione.", exEn:"Tomorrow I have a lesson."},
+  {t:"tempo", w:"ieri", en:"yesterday", pos:"avv", ex:"Ieri sono andato al mare.", exEn:"Yesterday I went to the seaside."},
+
+  /* ---------------- IL CALENDARIO ---------------- */
+  {t:"calendario", w:"lunedì", en:"Monday", pos:"n", ex:"Lunedì comincia la scuola.", exEn:"School starts on Monday."},
+  {t:"calendario", w:"martedì", en:"Tuesday", pos:"n", ex:"Martedì ho un esame.", exEn:"On Tuesday I have an exam."},
+  {t:"calendario", w:"mercoledì", en:"Wednesday", pos:"n", ex:"Ci vediamo mercoledì.", exEn:"See you on Wednesday."},
+  {t:"calendario", w:"giovedì", en:"Thursday", pos:"n", ex:"Giovedì lavoro da casa.", exEn:"On Thursday I work from home."},
+  {t:"calendario", w:"venerdì", en:"Friday", pos:"n", ex:"Venerdì sera esco con gli amici.", exEn:"On Friday evening I go out with friends."},
+  {t:"calendario", w:"sabato", en:"Saturday", pos:"n", ex:"Sabato dormo fino a tardi.", exEn:"On Saturday I sleep in."},
+  {t:"calendario", w:"domenica", en:"Sunday", pos:"n", ex:"Domenica pranzo con la famiglia.", exEn:"On Sunday I have lunch with my family."},
+  {t:"calendario", w:"gennaio", en:"January", pos:"n", ex:"A gennaio fa molto freddo.", exEn:"In January it's very cold."},
+  {t:"calendario", w:"febbraio", en:"February", pos:"n", ex:"Febbraio è il mese più corto.", exEn:"February is the shortest month."},
+  {t:"calendario", w:"marzo", en:"March", pos:"n", ex:"A marzo arriva la primavera.", exEn:"Spring arrives in March."},
+  {t:"calendario", w:"aprile", en:"April", pos:"n", ex:"Ad aprile piove spesso.", exEn:"It often rains in April."},
+  {t:"calendario", w:"maggio", en:"May", pos:"n", ex:"Mia sorella si sposa a maggio.", exEn:"My sister is getting married in May."},
+  {t:"calendario", w:"giugno", en:"June", pos:"n", ex:"A giugno finisce la scuola.", exEn:"School finishes in June."},
+  {t:"calendario", w:"luglio", en:"July", pos:"n", ex:"A luglio vado al mare.", exEn:"In July I go to the seaside."},
+  {t:"calendario", w:"agosto", en:"August", pos:"n", ex:"Ad agosto le città sono vuote.", exEn:"In August the cities are empty."},
+  {t:"calendario", w:"settembre", en:"September", pos:"n", ex:"A settembre torno a lavorare.", exEn:"In September I go back to work."},
+  {t:"calendario", w:"ottobre", en:"October", pos:"n", ex:"A ottobre comincia l'autunno.", exEn:"Autumn begins in October."},
+  {t:"calendario", w:"novembre", en:"November", pos:"n", ex:"A novembre le giornate sono corte.", exEn:"In November the days are short."},
+  {t:"calendario", w:"dicembre", en:"December", pos:"n", ex:"Dicembre è il mese di Natale.", exEn:"December is the month of Christmas."},
+
+  /* ---------------- LE PERSONE ---------------- */
+  {t:"persone", w:"l'uomo", en:"man", pos:"n", ex:"Quell'uomo è mio zio.", exEn:"That man is my uncle."},
+  {t:"persone", w:"la donna", en:"woman", pos:"n", ex:"La donna alla cassa è molto gentile.", exEn:"The woman at the till is very kind."},
+  {t:"persone", w:"il bambino", en:"child", pos:"n", ex:"Il bambino gioca in giardino.", exEn:"The child is playing in the garden."},
+  {t:"persone", w:"il ragazzo", en:"boy, young man", pos:"n", ex:"Quel ragazzo studia con me.", exEn:"That boy studies with me."},
+  {t:"persone", w:"la ragazza", en:"girl, young woman", pos:"n", ex:"La ragazza parla tre lingue.", exEn:"The girl speaks three languages."},
+  {t:"persone", w:"l'amico", en:"friend", pos:"n", ex:"Vado al cinema con un amico.", exEn:"I'm going to the cinema with a friend."},
+  {t:"persone", w:"la famiglia", en:"family", pos:"n", ex:"La mia famiglia è grande.", exEn:"My family is big."},
+  {t:"persone", w:"la madre", en:"mother", pos:"n", ex:"Mia madre cucina benissimo.", exEn:"My mother is a great cook."},
+  {t:"persone", w:"il padre", en:"father", pos:"n", ex:"Mio padre lavora in banca.", exEn:"My father works at a bank."},
+  {t:"persone", w:"il figlio", en:"son", pos:"n", ex:"Suo figlio ha sei anni.", exEn:"Her son is six."},
+  {t:"persone", w:"la figlia", en:"daughter", pos:"n", ex:"La loro figlia studia a Milano.", exEn:"Their daughter studies in Milan."},
+  {t:"persone", w:"il fratello", en:"brother", pos:"n", ex:"Ho un fratello più piccolo.", exEn:"I have a younger brother."},
+  {t:"persone", w:"la sorella", en:"sister", pos:"n", ex:"Mia sorella abita a Roma.", exEn:"My sister lives in Rome."},
+  {t:"persone", w:"il marito", en:"husband", pos:"n", ex:"Suo marito è italiano.", exEn:"Her husband is Italian."},
+  {t:"persone", w:"la moglie", en:"wife", pos:"n", ex:"Mia moglie non beve caffè.", exEn:"My wife doesn't drink coffee."},
+  {t:"persone", w:"il nonno", en:"grandfather", pos:"n", ex:"Mio nonno ha novant'anni.", exEn:"My grandfather is ninety."},
+  {t:"persone", w:"la nonna", en:"grandmother", pos:"n", ex:"La nonna fa la pasta in casa.", exEn:"Grandma makes pasta at home."},
+  {t:"persone", w:"il nome", en:"name", pos:"n", ex:"Come si scrive il tuo nome?", exEn:"How do you spell your name?"},
+
+  /* ---------------- LA CASA ---------------- */
+  {t:"casa", w:"la casa", en:"house, home", pos:"n", ex:"La mia casa è vicino alla stazione.", exEn:"My house is near the station."},
+  {t:"casa", w:"la camera", en:"room, bedroom", pos:"n", ex:"La camera ha una finestra grande.", exEn:"The room has a big window."},
+  {t:"casa", w:"la cucina", en:"kitchen", pos:"n", ex:"In cucina c'è il caffè.", exEn:"There's coffee in the kitchen."},
+  {t:"casa", w:"il bagno", en:"bathroom", pos:"n", ex:"Scusi, dov'è il bagno?", exEn:"Excuse me, where's the bathroom?"},
+  {t:"casa", w:"il letto", en:"bed", pos:"n", ex:"Vado a letto presto.", exEn:"I go to bed early."},
+  {t:"casa", w:"il tavolo", en:"table", pos:"n", ex:"Il libro è sul tavolo.", exEn:"The book is on the table."},
+  {t:"casa", w:"la sedia", en:"chair", pos:"n", ex:"Prendi una sedia.", exEn:"Take a chair."},
+  {t:"casa", w:"la porta", en:"door", pos:"n", ex:"Chiudi la porta, per favore.", exEn:"Close the door, please."},
+  {t:"casa", w:"la finestra", en:"window", pos:"n", ex:"Fa caldo: apro la finestra.", exEn:"It's hot: I'll open the window."},
+  {t:"casa", w:"la chiave", en:"key", pos:"n", ex:"Non trovo le chiavi.", exEn:"I can't find my keys."},
+  {t:"casa", w:"il telefono", en:"phone", pos:"n", ex:"Il telefono è scarico.", exEn:"The phone is dead."},
+  {t:"casa", w:"il computer", en:"computer", pos:"n", ex:"Lavoro tutto il giorno al computer.", exEn:"I work at the computer all day."},
+  {t:"casa", w:"il libro", en:"book", pos:"n", ex:"Sto leggendo un libro italiano.", exEn:"I'm reading an Italian book."},
+  {t:"casa", w:"la luce", en:"light", pos:"n", ex:"Accendi la luce, per favore.", exEn:"Turn on the light, please."},
+
+  /* ---------------- A TAVOLA ---------------- */
+  {t:"cibo", w:"l'acqua", en:"water", pos:"n", ex:"Un'acqua naturale, per favore.", exEn:"A still water, please."},
+  {t:"cibo", w:"il caffè", en:"coffee", pos:"n", ex:"Prendo un caffè al bar.", exEn:"I'll have a coffee at the bar."},
+  {t:"cibo", w:"il tè", en:"tea", pos:"n", ex:"Bevo il tè senza zucchero.", exEn:"I drink tea without sugar."},
+  {t:"cibo", w:"il vino", en:"wine", pos:"n", ex:"Questo vino è ottimo.", exEn:"This wine is excellent."},
+  {t:"cibo", w:"la birra", en:"beer", pos:"n", ex:"Due birre, per favore.", exEn:"Two beers, please."},
+  {t:"cibo", w:"il latte", en:"milk", pos:"n", ex:"Il latte è finito.", exEn:"We're out of milk."},
+  {t:"cibo", w:"il pane", en:"bread", pos:"n", ex:"Compro il pane ogni mattina.", exEn:"I buy bread every morning."},
+  {t:"cibo", w:"la pasta", en:"pasta", pos:"n", ex:"A pranzo mangio la pasta.", exEn:"I have pasta for lunch."},
+  {t:"cibo", w:"la pizza", en:"pizza", pos:"n", ex:"Stasera facciamo la pizza.", exEn:"Tonight we're making pizza."},
+  {t:"cibo", w:"il formaggio", en:"cheese", pos:"n", ex:"Vuoi un po' di formaggio?", exEn:"Do you want some cheese?"},
+  {t:"cibo", w:"la carne", en:"meat", pos:"n", ex:"Io non mangio carne.", exEn:"I don't eat meat."},
+  {t:"cibo", w:"il pesce", en:"fish", pos:"n", ex:"Il venerdì mangiamo il pesce.", exEn:"On Fridays we eat fish."},
+  {t:"cibo", w:"il pollo", en:"chicken", pos:"n", ex:"Il pollo è nel forno.", exEn:"The chicken is in the oven."},
+  {t:"cibo", w:"la frutta", en:"fruit", pos:"n", ex:"Mangio la frutta dopo pranzo.", exEn:"I eat fruit after lunch."},
+  {t:"cibo", w:"la verdura", en:"vegetables", pos:"n", ex:"Compro la verdura al mercato.", exEn:"I buy vegetables at the market."},
+  {t:"cibo", w:"lo zucchero", en:"sugar", pos:"n", ex:"Un caffè senza zucchero, grazie.", exEn:"A coffee without sugar, thanks."},
+  {t:"cibo", w:"il sale", en:"salt", pos:"n", ex:"Manca il sale.", exEn:"It needs salt."},
+  {t:"cibo", w:"la colazione", en:"breakfast", pos:"n", ex:"Faccio colazione alle sette.", exEn:"I have breakfast at seven."},
+  {t:"cibo", w:"il pranzo", en:"lunch", pos:"n", ex:"Il pranzo è all'una.", exEn:"Lunch is at one."},
+  {t:"cibo", w:"la cena", en:"dinner", pos:"n", ex:"La cena è pronta.", exEn:"Dinner is ready."},
+  {t:"cibo", w:"il ristorante", en:"restaurant", pos:"n", ex:"Conosci un buon ristorante?", exEn:"Do you know a good restaurant?"},
+  {t:"cibo", w:"il bar", en:"bar, café", pos:"n", ex:"Ci vediamo al bar.", exEn:"See you at the café."},
+
+  /* ---------------- IL CORPO ---------------- */
+  {t:"corpo", w:"la testa", en:"head", pos:"n", ex:"Metto il cappello in testa.", exEn:"I put the hat on my head."},
+  {t:"corpo", w:"l'occhio", en:"eye", pos:"n", ex:"Anna ha gli occhi verdi.", exEn:"Anna has green eyes."},
+  {t:"corpo", w:"la bocca", en:"mouth", pos:"n", ex:"Non parlare con la bocca piena.", exEn:"Don't talk with your mouth full."},
+  {t:"corpo", w:"la mano", en:"hand", pos:"n", ex:"Dammi la mano.", exEn:"Give me your hand."},
+  {t:"corpo", w:"il braccio", en:"arm", pos:"n", ex:"Porta la borsa sotto il braccio.", exEn:"He carries the bag under his arm."},
+  {t:"corpo", w:"la gamba", en:"leg", pos:"n", ex:"Dopo la camminata ho le gambe stanche.", exEn:"After the walk my legs are tired."},
+  {t:"corpo", w:"il piede", en:"foot", pos:"n", ex:"Vado a scuola a piedi.", exEn:"I walk to school."},
+  {t:"corpo", w:"il dito", en:"finger", pos:"n", ex:"Ha un anello al dito.", exEn:"She has a ring on her finger."},
+  {t:"corpo", w:"i capelli", en:"hair", pos:"n", ex:"Marco ha i capelli lunghi.", exEn:"Marco has long hair."},
+  {t:"corpo", w:"la faccia", en:"face", pos:"n", ex:"Mi lavo la faccia con l'acqua fredda.", exEn:"I wash my face with cold water."},
+
+  /* ---------------- FUORI CASA ---------------- */
+  {t:"citta", w:"la città", en:"city", pos:"n", ex:"Torino è una bella città.", exEn:"Turin is a beautiful city."},
+  {t:"citta", w:"la strada", en:"street, road", pos:"n", ex:"La strada è chiusa.", exEn:"The road is closed."},
+  {t:"citta", w:"la piazza", en:"square", pos:"n", ex:"Ci vediamo in piazza.", exEn:"See you in the square."},
+  {t:"citta", w:"il centro", en:"town centre", pos:"n", ex:"Abito in centro.", exEn:"I live in the town centre."},
+  {t:"citta", w:"il negozio", en:"shop", pos:"n", ex:"Il negozio apre alle nove.", exEn:"The shop opens at nine."},
+  {t:"citta", w:"il mercato", en:"market", pos:"n", ex:"Il sabato vado al mercato.", exEn:"On Saturdays I go to the market."},
+  {t:"citta", w:"la banca", en:"bank", pos:"n", ex:"Devo andare in banca.", exEn:"I have to go to the bank."},
+  {t:"citta", w:"la scuola", en:"school", pos:"n", ex:"I bambini sono a scuola.", exEn:"The children are at school."},
+  {t:"citta", w:"il lavoro", en:"work, job", pos:"n", ex:"Ho trovato un lavoro nuovo.", exEn:"I've found a new job."},
+  {t:"citta", w:"l'ufficio", en:"office", pos:"n", ex:"L'ufficio è al terzo piano.", exEn:"The office is on the third floor."},
+  {t:"citta", w:"la stazione", en:"station", pos:"n", ex:"Ci vediamo in stazione.", exEn:"See you at the station."},
+  {t:"citta", w:"il treno", en:"train", pos:"n", ex:"Il treno parte alle otto.", exEn:"The train leaves at eight."},
+  {t:"citta", w:"l'autobus", en:"bus", pos:"n", ex:"Prendo l'autobus tutte le mattine.", exEn:"I take the bus every morning."},
+  {t:"citta", w:"la macchina", en:"car", pos:"n", ex:"La macchina è parcheggiata qui.", exEn:"The car is parked here."},
+  {t:"citta", w:"l'aereo", en:"plane", pos:"n", ex:"L'aereo è in ritardo.", exEn:"The plane is late."},
+  {t:"citta", w:"il biglietto", en:"ticket", pos:"n", ex:"Ho comprato il biglietto online.", exEn:"I bought the ticket online."},
+  {t:"citta", w:"l'albergo", en:"hotel", pos:"n", ex:"L'albergo è in centro.", exEn:"The hotel is in the centre."},
+  {t:"citta", w:"la valigia", en:"suitcase", pos:"n", ex:"La valigia è troppo pesante.", exEn:"The suitcase is too heavy."},
+  {t:"citta", w:"il viaggio", en:"journey, trip", pos:"n", ex:"Buon viaggio!", exEn:"Have a good trip!"},
+  {t:"citta", w:"il mare", en:"sea, seaside", pos:"n", ex:"D'estate andiamo al mare.", exEn:"In summer we go to the seaside."},
+  {t:"citta", w:"la montagna", en:"mountain", pos:"n", ex:"In montagna fa fresco.", exEn:"It's cool in the mountains."},
+  {t:"citta", w:"i soldi", en:"money", pos:"n", ex:"Non ho soldi con me.", exEn:"I don't have any money on me."},
+
+  /* ---------------- I VERBI ---------------- */
+  {t:"verbi", w:"essere", en:"to be", pos:"v", ex:"Sono italiano.", exEn:"I'm Italian."},
+  {t:"verbi", w:"avere", en:"to have", pos:"v", ex:"Ho due fratelli.", exEn:"I have two brothers."},
+  {t:"verbi", w:"fare", en:"to do, to make", pos:"v", ex:"Che lavoro fai?", exEn:"What do you do for a living?"},
+  {t:"verbi", w:"andare", en:"to go", pos:"v", ex:"Domani vado a Roma.", exEn:"Tomorrow I'm going to Rome."},
+  {t:"verbi", w:"venire", en:"to come", pos:"v", ex:"Vieni con noi?", exEn:"Are you coming with us?"},
+  {t:"verbi", w:"potere", en:"can, to be able to", pos:"v", ex:"Non posso venire stasera.", exEn:"I can't come tonight."},
+  {t:"verbi", w:"volere", en:"to want", pos:"v", ex:"Voglio imparare l'italiano.", exEn:"I want to learn Italian."},
+  {t:"verbi", w:"dovere", en:"must, to have to", pos:"v", ex:"Devo andare, scusa.", exEn:"I have to go, sorry."},
+  {t:"verbi", w:"sapere", en:"to know (a fact)", pos:"v", ex:"Non so dov'è.", exEn:"I don't know where it is."},
+  {t:"verbi", w:"conoscere", en:"to know (a person, a place)", pos:"v", ex:"Conosci Marco?", exEn:"Do you know Marco?"},
+  {t:"verbi", w:"dire", en:"to say, to tell", pos:"v", ex:"Che cosa hai detto?", exEn:"What did you say?"},
+  {t:"verbi", w:"vedere", en:"to see", pos:"v", ex:"Da qui non vedo niente.", exEn:"I can't see anything from here."},
+  {t:"verbi", w:"sentire", en:"to hear, to feel", pos:"v", ex:"Non ti sento bene.", exEn:"I can't hear you well."},
+  {t:"verbi", w:"parlare", en:"to speak, to talk", pos:"v", ex:"Parli inglese?", exEn:"Do you speak English?"},
+  {t:"verbi", w:"capire", en:"to understand", pos:"v", ex:"Scusa, non ho capito.", exEn:"Sorry, I didn't understand."},
+  {t:"verbi", w:"mangiare", en:"to eat", pos:"v", ex:"Mangiamo alle otto.", exEn:"We eat at eight."},
+  {t:"verbi", w:"bere", en:"to drink", pos:"v", ex:"Bevo molta acqua.", exEn:"I drink a lot of water."},
+  {t:"verbi", w:"dormire", en:"to sleep", pos:"v", ex:"Dormo otto ore.", exEn:"I sleep eight hours."},
+  {t:"verbi", w:"lavorare", en:"to work", pos:"v", ex:"Lavoro da casa.", exEn:"I work from home."},
+  {t:"verbi", w:"studiare", en:"to study", pos:"v", ex:"Studio italiano da sei mesi.", exEn:"I've been studying Italian for six months."},
+  {t:"verbi", w:"abitare", en:"to live (somewhere)", pos:"v", ex:"Abito a Torino.", exEn:"I live in Turin."},
+  {t:"verbi", w:"comprare", en:"to buy", pos:"v", ex:"Ho comprato il pane.", exEn:"I bought the bread."},
+  {t:"verbi", w:"pagare", en:"to pay", pos:"v", ex:"Pago io.", exEn:"I'll pay."},
+  {t:"verbi", w:"costare", en:"to cost", pos:"v", ex:"Quanto costa?", exEn:"How much does it cost?"},
+  {t:"verbi", w:"aprire", en:"to open", pos:"v", ex:"Il museo apre alle dieci.", exEn:"The museum opens at ten."},
+  {t:"verbi", w:"chiudere", en:"to close, to shut", pos:"v", ex:"Chiudo il computer e vengo.", exEn:"I'll close the laptop and come."},
+  {t:"verbi", w:"prendere", en:"to take; to get (a coffee, a train)", pos:"v", ex:"Prendo un caffè.", exEn:"I'll have a coffee."},
+  {t:"verbi", w:"dare", en:"to give", pos:"v", ex:"Mi dai il sale?", exEn:"Can you pass me the salt?"},
+  {t:"verbi", w:"leggere", en:"to read", pos:"v", ex:"Leggo il giornale la mattina.", exEn:"I read the paper in the morning."},
+  {t:"verbi", w:"scrivere", en:"to write", pos:"v", ex:"Ti scrivo domani.", exEn:"I'll write to you tomorrow."},
+  {t:"verbi", w:"uscire", en:"to go out", pos:"v", ex:"Stasera esco con gli amici.", exEn:"Tonight I'm going out with friends."},
+  {t:"verbi", w:"tornare", en:"to go back, to return", pos:"v", ex:"Torno a casa alle sette.", exEn:"I get home at seven."},
+  {t:"verbi", w:"aspettare", en:"to wait for", pos:"v", ex:"Aspetto l'autobus.", exEn:"I'm waiting for the bus."},
+  {t:"verbi", w:"chiamare", en:"to call", pos:"v", ex:"Ti chiamo stasera.", exEn:"I'll call you tonight."},
+  {t:"verbi", w:"cercare", en:"to look for", pos:"v", ex:"Cerco la stazione.", exEn:"I'm looking for the station."},
+  {t:"verbi", w:"trovare", en:"to find", pos:"v", ex:"Non trovo il biglietto.", exEn:"I can't find my ticket."},
+  {t:"verbi", w:"usare", en:"to use", pos:"v", ex:"Posso usare il tuo telefono?", exEn:"Can I use your phone?"},
+  {t:"verbi", w:"preparare", en:"to prepare, to make", pos:"v", ex:"Preparo la cena.", exEn:"I'm making dinner."},
+  {t:"verbi", w:"ridere", en:"to laugh", pos:"v", ex:"Ridiamo sempre insieme.", exEn:"We always laugh together."},
+  {t:"verbi", w:"piacere", en:"to like (literally: to be pleasing)", pos:"v", ex:"Mi piace la musica italiana.", exEn:"I like Italian music."},
+
+  /* ---------------- GLI AGGETTIVI ---------------- */
+  {t:"aggettivi", w:"grande", en:"big, large", pos:"a", ex:"Milano è una città grande.", exEn:"Milan is a big city."},
+  {t:"aggettivi", w:"piccolo", en:"small", pos:"a", ex:"Ho una casa piccola.", exEn:"I have a small house."},
+  {t:"aggettivi", w:"buono", en:"good", pos:"a", ex:"Questo caffè è buono.", exEn:"This coffee is good."},
+  {t:"aggettivi", w:"cattivo", en:"bad", pos:"a", ex:"Questo vino è cattivo.", exEn:"This wine is bad."},
+  {t:"aggettivi", w:"bello", en:"beautiful, nice", pos:"a", ex:"Che bella giornata!", exEn:"What a lovely day!"},
+  {t:"aggettivi", w:"brutto", en:"ugly", pos:"a", ex:"Quel palazzo è brutto.", exEn:"That building is ugly."},
+  {t:"aggettivi", w:"nuovo", en:"new", pos:"a", ex:"Ho una macchina nuova.", exEn:"I have a new car."},
+  {t:"aggettivi", w:"vecchio", en:"old", pos:"a", ex:"Questo libro è molto vecchio.", exEn:"This book is very old."},
+  {t:"aggettivi", w:"giovane", en:"young", pos:"a", ex:"Il professore è giovane.", exEn:"The teacher is young."},
+  {t:"aggettivi", w:"facile", en:"easy", pos:"a", ex:"L'esercizio è facile.", exEn:"The exercise is easy."},
+  {t:"aggettivi", w:"difficile", en:"difficult, hard", pos:"a", ex:"L'italiano non è difficile.", exEn:"Italian isn't difficult."},
+  {t:"aggettivi", w:"caldo", en:"hot, warm", pos:"a", ex:"Oggi fa caldo.", exEn:"It's hot today."},
+  {t:"aggettivi", w:"freddo", en:"cold", pos:"a", ex:"L'acqua è fredda.", exEn:"The water is cold."},
+  {t:"aggettivi", w:"lungo", en:"long", pos:"a", ex:"Il film è lungo.", exEn:"The film is long."},
+  {t:"aggettivi", w:"corto", en:"short", pos:"a", ex:"Ho i capelli corti.", exEn:"I have short hair."},
+  {t:"aggettivi", w:"vicino", en:"near, close", pos:"a", ex:"Il bar è vicino.", exEn:"The café is close."},
+  {t:"aggettivi", w:"lontano", en:"far", pos:"a", ex:"La stazione è lontana.", exEn:"The station is far."},
+  {t:"aggettivi", w:"primo", en:"first", pos:"a", ex:"È la mia prima lezione.", exEn:"It's my first lesson."},
+  {t:"aggettivi", w:"ultimo", en:"last", pos:"a", ex:"L'ultimo treno parte a mezzanotte.", exEn:"The last train leaves at midnight."},
+  {t:"aggettivi", w:"stanco", en:"tired", pos:"a", ex:"Sono stanco, vado a dormire.", exEn:"I'm tired, I'm going to sleep."},
+  {t:"aggettivi", w:"contento", en:"happy, glad", pos:"a", ex:"Sono contento di vederti.", exEn:"I'm glad to see you."},
+  {t:"aggettivi", w:"pronto", en:"ready", pos:"a", ex:"Sei pronto?", exEn:"Are you ready?"},
+  {t:"aggettivi", w:"aperto", en:"open", pos:"a", ex:"Il negozio è aperto.", exEn:"The shop is open."},
+  {t:"aggettivi", w:"chiuso", en:"closed, shut", pos:"a", ex:"La banca è chiusa.", exEn:"The bank is closed."},
+  {t:"aggettivi", w:"caro", en:"expensive; dear", pos:"a", ex:"Questo albergo è caro.", exEn:"This hotel is expensive."},
+  {t:"aggettivi", w:"gentile", en:"kind", pos:"a", ex:"Il tuo amico è molto gentile.", exEn:"Your friend is very kind."}
+];
+
+
+  /* ---------------- AIUTI ---------------- */
+  function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function shuffle(a){ var x=a.slice(),i,j,t; for(i=x.length-1;i>0;i--){ j=Math.floor(Math.random()*(i+1)); t=x[i];x[i]=x[j];x[j]=t; } return x; }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function norm(s){
+    return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")
+      .replace(/[’`]/g,"'").replace(/[!?.,]/g,"").replace(/\s+/g," ").trim();
+  }
+  /* La parola senza articolo: serve per accettare "casa" quando la
+     risposta giusta e "la casa", e poi far notare l'articolo. */
+  function bare(w){ return w.replace(/^(l'|un'|dell')/i,"").replace(/^(il|lo|la|i|gli|le|un|uno|una)\s+/i,""); }
+  var POS_IT = {n:"nome", v:"verbo", a:"aggettivo", avv:"avverbio"};
+  var POS_EN = {n:"noun", v:"verb", a:"adjective", avv:"adverb"};
+  function themeOf(k){ for(var i=0;i<THEMES.length;i++){ if(THEMES[i].k===k) return THEMES[i]; } return null; }
+
+  /* ---------------- LE SCATOLE (ripetizione dilazionata) ----------------
+     Cinque scatole. Se sai la parola sale di una scatola e la rivedi piu
+     tardi; se la sbagli torna alla prima e la rivedi oggi stesso.
+     Gli intervalli sono quelli classici di Leitner: 1, 2, 4, 8, 16 giorni. */
+  var STORE = "icf_parole_a1";
+  var RECSTORE = "icf_parole_a1_record";
+  var GAP = [0,1,2,4,8,16];
+  var NEW_PER_ROUND = 12;
+  var MAX_ROUND = 30;
+
+  function today(){ var d=new Date(); return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2); }
+  function plusDays(n){ var d=new Date(); d.setDate(d.getDate()+n); return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2); }
+  function loadAll(){ try{ var r=localStorage.getItem(STORE); return r?JSON.parse(r):{}; }catch(e){ return {}; } }
+  function saveAll(o){ try{ localStorage.setItem(STORE, JSON.stringify(o)); }catch(e){} }
+  var progress = loadAll();
+
+  function boxOf(w){ var r=progress[w.w]; return r? r.b : 0; }
+  function isDue(w){ var r=progress[w.w]; return !!r && r.d <= today(); }
+  function isNew(w){ return !progress[w.w]; }
+  function grade(w, how){
+    var r = progress[w.w] || {b:0,d:today()};
+    if(how==="ok")      r.b = Math.min(5, r.b+1), r.d = plusDays(GAP[r.b]);
+    else if(how==="mid") r.b = Math.max(1, r.b),  r.d = plusDays(1);
+    else                 r.b = 1,                 r.d = today();
+    if(r.b===0) r.b=1;
+    progress[w.w] = r; saveAll(progress);
+  }
+  function statsFor(list){
+    var s={n:list.length, nuove:0, due:0, sapute:0};
+    list.forEach(function(w){
+      if(isNew(w)) s.nuove++;
+      else if(isDue(w)) s.due++;
+      else s.sapute++;
+    });
+    /* Il giro del giorno: prima i ripassi, e le carte nuove solo con lo
+       spazio che avanza. Senza questo, chi salta due giorni si ritrova
+       ottanta carte arretrate e non le fa piu: e cosi che si molla. */
+    s.giro = Math.min(s.due, MAX_ROUND);
+    s.nuoveOggi = Math.min(s.nuove, NEW_PER_ROUND, MAX_ROUND - s.giro);
+    s.giro += s.nuoveOggi;
+    return s;
+  }
+
+  function getRecord(k){ try{ var r=JSON.parse(localStorage.getItem(RECSTORE)||"{}"); return r[k]||0; }catch(e){ return 0; } }
+  function setRecord(k,v){ try{ var r=JSON.parse(localStorage.getItem(RECSTORE)||"{}"); if(v>(r[k]||0)){ r[k]=v; localStorage.setItem(RECSTORE,JSON.stringify(r)); return true; } }catch(e){} return false; }
+
+  /* ---------------- MODALITA ---------------- */
+  var MODES = {
+    carte:     { color:"var(--saffron)", title:"Le carte",  sub:"Il mazzo" },
+    riconosci: { color:"var(--verde)",   title:"Riconosci", sub:"Italiano &rarr; inglese" },
+    scrivi:    { color:"var(--rosso)",   title:"Scrivi",    sub:"Inglese &rarr; italiano" }
+  };
+
+  var ICON_PENCIL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17.5 15.5 6l2.5 2.5L6.5 20H4v-2.5Z"/><path d="M13 8.5 15.5 11"/></svg>';
+  var ICON_CLOCK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="13.5" r="8"/><path d="M12 13.5V9M9 3h6M12 3v2"/></svg>';
+
+  var LEVELS = [
+    {num:1, name:"Dodici parole", nameEn:"Twelve words", desc:"Dodici domande, con la frase d'esempio dopo ognuna.", descEn:"Twelve questions, with the example sentence after each one.", count:12, timed:false, icon:ICON_PENCIL},
+    {num:2, name:"Sfida a tempo", nameEn:"Timed challenge", desc:"60 secondi. Batti il tuo record.", descEn:"60 seconds. Beat your record.", timed:true, icon:ICON_CLOCK}
+  ];
+
+  /* ---------------- STATO ---------------- */
+  var screens = {
+    hub:document.getElementById("screen-hub"), decks:document.getElementById("screen-decks"),
+    levels:document.getElementById("screen-levels"), study:document.getElementById("screen-study"),
+    game:document.getElementById("screen-game"), results:document.getElementById("screen-results")
+  };
+  var appEl = document.getElementById("app");
+  var state = { mode:null, theme:"all", queue:[], idx:0, seen:0, known:0, flipped:false,
+                level:null, items:[], score:0, total:0, answered:false, missed:[],
+                timeLeft:60, timerId:null, active:false, item:null };
+
+  /* Su telefono il cassetto e fisso in fondo. Gli lascio sotto lo spazio
+     che occupa solo se davvero coprirebbe qualcosa: se la schermata e
+     corta, aggiungere spazio vuol dire solo far scorrere il vuoto. */
+  function padForTray(on){
+    var tray=document.getElementById("tray");
+    appEl.style.paddingBottom="";
+    if(!on || !tray || !window.matchMedia("(max-width:720px)").matches) return;
+    requestAnimationFrame(function(){
+      var h=tray.offsetHeight;
+      var libero=window.innerHeight - h - 12;
+      var fondo=0;
+      Array.prototype.forEach.call(appEl.querySelectorAll(".screen.active > *:not(.tray)"), function(el){
+        fondo=Math.max(fondo, el.getBoundingClientRect().bottom);
+      });
+      if(fondo>libero) appEl.style.paddingBottom=(h+24)+"px";
+    });
+  }
+  function showScreen(n){
+    padForTray(false);
+    Object.keys(screens).forEach(function(k){ screens[k].classList.toggle("active", k===n); });
+    window.scrollTo(0,0);
+  }
+  function stopTimer(){ if(state.timerId){ clearInterval(state.timerId); state.timerId=null; } }
+
+  appEl.addEventListener("click", function(e){
+    var b=e.target.closest("[data-action]"); if(!b) return;
+    var a=b.getAttribute("data-action");
+    if(a==="open"){ stopTimer(); openMode(b.getAttribute("data-mode")); }
+    if(a==="hub"){ stopTimer(); renderToday(); showScreen("hub"); }
+    if(a==="deck"){ startStudy(b.getAttribute("data-theme")); }
+    if(a==="decks"){ stopTimer(); openMode("carte"); }
+    if(a==="flip"){ flip(); }
+    if(a==="grade"){ gradeAndNext(b.getAttribute("data-g")); }
+    if(a==="level"){ startLevel(parseInt(b.getAttribute("data-level"),10)); }
+    if(a==="retry"){ if(state.mode==="carte") startStudy(state.theme); else startLevel(state.level.num); }
+    if(a==="levels"){ stopTimer(); openMode(state.mode); }
+  });
+
+  /* ---------------- LA SITUAZIONE DI OGGI ---------------- */
+  function renderToday(){
+    var s = statsFor(WORDS);
+    var h="";
+    if(s.due===0 && s.nuove===0){
+      h += '<span class="pill done">tutto ripassato</span>';
+      h += '<p class="today-txt">Per oggi hai finito. Torna domani e le carte si riaprono da sole.<br><span class="en">All caught up. Come back tomorrow.</span></p>';
+    } else {
+      h += '<b>'+s.giro+'</b>';
+      h += '<p class="today-txt">carte per oggi &middot; <span class="en">cards for today</span></p>';
+      if(s.due) h += '<span class="pill hot">'+s.due+' da ripassare</span>';
+      if(s.nuoveOggi) h += '<span class="pill">'+s.nuoveOggi+' parole nuove</span>';
+      else if(s.nuove) h += '<span class="pill">'+s.nuove+' ancora da scoprire</span>';
+      if(s.sapute) h += '<span class="pill done">'+s.sapute+' in cassaforte</span>';
+      h += '<button class="btn" data-action="open" data-mode="carte">Comincia <span class="sub">go</span></button>';
+    }
+    document.getElementById("today").innerHTML=h;
+  }
+
+  /* ---------------- SCELTA DEL MAZZO ---------------- */
+  function openMode(mode){
+    state.mode=mode;
+    if(mode==="carte") openDecks(); else openLevels(mode);
+  }
+
+  function openDecks(){
+    var m=MODES.carte;
+    var h='<div class="back-row"><button class="back-btn" data-action="hub">&larr; Le tre modalità</button></div>';
+    h+='<div class="head-row" style="--mode:'+m.color+'"><span class="swatch"></span><h2>Che cosa ripassi?</h2></div>';
+    h+='<p class="head-sub">Scegli tutto il mazzo, oppure un tema solo se hai poco tempo. In arancione le carte che oggi ti aspettano.<br><span class="en">Pick the whole deck, or one theme if you are in a hurry. Orange means due today.</span></p>';
+    h+='<div class="deck-grid">';
+
+    var all=statsFor(WORDS);
+    h+=deckHtml("all","Tutto il mazzo","Everything", all, true);
+    THEMES.forEach(function(t){
+      var list=WORDS.filter(function(w){ return w.t===t.k; });
+      h+=deckHtml(t.k, t.it, t.en, statsFor(list), false);
+    });
+    h+='</div>';
+    screens.decks.innerHTML=h;
+    screens.decks.style.setProperty("--mode", m.color);
+    showScreen("decks");
+  }
+
+  function deckHtml(key, it, en, s, isAll){
+    var pct = s.n ? Math.round(s.sapute/s.n*100) : 0;
+    var h='<button class="deck'+(isAll?" all":"")+'" data-action="deck" data-theme="'+key+'">';
+    h+='<h3>'+it+'</h3><div class="deck-en">'+en+'</div>';
+    h+='<div class="deck-bar"><i style="width:'+pct+'%"></i></div>';
+    h+='<div class="deck-nums"><span><b>'+s.n+'</b> carte</span>';
+    if(s.due) h+='<span class="due"><b>'+s.due+'</b> da ripassare</span>';
+    if(s.nuove) h+='<span><b>'+s.nuove+'</b> nuove</span>';
+    if(!s.due && !s.nuove) h+='<span>tutto a posto</span>';
+    h+='</div></button>';
+    return h;
+  }
+
+  /* ---------------- LE CARTE ---------------- */
+  function startStudy(theme){
+    state.theme=theme; state.mode="carte";
+    var pool = theme==="all" ? WORDS : WORDS.filter(function(w){ return w.t===theme; });
+    var due = shuffle(pool.filter(function(w){ return !isNew(w) && isDue(w); })).slice(0, MAX_ROUND);
+    var room = Math.min(NEW_PER_ROUND, MAX_ROUND - due.length);
+    var fresh = room>0 ? shuffle(pool.filter(isNew)).slice(0, room) : [];
+    var queue = due.concat(fresh);
+    /* Se e tutto ripassato non lo lascio a mani vuote: gli do un giro
+       delle carte che conosce meno, senza toccare le scadenze. */
+    state.freeRun = false;
+    if(!queue.length){
+      state.freeRun = true;
+      queue = shuffle(pool.slice()).sort(function(a,b){ return boxOf(a)-boxOf(b); }).slice(0,20);
+    }
+    state.queue = queue.slice(0, MAX_ROUND);
+    state.idx=0; state.seen=0; state.known=0; state.total=state.queue.length;
+    renderStudyShell();
+    showCard();
+  }
+
+  function renderStudyShell(){
+    var h='<div class="topline">';
+    h+='<button class="back-btn" data-action="decks">&larr; I mazzi</button>';
+    h+='<div class="bar"><i id="bar" style="width:0%"></i></div>';
+    h+='<span class="count" id="count"></span></div>';
+    h+='<div id="cardzone"></div>';
+    h+='<div class="tray" id="tray"><div id="trayzone"></div></div>';
+    screens.study.innerHTML=h;
+    screens.study.style.setProperty("--mode", MODES.carte.color);
+    showScreen("study");
+  }
+
+  function showCard(){
+    if(state.idx>=state.queue.length){ endStudy(); return; }
+    var w=state.queue[state.idx];
+    state.flipped=false;
+
+    var box=boxOf(w), dots='';
+    for(var i=1;i<=5;i++) dots+='<span class="box-dot'+(i<=box?" on":"")+'"></span>';
+
+    document.getElementById("cardzone").innerHTML =
+      '<div class="card" data-action="flip">' +
+        '<p class="card-pos">'+POS_IT[w.pos]+' &middot; '+POS_EN[w.pos]+'</p>' +
+        '<p class="card-word">'+esc(w.w)+'</p>' +
+        '<div class="box-dots" title="scatola '+box+' di 5">'+dots+'</div>' +
+        '<p class="card-hint">tocca per girare &middot; tap to flip</p>' +
+      '</div>';
+
+    document.getElementById("trayzone").innerHTML =
+      '<div class="flip-row"><button class="btn" data-action="flip">Gira la carta <span class="sub">flip</span></button></div>';
+
+    var tray=document.getElementById("tray"); if(tray) tray.classList.add("on");
+    padForTray(true);
+    updateStudyBar();
+  }
+
+  function flip(){
+    if(state.flipped) return;
+    state.flipped=true;
+    var w=state.queue[state.idx];
+    document.getElementById("cardzone").innerHTML =
+      '<div class="card">' +
+        '<p class="card-pos">'+esc(w.w)+'</p>' +
+        '<p class="card-en">'+esc(w.en)+'</p>' +
+        '<div class="card-rule"></div>' +
+        '<p class="card-ex">'+esc(w.ex)+'</p>' +
+        '<p class="card-ex-en en">'+esc(w.exEn)+'</p>' +
+      '</div>';
+    document.getElementById("trayzone").innerHTML =
+      '<div class="grade-row">' +
+        '<button class="grade no"  data-action="grade" data-g="no">Da rivedere<small>again</small></button>' +
+        '<button class="grade mid" data-action="grade" data-g="mid">Quasi<small>almost</small></button>' +
+        '<button class="grade ok"  data-action="grade" data-g="ok">La so<small>got it</small></button>' +
+      '</div>';
+    padForTray(true);
+  }
+
+  function gradeAndNext(how){
+    var w=state.queue[state.idx];
+    if(!state.freeRun) grade(w, how);
+    state.seen++;
+    if(how==="ok") state.known++;
+    /* Quella che non sapeva torna nello stesso giro, qualche carta dopo:
+       e il modo piu veloce per fissarla. */
+    if(how==="no" && state.queue.length < MAX_ROUND+12){
+      var at = Math.min(state.queue.length, state.idx+5);
+      state.queue.splice(at, 0, w);
+    }
+    state.idx++;
+    showCard();
+  }
+
+  function updateStudyBar(){
+    var done=state.idx, tot=state.queue.length;
+    document.getElementById("bar").style.width = tot? Math.round(done/tot*100)+"%" : "0%";
+    document.getElementById("count").textContent = (done+1>tot? tot : done+1)+" / "+tot;
+  }
+
+  function endStudy(){
+    var s=statsFor(WORDS);
+    var domani = WORDS.filter(function(w){ var r=progress[w.w]; return r && r.d===plusDays(1); }).length;
+    var h='<div class="results" style="--mode:'+MODES.carte.color+'">';
+    h+='<p class="eyebrow">giro finito &middot; round done</p>';
+    h+='<div class="res-score">'+state.seen+'</div>';
+    h+='<p class="res-sub">carte viste, '+state.known+' sapute al primo colpo<br><span class="en">cards seen, '+state.known+' known first time</span></p>';
+    if(state.freeRun){
+      h+='<div class="res-badge quiet">giro libero: le scadenze non sono cambiate</div>';
+    } else {
+      h+='<div class="res-badge">&#9733; '+s.sapute+' parole in cassaforte su '+s.n+'</div>';
+    }
+    h+='<p class="res-msg">'+(domani
+        ? 'Domani ti aspettano '+domani+' carte. Cinque minuti e sono fatte.<br><span class="en" style="font-size:.92rem">'+domani+' cards are waiting for you tomorrow.</span>'
+        : 'Le prossime carte torneranno fra qualche giorno: è così che restano.<br><span class="en" style="font-size:.92rem">The next cards come back in a few days. That is what makes them stick.</span>')+'</p>';
+    h+='<div class="res-actions">';
+    h+='<button class="btn" data-action="retry">Un altro giro <span class="sub">again</span></button>';
+    h+='<button class="btn btn-ghost" data-action="decks">Altri mazzi <span class="sub">other decks</span></button>';
+    h+='</div></div>';
+    screens.results.innerHTML=h;
+    showScreen("results");
+  }
+
+  /* ---------------- LE DUE PROVE ---------------- */
+  function openLevels(mode){
+    var m=MODES[mode];
+    var h='<div class="back-row"><button class="back-btn" data-action="hub">&larr; Le tre modalità</button></div>';
+    h+='<div class="head-row" style="--mode:'+m.color+'"><span class="swatch"></span><h2>'+m.title+'</h2></div>';
+    h+='<p class="head-sub">'+m.sub+'. Le parole che conosci meno escono per prime: la prova segue le tue carte.'+
+       '<br><span class="en">The words you know least come up first: the quiz follows your cards.</span></p>';
+    h+='<div class="levels">';
+    LEVELS.forEach(function(lv){
+      h+='<article class="level-card" style="--mode:'+m.color+'">';
+      h+='<div class="level-icon">'+lv.icon+'</div>';
+      h+='<h3>'+lv.name+'</h3><div class="level-en">'+lv.nameEn+'</div>';
+      h+='<p class="level-desc">'+lv.desc+'<br><span class="en">'+lv.descEn+'</span></p>';
+      if(lv.timed) h+='<span class="record">&#9733; Record: '+getRecord(mode)+'</span>';
+      h+='<button class="btn" data-action="level" data-level="'+lv.num+'">Inizia <span class="sub">start</span></button>';
+      h+='</article>';
+    });
+    h+='</div>';
+    screens.levels.innerHTML=h;
+    screens.levels.style.setProperty("--mode", m.color);
+    showScreen("levels");
+  }
+
+  /* Estrazione pesata: una parola mai vista o in prima scatola pesa
+     molto di piu di una che sta gia in cassaforte. */
+  function weightedWord(exclude){
+    var pool=WORDS.filter(function(w){ return !exclude || exclude.indexOf(w.w)===-1; });
+    if(!pool.length) pool=WORDS;
+    var weights=pool.map(function(w){ var b=boxOf(w); return b===0?6:(7-b); });
+    var tot=weights.reduce(function(a,b){ return a+b; },0);
+    var r=Math.random()*tot;
+    for(var i=0;i<pool.length;i++){ r-=weights[i]; if(r<=0) return pool[i]; }
+    return pool[pool.length-1];
+  }
+
+  function makeQuiz(mode, used){
+    var w=weightedWord(used);
+    var it={ w:w };
+    if(mode==="riconosci"){
+      /* I distrattori vengono dallo stesso tema: se metto "January"
+         accanto a "il pane" la risposta si trova senza sapere niente.
+         E hanno la stessa forma: se solo la risposta giusta ha la
+         precisazione fra parentesi, si riconosce senza leggerla. */
+      var conParentesi = /\(/.test(w.en);
+      function stessaForma(x){ return /\(/.test(x.en)===conParentesi; }
+      var tema = WORDS.filter(function(x){ return x.t===w.t && x.en!==w.en; });
+      var simili = tema.filter(stessaForma);
+      var same = shuffle(simili.length>=3 ? simili : tema).slice(0,3);
+      var altri = shuffle(WORDS.filter(function(x){ return x.en!==w.en && stessaForma(x); })
+                          .concat(shuffle(WORDS)));
+      var k=0;
+      while(same.length<3 && k<altri.length){
+        var extra=altri[k++];
+        if(extra.en!==w.en && same.map(function(x){return x.en;}).indexOf(extra.en)===-1) same.push(extra);
+      }
+      it.prompt=w.w; it.promptPos=POS_IT[w.pos]+" &middot; "+POS_EN[w.pos];
+      it.correct=w.en;
+      it.options=shuffle([w.en].concat(same.map(function(x){ return x.en; })));
+    } else {
+      it.prompt=w.en; it.promptPos=POS_EN[w.pos];
+      it.correct=w.w;
+    }
+    return it;
+  }
+
+  function startLevel(num){
+    stopTimer();
+    var level=LEVELS.filter(function(l){ return l.num===num; })[0];
+    state.level=level; state.score=0; state.idx=0; state.answered=false; state.missed=[];
+    if(level.timed){
+      state.items=[]; state.total=0;
+      renderGameShell(level);
+      countdown(function(){
+        state.timeLeft=60; state.active=true; nextQuiz();
+        state.timerId=setInterval(function(){ state.timeLeft--; updateTimer(); if(state.timeLeft<=0) endRound(); },1000);
+      });
+    } else {
+      var used=[], items=[];
+      while(items.length<level.count){
+        var q=makeQuiz(state.mode, used);
+        used.push(q.w.w); items.push(q);
+        if(used.length>=WORDS.length) break;
+      }
+      state.items=items; state.total=items.length; state.active=true;
+      renderGameShell(level); nextQuiz();
+    }
+  }
+
+  function countdown(cb){
+    var ov=document.createElement("div"); ov.className="countdown";
+    ov.innerHTML='<div class="count-num" style="--mode:'+MODES[state.mode].color+'">3</div>';
+    document.body.appendChild(ov);
+    var seq=["3","2","1","Via!"], i=0, el=ov.querySelector(".count-num");
+    var iv=setInterval(function(){
+      i++;
+      if(i<seq.length){ el.textContent=seq[i]; el.style.animation="none"; void el.offsetWidth; el.style.animation="pop .45s ease"; }
+      else { clearInterval(iv); if(ov.parentNode) ov.parentNode.removeChild(ov); cb(); }
+    },620);
+  }
+
+  function renderGameShell(level){
+    var h='<div class="topline">';
+    if(level.timed){ h+='<span class="count">Corrette: <b id="live">0</b></span><span class="timer" id="timer">60s</span>'; }
+    else { h+='<div class="bar"><i id="bar" style="width:0%"></i></div><span class="count" id="count">1 / '+state.total+'</span>'; }
+    h+='</div>';
+    h+='<div class="card" id="prompt"></div>';
+    h+='<div id="zone" style="margin-top:18px"></div>';
+    h+='<div class="tray" id="tray"><div class="feedback" id="feedback"></div><div class="actions" id="actions"></div></div>';
+    screens.game.innerHTML=h;
+    screens.game.style.setProperty("--mode", MODES[state.mode].color);
+    showScreen("game");
+  }
+
+  function updateTimer(){
+    var el=document.getElementById("timer"); if(!el) return;
+    el.textContent=state.timeLeft+"s"; el.classList.toggle("low", state.timeLeft<=10);
+  }
+
+  function nextQuiz(){
+    var it = state.level.timed ? makeQuiz(state.mode, []) : state.items[state.idx];
+    state.item=it; state.answered=false;
+
+    document.getElementById("prompt").innerHTML =
+      '<p class="card-pos">'+it.promptPos+'</p><p class="card-word">'+esc(it.prompt)+'</p>';
+
+    var zone=document.getElementById("zone");
+    var fb=document.getElementById("feedback"); fb.className="feedback"; fb.innerHTML="";
+    document.getElementById("actions").innerHTML="";
+    var tray=document.getElementById("tray"); if(tray) tray.classList.remove("on");
+    padForTray(false);
+
+    if(state.mode==="riconosci"){
+      var h='<div class="options">';
+      it.options.forEach(function(o){ h+='<button class="opt" data-v="'+esc(o)+'">'+esc(o)+'</button>'; });
+      h+='</div>';
+      zone.innerHTML=h;
+      Array.prototype.forEach.call(zone.querySelectorAll(".opt"), function(b){
+        b.addEventListener("click", function(){ answer(b.getAttribute("data-v"), b); });
+      });
+    } else {
+      /* "con l'articolo" ha senso solo per i nomi: a un verbo l'articolo
+         non si mette, e il suggerimento diventa una bugia. */
+      var conArt = it.w.pos==="n" && bare(it.w.w)!==it.w.w;
+      zone.innerHTML='<div class="type-row"><input class="type-input" id="typed" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="'+(conArt?"con l&#39;articolo":"scrivi qui")+'">'+
+        '<button class="btn" id="check">Controlla <span class="sub">check</span></button></div>';
+      var inp=document.getElementById("typed"); inp.focus();
+      inp.addEventListener("keydown", function(e){ if(e.key==="Enter") answer(inp.value,null); });
+      document.getElementById("check").addEventListener("click", function(){ answer(inp.value,null); });
+    }
+
+    if(!state.level.timed){
+      document.getElementById("bar").style.width = Math.round(state.idx/state.total*100)+"%";
+      document.getElementById("count").textContent = (state.idx+1)+" / "+state.total;
+    }
+  }
+
+  function answer(given, tile){
+    if(state.answered) return;
+    state.answered=true;
+    var it=state.item, w=it.w;
+    var ok, note="";
+
+    if(state.mode==="riconosci"){
+      ok = norm(given)===norm(it.correct);
+      Array.prototype.forEach.call(document.querySelectorAll(".opt"), function(b){
+        b.disabled=true;
+        if(b.getAttribute("data-v")===it.correct) b.classList.add("ok");
+        else if(b===tile) b.classList.add("no");
+      });
+    } else {
+      var full=norm(it.correct), nude=norm(bare(it.correct));
+      ok = norm(given)===full || norm(given)===nude;
+      if(ok && norm(given)===nude && full!==nude){
+        note=" Manca solo l'articolo: si dice <b>"+esc(it.correct)+"</b>.";
+      }
+      var inp=document.getElementById("typed");
+      if(inp){ inp.classList.add(ok?"ok":"no"); inp.disabled=true; }
+      var ck=document.getElementById("check"); if(ck) ck.disabled=true;
+    }
+
+    if(ok) state.score++; else state.missed.push(w);
+    /* La prova aggiorna le scatole come le carte: sono lo stesso mazzo. */
+    grade(w, ok ? (note? "mid" : "ok") : "no");
+
+    var tray=document.getElementById("tray"); if(tray) tray.classList.add("on");
+    var fb=document.getElementById("feedback");
+    fb.className="feedback show "+(ok?"ok":"no");
+    fb.innerHTML = (ok ? ("Giusto!"+note) : "Era <b>"+esc(it.correct)+"</b>.") +
+      '<span class="fb-ex"><i>'+esc(w.ex)+'</i><span>'+esc(w.exEn)+'</span></span>';
+    padForTray(true);
+
+    if(state.level.timed){
+      var live=document.getElementById("live"); if(live) live.textContent=state.score;
+      setTimeout(function(){ if(state.active) nextQuiz(); }, ok?700:1800);
+    } else {
+      var last=state.idx>=state.total-1;
+      document.getElementById("actions").innerHTML=
+        '<button class="btn" id="next">'+(last?"Vedi risultati":"Avanti")+' <span class="sub">'+(last?"results":"next")+'</span></button>';
+      document.getElementById("next").addEventListener("click", function(){
+        state.idx++;
+        if(state.idx>=state.total) endRound(); else nextQuiz();
+      });
+    }
+  }
+
+  function endRound(){
+    stopTimer(); state.active=false;
+    var m=MODES[state.mode], level=state.level;
+    var prev=level.timed?getRecord(state.mode):0;
+    var isRecord=level.timed?setRecord(state.mode,state.score):false;
+
+    var msgIt=["Le parole sbagliate sono già tornate in cima al mazzo.","Bel ritmo. Un giro di carte domani e restano.",
+               "Ogni ripetizione le rende più automatiche.","Ottimo: quelle che sai stanno sparendo dal mazzo, ed è giusto così."];
+    var msgEn=["The ones you missed are already back at the top of the deck.","Nice pace. One round of cards tomorrow and they stay.",
+               "Every repetition makes them more automatic.","Good: the ones you know are leaving the deck, and that is the point."];
+    var i=Math.floor(Math.random()*msgIt.length);
+
+    var h='<div class="results" style="--mode:'+m.color+'">';
+    if(level.timed){
+      h+='<p class="eyebrow">Sfida a tempo &middot; timed challenge</p>';
+      h+='<div class="res-score">'+state.score+'</div>';
+      h+='<p class="res-sub">risposte giuste in 60 secondi<br><span class="en">correct in 60 seconds</span></p>';
+      h+=isRecord?'<div class="res-badge">&#9733; Nuovo record! &middot; new record</div>':'<div class="res-badge quiet">Record da battere: '+prev+'</div>';
+    } else {
+      h+='<p class="eyebrow">'+m.title+'</p>';
+      h+='<div class="res-score">'+state.score+'/'+state.total+'</div>';
+      h+='<p class="res-sub">risposte giuste &middot; <span class="en">correct</span></p>';
+    }
+    h+='<p class="res-msg">'+msgIt[i]+'<br><span class="en" style="font-size:.92rem">'+msgEn[i]+'</span></p>';
+
+    if(state.missed.length){
+      var seen={}, list=[];
+      state.missed.forEach(function(w){ if(!seen[w.w]){ seen[w.w]=true; list.push(w); } });
+      h+='<div class="res-miss"><h3>Da ripassare &middot; <span class="en">worth another look</span></h3>';
+      list.forEach(function(w){
+        h+='<div class="miss-row"><span class="miss-it">'+esc(w.w)+'</span><span class="miss-en">'+esc(w.en)+'</span></div>';
+      });
+      h+='</div>';
+    }
+
+    h+='<div class="res-actions">';
+    h+='<button class="btn" data-action="retry">Riprova <span class="sub">retry</span></button>';
+    h+='<button class="btn btn-ghost" data-action="levels">Altri livelli <span class="sub">more levels</span></button>';
+    h+='</div></div>';
+    screens.results.innerHTML=h;
+    showScreen("results");
+  }
+
+  /* ---------------- AVVIO ---------------- */
+  renderToday();
+  var wanted=(location.search.match(/[?&]mode=([a-z]+)/i)||[])[1];
+  if(wanted && MODES[wanted]) openMode(wanted); else showScreen("hub");
+})();
+</script>
+
+</body>
+</html>
