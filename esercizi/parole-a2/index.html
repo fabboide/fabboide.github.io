@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>The first 186 words — Italiano con Fabio</title>
-<meta name="description" content="Flashcards for the words an Italian beginner meets first, with the article, a real sentence, and spaced repetition that brings back the ones you miss.">
+<title>300 more words — Italiano con Fabio</title>
+<meta name="description" content="The A2 deck: 300 flashcards for the words that turn short answers into real sentences, with the article, a real example, and spaced repetition.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -294,17 +294,17 @@ p{ margin:0; } button{ font-family:inherit; } a{ color:inherit; }
 <main id="app">
   <section id="screen-hub" class="screen active">
     <div class="intro">
-      <p class="eyebrow">A1 &middot; le parole che incontri per prime</p>
-      <h1>Le prime parole, una carta alla volta.</h1>
+      <p class="eyebrow">A2 &middot; il mazzo che viene dopo</p>
+      <h1>Altre trecento, e cominci a dire quello che pensi.</h1>
       <p class="lede">
-        Centottantasei parole: nomi con il loro articolo, verbi, aggettivi.
-        Ogni carta ti fa vedere la parola dentro una frase vera, perché una parola
-        da sola si dimentica in tre giorni.
+        Trecento parole nuove, in quattordici temi: il lavoro, i soldi, la salute,
+        i sentimenti, le parole che legano una frase all'altra. Nessuna di queste
+        sta nel mazzo delle prime centottantasei.
       </p>
       <p class="lede en">
-        The words a beginner meets first, taken from the official A1 list. Nouns come with
-        their article, because in Italian &laquo;casa&raquo; without &laquo;la&raquo; is half a word.
-        The cards you miss come back sooner. Everything stays on this device.
+        The A2 deck, from the official A2 list: the words that turn short answers into real
+        sentences. Same rules as the first deck, nouns with their article and a real example,
+        and its own set of boxes. Do the first 186 first if you have not.
       </p>
     </div>
 
@@ -315,26 +315,26 @@ p{ margin:0; } button{ font-family:inherit; } a{ color:inherit; }
         <div class="mode-tag">Il mazzo</div>
         <h2>Le carte</h2>
         <p>Guardi la parola, provi a dirla, giri la carta. Quelle che sbagli tornano subito, quelle che sai tornano fra giorni.</p>
-        <p class="mode-ex">la settimana &rarr; week</p>
+        <p class="mode-ex">la riunione &rarr; meeting</p>
         <button class="btn" data-action="open" data-mode="carte">Studia <span class="sub">study</span></button>
       </article>
       <article class="mode-card" data-m="riconosci" style="--mode:var(--verde)">
         <div class="mode-tag">Prova 1</div>
         <h2>Riconosci</h2>
         <p>Vedi la parola italiana e scegli che cosa vuol dire. Escono per prime quelle che conosci meno.</p>
-        <p class="mode-ex">il pane &rarr; bread?</p>
+        <p class="mode-ex">il bagaglio &rarr; luggage?</p>
         <button class="btn" data-action="open" data-mode="riconosci">Inizia <span class="sub">start</span></button>
       </article>
       <article class="mode-card" data-m="scrivi" style="--mode:var(--rosso)">
         <div class="mode-tag">Prova 2</div>
         <h2>Scrivi</h2>
         <p>Parti dall'inglese e scrivi la parola italiana, articolo compreso. È qui che il genere si impara davvero.</p>
-        <p class="mode-ex">bread &rarr; il pane</p>
+        <p class="mode-ex">luggage &rarr; il bagaglio</p>
         <button class="btn" data-action="open" data-mode="scrivi">Inizia <span class="sub">start</span></button>
       </article>
     </div>
-    <p class="cross">Finite queste? Ci sono <a href="../parole-a2/">altre trecento parole</a> nel mazzo A2.
-      <span class="en">Done with these? There are 300 more in the A2 deck.</span></p>
+    <p class="cross">Non hai ancora fatto <a href="../parole-a1/">le prime centottantasei</a>? Comincia da lì.
+      <span class="en">Haven't done the first 186 yet? Start there.</span></p>
   </section>
 
   <section id="screen-decks" class="screen"></section>
@@ -349,244 +349,365 @@ p{ margin:0; } button{ font-family:inherit; } a{ color:inherit; }
   "use strict";
 
 /* ============================================================
-   LE PAROLE DI BASE, LIVELLO A1
+   LE PAROLE DI BASE, LIVELLO A2
 
-   Da dove vengono: la lista lessicale A1 del "Profilo della lingua
-   italiana" (Universita per Stranieri di Perugia, per il Consiglio
-   d'Europa) incrociata con il vocabolario fondamentale di De Mauro.
-   Sono tutte parole piene: nomi, verbi, aggettivi.
+   Il mazzo che viene dopo "The first 186 words". Stesse regole:
+   parole piene, nomi con l'articolo, una frase vera per ognuna,
+   e nessuna parola che sia gia nel mazzo A1.
 
-   Cosa NON c'e, di proposito:
-   - le parole grammaticali (che, se, anche, ogni, alcuni, chi).
-     Una carta con scritto "che" non insegna niente: quelle si
-     imparano usandole, ed e quello che fa gia "Your first 80 phrases".
-   - i saluti e le formule (ciao, grazie, buongiorno), che stanno
-     gia nell'esercizio delle 80 frasi: qui sarebbero un doppione.
+   Fonte: lista lessicale A2 del "Profilo della lingua italiana"
+   (Universita per Stranieri di Perugia, per il Consiglio d'Europa)
+   incrociata con il vocabolario di base di De Mauro.
 
-   Ogni carta ha:
-   w    la parola come si impara, cioe con l'articolo se e un nome
-   en   la traduzione
-   pos  n = nome, v = verbo, a = aggettivo, avv = avverbio
-   ex   una frase breve che la usa davvero
-   exEn la traduzione della frase
+   L'unica aggiunta rispetto alle regole di A1 e il tema
+   "le parole che legano": a questo livello parole come "magari",
+   "appena", "invece" sono lessico vero, hanno un traducente preciso
+   e si imparano bene su una carta. Non sono le parole grammaticali
+   che avevo scartato per A1 (che, se, ogni).
    ============================================================ */
 
 var THEMES = [
-  {k:"tempo",    it:"Il tempo",           en:"Time"},
-  {k:"calendario", it:"Il calendario",    en:"Days and months"},
-  {k:"persone",  it:"Le persone",         en:"People and family"},
-  {k:"casa",     it:"La casa",            en:"The house"},
-  {k:"cibo",     it:"A tavola",           en:"Food and drink"},
-  {k:"corpo",    it:"Il corpo",           en:"The body"},
-  {k:"citta",    it:"Fuori casa",         en:"Town and travel"},
-  {k:"verbi",    it:"I verbi",            en:"Everyday verbs"},
-  {k:"aggettivi",it:"Gli aggettivi",      en:"Adjectives"}
+  {k:"lavoro",     it:"Il lavoro e la scuola",   en:"Work and school"},
+  {k:"soldi",      it:"I soldi e la spesa",      en:"Money and shopping"},
+  {k:"salute",     it:"La salute",               en:"Health"},
+  {k:"libero",     it:"Il tempo libero",         en:"Free time"},
+  {k:"casa2",      it:"Dentro casa",             en:"Around the house"},
+  {k:"tavola2",    it:"In cucina",               en:"In the kitchen"},
+  {k:"viaggio2",   it:"In viaggio",              en:"Travelling"},
+  {k:"persone2",   it:"I rapporti",              en:"Relationships"},
+  {k:"carattere",  it:"Carattere e sentimenti",  en:"Character and feelings"},
+  {k:"natura",     it:"Fuori, e il tempo che fa",en:"Outdoors and weather"},
+  {k:"servizi",    it:"Servizi e documenti",     en:"Services and paperwork"},
+  {k:"verbi2",     it:"Altri verbi",             en:"More verbs"},
+  {k:"aggettivi2", it:"Altri aggettivi",         en:"More adjectives"},
+  {k:"legano",     it:"Le parole che legano",    en:"Linking words"}
 ];
 
 var WORDS = [
-  /* ---------------- IL TEMPO ---------------- */
-  {t:"tempo", w:"il giorno", en:"day", pos:"n", ex:"Che giorno è oggi?", exEn:"What day is it today?"},
-  {t:"tempo", w:"la settimana", en:"week", pos:"n", ex:"Questa settimana lavoro molto.", exEn:"This week I'm working a lot."},
-  {t:"tempo", w:"il mese", en:"month", pos:"n", ex:"Il mese prossimo vado in Italia.", exEn:"Next month I'm going to Italy."},
-  {t:"tempo", w:"l'anno", en:"year", pos:"n", ex:"Studio italiano da un anno.", exEn:"I've been studying Italian for a year."},
-  {t:"tempo", w:"l'ora", en:"hour", pos:"n", ex:"Che ora è?", exEn:"What time is it?"},
-  {t:"tempo", w:"il minuto", en:"minute", pos:"n", ex:"Arrivo tra cinque minuti.", exEn:"I'll be there in five minutes."},
-  {t:"tempo", w:"la mattina", en:"morning", pos:"n", ex:"La mattina bevo un caffè.", exEn:"In the morning I have a coffee."},
-  {t:"tempo", w:"il pomeriggio", en:"afternoon", pos:"n", ex:"Nel pomeriggio studio.", exEn:"In the afternoon I study."},
-  {t:"tempo", w:"la sera", en:"evening", pos:"n", ex:"La sera guardo un film.", exEn:"In the evening I watch a film."},
-  {t:"tempo", w:"la notte", en:"night", pos:"n", ex:"Di notte dormo poco.", exEn:"At night I don't sleep much."},
-  {t:"tempo", w:"l'orologio", en:"watch, clock", pos:"n", ex:"Il mio orologio è rotto.", exEn:"My watch is broken."},
-  {t:"tempo", w:"il tempo", en:"time; weather", pos:"n", ex:"Oggi non ho tempo.", exEn:"I don't have time today."},
-  {t:"tempo", w:"oggi", en:"today", pos:"avv", ex:"Oggi non lavoro.", exEn:"Today I'm not working."},
-  {t:"tempo", w:"domani", en:"tomorrow", pos:"avv", ex:"Domani ho una lezione.", exEn:"Tomorrow I have a lesson."},
-  {t:"tempo", w:"ieri", en:"yesterday", pos:"avv", ex:"Ieri sono andato al mare.", exEn:"Yesterday I went to the seaside."},
+  /* ---------------- IL LAVORO E LA SCUOLA ---------------- */
+  {t:"lavoro", w:"il capo", en:"boss", pos:"n", ex:"Il mio capo è arrivato tardi.", exEn:"My boss arrived late."},
+  {t:"lavoro", w:"il collega", en:"colleague", pos:"n", ex:"Un collega mi ha aiutato.", exEn:"A colleague helped me."},
+  {t:"lavoro", w:"la riunione", en:"meeting", pos:"n", ex:"La riunione è alle tre.", exEn:"The meeting is at three."},
+  {t:"lavoro", w:"il contratto", en:"contract", pos:"n", ex:"Ho firmato il contratto ieri.", exEn:"I signed the contract yesterday."},
+  {t:"lavoro", w:"lo stipendio", en:"salary", pos:"n", ex:"Lo stipendio arriva il ventisette.", exEn:"The salary arrives on the twenty-seventh."},
+  {t:"lavoro", w:"l'orario", en:"timetable, working hours", pos:"n", ex:"Il mio orario finisce alle sei.", exEn:"My working hours end at six."},
+  {t:"lavoro", w:"la pausa", en:"break", pos:"n", ex:"Facciamo una pausa di dieci minuti.", exEn:"Let's take a ten-minute break."},
+  {t:"lavoro", w:"la ditta", en:"firm, company", pos:"n", ex:"Lavora in una ditta piccola.", exEn:"He works for a small firm."},
+  {t:"lavoro", w:"il cliente", en:"customer", pos:"n", ex:"Il cliente aspetta una risposta.", exEn:"The customer is waiting for an answer."},
+  {t:"lavoro", w:"il progetto", en:"project", pos:"n", ex:"Il progetto finisce a giugno.", exEn:"The project ends in June."},
+  {t:"lavoro", w:"la scrivania", en:"desk", pos:"n", ex:"Ho la scrivania piena di carte.", exEn:"My desk is covered in papers."},
+  {t:"lavoro", w:"il colloquio", en:"job interview", pos:"n", ex:"Domani ho un colloquio.", exEn:"Tomorrow I have a job interview."},
+  {t:"lavoro", w:"la carriera", en:"career", pos:"n", ex:"Ha cambiato carriera a quarant'anni.", exEn:"He changed career at forty."},
+  {t:"lavoro", w:"la responsabilità", en:"responsibility", pos:"n", ex:"È una grande responsabilità.", exEn:"It's a big responsibility."},
+  {t:"lavoro", w:"l'esame", en:"exam", pos:"n", ex:"L'esame è andato bene.", exEn:"The exam went well."},
+  {t:"lavoro", w:"il voto", en:"mark, grade", pos:"n", ex:"Ho preso un bel voto.", exEn:"I got a good mark."},
+  {t:"lavoro", w:"il compito", en:"homework, task", pos:"n", ex:"Faccio i compiti dopo cena.", exEn:"I do my homework after dinner."},
+  {t:"lavoro", w:"la lezione", en:"lesson", pos:"n", ex:"La lezione dura un'ora.", exEn:"The lesson lasts an hour."},
+  {t:"lavoro", w:"il corso", en:"course", pos:"n", ex:"Mi sono iscritto a un corso di italiano.", exEn:"I signed up for an Italian course."},
+  {t:"lavoro", w:"l'insegnante", en:"teacher", pos:"n", ex:"L'insegnante spiega la regola.", exEn:"The teacher explains the rule."},
+  {t:"lavoro", w:"lo studente", en:"student", pos:"n", ex:"Sono studente di medicina.", exEn:"I'm a medical student."},
+  {t:"lavoro", w:"l'aula", en:"classroom", pos:"n", ex:"L'aula è al primo piano.", exEn:"The classroom is on the first floor."},
+  {t:"lavoro", w:"il diploma", en:"school-leaving certificate", pos:"n", ex:"Ho preso il diploma nel duemiladieci.", exEn:"I got my school-leaving certificate in 2010."},
+  {t:"lavoro", w:"la laurea", en:"university degree", pos:"n", ex:"Mia sorella ha una laurea in chimica.", exEn:"My sister has a degree in chemistry."},
 
-  /* ---------------- IL CALENDARIO ---------------- */
-  {t:"calendario", w:"lunedì", en:"Monday", pos:"n", ex:"Lunedì comincia la scuola.", exEn:"School starts on Monday."},
-  {t:"calendario", w:"martedì", en:"Tuesday", pos:"n", ex:"Martedì ho un esame.", exEn:"On Tuesday I have an exam."},
-  {t:"calendario", w:"mercoledì", en:"Wednesday", pos:"n", ex:"Ci vediamo mercoledì.", exEn:"See you on Wednesday."},
-  {t:"calendario", w:"giovedì", en:"Thursday", pos:"n", ex:"Giovedì lavoro da casa.", exEn:"On Thursday I work from home."},
-  {t:"calendario", w:"venerdì", en:"Friday", pos:"n", ex:"Venerdì sera esco con gli amici.", exEn:"On Friday evening I go out with friends."},
-  {t:"calendario", w:"sabato", en:"Saturday", pos:"n", ex:"Sabato dormo fino a tardi.", exEn:"On Saturday I sleep in."},
-  {t:"calendario", w:"domenica", en:"Sunday", pos:"n", ex:"Domenica pranzo con la famiglia.", exEn:"On Sunday I have lunch with my family."},
-  {t:"calendario", w:"gennaio", en:"January", pos:"n", ex:"A gennaio fa molto freddo.", exEn:"In January it's very cold."},
-  {t:"calendario", w:"febbraio", en:"February", pos:"n", ex:"Febbraio è il mese più corto.", exEn:"February is the shortest month."},
-  {t:"calendario", w:"marzo", en:"March", pos:"n", ex:"A marzo arriva la primavera.", exEn:"Spring arrives in March."},
-  {t:"calendario", w:"aprile", en:"April", pos:"n", ex:"Ad aprile piove spesso.", exEn:"It often rains in April."},
-  {t:"calendario", w:"maggio", en:"May", pos:"n", ex:"Mia sorella si sposa a maggio.", exEn:"My sister is getting married in May."},
-  {t:"calendario", w:"giugno", en:"June", pos:"n", ex:"A giugno finisce la scuola.", exEn:"School finishes in June."},
-  {t:"calendario", w:"luglio", en:"July", pos:"n", ex:"A luglio vado al mare.", exEn:"In July I go to the seaside."},
-  {t:"calendario", w:"agosto", en:"August", pos:"n", ex:"Ad agosto le città sono vuote.", exEn:"In August the cities are empty."},
-  {t:"calendario", w:"settembre", en:"September", pos:"n", ex:"A settembre torno a lavorare.", exEn:"In September I go back to work."},
-  {t:"calendario", w:"ottobre", en:"October", pos:"n", ex:"A ottobre comincia l'autunno.", exEn:"Autumn begins in October."},
-  {t:"calendario", w:"novembre", en:"November", pos:"n", ex:"A novembre le giornate sono corte.", exEn:"In November the days are short."},
-  {t:"calendario", w:"dicembre", en:"December", pos:"n", ex:"Dicembre è il mese di Natale.", exEn:"December is the month of Christmas."},
+  /* ---------------- I SOLDI E LA SPESA ---------------- */
+  {t:"soldi", w:"il prezzo", en:"price", pos:"n", ex:"Il prezzo è troppo alto.", exEn:"The price is too high."},
+  {t:"soldi", w:"lo sconto", en:"discount", pos:"n", ex:"Mi hanno fatto uno sconto.", exEn:"They gave me a discount."},
+  {t:"soldi", w:"i saldi", en:"the sales", pos:"n", ex:"A gennaio cominciano i saldi.", exEn:"The sales start in January."},
+  {t:"soldi", w:"la cassa", en:"till, checkout", pos:"n", ex:"Si paga alla cassa.", exEn:"You pay at the checkout."},
+  {t:"soldi", w:"lo scontrino", en:"receipt", pos:"n", ex:"Tieni lo scontrino.", exEn:"Keep the receipt."},
+  {t:"soldi", w:"il resto", en:"change, money back", pos:"n", ex:"Mi ha dato il resto sbagliato.", exEn:"He gave me the wrong change."},
+  {t:"soldi", w:"la carta di credito", en:"credit card", pos:"n", ex:"Accettate la carta di credito?", exEn:"Do you take credit cards?"},
+  {t:"soldi", w:"il contante", en:"cash", pos:"n", ex:"Preferisco pagare in contanti.", exEn:"I prefer to pay cash."},
+  {t:"soldi", w:"il bancomat", en:"ATM", pos:"n", ex:"Prendo dei soldi al bancomat.", exEn:"I'll get some money from the ATM."},
+  {t:"soldi", w:"il commesso", en:"shop assistant", pos:"n", ex:"Il commesso è stato gentile.", exEn:"The shop assistant was kind."},
+  {t:"soldi", w:"la spesa", en:"the food shopping", pos:"n", ex:"Faccio la spesa il sabato.", exEn:"I do the food shopping on Saturdays."},
+  {t:"soldi", w:"il supermercato", en:"supermarket", pos:"n", ex:"Il supermercato chiude alle nove.", exEn:"The supermarket closes at nine."},
+  {t:"soldi", w:"il carrello", en:"trolley", pos:"n", ex:"Il carrello è già pieno.", exEn:"The trolley is already full."},
+  {t:"soldi", w:"la borsa", en:"bag", pos:"n", ex:"Ho lasciato la borsa in macchina.", exEn:"I left my bag in the car."},
+  {t:"soldi", w:"il portafoglio", en:"wallet", pos:"n", ex:"Ho perso il portafoglio.", exEn:"I lost my wallet."},
+  {t:"soldi", w:"la moneta", en:"coin", pos:"n", ex:"Hai una moneta da un euro?", exEn:"Do you have a one-euro coin?"},
+  {t:"soldi", w:"la banconota", en:"banknote", pos:"n", ex:"Non ho banconote piccole.", exEn:"I don't have small notes."},
+  {t:"soldi", w:"la tassa", en:"tax", pos:"n", ex:"Le tasse si pagano a giugno.", exEn:"Taxes are paid in June."},
+  {t:"soldi", w:"l'affitto", en:"rent", pos:"n", ex:"L'affitto si paga il primo del mese.", exEn:"The rent is paid on the first of the month."},
+  {t:"soldi", w:"la bolletta", en:"bill", pos:"n", ex:"È arrivata la bolletta della luce.", exEn:"The electricity bill has arrived."},
 
-  /* ---------------- LE PERSONE ---------------- */
-  {t:"persone", w:"l'uomo", en:"man", pos:"n", ex:"Quell'uomo è mio zio.", exEn:"That man is my uncle."},
-  {t:"persone", w:"la donna", en:"woman", pos:"n", ex:"La donna alla cassa è molto gentile.", exEn:"The woman at the till is very kind."},
-  {t:"persone", w:"il bambino", en:"child", pos:"n", ex:"Il bambino gioca in giardino.", exEn:"The child is playing in the garden."},
-  {t:"persone", w:"il ragazzo", en:"boy, young man", pos:"n", ex:"Quel ragazzo studia con me.", exEn:"That boy studies with me."},
-  {t:"persone", w:"la ragazza", en:"girl, young woman", pos:"n", ex:"La ragazza parla tre lingue.", exEn:"The girl speaks three languages."},
-  {t:"persone", w:"l'amico", en:"friend", pos:"n", ex:"Vado al cinema con un amico.", exEn:"I'm going to the cinema with a friend."},
-  {t:"persone", w:"la famiglia", en:"family", pos:"n", ex:"La mia famiglia è grande.", exEn:"My family is big."},
-  {t:"persone", w:"la madre", en:"mother", pos:"n", ex:"Mia madre cucina benissimo.", exEn:"My mother is a great cook."},
-  {t:"persone", w:"il padre", en:"father", pos:"n", ex:"Mio padre lavora in banca.", exEn:"My father works at a bank."},
-  {t:"persone", w:"il figlio", en:"son", pos:"n", ex:"Suo figlio ha sei anni.", exEn:"Her son is six."},
-  {t:"persone", w:"la figlia", en:"daughter", pos:"n", ex:"La loro figlia studia a Milano.", exEn:"Their daughter studies in Milan."},
-  {t:"persone", w:"il fratello", en:"brother", pos:"n", ex:"Ho un fratello più piccolo.", exEn:"I have a younger brother."},
-  {t:"persone", w:"la sorella", en:"sister", pos:"n", ex:"Mia sorella abita a Roma.", exEn:"My sister lives in Rome."},
-  {t:"persone", w:"il marito", en:"husband", pos:"n", ex:"Suo marito è italiano.", exEn:"Her husband is Italian."},
-  {t:"persone", w:"la moglie", en:"wife", pos:"n", ex:"Mia moglie non beve caffè.", exEn:"My wife doesn't drink coffee."},
-  {t:"persone", w:"il nonno", en:"grandfather", pos:"n", ex:"Mio nonno ha novant'anni.", exEn:"My grandfather is ninety."},
-  {t:"persone", w:"la nonna", en:"grandmother", pos:"n", ex:"La nonna fa la pasta in casa.", exEn:"Grandma makes pasta at home."},
-  {t:"persone", w:"il nome", en:"name", pos:"n", ex:"Come si scrive il tuo nome?", exEn:"How do you spell your name?"},
+  /* ---------------- LA SALUTE ---------------- */
+  {t:"salute", w:"la salute", en:"health", pos:"n", ex:"Alla salute!", exEn:"Cheers! Literally: to your health."},
+  {t:"salute", w:"il medico", en:"doctor", pos:"n", ex:"Devo andare dal medico.", exEn:"I have to go to the doctor."},
+  {t:"salute", w:"la farmacia", en:"chemist's", pos:"n", ex:"La farmacia è aperta fino alle otto.", exEn:"The chemist's is open until eight."},
+  {t:"salute", w:"la medicina", en:"medicine", pos:"n", ex:"Prendo la medicina dopo i pasti.", exEn:"I take the medicine after meals."},
+  {t:"salute", w:"l'ospedale", en:"hospital", pos:"n", ex:"L'ospedale è fuori città.", exEn:"The hospital is outside town."},
+  {t:"salute", w:"la febbre", en:"temperature, fever", pos:"n", ex:"Ho la febbre da due giorni.", exEn:"I've had a temperature for two days."},
+  {t:"salute", w:"il raffreddore", en:"a cold", pos:"n", ex:"Ho preso il raffreddore.", exEn:"I've caught a cold."},
+  {t:"salute", w:"la tosse", en:"cough", pos:"n", ex:"Questa tosse non passa.", exEn:"This cough won't go away."},
+  {t:"salute", w:"il mal di testa", en:"headache", pos:"n", ex:"Ho un mal di testa forte.", exEn:"I have a bad headache."},
+  {t:"salute", w:"la ricetta", en:"prescription; recipe", pos:"n", ex:"Serve la ricetta del medico.", exEn:"You need a doctor's prescription."},
+  {t:"salute", w:"il dente", en:"tooth", pos:"n", ex:"Mi fa male un dente.", exEn:"One of my teeth hurts."},
+  {t:"salute", w:"la schiena", en:"back", pos:"n", ex:"Dormo male e mi sveglio con la schiena dura.", exEn:"I sleep badly and wake up with a stiff back."},
+  {t:"salute", w:"lo stomaco", en:"stomach", pos:"n", ex:"Ho mangiato troppo e mi fa male lo stomaco.", exEn:"I ate too much and my stomach hurts."},
+  {t:"salute", w:"il cuore", en:"heart", pos:"n", ex:"Dopo la corsa il cuore batte forte.", exEn:"After a run your heart beats fast."},
+  {t:"salute", w:"la pelle", en:"skin", pos:"n", ex:"Ha la pelle chiara.", exEn:"She has fair skin."},
+  {t:"salute", w:"l'orecchio", en:"ear", pos:"n", ex:"Con questa musica non sento da un orecchio.", exEn:"With this music I can't hear out of one ear."},
+  {t:"salute", w:"il naso", en:"nose", pos:"n", ex:"Ha il naso rosso dal freddo.", exEn:"His nose is red from the cold."},
+  {t:"salute", w:"la visita", en:"medical appointment", pos:"n", ex:"Ho una visita giovedì mattina.", exEn:"I have a medical appointment on Thursday morning."},
+  /* ---------------- IL TEMPO LIBERO ---------------- */
+  {t:"libero", w:"il film", en:"film", pos:"n", ex:"Il film comincia alle nove.", exEn:"The film starts at nine."},
+  {t:"libero", w:"il cinema", en:"cinema", pos:"n", ex:"Andiamo al cinema stasera?", exEn:"Shall we go to the cinema tonight?"},
+  {t:"libero", w:"il teatro", en:"theatre", pos:"n", ex:"Il teatro era pieno.", exEn:"The theatre was full."},
+  {t:"libero", w:"la musica", en:"music", pos:"n", ex:"Ascolto musica mentre cucino.", exEn:"I listen to music while I cook."},
+  {t:"libero", w:"la canzone", en:"song", pos:"n", ex:"Questa canzone la conoscono tutti.", exEn:"Everybody knows this song."},
+  {t:"libero", w:"il concerto", en:"concert", pos:"n", ex:"Il concerto è sabato sera.", exEn:"The concert is on Saturday evening."},
+  {t:"libero", w:"la partita", en:"match", pos:"n", ex:"La partita finisce alle undici.", exEn:"The match ends at eleven."},
+  {t:"libero", w:"la squadra", en:"team", pos:"n", ex:"La mia squadra ha perso.", exEn:"My team lost."},
+  {t:"libero", w:"lo sport", en:"sport", pos:"n", ex:"Faccio sport tre volte alla settimana.", exEn:"I do sport three times a week."},
+  {t:"libero", w:"la palestra", en:"gym", pos:"n", ex:"Vado in palestra la mattina presto.", exEn:"I go to the gym early in the morning."},
+  {t:"libero", w:"la corsa", en:"a run", pos:"n", ex:"Faccio una corsa nel parco.", exEn:"I go for a run in the park."},
+  {t:"libero", w:"la bicicletta", en:"bicycle", pos:"n", ex:"Vado al lavoro in bicicletta.", exEn:"I go to work by bicycle."},
+  {t:"libero", w:"la passeggiata", en:"walk, stroll", pos:"n", ex:"Dopo cena facciamo una passeggiata.", exEn:"After dinner we go for a walk."},
+  {t:"libero", w:"il giornale", en:"newspaper", pos:"n", ex:"Compro il giornale in edicola.", exEn:"I buy the paper at the newsstand."},
+  {t:"libero", w:"la rivista", en:"magazine", pos:"n", ex:"In sala d'attesa c'era una rivista vecchia.", exEn:"There was an old magazine in the waiting room."},
+  {t:"libero", w:"la festa", en:"party", pos:"n", ex:"La festa finisce tardi.", exEn:"The party finishes late."},
+  {t:"libero", w:"il regalo", en:"present, gift", pos:"n", ex:"Ho comprato un regalo per mia madre.", exEn:"I bought a present for my mother."},
+  {t:"libero", w:"la vacanza", en:"holiday", pos:"n", ex:"Le vacanze cominciano venerdì.", exEn:"The holidays start on Friday."},
+  {t:"libero", w:"il gioco", en:"game", pos:"n", ex:"È un gioco per bambini.", exEn:"It's a game for children."},
+  {t:"libero", w:"la foto", en:"photo", pos:"n", ex:"Ti mando una foto.", exEn:"I'll send you a photo."},
+  {t:"libero", w:"il quadro", en:"painting", pos:"n", ex:"In salotto c'è un quadro grande.", exEn:"There's a big painting in the living room."},
+  {t:"libero", w:"la mostra", en:"exhibition", pos:"n", ex:"La mostra chiude domenica.", exEn:"The exhibition closes on Sunday."},
 
-  /* ---------------- LA CASA ---------------- */
-  {t:"casa", w:"la casa", en:"house, home", pos:"n", ex:"La mia casa è vicino alla stazione.", exEn:"My house is near the station."},
-  {t:"casa", w:"la camera", en:"room, bedroom", pos:"n", ex:"La camera ha una finestra grande.", exEn:"The room has a big window."},
-  {t:"casa", w:"la cucina", en:"kitchen", pos:"n", ex:"In cucina c'è il caffè.", exEn:"There's coffee in the kitchen."},
-  {t:"casa", w:"il bagno", en:"bathroom", pos:"n", ex:"Scusi, dov'è il bagno?", exEn:"Excuse me, where's the bathroom?"},
-  {t:"casa", w:"il letto", en:"bed", pos:"n", ex:"Vado a letto presto.", exEn:"I go to bed early."},
-  {t:"casa", w:"il tavolo", en:"table", pos:"n", ex:"Il libro è sul tavolo.", exEn:"The book is on the table."},
-  {t:"casa", w:"la sedia", en:"chair", pos:"n", ex:"Prendi una sedia.", exEn:"Take a chair."},
-  {t:"casa", w:"la porta", en:"door", pos:"n", ex:"Chiudi la porta, per favore.", exEn:"Close the door, please."},
-  {t:"casa", w:"la finestra", en:"window", pos:"n", ex:"Fa caldo: apro la finestra.", exEn:"It's hot: I'll open the window."},
-  {t:"casa", w:"la chiave", en:"key", pos:"n", ex:"Non trovo le chiavi.", exEn:"I can't find my keys."},
-  {t:"casa", w:"il telefono", en:"phone", pos:"n", ex:"Il telefono è scarico.", exEn:"The phone is dead."},
-  {t:"casa", w:"il computer", en:"computer", pos:"n", ex:"Lavoro tutto il giorno al computer.", exEn:"I work at the computer all day."},
-  {t:"casa", w:"il libro", en:"book", pos:"n", ex:"Sto leggendo un libro italiano.", exEn:"I'm reading an Italian book."},
-  {t:"casa", w:"la luce", en:"light", pos:"n", ex:"Accendi la luce, per favore.", exEn:"Turn on the light, please."},
+  /* ---------------- DENTRO CASA ---------------- */
+  {t:"casa2", w:"il salotto", en:"living room", pos:"n", ex:"Guardiamo la TV in salotto.", exEn:"We watch TV in the living room."},
+  {t:"casa2", w:"il balcone", en:"balcony", pos:"n", ex:"Il balcone dà sul cortile.", exEn:"The balcony looks onto the courtyard."},
+  {t:"casa2", w:"il giardino", en:"garden", pos:"n", ex:"Il giardino è pieno di fiori.", exEn:"The garden is full of flowers."},
+  {t:"casa2", w:"il piano", en:"storey", pos:"n", ex:"Abito al quarto piano.", exEn:"I live on the fourth floor."},
+  {t:"casa2", w:"l'ascensore", en:"lift", pos:"n", ex:"L'ascensore non funziona.", exEn:"The lift isn't working."},
+  {t:"casa2", w:"le scale", en:"stairs", pos:"n", ex:"Prendo le scale, non l'ascensore.", exEn:"I take the stairs, not the lift."},
+  {t:"casa2", w:"il muro", en:"wall", pos:"n", ex:"Il muro è bianco.", exEn:"The wall is white."},
+  {t:"casa2", w:"il pavimento", en:"floor", pos:"n", ex:"Il pavimento è freddo.", exEn:"The floor is cold."},
+  {t:"casa2", w:"il tetto", en:"roof", pos:"n", ex:"Il tetto perde acqua.", exEn:"The roof is leaking."},
+  {t:"casa2", w:"l'armadio", en:"wardrobe", pos:"n", ex:"L'armadio è pieno di roba.", exEn:"The wardrobe is full of stuff."},
+  {t:"casa2", w:"il divano", en:"sofa", pos:"n", ex:"Il divano è nuovo.", exEn:"The sofa is new."},
+  {t:"casa2", w:"il frigorifero", en:"fridge", pos:"n", ex:"Il frigorifero è vuoto.", exEn:"The fridge is empty."},
+  {t:"casa2", w:"la lavatrice", en:"washing machine", pos:"n", ex:"La lavatrice finisce fra un'ora.", exEn:"The washing machine finishes in an hour."},
+  {t:"casa2", w:"lo specchio", en:"mirror", pos:"n", ex:"Mi guardo allo specchio.", exEn:"I look at myself in the mirror."},
+  {t:"casa2", w:"l'asciugamano", en:"towel", pos:"n", ex:"Prendi un asciugamano pulito.", exEn:"Take a clean towel."},
+  {t:"casa2", w:"il lenzuolo", en:"sheet", pos:"n", ex:"Cambio le lenzuola il sabato.", exEn:"I change the sheets on Saturdays."},
+  {t:"casa2", w:"la coperta", en:"blanket", pos:"n", ex:"Di notte serve una coperta.", exEn:"You need a blanket at night."},
+  {t:"casa2", w:"il cuscino", en:"pillow", pos:"n", ex:"Questo cuscino è troppo alto.", exEn:"This pillow is too high."},
+  {t:"casa2", w:"la spazzatura", en:"rubbish", pos:"n", ex:"Porto giù la spazzatura.", exEn:"I take the rubbish out."},
+  {t:"casa2", w:"il rumore", en:"noise", pos:"n", ex:"C'è troppo rumore qui.", exEn:"There's too much noise here."},
 
-  /* ---------------- A TAVOLA ---------------- */
-  {t:"cibo", w:"l'acqua", en:"water", pos:"n", ex:"Un'acqua naturale, per favore.", exEn:"A still water, please."},
-  {t:"cibo", w:"il caffè", en:"coffee", pos:"n", ex:"Prendo un caffè al bar.", exEn:"I'll have a coffee at the bar."},
-  {t:"cibo", w:"il tè", en:"tea", pos:"n", ex:"Bevo il tè senza zucchero.", exEn:"I drink tea without sugar."},
-  {t:"cibo", w:"il vino", en:"wine", pos:"n", ex:"Questo vino è ottimo.", exEn:"This wine is excellent."},
-  {t:"cibo", w:"la birra", en:"beer", pos:"n", ex:"Due birre, per favore.", exEn:"Two beers, please."},
-  {t:"cibo", w:"il latte", en:"milk", pos:"n", ex:"Il latte è finito.", exEn:"We're out of milk."},
-  {t:"cibo", w:"il pane", en:"bread", pos:"n", ex:"Compro il pane ogni mattina.", exEn:"I buy bread every morning."},
-  {t:"cibo", w:"la pasta", en:"pasta", pos:"n", ex:"A pranzo mangio la pasta.", exEn:"I have pasta for lunch."},
-  {t:"cibo", w:"la pizza", en:"pizza", pos:"n", ex:"Stasera facciamo la pizza.", exEn:"Tonight we're making pizza."},
-  {t:"cibo", w:"il formaggio", en:"cheese", pos:"n", ex:"Vuoi un po' di formaggio?", exEn:"Do you want some cheese?"},
-  {t:"cibo", w:"la carne", en:"meat", pos:"n", ex:"Io non mangio carne.", exEn:"I don't eat meat."},
-  {t:"cibo", w:"il pesce", en:"fish", pos:"n", ex:"Il venerdì mangiamo il pesce.", exEn:"On Fridays we eat fish."},
-  {t:"cibo", w:"il pollo", en:"chicken", pos:"n", ex:"Il pollo è nel forno.", exEn:"The chicken is in the oven."},
-  {t:"cibo", w:"la frutta", en:"fruit", pos:"n", ex:"Mangio la frutta dopo pranzo.", exEn:"I eat fruit after lunch."},
-  {t:"cibo", w:"la verdura", en:"vegetables", pos:"n", ex:"Compro la verdura al mercato.", exEn:"I buy vegetables at the market."},
-  {t:"cibo", w:"lo zucchero", en:"sugar", pos:"n", ex:"Un caffè senza zucchero, grazie.", exEn:"A coffee without sugar, thanks."},
-  {t:"cibo", w:"il sale", en:"salt", pos:"n", ex:"Manca il sale.", exEn:"It needs salt."},
-  {t:"cibo", w:"la colazione", en:"breakfast", pos:"n", ex:"Faccio colazione alle sette.", exEn:"I have breakfast at seven."},
-  {t:"cibo", w:"il pranzo", en:"lunch", pos:"n", ex:"Il pranzo è all'una.", exEn:"Lunch is at one."},
-  {t:"cibo", w:"la cena", en:"dinner", pos:"n", ex:"La cena è pronta.", exEn:"Dinner is ready."},
-  {t:"cibo", w:"il ristorante", en:"restaurant", pos:"n", ex:"Conosci un buon ristorante?", exEn:"Do you know a good restaurant?"},
-  {t:"cibo", w:"il bar", en:"bar, café", pos:"n", ex:"Ci vediamo al bar.", exEn:"See you at the café."},
+  /* ---------------- IN CUCINA ---------------- */
+  {t:"tavola2", w:"il piatto", en:"plate; dish", pos:"n", ex:"Il piatto è ancora caldo.", exEn:"The plate is still hot."},
+  {t:"tavola2", w:"il bicchiere", en:"glass", pos:"n", ex:"Vuoi un bicchiere d'acqua?", exEn:"Do you want a glass of water?"},
+  {t:"tavola2", w:"la tazza", en:"cup", pos:"n", ex:"Bevo il caffè in una tazza grande.", exEn:"I drink my coffee in a big cup."},
+  {t:"tavola2", w:"la forchetta", en:"fork", pos:"n", ex:"Manca una forchetta.", exEn:"There's a fork missing."},
+  {t:"tavola2", w:"il coltello", en:"knife", pos:"n", ex:"Questo coltello non taglia.", exEn:"This knife doesn't cut."},
+  {t:"tavola2", w:"il cucchiaio", en:"spoon", pos:"n", ex:"Mescola con il cucchiaio.", exEn:"Stir it with the spoon."},
+  {t:"tavola2", w:"la bottiglia", en:"bottle", pos:"n", ex:"Apri la bottiglia, per favore.", exEn:"Open the bottle, please."},
+  {t:"tavola2", w:"la pentola", en:"pot, pan", pos:"n", ex:"L'acqua bolle nella pentola.", exEn:"The water is boiling in the pot."},
+  {t:"tavola2", w:"il forno", en:"oven", pos:"n", ex:"Il forno è ancora caldo.", exEn:"The oven is still hot."},
+  {t:"tavola2", w:"il fuoco", en:"heat, flame", pos:"n", ex:"Abbassa il fuoco.", exEn:"Turn the heat down."},
+  {t:"tavola2", w:"l'olio", en:"oil", pos:"n", ex:"Metti un po' d'olio.", exEn:"Add a bit of oil."},
+  {t:"tavola2", w:"l'aceto", en:"vinegar", pos:"n", ex:"Nell'insalata ci vuole l'aceto.", exEn:"The salad needs vinegar."},
+  {t:"tavola2", w:"il burro", en:"butter", pos:"n", ex:"Il burro è nel frigorifero.", exEn:"The butter is in the fridge."},
+  {t:"tavola2", w:"l'uovo", en:"egg", pos:"n", ex:"Metto due uova nell'impasto.", exEn:"I put two eggs in the mixture."},
+  {t:"tavola2", w:"il riso", en:"rice", pos:"n", ex:"Stasera facciamo il riso.", exEn:"Tonight we're making rice."},
+  {t:"tavola2", w:"la minestra", en:"soup", pos:"n", ex:"D'inverno mangio la minestra.", exEn:"In winter I eat soup."},
+  {t:"tavola2", w:"l'insalata", en:"salad", pos:"n", ex:"Prendo solo un'insalata.", exEn:"I'll just have a salad."},
+  {t:"tavola2", w:"il pomodoro", en:"tomato", pos:"n", ex:"I pomodori sono maturi.", exEn:"The tomatoes are ripe."},
+  {t:"tavola2", w:"la patata", en:"potato", pos:"n", ex:"Le patate al forno sono pronte.", exEn:"The roast potatoes are ready."},
+  {t:"tavola2", w:"il dolce", en:"dessert, cake", pos:"n", ex:"Chi ha portato il dolce?", exEn:"Who brought the dessert?"},
+  {t:"tavola2", w:"il gelato", en:"ice cream", pos:"n", ex:"Prendiamo un gelato?", exEn:"Shall we get an ice cream?"},
+  {t:"tavola2", w:"il sapore", en:"taste, flavour", pos:"n", ex:"Ha un sapore strano.", exEn:"It has a strange taste."},
+  /* ---------------- IN VIAGGIO ---------------- */
+  {t:"viaggio2", w:"l'aeroporto", en:"airport", pos:"n", ex:"L'aeroporto è a mezz'ora da qui.", exEn:"The airport is half an hour from here."},
+  {t:"viaggio2", w:"il volo", en:"flight", pos:"n", ex:"Il volo è stato cancellato.", exEn:"The flight was cancelled."},
+  {t:"viaggio2", w:"il binario", en:"platform", pos:"n", ex:"Il treno parte dal binario cinque.", exEn:"The train leaves from platform five."},
+  {t:"viaggio2", w:"il ritardo", en:"delay", pos:"n", ex:"Abbiamo mezz'ora di ritardo.", exEn:"We have a half-hour delay."},
+  {t:"viaggio2", w:"la fermata", en:"stop", pos:"n", ex:"Scendo alla prossima fermata.", exEn:"I get off at the next stop."},
+  {t:"viaggio2", w:"la metropolitana", en:"underground, metro", pos:"n", ex:"La metropolitana è più veloce.", exEn:"The underground is faster."},
+  {t:"viaggio2", w:"il taxi", en:"taxi", pos:"n", ex:"Chiamo un taxi.", exEn:"I'll call a taxi."},
+  {t:"viaggio2", w:"la benzina", en:"petrol", pos:"n", ex:"Devo mettere benzina.", exEn:"I need to get petrol."},
+  {t:"viaggio2", w:"il parcheggio", en:"car park", pos:"n", ex:"Il parcheggio è a pagamento.", exEn:"You have to pay for the car park."},
+  {t:"viaggio2", w:"la patente", en:"driving licence", pos:"n", ex:"Ho preso la patente a diciannove anni.", exEn:"I got my driving licence at nineteen."},
+  {t:"viaggio2", w:"il passaporto", en:"passport", pos:"n", ex:"Il passaporto scade a maggio.", exEn:"The passport expires in May."},
+  {t:"viaggio2", w:"la carta d'identità", en:"identity card", pos:"n", ex:"Basta la carta d'identità.", exEn:"An identity card is enough."},
+  {t:"viaggio2", w:"la prenotazione", en:"booking", pos:"n", ex:"Ho una prenotazione a nome Rossi.", exEn:"I have a booking under the name Rossi."},
+  {t:"viaggio2", w:"il bagaglio", en:"luggage", pos:"n", ex:"Il bagaglio è arrivato dopo di me.", exEn:"My luggage arrived after me."},
+  {t:"viaggio2", w:"la mappa", en:"map", pos:"n", ex:"Guardo la mappa sul telefono.", exEn:"I look at the map on my phone."},
+  {t:"viaggio2", w:"il ponte", en:"bridge", pos:"n", ex:"Il ponte è chiuso per lavori.", exEn:"The bridge is closed for roadworks."},
+  {t:"viaggio2", w:"il lago", en:"lake", pos:"n", ex:"D'estate andiamo al lago.", exEn:"In summer we go to the lake."},
+  {t:"viaggio2", w:"l'isola", en:"island", pos:"n", ex:"L'isola si raggiunge in traghetto.", exEn:"You get to the island by ferry."},
+  {t:"viaggio2", w:"il paese", en:"village", pos:"n", ex:"Vengo da un paese di mille abitanti.", exEn:"I come from a village of a thousand people."},
+  {t:"viaggio2", w:"il confine", en:"border", pos:"n", ex:"Il confine è a venti chilometri.", exEn:"The border is twenty kilometres away."},
+  {t:"viaggio2", w:"la gita", en:"day trip", pos:"n", ex:"Domenica facciamo una gita.", exEn:"On Sunday we're going on a day trip."},
+  {t:"viaggio2", w:"il posto", en:"seat; place", pos:"n", ex:"Questo posto è libero?", exEn:"Is this seat free?"},
 
-  /* ---------------- IL CORPO ---------------- */
-  {t:"corpo", w:"la testa", en:"head", pos:"n", ex:"Metto il cappello in testa.", exEn:"I put the hat on my head."},
-  {t:"corpo", w:"l'occhio", en:"eye", pos:"n", ex:"Anna ha gli occhi verdi.", exEn:"Anna has green eyes."},
-  {t:"corpo", w:"la bocca", en:"mouth", pos:"n", ex:"Non parlare con la bocca piena.", exEn:"Don't talk with your mouth full."},
-  {t:"corpo", w:"la mano", en:"hand", pos:"n", ex:"Dammi la mano.", exEn:"Give me your hand."},
-  {t:"corpo", w:"il braccio", en:"arm", pos:"n", ex:"Porta la borsa sotto il braccio.", exEn:"He carries the bag under his arm."},
-  {t:"corpo", w:"la gamba", en:"leg", pos:"n", ex:"Dopo la camminata ho le gambe stanche.", exEn:"After the walk my legs are tired."},
-  {t:"corpo", w:"il piede", en:"foot", pos:"n", ex:"Vado a scuola a piedi.", exEn:"I walk to school."},
-  {t:"corpo", w:"il dito", en:"finger", pos:"n", ex:"Ha un anello al dito.", exEn:"She has a ring on her finger."},
-  {t:"corpo", w:"i capelli", en:"hair", pos:"n", ex:"Marco ha i capelli lunghi.", exEn:"Marco has long hair."},
-  {t:"corpo", w:"la faccia", en:"face", pos:"n", ex:"Mi lavo la faccia con l'acqua fredda.", exEn:"I wash my face with cold water."},
+  /* ---------------- I RAPPORTI ---------------- */
+  {t:"persone2", w:"lo zio", en:"uncle", pos:"n", ex:"Mio zio abita in Germania.", exEn:"My uncle lives in Germany."},
+  {t:"persone2", w:"la zia", en:"aunt", pos:"n", ex:"La zia porta sempre i dolci.", exEn:"My aunt always brings cakes."},
+  {t:"persone2", w:"il cugino", en:"cousin", pos:"n", ex:"Ho tanti cugini.", exEn:"I have lots of cousins."},
+  {t:"persone2", w:"il nipote", en:"nephew, grandson", pos:"n", ex:"Mio nipote ha appena imparato a camminare.", exEn:"My nephew has just learnt to walk."},
+  {t:"persone2", w:"i genitori", en:"parents", pos:"n", ex:"I miei genitori abitano ancora lì.", exEn:"My parents still live there."},
+  {t:"persone2", w:"il vicino", en:"neighbour", pos:"n", ex:"Il vicino fa rumore la sera.", exEn:"The neighbour makes noise in the evening."},
+  {t:"persone2", w:"il fidanzato", en:"boyfriend, partner", pos:"n", ex:"Il suo fidanzato è spagnolo.", exEn:"Her boyfriend is Spanish."},
+  {t:"persone2", w:"il matrimonio", en:"wedding", pos:"n", ex:"Il matrimonio è a settembre.", exEn:"The wedding is in September."},
+  {t:"persone2", w:"il compleanno", en:"birthday", pos:"n", ex:"Il mio compleanno è a marzo.", exEn:"My birthday is in March."},
+  {t:"persone2", w:"l'amicizia", en:"friendship", pos:"n", ex:"È un'amicizia di vent'anni.", exEn:"It's a twenty-year friendship."},
+  {t:"persone2", w:"il rapporto", en:"relationship", pos:"n", ex:"Hanno un buon rapporto.", exEn:"They have a good relationship."},
+  {t:"persone2", w:"l'appuntamento", en:"appointment, date", pos:"n", ex:"Ho un appuntamento alle cinque.", exEn:"I have an appointment at five."},
+  {t:"persone2", w:"il gruppo", en:"group", pos:"n", ex:"Siamo un gruppo di sei.", exEn:"We're a group of six."},
+  {t:"persone2", w:"la coppia", en:"couple", pos:"n", ex:"Sono una coppia da dieci anni.", exEn:"They've been a couple for ten years."},
+  {t:"persone2", w:"l'ospite", en:"guest", pos:"n", ex:"Stasera abbiamo ospiti.", exEn:"Tonight we have guests."},
+  {t:"persone2", w:"il favore", en:"favour", pos:"n", ex:"Mi fai un favore?", exEn:"Will you do me a favour?"},
+  {t:"persone2", w:"la fiducia", en:"trust", pos:"n", ex:"Ci vuole tempo per costruire la fiducia.", exEn:"It takes time to build trust."},
+  {t:"persone2", w:"la promessa", en:"promise", pos:"n", ex:"Ha mantenuto la promessa.", exEn:"He kept his promise."},
+  {t:"persone2", w:"la lite", en:"argument, row", pos:"n", ex:"Dopo la lite non si parlano più.", exEn:"After the row they don't speak any more."},
+  {t:"persone2", w:"la scusa", en:"excuse; apology", pos:"n", ex:"Non è una buona scusa.", exEn:"That's not a good excuse."},
 
-  /* ---------------- FUORI CASA ---------------- */
-  {t:"citta", w:"la città", en:"city", pos:"n", ex:"Torino è una bella città.", exEn:"Turin is a beautiful city."},
-  {t:"citta", w:"la strada", en:"street, road", pos:"n", ex:"La strada è chiusa.", exEn:"The road is closed."},
-  {t:"citta", w:"la piazza", en:"square", pos:"n", ex:"Ci vediamo in piazza.", exEn:"See you in the square."},
-  {t:"citta", w:"il centro", en:"town centre", pos:"n", ex:"Abito in centro.", exEn:"I live in the town centre."},
-  {t:"citta", w:"il negozio", en:"shop", pos:"n", ex:"Il negozio apre alle nove.", exEn:"The shop opens at nine."},
-  {t:"citta", w:"il mercato", en:"market", pos:"n", ex:"Il sabato vado al mercato.", exEn:"On Saturdays I go to the market."},
-  {t:"citta", w:"la banca", en:"bank", pos:"n", ex:"Devo andare in banca.", exEn:"I have to go to the bank."},
-  {t:"citta", w:"la scuola", en:"school", pos:"n", ex:"I bambini sono a scuola.", exEn:"The children are at school."},
-  {t:"citta", w:"il lavoro", en:"work, job", pos:"n", ex:"Ho trovato un lavoro nuovo.", exEn:"I've found a new job."},
-  {t:"citta", w:"l'ufficio", en:"office", pos:"n", ex:"L'ufficio è al terzo piano.", exEn:"The office is on the third floor."},
-  {t:"citta", w:"la stazione", en:"station", pos:"n", ex:"Ci vediamo in stazione.", exEn:"See you at the station."},
-  {t:"citta", w:"il treno", en:"train", pos:"n", ex:"Il treno parte alle otto.", exEn:"The train leaves at eight."},
-  {t:"citta", w:"l'autobus", en:"bus", pos:"n", ex:"Prendo l'autobus tutte le mattine.", exEn:"I take the bus every morning."},
-  {t:"citta", w:"la macchina", en:"car", pos:"n", ex:"La macchina è parcheggiata qui.", exEn:"The car is parked here."},
-  {t:"citta", w:"l'aereo", en:"plane", pos:"n", ex:"L'aereo è in ritardo.", exEn:"The plane is late."},
-  {t:"citta", w:"il biglietto", en:"ticket", pos:"n", ex:"Ho comprato il biglietto online.", exEn:"I bought the ticket online."},
-  {t:"citta", w:"l'albergo", en:"hotel", pos:"n", ex:"L'albergo è in centro.", exEn:"The hotel is in the centre."},
-  {t:"citta", w:"la valigia", en:"suitcase", pos:"n", ex:"La valigia è troppo pesante.", exEn:"The suitcase is too heavy."},
-  {t:"citta", w:"il viaggio", en:"journey, trip", pos:"n", ex:"Buon viaggio!", exEn:"Have a good trip!"},
-  {t:"citta", w:"il mare", en:"sea, seaside", pos:"n", ex:"D'estate andiamo al mare.", exEn:"In summer we go to the seaside."},
-  {t:"citta", w:"la montagna", en:"mountain", pos:"n", ex:"In montagna fa fresco.", exEn:"It's cool in the mountains."},
-  {t:"citta", w:"i soldi", en:"money", pos:"n", ex:"Non ho soldi con me.", exEn:"I don't have any money on me."},
+  /* ---------------- CARATTERE E SENTIMENTI ---------------- */
+  {t:"carattere", w:"la gioia", en:"joy", pos:"n", ex:"Che gioia vederti!", exEn:"What a joy to see you!"},
+  {t:"carattere", w:"la paura", en:"fear", pos:"n", ex:"Ho paura dei ragni.", exEn:"I'm afraid of spiders."},
+  {t:"carattere", w:"la rabbia", en:"anger", pos:"n", ex:"Ha reagito con rabbia.", exEn:"He reacted with anger."},
+  {t:"carattere", w:"la noia", en:"boredom", pos:"n", ex:"Muoio di noia.", exEn:"I'm dying of boredom."},
+  {t:"carattere", w:"la sorpresa", en:"surprise", pos:"n", ex:"Che bella sorpresa!", exEn:"What a nice surprise!"},
+  {t:"carattere", w:"il coraggio", en:"courage", pos:"n", ex:"Ci vuole coraggio.", exEn:"It takes courage."},
+  {t:"carattere", w:"la pazienza", en:"patience", pos:"n", ex:"Con i bambini ci vuole pazienza.", exEn:"With children you need patience."},
+  {t:"carattere", w:"la speranza", en:"hope", pos:"n", ex:"Non ho perso la speranza.", exEn:"I haven't lost hope."},
+  {t:"carattere", w:"il carattere", en:"personality", pos:"n", ex:"Ha un bel carattere.", exEn:"She has a nice personality."},
+  {t:"carattere", w:"l'umore", en:"mood", pos:"n", ex:"Oggi è di buon umore.", exEn:"He's in a good mood today."},
+  {t:"carattere", w:"il sogno", en:"dream", pos:"n", ex:"È il sogno di una vita.", exEn:"It's a lifelong dream."},
+  {t:"carattere", w:"il ricordo", en:"a memory, a recollection", pos:"n", ex:"Ho un bel ricordo di quel giorno.", exEn:"I have a nice memory of that day."},
+  {t:"carattere", w:"l'idea", en:"idea", pos:"n", ex:"Ho un'idea migliore.", exEn:"I have a better idea."},
+  {t:"carattere", w:"il dubbio", en:"doubt", pos:"n", ex:"Ho ancora qualche dubbio.", exEn:"I still have a few doubts."},
+  {t:"carattere", w:"la voglia", en:"the urge, the wish", pos:"n", ex:"Non ho voglia di uscire.", exEn:"I don't feel like going out."},
+  {t:"carattere", w:"il bisogno", en:"need", pos:"n", ex:"Non c'è bisogno di correre.", exEn:"There's no need to rush."},
+  {t:"carattere", w:"simpatico", en:"nice, likeable", pos:"a", ex:"Il tuo collega è simpatico.", exEn:"Your colleague is likeable."},
+  {t:"carattere", w:"antipatico", en:"unpleasant, off-putting", pos:"a", ex:"Quel tipo è antipatico.", exEn:"That guy is unpleasant."},
+  {t:"carattere", w:"allegro", en:"cheerful", pos:"a", ex:"È sempre allegro.", exEn:"He's always cheerful."},
+  {t:"carattere", w:"triste", en:"sad", pos:"a", ex:"La fine del film è triste.", exEn:"The end of the film is sad."},
+  {t:"carattere", w:"tranquillo", en:"calm, relaxed", pos:"a", ex:"Sta' tranquillo, arriviamo in tempo.", exEn:"Relax, we'll get there in time."},
+  {t:"carattere", w:"nervoso", en:"tense, on edge", pos:"a", ex:"Prima di parlare in pubblico divento nervoso.", exEn:"Before speaking in public I get tense."},
+  {t:"carattere", w:"timido", en:"shy", pos:"a", ex:"Da piccolo era timido.", exEn:"As a child he was shy."},
+  {t:"carattere", w:"severo", en:"strict", pos:"a", ex:"L'insegnante è severo ma giusto.", exEn:"The teacher is strict but fair."},
+  /* ---------------- FUORI, E IL TEMPO CHE FA ---------------- */
+  {t:"natura", w:"il cielo", en:"sky", pos:"n", ex:"Il cielo è grigio.", exEn:"The sky is grey."},
+  {t:"natura", w:"il sole", en:"sun", pos:"n", ex:"Oggi c'è il sole.", exEn:"It's sunny today."},
+  {t:"natura", w:"la pioggia", en:"rain", pos:"n", ex:"La pioggia non smette.", exEn:"The rain won't stop."},
+  {t:"natura", w:"la neve", en:"snow", pos:"n", ex:"In montagna c'è ancora la neve.", exEn:"There's still snow in the mountains."},
+  {t:"natura", w:"il vento", en:"wind", pos:"n", ex:"Oggi tira vento.", exEn:"It's windy today."},
+  {t:"natura", w:"la nebbia", en:"fog", pos:"n", ex:"Con la nebbia si guida piano.", exEn:"In fog you drive slowly."},
+  {t:"natura", w:"il temporale", en:"storm", pos:"n", ex:"È arrivato un temporale.", exEn:"A storm came."},
+  {t:"natura", w:"la nuvola", en:"cloud", pos:"n", ex:"Non c'è una nuvola.", exEn:"There isn't a cloud."},
+  {t:"natura", w:"l'estate", en:"summer", pos:"n", ex:"L'estate qui è lunga.", exEn:"Summer is long here."},
+  {t:"natura", w:"l'inverno", en:"winter", pos:"n", ex:"L'inverno dura fino a marzo.", exEn:"Winter lasts until March."},
+  {t:"natura", w:"la primavera", en:"spring", pos:"n", ex:"In primavera fioriscono i ciliegi.", exEn:"In spring the cherry trees blossom."},
+  {t:"natura", w:"l'autunno", en:"autumn", pos:"n", ex:"In autunno cadono le foglie.", exEn:"In autumn the leaves fall."},
+  {t:"natura", w:"l'albero", en:"tree", pos:"n", ex:"Sotto l'albero c'è ombra.", exEn:"There's shade under the tree."},
+  {t:"natura", w:"il fiore", en:"flower", pos:"n", ex:"Le ho portato dei fiori.", exEn:"I brought her some flowers."},
+  {t:"natura", w:"l'erba", en:"grass", pos:"n", ex:"L'erba è bagnata.", exEn:"The grass is wet."},
+  {t:"natura", w:"il bosco", en:"wood, forest", pos:"n", ex:"Facciamo una camminata nel bosco.", exEn:"Let's take a walk in the woods."},
+  {t:"natura", w:"il campo", en:"field", pos:"n", ex:"Il campo è pieno di grano.", exEn:"The field is full of wheat."},
+  {t:"natura", w:"l'animale", en:"animal", pos:"n", ex:"Che animale è?", exEn:"What animal is that?"},
 
-  /* ---------------- I VERBI ---------------- */
-  {t:"verbi", w:"essere", en:"to be", pos:"v", ex:"Sono italiano.", exEn:"I'm Italian."},
-  {t:"verbi", w:"avere", en:"to have", pos:"v", ex:"Ho due fratelli.", exEn:"I have two brothers."},
-  {t:"verbi", w:"fare", en:"to do, to make", pos:"v", ex:"Che lavoro fai?", exEn:"What do you do for a living?"},
-  {t:"verbi", w:"andare", en:"to go", pos:"v", ex:"Domani vado a Roma.", exEn:"Tomorrow I'm going to Rome."},
-  {t:"verbi", w:"venire", en:"to come", pos:"v", ex:"Vieni con noi?", exEn:"Are you coming with us?"},
-  {t:"verbi", w:"potere", en:"can, to be able to", pos:"v", ex:"Non posso venire stasera.", exEn:"I can't come tonight."},
-  {t:"verbi", w:"volere", en:"to want", pos:"v", ex:"Voglio imparare l'italiano.", exEn:"I want to learn Italian."},
-  {t:"verbi", w:"dovere", en:"must, to have to", pos:"v", ex:"Devo andare, scusa.", exEn:"I have to go, sorry."},
-  {t:"verbi", w:"sapere", en:"to know (a fact)", pos:"v", ex:"Non so dov'è.", exEn:"I don't know where it is."},
-  {t:"verbi", w:"conoscere", en:"to know (a person, a place)", pos:"v", ex:"Conosci Marco?", exEn:"Do you know Marco?"},
-  {t:"verbi", w:"dire", en:"to say, to tell", pos:"v", ex:"Che cosa hai detto?", exEn:"What did you say?"},
-  {t:"verbi", w:"vedere", en:"to see", pos:"v", ex:"Da qui non vedo niente.", exEn:"I can't see anything from here."},
-  {t:"verbi", w:"sentire", en:"to hear, to feel", pos:"v", ex:"Non ti sento bene.", exEn:"I can't hear you well."},
-  {t:"verbi", w:"parlare", en:"to speak, to talk", pos:"v", ex:"Parli inglese?", exEn:"Do you speak English?"},
-  {t:"verbi", w:"capire", en:"to understand", pos:"v", ex:"Scusa, non ho capito.", exEn:"Sorry, I didn't understand."},
-  {t:"verbi", w:"mangiare", en:"to eat", pos:"v", ex:"Mangiamo alle otto.", exEn:"We eat at eight."},
-  {t:"verbi", w:"bere", en:"to drink", pos:"v", ex:"Bevo molta acqua.", exEn:"I drink a lot of water."},
-  {t:"verbi", w:"dormire", en:"to sleep", pos:"v", ex:"Dormo otto ore.", exEn:"I sleep eight hours."},
-  {t:"verbi", w:"lavorare", en:"to work", pos:"v", ex:"Lavoro da casa.", exEn:"I work from home."},
-  {t:"verbi", w:"studiare", en:"to study", pos:"v", ex:"Studio italiano da sei mesi.", exEn:"I've been studying Italian for six months."},
-  {t:"verbi", w:"abitare", en:"to live (somewhere)", pos:"v", ex:"Abito a Torino.", exEn:"I live in Turin."},
-  {t:"verbi", w:"comprare", en:"to buy", pos:"v", ex:"Ho comprato il pane.", exEn:"I bought the bread."},
-  {t:"verbi", w:"pagare", en:"to pay", pos:"v", ex:"Pago io.", exEn:"I'll pay."},
-  {t:"verbi", w:"costare", en:"to cost", pos:"v", ex:"Quanto costa?", exEn:"How much does it cost?"},
-  {t:"verbi", w:"aprire", en:"to open", pos:"v", ex:"Il museo apre alle dieci.", exEn:"The museum opens at ten."},
-  {t:"verbi", w:"chiudere", en:"to close, to shut", pos:"v", ex:"Chiudo il computer e vengo.", exEn:"I'll close the laptop and come."},
-  {t:"verbi", w:"prendere", en:"to take; to get (a coffee, a train)", pos:"v", ex:"Prendo un caffè.", exEn:"I'll have a coffee."},
-  {t:"verbi", w:"dare", en:"to give", pos:"v", ex:"Mi dai il sale?", exEn:"Can you pass me the salt?"},
-  {t:"verbi", w:"leggere", en:"to read", pos:"v", ex:"Leggo il giornale la mattina.", exEn:"I read the paper in the morning."},
-  {t:"verbi", w:"scrivere", en:"to write", pos:"v", ex:"Ti scrivo domani.", exEn:"I'll write to you tomorrow."},
-  {t:"verbi", w:"uscire", en:"to go out", pos:"v", ex:"Stasera esco con gli amici.", exEn:"Tonight I'm going out with friends."},
-  {t:"verbi", w:"tornare", en:"to go back, to return", pos:"v", ex:"Torno a casa alle sette.", exEn:"I get home at seven."},
-  {t:"verbi", w:"aspettare", en:"to wait for", pos:"v", ex:"Aspetto l'autobus.", exEn:"I'm waiting for the bus."},
-  {t:"verbi", w:"chiamare", en:"to call", pos:"v", ex:"Ti chiamo stasera.", exEn:"I'll call you tonight."},
-  {t:"verbi", w:"cercare", en:"to look for", pos:"v", ex:"Cerco la stazione.", exEn:"I'm looking for the station."},
-  {t:"verbi", w:"trovare", en:"to find", pos:"v", ex:"Non trovo il biglietto.", exEn:"I can't find my ticket."},
-  {t:"verbi", w:"usare", en:"to use", pos:"v", ex:"Posso usare il tuo telefono?", exEn:"Can I use your phone?"},
-  {t:"verbi", w:"preparare", en:"to prepare, to make", pos:"v", ex:"Preparo la cena.", exEn:"I'm making dinner."},
-  {t:"verbi", w:"ridere", en:"to laugh", pos:"v", ex:"Ridiamo sempre insieme.", exEn:"We always laugh together."},
-  {t:"verbi", w:"piacere", en:"to like (literally: to be pleasing)", pos:"v", ex:"Mi piace la musica italiana.", exEn:"I like Italian music."},
+  /* ---------------- SERVIZI E DOCUMENTI ---------------- */
+  {t:"servizi", w:"la posta", en:"post office; mail", pos:"n", ex:"Vado alla posta.", exEn:"I'm going to the post office."},
+  {t:"servizi", w:"il francobollo", en:"stamp", pos:"n", ex:"Serve un francobollo.", exEn:"You need a stamp."},
+  {t:"servizi", w:"la lettera", en:"letter", pos:"n", ex:"Ho ricevuto una lettera dal comune.", exEn:"I got a letter from the council."},
+  {t:"servizi", w:"il modulo", en:"form", pos:"n", ex:"Bisogna compilare il modulo.", exEn:"You have to fill in the form."},
+  {t:"servizi", w:"la firma", en:"signature", pos:"n", ex:"Manca la firma qui.", exEn:"Your signature is missing here."},
+  {t:"servizi", w:"il documento", en:"document, ID", pos:"n", ex:"Mi ha chiesto un documento.", exEn:"He asked me for ID."},
+  {t:"servizi", w:"il comune", en:"town hall, council", pos:"n", ex:"Il comune apre alle otto e mezza.", exEn:"The town hall opens at half past eight."},
+  {t:"servizi", w:"l'indirizzo", en:"address", pos:"n", ex:"Mi dai il tuo indirizzo?", exEn:"Can you give me your address?"},
+  {t:"servizi", w:"il numero", en:"number", pos:"n", ex:"Ho sbagliato numero.", exEn:"I dialled the wrong number."},
+  {t:"servizi", w:"la polizia", en:"police", pos:"n", ex:"Ha chiamato la polizia.", exEn:"He called the police."},
+  {t:"servizi", w:"la biblioteca", en:"library", pos:"n", ex:"La biblioteca è aperta anche il sabato.", exEn:"The library is open on Saturdays too."},
+  {t:"servizi", w:"il museo", en:"museum", pos:"n", ex:"Il museo è gratis la prima domenica.", exEn:"The museum is free on the first Sunday."},
+  {t:"servizi", w:"la chiesa", en:"church", pos:"n", ex:"La chiesa è del Quattrocento.", exEn:"The church is from the fifteenth century."},
+  {t:"servizi", w:"il parco", en:"park", pos:"n", ex:"Il parco chiude al tramonto.", exEn:"The park closes at sunset."},
+  {t:"servizi", w:"l'edicola", en:"newsstand", pos:"n", ex:"L'edicola apre alle sei.", exEn:"The newsstand opens at six."},
+  {t:"servizi", w:"la fila", en:"queue", pos:"n", ex:"C'è una fila lunga.", exEn:"There's a long queue."},
 
-  /* ---------------- GLI AGGETTIVI ---------------- */
-  {t:"aggettivi", w:"grande", en:"big, large", pos:"a", ex:"Milano è una città grande.", exEn:"Milan is a big city."},
-  {t:"aggettivi", w:"piccolo", en:"small", pos:"a", ex:"Ho una casa piccola.", exEn:"I have a small house."},
-  {t:"aggettivi", w:"buono", en:"good", pos:"a", ex:"Questo caffè è buono.", exEn:"This coffee is good."},
-  {t:"aggettivi", w:"cattivo", en:"bad", pos:"a", ex:"Questo vino è cattivo.", exEn:"This wine is bad."},
-  {t:"aggettivi", w:"bello", en:"beautiful, nice", pos:"a", ex:"Che bella giornata!", exEn:"What a lovely day!"},
-  {t:"aggettivi", w:"brutto", en:"ugly", pos:"a", ex:"Quel palazzo è brutto.", exEn:"That building is ugly."},
-  {t:"aggettivi", w:"nuovo", en:"new", pos:"a", ex:"Ho una macchina nuova.", exEn:"I have a new car."},
-  {t:"aggettivi", w:"vecchio", en:"old", pos:"a", ex:"Questo libro è molto vecchio.", exEn:"This book is very old."},
-  {t:"aggettivi", w:"giovane", en:"young", pos:"a", ex:"Il professore è giovane.", exEn:"The teacher is young."},
-  {t:"aggettivi", w:"facile", en:"easy", pos:"a", ex:"L'esercizio è facile.", exEn:"The exercise is easy."},
-  {t:"aggettivi", w:"difficile", en:"difficult, hard", pos:"a", ex:"L'italiano non è difficile.", exEn:"Italian isn't difficult."},
-  {t:"aggettivi", w:"caldo", en:"hot, warm", pos:"a", ex:"Oggi fa caldo.", exEn:"It's hot today."},
-  {t:"aggettivi", w:"freddo", en:"cold", pos:"a", ex:"L'acqua è fredda.", exEn:"The water is cold."},
-  {t:"aggettivi", w:"lungo", en:"long", pos:"a", ex:"Il film è lungo.", exEn:"The film is long."},
-  {t:"aggettivi", w:"corto", en:"short", pos:"a", ex:"Ho i capelli corti.", exEn:"I have short hair."},
-  {t:"aggettivi", w:"vicino", en:"near, close", pos:"a", ex:"Il bar è vicino.", exEn:"The café is close."},
-  {t:"aggettivi", w:"lontano", en:"far", pos:"a", ex:"La stazione è lontana.", exEn:"The station is far."},
-  {t:"aggettivi", w:"primo", en:"first", pos:"a", ex:"È la mia prima lezione.", exEn:"It's my first lesson."},
-  {t:"aggettivi", w:"ultimo", en:"last", pos:"a", ex:"L'ultimo treno parte a mezzanotte.", exEn:"The last train leaves at midnight."},
-  {t:"aggettivi", w:"stanco", en:"tired", pos:"a", ex:"Sono stanco, vado a dormire.", exEn:"I'm tired, I'm going to sleep."},
-  {t:"aggettivi", w:"contento", en:"happy, glad", pos:"a", ex:"Sono contento di vederti.", exEn:"I'm glad to see you."},
-  {t:"aggettivi", w:"pronto", en:"ready", pos:"a", ex:"Sei pronto?", exEn:"Are you ready?"},
-  {t:"aggettivi", w:"aperto", en:"open", pos:"a", ex:"Il negozio è aperto.", exEn:"The shop is open."},
-  {t:"aggettivi", w:"chiuso", en:"closed, shut", pos:"a", ex:"La banca è chiusa.", exEn:"The bank is closed."},
-  {t:"aggettivi", w:"caro", en:"expensive; dear", pos:"a", ex:"Questo albergo è caro.", exEn:"This hotel is expensive."},
-  {t:"aggettivi", w:"gentile", en:"kind", pos:"a", ex:"Il tuo amico è molto gentile.", exEn:"Your friend is very kind."}
+  /* ---------------- ALTRI VERBI ---------------- */
+  {t:"verbi2", w:"cominciare", en:"to begin", pos:"v", ex:"La lezione comincia fra dieci minuti.", exEn:"The lesson begins in ten minutes."},
+  {t:"verbi2", w:"finire", en:"to finish", pos:"v", ex:"Finisco alle sei.", exEn:"I finish at six."},
+  {t:"verbi2", w:"continuare", en:"to continue, to keep on", pos:"v", ex:"Continua a piovere.", exEn:"It keeps raining."},
+  {t:"verbi2", w:"smettere", en:"to quit", pos:"v", ex:"Ha smesso di fumare.", exEn:"He quit smoking."},
+  {t:"verbi2", w:"provare", en:"to try", pos:"v", ex:"Provo a chiamarlo.", exEn:"I'll try to call him."},
+  {t:"verbi2", w:"riuscire", en:"to manage, to succeed", pos:"v", ex:"Non riesco ad aprire la porta.", exEn:"I can't manage to open the door."},
+  {t:"verbi2", w:"sembrare", en:"to seem", pos:"v", ex:"Sembra facile, ma non lo è.", exEn:"It seems easy, but it isn't."},
+  {t:"verbi2", w:"diventare", en:"to become", pos:"v", ex:"È diventato famoso.", exEn:"He became famous."},
+  {t:"verbi2", w:"cambiare", en:"to change", pos:"v", ex:"Ho cambiato idea.", exEn:"I changed my mind."},
+  {t:"verbi2", w:"ricordare", en:"to remember", pos:"v", ex:"Non ricordo il suo nome.", exEn:"I don't remember his name."},
+  {t:"verbi2", w:"dimenticare", en:"to forget", pos:"v", ex:"Ho dimenticato le chiavi.", exEn:"I forgot the keys."},
+  {t:"verbi2", w:"spiegare", en:"to explain", pos:"v", ex:"Me lo spieghi di nuovo?", exEn:"Can you explain it again?"},
+  {t:"verbi2", w:"imparare", en:"to learn", pos:"v", ex:"Ho imparato a cucinare da mia nonna.", exEn:"I learnt to cook from my grandmother."},
+  {t:"verbi2", w:"insegnare", en:"to teach", pos:"v", ex:"Insegna italiano da dieci anni.", exEn:"She's been teaching Italian for ten years."},
+  {t:"verbi2", w:"rispondere", en:"to answer", pos:"v", ex:"Non ha risposto al messaggio.", exEn:"He didn't answer the message."},
+  {t:"verbi2", w:"chiedere", en:"to ask", pos:"v", ex:"Chiedo io il conto.", exEn:"I'll ask for the bill."},
+  {t:"verbi2", w:"portare", en:"to bring, to carry", pos:"v", ex:"Porto io il dolce.", exEn:"I'll bring the dessert."},
+  {t:"verbi2", w:"mettere", en:"to put", pos:"v", ex:"Metti la giacca, fa freddo.", exEn:"Put your jacket on, it's cold."},
+  {t:"verbi2", w:"perdere", en:"to lose; to miss", pos:"v", ex:"Ho perso il treno.", exEn:"I missed the train."},
+  {t:"verbi2", w:"vincere", en:"to win", pos:"v", ex:"Abbiamo vinto la partita.", exEn:"We won the match."},
+  {t:"verbi2", w:"giocare", en:"to play", pos:"v", ex:"I bambini giocano in giardino.", exEn:"The children are playing in the garden."},
+  {t:"verbi2", w:"correre", en:"to run", pos:"v", ex:"Corro tre volte alla settimana.", exEn:"I run three times a week."},
+  {t:"verbi2", w:"camminare", en:"to walk", pos:"v", ex:"Abbiamo camminato per due ore.", exEn:"We walked for two hours."},
+  {t:"verbi2", w:"salire", en:"to go up; to board", pos:"v", ex:"Salgo in ascensore.", exEn:"I'll take the lift up."},
+  {t:"verbi2", w:"scendere", en:"to go down; to get off", pos:"v", ex:"Scendo alla prossima.", exEn:"I'm getting off at the next one."},
+  {t:"verbi2", w:"entrare", en:"to enter", pos:"v", ex:"Entra pure.", exEn:"Do come in."},
+  {t:"verbi2", w:"restare", en:"to stay", pos:"v", ex:"Resto ancora un giorno.", exEn:"I'm staying one more day."},
+  {t:"verbi2", w:"partire", en:"to depart", pos:"v", ex:"Partiamo alle sette.", exEn:"We leave at seven."},
+  {t:"verbi2", w:"arrivare", en:"to arrive", pos:"v", ex:"Arrivo fra dieci minuti.", exEn:"I'll arrive in ten minutes."},
+  {t:"verbi2", w:"viaggiare", en:"to travel", pos:"v", ex:"Viaggia per lavoro.", exEn:"He travels for work."},
+  {t:"verbi2", w:"pulire", en:"to clean", pos:"v", ex:"Pulisco la cucina dopo cena.", exEn:"I clean the kitchen after dinner."},
+  {t:"verbi2", w:"lavare", en:"to wash", pos:"v", ex:"Lavo i piatti a mano.", exEn:"I wash the dishes by hand."},
+  {t:"verbi2", w:"accendere", en:"to switch on", pos:"v", ex:"Accendo il forno.", exEn:"I'll switch the oven on."},
+  {t:"verbi2", w:"spegnere", en:"to switch off", pos:"v", ex:"Spegni la luce quando esci.", exEn:"Switch the light off when you leave."},
+  {t:"verbi2", w:"aiutare", en:"to help", pos:"v", ex:"Mi aiuti un attimo?", exEn:"Can you help me a second?"},
+  {t:"verbi2", w:"lasciare", en:"to leave behind, to let", pos:"v", ex:"Lascia stare, faccio io.", exEn:"Leave it, I'll do it."},
+
+  /* ---------------- ALTRI AGGETTIVI ---------------- */
+  {t:"aggettivi2", w:"alto", en:"tall, high", pos:"a", ex:"Mio fratello è più alto di me.", exEn:"My brother is taller than me."},
+  {t:"aggettivi2", w:"basso", en:"short in height, low", pos:"a", ex:"Il tavolo è troppo basso.", exEn:"The table is too low."},
+  {t:"aggettivi2", w:"pieno", en:"full", pos:"a", ex:"Il bicchiere è pieno.", exEn:"The glass is full."},
+  {t:"aggettivi2", w:"vuoto", en:"empty", pos:"a", ex:"La strada era vuota.", exEn:"The street was empty."},
+  {t:"aggettivi2", w:"pesante", en:"heavy", pos:"a", ex:"La valigia è pesante.", exEn:"The suitcase is heavy."},
+  {t:"aggettivi2", w:"leggero", en:"light in weight", pos:"a", ex:"Preferisco una cena leggera.", exEn:"I prefer a light dinner."},
+  {t:"aggettivi2", w:"veloce", en:"fast", pos:"a", ex:"Questa macchina è veloce.", exEn:"This car is fast."},
+  {t:"aggettivi2", w:"lento", en:"slow", pos:"a", ex:"Il servizio è lento.", exEn:"The service is slow."},
+  {t:"aggettivi2", w:"forte", en:"strong; loud", pos:"a", ex:"Il caffè è troppo forte.", exEn:"The coffee is too strong."},
+  {t:"aggettivi2", w:"debole", en:"weak", pos:"a", ex:"Il segnale è debole.", exEn:"The signal is weak."},
+  {t:"aggettivi2", w:"libero", en:"free, available", pos:"a", ex:"Sei libero venerdì?", exEn:"Are you free on Friday?"},
+  {t:"aggettivi2", w:"occupato", en:"busy, taken", pos:"a", ex:"Il posto è occupato.", exEn:"The seat is taken."},
+  {t:"aggettivi2", w:"sporco", en:"dirty", pos:"a", ex:"Il pavimento è sporco.", exEn:"The floor is dirty."},
+  {t:"aggettivi2", w:"pulito", en:"clean", pos:"a", ex:"Metto una camicia pulita.", exEn:"I'm putting on a clean shirt."},
+  {t:"aggettivi2", w:"ricco", en:"rich", pos:"a", ex:"Non serve essere ricchi per viaggiare.", exEn:"You don't need to be rich to travel."},
+  {t:"aggettivi2", w:"povero", en:"poor", pos:"a", ex:"Il paese era povero e adesso è cambiato.", exEn:"The village was poor and now it has changed."},
+  {t:"aggettivi2", w:"giusto", en:"right, fair", pos:"a", ex:"Hai fatto la scelta giusta.", exEn:"You made the right choice."},
+  {t:"aggettivi2", w:"sbagliato", en:"wrong", pos:"a", ex:"Ho preso il treno sbagliato.", exEn:"I took the wrong train."},
+  {t:"aggettivi2", w:"sicuro", en:"sure; safe", pos:"a", ex:"Sei sicuro?", exEn:"Are you sure?"},
+  {t:"aggettivi2", w:"strano", en:"strange, odd", pos:"a", ex:"Che rumore strano.", exEn:"What a strange noise."},
+  {t:"aggettivi2", w:"importante", en:"important", pos:"a", ex:"È una cosa importante.", exEn:"It's an important thing."},
+  {t:"aggettivi2", w:"possibile", en:"possible", pos:"a", ex:"Non è possibile prenotare online.", exEn:"It isn't possible to book online."},
+
+  /* ---------------- LE PAROLE CHE LEGANO ---------------- */
+  {t:"legano", w:"sempre", en:"always", pos:"avv", ex:"Arriva sempre in ritardo.", exEn:"He's always late."},
+  {t:"legano", w:"mai", en:"never", pos:"avv", ex:"Non ci sono mai stato.", exEn:"I've never been there."},
+  {t:"legano", w:"spesso", en:"often", pos:"avv", ex:"Ci vediamo spesso.", exEn:"We see each other often."},
+  {t:"legano", w:"qualche volta", en:"sometimes", pos:"avv", ex:"Qualche volta lavoro il sabato.", exEn:"Sometimes I work on Saturdays."},
+  {t:"legano", w:"subito", en:"straight away", pos:"avv", ex:"Vengo subito.", exEn:"I'm coming straight away."},
+  {t:"legano", w:"appena", en:"just; as soon as", pos:"avv", ex:"Sono appena arrivato.", exEn:"I've just arrived."},
+  {t:"legano", w:"ancora", en:"still; yet", pos:"avv", ex:"Non è ancora pronto.", exEn:"It isn't ready yet."},
+  {t:"legano", w:"già", en:"already", pos:"avv", ex:"Ho già mangiato.", exEn:"I've already eaten."},
+  {t:"legano", w:"insieme", en:"together", pos:"avv", ex:"Andiamo insieme.", exEn:"Let's go together."},
+  {t:"legano", w:"invece", en:"whereas, on the other hand", pos:"avv", ex:"Io prendo il treno, lui invece guida.", exEn:"I take the train, whereas he drives."},
+  {t:"legano", w:"magari", en:"maybe; if only", pos:"avv", ex:"Magari domani ci riesco.", exEn:"Maybe tomorrow I'll manage it."},
+  {t:"legano", w:"quasi", en:"almost", pos:"avv", ex:"È quasi finito.", exEn:"It's almost finished."},
+  {t:"legano", w:"almeno", en:"at least", pos:"avv", ex:"Chiama almeno una volta.", exEn:"Call at least once."},
+  {t:"legano", w:"soprattutto", en:"above all", pos:"avv", ex:"Mi piace il mare, soprattutto d'inverno.", exEn:"I like the sea, above all in winter."},
+  {t:"legano", w:"finalmente", en:"at last", pos:"avv", ex:"Finalmente è arrivata la primavera.", exEn:"Spring has arrived at last."},
+  {t:"legano", w:"purtroppo", en:"unfortunately", pos:"avv", ex:"Purtroppo non posso venire.", exEn:"Unfortunately I can't come."}
 ];
 
 
@@ -609,8 +730,10 @@ var WORDS = [
      Cinque scatole. Se sai la parola sale di una scatola e la rivedi piu
      tardi; se la sbagli torna alla prima e la rivedi oggi stesso.
      Gli intervalli sono quelli classici di Leitner: 1, 2, 4, 8, 16 giorni. */
-  var STORE = "icf_parole_a1";
-  var RECSTORE = "icf_parole_a1_record";
+  /* Chiavi diverse da quelle del mazzo A1: i due mazzi hanno scadenze
+     e record separati, non si mescolano. */
+  var STORE = "icf_parole_a2";
+  var RECSTORE = "icf_parole_a2_record";
   var GAP = [0,1,2,4,8,16];
   var NEW_PER_ROUND = 12;
   var MAX_ROUND = 30;
@@ -744,7 +867,7 @@ var WORDS = [
     var m=MODES.carte;
     var h='<div class="back-row"><button class="back-btn" data-action="hub">&larr; Le tre modalità</button></div>';
     h+='<div class="head-row" style="--mode:'+m.color+'"><span class="swatch"></span><h2>Che cosa ripassi?</h2></div>';
-    h+='<p class="head-sub">Scegli tutto il mazzo, oppure un tema solo se hai poco tempo. In arancione le carte che oggi ti aspettano.<br><span class="en">Pick the whole deck, or one theme if you are in a hurry. Orange means due today.</span></p>';
+    h+='<p class="head-sub">Quattordici temi. Scegli tutto il mazzo, oppure uno solo se hai poco tempo. In arancione le carte che oggi ti aspettano.<br><span class="en">Pick the whole deck, or one theme if you are in a hurry. Orange means due today.</span></p>';
     h+='<div class="deck-grid">';
 
     var all=statsFor(WORDS);
