@@ -164,6 +164,16 @@ h3{ font-size:1.26rem; letter-spacing:-0.02em; line-height:1.16; }
 }
 .chip:hover{ border-color:var(--ink); color:var(--ink); }
 .chip[aria-pressed="true"]{ background:var(--ink); border-color:var(--ink); color:var(--paper-2); }
+.chip-free{ color:var(--verde); border-color:color-mix(in srgb, var(--verde) 45%, var(--rule)); }
+.chip-free:hover{ border-color:var(--verde); color:var(--verde); }
+.chip-free[aria-pressed="true"]{ background:var(--verde); border-color:var(--verde); color:var(--paper-2); }
+.chip-sep{ width:1px; align-self:stretch; margin:0 4px; background:var(--rule); }
+.lead-free{
+  font-family:var(--mono); font-weight:500; font-size:0.72em;
+  letter-spacing:0.12em; text-transform:uppercase;
+  padding:2px 8px; border-radius:999px; background:var(--verde); color:var(--paper-2);
+  white-space:nowrap;
+}
 .count{
   margin-left:auto; font-family:var(--mono); font-size:0.74rem;
   letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft);
@@ -246,6 +256,29 @@ a.ex:hover{
   display:flex; align-items:center; gap:7px;
 }
 
+/* ============================================================
+   Aperto a tutti: la scheda gratis si deve riconoscere da lontano,
+   senza leggere niente. Bordo verde pieno, etichetta verde, freccia
+   verde. Le altre restano com'erano.
+   ============================================================ */
+.ex.is-free{
+  border:2px solid var(--verde);
+  box-shadow:0 0 0 4px color-mix(in srgb, var(--verde) 9%, transparent);
+}
+a.ex.is-free:hover{
+  border-color:var(--verde);
+  box-shadow:0 16px 34px color-mix(in srgb, var(--verde) 26%, transparent);
+}
+.ex.is-free .ex-go{ color:var(--verde); }
+.tag{
+  margin-left:auto; flex:none;
+  font-family:var(--mono); font-weight:500; font-size:0.62rem;
+  letter-spacing:0.14em; text-transform:uppercase;
+  padding:4px 10px; border-radius:999px;
+}
+.tag-free{ background:var(--verde); color:var(--paper-2); }
+.tag-open{ background:var(--saffron); color:var(--ink); }
+
 /* stato chiuso */
 .ex.is-locked{ background:color-mix(in srgb, var(--paper) 70%, var(--paper-2)); cursor:pointer; }
 .ex.is-locked h3, .ex.is-locked .blurb{ color:var(--ink-soft); }
@@ -310,9 +343,9 @@ a.ex:hover{
       <h1>Exercises you can <span class="hl">actually finish</span>.</h1>
     </div>
     <p class="lead">
-      Short, specific, and built for one thing at a time. Some are open to everyone,
-      the ones with a lock are for my students, who get the code for their level.
-      New ones land here as I write them.
+      Short, specific, and built for one thing at a time. The ones marked
+      <b class="lead-free">Free</b> are open to everyone; the ones with a lock are for my
+      students, who get the code for their level. New ones land here as I write them.
     </p>
   </div>
 </section>
@@ -328,6 +361,8 @@ a.ex:hover{
       <button class="chip" type="button" data-level="B1" aria-pressed="false">B1</button>
       <button class="chip" type="button" data-level="B2" aria-pressed="false">B2</button>
       <button class="chip" type="button" data-level="C1" aria-pressed="false">C1</button>
+      <span class="chip-sep" aria-hidden="true"></span>
+      <button class="chip chip-free" type="button" data-level="free" aria-pressed="false">Free ones</button>
     </div>
     <p class="count" id="count"></p>
   </div>
@@ -523,8 +558,9 @@ const EXERCISES = [
   function cardHtml(ex) {
     var open = isOpen(ex);
     var soon = ex.access === "soon";
+    var free = ex.access === "free";
     var tag = (open && !soon) ? "a" : "div";
-    var cls = "ex" + (soon ? " is-soon" : (open ? "" : " is-locked"));
+    var cls = "ex" + (soon ? " is-soon" : (free ? " is-free" : (open ? "" : " is-locked")));
     var attrs = (open && !soon) ? ' href="' + ex.href + '"' : ' data-level="' + ex.level + '"';
 
     var foot;
@@ -532,9 +568,14 @@ const EXERCISES = [
     else if (open) foot = "Open the exercise &rarr;";
     else foot = lockSvg + " Needs the " + ex.level + " code";
 
+    /* Etichetta in alto a destra: verde se è gratis, gialla se l'ha
+       sbloccata con il codice. Le altre non ne hanno bisogno. */
+    var badge = free ? '<span class="tag tag-free">Free</span>'
+              : (open && !soon ? '<span class="tag tag-open">Unlocked</span>' : "");
+
     return "<" + tag + ' class="' + cls + '"' + attrs + ' data-lvl="' + ex.level + '">' +
       '<div class="ex-top"><span class="lvl">' + ex.level + '</span>' +
-      '<span class="skill">' + ex.skill + "</span></div>" +
+      '<span class="skill">' + ex.skill + "</span>" + badge + "</div>" +
       "<h3>" + ex.title + "</h3>" +
       '<p class="blurb">' + ex.blurb + "</p>" +
       '<p class="ex-go">' + foot + "</p>" +
@@ -543,7 +584,9 @@ const EXERCISES = [
 
   function render() {
     var list = EXERCISES.filter(function (ex) {
-      return activeLevel === "all" || ex.level === activeLevel;
+      if (activeLevel === "all") return true;
+      if (activeLevel === "free") return ex.access === "free";
+      return ex.level === activeLevel;
     });
 
     if (!list.length) {
@@ -554,7 +597,9 @@ const EXERCISES = [
     }
 
     var openCount = list.filter(isOpen).length;
-    countEl.textContent = list.length + " exercises" + (openCount ? " · " + openCount + " open to you" : "");
+    countEl.textContent = activeLevel === "free"
+      ? list.length + " exercises · free for everyone"
+      : list.length + " exercises" + (openCount ? " · " + openCount + " open to you" : "");
 
     unlockedListEl.innerHTML = unlocked.map(function (l) {
       return '<span class="badge-open">' + l + " unlocked</span>";
