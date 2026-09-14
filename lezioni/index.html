@@ -129,10 +129,8 @@ input[type=text]:focus{outline:none; border-color:var(--ink);}
      Formato: "nomeutente/nome-evento", senza https://cal.com/ davanti. */
   var CAL_LINK = "italianwithfabio/lezione-di-italiano";
 </script>
-<script src="saldi.js"></script>
-
 <script>
-(function () {
+function avviaPagina() {
   "use strict";
 
   var view = document.getElementById("view");
@@ -281,6 +279,21 @@ input[type=text]:focus{outline:none; border-color:var(--ink);}
   var found = find(code);
   if (!found) { askForCode("I don't have that one. Check it letter by letter, or write to me."); return; }
   show(found);
+}
+
+/* I saldi si caricano con una marca temporale: cambiano spesso e non devono
+   restare nella memoria del browser, se no lo studente vede un numero vecchio. */
+(function () {
+  var s = document.createElement("script");
+  s.src = "saldi.js?t=" + Date.now();
+  s.onload = avviaPagina;
+  s.onerror = function () {
+    document.getElementById("view").innerHTML =
+      '<div class="card"><p>Something went wrong while loading your lessons. ' +
+      'Reload the page, or write to me at ' +
+      '<a href="mailto:boccuzzifabio@gmail.com">boccuzzifabio@gmail.com</a>.</p></div>';
+  };
+  document.head.appendChild(s);
 })();
 </script>
 
