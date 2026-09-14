@@ -170,7 +170,7 @@ function avviaPagina() {
 
   function stampHtml() {
     var when = (typeof SALDI_AGGIORNATO === "string" && SALDI_AGGIORNATO) ? SALDI_AGGIORNATO : "";
-    return when ? '<p class="stamp">Count updated by Fabio: ' + esc(when) + "</p>" : "";
+    return when ? '<p class="stamp">Count updated: ' + esc(when) + "</p>" : "";
   }
 
   function loadCalendar(calLink, name, mail) {
@@ -256,8 +256,6 @@ function avviaPagina() {
           "</div>" +
         "</div>" +
         (s.nota ? '<p class="note">' + esc(s.nota) + "</p>" : "") +
-        '<p class="note">Cancelled or moved a lesson? Write to me and I\'ll fix the count. ' +
-        "The number here is the one I keep, so it wins over anything else.</p>" +
         stampHtml() +
       "</div>" +
       (over
