@@ -35,6 +35,8 @@ var SALDI_AGGIORNATO = "14 settembre 2026";
 
 var SALDI = {
 
+  "rafaela-yrd": { nome: "Rafaela", pacchetto: 24, rimaste: 24 },
+
   "demo": { nome: "Fabio", pacchetto: 8, rimaste: 5,
             nota: "Questa è la pagina di prova: cancella questa riga quando hai messo gli studenti veri." }
 
