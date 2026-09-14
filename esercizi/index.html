@@ -286,7 +286,7 @@ a.ex.is-free:hover{
 .ex.is-locked .lvl{ background:var(--ink-soft); }
 
 /* stato in arrivo */
-.ex.is-soon{ opacity:.62; }
+.ex.is-soon{ opacity:.62; cursor:default; user-select:none; }
 .ex.is-soon .ex-go{ color:var(--ink-soft); }
 
 .lock-ico{ width:15px; height:15px; flex:none; }
@@ -466,11 +466,11 @@ const EXERCISES = [
   // ---------- A2 ----------
   { level:"A2", skill:"Grammar", title:"Molto: when it changes, when it doesn't",
     blurb:"Very, or a lot of? One is fixed, the other agrees. Hundreds of sentences, never the same round twice.",
-    href:"palestra-grammatica/?mode=molto", access:"free" },
+    href:"palestra-grammatica/?mode=molto", access:"locked" },
 
   { level:"A2", skill:"Grammar", title:"Agreement: the gym",
     blurb:"Adjectives, questo, tutto, c'\u00e8 and ci sono. Warm up, then beat your own record against the clock.",
-    href:"palestra-grammatica/?mode=accordo", access:"free" },
+    href:"palestra-grammatica/?mode=accordo", access:"locked" },
 
   { level:"A2", skill:"Grammar", title:"Passato prossimo 1: essere or avere?",
     blurb:"The past tense Italians use all day, starting with the half everyone gets wrong. Pick the auxiliary and conjugate it.",
@@ -486,11 +486,11 @@ const EXERCISES = [
 
   { level:"A2", skill:"Vocabulary", title:"300 more words",
     blurb:"The deck after the first 186: work, money, health, feelings, and the words that link one sentence to the next. Its own boxes, so the two decks never mix.",
-    href:"parole-a2/", access:"free" },
+    href:"parole-a2/", access:"locked" },
 
   { level:"A2", skill:"Writing", title:"Write a message that sounds Italian",
     blurb:"Not translated from English. Ten real messages to rewrite, with my corrections.",
-    href:"a2-messaggi/", access:"locked" },
+    href:"a2-messaggi/", access:"soon" },
 
   // ---------- B1 ----------
   { level:"B1", skill:"Listening", title:"Italians speaking at normal speed",
@@ -499,7 +499,7 @@ const EXERCISES = [
 
   { level:"B1", skill:"Grammar", title:"Imperfetto vs passato prossimo",
     blurb:"The one that separates people who studied Italian from people who speak it.",
-    href:"b1-imperfetto/", access:"locked" },
+    href:"b1-imperfetto/", access:"soon" },
 
   { level:"B1", skill:"Vocabulary", title:"Words for arguing politely",
     blurb:"Disagreeing, insisting, changing your mind. What conversation is actually made of.",
@@ -508,7 +508,7 @@ const EXERCISES = [
   // ---------- B2 ----------
   { level:"B2", skill:"Grammar", title:"Congiuntivo, the honest guide",
     blurb:"When it is really needed, when Italians skip it, and how to stop being afraid of it.",
-    href:"b2-congiuntivo/", access:"locked" },
+    href:"b2-congiuntivo/", access:"soon" },
 
   { level:"B2", skill:"Listening", title:"Regional accents, one at a time",
     blurb:"Milan, Rome, Naples, Palermo. The same sentence, four mouths.",
@@ -517,7 +517,7 @@ const EXERCISES = [
   // ---------- C1 ----------
   { level:"C1", skill:"Writing", title:"Idioms that give you away",
     blurb:"The expressions that make people ask where you learned your Italian.",
-    href:"c1-modi-di-dire/", access:"locked" },
+    href:"c1-modi-di-dire/", access:"soon" },
 ];
 
 /* ================================================================
