@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a lesson — Talk with Fabio</title>
+<meta name="description" content="Pick a time for a one-to-one Italian lesson with Fabio. 50 minutes on video, all levels, first lesson is a conversation and not a test.">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="canonical" href="https://talkwithfabio.com/prenota/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Talk with Fabio">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Book a lesson">
+<meta property="og:description" content="Pick a time for a one-to-one Italian lesson with Fabio. 50 minutes on video, all levels.">
+<meta property="og:url" content="https://talkwithfabio.com/prenota/">
+<meta property="og:image" content="https://talkwithfabio.com/img/og-home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Book a lesson">
+<meta name="twitter:description" content="Pick a time for a one-to-one Italian lesson with Fabio.">
+<meta name="twitter:image" content="https://talkwithfabio.com/img/og-home.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+:root{
+  --ink:#16233F; --ink-soft:#4A5670; --paper:#F7F4EC; --paper-2:#FFFDF8; --rule:#DFD8C7;
+  --saffron:#E8A33D; --rosso:#C4312B; --verde:#2E5E4E;
+  --display:"Bricolage Grotesque", system-ui, sans-serif;
+  --text:"Newsreader", Georgia, serif;
+  --pen:"Caveat", cursive;
+  --mono:ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--text); font-size:1.06rem; line-height:1.6;
+}
+a{color:inherit;}
+.wrap{max-width:1000px; margin:0 auto; padding:0 22px;}
+
+.nav{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:18px 0; border-bottom:1px solid var(--rule); background:var(--paper-2);
+}
+.logo{
+  display:flex; align-items:center; gap:10px; text-decoration:none;
+  font-family:var(--display); font-weight:700; font-size:1.05rem;
+}
+.logo-mark{
+  width:26px; height:26px; border-radius:50%; flex:none;
+  background:conic-gradient(from 180deg, var(--verde) 0 25%, var(--saffron) 0 50%, var(--rosso) 0 75%, var(--ink) 0);
+}
+.back{font-family:var(--display); font-weight:500; font-size:0.94rem; text-decoration:none; color:var(--ink-soft);}
+.back:hover{color:var(--rosso);}
+
+.head{padding:46px 0 26px;}
+.eyebrow{
+  font-family:var(--mono); font-size:0.72rem; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--ink-soft); margin:0 0 12px;
+}
+h1{
+  font-family:var(--display); font-weight:800; letter-spacing:-0.02em;
+  font-size:clamp(2.1rem, 6vw, 3.3rem); line-height:1.05; margin:0 0 16px;
+}
+h1 .hl{color:var(--rosso);}
+.lede{color:var(--ink-soft); max-width:60ch; margin:0 0 22px;}
+.facts{
+  display:flex; flex-wrap:wrap; gap:10px 14px; margin:0 0 6px; padding:0; list-style:none;
+  font-family:var(--display); font-size:0.9rem; font-weight:500;
+}
+.facts li{
+  background:var(--paper-2); border:1px solid var(--rule); border-radius:999px; padding:6px 14px;
+}
+
+.calendar-slot{
+  background:var(--paper-2); border:1px solid var(--rule); border-radius:22px;
+  padding:10px; min-height:520px; margin:8px 0 34px; overflow:hidden;
+}
+.calendar-fallback{padding:40px 24px; text-align:center; color:var(--ink-soft);}
+
+.aside{
+  border-top:1px solid var(--rule); padding:26px 0 60px; color:var(--ink-soft);
+}
+.aside p{margin:0 0 10px; max-width:62ch;}
+.aside a{font-family:var(--display); font-weight:700; color:var(--rosso); text-decoration:none;}
+.aside a:hover{text-decoration:underline;}
+.pen{font-family:var(--pen); font-size:1.5rem; color:var(--verde); margin:0 0 4px;}
+@media (max-width:640px){
+  .calendar-slot{padding:4px; border-radius:16px;}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+    <a class="logo" href="../"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a>
+    <a class="back" href="../">&larr; Back to the site</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="head">
+    <p class="eyebrow">Allora, cominciamo</p>
+    <h1>Pick a time. <span class="hl">We'll talk.</span></h1>
+    <p class="lede">
+      Fifty minutes, one to one, on video. The first lesson is a conversation, not a test:
+      we find out where you are and what's blocking you, and we start from there.
+    </p>
+    <ul class="facts">
+      <li>50 minutes</li>
+      <li>All levels</li>
+      <li>$60 single lesson</li>
+      <li>From $50 in a block</li>
+    </ul>
+  </section>
+
+  <div class="calendar-slot" id="my-cal-inline">
+    <div class="calendar-fallback" id="cal-fallback">
+      <strong>The booking calendar is loading.</strong>
+      <p>If it doesn't appear, write to me and we'll find a time by email.</p>
+    </div>
+  </div>
+
+  <section class="aside">
+    <p class="pen">nessuna fretta</p>
+    <p>
+      Prefer to ask something first? Write to me at
+      <a href="mailto:boccuzzifabio@gmail.com">boccuzzifabio@gmail.com</a>
+      and tell me where you are with your Italian. I answer every message myself.
+    </p>
+    <p>
+      Already on a block of lessons? Open your own page with the link I sent you
+      and book from there.
+    </p>
+  </section>
+</main>
+
+<script>
+  var CAL_LINK = "italianwithfabio/lezione-di-italiano";
+</script>
+
+<script>
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init");
+  Cal("inline", {
+    elementOrSelector: "#my-cal-inline",
+    calLink: CAL_LINK,
+    layout: "month_view"
+  });
+  Cal("ui", {
+    hideEventTypeDetails: false,
+    layout: "month_view",
+    styles: { branding: { brandColor: "#16233F" } }
+  });
+
+  (function () {
+    var slot = document.getElementById("my-cal-inline");
+    var msg = document.getElementById("cal-fallback");
+    if (!slot || !msg) return;
+    var stop = setInterval(function () {
+      if (slot.querySelector("iframe")) { msg.remove(); clearInterval(stop); }
+    }, 400);
+    setTimeout(function () { clearInterval(stop); }, 15000);
+  })();
+</script>
+
+</body>
+</html>

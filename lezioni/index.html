@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your lessons — Talk with Fabio</title>
+<meta name="description" content="Your lesson balance: how many lessons are left in your block, and where to book the next one.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+:root{
+  --ink:#16233F; --ink-soft:#4A5670; --paper:#F7F4EC; --paper-2:#FFFDF8; --rule:#DFD8C7;
+  --saffron:#E8A33D; --rosso:#C4312B; --verde:#2E5E4E;
+  --display:"Bricolage Grotesque", system-ui, sans-serif;
+  --text:"Newsreader", Georgia, serif;
+  --pen:"Caveat", cursive;
+  --mono:ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--text); font-size:1.06rem; line-height:1.6;
+}
+a{color:inherit;}
+.wrap{max-width:720px; margin:0 auto; padding:0 22px;}
+
+.nav{
+  border-bottom:1px solid var(--rule); background:var(--paper-2);
+}
+.nav .wrap{
+  display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 22px;
+  max-width:720px;
+}
+.logo{
+  display:flex; align-items:center; gap:10px; text-decoration:none;
+  font-family:var(--display); font-weight:700; font-size:1.05rem;
+}
+.logo-mark{
+  width:26px; height:26px; border-radius:50%; flex:none;
+  background:conic-gradient(from 180deg, var(--verde) 0 25%, var(--saffron) 0 50%, var(--rosso) 0 75%, var(--ink) 0);
+}
+.back{font-family:var(--display); font-weight:500; font-size:0.94rem; text-decoration:none; color:var(--ink-soft);}
+.back:hover{color:var(--rosso);}
+
+main{padding:44px 0 70px;}
+.eyebrow{
+  font-family:var(--mono); font-size:0.72rem; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--ink-soft); margin:0 0 10px;
+}
+h1{
+  font-family:var(--display); font-weight:800; letter-spacing:-0.02em;
+  font-size:clamp(1.9rem, 5.4vw, 2.7rem); line-height:1.08; margin:0 0 22px;
+}
+h1 .hl{color:var(--rosso);}
+
+.card{
+  background:var(--paper-2); border:1px solid var(--rule); border-radius:22px;
+  padding:30px 28px; box-shadow:0 14px 30px color-mix(in srgb, var(--ink) 6%, transparent);
+}
+.count{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+.count .n{
+  font-family:var(--display); font-weight:800; font-size:clamp(3.4rem, 14vw, 5rem);
+  line-height:1; letter-spacing:-0.04em;
+}
+.count .of{font-family:var(--display); font-weight:500; color:var(--ink-soft); font-size:1.05rem;}
+.dots{display:flex; flex-wrap:wrap; gap:9px; margin:22px 0 4px;}
+.dot{width:17px; height:17px; border-radius:50%; border:2px solid var(--verde); flex:none;}
+.dot.used{background:var(--rule); border-color:var(--rule);}
+.dot.left{background:var(--verde);}
+.legend{font-family:var(--mono); font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft);}
+
+.btn{
+  display:inline-block; margin-top:26px; padding:0.85em 1.5em; border-radius:999px;
+  background:var(--ink); color:var(--paper-2); text-decoration:none;
+  font-family:var(--display); font-weight:700; font-size:1rem;
+}
+.btn:hover{background:var(--rosso);}
+.btn.ghost{background:transparent; color:var(--ink); border:1.5px solid var(--ink);}
+.btn.ghost:hover{background:var(--ink); color:var(--paper-2);}
+
+.note{margin:22px 0 0; color:var(--ink-soft); font-size:0.98rem;}
+.pen{font-family:var(--pen); font-size:1.5rem; color:var(--verde); margin:0 0 6px;}
+.stamp{
+  margin-top:26px; font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--ink-soft);
+}
+
+form.codebox{display:flex; gap:10px; flex-wrap:wrap; margin-top:20px;}
+input[type=text]{
+  flex:1 1 220px; padding:0.8em 1em; border-radius:14px; border:1.5px solid var(--rule);
+  background:var(--paper); font-family:var(--mono); font-size:1rem; letter-spacing:0.12em;
+  text-transform:uppercase; color:var(--ink);
+}
+input[type=text]:focus{outline:none; border-color:var(--ink);}
+form.codebox .btn{margin-top:0;}
+.err{color:var(--rosso); font-family:var(--display); font-weight:500; margin:14px 0 0;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="../"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a>
+    <a class="back" href="../">&larr; Back to the site</a>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  <p class="eyebrow">Your lessons</p>
+  <div id="view"></div>
+</main>
+
+<script src="saldi.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var view = document.getElementById("view");
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function codeFromUrl() {
+    var m = /[?&]c=([^&#]+)/.exec(window.location.search);
+    return m ? decodeURIComponent(m[1]).trim().toUpperCase() : "";
+  }
+
+  function find(code) {
+    if (!code || typeof SALDI !== "object") return null;
+    var keys = Object.keys(SALDI);
+    for (var i = 0; i < keys.length; i++) {
+      if (keys[i].toUpperCase() === code) return SALDI[keys[i]];
+    }
+    return null;
+  }
+
+  function dots(total, left) {
+    var used = Math.max(0, total - left), out = "";
+    for (var i = 0; i < total; i++) {
+      out += '<span class="dot ' + (i < left ? "left" : "used") + '"></span>';
+    }
+    return '<div class="dots" role="img" aria-label="' + left + ' of ' + total +
+      ' lessons left">' + out + "</div>" +
+      '<p class="legend">' + left + " left &middot; " + used + " done</p>";
+  }
+
+  function stamp() {
+    var when = (typeof SALDI_AGGIORNATO === "string" && SALDI_AGGIORNATO) ? SALDI_AGGIORNATO : "";
+    return when ? '<p class="stamp">Last updated by Fabio: ' + esc(when) + "</p>" : "";
+  }
+
+  function askForCode(message) {
+    view.innerHTML =
+      "<h1>Where's your <span class=\"hl\">code</span>?</h1>" +
+      '<div class="card">' +
+        "<p>Your personal page opens with the code I sent you when you bought your block of lessons. " +
+        "Type it here, or open the link from my message again.</p>" +
+        '<form class="codebox" id="f">' +
+          '<input type="text" id="c" placeholder="your code" autocomplete="off" spellcheck="false" aria-label="Your code">' +
+          '<button class="btn" type="submit">Open</button>' +
+        "</form>" +
+        (message ? '<p class="err">' + esc(message) + "</p>" : "") +
+        '<p class="note">Lost it? Just write to me at ' +
+        '<a href="mailto:boccuzzifabio@gmail.com">boccuzzifabio@gmail.com</a> and I\'ll send it again. ' +
+        'Booking a single lesson instead? <a href="../prenota/">Pick a time here</a>.</p>' +
+      "</div>";
+    var f = document.getElementById("f");
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var v = document.getElementById("c").value.trim();
+      if (!v) return;
+      window.location.search = "?c=" + encodeURIComponent(v.toUpperCase());
+    });
+  }
+
+  function showBalance(s) {
+    var total = Number(s.pacchetto) || 0;
+    var left = Math.max(0, Math.min(total, Number(s.rimaste)));
+    var name = s.nome ? esc(s.nome) : "";
+    var link = s.link ? esc(s.link) : "../prenota/";
+    var done = left === 0;
+
+    view.innerHTML =
+      "<h1>" + (name ? "Ciao " + name + ", " : "") +
+        (done ? "your block is <span class=\"hl\">finished</span>."
+              : "you have <span class=\"hl\">" + left + "</span> " + (left === 1 ? "lesson" : "lessons") + " left.") +
+      "</h1>" +
+      '<div class="card">' +
+        '<div class="count"><span class="n">' + left + "</span>" +
+          '<span class="of">of ' + total + " in your block</span></div>" +
+        (total > 0 && total <= 40 ? dots(total, left) : "") +
+        (done
+          ? '<p class="note">That was the last one. If you want to keep going, tell me and I\'ll set up the next block.</p>' +
+            '<a class="btn" href="../#plans">See the blocks &rarr;</a>'
+          : '<a class="btn" href="' + link + '">Book your next lesson &rarr;</a>') +
+        (s.nota ? '<p class="note">' + esc(s.nota) + "</p>" : "") +
+        '<p class="note">Cancelled or moved a lesson? Write to me and I\'ll fix the count. ' +
+        'The number here is the one I keep, so it wins over anything the calendar says.</p>' +
+        stamp() +
+      "</div>" +
+      '<p class="pen" style="margin-top:26px;">a presto!</p>';
+  }
+
+  var code = codeFromUrl();
+  if (!code) { askForCode(""); return; }
+  var found = find(code);
+  if (!found) { askForCode("I don't have that code. Check it letter by letter, or write to me."); return; }
+  showBalance(found);
+})();
+</script>
+
+</body>
+</html>
