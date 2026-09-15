@@ -36,9 +36,22 @@
    cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "15 settembre 2026, 13:20";
+var SALDI_AGGIORNATO = "15 settembre 2026, 17:51";
 
 var SALDI = {
+
+  "elena-8qw": {
+    nome: "Elena",
+    mail: "",
+    pacchetto: 2,
+    inizio: "2026-09-15",
+    fatte_prima: 0,
+    fatte: 0,
+    prenotate: 0,
+    rimaste: 2,
+    prossime: [],
+    promemoria: "Per Fabio: metti qui la mail di Elena e il conteggio diventa automatico."
+  },
 
   "sophie-6zk": {
     nome: "Sophie",
