@@ -290,32 +290,49 @@ function avviaPagina() {
     if (!over) loadCalendar(toCalLink(s.link), s.nome || "", s.mail || "");
   }
 
-  /* Il conteggio vero arriva dallo script che legge il calendario. Se non
-     risponde entro pochi secondi, restano i numeri scritti a mano: la pagina
-     non deve mai rimanere vuota per colpa di un servizio lento. */
+  /* Il conteggio vero arriva dallo script che legge il calendario.
+     La risposta si carica come uno script, non come una chiamata dati:
+     fra domini diversi è l'unico canale che il browser non blocca.
+     Se non risponde entro pochi secondi restano i numeri scritti a mano:
+     la pagina non deve mai restare vuota per colpa di un servizio lento. */
   function conteggioVero(code, s) {
-    if (!CONTEGGIO_URL || !window.fetch) return;
-    var fermato = false;
-    var timer = setTimeout(function () { fermato = true; }, 6000);
+    if (!CONTEGGIO_URL) return;
 
-    fetch(CONTEGGIO_URL + "?c=" + encodeURIComponent(code), { method: "GET" })
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (d) {
-        clearTimeout(timer);
-        if (fermato || !d || d.errore) return;
-        if (typeof d.rimaste !== "number" || typeof d.pacchetto !== "number") return;
+    var nome = "saldoPronto" + Math.floor(Math.random() * 1e9);
+    var tag = document.createElement("script");
+    var chiuso = false;
 
-        /* Se il pacchetto è finito cambia anche il resto della pagina,
-           calendario compreso: si rifà tutto. */
-        if (d.rimaste === 0) { show(s, d); return; }
+    function pulisci() {
+      chiuso = true;
+      try { delete window[nome]; } catch (err) { window[nome] = undefined; }
+      if (tag && tag.parentNode) tag.parentNode.removeChild(tag);
+    }
 
-        var box = document.getElementById("saldo");
-        var titolo = document.querySelector("h1 .hl");
-        if (box) box.innerHTML = saldoHtml(d.pacchetto, d.rimaste,
-          Math.max(0, Math.min(d.pacchetto - d.rimaste, Number(d.prenotate) || 0)), d.aggiornato);
-        if (titolo) titolo.textContent = String(d.rimaste);
-      })
-      .catch(function () { clearTimeout(timer); });
+    window[nome] = function (d) {
+      if (chiuso) return;
+      pulisci();
+      if (!d || d.errore) return;
+      if (typeof d.rimaste !== "number" || typeof d.pacchetto !== "number") return;
+
+      /* Se il pacchetto è finito cambia anche il resto della pagina,
+         calendario compreso: si rifà tutto. */
+      if (d.rimaste === 0) { show(s, d); return; }
+
+      var box = document.getElementById("saldo");
+      var titolo = document.querySelector("h1 .hl");
+      if (box) box.innerHTML = saldoHtml(d.pacchetto, d.rimaste,
+        Math.max(0, Math.min(d.pacchetto - d.rimaste, Number(d.prenotate) || 0)), d.aggiornato);
+      if (titolo) titolo.textContent = String(d.rimaste);
+    };
+
+    setTimeout(function () { if (!chiuso) pulisci(); }, 8000);
+
+    tag.src = CONTEGGIO_URL +
+      "?c=" + encodeURIComponent(code) +
+      "&callback=" + nome +
+      "&t=" + Date.now();
+    tag.onerror = pulisci;
+    document.head.appendChild(tag);
   }
 
   var code = codeFromUrl();
