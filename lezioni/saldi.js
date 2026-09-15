@@ -31,9 +31,11 @@
    allo studente quanto è fresco il numero.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "14 settembre 2026";
+var SALDI_AGGIORNATO = "15 settembre 2026";
 
 var SALDI = {
+
+  "sophie-6zk": { nome: "Sophie", mail: "sophiephilippe0@gmail.com", pacchetto: 10, rimaste: 6 },
 
   "rafaela-yrd": { nome: "Rafaela", pacchetto: 24, rimaste: 24 },
 
