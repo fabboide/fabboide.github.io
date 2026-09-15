@@ -70,6 +70,7 @@ h1 .hl{color:var(--rosso);}
 .dots{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 6px;}
 .dot{width:16px; height:16px; border-radius:50%; flex:none; background:var(--rule);}
 .dot.left{background:var(--verde);}
+.dot.booked{background:var(--saffron);}
 .legend{
   font-family:var(--mono); font-size:0.68rem; letter-spacing:0.1em;
   text-transform:uppercase; color:var(--ink-soft); margin:0;
@@ -128,6 +129,11 @@ input[type=text]:focus{outline:none; border-color:var(--ink);}
   /* Il calendario normale, quello che vale per tutti.
      Formato: "nomeutente/nome-evento", senza https://cal.com/ davanti. */
   var CAL_LINK = "italianwithfabio/lezione-di-italiano";
+
+  /* Conteggio automatico: indirizzo dello script che legge il calendario
+     (quello che finisce con /exec). Se è vuoto, la pagina usa i numeri
+     scritti a mano in saldi.js. */
+  var CONTEGGIO_URL = "";
 </script>
 <script>
 function avviaPagina() {
@@ -161,16 +167,33 @@ function avviaPagina() {
     return String(raw).replace(/^https?:\/\/(app\.)?cal\.com\//i, "").replace(/^\/+|\/+$/g, "");
   }
 
-  function dots(total, left) {
-    var out = "";
-    for (var i = 0; i < total; i++) out += '<span class="dot ' + (i < left ? "left" : "") + '"></span>';
+  function dots(total, left, booked) {
+    var out = "", classe;
+    for (var i = 0; i < total; i++) {
+      classe = i < left ? "left" : (i < left + booked ? "booked" : "");
+      out += '<span class="dot ' + classe + '"></span>';
+    }
+    var legenda = left + " left";
+    if (booked) legenda += " &middot; " + booked + (booked === 1 ? " booked" : " booked");
+    legenda += " &middot; " + Math.max(0, total - left - booked) + " done";
     return '<div class="dots" role="img" aria-label="' + left + " of " + total + ' lessons left">' + out + "</div>" +
-           '<p class="legend">' + left + " left &middot; " + (total - left) + " done</p>";
+           '<p class="legend">' + legenda + "</p>";
   }
 
-  function stampHtml() {
-    var when = (typeof SALDI_AGGIORNATO === "string" && SALDI_AGGIORNATO) ? SALDI_AGGIORNATO : "";
+  function stampHtml(quando) {
+    var when = quando || ((typeof SALDI_AGGIORNATO === "string" && SALDI_AGGIORNATO) ? SALDI_AGGIORNATO : "");
     return when ? '<p class="stamp">Count updated: ' + esc(when) + "</p>" : "";
+  }
+
+  /* Il blocco dei numeri, rifatto da solo quando arriva il conteggio vero. */
+  function saldoHtml(total, left, booked, quando) {
+    return '<div class="balance">' +
+        '<span class="n">' + left + "</span>" +
+        '<div class="side">' +
+          '<p class="of">of ' + total + " in your block</p>" +
+          (total > 0 && total <= 40 ? dots(total, left, booked) : "") +
+        "</div>" +
+      "</div>" + stampHtml(quando);
   }
 
   function loadCalendar(calLink, name, mail) {
@@ -236,9 +259,11 @@ function avviaPagina() {
     });
   }
 
-  function show(s) {
-    var total = Math.max(0, Number(s.pacchetto) || 0);
-    var left = Math.max(0, Math.min(total, Number(s.rimaste)));
+  function show(s, live) {
+    var total = Math.max(0, Number((live ? live.pacchetto : s.pacchetto)) || 0);
+    var left = Math.max(0, Math.min(total, Number(live ? live.rimaste : s.rimaste)));
+    var booked = live ? Math.max(0, Math.min(total - left, Number(live.prenotate) || 0)) : 0;
+    var quando = live ? live.aggiornato : "";
     var name = s.nome ? esc(s.nome) : "";
     var over = left === 0;
 
@@ -248,15 +273,8 @@ function avviaPagina() {
               : 'you have <span class="hl">' + left + "</span> " + (left === 1 ? "lesson" : "lessons") + " left.") +
       "</h1>" +
       '<div class="card">' +
-        '<div class="balance">' +
-          '<span class="n">' + left + "</span>" +
-          '<div class="side">' +
-            '<p class="of">of ' + total + " in your block</p>" +
-            (total > 0 && total <= 40 ? dots(total, left) : "") +
-          "</div>" +
-        "</div>" +
+        '<div id="saldo">' + saldoHtml(total, left, booked, quando) + "</div>" +
         (s.nota ? '<p class="note">' + esc(s.nota) + "</p>" : "") +
-        stampHtml() +
       "</div>" +
       (over
         ? '<p class="booknote">Want to keep going?</p>' +
@@ -272,11 +290,40 @@ function avviaPagina() {
     if (!over) loadCalendar(toCalLink(s.link), s.nome || "", s.mail || "");
   }
 
+  /* Il conteggio vero arriva dallo script che legge il calendario. Se non
+     risponde entro pochi secondi, restano i numeri scritti a mano: la pagina
+     non deve mai rimanere vuota per colpa di un servizio lento. */
+  function conteggioVero(code, s) {
+    if (!CONTEGGIO_URL || !window.fetch) return;
+    var fermato = false;
+    var timer = setTimeout(function () { fermato = true; }, 6000);
+
+    fetch(CONTEGGIO_URL + "?c=" + encodeURIComponent(code), { method: "GET" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        clearTimeout(timer);
+        if (fermato || !d || d.errore) return;
+        if (typeof d.rimaste !== "number" || typeof d.pacchetto !== "number") return;
+
+        /* Se il pacchetto è finito cambia anche il resto della pagina,
+           calendario compreso: si rifà tutto. */
+        if (d.rimaste === 0) { show(s, d); return; }
+
+        var box = document.getElementById("saldo");
+        var titolo = document.querySelector("h1 .hl");
+        if (box) box.innerHTML = saldoHtml(d.pacchetto, d.rimaste,
+          Math.max(0, Math.min(d.pacchetto - d.rimaste, Number(d.prenotate) || 0)), d.aggiornato);
+        if (titolo) titolo.textContent = String(d.rimaste);
+      })
+      .catch(function () { clearTimeout(timer); });
+  }
+
   var code = codeFromUrl();
   if (!code) { askForCode(""); return; }
   var found = find(code);
   if (!found) { askForCode("I don't have that one. Check it letter by letter, or write to me."); return; }
   show(found);
+  conteggioVero(code, found);
 }
 
 /* I saldi si caricano con una marca temporale: cambiano spesso e non devono
