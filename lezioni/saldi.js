@@ -20,6 +20,9 @@
    orario dello studente, qualunque sia, perché a convertirle ci pensa il
    suo browser.
 
+   Il campo "nota" compare nella pagina e lo legge lo studente. Per gli
+   appunti tuoi usa "promemoria", che la pagina ignora.
+
    Il codice ("sophie-6zk") è il suo indirizzo personale:
    talkwithfabio.com/lezioni/?c=sophie-6zk
 
@@ -59,7 +62,7 @@ var SALDI = {
     prenotate: 0,
     rimaste: 24,
     prossime: [],
-    nota: "Appena prenota la prima lezione, qui va la sua mail: da quel momento il conteggio è automatico."
+    promemoria: "Per Fabio: appena prenota la prima lezione, qui va la sua mail e il conteggio diventa automatico. Questo campo non compare nella pagina."
   }
 
 };
