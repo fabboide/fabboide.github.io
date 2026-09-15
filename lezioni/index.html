@@ -133,7 +133,7 @@ input[type=text]:focus{outline:none; border-color:var(--ink);}
   /* Conteggio automatico: indirizzo dello script che legge il calendario
      (quello che finisce con /exec). Se è vuoto, la pagina usa i numeri
      scritti a mano in saldi.js. */
-  var CONTEGGIO_URL = "https://script.google.com/macros/s/AKfycbzBdL3elemrs2o8Otln_wK-QQAw5bZti8zv2sffT7ZD5A8FDJjGE4EbFG9fBWCZ4lgz/exec";
+  var CONTEGGIO_URL = "";
 </script>
 <script>
 function avviaPagina() {
@@ -260,9 +260,10 @@ function avviaPagina() {
   }
 
   function show(s, live) {
-    var total = Math.max(0, Number((live ? live.pacchetto : s.pacchetto)) || 0);
-    var left = Math.max(0, Math.min(total, Number(live ? live.rimaste : s.rimaste)));
-    var booked = live ? Math.max(0, Math.min(total - left, Number(live.prenotate) || 0)) : 0;
+    var fonte = live || s;
+    var total = Math.max(0, Number(fonte.pacchetto) || 0);
+    var left = Math.max(0, Math.min(total, Number(fonte.rimaste)));
+    var booked = Math.max(0, Math.min(total - left, Number(fonte.prenotate) || 0));
     var quando = live ? live.aggiornato : "";
     var name = s.nome ? esc(s.nome) : "";
     var over = left === 0;

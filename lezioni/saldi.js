@@ -1,52 +1,58 @@
 /* =====================================================================
    SALDI DELLE LEZIONI
 
-   Una riga per studente. È l'unico file da toccare quando qualcuno fa una
-   lezione o compra un pacchetto nuovo.
+   Una riga per studente. I primi cinque campi li decidi tu (o li scrivo
+   io quando me lo dici), gli ultimi tre si aggiornano da soli ogni notte
+   leggendo il calendario.
 
-   Come si legge una riga:
+     "sophie-6zk": {
+       nome: "Sophie",                        come la saluta la pagina
+       mail: "sophie@esempio.com",            serve per riconoscere le sue lezioni sul calendario
+       pacchetto: 10,                         quante lezioni ha comprato
+       inizio: "2026-09-15",                  da quando si conta
+       fatte_prima: 3,                        lezioni già fatte prima di quella data
 
-     "kristina-7fq": { nome:"Kristina", mail:"kristina@esempio.com",
-                       pacchetto:8, rimaste:5 },
+       fatte: 3, prenotate: 1, rimaste: 6     calcolati dal calendario, non toccare a mano
+     }
 
-     "kristina-7fq"  il codice personale, cioè il suo indirizzo:
-                     talkwithfabio.com/lezioni/?c=kristina-7fq
-                     Metti il nome più due o tre caratteri a caso, così è
-                     personale ma nessuno ci arriva tirando a indovinare.
-     nome            come la saluti nella pagina (solo il nome)
-     mail            facoltativa: se c'è, il calendario si presenta già
-                     compilato e a lei restano due clic
-     pacchetto       quante lezioni ha comprato in tutto
-     rimaste         quante gliene restano: è il numero che aggiorni tu
-     nota            facoltativa, una riga tua sotto il saldo
-     link            facoltativo: un link di Cal.com diverso da quello
-                     normale (per esempio un link privato). Se lo lasci
-                     fuori, si usa il calendario di sempre.
+   Il codice ("sophie-6zk") è il suo indirizzo personale:
+   talkwithfabio.com/lezioni/?c=sophie-6zk
 
-   Attenzione: questo file è pubblico, come tutto il sito. Niente cognomi,
-   niente cifre pagate. La mail si può togliere se preferisci: serve solo a
-   fargli risparmiare due campi da riempire.
+   Il conteggio automatico guarda solo il calendario principale, e conta
+   un evento come lezione di quella persona quando la sua mail è tra gli
+   invitati. Le lezioni Preply stanno su un altro calendario, quindi non
+   entrano nel conto. Senza mail il conteggio resta fermo e i numeri
+   vanno messi a mano.
 
-   Aggiorna anche la data qui sotto: compare in fondo alla pagina e dice
-   allo studente quanto è fresco il numero.
+   Questo file è pubblico, come tutto il sito: niente cognomi, niente
+   cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "15 settembre 2026";
+var SALDI_AGGIORNATO = "15 settembre 2026, 13:20";
 
 var SALDI = {
 
-  "sophie-6zk": { nome: "Sophie", mail: "sophiephilippe0@gmail.com", pacchetto: 10, rimaste: 6 },
+  "sophie-6zk": {
+    nome: "Sophie",
+    mail: "sophiephilippe0@gmail.com",
+    pacchetto: 10,
+    inizio: "2026-09-15",
+    fatte_prima: 3,
+    fatte: 3,
+    prenotate: 1,
+    rimaste: 6
+  },
 
-  "rafaela-yrd": { nome: "Rafaela", pacchetto: 24, rimaste: 24 },
-
-  "demo": { nome: "Fabio", pacchetto: 8, rimaste: 5,
-            nota: "Questa è la pagina di prova: cancella questa riga quando hai messo gli studenti veri." }
-
-  /* Esempio di riga vera, da copiare togliendo le barre:
-
-  ,"kristina-7fq": { nome: "Kristina", mail: "kristina@esempio.com",
-                     pacchetto: 8, rimaste: 5 }
-
-  */
+  "rafaela-yrd": {
+    nome: "Rafaela",
+    mail: "",
+    pacchetto: 24,
+    inizio: "2026-09-15",
+    fatte_prima: 0,
+    fatte: 0,
+    prenotate: 0,
+    rimaste: 24,
+    nota: "Appena prenota la prima lezione, qui va la sua mail: da quel momento il conteggio è automatico."
+  }
 
 };
