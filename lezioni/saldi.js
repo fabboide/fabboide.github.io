@@ -12,8 +12,13 @@
        inizio: "2026-09-15",                  da quando si conta
        fatte_prima: 3,                        lezioni già fatte prima di quella data
 
-       fatte: 3, prenotate: 1, rimaste: 6     calcolati dal calendario, non toccare a mano
+       fatte: 3, prenotate: 1, rimaste: 6,    calcolati dal calendario, non toccare a mano
+       prossime: ["2026-09-17T10:00:00+02:00"]   le lezioni già prenotate, con il fuso italiano
      }
+
+   Le date in "prossime" sono istanti precisi: la pagina le mostra nel fuso
+   orario dello studente, qualunque sia, perché a convertirle ci pensa il
+   suo browser.
 
    Il codice ("sophie-6zk") è il suo indirizzo personale:
    talkwithfabio.com/lezioni/?c=sophie-6zk
@@ -40,7 +45,8 @@ var SALDI = {
     fatte_prima: 3,
     fatte: 3,
     prenotate: 1,
-    rimaste: 6
+    rimaste: 6,
+    prossime: ["2026-09-17T10:00:00+02:00"]
   },
 
   "rafaela-yrd": {
@@ -52,6 +58,7 @@ var SALDI = {
     fatte: 0,
     prenotate: 0,
     rimaste: 24,
+    prossime: [],
     nota: "Appena prenota la prima lezione, qui va la sua mail: da quel momento il conteggio è automatico."
   }
 

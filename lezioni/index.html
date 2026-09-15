@@ -85,6 +85,21 @@ h1 .hl{color:var(--rosso);}
 }
 .calendar-fallback{padding:40px 24px; text-align:center; color:var(--ink-soft);}
 
+.lista-prenotate{
+  margin:18px 0 0; padding:16px 0 0; border-top:1px solid var(--rule); list-style:none;
+}
+.lista-prenotate li{
+  display:flex; align-items:baseline; gap:10px; padding:4px 0;
+  font-family:var(--display); font-weight:500; font-size:1rem;
+}
+.lista-prenotate li::before{
+  content:""; width:9px; height:9px; border-radius:50%; background:var(--saffron); flex:none;
+}
+.lista-prenotate .quando{font-family:var(--text); color:var(--ink-soft); font-size:0.95rem;}
+.prenotate-titolo{
+  font-family:var(--mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--ink-soft); margin:18px 0 0;
+}
 .btn{
   display:inline-block; padding:0.85em 1.5em; border-radius:999px;
   background:var(--ink); color:var(--paper-2); text-decoration:none;
@@ -185,6 +200,40 @@ function avviaPagina() {
     return when ? '<p class="stamp">Count updated: ' + esc(when) + "</p>" : "";
   }
 
+  /* Le lezioni già prenotate, scritte nel fuso orario di chi guarda la
+     pagina: nel file sono istanti precisi, la conversione la fa il browser. */
+  function prenotateHtml(date) {
+    if (!date || !date.length) return "";
+
+    var adesso = Date.now();
+    var buone = [];
+    for (var i = 0; i < date.length; i++) {
+      var t = new Date(date[i]);
+      if (!isNaN(t.getTime()) && t.getTime() > adesso) buone.push(t);
+    }
+    if (!buone.length) return "";
+    buone.sort(function (a, b) { return a - b; });
+
+    var fmt;
+    try {
+      fmt = new Intl.DateTimeFormat(undefined, {
+        weekday: "long", day: "numeric", month: "long",
+        hour: "2-digit", minute: "2-digit", timeZoneName: "short"
+      });
+    } catch (err) { fmt = null; }
+
+    var righe = buone.map(function (t) {
+      var testo = fmt ? fmt.format(t) : t.toString();
+      var pezzi = testo.split(/,\s*/);
+      var giorno = pezzi.shift();
+      return "<li><strong>" + esc(giorno) + '</strong><span class="quando">' +
+        esc(pezzi.join(", ")) + "</span></li>";
+    }).join("");
+
+    return '<p class="prenotate-titolo">Already booked &middot; your local time</p>' +
+      '<ul class="lista-prenotate">' + righe + "</ul>";
+  }
+
   /* Il blocco dei numeri, rifatto da solo quando arriva il conteggio vero. */
   function saldoHtml(total, left, booked, quando) {
     return '<div class="balance">' +
@@ -275,6 +324,7 @@ function avviaPagina() {
       "</h1>" +
       '<div class="card">' +
         '<div id="saldo">' + saldoHtml(total, left, booked, quando) + "</div>" +
+        prenotateHtml(s.prossime) +
         (s.nota ? '<p class="note">' + esc(s.nota) + "</p>" : "") +
       "</div>" +
       (over
