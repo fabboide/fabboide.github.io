@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La mia aula · Talk with Fabio</title>
+<meta name="description" content="Scaffale privato dei materiali da usare in lezione.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+/* ============================================================
+   Stessi token del sito. Se cambi un colore nella home,
+   cambialo anche qui.
+   ============================================================ */
+:root{
+  --ink:#16233F;
+  --ink-soft:#4A5670;
+  --paper:#F7F4EC;
+  --paper-2:#FFFDF8;
+  --rule:#DFD8C7;
+  --saffron:#E8A33D;
+  --rosso:#C4312B;
+  --verde:#2E5E4E;
+
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --pen:"Caveat","Segoe Script",cursive;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+
+  --wrap:1000px;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; }
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:1.05rem; line-height:1.6;
+  -webkit-text-size-adjust:100%;
+}
+a{ color:inherit; }
+.wrap{ max-width:var(--wrap); margin:0 auto; padding:0 22px; }
+
+/* ---------- Barra ---------- */
+.topbar{ border-bottom:1px solid var(--rule); background:var(--paper-2); }
+.topbar-in{
+  max-width:var(--wrap); margin:0 auto; padding:16px 22px;
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+}
+.logo{
+  display:flex; align-items:center; gap:10px; text-decoration:none;
+  font-family:var(--display); font-weight:700; font-size:1.02rem;
+}
+.logo-mark{
+  width:22px; height:22px; border-radius:50%;
+  background:
+    conic-gradient(from 180deg, var(--saffron) 0 25%, var(--rosso) 0 50%, var(--verde) 0 75%, var(--ink) 0);
+  border:1px solid var(--ink);
+}
+.private-tag{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--paper-2); background:var(--ink); border-radius:999px; padding:.3em .8em;
+}
+
+/* ---------- Testa ---------- */
+.intro{ padding:34px 0 8px; }
+.eyebrow{
+  font-family:var(--mono); font-size:.76rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft); margin:0 0 10px;
+}
+h1{ font-family:var(--display); font-weight:800; font-size:clamp(2rem,5.5vw,3.1rem); line-height:1.05; margin:0 0 12px; }
+.lede{ margin:0; max-width:62ch; color:var(--ink-soft); }
+.pen{ font-family:var(--pen); font-size:1.3rem; color:var(--rosso); }
+
+/* ---------- Comandi ---------- */
+.controls{
+  position:sticky; top:0; z-index:5;
+  background:var(--paper); border-bottom:1px solid var(--rule);
+  padding:14px 0; margin:22px 0 26px;
+}
+.controls-in{ max-width:var(--wrap); margin:0 auto; padding:0 22px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.search{
+  flex:1 1 220px; min-width:180px;
+  font-family:var(--body); font-size:1rem; color:var(--ink);
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:999px;
+  padding:9px 16px;
+}
+.search::placeholder{ color:var(--ink-soft); }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{
+  font-family:var(--display); font-weight:600; font-size:.88rem;
+  background:var(--paper-2); color:var(--ink);
+  border:2px solid var(--rule); border-radius:999px; padding:7px 14px; cursor:pointer;
+}
+.chip[aria-pressed="true"]{ background:var(--ink); color:var(--paper-2); border-color:var(--ink); }
+.btn{
+  font-family:var(--display); font-weight:700; font-size:.92rem;
+  background:var(--verde); color:#fff; border:2px solid var(--verde);
+  border-radius:999px; padding:8px 18px; cursor:pointer; text-decoration:none; display:inline-block;
+}
+.btn:hover{ background:var(--ink); border-color:var(--ink); }
+.btn .sub{ font-family:var(--mono); font-weight:400; font-size:.74em; opacity:.85; }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--ink); }
+.btn-ghost:hover{ background:var(--ink); color:var(--paper-2); }
+
+/* ---------- Scaffale ---------- */
+.group-title{
+  font-family:var(--display); font-weight:700; font-size:1.05rem;
+  letter-spacing:.02em; margin:30px 0 14px; padding-bottom:8px;
+  border-bottom:1px solid var(--rule); display:flex; align-items:baseline; gap:10px;
+}
+.group-title span{ font-family:var(--mono); font-size:.76rem; color:var(--ink-soft); letter-spacing:.08em; }
+.grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:18px; }
+.card{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:20px;
+  padding:20px; display:flex; flex-direction:column; gap:10px;
+  box-shadow:4px 4px 0 rgba(22,35,63,.08);
+}
+.card-top{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.tag{
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase;
+  border:1px solid var(--rule); border-radius:999px; padding:.22em .6em; color:var(--ink-soft);
+}
+.tag.lv{ border-color:var(--ink); color:var(--ink); }
+.card h3{ font-family:var(--display); font-weight:700; font-size:1.25rem; margin:0; line-height:1.2; }
+.card p{ margin:0; font-size:.97rem; }
+.card .live{
+  font-family:var(--pen); font-size:1.18rem; color:var(--rosso); line-height:1.35;
+}
+.card .go{ margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; padding-top:6px; }
+.card .go a{
+  font-family:var(--display); font-weight:600; font-size:.86rem; text-decoration:none;
+  border:2px solid var(--ink); border-radius:999px; padding:6px 14px;
+}
+.card .go a:hover{ background:var(--ink); color:var(--paper-2); }
+.empty{ padding:30px 0; color:var(--ink-soft); }
+
+/* ---------- Come aggiungere ---------- */
+.note{
+  margin:36px 0 10px; padding:22px;
+  border:2px dashed var(--rule); border-radius:20px; background:var(--paper-2);
+}
+.note h2{ font-family:var(--display); font-size:1.15rem; margin:0 0 8px; }
+.note p{ margin:0 0 8px; font-size:.97rem; color:var(--ink-soft); }
+.note code{ font-family:var(--mono); font-size:.86em; background:var(--paper); padding:.1em .35em; border-radius:6px; }
+
+footer{
+  margin-top:44px; border-top:1px solid var(--rule); background:var(--paper-2);
+  padding:24px 0 34px; font-size:.9rem; color:var(--ink-soft);
+}
+
+/* ---------- Il codice ---------- */
+#gate{ min-height:70vh; display:flex; align-items:center; justify-content:center; padding:30px 22px; }
+.gate-box{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:30px; max-width:420px; width:100%; text-align:center;
+  box-shadow:6px 6px 0 rgba(22,35,63,.09);
+}
+.gate-box h2{ font-family:var(--display); font-size:1.5rem; margin:0 0 6px; }
+.gate-box p{ margin:0 0 18px; font-size:.95rem; color:var(--ink-soft); }
+.gate-row{ display:flex; gap:8px; }
+.gate-row input{
+  flex:1; font-family:var(--mono); font-size:1rem; text-align:center; letter-spacing:.12em;
+  border:2px solid var(--ink); border-radius:999px; padding:10px 14px; background:var(--paper);
+  color:var(--ink); text-transform:uppercase;
+}
+.gate-no{ color:var(--rosso); font-family:var(--pen); font-size:1.2rem; margin:12px 0 0; min-height:1.4em; }
+.hidden{ display:none !important; }
+
+@media (max-width:640px){
+  .controls{ padding:10px 0; }
+  .controls-in{ padding:0 16px; }
+  .wrap, .topbar-in{ padding-left:16px; padding-right:16px; }
+  .card{ padding:18px; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="https://talkwithfabio.com/">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Talk with Fabio
+    </a>
+    <span class="private-tag">privato</span>
+  </div>
+</header>
+
+<!-- ---------- Il codice ---------- -->
+<section id="gate">
+  <div class="gate-box">
+    <h2>La mia aula</h2>
+    <p>Pagina privata. Serve il codice.</p>
+    <div class="gate-row">
+      <input id="code" type="password" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="codice">
+      <button class="btn" id="enter">Entra</button>
+    </div>
+    <p class="gate-no" id="gateNo"></p>
+  </div>
+</section>
+
+<!-- ---------- Lo scaffale ---------- -->
+<main id="app" class="hidden">
+
+  <div class="wrap intro">
+    <p class="eyebrow">solo per me &middot; da usare in lezione</p>
+    <h1>La mia aula.</h1>
+    <p class="lede">
+      Lo scaffale dei materiali da fare <b>insieme allo studente</b>, durante la lezione.
+      Non sono compiti da assegnare: la nota rossa su ogni scheda dice come usarlo a voce.
+      Cerca, filtra per livello, o lascia che sia la sorte a scegliere.
+    </p>
+  </div>
+
+  <div class="controls">
+    <div class="controls-in">
+      <input class="search" id="q" type="search" placeholder="cerca: possessivi, passato, parole..." autocomplete="off">
+      <div class="chips" id="chips"></div>
+      <button class="btn" id="random">Pesca a caso <span class="sub">random</span></button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div id="shelf"></div>
+
+    <div class="note">
+      <h2>Come si aggiunge un materiale</h2>
+      <p>
+        In questo file c'&egrave; l'elenco <code>MATERIALI</code>: una riga per scheda, con
+        <code>titolo</code>, <code>livello</code>, <code>tipo</code>, <code>cosa</code> (a cosa serve),
+        <code>live</code> (come farlo a voce), <code>href</code> e <code>tag</code> per la ricerca.
+        Basta aggiungere una riga: niente altro da toccare.
+      </p>
+      <p>
+        Qui dentro possono entrare anche materiali che non sono pagine del sito: un PDF, un link a un
+        video, una lista di domande. Se il link resta vuoto, la scheda &egrave; solo un promemoria.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      Pagina non indicizzata e non linkata dal sito. Il codice resta salvato in questo browser.
+      <button class="chip" id="forget" style="margin-left:10px">Esci e dimentica il codice</button>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ==========================================================
+     IL CODICE
+     Niente login e niente crittografia: il sito è statico, quindi
+     la difesa vera è l'indirizzo, che non è indovinabile e non è
+     linkato da nessuna parte. Il codice serve perché la pagina non
+     si apra in proiezione se uno studente vede l'indirizzo.
+     ========================================================== */
+  var CODICE = "AULAFABIO";
+  var STORE  = "icf-aula";
+
+  var gate = document.getElementById("gate");
+  var app  = document.getElementById("app");
+
+  function apri(){
+    gate.classList.add("hidden");
+    app.classList.remove("hidden");
+    render();
+  }
+  function prova(){
+    var typed = (document.getElementById("code").value || "").trim().toUpperCase();
+    if(typed === CODICE){
+      try{ localStorage.setItem(STORE, "1"); }catch(e){}
+      apri();
+    } else {
+      document.getElementById("gateNo").textContent = "non è quello";
+    }
+  }
+  document.getElementById("enter").addEventListener("click", prova);
+  document.getElementById("code").addEventListener("keydown", function(e){
+    if(e.key === "Enter") prova();
+  });
+  document.getElementById("forget").addEventListener("click", function(){
+    try{ localStorage.removeItem(STORE); }catch(e){}
+    location.reload();
+  });
+
+
+  /* ==========================================================
+     I MATERIALI
+     livello: "A1" | "A2" | "tutti"
+     tipo:    "Grammatica" | "Lessico" | "Parlato"
+     cosa:    a cosa serve, in una riga
+     live:    come usarlo a voce, la nota rossa
+     href:    "" se è solo un promemoria
+     ========================================================== */
+  var E = "https://talkwithfabio.com/esercizi/";
+
+  var MATERIALI = [
+    {
+      titolo:"Le prime 80 frasi", livello:"A1", tipo:"Parlato",
+      cosa:"Frasi intere per il primo giorno, raggruppate per momento: salutare, ordinare, chiedere aiuto.",
+      live:"Leggo io la frase in inglese, lo studente la dice in italiano. Poi si ripete a specchio, senza guardare.",
+      href:E+"prime-frasi/", tag:"frasi presentarsi saluti bar viaggio principiante"
+    },
+    {
+      titolo:"Le parole delle domande", livello:"A1", tipo:"Grammatica",
+      cosa:"Chi, cosa, quando, dove, come, perché, quanto. E quanto, quale, questo che si accordano.",
+      live:"Modalità 1 sullo schermo, lo studente sceglie a voce prima di cliccare. Poi gli chiedo di rifare la domanda su di me.",
+      href:E+"parole-domanda/?mode=domande", tag:"domande interrogativi chi cosa dove quando quale"
+    },
+    {
+      titolo:"Mio, tuo, suo: i possessivi", livello:"A1", tipo:"Grammatica",
+      cosa:"Il possessivo della persona giusta, poi l'accordo con il nome. Compresi i nomi di famiglia.",
+      live:"Parto dalla modalità 2 e faccio dire la frase intera, articolo compreso. Poi passo alle domande su casa e famiglia sue.",
+      href:E+"possessivi/?mode=accordo", tag:"possessivi mio tuo suo famiglia accordo articolo"
+    },
+    {
+      titolo:"Le prime 186 parole", livello:"A1", tipo:"Lessico",
+      cosa:"Flashcard delle parole che si incontrano per prime, i nomi con l'articolo.",
+      live:"Ripasso veloce a inizio lezione: dieci carte, lo studente dice la parola e una frase con quella parola.",
+      href:E+"parole-a1/", tag:"vocabolario parole flashcard lessico base"
+    },
+    {
+      titolo:"Essere e avere", livello:"A1", tipo:"Grammatica",
+      cosa:"I due verbi su cui si appoggia tutto il resto. Ancora da scrivere.",
+      live:"Per ora lo faccio a voce: sono, sei, è su di noi due, poi ho, hai, ha con gli oggetti sul tavolo.",
+      href:"", tag:"essere avere verbi presente da scrivere"
+    },
+
+    {
+      titolo:"Molto: quando cambia e quando no", livello:"A2", tipo:"Grammatica",
+      cosa:"Molto avverbio che non cambia, molto aggettivo che si accorda.",
+      live:"Sfida a tempo in due: prima lui, poi io, e commento gli errori mentre il cronometro corre.",
+      href:E+"palestra-grammatica/?mode=molto", tag:"molto avverbio aggettivo accordo quantità"
+    },
+    {
+      titolo:"L'accordo: la palestra", livello:"A2", tipo:"Grammatica",
+      cosa:"Aggettivi, questo, tutto, c'è e ci sono.",
+      live:"Livello 2, scritto: lo faccio scrivere a lui condividendo lo schermo, così vedo come ragiona.",
+      href:E+"palestra-grammatica/?mode=accordo", tag:"accordo aggettivi questo tutto c'è ci sono"
+    },
+    {
+      titolo:"Passato prossimo 1: essere o avere?", livello:"A2", tipo:"Grammatica",
+      cosa:"La scelta dell'ausiliare, la metà che tutti sbagliano.",
+      live:"Prima gli faccio raccontare il weekend, segno gli ausiliari sbagliati, poi apro l'esercizio su quelli.",
+      href:E+"passato-prossimo/?mode=aux", tag:"passato prossimo ausiliare essere avere"
+    },
+    {
+      titolo:"Passato prossimo 2: il participio", livello:"A2", tipo:"Grammatica",
+      cosa:"Le desinenze regolari e gli irregolari che vale la pena imparare.",
+      live:"Dico l'infinito a voce, lui risponde con il participio. Chi sbaglia ricomincia da dieci verbi.",
+      href:E+"passato-prossimo/?mode=part", tag:"participio passato irregolari fatto detto preso"
+    },
+    {
+      titolo:"Passato prossimo 3: tutto insieme", livello:"A2", tipo:"Grammatica",
+      cosa:"Ausiliare e participio insieme, accordo compreso.",
+      live:"Chiusura di lezione: sessanta secondi, poi confrontiamo il punteggio con quello della volta prima.",
+      href:E+"passato-prossimo/?mode=all", tag:"passato prossimo completo sfida tempo"
+    },
+    {
+      titolo:"Altre 300 parole", livello:"A2", tipo:"Lessico",
+      cosa:"Il mazzo dopo i primi 186: lavoro, soldi, salute, sentimenti e le parole che legano.",
+      live:"Pesco un tema e lo uso come apertura: cinque carte, poi una domanda vera su quel tema.",
+      href:E+"parole-a2/", tag:"vocabolario A2 parole lavoro soldi sentimenti"
+    },
+
+    {
+      titolo:"Tutti gli esercizi del sito", livello:"tutti", tipo:"Parlato",
+      cosa:"La pagina pubblica, quella che vedono gli studenti, con i lucchetti.",
+      live:"Da aprire quando voglio mostrargli cosa può fare a casa da solo.",
+      href:E, tag:"indice pagina pubblica lucchetti compiti"
+    }
+  ];
+
+  var TIPI = ["Grammatica","Lessico","Parlato"];
+
+
+  /* ---------------- FILTRI E SCAFFALE ---------------- */
+  var FILTRI = [
+    {k:"all",  label:"Tutto"},
+    {k:"A1",   label:"A1"},
+    {k:"A2",   label:"A2"},
+    {k:"Grammatica", label:"Grammatica"},
+    {k:"Lessico",    label:"Lessico"},
+    {k:"Parlato",    label:"Parlato"}
+  ];
+  var attivo = "all";
+  var cerca = "";
+
+  var chipsEl  = document.getElementById("chips");
+  var shelfEl  = document.getElementById("shelf");
+
+  chipsEl.innerHTML = FILTRI.map(function(f){
+    return '<button class="chip" data-k="'+f.k+'" aria-pressed="'+(f.k===attivo)+'">'+f.label+'</button>';
+  }).join("");
+  chipsEl.addEventListener("click", function(e){
+    var b = e.target.closest(".chip"); if(!b) return;
+    attivo = b.getAttribute("data-k");
+    Array.prototype.forEach.call(chipsEl.querySelectorAll(".chip"), function(c){
+      c.setAttribute("aria-pressed", String(c.getAttribute("data-k") === attivo));
+    });
+    render();
+  });
+
+  document.getElementById("q").addEventListener("input", function(e){
+    cerca = e.target.value.toLowerCase().trim();
+    render();
+  });
+
+  function esc(s){
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+
+  function passa(m){
+    if(attivo !== "all"){
+      if(attivo === "A1" || attivo === "A2"){
+        if(m.livello !== attivo && m.livello !== "tutti") return false;
+      } else if(m.tipo !== attivo) return false;
+    }
+    if(cerca){
+      var testo = (m.titolo+" "+m.cosa+" "+m.live+" "+m.tag+" "+m.livello+" "+m.tipo).toLowerCase();
+      if(testo.indexOf(cerca) === -1) return false;
+    }
+    return true;
+  }
+
+  function scheda(m){
+    var h = '<article class="card">';
+    h += '<div class="card-top"><span class="tag lv">'+esc(m.livello === "tutti" ? "A1 · A2" : m.livello)+'</span>';
+    h += '<span class="tag">'+esc(m.tipo)+'</span>';
+    if(!m.href) h += '<span class="tag">da scrivere</span>';
+    h += '</div>';
+    h += '<h3>'+esc(m.titolo)+'</h3>';
+    h += '<p>'+esc(m.cosa)+'</p>';
+    h += '<p class="live">'+esc(m.live)+'</p>';
+    h += '<div class="go">';
+    if(m.href){
+      h += '<a href="'+esc(m.href)+'" target="_blank" rel="noopener">Apri <span aria-hidden="true">&rarr;</span></a>';
+    }
+    h += '</div></article>';
+    return h;
+  }
+
+  function render(){
+    var visti = MATERIALI.filter(passa);
+    if(!visti.length){
+      shelfEl.innerHTML = '<p class="empty pen">niente con questo filtro</p>';
+      return;
+    }
+    var h = "";
+    TIPI.forEach(function(t){
+      var gruppo = visti.filter(function(m){ return m.tipo === t; });
+      if(!gruppo.length) return;
+      h += '<h2 class="group-title">'+esc(t)+' <span>'+gruppo.length+'</span></h2>';
+      h += '<div class="grid">'+gruppo.map(scheda).join("")+'</div>';
+    });
+    shelfEl.innerHTML = h;
+  }
+
+  /* L'apertura va per ultima: prima devono esistere i materiali e il render */
+  var giaDentro = false;
+  try{ giaDentro = localStorage.getItem(STORE) === "1"; }catch(e){}
+  if(giaDentro) apri(); else document.getElementById("code").focus();
+
+  document.getElementById("random").addEventListener("click", function(){
+    var pronti = MATERIALI.filter(function(m){ return passa(m) && m.href; });
+    if(!pronti.length) return;
+    var m = pronti[Math.floor(Math.random()*pronti.length)];
+    window.open(m.href, "_blank", "noopener");
+  });
+
+})();
+</script>
+
+</body>
+</html>
