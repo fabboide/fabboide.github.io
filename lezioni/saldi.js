@@ -36,7 +36,7 @@
    cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "15 settembre 2026, 17:51";
+var SALDI_AGGIORNATO = "18 settembre 2026, 19:15";
 
 var SALDI = {
 
@@ -59,10 +59,10 @@ var SALDI = {
     pacchetto: 10,
     inizio: "2026-09-15",
     fatte_prima: 3,
-    fatte: 3,
-    prenotate: 1,
-    rimaste: 6,
-    prossime: ["2026-09-17T10:00:00+02:00"]
+    fatte: 4,
+    prenotate: 2,
+    rimaste: 4,
+    prossime: ["2026-09-25T10:00:00+02:00", "2026-09-28T20:00:00+02:00"]
   },
 
   "rafaela-yrd": {
