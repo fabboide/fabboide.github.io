@@ -89,13 +89,27 @@ h1 .hl{color:var(--rosso);}
   margin:10px 0 0; padding:0; list-style:none;
 }
 .lista-prenotate li{
-  display:flex; align-items:baseline; gap:10px; padding:4px 0;
+  display:grid; grid-template-columns:9px 1fr; gap:0 10px; padding:7px 0;
   font-family:var(--display); font-weight:500; font-size:1rem;
 }
 .lista-prenotate li::before{
-  content:""; width:9px; height:9px; border-radius:50%; background:var(--saffron); flex:none;
+  content:""; width:9px; height:9px; border-radius:50%; background:var(--saffron);
+  flex:none; margin-top:0.42em;
 }
+.lista-prenotate .riga{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
 .lista-prenotate .quando{font-family:var(--text); color:var(--ink-soft); font-size:0.95rem;}
+.lista-prenotate .gestisci{
+  grid-column:2; justify-self:start; margin-top:3px;
+  font-family:var(--text); font-weight:400; font-size:0.85rem;
+  color:var(--ink-soft); text-decoration:none;
+  border-bottom:1px solid rgba(0,0,0,0.22);
+}
+.lista-prenotate .gestisci:hover{color:var(--rosso); border-bottom-color:currentColor;}
+.prenotate-aiuto{
+  margin:12px 0 0; font-family:var(--text); font-size:0.88rem; color:var(--ink-soft);
+}
+.prenotate-aiuto a{font-family:var(--display); font-weight:700; color:var(--rosso); text-decoration:none;}
+.prenotate-aiuto a:hover{text-decoration:underline;}
 .prenotate-titolo{
   font-family:var(--display); font-weight:700; font-size:1.06rem;
   margin:30px 0 0;
@@ -144,6 +158,9 @@ input[type=text]:focus{outline:none; border-color:var(--ink);}
   /* Il calendario normale, quello che vale per tutti.
      Formato: "nomeutente/nome-evento", senza https://cal.com/ davanti. */
   var CAL_LINK = "italianwithfabio/lezione-di-italiano";
+
+  /* La mail a cui scrive chi preferisce farsi cambiare la lezione da te. */
+  var MAIL_FABIO = "boccuzzifabio@gmail.com";
 
   /* Conteggio automatico: indirizzo dello script che legge il calendario
      (quello che finisce con /exec). Se è vuoto, la pagina usa i numeri
@@ -202,17 +219,31 @@ function avviaPagina() {
 
   /* Le lezioni già prenotate, scritte nel fuso orario di chi guarda la
      pagina: nel file sono istanti precisi, la conversione la fa il browser. */
+  /* Il link per spostare o disdire arriva dalla descrizione di un evento
+     del calendario, quindi prima di infilarlo in un href controlliamo che
+     sia davvero un indirizzo di Cal.com e niente altro. */
+  function linkSicuro(u) {
+    return /^https:\/\/(app\.)?cal\.com\/[^\s"'<>]+$/i.test(String(u || "")) ? String(u) : "";
+  }
+
   function prenotateHtml(date) {
     if (!date || !date.length) return "";
 
     var adesso = Date.now();
     var buone = [];
     for (var i = 0; i < date.length; i++) {
-      var t = new Date(date[i]);
-      if (!isNaN(t.getTime()) && t.getTime() > adesso) buone.push(t);
+      /* Una lezione e un oggetto { quando, gestisci }. Le vecchie righe
+         erano solo la data: continuano a funzionare, senza link. */
+      var voce = date[i];
+      var quando = (voce && typeof voce === "object") ? voce.quando : voce;
+      var gestisci = (voce && typeof voce === "object") ? voce.gestisci : "";
+      var t = new Date(quando);
+      if (!isNaN(t.getTime()) && t.getTime() > adesso) {
+        buone.push({ t: t, link: linkSicuro(gestisci) });
+      }
     }
     if (!buone.length) return "";
-    buone.sort(function (a, b) { return a - b; });
+    buone.sort(function (a, b) { return a.t - b.t; });
 
     var fmt;
     try {
@@ -222,17 +253,35 @@ function avviaPagina() {
       });
     } catch (err) { fmt = null; }
 
-    var righe = buone.map(function (t) {
-      var testo = fmt ? fmt.format(t) : t.toString();
+    var righe = buone.map(function (v) {
+      var testo = fmt ? fmt.format(v.t) : v.t.toString();
       var pezzi = testo.split(/,\s*/);
       var giorno = pezzi.shift();
-      return "<li><strong>" + esc(giorno) + '</strong><span class="quando">' +
-        esc(pezzi.join(", ")) + "</span></li>";
+      return "<li>" +
+        '<div class="riga"><strong>' + esc(giorno) + '</strong>' +
+        '<span class="quando">' + esc(pezzi.join(", ")) + "</span></div>" +
+        (v.link
+          ? '<a class="gestisci" href="' + esc(v.link) + '" target="_blank" rel="noopener">' +
+            "Reschedule or cancel</a>"
+          : "") +
+        "</li>";
     }).join("");
+
+    var scrivimi = "mailto:" + MAIL_FABIO +
+      "?subject=" + encodeURIComponent("Changing a lesson");
+
+    /* Se nessuna lezione ha il link, inutile nominarlo. */
+    var conLink = buone.some(function (v) { return !!v.link; });
+    var aiuto = conLink
+      ? 'Something came up? Move or cancel it yourself with the link, ' +
+        'or <a href="' + scrivimi + '">write to me</a> and I\'ll sort it out.'
+      : 'Need to change a lesson? <a href="' + scrivimi + '">Write to me</a> ' +
+        'and I\'ll sort it out.';
 
     return '<p class="prenotate-titolo">Already booked</p>' +
       '<p class="legend" style="margin-top:4px;">shown in your local time</p>' +
-      '<ul class="lista-prenotate">' + righe + "</ul>";
+      '<ul class="lista-prenotate">' + righe + "</ul>" +
+      '<p class="prenotate-aiuto">' + aiuto + "</p>";
   }
 
   /* Il blocco dei numeri, rifatto da solo quando arriva il conteggio vero. */
