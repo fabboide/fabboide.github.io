@@ -299,6 +299,26 @@ p{ margin:0; } button{ font-family:inherit; } a{ color:inherit; }
   .grade{ padding:12px 4px; font-size:.92rem; }
 }
 @media (prefers-reduced-motion:reduce){ *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+
+/* ---------- Direzione e temi ---------- */
+.dirrow{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 20px; }
+.dirlab{
+  width:100%; font-family:var(--mono); font-size:.7rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-soft); margin-bottom:2px;
+}
+.dirchip{
+  font-family:var(--display); font-weight:600; font-size:.86rem;
+  background:var(--paper-2); color:var(--ink); border:2px solid var(--rule);
+  border-radius:999px; padding:7px 15px; cursor:pointer;
+}
+.dirchip:hover{ border-color:var(--ink); }
+.dirchip[aria-pressed="true"]{ background:var(--ink); color:var(--paper-2); border-color:var(--ink); }
+.dirchip .sub{ font-family:var(--mono); font-weight:400; font-size:.72em; opacity:.8; }
+.dirnote{ width:100%; margin:2px 0 0; font-family:var(--pen); font-size:1.15rem; color:var(--rosso); }
+.card-dir{
+  font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft); margin:0 0 8px;
+}
 </style>
 </head>
 <body>
@@ -333,21 +353,21 @@ p{ margin:0; } button{ font-family:inherit; } a{ color:inherit; }
       <article class="mode-card" data-m="carte" style="--mode:var(--saffron)">
         <div class="mode-tag">Il mazzo</div>
         <h2>Le carte</h2>
-        <p>Guardi la parola, provi a dirla, giri la carta. Quelle che sbagli tornano subito, quelle che sai tornano fra giorni.</p>
+        <p>Guardi la parola, provi a dirla, giri la carta. Va nei due versi: dall&#39;italiano all&#39;inglese, oppure dall&#39;inglese all&#39;italiano, che è molto più difficile.</p>
         <p class="mode-ex">la settimana &rarr; week</p>
         <button class="btn" data-action="open" data-mode="carte">Studia <span class="sub">study</span></button>
       </article>
       <article class="mode-card" data-m="riconosci" style="--mode:var(--verde)">
         <div class="mode-tag">Prova 1</div>
         <h2>Riconosci</h2>
-        <p>Vedi la parola italiana e scegli che cosa vuol dire. Escono per prime quelle che conosci meno.</p>
+        <p>Scegli il significato giusto, in un verso o nell&#39;altro, su tutto il mazzo o su un tema solo. Escono per prime quelle che conosci meno.</p>
         <p class="mode-ex">il pane &rarr; bread?</p>
         <button class="btn" data-action="open" data-mode="riconosci">Inizia <span class="sub">start</span></button>
       </article>
       <article class="mode-card" data-m="scrivi" style="--mode:var(--rosso)">
         <div class="mode-tag">Prova 2</div>
         <h2>Scrivi</h2>
-        <p>Parti dall'inglese e scrivi la parola italiana, articolo compreso. È qui che il genere si impara davvero.</p>
+        <p>Parti dall'inglese e scrivi la parola italiana, articolo compreso. È qui che il genere si impara davvero. Anche qui puoi scegliere un tema solo.</p>
         <p class="mode-ex">bread &rarr; il pane</p>
         <button class="btn" data-action="open" data-mode="scrivi">Inizia <span class="sub">start</span></button>
       </article>
@@ -640,23 +660,57 @@ var WORDS = [
   function saveAll(o){ try{ localStorage.setItem(STORE, JSON.stringify(o)); }catch(e){} }
   var progress = loadAll();
 
-  function boxOf(w){ var r=progress[w.w]; return r? r.b : 0; }
-  function isDue(w){ var r=progress[w.w]; return !!r && r.d <= today(); }
-  function isNew(w){ return !progress[w.w]; }
-  function grade(w, how){
-    var r = progress[w.w] || {b:0,d:today()};
+  /* ---------------- DIREZIONE ----------------
+     Ogni parola ha due carte, non una: riconoscerla (italiano -> inglese)
+     e produrla (inglese -> italiano), che e molto piu difficile. Sono due
+     percorsi separati, con scatole e scadenze proprie: la chiave della
+     carta rovesciata e "en|parola". */
+  var DIRSTORE = STORE + "_dir";
+  var DIRS = {
+    it:  {lab:"Italiano &rarr; inglese", sub:"riconosci", ex:"la settimana &rarr; week"},
+    en:  {lab:"Inglese &rarr; italiano", sub:"produci",   ex:"September &rarr; settembre"},
+    mix: {lab:"Le due insieme",          sub:"misto",     ex:"le carte si alternano"}
+  };
+  function loadDir(){
+    try{ var d=localStorage.getItem(DIRSTORE); return DIRS[d] ? d : "it"; }catch(e){ return "it"; }
+  }
+  function saveDir(){ try{ localStorage.setItem(DIRSTORE, state.dir); }catch(e){} }
+  function dirsFor(){ return state.dir==="mix" ? ["it","en"] : [state.dir]; }
+  function oneDir(){ return state.dir==="mix" ? (Math.random()<0.5?"it":"en") : state.dir; }
+  function dirChips(note){
+    var h='<div class="dirrow"><span class="dirlab">Da che parte vai? &middot; which way round?</span>';
+    ["it","en","mix"].forEach(function(d){
+      h+='<button class="dirchip" data-action="dir" data-d="'+d+'" aria-pressed="'+(state.dir===d)+'">'+
+         DIRS[d].lab+' <span class="sub">'+DIRS[d].sub+'</span></button>';
+    });
+    if(note) h+='<p class="dirnote">'+note+'</p>';
+    h+='</div>';
+    return h;
+  }
+
+  function keyOf(w, dir){ return (dir||state.dir)==="en" ? "en|"+w.w : w.w; }
+  function boxOf(w, dir){ var r=progress[keyOf(w,dir)]; return r? r.b : 0; }
+  function isDue(w, dir){ var r=progress[keyOf(w,dir)]; return !!r && r.d <= today(); }
+  function isNew(w, dir){ return !progress[keyOf(w,dir)]; }
+  function grade(w, how, dir){
+    var k = keyOf(w, dir);
+    var r = progress[k] || {b:0,d:today()};
     if(how==="ok")      r.b = Math.min(5, r.b+1), r.d = plusDays(GAP[r.b]);
     else if(how==="mid") r.b = Math.max(1, r.b),  r.d = plusDays(1);
     else                 r.b = 1,                 r.d = today();
     if(r.b===0) r.b=1;
-    progress[w.w] = r; saveAll(progress);
+    progress[k] = r; saveAll(progress);
   }
-  function statsFor(list){
-    var s={n:list.length, nuove:0, due:0, sapute:0};
-    list.forEach(function(w){
-      if(isNew(w)) s.nuove++;
-      else if(isDue(w)) s.due++;
-      else s.sapute++;
+  function statsFor(list, dir){
+    var dirs = (dir||state.dir)==="mix" ? ["it","en"] : [dir||state.dir];
+    var s={n:0, nuove:0, due:0, sapute:0};
+    dirs.forEach(function(d){
+      list.forEach(function(w){
+        s.n++;
+        if(isNew(w,d)) s.nuove++;
+        else if(isDue(w,d)) s.due++;
+        else s.sapute++;
+      });
     });
     /* Il giro del giorno: prima i ripassi, e le carte nuove solo con lo
        spazio che avanza. Senza questo, chi salta due giorni si ritrova
@@ -692,9 +746,10 @@ var WORDS = [
     game:document.getElementById("screen-game"), results:document.getElementById("screen-results")
   };
   var appEl = document.getElementById("app");
-  var state = { mode:null, theme:"all", queue:[], idx:0, seen:0, known:0, flipped:false,
+  var state = { mode:null, theme:"all", dir:"it", quizTheme:"all", queue:[], idx:0, seen:0, known:0, flipped:false,
                 level:null, items:[], score:0, total:0, answered:false, missed:[],
                 timeLeft:60, timerId:null, active:false, item:null };
+  state.dir = loadDir();
 
   /* Su telefono il cassetto e fisso in fondo. Gli lascio sotto lo spazio
      che occupa solo se davvero coprirebbe qualcosa: se la schermata e
@@ -732,12 +787,19 @@ var WORDS = [
     if(a==="level"){ startLevel(parseInt(b.getAttribute("data-level"),10)); }
     if(a==="retry"){ if(state.mode==="carte") startStudy(state.theme); else startLevel(state.level.num); }
     if(a==="levels"){ stopTimer(); openMode(state.mode); }
+    if(a==="dir"){
+      state.dir=b.getAttribute("data-d"); saveDir();
+      if(screens.decks.classList.contains("active")) openDecks();
+      else if(screens.levels.classList.contains("active")) openLevels(state.mode);
+      else renderToday();
+    }
+    if(a==="qtheme"){ state.quizTheme=b.getAttribute("data-t"); openLevels(state.mode); }
   });
 
   /* ---------------- LA SITUAZIONE DI OGGI ---------------- */
   function renderToday(){
-    var s = statsFor(WORDS);
-    var h="";
+    var s = statsFor(WORDS, state.dir);
+    var h=dirChips("in «inglese &rarr; italiano» la parola te la devi tirare fuori da solo: è un altro mazzo, con le sue scatole");
     if(s.due===0 && s.nuove===0){
       h += '<span class="pill done">tutto ripassato</span>';
       h += '<p class="today-txt">Per oggi hai finito. Torna domani e le carte si riaprono da sole.<br><span class="en">All caught up. Come back tomorrow.</span></p>';
@@ -763,14 +825,15 @@ var WORDS = [
     var m=MODES.carte;
     var h='<div class="back-row"><button class="back-btn" data-action="hub">&larr; Le tre modalità</button></div>';
     h+='<div class="head-row" style="--mode:'+m.color+'"><span class="swatch"></span><h2>Che cosa ripassi?</h2></div>';
+    h+=dirChips(null);
     h+='<p class="head-sub">Scegli tutto il mazzo, oppure un tema solo se hai poco tempo. In arancione le carte che oggi ti aspettano.<br><span class="en">Pick the whole deck, or one theme if you are in a hurry. Orange means due today.</span></p>';
     h+='<div class="deck-grid">';
 
-    var all=statsFor(WORDS);
+    var all=statsFor(WORDS, state.dir);
     h+=deckHtml("all","Tutto il mazzo","Everything", all, true);
     THEMES.forEach(function(t){
       var list=WORDS.filter(function(w){ return w.t===t.k; });
-      h+=deckHtml(t.k, t.it, t.en, statsFor(list), false);
+      h+=deckHtml(t.k, t.it, t.en, statsFor(list, state.dir), false);
     });
     h+='</div>';
     screens.decks.innerHTML=h;
@@ -795,16 +858,27 @@ var WORDS = [
   function startStudy(theme){
     state.theme=theme; state.mode="carte";
     var pool = theme==="all" ? WORDS : WORDS.filter(function(w){ return w.t===theme; });
-    var due = shuffle(pool.filter(function(w){ return !isNew(w) && isDue(w); })).slice(0, MAX_ROUND);
+    /* Ogni carta del giro porta con se la sua direzione: cosi "misto"
+       e semplicemente una coda con le due cose dentro. */
+    var due=[], nuove=[];
+    dirsFor().forEach(function(d){
+      pool.forEach(function(w){
+        if(isNew(w,d)) nuove.push({w:w, dir:d});
+        else if(isDue(w,d)) due.push({w:w, dir:d});
+      });
+    });
+    due = shuffle(due).slice(0, MAX_ROUND);
     var room = Math.min(NEW_PER_ROUND, MAX_ROUND - due.length);
-    var fresh = room>0 ? shuffle(pool.filter(isNew)).slice(0, room) : [];
+    var fresh = room>0 ? shuffle(nuove).slice(0, room) : [];
     var queue = due.concat(fresh);
     /* Se e tutto ripassato non lo lascio a mani vuote: gli do un giro
        delle carte che conosce meno, senza toccare le scadenze. */
     state.freeRun = false;
     if(!queue.length){
       state.freeRun = true;
-      queue = shuffle(pool.slice()).sort(function(a,b){ return boxOf(a)-boxOf(b); }).slice(0,20);
+      var tutte=[];
+      dirsFor().forEach(function(d){ pool.forEach(function(w){ tutte.push({w:w, dir:d}); }); });
+      queue = shuffle(tutte).sort(function(a,b){ return boxOf(a.w,a.dir)-boxOf(b.w,b.dir); }).slice(0,20);
     }
     state.queue = queue.slice(0, MAX_ROUND);
     state.idx=0; state.seen=0; state.known=0; state.total=state.queue.length;
@@ -826,18 +900,24 @@ var WORDS = [
 
   function showCard(){
     if(state.idx>=state.queue.length){ endStudy(); return; }
-    var w=state.queue[state.idx];
+    var item=state.queue[state.idx], w=item.w, d=item.dir;
     state.flipped=false;
 
-    var box=boxOf(w), dots='';
+    var box=boxOf(w,d), dots='';
     for(var i=1;i<=5;i++) dots+='<span class="box-dot'+(i<=box?" on":"")+'"></span>';
+
+    var fronte = d==="it" ? esc(w.w) : esc(w.en);
+    var posLab = d==="it" ? (POS_IT[w.pos]+' &middot; '+POS_EN[w.pos]) : POS_EN[w.pos];
+    var hint = d==="it" ? "tocca per girare &middot; tap to flip"
+                        : "dillo in italiano, con l'articolo, poi gira";
 
     document.getElementById("cardzone").innerHTML =
       '<div class="card" data-action="flip">' +
-        '<p class="card-pos">'+POS_IT[w.pos]+' &middot; '+POS_EN[w.pos]+'</p>' +
-        '<p class="card-word">'+esc(w.w)+'</p>' +
+        '<p class="card-dir">'+DIRS[d].lab+'</p>' +
+        '<p class="card-pos">'+posLab+'</p>' +
+        '<p class="card-word">'+fronte+'</p>' +
         '<div class="box-dots" title="scatola '+box+' di 5">'+dots+'</div>' +
-        '<p class="card-hint">tocca per girare &middot; tap to flip</p>' +
+        '<p class="card-hint">'+hint+'</p>' +
       '</div>';
 
     document.getElementById("trayzone").innerHTML =
@@ -851,11 +931,11 @@ var WORDS = [
   function flip(){
     if(state.flipped) return;
     state.flipped=true;
-    var w=state.queue[state.idx];
+    var item=state.queue[state.idx], w=item.w, d=item.dir;
     document.getElementById("cardzone").innerHTML =
       '<div class="card">' +
-        '<p class="card-pos">'+esc(w.w)+'</p>' +
-        '<p class="card-en">'+esc(w.en)+'</p>' +
+        '<p class="card-pos">'+esc(d==="it" ? w.w : w.en)+'</p>' +
+        '<p class="card-en">'+esc(d==="it" ? w.en : w.w)+'</p>' +
         '<div class="card-rule"></div>' +
         '<p class="card-ex">'+esc(w.ex)+'</p>' +
         '<p class="card-ex-en en">'+esc(w.exEn)+'</p>' +
@@ -870,15 +950,15 @@ var WORDS = [
   }
 
   function gradeAndNext(how){
-    var w=state.queue[state.idx];
-    if(!state.freeRun) grade(w, how);
+    var item=state.queue[state.idx], w=item.w;
+    if(!state.freeRun) grade(w, how, item.dir);
     state.seen++;
     if(how==="ok") state.known++;
     /* Quella che non sapeva torna nello stesso giro, qualche carta dopo:
        e il modo piu veloce per fissarla. */
     if(how==="no" && state.queue.length < MAX_ROUND+12){
       var at = Math.min(state.queue.length, state.idx+5);
-      state.queue.splice(at, 0, w);
+      state.queue.splice(at, 0, item);
     }
     state.idx++;
     showCard();
@@ -891,8 +971,11 @@ var WORDS = [
   }
 
   function endStudy(){
-    var s=statsFor(WORDS);
-    var domani = WORDS.filter(function(w){ var r=progress[w.w]; return r && r.d===plusDays(1); }).length;
+    var s=statsFor(WORDS, state.dir);
+    var domani = 0;
+    dirsFor().forEach(function(d){
+      WORDS.forEach(function(w){ var r=progress[keyOf(w,d)]; if(r && r.d===plusDays(1)) domani++; });
+    });
     var h='<div class="results" style="--mode:'+MODES.carte.color+'">';
     h+='<p class="eyebrow">giro finito &middot; round done</p>';
     h+='<div class="res-score">'+state.seen+'</div>';
@@ -916,17 +999,29 @@ var WORDS = [
   /* ---------------- LE DUE PROVE ---------------- */
   function openLevels(mode){
     var m=MODES[mode];
+    var verso = mode==="scrivi" ? DIRS.en.lab : DIRS[state.dir].lab;
     var h='<div class="back-row"><button class="back-btn" data-action="hub">&larr; Le tre modalità</button></div>';
     h+='<div class="head-row" style="--mode:'+m.color+'"><span class="swatch"></span><h2>'+m.title+'</h2></div>';
-    h+='<p class="head-sub">'+m.sub+'. Le parole che conosci meno escono per prime: la prova segue le tue carte.'+
+    h+='<p class="head-sub">'+verso+'. Le parole che conosci meno escono per prime: la prova segue le tue carte.'+
        '<br><span class="en">The words you know least come up first: the quiz follows your cards.</span></p>';
+    if(mode!=="scrivi") h+=dirChips(null);
+    /* Il tema vale anche per le prove: chi vuole ripassare solo il cibo
+       non deve passare dalle carte. */
+    h+='<div class="dirrow"><span class="dirlab">Su quale tema? &middot; which theme?</span>';
+    h+='<button class="dirchip" data-action="qtheme" data-t="all" aria-pressed="'+(state.quizTheme==="all")+'">Tutto il mazzo</button>';
+    THEMES.forEach(function(t){
+      var n=WORDS.filter(function(w){ return w.t===t.k; }).length;
+      h+='<button class="dirchip" data-action="qtheme" data-t="'+t.k+'" aria-pressed="'+(state.quizTheme===t.k)+'">'+
+         t.it+' <span class="sub">'+n+'</span></button>';
+    });
+    h+='</div>';
     h+='<div class="levels">';
     LEVELS.forEach(function(lv){
       h+='<article class="level-card" style="--mode:'+m.color+'">';
       h+='<div class="level-icon">'+lv.icon+'</div>';
       h+='<h3>'+lv.name+'</h3><div class="level-en">'+lv.nameEn+'</div>';
       h+='<p class="level-desc">'+lv.desc+'<br><span class="en">'+lv.descEn+'</span></p>';
-      if(lv.timed) h+='<span class="record">&#9733; Record: '+getRecord(mode)+'</span>';
+      if(lv.timed) h+='<span class="record">&#9733; Record: '+getRecord(recordKey())+'</span>';
       h+='<button class="btn" data-action="level" data-level="'+lv.num+'">Inizia <span class="sub">start</span></button>';
       h+='</article>';
     });
@@ -938,20 +1033,46 @@ var WORDS = [
 
   /* Estrazione pesata: una parola mai vista o in prima scatola pesa
      molto di piu di una che sta gia in cassaforte. */
-  function weightedWord(exclude){
-    var pool=WORDS.filter(function(w){ return !exclude || exclude.indexOf(w.w)===-1; });
-    if(!pool.length) pool=WORDS;
-    var weights=pool.map(function(w){ var b=boxOf(w); return b===0?6:(7-b); });
+  function quizPool(){
+    return state.quizTheme==="all" ? WORDS : WORDS.filter(function(w){ return w.t===state.quizTheme; });
+  }
+  function recordKey(){
+    return state.mode+"|"+(state.mode==="scrivi"?"en":state.dir)+"|"+state.quizTheme;
+  }
+  function weightedWord(exclude, dir){
+    var base=quizPool();
+    var pool=base.filter(function(w){ return !exclude || exclude.indexOf(w.w)===-1; });
+    if(!pool.length) pool=base;
+    var weights=pool.map(function(w){ var b=boxOf(w,dir); return b===0?6:(7-b); });
     var tot=weights.reduce(function(a,b){ return a+b; },0);
     var r=Math.random()*tot;
     for(var i=0;i<pool.length;i++){ r-=weights[i]; if(r<=0) return pool[i]; }
     return pool[pool.length-1];
   }
 
-  function makeQuiz(mode, used){
-    var w=weightedWord(used);
-    var it={ w:w };
-    if(mode==="riconosci"){
+  function makeQuiz(mode, used, dir){
+    dir = mode==="scrivi" ? "en" : (dir || oneDir());
+    var w=weightedWord(used, dir);
+    var it={ w:w, dir:dir };
+    if(mode==="riconosci" && dir==="en"){
+      /* Al contrario: la domanda e in inglese e le opzioni sono le parole
+         italiane. Stessi criteri per i distrattori: stesso tema, stessa
+         parte del discorso, se no si indovina senza sapere niente. */
+      var temaEn = WORDS.filter(function(x){ return x.t===w.t && x.w!==w.w; });
+      var stessiEn = temaEn.filter(function(x){ return x.pos===w.pos; });
+      var baseEn = stessiEn.length>=3 ? stessiEn : (temaEn.length ? temaEn : WORDS);
+      var sameEn = shuffle(baseEn).slice(0,3);
+      var altriEn = shuffle(WORDS.filter(function(x){ return x.w!==w.w && x.pos===w.pos; }))
+                    .concat(shuffle(WORDS));
+      var kEn=0;
+      while(sameEn.length<3 && kEn<altriEn.length){
+        var exEn=altriEn[kEn++];
+        if(exEn.w!==w.w && sameEn.map(function(x){return x.w;}).indexOf(exEn.w)===-1) sameEn.push(exEn);
+      }
+      it.prompt=w.en; it.promptPos=POS_EN[w.pos];
+      it.correct=w.w;
+      it.options=shuffle([w.w].concat(sameEn.map(function(x){ return x.w; })));
+    } else if(mode==="riconosci"){
       /* I distrattori vengono dallo stesso tema: se metto "January"
          accanto a "il pane" la risposta si trova senza sapere niente.
          E hanno la stessa forma: se solo la risposta giusta ha la
@@ -1001,7 +1122,7 @@ var WORDS = [
       while(items.length<level.count){
         var q=makeQuiz(state.mode, used);
         used.push(q.w.w); items.push(q);
-        if(used.length>=WORDS.length) break;
+        if(used.length>=quizPool().length) break;
       }
       state.items=items; state.total=items.length; state.active=true;
       renderGameShell(level); nextQuiz();
@@ -1102,7 +1223,7 @@ var WORDS = [
 
     if(ok) state.score++; else state.missed.push(w);
     /* La prova aggiorna le scatole come le carte: sono lo stesso mazzo. */
-    grade(w, ok ? (note? "mid" : "ok") : "no");
+    grade(w, ok ? (note? "mid" : "ok") : "no", it.dir);
 
     var tray=document.getElementById("tray"); if(tray) tray.classList.add("on");
     var fb=document.getElementById("feedback");
@@ -1128,8 +1249,8 @@ var WORDS = [
   function endRound(){
     stopTimer(); state.active=false;
     var m=MODES[state.mode], level=state.level;
-    var prev=level.timed?getRecord(state.mode):0;
-    var isRecord=level.timed?setRecord(state.mode,state.score):false;
+    var prev=level.timed?getRecord(recordKey()):0;
+    var isRecord=level.timed?setRecord(recordKey(),state.score):false;
 
     var msgIt=["Le parole sbagliate sono già tornate in cima al mazzo.","Bel ritmo. Un giro di carte domani e restano.",
                "Ogni ripetizione le rende più automatiche.","Ottimo: quelle che sai stanno sparendo dal mazzo, ed è giusto così."];
@@ -1144,7 +1265,7 @@ var WORDS = [
       h+='<p class="res-sub">risposte giuste in 60 secondi<br><span class="en">correct in 60 seconds</span></p>';
       h+=isRecord?'<div class="res-badge">&#9733; Nuovo record! &middot; new record</div>':'<div class="res-badge quiet">Record da battere: '+prev+'</div>';
     } else {
-      h+='<p class="eyebrow">'+m.title+'</p>';
+      h+='<p class="eyebrow">'+m.title+' &middot; '+(state.mode==="scrivi"?DIRS.en.lab:DIRS[state.dir].lab)+'</p>';
       h+='<div class="res-score">'+state.score+'/'+state.total+'</div>';
       h+='<p class="res-sub">risposte giuste &middot; <span class="en">correct</span></p>';
     }
