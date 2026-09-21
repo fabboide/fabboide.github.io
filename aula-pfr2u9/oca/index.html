@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missione Italia · Talk with Fabio</title>
+<meta name="description" content="Gioco dell'oca di conversazione per la lezione dal vivo.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+<style>
+  :root{
+    /* Stessi token del sito. Qui i nomi restano quelli del gioco. */
+    --ink:#F7F4EC;          /* sfondo pagina */
+    --ink-2:#FFFDF8;        /* riquadri */
+    --ink-3:#F3EFE4;        /* caselle */
+    --line:#DFD8C7;
+    --line-soft:#E7E1D3;
+    --paper:#FFFDF8;
+    --paper-2:#F3EFE4;
+    --paper-line:#DFD8C7;
+    --testo:#16233F;
+    --testo-soft:#4A5670;
+    --nero:#16233F;
+    --giallo:#E8A33D;
+    --rosso:#C4312B;
+    --verde:#2E5E4E;
+    --azzurro:#3D6E8F;
+    --arancio:#C4682B;
+    --viola:#7A5A8F;
+    --r-s:8px;
+    --r-m:14px;
+    --r-l:22px;
+    --f-display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+    --f-body:"Newsreader",Georgia,"Times New Roman",serif;
+    --f-pen:"Caveat","Segoe Script",cursive;
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background:var(--ink);
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(246,181,16,.10), transparent 45%),
+      radial-gradient(circle at 88% 92%, rgba(217,58,38,.12), transparent 50%);
+    background-attachment:fixed;
+    color:var(--testo);
+    font-family:var(--f-body);
+    font-size:17px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .app{
+    max-width:1220px;
+    margin:0 auto;
+    padding-inline:18px;
+    padding-block:22px 40px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+
+  /* ---------- testata ---------- */
+  .topbar{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:16px 24px;
+    border-bottom:2px solid var(--line);
+    padding-bottom:16px;
+  }
+  .brand{display:flex;flex-direction:column;gap:2px}
+  .brand h1{
+    font-family:var(--f-display);
+    font-size:clamp(28px,5.6vw,44px);
+    line-height:.95;
+    letter-spacing:-.01em;
+    margin:0;
+    text-wrap:balance;
+  }
+  .brand h1 em{font-style:normal;color:var(--giallo)}
+  .brand p{
+    margin:0;
+    color:var(--testo-soft);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:600;
+  }
+
+  .scoreboard{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+  .switcher{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    border-radius:var(--r-m);
+    padding:8px 10px;
+  }
+  .sw-label{
+    font:700 11px/1 var(--f-body);
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--testo-soft);
+    margin-right:2px;
+  }
+  .sw-btn{
+    width:30px;height:30px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--testo-soft);
+    font-family:var(--f-display);
+    font-size:14px;
+    cursor:pointer;
+    line-height:1;
+  }
+  .sw-btn:hover{border-color:var(--giallo);color:var(--testo)}
+  .sw-btn.on{background:var(--giallo);border-color:var(--giallo);color:var(--nero)}
+  .sw-btn:focus-visible{outline:2px solid var(--azzurro);outline-offset:2px}
+  .reset{
+    align-self:center;
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--testo-soft);
+    border-radius:100px;
+    padding:9px 16px;
+    font:700 12px/1 var(--f-body);
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .reset:hover{border-color:var(--rosso);color:var(--testo)}
+  .reset:focus-visible{outline:2px solid var(--azzurro);outline-offset:2px}
+  .reset.warn{background:var(--rosso);border-color:var(--rosso);color:#fff}
+  .player{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    border-radius:var(--r-m);
+    padding:8px 12px 8px 10px;
+    min-width:0;
+  }
+  .player.active{
+    border-color:var(--giallo);
+    box-shadow:0 0 0 1px var(--giallo), 0 8px 24px -14px #000;
+  }
+  .disc{
+    width:30px;height:30px;border-radius:50%;
+    display:grid;place-items:center;
+    font-family:var(--f-display);
+    font-size:14px;
+    color:var(--nero);
+    flex:none;
+  }
+  .p-meta{display:flex;flex-direction:column;gap:1px;min-width:0}
+  .p-name{
+    font:600 16px/1.1 var(--f-body);
+    background:transparent;
+    border:0;
+    border-bottom:1px dashed transparent;
+    color:var(--testo);
+    padding:0 0 2px;
+    width:10ch;
+    min-width:0;
+  }
+  .p-name:hover{border-bottom-color:var(--line)}
+  .p-name:focus{outline:none;border-bottom-color:var(--giallo)}
+  .lvl{
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--testo-soft);
+    background:none;
+    border:0;
+    padding:0;
+    cursor:pointer;
+    text-align:left;
+  }
+  .lvl:hover{color:var(--giallo)}
+  .stars{
+    font-family:var(--f-display);
+    font-size:19px;
+    color:var(--giallo);
+    font-variant-numeric:tabular-nums;
+    display:flex;
+    align-items:baseline;
+    gap:3px;
+  }
+  .stars span{font-size:12px;color:var(--testo-soft);font-family:var(--f-body);font-weight:700}
+
+  /* ---------- impianto ---------- */
+  .layout{
+    display:grid;
+    gap:20px;
+    grid-template-columns:minmax(0,1fr);
+    align-items:start;
+  }
+  .panel{order:-1}
+  @media (min-width:940px){
+    .layout{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
+    .panel{order:0;position:sticky;top:18px}
+  }
+
+  /* ---------- tabellone ---------- */
+  .boardwrap{
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    border-radius:var(--r-l);
+    padding:14px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .board-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:0 2px;
+  }
+  .board-head h2{
+    font:700 12px/1 var(--f-body);
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--testo-soft);
+    margin:0;
+  }
+  .board{
+    display:grid;
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    gap:6px;
+  }
+  .tile{
+    position:relative;
+    aspect-ratio:1;
+    border-radius:var(--r-s);
+    background:var(--ink-3);
+    border:1px solid var(--line-soft);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:2px;
+    padding:3px;
+    overflow:hidden;
+  }
+  .tile .glyph{font-size:clamp(13px,2.4vw,19px);line-height:1}
+  .tile .num{
+    position:absolute;top:3px;left:5px;
+    font:700 9px/1 var(--f-body);
+    color:var(--testo-soft);
+    font-variant-numeric:tabular-nums;
+  }
+  .tile .cat{
+    font:700 8px/1 var(--f-body);
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--testo-soft);
+    text-align:center;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:100%;
+  }
+  .tile::after{
+    content:"";
+    position:absolute;
+    inset:auto 0 0 0;
+    height:4px;
+    background:var(--c,transparent);
+  }
+  .tile.here{
+    border-color:var(--giallo);
+    box-shadow:inset 0 0 0 1px var(--giallo);
+  }
+  .tile.terminal{
+    background:var(--paper);
+    border-color:var(--paper-line);
+  }
+  .tile.terminal .num,.tile.terminal .cat{color:#5C5545}
+  .tile.terminal .cat{font-family:var(--f-display);letter-spacing:.02em;font-size:9px;color:var(--nero)}
+  .pawns{
+    position:absolute;
+    inset:auto 2px 6px 2px;
+    display:flex;
+    gap:3px;
+    justify-content:center;
+  }
+  .pawn{
+    width:13px;height:13px;border-radius:50%;
+    border:2px solid var(--ink-2);
+    box-shadow:0 2px 6px rgba(0,0,0,.5);
+    transition:transform .18s ease;
+  }
+  .pawn.hop{transform:translateY(-5px)}
+
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px 12px;
+    padding-top:10px;
+    border-top:1px solid var(--line-soft);
+  }
+  .legend span{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-size:11.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--testo-soft);
+  }
+  .legend i{width:9px;height:9px;border-radius:2px;background:var(--c);display:block}
+
+  /* ---------- pannello carta ---------- */
+  .panel{
+    background:var(--paper);
+    color:var(--nero);
+    border-radius:var(--r-l);
+    border:1px solid var(--paper-line);
+    box-shadow:0 26px 50px -34px rgba(0,0,0,.9);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    min-height:360px;
+  }
+  .panel-head{
+    background:var(--c,var(--nero));
+    color:var(--nero);
+    padding:12px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .panel-head .kind{
+    font-family:var(--f-display);
+    font-size:clamp(16px,3.4vw,21px);
+    letter-spacing:.02em;
+  }
+  .panel-head .who{
+    font:800 12px/1 var(--f-body);
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    background:rgba(21,26,34,.16);
+    border-radius:100px;
+    padding:6px 11px;
+  }
+  .panel-head.dim{background:var(--paper-2);color:var(--nero)}
+
+  .card-body{
+    padding:22px 22px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    flex:1;
+  }
+  .card-title{
+    font-family:var(--f-display);
+    font-size:clamp(21px,4vw,28px);
+    line-height:1.05;
+    margin:0;
+    text-wrap:balance;
+  }
+  .focus{
+    font:700 11.5px/1.3 var(--f-body);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#6B6350;
+    margin:0;
+  }
+  .task{
+    font-size:clamp(19px,2.6vw,23px);
+    line-height:1.38;
+    margin:0;
+    max-width:46ch;
+    font-weight:500;
+  }
+  .task b{font-weight:800}
+  .aiuto{
+    border:2px dashed var(--paper-line);
+    border-radius:var(--r-m);
+    padding:14px 16px;
+    background:rgba(255,255,255,.55);
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .aiuto h4{
+    margin:0;
+    font:800 12px/1 var(--f-body);
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#6B6350;
+  }
+  .aiuto ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+  .aiuto li{font-size:17px;line-height:1.35}
+  .aiuto li::before{content:"›";color:var(--rosso);font-weight:800;margin-right:8px}
+
+  .dicebox{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .die{
+    width:76px;height:76px;
+    border-radius:16px;
+    background:var(--nero);
+    color:var(--paper);
+    display:grid;
+    place-items:center;
+    font-family:var(--f-display);
+    font-size:38px;
+    flex:none;
+    box-shadow:inset 0 -4px 0 rgba(255,255,255,.12);
+  }
+  .die.rolling{animation:shake .28s linear infinite}
+  @keyframes shake{
+    0%{transform:rotate(-6deg) translateY(0)}
+    50%{transform:rotate(6deg) translateY(-4px)}
+    100%{transform:rotate(-6deg) translateY(0)}
+  }
+  .dicebox p{margin:0;font-size:17px;max-width:32ch;color:#4A4437}
+
+  .actions{
+    margin-top:auto;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    padding-top:4px;
+  }
+  button{font-family:var(--f-body)}
+  .btn{
+    appearance:none;
+    border:2px solid var(--nero);
+    background:var(--paper);
+    color:var(--nero);
+    border-radius:100px;
+    padding:13px 20px;
+    font-weight:800;
+    font-size:16px;
+    letter-spacing:.01em;
+    cursor:pointer;
+    transition:transform .12s ease, background .12s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0)}
+  .btn:focus-visible{outline:3px solid var(--azzurro);outline-offset:3px}
+  .btn.primary{background:var(--nero);color:var(--paper)}
+  .btn.go{background:var(--giallo);border-color:var(--nero)}
+  .btn.star{background:var(--verde);border-color:var(--nero);color:#062B1B}
+  .btn.ghost{border-color:var(--paper-line);color:#5C5545;font-weight:700}
+
+  .finale{
+    background:var(--nero);
+    color:var(--paper);
+    margin:-22px -22px -18px;
+    padding:26px 22px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .finale h3{
+    font-family:var(--f-display);
+    font-size:clamp(24px,4.6vw,32px);
+    margin:0;
+    line-height:1;
+    color:var(--giallo);
+  }
+  .finale .task{max-width:44ch}
+  .tally{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    font-family:var(--f-display);
+    font-size:15px;
+  }
+  .tally b{
+    background:rgba(243,238,227,.1);
+    border:1px solid rgba(243,238,227,.22);
+    border-radius:100px;
+    padding:7px 14px;
+    font-weight:400;
+  }
+  .finale .btn{background:transparent;border-color:var(--paper);color:var(--paper)}
+
+  /* ---------- note ---------- */
+  details.notes{
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    border-radius:var(--r-m);
+    padding:14px 18px;
+  }
+  details.notes summary{
+    cursor:pointer;
+    font:800 12px/1 var(--f-body);
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--giallo);
+    list-style:none;
+  }
+  details.notes summary::-webkit-details-marker{display:none}
+  details.notes summary::before{content:"+ ";font-family:var(--f-display)}
+  details.notes[open] summary::before{content:"– "}
+  .notes-grid{
+    display:grid;
+    gap:18px 28px;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    padding-top:14px;
+  }
+  .notes-grid h5{
+    margin:0 0 6px;
+    font:800 13px/1.2 var(--f-body);
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--testo);
+  }
+  .notes-grid p,.notes-grid li{color:var(--testo-soft);font-size:15px;line-height:1.5;margin:0}
+  .notes-grid ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px}
+
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+  @media (max-width:430px){
+    .p-name{width:8ch}
+    .card-body{padding:18px 16px 16px}
+    .die{width:62px;height:62px;font-size:30px}
+  }
+
+  /* ---------- veste del sito ---------- */
+  body{background-image:none;background:var(--ink)}
+  .topline{border-bottom:1px solid var(--line);background:var(--paper)}
+  .topline-in{max-width:1220px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--f-display);font-weight:700;font-size:1rem;color:var(--testo)}
+  .logo-mark{width:20px;height:20px;border-radius:50%;border:1px solid var(--nero);
+    background:conic-gradient(from 180deg, var(--giallo) 0 25%, var(--rosso) 0 50%, var(--verde) 0 75%, var(--nero) 0)}
+  .backlink{font-family:var(--f-display);font-weight:600;font-size:.88rem;color:var(--testo-soft);text-decoration:none}
+  .backlink:hover{color:var(--testo)}
+  .brand h1 em{color:var(--rosso)}
+  .boardwrap,.panel,.switcher,.player,details.notes{box-shadow:4px 4px 0 rgba(22,35,63,.07)}
+  .tile{border-color:var(--line)}
+  .tile.terminal{background:var(--nero);border-color:var(--nero)}
+  .tile.terminal .num{color:rgba(247,244,235,.7)}
+  .tile.terminal .cat{color:var(--paper);font-family:var(--f-display)}
+  .pawn{border-color:var(--paper);box-shadow:0 1px 4px rgba(22,35,63,.35)}
+  .panel-head{background:var(--paper);color:var(--testo);border-bottom:5px solid var(--c,var(--nero))}
+  .panel-head.dim{background:var(--paper);border-bottom-color:var(--line)}
+  .panel-head .who{background:rgba(22,35,63,.08);color:var(--testo)}
+  .focus,.aiuto h4{color:var(--testo-soft)}
+  .aiuto{background:var(--paper-2);border-color:var(--paper-line)}
+  .dicebox p{color:var(--testo-soft)}
+  .btn.star{color:#fff}
+  .btn.primary{color:var(--paper)}
+  .stars{color:var(--nero)}
+  .stars .st{color:var(--giallo)}
+  details.notes summary{color:var(--nero)}
+  details.notes summary::after{content:" ";display:block}
+  .notes-grid h5{color:var(--nero)}
+  .finale{background:var(--nero);color:var(--paper)}
+  .finale .task{color:var(--paper)}
+  .finale .aiuto li,.finale .aiuto h4{color:rgba(247,244,235,.8)}
+
+  /* ---------- extra del turno ---------- */
+  .extra{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    background:rgba(232,163,61,.14);border:2px dashed var(--giallo);
+    border-radius:var(--r-m);padding:10px 14px;font-size:15.5px;color:#6B5320;
+  }
+  .extra b{font-family:var(--f-display)}
+  .timerbox{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:15px;color:var(--testo-soft)}
+  .clock{
+    font-family:var(--f-display);font-weight:800;font-size:26px;color:var(--nero);
+    background:var(--paper-2);border:2px solid var(--nero);border-radius:12px;padding:2px 14px;min-width:78px;text-align:center;
+    font-variant-numeric:tabular-nums;
+  }
+  .clock.run{background:var(--verde);color:#fff;border-color:var(--verde)}
+  .clock.over{background:var(--rosso);color:#fff;border-color:var(--rosso)}
+  .btn.small{padding:8px 14px;font-size:14px}
+  .hint-pen{font-family:var(--f-pen);font-size:19px;color:var(--rosso)}
+</style>
+</head>
+<body>
+<header class="topline">
+  <div class="topline-in">
+    <a class="logo" href="https://talkwithfabio.com/">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Talk with Fabio
+    </a>
+    <a class="backlink" href="../">&larr; La mia aula</a>
+  </div>
+</header>
+
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <h1>Missione <em>Italia</em></h1>
+      <p>Gioco di conversazione · livello A1 · solo per me</p>
+    </div>
+    <div class="scoreboard" id="scoreboard"></div>
+  </header>
+
+  <main class="layout">
+    <section class="boardwrap">
+      <div class="board-head">
+        <h2>Il percorso · 30 caselle</h2>
+        <h2 id="progress">Partenza</h2>
+      </div>
+      <div class="board" id="board"></div>
+      <div class="legend">
+        <span style="--c:var(--verde)"><i></i>Casa</span>
+        <span style="--c:var(--giallo)"><i></i>Giornata</span>
+        <span style="--c:var(--rosso)"><i></i>Spesa</span>
+        <span style="--c:var(--arancio)"><i></i>Tavola</span>
+        <span style="--c:var(--azzurro)"><i></i>Strada</span>
+        <span style="--c:var(--viola)"><i></i>Insieme</span>
+        <span style="--c:var(--nero)"><i></i>Imprevisto</span>
+      </div>
+    </section>
+
+    <section class="panel" id="panel" aria-live="polite"></section>
+  </main>
+
+  <details class="notes">
+    <summary>Note per l'insegnante</summary>
+    <div class="notes-grid">
+      <div>
+        <h5>Come si gioca</h5>
+        <p>Condividi lo schermo. A turno tirano il dado: la casella decide il tipo di compito, e la carta si adatta al livello del giocatore di turno. Tu conduci: fai la domanda, dai il ruolo, ascolti. «Fatto» vale una stella, «Passo» no.</p>
+        <p><b>Le stelle servono a qualcosa.</b> Le caselle ⭐ e le carte fortunate danno una stella
+        <i>e</i> un tiro in più: si rilancia subito, il turno non passa. E con <b>tre stelle</b> si compra
+        un <b>tiro doppio</b> dal pulsante accanto al dado: si spendono le stelle, si gioca la carta e si
+        rilancia. Così le stelle diventano una scelta e non solo un punteggio.</p>
+        <p>Su ogni carta c'è un <b>cronometro</b> facoltativo (30, 60, 90 o 120 secondi) e il pulsante
+        <b>Un'altra carta</b>, se quella uscita non va bene per lo studente che hai davanti.</p>
+        <p>La partita si salva da sola su questo computer, quindi se chiudi per sbaglio ritrovi tutto. Per ripartire da zero con un altro studente usa <b>Ricomincia</b> in alto a destra: il primo clic chiede conferma, il secondo azzera stelle, posizioni e partita salvata. I nomi restano.</p>
+      </div>
+      <div>
+        <h5>Prima di iniziare</h5>
+        <p>Scegli <b>1 o 2 giocatori</b> in alto, poi scrivi i nomi: restano solo su questo computer. Il livello si assegna con il pulsante sotto ogni nome, in modo indipendente: entrambi base, entrambi più difficile, o uno e uno. <b>Base</b> significa frase breve e modello pronto da imitare; <b>più difficile</b> significa produzione aperta, più verbi, più ragionamento.</p>
+      </div>
+      <div>
+        <h5>Durante il task</h5>
+        <ul>
+          <li>Non correggere mentre parlano: prendi nota e basta.</li>
+          <li>Usa «Ti aiuto» solo dopo un tentativo, mai prima.</li>
+          <li>Le caselle <b>Insieme</b> sono il cuore del gioco: in coppia devono negoziare tra loro e arrivare a una decisione, e tu resti fuori. Con un solo studente la stessa carta diventa una trattativa con te: fai proposte, lui accetta o rifiuta.</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Dopo il gioco (focus on form)</h5>
+        <ul>
+          <li>Riprendi 4 o 5 errori annotati e scrivili sul Canvas, senza dire di chi sono.</li>
+          <li>Attesi a questo livello: infinito al posto del verbo coniugato, riflessivo senza <b>mi</b>, «alla 8» per «alle 8», genere sbagliato (il televisione), accordo dell'aggettivo.</li>
+          <li>Chiudi con il task finale della casella 30: due minuti, insieme, senza aiuto.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var CATS = {
+    casa:      {label:"Casa",       color:"var(--verde)",   glyph:"🏡", kind:"Casa"},
+    giornata:  {label:"Giornata",   color:"var(--giallo)",  glyph:"⏰", kind:"La giornata"},
+    spesa:     {label:"Spesa",      color:"var(--rosso)",   glyph:"🛒", kind:"Al supermercato"},
+    tavola:    {label:"Tavola",     color:"var(--arancio)", glyph:"🍽", kind:"A tavola"},
+    strada:    {label:"Strada",     color:"var(--azzurro)", glyph:"🚌", kind:"Per strada"},
+    insieme:   {label:"Insieme",    color:"var(--viola)",   glyph:"🤝", kind:"Insieme"},
+    imprevisto:{label:"Imprevisto", color:"var(--nero)",   glyph:"❗", kind:"Imprevisto"},
+    bonus:     {label:"Bonus",      color:"var(--giallo)",  glyph:"⭐", kind:"Stella gratis"}
+  };
+
+  var PATH = ["via","casa","giornata","spesa","imprevisto","tavola","insieme","strada","casa","giornata",
+              "bonus","spesa","tavola","insieme","strada","imprevisto","casa","giornata","spesa","insieme",
+              "tavola","bonus","strada","casa","imprevisto","giornata","insieme","tavola","strada","arrivo"];
+
+  var CARDS = {
+    casa:[
+      {t:"La stanza preferita", focus:"c'è / ci sono · lessico della casa",
+       base:{task:"Di' il nome di <b>tre stanze</b> della tua casa e una cosa che c'è in ogni stanza.",
+             aiuto:["In cucina c'è il frigorifero.","In salotto c'è il divano.","In camera c'è il letto."]},
+       plus:{task:"Descrivi la tua <b>stanza preferita</b>: dov'è, cosa c'è dentro, perché ti piace.",
+             aiuto:["La mia stanza preferita è...","C'è una... / Ci sono due...","Mi piace perché è luminosa."]}},
+      {t:"Guarda intorno a te", focus:"preposizioni: sul, sulla, nel, nella, vicino a",
+       base:{task:"Di' <b>tre oggetti</b> che vedi adesso e il loro colore.",
+             aiuto:["Questo è un libro. È rosso.","Blu, rosa, viola non cambiano mai."]},
+       plus:{task:"Guarda intorno a te adesso: dimmi <b>cinque oggetti</b> e dove sono esattamente.",
+             aiuto:["su + il = sul · su + la = sulla","in + il = nel · in + la = nella","vicino a + il = vicino al"]}},
+      {t:"Affitto la mia casa", focus:"accordo dell'aggettivo",
+       base:{task:"La tua casa è grande o piccola? Vecchia o nuova? Luminosa o buia? <b>Frasi complete.</b>",
+             aiuto:["La mia casa è grande.","Il salotto è luminoso.","La cucina è piccola."]},
+       plus:{task:"Affitti la tua casa per una settimana. <b>Convincimi</b>: descrivila con almeno quattro aggettivi.",
+             aiuto:["comodo · luminoso · tranquillo · moderno","Attenzione: il bagno pulitO / la cucina pulitA"]}},
+      {t:"Dov'è il bagno?", focus:"lessico del bagno · falsi amici",
+       base:{task:"Di' <b>quattro cose</b> che ci sono in un bagno italiano.",
+             aiuto:["lo spazzolino · il sapone","l'asciugamano · la doccia","il water (si dice VA-ter) · il bidet"]},
+       plus:{task:"Un amico italiano viene a casa tua. Spiegagli <b>dov'è il bagno</b> e cosa trova dentro.",
+             aiuto:["Il bagno è al primo piano, in fondo.","Nel bagno trovi...","Non si dice «toilet»: si dice il water."]}},
+      {t:"Che disordine!", focus:"aggettivi · stanze",
+       base:{task:"Il tuo salotto oggi è ordinato o disordinato? Pulito o sporco? <b>Rispondi con una frase.</b>",
+             aiuto:["Il salotto è ordinato.","La cucina è pulita."]},
+       plus:{task:"La casa è un disastro. Di' <b>tre cose</b> che devi sistemare e in quale stanza.",
+             aiuto:["Devo pulire la cucina.","I piatti sono nel lavandino.","Le tende sono sporche."]}}
+    ],
+    giornata:[
+      {t:"Suona la sveglia", focus:"verbi riflessivi · mi + verbo",
+       base:{task:"A che ora ti svegli? E poi? Di' <b>tre azioni</b> in ordine.",
+             aiuto:["Mi sveglio alle otto.","Mi alzo, mi lavo, mi preparo.","Attenzione: MI sveglio, non «io sveglio»."]},
+       plus:{task:"Racconta i <b>primi trenta minuti</b> della tua giornata, dal momento in cui suona la sveglia.",
+             aiuto:["Fermo la sveglia, mi alzo, scendo le scale...","Poi · dopo · e allora"]}},
+      {t:"Il caffè della moka", focus:"presente indicativo · orari",
+       base:{task:"Chi prepara il caffè in casa vostra? <b>A che ora?</b>",
+             aiuto:["Io preparo il caffè alle otto.","Il caffè lo prepara lui / lei."]},
+       plus:{task:"Spiegami <b>passo passo</b> come prepari il caffè con la moka.",
+             aiuto:["Prima metto l'acqua, poi...","apro · chiudo · accendo · aspetto"]}},
+      {t:"Dalle nove a mezzogiorno", focus:"presente · verbi ad alta frequenza",
+       base:{task:"Di' <b>tre cose</b> che fai la mattina dopo colazione.",
+             aiuto:["Guardo le e-mail.","Parlo con i miei colleghi.","Preparo il pranzo."]},
+       plus:{task:"Cosa fai tra le nove e mezzogiorno? Usa almeno <b>cinque verbi diversi</b>.",
+             aiuto:["inizio · guardo · rispondo · parlo · organizzo","Attenzione: io faccio, non «io fare»."]}},
+      {t:"La sera", focus:"noi · andare a + infinito",
+       base:{task:"A che ora andate a dormire? Cosa fate <b>prima</b>?",
+             aiuto:["Guardiamo la televisione.","Mi lavo i denti e vado a dormire."]},
+       plus:{task:"Racconta la vostra serata, <b>dalla cena fino a letto</b>.",
+             aiuto:["Noi prepariamo la cena...","Dopo cena noi...","Vado a fare una doccia."]}},
+      {t:"Domenica", focus:"presente · espressioni di tempo",
+       base:{task:"Cosa fai di bello la domenica? <b>Due cose.</b>",
+             aiuto:["La domenica io...","Facciamo una passeggiata."]},
+       plus:{task:"Che differenza c'è tra la tua <b>domenica</b> e il tuo <b>martedì</b>?",
+             aiuto:["Il martedì lavoro, invece la domenica...","di solito · sempre · non mai"]}}
+    ],
+    spesa:[
+      {t:"Dov'è la mozzarella?", focus:"dov'è / dove sono · chiedere",
+       base:{task:"Chiedi <b>dov'è la mozzarella</b>. Poi chiedi dov'è il pane.",
+             aiuto:["Scusi, dov'è la mozzarella?","Scusi, dove sono i pomodori?"]},
+       plus:{task:"Al supermercato non trovi <b>tre prodotti</b>. Chiedili a me: io faccio il commesso.",
+             aiuto:["Scusi, sto cercando...","È vicino alla cassa?","Può ripetere, per favore?"]}},
+      {t:"La lista della spesa", focus:"lessico del cibo · articoli",
+       base:{task:"Di' <b>cinque cose</b> che compri sempre al supermercato.",
+             aiuto:["il pane · il latte · la pasta","il vino · i pomodori · il formaggio"]},
+       plus:{task:"Fai la lista per una <b>cena italiana per quattro</b> e spiega a cosa serve ogni cosa.",
+             aiuto:["Compro l'aglio per la pasta.","Mi serve... · Ci vuole..."]}},
+      {t:"Alla cassa", focus:"role play · pagare",
+       base:{task:"Come paghi, con carta o in contanti? <b>Frase completa.</b>",
+             aiuto:["Io pago con la carta.","Pago in contanti, grazie."]},
+       plus:{task:"Role play alla cassa: saluta, chiedi se puoi pagare con carta, ringrazia, saluta. <b>Io sono la cassiera.</b>",
+             aiuto:["Buongiorno! · Posso pagare con la carta?","Ecco a lei. · Grazie mille, arrivederci."]}},
+      {t:"Quanto costa?", focus:"quanto costa / costano · numeri",
+       base:{task:"Chiedi il <b>prezzo</b> di una cosa.",
+             aiuto:["Quanto costa?","Quanto costano?"]},
+       plus:{task:"Chiedi il prezzo di <b>tre cose</b> e di' se ti sembrano care o economiche.",
+             aiuto:["È caro! · È economico.","Due euro e cinquanta."]}},
+      {t:"È finito!", focus:"non c'è / non ci sono",
+       base:{task:"Di' <b>non c'è</b> e <b>non ci sono</b> con due prodotti.",
+             aiuto:["Non c'è il basilico.","Non ci sono i pomodori."]},
+       plus:{task:"Quello che cerchi è finito. <b>Chiedimi un'alternativa</b> e spiega cosa vuoi cucinare.",
+             aiuto:["Non c'è più...","Cosa mi consiglia?","Va bene anche..."]}}
+    ],
+    tavola:[
+      {t:"Al bar", focus:"ordinare · vorrei",
+       base:{task:"Ordina <b>un caffè e una brioche</b>.",
+             aiuto:["Vorrei un caffè, per favore.","Un caffè e una brioche, grazie."]},
+       plus:{task:"Ordina la <b>colazione per due</b> e poi chiedi dov'è il bagno. Io sono il barista.",
+             aiuto:["Per me un cappuccino, per lei...","Scusi, dov'è il bagno?","Quant'è?"]}},
+      {t:"Mi piace o mi piacciono?", focus:"piacere: singolare e plurale",
+       base:{task:"Completa due frasi sul cibo italiano: <b>mi piace ___</b> e <b>mi piacciono ___</b>.",
+             aiuto:["mi piace + UNA cosa: mi piace la pizza","mi piacciono + PIÙ cose: mi piacciono gli gnocchi"]},
+       plus:{task:"Di' <b>tre cose italiane che ti piacciono</b> e due che non ti piacciono, e spiega perché.",
+             aiuto:["Mi piace ballare (verbo → sempre piace)","Non mi piace il vino rosso perché..."]}},
+      {t:"Il menù", focus:"role play al ristorante",
+       base:{task:"Cosa vuoi mangiare stasera? E da bere? <b>Una cosa per ognuno.</b>",
+             aiuto:["Voglio la pasta.","Da bere, vorrei un'acqua."]},
+       plus:{task:"Sei in trattoria e io sono il cameriere: ordina <b>antipasto, primo e da bere</b>.",
+             aiuto:["Come antipasto prendo...","Per primo vorrei...","Un bicchiere di vino della casa."]}},
+      {t:"Il conto", focus:"formule di cortesia",
+       base:{task:"Chiedi <b>il conto</b> in italiano.",
+             aiuto:["Il conto, per favore.","Possiamo pagare?"]},
+       plus:{task:"Chiedi il conto, chiedi se si può pagare con carta, fai un complimento sul cibo.",
+             aiuto:["Era tutto buonissimo!","Accettate la carta?","Complimenti al cuoco!"]}},
+      {t:"La ricetta di casa", focus:"presente · ingredienti",
+       base:{task:"Di' <b>tre ingredienti</b> della tua pasta preferita.",
+             aiuto:["l'aglio · la cipolla","il tonno · i pomodori"]},
+       plus:{task:"Spiegami <b>come prepari</b> un piatto di pasta: aglio, cipolla, pomodori e quello che vuoi tu.",
+             aiuto:["Prima taglio la cipolla...","metto · aggiungo · mescolo · aspetto dieci minuti"]}}
+    ],
+    strada:[
+      {t:"Dov'è la stazione?", focus:"chiedere indicazioni",
+       base:{task:"Fermami per strada e chiedi <b>dov'è la stazione</b>.",
+             aiuto:["Scusi, dov'è la stazione?","È vicino o lontano?"]},
+       plus:{task:"Chiedimi come si arriva alla stazione, poi <b>ripeti le indicazioni</b> per essere sicuro.",
+             aiuto:["Allora: vado dritto e poi giro a destra?","sempre dritto · a destra · a sinistra"]}},
+      {t:"Alla fermata", focus:"a che ora · quale",
+       base:{task:"Chiedi <b>a che ora passa l'autobus</b>.",
+             aiuto:["A che ora passa l'autobus?","Quando arriva?"]},
+       plus:{task:"Alla fermata: chiedi <b>quale autobus</b> va in centro, a che ora passa e quante fermate sono.",
+             aiuto:["Quale autobus va in centro?","Quante fermate sono?","Scendo alla prossima."]}},
+      {t:"Vicino a casa mia", focus:"vicino a + articolo",
+       base:{task:"Di' <b>due cose</b> che ci sono vicino a casa tua.",
+             aiuto:["Vicino a casa mia c'è un bar.","Ci sono due negozi."]},
+       plus:{task:"Descrivi il tuo quartiere: cosa c'è vicino a casa tua e cosa manca?",
+             aiuto:["vicino a + il = al · vicino a + la = alla","davanti a · dietro · in fondo a"]}},
+      {t:"Non ho capito", focus:"frasi di sopravvivenza",
+       base:{task:"Di' queste due frasi: <b>«Non capisco, può ripetere?»</b> e <b>«Parla più piano, per favore»</b>.",
+             aiuto:["Non capisco.","Può ripetere, per favore?","Parla più piano."]},
+       plus:{task:"Ti sei perso in città. Spiegami il problema e <b>chiedimi aiuto</b> per tornare in albergo.",
+             aiuto:["Mi sono perso, non trovo...","Può aiutarmi?","Come si arriva a...?"]}},
+      {t:"Il biglietto", focus:"comprare · quantità",
+       base:{task:"Compra <b>un biglietto</b> dell'autobus.",
+             aiuto:["Un biglietto, per favore.","Quanto costa?"]},
+       plus:{task:"Compra <b>due biglietti</b>, chiedi dove si timbrano e quanto tempo valgono.",
+             aiuto:["Due biglietti, per favore.","Dove si timbra?","Quanto dura il biglietto?"]}}
+    ],
+    insieme:[
+      {t:"La cena di stasera", focus:"negoziare · essere d'accordo",
+       both:{task:"Decidete <b>insieme e in italiano</b> cosa cucinate stasera: un primo, una bevanda e chi cucina. Dovete essere d'accordo.",
+             aiuto:["Io voglio... · E tu?","Preferisci la pasta o il riso?","Sono d'accordo! · Va bene!"]},
+       solo:{task:"Decidiamo <b>insieme</b> cosa cucini stasera: un primo, una bevanda e a che ora si mangia. Io propongo, tu accetti o rifiuti.",
+             aiuto:["Va bene! · No, preferisco...","Io voglio... perché...","Sono d'accordo."]}},
+      {t:"Mare o montagna?", focus:"esprimere preferenze",
+       both:{task:"Avete una settimana in Italia. Decidete <b>dove andate e perché</b>. Alla fine dovete dirmi una sola destinazione.",
+             aiuto:["Io preferisco... perché...","Anche io! · Io no.","Allora andiamo a..."]},
+       solo:{task:"Hai una settimana in Italia. Io ti propongo il mare: tu <b>difendi la tua idea</b> e alla fine scegliamo una destinazione sola.",
+             aiuto:["Io preferisco... perché...","Non sono d'accordo.","Allora andiamo a..."]}},
+      {t:"La casa in Italia", focus:"c'è / ci sono · colori · stanze",
+       both:{task:"Comprate una casa in Italia. Decidete insieme <b>quante stanze</b> ha, <b>di che colore</b> è il salotto e <b>cosa c'è</b> in giardino.",
+             aiuto:["Ci sono tre camere.","Il salotto è giallo.","In giardino c'è un albero."]},
+       solo:{task:"Compri una casa in Italia. Dimmi <b>quante stanze</b> ha, <b>di che colore</b> è il salotto e <b>cosa c'è</b> in giardino.",
+             aiuto:["Ci sono tre camere.","Il salotto è giallo.","In giardino c'è un albero."]}},
+      {t:"La domenica perfetta", focus:"orari · sequenza",
+       both:{task:"Costruite insieme la vostra <b>domenica perfetta in Italia</b>, ora per ora, dalle nove alle dieci di sera.",
+             aiuto:["Alle nove noi...","Poi · dopo · verso le tre","La sera andiamo a..."]},
+       solo:{task:"Costruisci la tua <b>domenica perfetta in Italia</b>, ora per ora, dalle nove alle dieci di sera.",
+             aiuto:["Alle nove io...","Poi · dopo · verso le tre","La sera vado a..."]}},
+      {t:"Gli ospiti", focus:"organizzare · pronomi",
+       both:{task:"Un amico italiano dorme da voi due notti. Decidete <b>dove dorme</b>, <b>cosa cucinate</b> e <b>cosa gli fate vedere</b>.",
+             aiuto:["Lui dorme in...","Noi prepariamo...","Lo portiamo a vedere..."]},
+       solo:{task:"Un amico italiano dorme da te due notti. Dimmi <b>dove dorme</b>, <b>cosa cucini</b> e <b>cosa gli fai vedere</b>.",
+             aiuto:["Lui dorme in...","Io preparo...","Lo porto a vedere..."]}},
+      {t:"Tre giorni di spesa", focus:"quantità · motivare una scelta",
+       both:{task:"Fate insieme la spesa per tre giorni. <b>Ognuno aggiunge cinque cose</b> e dice a cosa servono.",
+             aiuto:["Compriamo il pane per la colazione.","Ci serve anche...","No, questo non ci serve."]},
+       solo:{task:"Fai la spesa per tre giorni: <b>almeno otto cose</b>, e per ognuna dimmi a cosa serve.",
+             aiuto:["Compro il pane per la colazione.","Mi serve anche...","Questo non mi serve."]}}
+    ],
+    imprevisto:[
+      {t:"Sciopero dei treni", focus:"bonus al contrario",
+       move:-2,
+       both:{task:"Sciopero! <b>Tornate indietro di due caselle</b>. Poi dite insieme dove volevate andare e come ci andate adesso.",
+             aiuto:["Volevamo andare a...","Adesso prendiamo l'autobus.","Non c'è il treno."]},
+       solo:{task:"Sciopero! <b>Torni indietro di due caselle</b>. Poi dimmi dove volevi andare e come ci vai adesso.",
+             aiuto:["Volevo andare a...","Adesso prendo l'autobus.","Non c'è il treno."]}},
+      {t:"Il caffè offerto", focus:"bonus · tiro in più",
+       extra:true,
+       both:{task:"Il barista vi offre il caffè: <b>una stella e un tiro in più</b>. Prima però ringraziatelo in tre modi diversi.",
+             aiuto:["Grazie mille! · Che gentile!","Troppo gentile, grazie davvero."]},
+       solo:{task:"Il barista ti offre il caffè: <b>una stella e un tiro in più</b>. Prima però ringrazialo in tre modi diversi.",
+             aiuto:["Grazie mille! · Che gentile!","Troppo gentile, grazie davvero."]}},
+      {t:"Solo italiano!", focus:"regola speciale",
+       both:{task:"Per i <b>prossimi due turni</b> nessuno dei due può dire una parola in inglese. Chi sbaglia perde una stella.",
+             aiuto:["Come si dice...?","Non ricordo la parola.","Aspetta, ci penso."]},
+       solo:{task:"Per i <b>prossimi due turni</b> non puoi dire nemmeno una parola in inglese. Se succede, perdi una stella.",
+             aiuto:["Come si dice...?","Non ricordo la parola.","Aspetta, ci penso."]}},
+      {t:"Il pappagallo", focus:"pronuncia",
+       both:{task:"Ripetete tutti e due la frase che dico io, con la <b>pronuncia giusta</b>. Una stella a testa se ci riuscite.",
+             aiuto:["Attenzione all'accento: cantAno, non cantanO","le doppie: pizza, bottiglia, spazzolino"]},
+       solo:{task:"Ripeti la frase che dico io con la <b>pronuncia giusta</b>. Una stella se ci riesci.",
+             aiuto:["Attenzione all'accento: cantAno, non cantanO","le doppie: pizza, bottiglia, spazzolino"]}},
+      {t:"Domanda a sorpresa", focus:"produzione libera",
+       both:{task:"Rispondete <b>tutti e due</b> alla stessa domanda: qual è la cosa più bella dell'Italia per te?",
+             aiuto:["Per me la cosa più bella è...","Mi piace soprattutto..."]},
+       solo:{task:"Rispondi con <b>tre frasi</b>: qual è la cosa più bella dell'Italia per te?",
+             aiuto:["Per me la cosa più bella è...","Mi piace soprattutto..."]}},
+      {t:"Avanti tutta", focus:"bonus",
+       move:2,
+       both:{task:"Bravi! <b>Avanzate di due caselle</b> e prendete una stella. Poi dite insieme: «noi parliamo italiano!»",
+             aiuto:["noi parliamo · noi mangiamo · noi andiamo"]},
+       solo:{task:"Bravo! <b>Avanzi di due caselle</b> e prendi una stella. Poi di': «io parlo italiano!»",
+             aiuto:["io parlo · io mangio · io vado"]}},
+      {t:"Ripasso lampo", focus:"lessico",
+       both:{task:"<b>Cinque parole italiane in dieci secondi.</b> Il tema lo scelgo io: cucina, casa o strada.",
+             aiuto:["Non pensare alla grammatica: solo parole!"]}}
+    ],
+    bonus:[
+      {t:"Stella gratis", focus:"pronuncia · lessico", extra:true,
+       both:{task:"Casella fortunata: <b>una stella gratis</b>. Prima però dite una parola italiana difficile da pronunciare.",
+             aiuto:["ghiaccio · aglio · sciogliere","famiglia · bottiglia · asciugamano"]},
+       solo:{task:"Casella fortunata: <b>una stella gratis</b>. Prima però di' una parola italiana difficile da pronunciare.",
+             aiuto:["ghiaccio · aglio · sciogliere","famiglia · bottiglia · asciugamano"]}},
+      {t:"Complimenti!", focus:"produzione libera", extra:true,
+       both:{task:"<b>Una stella gratis.</b> Di' in italiano una cosa che hai imparato oggi.",
+             aiuto:["Oggi ho imparato...","Adesso so dire..."]}}
+    ]
+  };
+
+  var FINALE = {
+    task:"Presentate <b>insieme</b>, in italiano, la vostra giornata ideale in Italia: dove siete, cosa c'è intorno a voi, cosa mangiate, cosa fate dalla mattina alla sera.",
+    aiuto:["Due minuti. Parlate tutti e due.","Senza aiuto e senza inglese.","Io ascolto e prendo nota: correggiamo dopo."],
+    soloTask:"Racconta, in italiano, la tua <b>giornata ideale in Italia</b>: dove sei, cosa c'è intorno a te, cosa mangi, cosa fai dalla mattina alla sera.",
+    soloAiuto:["Due minuti, senza fermarti.","Senza aiuto e senza inglese.","Io ascolto e prendo nota: correggiamo dopo."]
+  };
+
+  var KEY = "missione-italia-v3";
+  var state = null;
+  var board = document.getElementById("board");
+  var panel = document.getElementById("panel");
+  var scoreboard = document.getElementById("scoreboard");
+  var progressEl = document.getElementById("progress");
+  var tiles = [];
+
+  function nameOf(i){
+    var n = state.players[i].name;
+    return n ? n : "Giocatore " + (i + 1);
+  }
+
+  function solo(){ return state.count === 1; }
+  function inPlay(){ return solo() ? [0] : [0,1]; }
+  function allArrived(){
+    var list = inPlay();
+    for(var i=0;i<list.length;i++){
+      if(state.players[list[i]].pos < PATH.length - 1) return false;
+    }
+    return true;
+  }
+
+  function freshState(){
+    return {
+      count:2,
+      players:[
+        {name:"", level:"base", pos:0, stars:0, color:"var(--rosso)"},
+        {name:"", level:"plus", pos:0, stars:0, color:"var(--giallo)"}
+      ],
+      turn:0,
+      extra:0,
+      rilancio:false,
+      phase:"roll",
+      die:null,
+      cat:null,
+      cardIdx:null,
+      aiuto:false,
+      decks:{}
+    };
+  }
+
+  function save(){
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+  function load(){
+    try{
+      var raw = localStorage.getItem(KEY);
+      if(!raw) return null;
+      var s = JSON.parse(raw);
+      if(s && s.players && s.players.length === 2){
+        if(s.count !== 1 && s.count !== 2) s.count = 2;
+        if(typeof s.extra !== "number") s.extra = 0;
+        if(typeof s.rilancio !== "boolean") s.rilancio = false;
+        return s;
+      }
+    }catch(e){}
+    return null;
+  }
+
+  function draw(cat){
+    if(!state.decks[cat] || !state.decks[cat].length){
+      var idx = CARDS[cat].map(function(_,i){return i;});
+      for(var i=idx.length-1;i>0;i--){
+        var j = Math.floor(Math.random()*(i+1));
+        var tmp = idx[i]; idx[i] = idx[j]; idx[j] = tmp;
+      }
+      state.decks[cat] = idx;
+    }
+    return state.decks[cat].pop();
+  }
+
+  /* ---------- tabellone ---------- */
+  function buildBoard(){
+    board.innerHTML = "";
+    tiles = [];
+    for(var i=0;i<PATH.length;i++){
+      var row = Math.floor(i/6);
+      var col = (row % 2 === 0) ? (i % 6) + 1 : 6 - (i % 6);
+      var el = document.createElement("div");
+      el.className = "tile";
+      el.style.gridRow = String(row + 1);
+      el.style.gridColumn = String(col);
+      var key = PATH[i];
+      if(key === "via" || key === "arrivo"){
+        el.classList.add("terminal");
+        el.innerHTML = '<span class="num">' + (i+1) + '</span><span class="cat">' +
+                       (key === "via" ? "VIA!" : "ARRIVO") + '</span>';
+      }else{
+        var c = CATS[key];
+        el.style.setProperty("--c", c.color);
+        el.innerHTML = '<span class="num">' + (i+1) + '</span><span class="glyph">' + c.glyph +
+                       '</span><span class="cat">' + c.label + '</span>';
+      }
+      var pw = document.createElement("div");
+      pw.className = "pawns";
+      el.appendChild(pw);
+      board.appendChild(el);
+      tiles.push(el);
+    }
+  }
+
+  function renderBoard(hop){
+    for(var i=0;i<tiles.length;i++){
+      tiles[i].classList.remove("here");
+      tiles[i].querySelector(".pawns").innerHTML = "";
+    }
+    var play = inPlay();
+    for(var k=0;k<play.length;k++){
+      var p = play[k];
+      var pl = state.players[p];
+      var dot = document.createElement("span");
+      dot.className = "pawn" + (hop === p ? " hop" : "");
+      dot.style.background = pl.color;
+      dot.title = nameOf(p);
+      tiles[pl.pos].querySelector(".pawns").appendChild(dot);
+    }
+    tiles[state.players[state.turn].pos].classList.add("here");
+    var max = solo() ? state.players[0].pos : Math.max(state.players[0].pos, state.players[1].pos);
+    progressEl.textContent = max === 0 ? "Partenza" : "Casella " + (max + 1) + " di 30";
+  }
+
+  function renderScore(){
+    scoreboard.innerHTML = "";
+
+    var sw = el("div","switcher");
+    sw.appendChild(el("span","sw-label","Giocatori"));
+    [1,2].forEach(function(n){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "sw-btn" + (state.count === n ? " on" : "");
+      b.id = "count-" + n;
+      b.textContent = String(n);
+      b.setAttribute("aria-pressed", state.count === n ? "true" : "false");
+      b.title = n === 1 ? "Un solo studente" : "Due studenti";
+      b.addEventListener("click", function(){ setCount(n); });
+      sw.appendChild(b);
+    });
+    scoreboard.appendChild(sw);
+
+    var play = inPlay();
+    for(var k=0;k<play.length;k++){
+      (function(p){
+        var pl = state.players[p];
+        var box = document.createElement("div");
+        box.className = "player" + (state.turn === p && state.phase !== "fine" ? " active" : "");
+
+        var disc = document.createElement("span");
+        disc.className = "disc";
+        disc.style.background = pl.color;
+        disc.textContent = pl.name ? pl.name.slice(0,1).toUpperCase() : String(p + 1);
+
+        var meta = document.createElement("span");
+        meta.className = "p-meta";
+
+        var name = document.createElement("input");
+        name.className = "p-name";
+        name.value = pl.name;
+        name.id = "name-" + p;
+        name.placeholder = "Giocatore " + (p+1);
+        name.setAttribute("aria-label", "Nome giocatore " + (p+1));
+        name.addEventListener("change", function(){
+          pl.name = name.value.trim();
+          save(); renderScore(); renderPanel();
+        });
+
+        var lvl = document.createElement("button");
+        lvl.className = "lvl";
+        lvl.type = "button";
+        lvl.id = "lvl-" + p;
+        lvl.textContent = pl.level === "base" ? "base" : "più difficile";
+        lvl.title = "Cambia livello delle carte";
+        lvl.addEventListener("click", function(){
+          pl.level = pl.level === "base" ? "plus" : "base";
+          save(); renderScore(); renderPanel();
+        });
+
+        meta.appendChild(name);
+        meta.appendChild(lvl);
+
+        var st = document.createElement("span");
+        st.className = "stars";
+        st.innerHTML = '<span class="st">★</span> ' + pl.stars + "<span>stelle</span>";
+
+        box.appendChild(disc);
+        box.appendChild(meta);
+        box.appendChild(st);
+        scoreboard.appendChild(box);
+      })(play[k]);
+    }
+
+    var rs = document.createElement("button");
+    rs.type = "button";
+    rs.className = "reset" + (armed ? " warn" : "");
+    rs.id = "reset";
+    rs.textContent = armed ? "Confermi?" : "Ricomincia";
+    rs.title = "Azzera partita, stelle e posizioni";
+    rs.addEventListener("click", askRestart);
+    scoreboard.appendChild(rs);
+  }
+
+  var armed = false;
+  var armTimer = null;
+
+  function askRestart(){
+    if(armed){
+      armed = false;
+      if(armTimer) clearTimeout(armTimer);
+      restart();
+      return;
+    }
+    armed = true;
+    renderScore();
+    var btn = document.getElementById("reset");
+    if(btn) btn.focus();
+    armTimer = setTimeout(function(){ armed = false; renderScore(); }, 4000);
+  }
+
+  function setCount(n){
+    if(state.count === n) return;
+    state.count = n;
+    if(n === 1){
+      state.turn = 0;
+      if(state.phase === "fine" && state.players[0].pos < PATH.length - 1) state.phase = "roll";
+    }
+    if(state.phase !== "card" && allArrived()) state.phase = "fine";
+    save(); renderScore(); renderBoard(); renderPanel();
+  }
+
+  /* ---------- pannello ---------- */
+  function currentCard(){
+    if(state.cat === null || state.cardIdx === null) return null;
+    return CARDS[state.cat][state.cardIdx];
+  }
+
+  function variant(card){
+    if(card.both) return (solo() && card.solo) ? card.solo : card.both;
+    return state.players[state.turn].level === "base" ? card.base : card.plus;
+  }
+
+  function el(tag, cls, html){
+    var e = document.createElement(tag);
+    if(cls) e.className = cls;
+    if(html !== undefined) e.innerHTML = html;
+    return e;
+  }
+
+  function renderPanel(){
+    panel.innerHTML = "";
+    if(state.phase === "fine"){ renderFinale(); return; }
+
+    var pl = state.players[state.turn];
+
+    if(state.phase === "roll"){
+      var head = el("div","panel-head dim");
+      head.appendChild(el("span","kind","Tocca a " + nameOf(state.turn)));
+      head.appendChild(el("span","who", pl.level === "base" ? "livello base" : "livello più difficile"));
+      panel.appendChild(head);
+
+      var body = el("div","card-body");
+      body.appendChild(el("p","focus", solo() ? "Partita singola" : "Turno " + (state.turn === 0 ? "uno" : "due")));
+      body.appendChild(el("h3","card-title","Lancia il dado"));
+
+      var dice = el("div","dicebox");
+      var die = el("div","die", state.die ? String(state.die) : "·");
+      die.id = "die";
+      dice.appendChild(die);
+      dice.appendChild(el("p", null, "Il dado decide la casella. La casella decide il compito: casa, giornata, spesa, tavola, strada o un task da fare insieme."));
+      body.appendChild(dice);
+
+      if(state.extra > 0 || state.rilancio){
+        var ex = el("div","extra");
+        ex.appendChild(el("span",null, state.rilancio
+          ? "⭐ <b>Tiro in più</b>: la stella vale un altro lancio. Tocca ancora a " + nameOf(state.turn) + "."
+          : "⭐ <b>Tiro doppio</b>: " + nameOf(state.turn) + " lancia, gioca la carta e poi rilancia."));
+        body.appendChild(ex);
+      }
+
+      var act = el("div","actions");
+      var b = el("button","btn go","🎲 Lancia il dado");
+      b.type = "button";
+      b.id = "roll";
+      b.addEventListener("click", roll);
+      act.appendChild(b);
+
+      if(pl.stars >= 3 && state.extra === 0){
+        var dbl = el("button","btn","⭐⭐⭐ Tiro doppio");
+        dbl.type = "button";
+        dbl.title = "Spendi tre stelle e lancia due volte di fila";
+        dbl.addEventListener("click", function(){
+          if(pl.stars < 3) return;
+          pl.stars -= 3;
+          state.extra = (state.extra || 0) + 1;
+          save(); renderScore(); renderPanel();
+        });
+        act.appendChild(dbl);
+      }
+
+      body.appendChild(act);
+      panel.appendChild(body);
+      return;
+    }
+
+    /* fase carta */
+    var card = currentCard();
+    var v = variant(card);
+    var meta = CATS[state.cat];
+
+    var h = el("div","panel-head");
+    h.style.setProperty("--c", meta.color);
+    h.appendChild(el("span","kind", meta.kind));
+    h.appendChild(el("span","who", (card.both && !solo()) ? "tutti e due" : nameOf(state.turn)));
+    panel.appendChild(h);
+
+    var body2 = el("div","card-body");
+    body2.appendChild(el("p","focus", card.focus));
+    body2.appendChild(el("h3","card-title", card.t));
+    body2.appendChild(el("p","task", v.task));
+
+    if(state.aiuto){
+      var box = el("div","aiuto");
+      box.appendChild(el("h4",null,"Ti aiuto"));
+      var ul = document.createElement("ul");
+      for(var i=0;i<v.aiuto.length;i++) ul.appendChild(el("li",null,v.aiuto[i]));
+      box.appendChild(ul);
+      body2.appendChild(box);
+    }
+
+    var tb = el("div","timerbox");
+    var clock = el("span","clock","01:00");
+    clock.id = "clock";
+    tb.appendChild(clock);
+    var bStart = el("button","btn small","▶ Via");
+    bStart.type = "button"; bStart.id = "clockBtn";
+    bStart.addEventListener("click", toggleClock);
+    tb.appendChild(bStart);
+    [30,60,90,120].forEach(function(sec){
+      var d = el("button","btn ghost small", sec + "s");
+      d.type = "button";
+      d.addEventListener("click", function(){ setClock(sec); });
+      tb.appendChild(d);
+    });
+    tb.appendChild(el("span","hint-pen","il tempo è facoltativo: serve quando si perde il filo"));
+    body2.appendChild(tb);
+
+    var act2 = el("div","actions");
+
+    var ok = el("button","btn star","★ Fatto");
+    ok.type = "button";
+    ok.addEventListener("click", function(){ finish(true); });
+    act2.appendChild(ok);
+
+    if(!state.aiuto){
+      var help = el("button","btn","💡 Ti aiuto");
+      help.type = "button";
+      help.addEventListener("click", function(){ state.aiuto = true; save(); renderPanel(); });
+      act2.appendChild(help);
+    }
+
+    var swap = el("button","btn ghost","🔄 Un'altra carta");
+    swap.type = "button";
+    swap.title = "Pesca un'altra carta della stessa categoria";
+    swap.addEventListener("click", function(){
+      state.cardIdx = draw(state.cat);
+      state.aiuto = false;
+      save(); renderPanel();
+    });
+    act2.appendChild(swap);
+
+    var skip = el("button","btn ghost","Passo");
+    skip.type = "button";
+    skip.addEventListener("click", function(){ finish(false); });
+    act2.appendChild(skip);
+
+    body2.appendChild(act2);
+    panel.appendChild(body2);
+  }
+
+  function renderFinale(){
+    var head = el("div","panel-head");
+    head.style.setProperty("--c","var(--giallo)");
+    head.appendChild(el("span","kind","Casella 30 · Arrivo"));
+    head.appendChild(el("span","who","task finale"));
+    panel.appendChild(head);
+
+    var body = el("div","card-body");
+    var fin = el("div","finale");
+    fin.appendChild(el("h3",null, solo() ? "Sei arrivato!" : "Siete arrivati!"));
+
+    var tally = el("div","tally");
+    var play = inPlay();
+    var tot = 0;
+    for(var k=0;k<play.length;k++){
+      tot += state.players[play[k]].stars;
+      tally.appendChild(el("b",null, nameOf(play[k]) + " ★ " + state.players[play[k]].stars));
+    }
+    if(!solo()) tally.appendChild(el("b",null,"insieme ★ " + tot));
+    fin.appendChild(tally);
+
+    fin.appendChild(el("p","task", solo() ? FINALE.soloTask : FINALE.task));
+    var box = el("div","aiuto");
+    box.style.borderColor = "rgba(243,238,227,.3)";
+    box.style.background = "rgba(243,238,227,.06)";
+    box.appendChild(el("h4",null,"Regole del task finale"));
+    var regole = solo() ? FINALE.soloAiuto : FINALE.aiuto;
+    var ul = document.createElement("ul");
+    for(var i=0;i<regole.length;i++) ul.appendChild(el("li",null,regole[i]));
+    box.appendChild(ul);
+    fin.appendChild(box);
+
+    var act = el("div","actions");
+    var again = el("button","btn","Nuova partita");
+    again.type = "button";
+    again.addEventListener("click", function(){ restart(); });
+    act.appendChild(again);
+    fin.appendChild(act);
+
+    body.appendChild(fin);
+    panel.appendChild(body);
+  }
+
+  /* ---------- cronometro della carta ---------- */
+  var clockTotal = 60, clockLeft = 60, clockId = null;
+
+  function clockEl(){ return document.getElementById("clock"); }
+  function paintClock(){
+    var c = clockEl(); if(!c) return;
+    var m = Math.floor(clockLeft / 60), sec = clockLeft % 60;
+    c.textContent = (m < 10 ? "0" : "") + m + ":" + (sec < 10 ? "0" : "") + sec;
+    c.className = "clock" + (clockLeft === 0 ? " over" : (clockId ? " run" : ""));
+    var b = document.getElementById("clockBtn");
+    if(b) b.textContent = clockId ? "⏸ Pausa" : (clockLeft === clockTotal ? "▶ Via" : "▶ Riprendi");
+  }
+  function stopClock(){ if(clockId){ clearInterval(clockId); clockId = null; } paintClock(); }
+  function setClock(sec){ stopClock(); clockTotal = sec; clockLeft = sec; paintClock(); }
+  function toggleClock(){
+    if(clockId){ stopClock(); return; }
+    if(clockLeft <= 0) clockLeft = clockTotal;
+    clockId = setInterval(function(){
+      clockLeft--;
+      if(clockLeft <= 0){ clockLeft = 0; stopClock(); }
+      paintClock();
+    }, 1000);
+    paintClock();
+  }
+
+  /* ---------- gioco ---------- */
+  var busy = false;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function roll(){
+    if(busy) return;
+    busy = true;
+    var die = document.getElementById("die");
+    var btn = document.getElementById("roll");
+    if(btn) btn.disabled = true;
+    var n = 1 + Math.floor(Math.random()*6);
+    state.rilancio = false;
+
+    function settle(){
+      if(die){ die.classList.remove("rolling"); die.textContent = String(n); }
+      state.die = n;
+      setTimeout(function(){ step(n); }, reduce ? 0 : 260);
+    }
+
+    if(reduce){ settle(); return; }
+    die.classList.add("rolling");
+    var ticks = 0;
+    var iv = setInterval(function(){
+      die.textContent = String(1 + Math.floor(Math.random()*6));
+      if(++ticks > 9){ clearInterval(iv); settle(); }
+    }, 55);
+  }
+
+  function step(remaining){
+    var pl = state.players[state.turn];
+    if(remaining <= 0 || pl.pos >= PATH.length - 1){
+      landed();
+      return;
+    }
+    pl.pos = Math.min(pl.pos + 1, PATH.length - 1);
+    renderBoard(state.turn);
+    setTimeout(function(){ step(remaining - 1); }, reduce ? 0 : 165);
+  }
+
+  function landed(){
+    var pl = state.players[state.turn];
+    var key = PATH[pl.pos];
+    renderBoard();
+    if(key === "arrivo" || pl.pos >= PATH.length - 1){
+      pl.pos = PATH.length - 1;
+      if(allArrived()){
+        state.phase = "fine";
+      }else{
+        state.phase = "roll";
+        state.turn = state.turn === 0 ? 1 : 0;
+      }
+      busy = false;
+      save(); renderScore(); renderPanel(); renderBoard();
+      return;
+    }
+    state.cat = key;
+    setClock(clockTotal);
+    state.cardIdx = draw(key);
+    state.aiuto = false;
+    state.phase = "card";
+    busy = false;
+    save(); renderScore(); renderPanel();
+  }
+
+  function finish(gotStar){
+    var pl = state.players[state.turn];
+    var card = currentCard();
+    if(gotStar){
+      if(card && card.both && state.cat !== "bonus" && !solo()){
+        state.players[0].stars++;
+        state.players[1].stars++;
+      }else{
+        pl.stars++;
+      }
+    }
+    if(state.cat === "bonus" && !gotStar) pl.stars++;
+
+    /* Le caselle stella e le carte segnate "extra" regalano un tiro in più */
+    var tiroInPiu = !!(card && card.extra) || state.cat === "bonus";
+
+    /* Le carte con "move" spostano: avanti solo se il task è riuscito,
+       indietro sempre, che è il bello dell'imprevisto. */
+    if(card && card.move && (gotStar || card.move < 0)){
+      pl.pos = Math.max(0, Math.min(pl.pos + card.move, PATH.length - 1));
+    }
+    state.cat = null;
+    state.cardIdx = null;
+    state.aiuto = false;
+
+    if(allArrived()){
+      state.phase = "fine";
+    }else{
+      state.phase = "roll";
+      state.die = null;
+      if(tiroInPiu) state.extra = (state.extra || 0) + 1;
+      state.rilancio = false;
+      if(state.extra > 0 && state.players[state.turn].pos < PATH.length - 1){
+        /* chi ha un tiro in più resta al suo posto e rilancia */
+        state.extra--;
+        state.rilancio = true;
+      }
+      if(!state.rilancio && !solo()){
+        var other = state.turn === 0 ? 1 : 0;
+        if(state.players[other].pos < PATH.length - 1) state.turn = other;
+      }
+    }
+    stopClock();
+    save(); renderScore(); renderBoard(); renderPanel();
+  }
+
+  function restart(){
+    var names = [state.players[0].name, state.players[1].name];
+    var levels = [state.players[0].level, state.players[1].level];
+    var count = state.count;
+    busy = false;
+    armed = false;
+    if(armTimer) clearTimeout(armTimer);
+    try{ localStorage.removeItem(KEY); }catch(e){}
+    state = freshState();
+    state.extra = 0;
+    state.count = count;
+    state.players[0].name = names[0];
+    state.players[1].name = names[1];
+    state.players[0].level = levels[0];
+    state.players[1].level = levels[1];
+    save(); renderScore(); renderBoard(); renderPanel();
+  }
+
+  function start(hot){
+    state = (hot && hot.state) || load() || freshState();
+    buildBoard();
+    renderScore();
+    renderBoard();
+    renderPanel();
+  }
+
+  try{
+    if(window.claude && window.claude.hot && window.claude.hot.snapshot){
+      window.claude.hot.snapshot(function(){ return {state:state}; });
+    }
+  }catch(e){}
+
+  if(window.claude && window.claude.hot && window.claude.hot.ready){
+    window.claude.hot.ready(start);
+  }else{
+    start((window.claude && window.claude.hot && window.claude.hot.data) || {});
+  }
+})();
+</script>
+</body>
+</html>

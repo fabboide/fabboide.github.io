@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Aggettivo + infinito: di, da, a o niente · Talk with Fabio</title>
+<meta name="description" content="È bello viaggiare, è bello da leggere, sono contenta di vederti, sono pronta a partire. The four ways an adjective meets an infinitive in Italian. Multiple choice, writing and a timed challenge.">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Talk with Fabio">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Aggettivo + infinito: di, da, a o niente">
+<meta property="og:description" content="È bello viaggiare, è bello da leggere, sono contenta di vederti, sono pronta a partire. The four ways an adjective meets an infinitive in Italian.">
+<meta property="og:url" content="https://talkwithfabio.com/esercizi/aggettivo-infinito/">
+<meta property="og:image" content="https://talkwithfabio.com/img/og-aggettivo-infinito.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Talk with Fabio · Aggettivo + infinito">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aggettivo + infinito: di, da, a o niente">
+<meta name="twitter:description" content="È bello viaggiare, è bello da leggere, sono contenta di vederti, sono pronta a partire.">
+<meta name="twitter:image" content="https://talkwithfabio.com/img/og-aggettivo-infinito.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+/* ============================================================
+   Stessi token del sito. Se cambi un colore nella home,
+   cambialo anche qui.
+   ============================================================ */
+:root{
+  --ink:#16233F;
+  --ink-soft:#4A5670;
+  --paper:#F7F4EC;
+  --paper-2:#FFFDF8;
+  --rule:#DFD8C7;
+  --saffron:#E8A33D;
+  --rosso:#C4312B;
+  --verde:#2E5E4E;
+
+  --ok:#2E5E4E;
+  --ok-bg:rgba(46,94,78,.12);
+  --no:#C4312B;
+  --no-bg:rgba(196,49,43,.10);
+
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --pen:"Caveat","Segoe Script",cursive;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+
+  --wrap:920px;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; }
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:1.05rem; line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  padding-bottom:180px;
+}
+a{ color:inherit; }
+.wrap{ max-width:var(--wrap); margin:0 auto; padding:0 22px; }
+.hidden{ display:none !important; }
+
+/* ---------- Barra ---------- */
+.topbar{ border-bottom:1px solid var(--rule); background:var(--paper-2); }
+.topbar-in{
+  max-width:var(--wrap); margin:0 auto; padding:16px 22px;
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+}
+.logo{ display:flex; align-items:center; gap:10px; text-decoration:none; font-family:var(--display); font-weight:700; font-size:1.02rem; }
+.logo-mark{
+  width:22px; height:22px; border-radius:50%;
+  background:conic-gradient(from 180deg, var(--saffron) 0 25%, var(--rosso) 0 50%, var(--verde) 0 75%, var(--ink) 0);
+  border:1px solid var(--ink);
+}
+.back-link{ font-family:var(--display); font-weight:600; font-size:.9rem; text-decoration:none; color:var(--ink-soft); }
+.back-link:hover{ color:var(--ink); }
+
+/* ---------- Testa ---------- */
+.intro{ padding:34px 0 6px; }
+.eyebrow{
+  font-family:var(--mono); font-size:.76rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft); margin:0 0 10px;
+}
+h1{ font-family:var(--display); font-weight:800; font-size:clamp(2rem,5.5vw,3rem); line-height:1.05; margin:0 0 14px; }
+h1 em{ font-style:normal; color:var(--rosso); }
+.lede{ margin:0 0 6px; max-width:60ch; }
+.lede.en{ color:var(--ink-soft); font-size:.97rem; }
+
+/* ---------- Le quattro regole ---------- */
+.rules{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin:24px 0 30px; }
+.rulecard{
+  background:var(--paper-2); border:2px solid var(--ink); border-left:8px solid var(--c,var(--ink));
+  border-radius:16px; padding:16px 18px;
+}
+.rulecard h2{ font-family:var(--display); font-weight:700; font-size:1.02rem; margin:0 0 6px; }
+.rulecard p{ margin:0; font-size:.95rem; }
+.rulecard .ex{ display:block; margin-top:6px; font-family:var(--pen); font-size:1.18rem; color:var(--c,var(--ink)); }
+
+/* ---------- Scelte prima di partire ---------- */
+.setup{ margin-bottom:26px; }
+.setlab{ font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:18px 0 8px; }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{
+  font-family:var(--display); font-weight:600; font-size:.9rem;
+  background:var(--paper-2); color:var(--ink); border:2px solid var(--rule);
+  border-radius:999px; padding:8px 16px; cursor:pointer;
+}
+.chip[aria-pressed="true"]{ background:var(--ink); color:var(--paper-2); border-color:var(--ink); }
+.chip .sub{ font-family:var(--mono); font-weight:400; font-size:.72em; opacity:.8; }
+
+.btn{
+  font-family:var(--display); font-weight:700; font-size:1rem;
+  background:var(--verde); color:#fff; border:2px solid var(--verde);
+  border-radius:999px; padding:12px 26px; cursor:pointer; text-decoration:none; display:inline-block;
+}
+.btn:hover{ background:var(--ink); border-color:var(--ink); }
+.btn .sub{ font-family:var(--mono); font-weight:400; font-size:.74em; opacity:.85; }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--ink); }
+.btn-ghost:hover{ background:var(--ink); color:var(--paper-2); }
+.btn:disabled{ opacity:.4; cursor:not-allowed; }
+.startrow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:24px; }
+.mini{ font-family:var(--pen); font-size:1.2rem; color:var(--ink-soft); }
+
+/* ---------- Partita ---------- */
+.gamehead{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding-top:22px; }
+.stats{ display:flex; gap:8px; }
+.stat{ background:var(--paper-2); border:1px solid var(--rule); border-radius:12px; padding:6px 14px; text-align:center; min-width:74px; }
+.stat .lab{ font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+.stat .val{ font-family:var(--display); font-weight:800; font-size:1.3rem; }
+.dots{ display:flex; gap:5px; flex-wrap:wrap; margin:16px 0 8px; }
+.dot{ width:9px; height:9px; border-radius:50%; background:var(--rule); }
+.dot.ok{ background:var(--verde); }
+.dot.no{ background:var(--rosso); }
+.dot.now{ box-shadow:0 0 0 3px rgba(22,35,63,.14); background:var(--ink); }
+.timertrack{ height:6px; border-radius:999px; background:var(--rule); overflow:hidden; margin-bottom:18px; }
+.timerfill{ height:100%; background:var(--verde); width:100%; transition:width 1s linear, background .3s ease; }
+.timerfill.warn{ background:var(--saffron); }
+.timerfill.danger{ background:var(--rosso); }
+
+.qcat{
+  display:inline-block; font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase;
+  border:1px solid var(--c,var(--ink)); color:var(--c,var(--ink)); border-radius:999px; padding:.3em .8em; margin-bottom:12px;
+}
+.qcard{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:22px; padding:26px;
+  box-shadow:5px 5px 0 rgba(22,35,63,.08);
+}
+.qtext{ font-size:clamp(1.15rem,3.2vw,1.5rem); line-height:1.5; margin-bottom:20px; }
+.qtext .blank{ display:inline-block; min-width:3.2em; border-bottom:3px solid var(--saffron); text-align:center; }
+.opts{ display:grid; gap:10px; grid-template-columns:repeat(2,1fr); }
+@media(max-width:560px){ .opts{ grid-template-columns:1fr; } }
+.opt{
+  font-family:var(--display); font-weight:700; font-size:1rem; text-align:center;
+  background:var(--paper); color:var(--ink); border:2px solid var(--rule); border-radius:14px;
+  padding:14px 12px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.opt:hover:not(:disabled){ border-color:var(--ink); }
+.opt .k{ font-family:var(--mono); font-size:.72rem; color:var(--ink-soft); border:1px solid var(--rule); border-radius:6px; padding:0 .4em; }
+.opt.correct{ border-color:var(--ok); background:var(--ok-bg); color:var(--ok); }
+.opt.wrong{ border-color:var(--no); background:var(--no-bg); color:var(--no); }
+.opt:disabled{ cursor:default; }
+.typebox{ display:flex; gap:10px; flex-wrap:wrap; }
+.typeinput{
+  flex:1; min-width:180px; font-family:var(--body); font-size:1.05rem; color:var(--ink);
+  background:var(--paper); border:2px solid var(--ink); border-radius:14px; padding:12px 16px;
+}
+.typeinput.correct{ border-color:var(--ok); color:var(--ok); }
+.typeinput.wrong{ border-color:var(--no); color:var(--no); }
+.typehint{ margin-top:8px; font-family:var(--mono); font-size:.74rem; color:var(--ink-soft); }
+
+/* ---------- Cassetto del riscontro ---------- */
+.drawer{
+  position:fixed; left:0; right:0; bottom:0; z-index:10;
+  background:var(--paper-2); border-top:2px solid var(--ink);
+  padding:14px 22px calc(14px + env(safe-area-inset-bottom));
+  transform:translateY(105%); transition:transform .18s ease;
+}
+.drawer.up{ transform:translateY(0); }
+.drawer-in{ max-width:var(--wrap); margin:0 auto; display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+.feedback{ flex:1; min-width:220px; font-size:.97rem; }
+.feedback .verdict{ font-family:var(--display); font-weight:800; }
+.feedback.ok .verdict{ color:var(--ok); }
+.feedback.bad .verdict{ color:var(--no); }
+
+/* ---------- Finale ---------- */
+.final{ padding:34px 0; }
+.bigscore{ font-family:var(--display); font-weight:800; font-size:3.4rem; line-height:1; color:var(--rosso); }
+.bigscore small{ display:block; font-family:var(--mono); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); font-weight:400; margin-bottom:4px; }
+.recordline{ font-family:var(--pen); font-size:1.35rem; color:var(--verde); margin:8px 0 0; }
+.panelbox{ background:var(--paper-2); border:2px solid var(--ink); border-radius:20px; padding:20px 22px; margin:22px 0; }
+.panelbox h3{ font-family:var(--display); font-size:1.05rem; margin:0 0 14px; }
+.catrow{ margin-bottom:12px; }
+.catrow:last-child{ margin-bottom:0; }
+.catname{ display:flex; justify-content:space-between; font-size:.9rem; color:var(--ink-soft); margin-bottom:5px; }
+.cattrack{ height:9px; border-radius:999px; background:var(--paper); border:1px solid var(--rule); overflow:hidden; }
+.catfill{ height:100%; }
+.revitem{ padding:9px 0; border-bottom:1px solid var(--rule); font-size:.95rem; }
+.revitem:last-child{ border-bottom:none; }
+.revitem b{ color:var(--verde); }
+.endbar{ display:flex; gap:10px; flex-wrap:wrap; }
+
+@media (max-width:640px){
+  .wrap, .topbar-in{ padding-left:16px; padding-right:16px; }
+  .qcard{ padding:20px; }
+  body{ padding-bottom:210px; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="../../">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Talk with Fabio
+    </a>
+    <a class="back-link" href="../">&larr; All exercises</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HUB ============ -->
+<section id="screen-hub" class="wrap">
+  <div class="intro">
+    <p class="eyebrow">B1 &middot; aggettivo + infinito</p>
+    <h1>È bello <em>di</em>... o è bello <em>e basta</em>?</h1>
+    <p class="lede">
+      Quattro costruzioni, quattro scelte diverse: niente preposizione, <b>da</b>, <b>di</b>, <b>a</b>.
+      La regola non dipende dall'aggettivo ma da <b>chi è il soggetto</b> e da cosa sta dicendo la frase.
+    </p>
+    <p class="lede en">
+      Four constructions, four different choices: no preposition, da, di, a. The rule does not depend on the
+      adjective but on <b>what the subject is</b> and what the sentence is doing.
+    </p>
+  </div>
+
+  <div class="rules">
+    <article class="rulecard" style="--c:var(--verde)">
+      <h2>1. Giudizio generale</h2>
+      <p>Nessuna preposizione. Il soggetto non è nessuno in particolare.</p>
+      <span class="ex">È bello viaggiare.</span>
+    </article>
+    <article class="rulecard" style="--c:var(--ink)">
+      <h2>2. Una cosa precisa &middot; DA</h2>
+      <p>Il soggetto è una cosa, e la cosa "si riceve" l'azione.</p>
+      <span class="ex">Questo libro è bello da leggere.</span>
+    </article>
+    <article class="rulecard" style="--c:var(--saffron)">
+      <h2>3. Stato d'animo &middot; DI</h2>
+      <p>Il soggetto è una persona che prova qualcosa o sa qualcosa.</p>
+      <span class="ex">Sono contenta di vederti.</span>
+    </article>
+    <article class="rulecard" style="--c:var(--rosso)">
+      <h2>4. Disposizione &middot; A</h2>
+      <p>Il soggetto è una persona pronta, abituata, brava a fare.</p>
+      <span class="ex">Sono pronta a partire.</span>
+    </article>
+  </div>
+
+  <div class="setup">
+    <p class="setlab">Su cosa ti alleni</p>
+    <div class="chips" id="catChips"></div>
+
+    <p class="setlab">Come rispondi</p>
+    <div class="chips" id="inputChips"></div>
+
+    <p class="setlab">Quanto dura</p>
+    <div class="chips" id="lenChips"></div>
+
+    <p class="setlab">Il cronometro</p>
+    <div class="chips" id="timeChips"></div>
+
+    <div class="startrow">
+      <button class="btn" id="startBtn">Si parte <span class="sub">start</span></button>
+      <span class="mini" id="recordLine"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTITA ============ -->
+<section id="screen-game" class="wrap hidden">
+  <div class="gamehead">
+    <button class="chip" id="quitBtn">&larr; Esci</button>
+    <div class="stats">
+      <div class="stat"><div class="lab">Giuste</div><div class="val" id="scoreVal">0</div></div>
+      <div class="stat"><div class="lab">Serie</div><div class="val" id="streakVal">0</div></div>
+      <div class="stat"><div class="lab">Record</div><div class="val" id="bestVal">0</div></div>
+    </div>
+  </div>
+
+  <div class="dots" id="dots"></div>
+  <div class="timertrack" id="timerTrack"><div class="timerfill" id="timerFill"></div></div>
+
+  <span class="qcat" id="qcat"></span>
+  <div class="qcard">
+    <div class="qtext" id="qtext"></div>
+    <div class="opts hidden" id="opts"></div>
+    <div class="typebox hidden" id="typebox">
+      <input type="text" class="typeinput" id="typeInput" placeholder="da / di / a / niente" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <button class="btn" id="checkBtn">Controlla <span class="sub">check</span></button>
+    </div>
+    <div class="typehint hidden" id="typehint">Scrivi la preposizione, oppure "niente" se non ci vuole.</div>
+  </div>
+</section>
+
+<!-- ============ FINALE ============ -->
+<section id="screen-final" class="wrap hidden">
+  <div class="final">
+    <p class="eyebrow" id="tierLab">risultato</p>
+    <h1 id="tierText">—</h1>
+    <div class="bigscore"><small>risposte corrette</small><span id="finScore">0</span></div>
+    <p class="recordline" id="finRecord"></p>
+    <p class="lede" id="finText"></p>
+
+    <div class="panelbox" id="catBox">
+      <h3>Come è andata per costruzione</h3>
+      <div id="catList"></div>
+    </div>
+
+    <div class="panelbox hidden" id="reviewBox">
+      <h3>Da ripassare</h3>
+      <div id="reviewList"></div>
+    </div>
+
+    <div class="endbar">
+      <button class="btn" id="againBtn">Rigioca <span class="sub">again</span></button>
+      <button class="btn btn-ghost hidden" id="missedBtn">Solo quelle sbagliate</button>
+      <button class="btn btn-ghost" id="homeBtn">Torna all'inizio</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ---------- Cassetto del riscontro ---------- -->
+<div class="drawer" id="drawer">
+  <div class="drawer-in">
+    <div class="feedback" id="feedback"></div>
+    <button class="btn" id="nextBtn">Avanti <span class="sub">next</span></button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ==========================================================
+     LE FRASI
+
+     Ogni frase appartiene a una delle quattro costruzioni.
+     Le frasi di tipo "full" (scegli la frase giusta) non
+     entrano nella modalità in cui si scrive: lì si scrive solo
+     la preposizione.
+
+     Le frasi con "cosa" ambigue non ci sono: dove sia "da" sia
+     "di" sarebbero difendibili, la frase è stata riscritta.
+     ========================================================== */
+
+  var NIENTE = ["niente","nessuna","nessuna preposizione","zero","nulla","non serve","(niente)"];
+
+  var QUESTIONS = [
+    /* ---------------- 1. GIUDIZIO GENERALE: nessuna preposizione ---------------- */
+    {cat:"generale", type:"blank", q:"È bello <span class=\"blank\">___</span> viaggiare da soli.",
+     opts:["di","da","niente","a"], correct:2, accept:NIENTE,
+     note:"Giudizio generale, soggetto nessuno in particolare: nessuna preposizione."},
+    {cat:"generale", type:"blank", q:"È facile <span class=\"blank\">___</span> sbagliare quando si è stanchi.",
+     opts:["niente","da","di","a"], correct:0, accept:NIENTE,
+     note:"Giudizio generale: «è facile sbagliare», senza preposizione."},
+    {cat:"generale", type:"blank", q:"È importante <span class=\"blank\">___</span> ascoltare gli altri.",
+     opts:["a","di","niente","da"], correct:2, accept:NIENTE,
+     note:"Giudizio generale: «è importante ascoltare», senza preposizione."},
+    {cat:"generale", type:"blank", q:"È interessante <span class=\"blank\">___</span> studiare le lingue.",
+     opts:["da","niente","di","a"], correct:1, accept:NIENTE,
+     note:"Giudizio generale: «è interessante studiare», senza preposizione."},
+    {cat:"generale", type:"blank", q:"È strano <span class=\"blank\">___</span> non aver ricevuto risposta.",
+     opts:["di","niente","da","a"], correct:1, accept:NIENTE,
+     note:"Giudizio generale: «è strano non aver ricevuto», senza preposizione."},
+    {cat:"generale", type:"blank", q:"È necessario <span class=\"blank\">___</span> prenotare con largo anticipo.",
+     opts:["da","a","di","niente"], correct:3, accept:NIENTE,
+     note:"Giudizio generale: «è necessario prenotare», senza preposizione."},
+    {cat:"generale", type:"blank", q:"È meglio <span class=\"blank\">___</span> dire la verità subito.",
+     opts:["a","niente","di","da"], correct:1, accept:NIENTE,
+     note:"«È meglio» + infinito, senza preposizione: uno dei casi che si sbagliano di più."},
+    {cat:"generale", type:"blank", q:"È preferibile <span class=\"blank\">___</span> evitare le ore di punta.",
+     opts:["di","da","niente","a"], correct:2, accept:NIENTE,
+     note:"Giudizio generale: «è preferibile evitare», senza preposizione."},
+    {cat:"generale", type:"blank", q:"Non è giusto <span class=\"blank\">___</span> giudicare senza sapere.",
+     opts:["niente","di","a","da"], correct:0, accept:NIENTE,
+     note:"Giudizio generale, anche alla forma negativa: nessuna preposizione."},
+    {cat:"generale", type:"blank", q:"Sarebbe utile <span class=\"blank\">___</span> avere una risposta entro venerdì.",
+     opts:["da","niente","di","a"], correct:1, accept:NIENTE,
+     note:"Giudizio generale anche al condizionale: «sarebbe utile avere»."},
+    {cat:"generale", type:"full", q:"Quale frase è corretta?",
+     opts:["È utile di sapere due lingue.","È utile da sapere due lingue.","È utile sapere due lingue.","È utile a sapere due lingue."], correct:2,
+     note:"Giudizio generale: nessuna preposizione tra aggettivo e infinito."},
+    {cat:"generale", type:"full", q:"Quale frase è corretta?",
+     opts:["È inutile di insistere.","È inutile insistere.","È inutile da insistere.","È inutile a insistere."], correct:1,
+     note:"Giudizio generale: «è inutile insistere», senza preposizione."},
+
+    /* ---------------- 2. UNA COSA PRECISA: DA ---------------- */
+    {cat:"cosa", type:"blank", q:"Questo esercizio è facile <span class=\"blank\">___</span> capire.",
+     opts:["di","a","da","niente"], correct:2, accept:["da"],
+     note:"Il soggetto è una cosa precisa («questo esercizio») che riceve l'azione: si usa «da»."},
+    {cat:"cosa", type:"blank", q:"La ricetta è difficile <span class=\"blank\">___</span> seguire.",
+     opts:["niente","di","da","a"], correct:2, accept:["da"],
+     note:"Soggetto cosa precisa («la ricetta»): si usa «da»."},
+    {cat:"cosa", type:"blank", q:"Il libro che mi hai prestato è bello <span class=\"blank\">___</span> leggere.",
+     opts:["da","a","di","niente"], correct:0, accept:["da"],
+     note:"Soggetto cosa precisa («il libro»): si usa «da»."},
+    {cat:"cosa", type:"blank", q:"Quella lingua è impossibile <span class=\"blank\">___</span> imparare in un mese.",
+     opts:["a","di","niente","da"], correct:3, accept:["da"],
+     note:"Soggetto cosa precisa («quella lingua»): si usa «da»."},
+    {cat:"cosa", type:"blank", q:"Questo vino è difficile <span class=\"blank\">___</span> abbinare a un dolce.",
+     opts:["da","di","a","niente"], correct:0, accept:["da"],
+     note:"Soggetto cosa precisa («questo vino»): si usa «da»."},
+    {cat:"cosa", type:"blank", q:"La sua scrittura è piacevole <span class=\"blank\">___</span> leggere.",
+     opts:["niente","a","da","di"], correct:2, accept:["da"],
+     note:"Soggetto cosa precisa («la sua scrittura»): si usa «da»."},
+    {cat:"cosa", type:"blank", q:"Questo problema è complicato <span class=\"blank\">___</span> risolvere in poco tempo.",
+     opts:["di","niente","a","da"], correct:3, accept:["da"],
+     note:"Soggetto cosa precisa («questo problema»): si usa «da»."},
+    {cat:"cosa", type:"blank", q:"La sua calligrafia è impossibile <span class=\"blank\">___</span> decifrare.",
+     opts:["da","a","di","niente"], correct:0, accept:["da"],
+     note:"Soggetto cosa precisa («la sua calligrafia»): si usa «da»."},
+    {cat:"cosa", type:"blank", q:"Queste scarpe sono comode <span class=\"blank\">___</span> portare tutto il giorno.",
+     opts:["di","da","a","niente"], correct:1, accept:["da"],
+     note:"Soggetto cosa precisa, anche al plurale («queste scarpe»): si usa «da»."},
+    {cat:"cosa", type:"blank", q:"Il tuo accento è bello <span class=\"blank\">___</span> sentire.",
+     opts:["a","di","da","niente"], correct:2, accept:["da"],
+     note:"Soggetto cosa precisa («il tuo accento»): si usa «da»."},
+    {cat:"cosa", type:"full", q:"Quale frase è corretta?",
+     opts:["Questo concetto è facile capire.","Questo concetto è facile di capire.","Questo concetto è facile da capire.","Questo concetto è facile a capire."], correct:2,
+     note:"Soggetto cosa precisa: serve «da» prima dell'infinito."},
+    {cat:"cosa", type:"full", q:"Quale frase è corretta?",
+     opts:["Questo film è noioso a guardare.","Questo film è noioso guardare.","Questo film è noioso di guardare.","Questo film è noioso da guardare."], correct:3,
+     note:"Soggetto cosa precisa («questo film»): serve «da»."},
+    {cat:"cosa", type:"full", q:"Una sola di queste due è giusta. Quale?",
+     opts:["È difficile capire questo accento.","È difficile da capire questo accento."], correct:0,
+     note:"Qui il soggetto vero è «capire questo accento», non una cosa precisa: quindi nessuna preposizione. Con «questo accento è difficile da capire» invece «da» ci vuole."},
+
+    /* ---------------- 3. STATO D'ANIMO, PERSONA: DI ---------------- */
+    {cat:"animo", type:"blank", q:"Sono contenta <span class=\"blank\">___</span> vederti dopo tanto tempo.",
+     opts:["a","niente","da","di"], correct:3, accept:["di"],
+     note:"Stato d'animo con soggetto persona: «contento/a di»."},
+    {cat:"animo", type:"blank", q:"Sono sicura <span class=\"blank\">___</span> aver chiuso la porta.",
+     opts:["di","da","a","niente"], correct:0, accept:["di"],
+     note:"Certezza con soggetto persona: «sicuro/a di»."},
+    {cat:"animo", type:"blank", q:"Sono stanca <span class=\"blank\">___</span> ripetere sempre le stesse cose.",
+     opts:["niente","a","di","da"], correct:2, accept:["di"],
+     note:"Stato d'animo con soggetto persona: «stanco/a di»."},
+    {cat:"animo", type:"blank", q:"Sono curiosa <span class=\"blank\">___</span> sapere come va a finire.",
+     opts:["da","di","niente","a"], correct:1, accept:["di"],
+     note:"Curiosità con soggetto persona: «curioso/a di»."},
+    {cat:"animo", type:"blank", q:"Sono sorpresa <span class=\"blank\">___</span> vederti qui stasera.",
+     opts:["a","di","da","niente"], correct:1, accept:["di"],
+     note:"Stato d'animo con soggetto persona: «sorpreso/a di»."},
+    {cat:"animo", type:"blank", q:"Non sono capace <span class=\"blank\">___</span> dire di no a nessuno.",
+     opts:["di","niente","a","da"], correct:0, accept:["di"],
+     note:"Capacità con soggetto persona: «capace di». Attenzione: «bravo a», ma «capace di»."},
+    {cat:"animo", type:"blank", q:"Siamo felici <span class=\"blank\">___</span> annunciare l'apertura del negozio.",
+     opts:["niente","da","di","a"], correct:2, accept:["di"],
+     note:"Stato d'animo con soggetto persona: «felice di»."},
+    {cat:"animo", type:"blank", q:"Sono dispiaciuto <span class=\"blank\">___</span> non poter venire alla festa.",
+     opts:["di","a","da","niente"], correct:0, accept:["di"],
+     note:"Stato d'animo con soggetto persona: «dispiaciuto di»."},
+    {cat:"animo", type:"blank", q:"Erano convinti <span class=\"blank\">___</span> avere ragione.",
+     opts:["a","da","di","niente"], correct:2, accept:["di"],
+     note:"Convinzione con soggetto persona: «convinto di»."},
+    {cat:"animo", type:"full", q:"Quale frase è corretta?",
+     opts:["Sono orgogliosa aver finito la maratona.","Sono orgogliosa da aver finito la maratona.","Sono orgogliosa a aver finito la maratona.","Sono orgogliosa di aver finito la maratona."], correct:3,
+     note:"Stato d'animo con soggetto persona: «orgoglioso/a di»."},
+
+    /* ---------------- 4. DISPOSIZIONE, ABITUDINE: A ---------------- */
+    {cat:"disposizione", type:"blank", q:"Sono pronta <span class=\"blank\">___</span> partire quando vuoi.",
+     opts:["di","niente","da","a"], correct:3, accept:["a"],
+     note:"Disposizione con soggetto persona: «pronto/a a»."},
+    {cat:"disposizione", type:"blank", q:"Sono abituata <span class=\"blank\">___</span> lavorare sotto pressione.",
+     opts:["a","di","da","niente"], correct:0, accept:["a"],
+     note:"Abitudine con soggetto persona: «abituato/a a»."},
+    {cat:"disposizione", type:"blank", q:"Sono disposta <span class=\"blank\">___</span> aiutarti, se serve.",
+     opts:["da","niente","a","di"], correct:2, accept:["a"],
+     note:"Disponibilità con soggetto persona: «disposto/a a»."},
+    {cat:"disposizione", type:"blank", q:"Sono decisa <span class=\"blank\">___</span> cambiare lavoro il prossimo anno.",
+     opts:["a","di","niente","da"], correct:0, accept:["a"],
+     note:"Determinazione con soggetto persona: «deciso/a a»."},
+    {cat:"disposizione", type:"blank", q:"È stato il primo <span class=\"blank\">___</span> arrivare alla festa.",
+     opts:["di","da","niente","a"], correct:3, accept:["a"],
+     note:"«Il primo / l'ultimo / l'unico a» + infinito."},
+    {cat:"disposizione", type:"blank", q:"È sempre stata brava <span class=\"blank\">___</span> raccontare storie.",
+     opts:["niente","di","da","a"], correct:3, accept:["a"],
+     note:"Attitudine con soggetto persona: «bravo/a a»."},
+    {cat:"disposizione", type:"blank", q:"Sono lento <span class=\"blank\">___</span> svegliarmi la mattina.",
+     opts:["a","da","di","niente"], correct:0, accept:["a"],
+     note:"Modo di fare con soggetto persona: «lento a», come «veloce a», «pronto a»."},
+    {cat:"disposizione", type:"blank", q:"Siamo gli unici <span class=\"blank\">___</span> essere arrivati in orario.",
+     opts:["di","a","da","niente"], correct:1, accept:["a"],
+     note:"«L'unico a» + infinito, come «il primo a»."},
+    {cat:"disposizione", type:"full", q:"Quale frase è corretta?",
+     opts:["Sono pronta di partire.","Sono pronta partire.","Sono pronta da partire.","Sono pronta a partire."], correct:3,
+     note:"Disposizione con soggetto persona: serve «a» prima dell'infinito."},
+    {cat:"disposizione", type:"full", q:"Quale frase è corretta?",
+     opts:["Non sono abituato a parlare in pubblico.","Non sono abituato di parlare in pubblico.","Non sono abituato parlare in pubblico.","Non sono abituato da parlare in pubblico."], correct:0,
+     note:"Abitudine con soggetto persona: «abituato a»."}
+  ];
+
+  var CATS = {
+    generale:     {label:"Giudizio generale",   short:"generale",     color:"var(--verde)"},
+    cosa:         {label:"Una cosa precisa · DA", short:"da",         color:"var(--ink)"},
+    animo:        {label:"Stato d'animo · DI",  short:"di",           color:"var(--saffron)"},
+    disposizione: {label:"Disposizione · A",    short:"a",            color:"var(--rosso)"}
+  };
+
+  var SETUP = {
+    cat:   [{k:"tutto",label:"Tutte e quattro"},{k:"generale",label:"Giudizi generali"},{k:"cosa",label:"Con DA"},{k:"animo",label:"Con DI"},{k:"disposizione",label:"Con A"}],
+    input: [{k:"scelta",label:"Scelta multipla",sub:"choose"},{k:"scrivi",label:"Scrivo io",sub:"type"}],
+    len:   [{k:"10",label:"10 domande"},{k:"20",label:"20 domande"},{k:"all",label:"Tutte"}],
+    time:  [{k:"off",label:"Senza fretta"},{k:"18",label:"18 secondi"},{k:"8",label:"8 secondi",sub:"sfida"}]
+  };
+
+  var choice = {cat:"tutto", input:"scelta", len:"10", time:"off"};
+
+  var STORE = "icf_prepinf_records";
+  function getRecords(){
+    try{ var raw = localStorage.getItem(STORE); return raw ? JSON.parse(raw) : {}; }
+    catch(e){ return {}; }
+  }
+  function recordKey(){ return choice.cat + "|" + choice.input + "|" + choice.len + "|" + choice.time; }
+  function getRecord(){ var r = getRecords(); var v = r[recordKey()]; return (v && v.best) || 0; }
+  function setRecord(n){
+    try{
+      var r = getRecords(); var k = recordKey(); var prev = (r[k] && r[k].best) || 0;
+      if(n > prev){ r[k] = {best:n}; localStorage.setItem(STORE, JSON.stringify(r)); return true; }
+    }catch(e){}
+    return false;
+  }
+
+  var $ = function(s){ return document.querySelector(s); };
+  var hub = $("#screen-hub"), game = $("#screen-game"), final = $("#screen-final"), drawer = $("#drawer");
+
+  function shuffle(a){
+    var x = a.slice(), i, j, t;
+    for(i=x.length-1;i>0;i--){ j=Math.floor(Math.random()*(i+1)); t=x[i]; x[i]=x[j]; x[j]=t; }
+    return x;
+  }
+  function norm(s){
+    return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")
+      .replace(/['’`()]/g,"").replace(/\s+/g," ").trim();
+  }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  /* ---------------- Le scelte prima di partire ---------------- */
+  function buildChips(id, list, field){
+    var box = document.getElementById(id);
+    box.innerHTML = list.map(function(o){
+      return '<button class="chip" data-k="'+o.k+'" aria-pressed="'+(choice[field]===o.k)+'">'+
+             o.label + (o.sub ? ' <span class="sub">'+o.sub+'</span>' : '') + '</button>';
+    }).join("");
+    box.addEventListener("click", function(e){
+      var b = e.target.closest(".chip"); if(!b) return;
+      choice[field] = b.getAttribute("data-k");
+      Array.prototype.forEach.call(box.querySelectorAll(".chip"), function(c){
+        c.setAttribute("aria-pressed", String(c.getAttribute("data-k") === choice[field]));
+      });
+      showRecord();
+    });
+  }
+  buildChips("catChips", SETUP.cat, "cat");
+  buildChips("inputChips", SETUP.input, "input");
+  buildChips("lenChips", SETUP.len, "len");
+  buildChips("timeChips", SETUP.time, "time");
+
+  function showRecord(){
+    var r = getRecord();
+    $("#recordLine").textContent = r ? ("il tuo record qui: " + r) : "";
+  }
+  showRecord();
+
+  /* ---------------- Stato della partita ---------------- */
+  var pool = [], idx = 0, score = 0, streak = 0, bestStreak = 0, missed = [], catStats = {}, answered = false;
+  var timerId = null, timeLeft = 0, timeTotal = 0;
+
+  function buildPool(onlyThese){
+    var base;
+    if(onlyThese){
+      base = onlyThese.slice();
+    } else {
+      base = choice.cat === "tutto" ? QUESTIONS.slice() : QUESTIONS.filter(function(q){ return q.cat === choice.cat; });
+      if(choice.input === "scrivi") base = base.filter(function(q){ return q.type === "blank"; });
+    }
+    base = shuffle(base);
+    if(!onlyThese && choice.len !== "all"){
+      var n = parseInt(choice.len, 10);
+      if(base.length > n) base = base.slice(0, n);
+    }
+    return base;
+  }
+
+  function start(onlyThese){
+    pool = buildPool(onlyThese);
+    if(!pool.length) return;
+    idx = 0; score = 0; streak = 0; bestStreak = 0; missed = []; catStats = {};
+    Object.keys(CATS).forEach(function(c){ catStats[c] = {ok:0, tot:0}; });
+    hub.classList.add("hidden"); final.classList.add("hidden"); game.classList.remove("hidden");
+    $("#bestVal").textContent = getRecord();
+    $("#timerTrack").classList.toggle("hidden", choice.time === "off");
+    buildDots();
+    render();
+  }
+
+  function buildDots(){
+    var h = "";
+    for(var i=0;i<pool.length;i++) h += '<span class="dot" data-i="'+i+'"></span>';
+    $("#dots").innerHTML = h;
+  }
+  function markDot(i, ok){
+    var d = $('#dots .dot[data-i="'+i+'"]');
+    if(d){ d.classList.remove("now"); d.classList.add(ok ? "ok" : "no"); }
+  }
+  function markNow(i){
+    var d = $('#dots .dot[data-i="'+i+'"]');
+    if(d) d.classList.add("now");
+  }
+
+  function stopTimer(){ if(timerId){ clearInterval(timerId); timerId = null; } }
+  function startTimer(){
+    stopTimer();
+    if(choice.time === "off") return;
+    timeTotal = parseInt(choice.time, 10);
+    timeLeft = timeTotal;
+    var fill = $("#timerFill");
+    fill.className = "timerfill"; fill.style.width = "100%";
+    timerId = setInterval(function(){
+      timeLeft--;
+      fill.style.width = Math.max(0, timeLeft / timeTotal * 100) + "%";
+      if(timeLeft <= Math.ceil(timeTotal*0.25)) fill.className = "timerfill danger";
+      else if(timeLeft <= Math.ceil(timeTotal*0.5)) fill.className = "timerfill warn";
+      if(timeLeft <= 0){ stopTimer(); timeout(); }
+    }, 1000);
+  }
+
+  function render(){
+    stopTimer();
+    answered = false;
+    var q = pool[idx];
+    markNow(idx);
+
+    var cat = CATS[q.cat];
+    var catEl = $("#qcat");
+    catEl.textContent = cat.label;
+    catEl.style.setProperty("--c", cat.color);
+
+    $("#qtext").innerHTML = q.q;
+
+    var optsWrap = $("#opts"), typeBox = $("#typebox"), typeHint = $("#typehint");
+    optsWrap.innerHTML = ""; optsWrap.classList.add("hidden");
+    typeBox.classList.add("hidden"); typeHint.classList.add("hidden");
+    var inp = $("#typeInput");
+    inp.value = ""; inp.disabled = false; inp.className = "typeinput";
+    $("#checkBtn").disabled = false;
+
+    if(choice.input === "scrivi" && q.type === "blank"){
+      typeBox.classList.remove("hidden"); typeHint.classList.remove("hidden");
+      inp.focus();
+    } else {
+      optsWrap.classList.remove("hidden");
+      var order = shuffle(q.opts.map(function(t,i){ return {t:t, i:i}; }));
+      order.forEach(function(o, n){
+        var b = document.createElement("button");
+        b.className = "opt";
+        b.innerHTML = '<span class="k">' + (n+1) + '</span> ' + esc(o.t);
+        b.setAttribute("data-i", o.i);
+        b.addEventListener("click", function(){ answer(o.i, b); });
+        optsWrap.appendChild(b);
+      });
+    }
+
+    drawer.classList.remove("up");
+    startTimer();
+  }
+
+  function closeOptions(q, chosen){
+    Array.prototype.forEach.call($("#opts").children, function(b){
+      b.disabled = true;
+      var i = parseInt(b.getAttribute("data-i"), 10);
+      if(i === q.correct) b.classList.add("correct");
+      else if(i === chosen) b.classList.add("wrong");
+    });
+  }
+
+  function register(q, ok){
+    catStats[q.cat].tot++;
+    if(ok){
+      catStats[q.cat].ok++;
+      score++; streak++; if(streak > bestStreak) bestStreak = streak;
+    } else {
+      streak = 0; missed.push(q);
+    }
+    markDot(idx, ok);
+    $("#scoreVal").textContent = score;
+    $("#streakVal").textContent = streak;
+  }
+
+  function feedback(ok, q, extra){
+    var fb = $("#feedback");
+    fb.className = "feedback " + (ok ? "ok" : "bad");
+    var verdict = ok ? "Giusto!" : (extra || ("Quasi &middot; era «" + q.opts[q.correct] + "»."));
+    fb.innerHTML = '<span class="verdict">' + verdict + '</span> ' + q.note;
+    drawer.classList.add("up");
+    $("#nextBtn").textContent = (idx >= pool.length - 1) ? "Vedi il risultato" : "Avanti";
+  }
+
+  function answer(chosen, btn){
+    if(answered) return;
+    answered = true;
+    stopTimer();
+    var q = pool[idx];
+    closeOptions(q, chosen);
+    var ok = chosen === q.correct;
+    register(q, ok);
+    feedback(ok, q);
+  }
+
+  function checkTyped(){
+    if(answered) return;
+    var q = pool[idx];
+    var inp = $("#typeInput");
+    if(inp.disabled) return;
+    answered = true;
+    stopTimer();
+    var val = norm(inp.value);
+    var ok = q.accept.some(function(a){ return norm(a) === val; });
+    inp.disabled = true; $("#checkBtn").disabled = true;
+    inp.classList.add(ok ? "correct" : "wrong");
+    register(q, ok);
+    feedback(ok, q, ok ? null : ("Quasi &middot; era «" + q.opts[q.correct] + "»."));
+  }
+
+  function timeout(){
+    if(answered) return;
+    answered = true;
+    var q = pool[idx];
+    if(choice.input === "scrivi" && q.type === "blank"){
+      var inp = $("#typeInput"); inp.disabled = true; inp.classList.add("wrong"); $("#checkBtn").disabled = true;
+    } else {
+      closeOptions(q, -1);
+    }
+    register(q, false);
+    feedback(false, q, "Tempo scaduto &middot; era «" + q.opts[q.correct] + "».");
+  }
+
+  $("#checkBtn").addEventListener("click", checkTyped);
+  $("#typeInput").addEventListener("keydown", function(e){ if(e.key === "Enter") checkTyped(); });
+
+  $("#nextBtn").addEventListener("click", next);
+  function next(){
+    drawer.classList.remove("up");
+    idx++;
+    if(idx >= pool.length){ showFinal(); return; }
+    render();
+  }
+
+  /* Tastiera: 1-4 per rispondere, invio o spazio per andare avanti */
+  document.addEventListener("keydown", function(e){
+    if(game.classList.contains("hidden")) return;
+    if(answered && (e.key === "Enter" || e.key === " ")){
+      if(document.activeElement && document.activeElement.id === "typeInput") return;
+      e.preventDefault(); next(); return;
+    }
+    if(!answered && /^[1-4]$/.test(e.key)){
+      var opts = $("#opts");
+      if(opts.classList.contains("hidden")) return;
+      var b = opts.children[parseInt(e.key,10) - 1];
+      if(b) b.click();
+    }
+  });
+
+  $("#quitBtn").addEventListener("click", function(){
+    stopTimer(); drawer.classList.remove("up");
+    game.classList.add("hidden"); final.classList.add("hidden"); hub.classList.remove("hidden");
+    showRecord();
+  });
+
+  /* ---------------- Finale ---------------- */
+  function showFinal(){
+    stopTimer();
+    game.classList.add("hidden"); final.classList.remove("hidden");
+    var tot = pool.length, pct = Math.round(score / tot * 100);
+    $("#finScore").textContent = score + " / " + tot;
+
+    var tier, text;
+    if(pct >= 90){ tier = "Non ti frega più nessuna preposizione"; text = "La differenza tra le quattro costruzioni ormai è automatica."; }
+    else if(pct >= 70){ tier = "Quasi automatico"; text = "Gran parte è acquisita: guarda sotto quali costruzioni ti rallentano."; }
+    else if(pct >= 50){ tier = "Sulla buona strada"; text = "Le regole ci sono, serve ancora qualche giro mirato su una costruzione sola."; }
+    else { tier = "Da rivedere con calma"; text = "Rileggi le quattro schede in alto e riprova una categoria alla volta."; }
+    $("#tierText").textContent = tier;
+    $("#finText").textContent = text + " Serie più lunga di risposte giuste: " + bestStreak + ".";
+
+    var isRecord = setRecord(score);
+    $("#finRecord").textContent = isRecord ? "nuovo record in questa modalità!" : ("record in questa modalità: " + getRecord());
+
+    var list = $("#catList"); list.innerHTML = "";
+    var any = false;
+    Object.keys(CATS).forEach(function(c){
+      var s = catStats[c];
+      if(!s || !s.tot) return;
+      any = true;
+      var p = Math.round(s.ok / s.tot * 100);
+      var row = document.createElement("div");
+      row.className = "catrow";
+      row.innerHTML = '<div class="catname"><span>' + CATS[c].label + '</span><span>' + s.ok + '/' + s.tot + '</span></div>' +
+                      '<div class="cattrack"><div class="catfill" style="width:' + p + '%;background:' + CATS[c].color + '"></div></div>';
+      list.appendChild(row);
+    });
+    $("#catBox").classList.toggle("hidden", !any);
+
+    var box = $("#reviewBox"), rev = $("#reviewList");
+    if(missed.length){
+      box.classList.remove("hidden");
+      rev.innerHTML = "";
+      var seen = {};
+      missed.forEach(function(m){
+        if(seen[m.q]) return; seen[m.q] = true;
+        var d = document.createElement("div");
+        d.className = "revitem";
+        d.innerHTML = "<b>" + esc(m.opts[m.correct]) + "</b> &middot; " + m.note;
+        rev.appendChild(d);
+      });
+      $("#missedBtn").classList.remove("hidden");
+    } else {
+      box.classList.add("hidden");
+      $("#missedBtn").classList.add("hidden");
+    }
+  }
+
+  $("#againBtn").addEventListener("click", function(){ start(null); });
+  $("#missedBtn").addEventListener("click", function(){
+    var uniq = [], seen = {};
+    missed.forEach(function(m){ if(!seen[m.q]){ seen[m.q] = true; uniq.push(m); } });
+    start(uniq);
+  });
+  $("#homeBtn").addEventListener("click", function(){
+    final.classList.add("hidden"); hub.classList.remove("hidden"); showRecord();
+  });
+  $("#startBtn").addEventListener("click", function(){ start(null); });
+
+  /* Si può arrivare dritti a una categoria con ?cat=cosa */
+  var wanted = (location.search.match(/[?&]cat=([a-z]+)/i) || [])[1];
+  if(wanted && (wanted === "tutto" || CATS[wanted])){
+    choice.cat = wanted;
+    buildChips("catChips", SETUP.cat, "cat");
+    showRecord();
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il Giro del Mondo · Talk with Fabio</title>
+<meta name="description" content="Reality show di conversazione: sfide di viaggio e di cibo a tempo, da fare in lezione.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+/* ============================================================
+   Stessi token del sito. Se cambi un colore nella home,
+   cambialo anche qui.
+   ============================================================ */
+:root{
+  --ink:#16233F;
+  --ink-soft:#4A5670;
+  --paper:#F7F4EC;
+  --paper-2:#FFFDF8;
+  --rule:#DFD8C7;
+  --saffron:#E8A33D;
+  --rosso:#C4312B;
+  --verde:#2E5E4E;
+  --azzurro:#3D6E8F;
+  --arancio:#C4682B;
+  --viola:#7A5A8F;
+
+  --accent:#C4682B;
+
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --pen:"Caveat","Segoe Script",cursive;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+
+  --wrap:1040px;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; }
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:1.05rem; line-height:1.6;
+  -webkit-text-size-adjust:100%;
+}
+a{ color:inherit; }
+.wrap{ max-width:var(--wrap); margin:0 auto; padding:0 22px; }
+.hidden{ display:none !important; }
+
+.topbar{ border-bottom:1px solid var(--rule); background:var(--paper-2); }
+.topbar-in{ max-width:var(--wrap); margin:0 auto; padding:14px 22px; display:flex; align-items:center; justify-content:space-between; gap:14px; }
+.logo{ display:flex; align-items:center; gap:10px; text-decoration:none; font-family:var(--display); font-weight:700; font-size:1rem; }
+.logo-mark{
+  width:21px; height:21px; border-radius:50%; border:1px solid var(--ink);
+  background:conic-gradient(from 180deg, var(--saffron) 0 25%, var(--rosso) 0 50%, var(--verde) 0 75%, var(--ink) 0);
+}
+.back-link{ font-family:var(--display); font-weight:600; font-size:.88rem; color:var(--ink-soft); text-decoration:none; }
+.back-link:hover{ color:var(--ink); }
+
+/* ---------- Intro ---------- */
+.intro{ padding:34px 0 10px; }
+.eyebrow{ font-family:var(--mono); font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 10px; }
+h1{ font-family:var(--display); font-weight:800; font-size:clamp(2.1rem,6vw,3.4rem); line-height:1.02; margin:0 0 14px; }
+h1 em{ font-style:normal; color:var(--accent); }
+.lede{ margin:0; max-width:60ch; }
+.rules{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin:26px 0; }
+.rulecard{ background:var(--paper-2); border:2px solid var(--ink); border-radius:18px; padding:16px 18px; }
+.rulecard b{ font-family:var(--display); display:block; margin-bottom:4px; }
+.rulecard span{ font-size:.95rem; color:var(--ink-soft); }
+
+.setlab{ font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:20px 0 8px; }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.chip{
+  font-family:var(--display); font-weight:600; font-size:.9rem;
+  background:var(--paper-2); color:var(--ink); border:2px solid var(--rule);
+  border-radius:999px; padding:8px 16px; cursor:pointer;
+}
+.chip[aria-pressed="true"]{ background:var(--ink); color:var(--paper-2); border-color:var(--ink); }
+.namein{
+  font-family:var(--body); font-size:1rem; color:var(--ink); background:var(--paper-2);
+  border:2px solid var(--ink); border-radius:999px; padding:9px 18px; min-width:190px;
+}
+.btn{
+  font-family:var(--display); font-weight:700; font-size:.98rem;
+  background:var(--accent); color:#fff; border:2px solid var(--accent);
+  border-radius:999px; padding:11px 22px; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+}
+.btn:hover{ filter:brightness(.92); }
+.btn .sub{ font-family:var(--mono); font-weight:400; font-size:.74em; opacity:.85; }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--ink); }
+.btn-ghost:hover{ background:var(--ink); color:var(--paper-2); filter:none; }
+.btn-soft{ background:var(--paper-2); color:var(--ink); border-color:var(--rule); }
+.btn-soft:hover{ border-color:var(--ink); filter:none; }
+.btn:disabled{ opacity:.4; cursor:not-allowed; }
+.startrow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:26px 0 40px; }
+
+/* ---------- Partita ---------- */
+.gamehead{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:22px 0 14px; }
+.players{ display:flex; gap:10px; flex-wrap:wrap; }
+.pcard{
+  background:var(--paper-2); border:2px solid var(--rule); border-radius:16px;
+  padding:8px 16px; display:flex; align-items:center; gap:12px; min-width:150px;
+}
+.pcard.on{ border-color:var(--accent); box-shadow:3px 3px 0 rgba(22,35,63,.08); }
+.pcard .nm{ font-family:var(--display); font-weight:700; font-size:.98rem; }
+.pcard .lab{ font-family:var(--mono); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+.pcard .pts{ font-family:var(--display); font-weight:800; font-size:1.6rem; color:var(--accent); margin-left:auto; }
+.roundpill{ font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft); }
+
+.catchips{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+
+.card{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:28px; box-shadow:6px 6px 0 rgba(22,35,63,.08);
+  min-height:230px; display:flex; flex-direction:column; gap:14px;
+}
+.card .tag{
+  align-self:flex-start; font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase;
+  border:1px solid var(--c,var(--ink)); color:var(--c,var(--ink)); border-radius:999px; padding:.3em .8em;
+}
+.task{ font-family:var(--display); font-weight:700; font-size:clamp(1.3rem,3.4vw,2rem); line-height:1.22; margin:0; }
+.pline{
+  border-left:4px solid var(--rosso); background:rgba(196,49,43,.07);
+  border-radius:0 12px 12px 0; padding:10px 14px; font-style:italic; color:#8C2F2A; font-size:.98rem;
+}
+.pline b{ display:block; font-style:normal; font-family:var(--mono); font-size:.64rem; letter-spacing:.12em; text-transform:uppercase; color:var(--rosso); margin-bottom:2px; }
+.hint{ margin:auto 0 0; font-size:.97rem; color:var(--ink-soft); }
+.hint b{ color:var(--verde); }
+.placeholder{ margin:auto; text-align:center; color:var(--ink-soft); }
+.placeholder .big{ font-family:var(--display); font-weight:800; font-size:1.4rem; color:var(--ink); margin-bottom:6px; }
+
+.console{ display:grid; grid-template-columns:260px minmax(0,1fr); gap:16px; margin:16px 0 20px; }
+@media(max-width:760px){ .console{ grid-template-columns:1fr; } }
+.box{ background:var(--paper-2); border:2px solid var(--rule); border-radius:20px; padding:16px; }
+.boxlab{ font-family:var(--mono); font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px; }
+.clock{
+  font-family:var(--display); font-weight:800; font-size:2.6rem; text-align:center; line-height:1.1;
+  border:2px solid var(--ink); border-radius:16px; padding:6px 0; background:var(--paper);
+  font-variant-numeric:tabular-nums;
+}
+.clock.run{ background:var(--verde); border-color:var(--verde); color:#fff; }
+.clock.over{ background:var(--rosso); border-color:var(--rosso); color:#fff; }
+.durs{ display:flex; gap:6px; margin:10px 0; }
+.durs .chip{ padding:6px 12px; font-size:.82rem; flex:1; justify-content:center; text-align:center; }
+.clockbtns{ display:flex; gap:8px; }
+.clockbtns .btn{ flex:1; justify-content:center; padding:9px 12px; font-size:.9rem; }
+.scoregrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:9px; }
+.sbtn{ flex-direction:column; gap:2px; padding:13px 8px; font-size:.86rem; justify-content:center; }
+.sbtn .n{ font-family:var(--display); font-weight:800; font-size:1.4rem; }
+.s1{ background:var(--ink-soft); border-color:var(--ink-soft); }
+.s3{ background:var(--saffron); border-color:var(--saffron); color:var(--ink); }
+.s5{ background:var(--verde); border-color:var(--verde); }
+.rowbtns{ display:flex; gap:9px; flex-wrap:wrap; margin-top:12px; }
+.rowbtns .btn{ flex:1; min-width:140px; justify-content:center; }
+.notes{ margin-top:12px; }
+.notes textarea{
+  width:100%; min-height:74px; resize:vertical; font-family:var(--body); font-size:.97rem; color:var(--ink);
+  background:var(--paper); border:2px solid var(--rule); border-radius:14px; padding:10px 12px;
+}
+.notes textarea:focus{ outline:none; border-color:var(--ink); }
+.endbar{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:40px; }
+
+.storia{ margin:0 0 40px; }
+.storia summary{ cursor:pointer; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+.storia ol{ margin:14px 0 0; padding-left:20px; }
+.storia li{ font-size:.95rem; margin-bottom:6px; }
+.storia .pts{ font-family:var(--display); font-weight:700; color:var(--accent); }
+
+/* ---------- Finale ---------- */
+.final{ padding:34px 0 60px; }
+.tier{ font-family:var(--display); font-weight:800; font-size:clamp(2rem,6vw,3.2rem); line-height:1.02; color:var(--accent); margin:6px 0 10px; }
+.bigscore{ font-family:var(--display); font-weight:800; font-size:3.2rem; line-height:1; }
+.bigscore small{ display:block; font-family:var(--mono); font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); font-weight:400; margin-bottom:4px; }
+.panelbox{ background:var(--paper-2); border:2px solid var(--ink); border-radius:20px; padding:20px 22px; margin:22px 0; }
+.panelbox h3{ font-family:var(--display); font-size:1.05rem; margin:0 0 12px; }
+.panelbox pre{ font-family:var(--body); font-size:1rem; white-space:pre-wrap; margin:0; }
+.toast{
+  position:fixed; left:50%; top:18px; transform:translateX(-50%) translateY(-24px); opacity:0;
+  background:var(--ink); color:var(--paper); font-family:var(--display); font-weight:700; font-size:.94rem;
+  padding:10px 22px; border-radius:999px; z-index:50; transition:all .25s ease; pointer-events:none;
+}
+.toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+@media (max-width:640px){
+  .wrap,.topbar-in{ padding-left:16px; padding-right:16px; }
+  .card{ padding:20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="https://talkwithfabio.com/">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Talk with Fabio
+    </a>
+    <a class="back-link" href="../">&larr; La mia aula</a>
+  </div>
+</header>
+
+<!-- ============ INTRO ============ -->
+<section id="intro" class="wrap">
+  <div class="intro">
+    <p class="eyebrow">gioco di conversazione &middot; A2 e oltre &middot; solo per me</p>
+    <h1>Il Giro <em>del Mondo</em></h1>
+    <p class="lede">Il reality show dell'italiano. Sfide di viaggio, di cibo e di disastri in aeroporto, a tempo, con la giuria che assegna i punti dopo ogni prova.</p>
+  </div>
+
+  <div class="rules">
+    <article class="rulecard"><b>1 &middot; Regola d'oro</b><span>Vietato l'inglese. Se manca una parola, giraci intorno in italiano.</span></article>
+    <article class="rulecard"><b>2 &middot; A tempo</b><span>Ogni sfida ha il suo cronometro. Si parla finché scorre il tempo, senza fermarsi.</span></article>
+    <article class="rulecard"><b>3 &middot; La giuria sono io</b><span>Dopo ogni prova assegno i punti: timida, bene, wow. La parola d'oro vale due punti extra.</span></article>
+</div>
+
+  <p class="setlab">Chi gioca</p>
+  <div class="chips" id="countChips"></div>
+  <div class="chips" id="nameRow" style="margin-top:10px">
+    <input class="namein" id="name1" type="text" maxlength="24" placeholder="Nome della concorrente" aria-label="Nome">
+    <input class="namein hidden" id="name2" type="text" maxlength="24" placeholder="Nome della sfidante" aria-label="Nome del secondo">
+  </div>
+
+  <p class="setlab">Come parla il gioco</p>
+  <div class="chips" id="genderChips"></div>
+
+  <div class="startrow">
+    <button class="btn" id="startBtn">Entra in gara</button>
+    <button class="btn btn-ghost hidden" id="resumeBtn">Riprendi la partita salvata</button>
+  </div>
+</section>
+
+<!-- ============ PARTITA ============ -->
+<section id="game" class="wrap hidden">
+  <div class="gamehead">
+    <div class="players" id="players"></div>
+    <div class="roundpill" id="roundPill">sfida 0</div>
+  </div>
+
+  <div class="catchips" id="cats"></div>
+
+  <div class="card" id="card">
+    <div class="placeholder" id="placeholder">
+      <div class="big">Pronti alla prima sfida?</div>
+      <div>Scegli una categoria qui sopra, oppure premi «Sfida a sorpresa».</div>
+    </div>
+    <div id="cardContent" class="hidden" style="display:flex;flex-direction:column;gap:14px;flex:1">
+      <span class="tag" id="catTag"></span>
+      <p class="task" id="taskText"></p>
+      <div class="pline hidden" id="plineBox"><b></b><span id="plineText"></span></div>
+      <p class="hint" id="hintText"></p>
+    </div>
+  </div>
+
+  <div class="console">
+    <div class="box">
+      <div class="boxlab">Cronometro</div>
+      <div class="clock" id="clock">00:30</div>
+      <div class="durs" id="durs"></div>
+      <div class="clockbtns">
+        <button class="btn" id="clockBtn">Via</button>
+        <button class="btn btn-soft" id="clockReset">↺</button>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="boxlab">La giuria &middot; assegna i punti</div>
+      <div class="scoregrid">
+        <button class="btn sbtn s1" data-pts="1"><span class="n">+1</span>Sottotono</button>
+        <button class="btn sbtn s3" data-pts="3"><span class="n">+3</span>Bene!</button>
+        <button class="btn sbtn s5" data-pts="5"><span class="n">+5</span>Wow!</button>
+      </div>
+      <div class="rowbtns">
+        <button class="btn btn-soft" id="bonusBtn">⭐ Parola d'oro +2</button>
+        <button class="btn btn-soft" id="skipBtn">Salta questa</button>
+        <button class="btn" id="nextBtn">Prossima sfida</button>
+      </div>
+      <div class="notes">
+        <div class="boxlab" style="margin-top:14px">Appunti della lezione</div>
+        <textarea id="notes" placeholder="gli errori da riprendere dopo: «alla 8», «io sveglio», il genere di «televisione»..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <details class="storia">
+    <summary>Le prove già fatte</summary>
+    <ol id="storiaList"></ol>
+  </details>
+
+  <div class="endbar">
+    <button class="btn btn-ghost" id="finishBtn">Chiudi e vedi il verdetto</button>
+    <button class="btn btn-soft" id="quitBtn">Esci e ricomincia</button>
+  </div>
+</section>
+
+<!-- ============ FINALE ============ -->
+<section id="finale" class="wrap hidden">
+  <div class="final">
+    <p class="eyebrow">il verdetto della giuria</p>
+    <div class="tier" id="tierText">—</div>
+    <p class="lede" id="finWho"></p>
+    <div class="bigscore" style="margin-top:18px"><small>punteggio</small><span id="finScore">0</span></div>
+    <p class="lede" id="verdictText" style="margin-top:14px"></p>
+
+    <div class="panelbox hidden" id="notesBox">
+      <h3>Appunti da riprendere</h3>
+      <pre id="notesOut"></pre>
+    </div>
+
+    <div class="panelbox hidden" id="histBox">
+      <h3>Le prove di oggi</h3>
+      <ol id="histOut"></ol>
+    </div>
+
+    <div class="endbar">
+      <button class="btn" id="againBtn">Gioca ancora</button>
+      <button class="btn btn-ghost" id="backBtn">Torna all'inizio</button>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  "use strict";
+
+  var CATS = {
+    viaggio:   {label:"Viaggio",       color:"var(--azzurro)"},
+    cibo:      {label:"Cibo",          color:"var(--arancio)"},
+    imprevisto:{label:"Imprevisto",    color:"var(--saffron)"},
+    confess:   {label:"Confessionale", color:"var(--viola)"},
+    lampo:     {label:"Sfida lampo",   color:"var(--rosso)"}
+  };
+
+  var BANK = {
+    viaggio:[
+      {t:"Vendi la tua città preferita in un minuto. Convincimi ad andarci subito!", h:"Usa: <b>bellissimo, il centro, la spiaggia, si può, devi assolutamente</b>"},
+      {t:"Racconta il viaggio più bello della tua vita. Dove sei andata? Con chi?", h:"Al passato: <b>sono andata, ho visitato, mi è piaciuto</b>"},
+      {t:"Hai perso il bagaglio all'aeroporto. Descrivilo: colore, dimensione, cosa c'era dentro.", h:"Usa: <b>la valigia, grande/piccola, dentro c'era...</b>"},
+      {t:"Spiega passo passo come si arriva dall'aeroporto al centro della tua città.", h:"Usa: <b>prendi, poi, dritto, a destra, la fermata</b>"},
+      {t:"Racconta il viaggio peggiore che hai mai fatto. Cosa è andato storto?", h:"Al passato: <b>ho perso, era, non c'era, alla fine</b>"},
+      {t:"Descrivi la tua destinazione dei sogni e cosa farai quando ci andrai.", h:"Al futuro: <b>andrò, visiterò, mangerò, sarà</b>"},
+      {t:"Prenota una camera d'albergo: di' tutto quello che vuoi.", h:"Usa: <b>vorrei, camera doppia, due notti, colazione inclusa</b>"},
+      {t:"Descrivi cosa metti sempre in valigia e spiega perché.", h:"Usa: <b>metto, porto, mi serve per, non posso senza</b>"},
+      {t:"Convincimi che viaggiare da soli è meglio che viaggiare in gruppo. O il contrario!", h:"Usa: <b>secondo me, è meglio, perché, preferisco</b>"},
+      {t:"Racconta un posto dove non torneresti mai. Perché ti ha deluso?", h:"Usa: <b>non tornerei, mi aspettavo, invece, troppo</b>"},
+      {t:"Hai tre giorni a Roma e non puoi entrare in nessun museo. Cosa fai?", h:"Usa: <b>il primo giorno, poi, all'aperto, passeggiare</b>"}
+    ],
+    cibo:[
+      {t:"Descrivi il tuo piatto preferito come se fossi in un programma di cucina in TV.", h:"Usa: <b>saporito, squisito, gli ingredienti, si prepara con</b>"},
+      {t:"Ordina una cena completa: antipasto, primo, secondo e dolce.", h:"Usa: <b>come antipasto, come primo, vorrei, per me</b>"},
+      {t:"Convincimi che l'ananas sulla pizza è fantastico... oppure terribile. Argomenta!", h:"Usa: <b>secondo me, è dolce/salato, non ha senso, è buonissimo</b>"},
+      {t:"Racconta il pasto più buono che hai mangiato durante un viaggio.", h:"Al passato: <b>ho mangiato, ho ordinato, mi è piaciuto</b>"},
+      {t:"Descrivi un piatto tipico di casa tua a un italiano che non lo conosce.", h:"Usa: <b>è una cosa che, si mangia con, il sapore è</b>"},
+      {t:"Sei allergica a qualcosa. Spiega al cameriere cosa non puoi mangiare e chiedi aiuto.", h:"Usa: <b>ho un'allergia, non posso mangiare, c'è dentro?</b>"},
+      {t:"Descrivi tre sapori diversi senza dire il nome del cibo. Io indovino!", h:"Usa: <b>è dolce, è piccante, è amaro, è fresco</b>"},
+      {t:"Il cameriere ti porta un piatto freddo e cattivo. Reclama con gentilezza.", h:"Usa: <b>scusi, questo è freddo, potrebbe, vorrei un altro</b>"},
+      {t:"Insegnami la tua ricetta di famiglia, passo passo, come se fossi in cucina con te.", h:"Usa: <b>prima, poi, si aggiunge, si lascia cuocere</b>"},
+      {t:"Hai dieci euro per la cena di stasera. Cosa compri e cosa cucini?", h:"Usa: <b>con dieci euro, mi bastano, costa poco, preparo</b>"}
+    ],
+    imprevisto:[
+      {t:"Sei al ristorante ma hai dimenticato il portafoglio. Risolvi la situazione!", h:"Usa: <b>ho dimenticato, posso, torno, mi dispiace</b>"},
+      {t:"Il conto è sbagliato: c'è un piatto che non hai ordinato. Contesta con gentilezza.", h:"Usa: <b>scusi, non ho ordinato, c'è un errore, può controllare?</b>"},
+      {t:"Hai perso l'ultimo treno per cinque minuti. Cosa fai adesso?", h:"Usa: <b>ho perso, quando parte, c'è un altro, dove posso</b>"},
+      {t:"L'albergo non trova la tua prenotazione. Convincili che hai ragione.", h:"Usa: <b>ho prenotato, ho la mail, a nome mio, sono sicura</b>"},
+      {t:"Il taxi ti ha lasciata all'indirizzo sbagliato. Chiedi aiuto a un passante.", h:"Usa: <b>mi sono persa, dove si trova, è lontano, come arrivo</b>"},
+      {t:"Il tuo volo è cancellato. Spiega alla compagnia cosa ti serve adesso.", h:"Usa: <b>il volo è cancellato, ho bisogno di, quando, un altro volo</b>"},
+      {t:"Ti hanno rubato il telefono in viaggio. Spiega alla polizia cosa è successo.", h:"Al passato: <b>mi hanno rubato, ero, stavo, poi</b>"},
+      {t:"Sei salita sull'autobus sbagliato e sei fuori città. Chiedi come si torna indietro.", h:"Usa: <b>ho sbagliato, come torno, quale autobus, quanto ci vuole</b>"},
+      {t:"La tua vicina di posto in aereo parla senza fermarsi mai. Liberati con gentilezza.", h:"Usa: <b>mi scusi, adesso vorrei, sono stanca, magari dopo</b>"}
+    ],
+    confess:[
+      {t:"Guarda in camera: perché proprio tu meriti di vincere questo reality?", h:"Usa: <b>secondo me, sono, so, posso, merito</b>"},
+      {t:"Confessa alla telecamera: qual è la tua più grande paura in viaggio?", h:"Usa: <b>ho paura di, quando, mi preoccupa, non mi piace</b>"},
+      {t:"Parla male degli altri concorrenti alla telecamera. Inventali tu!", h:"Usa: <b>lui/lei è, secondo me, non sa, io invece</b>"},
+      {t:"Racconta un segreto sui tuoi viaggi che non hai mai detto a nessuno.", h:"Al passato: <b>una volta, ho fatto, nessuno sa, è successo</b>"},
+      {t:"Se vinci il premio, un viaggio gratis ovunque nel mondo, dove vai e perché?", h:"Al futuro: <b>andrò, voglio, perché, sarà</b>"},
+      {t:"È stata una giornata dura. Sfoga tutte le tue emozioni davanti alla camera!", h:"Usa: <b>sono stanca, oggi, è stato, mi sento</b>"},
+      {t:"Fai un patto segreto con un altro concorrente: convincilo che ti conviene.", h:"Usa: <b>se tu..., io..., ti prometto, insieme possiamo</b>"}
+    ],
+    lampo:[
+      {t:"Cinque cose che si trovano in un aeroporto. Veloce!", h:"Corsa contro il tempo &middot; una parola dopo l'altra"},
+      {t:"Cinque piatti italiani. Vai!", h:"Corsa contro il tempo &middot; niente pause"},
+      {t:"Cinque parole per descrivere un cibo buonissimo. Via!", h:"Aggettivi: <b>saporito, squisito...</b>"},
+      {t:"Cinque mezzi di trasporto. Corri!", h:"Corsa contro il tempo"},
+      {t:"Cinque cose che metti in valigia. Presto!", h:"Corsa contro il tempo"},
+      {t:"Cinque bevande in italiano. Ora!", h:"Corsa contro il tempo"},
+      {t:"Cinque modi per dire che un piatto non ti piace. Sii creativa!", h:"Usa: <b>pesante, troppo salato, non fa per me...</b>"},
+      {t:"Cinque città che vuoi visitare, con un motivo per ognuna in una parola. Vai!", h:"Esempio: <b>Napoli - pizza, Firenze - arte...</b>"},
+      {t:"Cinque cose che si fanno in spiaggia. Dieci secondi!", h:"Corsa contro il tempo"},
+      {t:"Cinque parole che senti solo in albergo. Veloce!", h:"<b>la reception, la chiave, la colazione...</b>"}
+    ]
+  };
+
+  var TIERS = [
+    {min:0,  name:"Turista alle prime armi", v:"Hai preso l'aereo e sei partita: è già una vittoria. Il mondo ti aspetta, la prossima tappa sarà più tua."},
+    {min:22, name:"Viaggiatrice in crescita", v:"Ti muovi con sempre più sicurezza. Ancora qualche tappa e nessun aeroporto avrà più segreti per te."},
+    {min:42, name:"Esploratrice esperta", v:"Cavartela in italiano ormai è naturale: ordini, prenoti, reagisci agli imprevisti senza battere ciglio."},
+    {min:62, name:"Campionessa del mondo", v:"Nessuno ti ferma. Parli, convinci, racconti e sopravvivi a ogni disastro con stile. Il titolo è tuo."}
+  ];
+
+  var LAB = {player:'Concorrente', round:'sfida', surprise:'Sfida a sorpresa', bonus:"Parola d'oro"};
+  var KEY = "icf_giro_mondo";
+
+  /* ==========================================================
+     MASCHILE O FEMMINILE
+     Le carte sono scritte al femminile. Con una sola scelta in
+     alto diventano maschili: qui sotto le parole che cambiano.
+     Se aggiungi una carta con un participio nuovo, aggiungi la
+     coppia qui e funziona da sola.
+     ========================================================== */
+  var M = {
+    "accusata":"accusato","imputata":"imputato","Imputata":"Imputato","l'Imputata":"l'Imputato",
+    "andata":"andato","arrivata":"arrivato","stata":"stato","stanca":"stanco","sicura":"sicuro",
+    "allergica":"allergico","curiosa":"curioso","persa":"perso","vista":"visto","sentita":"sentito",
+    "contenta":"contento","pronta":"pronto","sola":"solo","assolta":"assolto","convinta":"convinto",
+    "svegliata":"svegliato","nata":"nato","tornata":"tornato","rimasta":"rimasto","scesa":"sceso",
+    "Campionessa":"Campione","campionessa":"campione","vincitrice":"vincitore","Vincitrice":"Vincitore",
+    "Viaggiatrice":"Viaggiatore","Esploratrice":"Esploratore","concorrente":"concorrente",
+    "brava":"bravo","Brava":"Bravo","bravissima":"bravissimo","Bravissima":"Bravissimo",
+    "creativa":"creativo","sorpresa":"sorpresa"
+  };
+  var M_RE = new RegExp("\\b(" + Object.keys(M).join("|") + ")\\b", "g");
+  function gtext(s){
+    if(state.gender === "f") return s;
+    return String(s).replace(M_RE, function(w){ return M[w] || w; });
+  }
+
+  /* ---------------- stato ---------------- */
+  var state = {
+    count:1, gender:"f",
+    players:[{name:"", score:0},{name:"", score:0}],
+    turn:0, round:0, dur:30, activeCat:"tutto",
+    bonusUsed:false, awarded:false, notes:"", storia:[], cat:null, idx:null, recent:{}
+  };
+
+  var $ = function(s){ return document.querySelector(s); };
+  var intro = $("#intro"), game = $("#game"), finale = $("#finale");
+
+  function save(){
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+  function load(){
+    try{
+      var raw = localStorage.getItem(KEY);
+      if(!raw) return null;
+      var s = JSON.parse(raw);
+      if(s && s.players && s.players.length === 2) return s;
+    }catch(e){}
+    return null;
+  }
+
+  function toast(msg){
+    var t = $("#toast"); t.textContent = msg; t.classList.add("show");
+    clearTimeout(t._id); t._id = setTimeout(function(){ t.classList.remove("show"); }, 1600);
+  }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function nameOf(i){ return state.players[i].name || (LAB.player + " " + (i+1)); }
+  function duo(){ return state.count === 2; }
+
+  /* ---------------- scelte iniziali ---------------- */
+  function buildChoiceChips(id, list, get, set){
+    var box = document.getElementById(id);
+    box.innerHTML = list.map(function(o){
+      return '<button class="chip" data-k="'+o.k+'" aria-pressed="'+(get()===o.k)+'">'+o.label+'</button>';
+    }).join("");
+    box.addEventListener("click", function(e){
+      var b = e.target.closest(".chip"); if(!b) return;
+      set(b.getAttribute("data-k"));
+      Array.prototype.forEach.call(box.querySelectorAll(".chip"), function(c){
+        c.setAttribute("aria-pressed", String(c.getAttribute("data-k") === get()));
+      });
+    });
+  }
+  buildChoiceChips("countChips",
+    [{k:"1",label:"Uno studente"},{k:"2",label:"Due studenti, a sfida"}],
+    function(){ return String(state.count); },
+    function(v){ state.count = parseInt(v,10); $("#name2").classList.toggle("hidden", !duo()); });
+  buildChoiceChips("genderChips",
+    [{k:"f",label:"Al femminile"},{k:"m",label:"Al maschile"}],
+    function(){ return state.gender; },
+    function(v){ state.gender = v; });
+
+  var saved = load();
+  if(saved && saved.round > 0){
+    $("#resumeBtn").classList.remove("hidden");
+    $("#resumeBtn").addEventListener("click", function(){
+      state = saved;
+      $("#name2").classList.toggle("hidden", !duo());
+      openGame(); renderPlayers(); renderStoria();
+      $("#notes").value = state.notes || "";
+      if(state.cat !== null && state.idx !== null) showCard(state.cat, state.idx, true);
+    });
+  }
+
+  /* ---------------- partita ---------------- */
+  $("#startBtn").addEventListener("click", function(){
+    state.players[0] = {name:($("#name1").value||"").trim(), score:0};
+    state.players[1] = {name:($("#name2").value||"").trim(), score:0};
+    state.turn = 0; state.round = 0; state.storia = []; state.notes = "";
+    state.cat = null; state.idx = null; state.recent = {};
+    $("#notes").value = "";
+    openGame(); renderPlayers(); renderStoria(); setDur(state.dur);
+    save();
+  });
+
+  function openGame(){
+    intro.classList.add("hidden"); finale.classList.add("hidden"); game.classList.remove("hidden");
+    buildCats(); renderRound(); setDur(state.dur);
+  }
+
+  function renderPlayers(){
+    var box = $("#players"); box.innerHTML = "";
+    var n = duo() ? 2 : 1;
+    for(var i=0;i<n;i++){
+      (function(i){
+        var d = document.createElement("div");
+        d.className = "pcard" + ((duo() && state.turn === i) || !duo() ? " on" : "");
+        d.innerHTML = '<span><span class="lab">' + (duo() ? (state.turn===i ? "tocca a" : "in attesa") : LAB.player) + '</span>' +
+                      '<br><span class="nm">' + esc(nameOf(i)) + '</span></span>' +
+                      '<span class="pts">' + state.players[i].score + '</span>';
+        if(duo()){
+          d.style.cursor = "pointer";
+          d.title = "Passa il turno";
+          d.addEventListener("click", function(){ state.turn = i; renderPlayers(); save(); });
+        }
+        box.appendChild(d);
+      })(i);
+    }
+  }
+  function renderRound(){ $("#roundPill").textContent = LAB.round + " " + state.round; }
+
+  function buildCats(){
+    var c = $("#cats"); c.innerHTML = "";
+    var mk = function(key,label){
+      var b = document.createElement("button");
+      b.className = "chip"; b.setAttribute("aria-pressed", String(state.activeCat === key));
+      b.textContent = label;
+      b.addEventListener("click", function(){
+        state.activeCat = key;
+        Array.prototype.forEach.call(c.children, function(x){ x.setAttribute("aria-pressed","false"); });
+        b.setAttribute("aria-pressed","true");
+        drawCard();
+      });
+      c.appendChild(b);
+    };
+    mk("tutto", LAB.surprise);
+    Object.keys(CATS).forEach(function(k){ mk(k, CATS[k].label); });
+  }
+
+  function pickCard(){
+    var cat = state.activeCat;
+    if(cat === "tutto"){ var keys = Object.keys(BANK); cat = keys[Math.floor(Math.random()*keys.length)]; }
+    var pool = BANK[cat];
+    if(!state.recent[cat]) state.recent[cat] = [];
+    var idx, tries = 0;
+    do{ idx = Math.floor(Math.random()*pool.length); tries++; }
+    while(state.recent[cat].indexOf(idx) !== -1 && tries < 30);
+    state.recent[cat].push(idx);
+    if(state.recent[cat].length > Math.min(4, pool.length - 1)) state.recent[cat].shift();
+    return {cat:cat, idx:idx};
+  }
+
+  function drawCard(){
+    var p = pickCard();
+    state.round++;
+    showCard(p.cat, p.idx, false);
+  }
+  function skipCard(){
+    var p = pickCard();
+    showCard(p.cat, p.idx, true);
+    toast("carta cambiata");
+  }
+
+  function showCard(cat, idx, keepRound){
+    state.cat = cat; state.idx = idx;
+    var ch = BANK[cat][idx], meta = CATS[cat];
+    $("#placeholder").classList.add("hidden");
+    $("#cardContent").classList.remove("hidden");
+    var tag = $("#catTag");
+    tag.textContent = meta.label;
+    tag.style.setProperty("--c", meta.color);
+    $("#taskText").textContent = gtext(ch.t);
+    $("#hintText").innerHTML = ch.h ? gtext(ch.h) : "";
+    var pb = $("#plineBox");
+    if(ch.p){ $("#plineText").textContent = gtext(ch.p); pb.classList.remove("hidden"); }
+    else pb.classList.add("hidden");
+
+    state.awarded = false; state.bonusUsed = false;
+    $("#bonusBtn").disabled = false;
+    renderRound(); renderPlayers();
+    resetClock();
+    save();
+  }
+
+  $("#nextBtn").addEventListener("click", function(){
+    if(duo() && state.round > 0) state.turn = state.turn === 0 ? 1 : 0;
+    drawCard();
+  });
+  $("#skipBtn").addEventListener("click", function(){
+    if(state.cat === null){ drawCard(); return; }
+    skipCard();
+  });
+
+  /* ---------------- punti ---------------- */
+  function addPoints(n, label){
+    if(state.cat === null){ toast("prima pesca una carta"); return; }
+    state.players[state.turn].score += n;
+    state.storia.push({
+      round: state.round,
+      who: nameOf(state.turn),
+      cat: CATS[state.cat].label,
+      task: gtext(BANK[state.cat][state.idx].t),
+      pts: n,
+      label: label
+    });
+    state.awarded = true;
+    renderPlayers(); renderStoria(); save();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".sbtn"), function(b){
+    b.addEventListener("click", function(){
+      var pts = parseInt(b.getAttribute("data-pts"),10);
+      addPoints(pts, b.textContent.replace(/^\+\d/,"").trim());
+      toast("+" + pts + " a " + nameOf(state.turn));
+    });
+  });
+  $("#bonusBtn").addEventListener("click", function(){
+    if(state.cat === null || state.bonusUsed) return;
+    state.bonusUsed = true;
+    addPoints(2, LAB.bonus);
+    $("#bonusBtn").disabled = true;
+    toast(LAB.bonus + " +2");
+  });
+
+  function renderStoria(){
+    var ol = $("#storiaList"); ol.innerHTML = "";
+    state.storia.slice().reverse().forEach(function(h){
+      var li = document.createElement("li");
+      li.innerHTML = '<span class="pts">+' + h.pts + '</span> ' + esc(h.who) + ' &middot; ' + esc(h.cat) + ' &middot; ' + esc(h.task);
+      ol.appendChild(li);
+    });
+  }
+
+  $("#notes").addEventListener("input", function(){ state.notes = this.value; save(); });
+
+  /* ---------------- cronometro ---------------- */
+  var left = 30, running = false, tId = null;
+  function buildDurs(){
+    var d = $("#durs"); d.innerHTML = "";
+    [30,60,90].forEach(function(sec){
+      var b = document.createElement("button");
+      b.className = "chip"; b.textContent = sec + "s";
+      b.setAttribute("aria-pressed", String(state.dur === sec));
+      b.addEventListener("click", function(){ setDur(sec); });
+      d.appendChild(b);
+    });
+  }
+  function setDur(sec){
+    state.dur = sec; buildDurs(); resetClock(); save();
+  }
+  function paint(){
+    var m = Math.floor(left/60), s = left % 60;
+    var c = $("#clock");
+    c.textContent = (m<10?"0":"") + m + ":" + (s<10?"0":"") + s;
+    c.className = "clock" + (left === 0 ? " over" : (running ? " run" : ""));
+    $("#clockBtn").textContent = running ? "Pausa" : (left === state.dur ? "Via" : "Riprendi");
+  }
+  function stopClock(){ running = false; if(tId){ clearInterval(tId); tId = null; } paint(); }
+  function resetClock(){ stopClock(); left = state.dur; paint(); }
+  function startClock(){
+    if(left <= 0) left = state.dur;
+    running = true;
+    tId = setInterval(function(){
+      left--;
+      if(left <= 0){ left = 0; stopClock(); toast("tempo scaduto"); }
+      paint();
+    }, 1000);
+    paint();
+  }
+  $("#clockBtn").addEventListener("click", function(){ running ? stopClock() : startClock(); });
+  $("#clockReset").addEventListener("click", resetClock);
+  buildDurs(); paint();
+
+  /* Barra spaziatrice: parte e ferma il cronometro */
+  document.addEventListener("keydown", function(e){
+    if(game.classList.contains("hidden")) return;
+    if(e.target && (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT")) return;
+    if(e.code === "Space"){ e.preventDefault(); running ? stopClock() : startClock(); }
+    if(e.key === "n" || e.key === "N"){ $("#nextBtn").click(); }
+  });
+
+  /* ---------------- finale ---------------- */
+  $("#finishBtn").addEventListener("click", showFinale);
+  function showFinale(){
+    stopClock();
+    var best = 0;
+    if(duo() && state.players[1].score > state.players[0].score) best = 1;
+    var score = state.players[best].score;
+    var tier = TIERS[0];
+    TIERS.forEach(function(x){ if(score >= x.min) tier = x; });
+
+    $("#tierText").textContent = gtext(tier.name);
+    $("#verdictText").textContent = gtext(tier.v);
+    $("#finScore").textContent = duo()
+      ? (state.players[0].score + " · " + state.players[1].score)
+      : score;
+    $("#finWho").textContent = duo()
+      ? (state.players[best].score === state.players[1-best].score
+          ? "Pari merito: " + nameOf(0) + " e " + nameOf(1) + "."
+          : "Vince " + nameOf(best) + ", con " + state.players[best].score + " punti contro " + state.players[1-best].score + ".")
+      : nameOf(0);
+
+    var nb = $("#notesBox");
+    if((state.notes||"").trim()){ $("#notesOut").textContent = state.notes.trim(); nb.classList.remove("hidden"); }
+    else nb.classList.add("hidden");
+
+    var hb = $("#histBox"), ho = $("#histOut"); ho.innerHTML = "";
+    if(state.storia.length){
+      state.storia.forEach(function(h){
+        var li = document.createElement("li");
+        li.innerHTML = esc(h.who) + ' &middot; ' + esc(h.cat) + ' &middot; ' + esc(h.task) + ' <b>+' + h.pts + '</b>';
+        ho.appendChild(li);
+      });
+      hb.classList.remove("hidden");
+    } else hb.classList.add("hidden");
+
+    game.classList.add("hidden"); finale.classList.remove("hidden");
+    save();
+  }
+
+  $("#againBtn").addEventListener("click", function(){
+    state.players[0].score = 0; state.players[1].score = 0;
+    state.round = 0; state.storia = []; state.cat = null; state.idx = null; state.turn = 0; state.recent = {};
+    $("#placeholder").classList.remove("hidden");
+    $("#cardContent").classList.add("hidden");
+    openGame(); renderPlayers(); renderStoria(); save();
+  });
+  $("#backBtn").addEventListener("click", function(){
+    finale.classList.add("hidden"); game.classList.add("hidden"); intro.classList.remove("hidden");
+  });
+  $("#quitBtn").addEventListener("click", function(){
+    stopClock();
+    game.classList.add("hidden"); intro.classList.remove("hidden");
+  });
+
+})();
+</script>
+
+</body>
+</html>
