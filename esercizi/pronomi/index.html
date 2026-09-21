@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Ne, ci e i pronomi · Talk with Fabio</title>
+<meta name="description" content="Ne ho due, ci vado sabato, la chiamo, le telefono. The little words that replace what you have already said: ne, ci and the direct and indirect pronouns, with agreement in the past.">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Talk with Fabio">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Ne, ci e i pronomi">
+<meta property="og:description" content="Ne ho due, ci vado sabato, la chiamo, le telefono. The little words that replace what you have already said.">
+<meta property="og:url" content="https://talkwithfabio.com/esercizi/pronomi/">
+<meta property="og:image" content="https://talkwithfabio.com/img/og-pronomi.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Talk with Fabio · Ne, ci e i pronomi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ne, ci e i pronomi">
+<meta name="twitter:description" content="Ne ho due, ci vado sabato, la chiamo, le telefono.">
+<meta name="twitter:image" content="https://talkwithfabio.com/img/og-pronomi.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+/* ============================================================
+   Stessi token del sito. Se cambi un colore nella home,
+   cambialo anche qui.
+   ============================================================ */
+:root{
+  --ink:#16233F;
+  --ink-soft:#4A5670;
+  --paper:#F7F4EC;
+  --paper-2:#FFFDF8;
+  --rule:#DFD8C7;
+  --saffron:#E8A33D;
+  --rosso:#C4312B;
+  --verde:#2E5E4E;
+  --azzurro:#3D6E8F;
+  --arancio:#C4682B;
+  --viola:#7A5A8F;
+
+  --ok:#2E5E4E;
+  --ok-bg:rgba(46,94,78,.12);
+  --no:#C4312B;
+  --no-bg:rgba(196,49,43,.10);
+
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --pen:"Caveat","Segoe Script",cursive;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+
+  --wrap:920px;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; }
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:1.05rem; line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  padding-bottom:180px;
+}
+a{ color:inherit; }
+.wrap{ max-width:var(--wrap); margin:0 auto; padding:0 22px; }
+.hidden{ display:none !important; }
+
+/* ---------- Barra ---------- */
+.topbar{ border-bottom:1px solid var(--rule); background:var(--paper-2); }
+.topbar-in{
+  max-width:var(--wrap); margin:0 auto; padding:16px 22px;
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+}
+.logo{ display:flex; align-items:center; gap:10px; text-decoration:none; font-family:var(--display); font-weight:700; font-size:1.02rem; }
+.logo-mark{
+  width:22px; height:22px; border-radius:50%;
+  background:conic-gradient(from 180deg, var(--saffron) 0 25%, var(--rosso) 0 50%, var(--verde) 0 75%, var(--ink) 0);
+  border:1px solid var(--ink);
+}
+.back-link{ font-family:var(--display); font-weight:600; font-size:.9rem; text-decoration:none; color:var(--ink-soft); }
+.back-link:hover{ color:var(--ink); }
+
+/* ---------- Testa ---------- */
+.intro{ padding:34px 0 6px; }
+.eyebrow{
+  font-family:var(--mono); font-size:.76rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft); margin:0 0 10px;
+}
+h1{ font-family:var(--display); font-weight:800; font-size:clamp(2rem,5.5vw,3rem); line-height:1.05; margin:0 0 14px; }
+h1 em{ font-style:normal; color:var(--rosso); }
+.lede{ margin:0 0 6px; max-width:60ch; }
+.lede.en{ color:var(--ink-soft); font-size:.97rem; }
+
+/* ---------- Le quattro regole ---------- */
+.rules{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin:24px 0 30px; }
+.rulecard{
+  background:var(--paper-2); border:2px solid var(--ink); border-left:8px solid var(--c,var(--ink));
+  border-radius:16px; padding:16px 18px;
+}
+.rulecard h2{ font-family:var(--display); font-weight:700; font-size:1.02rem; margin:0 0 6px; }
+.rulecard p{ margin:0; font-size:.95rem; }
+.rulecard .ex{ display:block; margin-top:6px; font-family:var(--pen); font-size:1.18rem; color:var(--c,var(--ink)); }
+
+/* ---------- Scelte prima di partire ---------- */
+.setup{ margin-bottom:26px; }
+.setlab{ font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:18px 0 8px; }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{
+  font-family:var(--display); font-weight:600; font-size:.9rem;
+  background:var(--paper-2); color:var(--ink); border:2px solid var(--rule);
+  border-radius:999px; padding:8px 16px; cursor:pointer;
+}
+.chip[aria-pressed="true"]{ background:var(--ink); color:var(--paper-2); border-color:var(--ink); }
+.chip .sub{ font-family:var(--mono); font-weight:400; font-size:.72em; opacity:.8; }
+
+.btn{
+  font-family:var(--display); font-weight:700; font-size:1rem;
+  background:var(--verde); color:#fff; border:2px solid var(--verde);
+  border-radius:999px; padding:12px 26px; cursor:pointer; text-decoration:none; display:inline-block;
+}
+.btn:hover{ background:var(--ink); border-color:var(--ink); }
+.btn .sub{ font-family:var(--mono); font-weight:400; font-size:.74em; opacity:.85; }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--ink); }
+.btn-ghost:hover{ background:var(--ink); color:var(--paper-2); }
+.btn:disabled{ opacity:.4; cursor:not-allowed; }
+.startrow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:24px; }
+.mini{ font-family:var(--pen); font-size:1.2rem; color:var(--ink-soft); }
+
+/* ---------- Partita ---------- */
+.gamehead{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding-top:22px; }
+.stats{ display:flex; gap:8px; }
+.stat{ background:var(--paper-2); border:1px solid var(--rule); border-radius:12px; padding:6px 14px; text-align:center; min-width:74px; }
+.stat .lab{ font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+.stat .val{ font-family:var(--display); font-weight:800; font-size:1.3rem; }
+.dots{ display:flex; gap:5px; flex-wrap:wrap; margin:16px 0 8px; }
+.dot{ width:9px; height:9px; border-radius:50%; background:var(--rule); }
+.dot.ok{ background:var(--verde); }
+.dot.no{ background:var(--rosso); }
+.dot.now{ box-shadow:0 0 0 3px rgba(22,35,63,.14); background:var(--ink); }
+.timertrack{ height:6px; border-radius:999px; background:var(--rule); overflow:hidden; margin-bottom:18px; }
+.timerfill{ height:100%; background:var(--verde); width:100%; transition:width 1s linear, background .3s ease; }
+.timerfill.warn{ background:var(--saffron); }
+.timerfill.danger{ background:var(--rosso); }
+
+.qcat{
+  display:inline-block; font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase;
+  border:1px solid var(--c,var(--ink)); color:var(--c,var(--ink)); border-radius:999px; padding:.3em .8em; margin-bottom:12px;
+}
+.qcard{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:22px; padding:26px;
+  box-shadow:5px 5px 0 rgba(22,35,63,.08);
+}
+.qtext{ font-size:clamp(1.15rem,3.2vw,1.5rem); line-height:1.5; margin-bottom:20px; }
+.qtext .blank{ display:inline-block; min-width:3.2em; border-bottom:3px solid var(--saffron); text-align:center; }
+.opts{ display:grid; gap:10px; grid-template-columns:repeat(2,1fr); }
+@media(max-width:560px){ .opts{ grid-template-columns:1fr; } }
+.opt{
+  font-family:var(--display); font-weight:700; font-size:1rem; text-align:center;
+  background:var(--paper); color:var(--ink); border:2px solid var(--rule); border-radius:14px;
+  padding:14px 12px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.opt:hover:not(:disabled){ border-color:var(--ink); }
+.opt .k{ font-family:var(--mono); font-size:.72rem; color:var(--ink-soft); border:1px solid var(--rule); border-radius:6px; padding:0 .4em; }
+.opt.correct{ border-color:var(--ok); background:var(--ok-bg); color:var(--ok); }
+.opt.wrong{ border-color:var(--no); background:var(--no-bg); color:var(--no); }
+.opt:disabled{ cursor:default; }
+.typebox{ display:flex; gap:10px; flex-wrap:wrap; }
+.typeinput{
+  flex:1; min-width:180px; font-family:var(--body); font-size:1.05rem; color:var(--ink);
+  background:var(--paper); border:2px solid var(--ink); border-radius:14px; padding:12px 16px;
+}
+.typeinput.correct{ border-color:var(--ok); color:var(--ok); }
+.typeinput.wrong{ border-color:var(--no); color:var(--no); }
+.typehint{ margin-top:8px; font-family:var(--mono); font-size:.74rem; color:var(--ink-soft); }
+
+/* ---------- Cassetto del riscontro ---------- */
+.drawer{
+  position:fixed; left:0; right:0; bottom:0; z-index:10;
+  background:var(--paper-2); border-top:2px solid var(--ink);
+  padding:14px 22px calc(14px + env(safe-area-inset-bottom));
+  transform:translateY(105%); transition:transform .18s ease;
+}
+.drawer.up{ transform:translateY(0); }
+.drawer-in{ max-width:var(--wrap); margin:0 auto; display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+.feedback{ flex:1; min-width:220px; font-size:.97rem; }
+.feedback .verdict{ font-family:var(--display); font-weight:800; }
+.feedback .tr{ display:block; margin-top:3px; font-size:.88rem; color:var(--ink-soft); font-style:italic; }
+.feedback.ok .verdict{ color:var(--ok); }
+.feedback.bad .verdict{ color:var(--no); }
+
+/* ---------- Finale ---------- */
+.final{ padding:34px 0; }
+.bigscore{ font-family:var(--display); font-weight:800; font-size:3.4rem; line-height:1; color:var(--rosso); }
+.bigscore small{ display:block; font-family:var(--mono); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); font-weight:400; margin-bottom:4px; }
+.recordline{ font-family:var(--pen); font-size:1.35rem; color:var(--verde); margin:8px 0 0; }
+.panelbox{ background:var(--paper-2); border:2px solid var(--ink); border-radius:20px; padding:20px 22px; margin:22px 0; }
+.panelbox h3{ font-family:var(--display); font-size:1.05rem; margin:0 0 14px; }
+.catrow{ margin-bottom:12px; }
+.catrow:last-child{ margin-bottom:0; }
+.catname{ display:flex; justify-content:space-between; font-size:.9rem; color:var(--ink-soft); margin-bottom:5px; }
+.cattrack{ height:9px; border-radius:999px; background:var(--paper); border:1px solid var(--rule); overflow:hidden; }
+.catfill{ height:100%; }
+.revitem{ padding:9px 0; border-bottom:1px solid var(--rule); font-size:.95rem; }
+.revitem:last-child{ border-bottom:none; }
+.revitem b{ color:var(--verde); }
+.endbar{ display:flex; gap:10px; flex-wrap:wrap; }
+
+@media (max-width:640px){
+  .wrap, .topbar-in{ padding-left:16px; padding-right:16px; }
+  .qcard{ padding:20px; }
+  body{ padding-bottom:210px; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="../../">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Talk with Fabio
+    </a>
+    <a class="back-link" href="../">&larr; All exercises</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HUB ============ -->
+<section id="screen-hub" class="wrap">
+  <div class="intro">
+    <p class="eyebrow">A2 &middot; ne, ci e i pronomi</p>
+    <h1><em>Ne</em> ho due, <em>ci</em> vado sabato, <em>la</em> chiamo.</h1>
+    <p class="lede">
+      Le paroline che sostituiscono quello che hai già detto. Sono corte, si mettono <b>prima del verbo</b>
+      e senza di loro l'italiano suona straniero: «quanti ne hai?», «ci penso io», «le telefono stasera».
+    </p>
+    <p class="lede en">
+      The little words that stand in for what you have already said. They are short, they go <b>before the verb</b>,
+      and without them Italian sounds foreign: ne, ci, and the direct and indirect pronouns.
+    </p>
+  </div>
+
+  <div class="rules">
+    <article class="rulecard" style="--c:var(--verde)">
+      <h2>NE &middot; la quantità</h2>
+      <p>Una parte, un numero, un po': la cosa si ripete con <b>ne</b>.</p>
+      <span class="ex">Quanti ne hai? Ne ho due.</span>
+    </article>
+    <article class="rulecard" style="--c:var(--saffron)">
+      <h2>NE &middot; di qualcosa</h2>
+      <p>Tutti i verbi con <b>di</b>: parlare di, sapere di, avere voglia di.</p>
+      <span class="ex">Ne parlano tutti. Cosa ne pensi?</span>
+    </article>
+    <article class="rulecard" style="--c:var(--azzurro)">
+      <h2>CI &middot; i luoghi</h2>
+      <p>Qualsiasi posto già nominato: a scuola, in Giappone, al mare.</p>
+      <span class="ex">Ci vado in autobus.</span>
+    </article>
+    <article class="rulecard" style="--c:var(--viola)">
+      <h2>CI &middot; con i verbi</h2>
+      <p>Pensarci, credere a, riuscire a, tenere a, volerci, metterci.</p>
+      <span class="ex">Ci penso io. Non ci credo.</span>
+    </article>
+    <article class="rulecard" style="--c:var(--rosso)">
+      <h2>Pronomi diretti</h2>
+      <p>Verbi senza preposizione: <b>lo, la, li, le</b>. Chi? che cosa?</p>
+      <span class="ex">Lo aspetto. Le invito.</span>
+    </article>
+    <article class="rulecard" style="--c:var(--arancio)">
+      <h2>Pronomi indiretti</h2>
+      <p>Verbi con <b>a</b>: <b>gli</b> (a lui, a loro), <b>le</b> (a lei), mi, ti, ci, vi.</p>
+      <span class="ex">Le telefono. Gli scrivo.</span>
+    </article>
+    <article class="rulecard" style="--c:var(--ink)">
+      <h2>Al passato &middot; l'accordo</h2>
+      <p>Con il diretto e con <b>ne</b> il participio si accorda. Con l'indiretto no, mai.</p>
+      <span class="ex">L'ho vista. Le ho parlato.</span>
+    </article>
+  </div>
+
+  <div class="setup">
+    <p class="setlab">Su quale gruppo ti alleni</p>
+    <div class="chips" id="catChips"></div>
+
+    <p class="setlab">Come rispondi</p>
+    <div class="chips" id="inputChips"></div>
+
+    <p class="setlab">Quanto dura</p>
+    <div class="chips" id="lenChips"></div>
+
+    <p class="setlab">Il cronometro</p>
+    <div class="chips" id="timeChips"></div>
+
+    <div class="startrow">
+      <button class="btn" id="startBtn">Si parte <span class="sub">start</span></button>
+      <span class="mini" id="recordLine"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTITA ============ -->
+<section id="screen-game" class="wrap hidden">
+  <div class="gamehead">
+    <button class="chip" id="quitBtn">&larr; Esci</button>
+    <div class="stats">
+      <div class="stat"><div class="lab">Giuste</div><div class="val" id="scoreVal">0</div></div>
+      <div class="stat"><div class="lab">Serie</div><div class="val" id="streakVal">0</div></div>
+      <div class="stat"><div class="lab">Record</div><div class="val" id="bestVal">0</div></div>
+    </div>
+  </div>
+
+  <div class="dots" id="dots"></div>
+  <div class="timertrack" id="timerTrack"><div class="timerfill" id="timerFill"></div></div>
+
+  <span class="qcat" id="qcat"></span>
+  <div class="qcard">
+    <div class="qtext" id="qtext"></div>
+    <div class="opts hidden" id="opts"></div>
+    <div class="typebox hidden" id="typebox">
+      <input type="text" class="typeinput" id="typeInput" placeholder="ne / ci / lo / le / gli..." autocomplete="off" autocapitalize="off" spellcheck="false">
+      <button class="btn" id="checkBtn">Controlla <span class="sub">check</span></button>
+    </div>
+    <div class="typehint hidden" id="typehint">Scrivi la particella o il pronome che manca.</div>
+  </div>
+</section>
+
+<!-- ============ FINALE ============ -->
+<section id="screen-final" class="wrap hidden">
+  <div class="final">
+    <p class="eyebrow" id="tierLab">risultato</p>
+    <h1 id="tierText">—</h1>
+    <div class="bigscore"><small>risposte corrette</small><span id="finScore">0</span></div>
+    <p class="recordline" id="finRecord"></p>
+    <p class="lede" id="finText"></p>
+
+    <div class="panelbox" id="catBox">
+      <h3>Come è andata, gruppo per gruppo</h3>
+      <div id="catList"></div>
+    </div>
+
+    <div class="panelbox hidden" id="reviewBox">
+      <h3>Da ripassare</h3>
+      <div id="reviewList"></div>
+    </div>
+
+    <div class="endbar">
+      <button class="btn" id="againBtn">Rigioca <span class="sub">again</span></button>
+      <button class="btn btn-ghost hidden" id="missedBtn">Solo quelle sbagliate</button>
+      <button class="btn btn-ghost" id="homeBtn">Torna all'inizio</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ---------- Cassetto del riscontro ---------- -->
+<div class="drawer" id="drawer">
+  <div class="drawer-in">
+    <div class="feedback" id="feedback"></div>
+    <button class="btn" id="nextBtn">Avanti <span class="sub">next</span></button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ==========================================================
+     LE FRASI
+
+     Ogni frase appartiene a una delle quattro costruzioni.
+     Le frasi di tipo "full" (scegli la frase giusta) non
+     entrano nella modalità in cui si scrive: lì si scrive solo
+     la preposizione.
+
+     Le frasi con "cosa" ambigue non ci sono: dove sia "da" sia
+     "di" sarebbero difendibili, la frase è stata riscritta.
+     ========================================================== */
+
+  var NIENTE = ["niente","nessuna","nessuna preposizione","zero","nulla","non serve","(niente)"];
+
+  var QUESTIONS = [
+    {cat:"ne_quantita", type:"blank", q:"\u2013 Quanti messaggi hai?<br>\u2013 <span class=\"blank\">___</span> ho duecento.",
+     opts:["ne", "li", "ci", "lo"], correct:0, accept:["ne"],
+     note:"Quando dici <b>quanti</b>, in italiano la cosa si ripete con <b>ne</b>: «ne ho duecento». Senza «ne» la frase è monca.",
+     tr:"How many messages do you have? I have two hundred <i>of them</i>."},
+
+    {cat:"ne_quantita", type:"blank", q:"\u2013 Vuoi dei biscotti?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> prendo due.",
+     opts:["li", "ne", "le", "ci"], correct:1, accept:["ne"],
+     note:"«Ne» sostituisce <b>una parte</b>: due di quei biscotti.",
+     tr:"Do you want some biscuits? Yes, I'll have two."},
+
+    {cat:"ne_quantita", type:"blank", q:"\u2013 Vuoi i biscotti? Quelli sul piatto.<br>\u2013 S\u00ec, <span class=\"blank\">___</span> prendo tutti.",
+     opts:["ne", "li", "le", "ci"], correct:1, accept:["li"],
+     note:"Qui non è una parte ma <b>tutti</b>: si usa il pronome diretto <b>li</b>. «Ne prendo due» ma «li prendo tutti».",
+     tr:"Do you want the biscuits? Yes, I'll take them all."},
+
+    {cat:"ne_quantita", type:"blank", q:"\u2013 Hai compiti oggi?<br>\u2013 No, non <span class=\"blank\">___</span> ho.",
+     opts:["li", "ci", "ne", "lo"], correct:2, accept:["ne"],
+     note:"Anche nella risposta negativa la quantità torna con <b>ne</b>: «non ne ho».",
+     tr:"Do you have homework today? No, I don't have any."},
+
+    {cat:"ne_quantita", type:"blank", q:"\u2013 Quante sorelle hai?<br>\u2013 <span class=\"blank\">___</span> ho tre.",
+     opts:["ne", "le", "li", "ci"], correct:0, accept:["ne"],
+     note:"Con un numero ci vuole sempre <b>ne</b>: ne ho tre.",
+     tr:"How many sisters do you have? I have three."},
+
+    {cat:"ne_quantita", type:"blank", q:"\u2013 Quanto zucchero metti nel caff\u00e8?<br>\u2013 <span class=\"blank\">___</span> metto pochissimo.",
+     opts:["lo", "ne", "ci", "li"], correct:1, accept:["ne"],
+     note:"Anche con le quantità non contabili (zucchero, acqua, pane): <b>ne</b> metto poco.",
+     tr:"How much sugar do you put in your coffee? I put very little in."},
+
+    {cat:"ne_quantita", type:"blank", q:"\u2013 Bevi molta acqua?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> bevo due litri al giorno.",
+     opts:["la", "ne", "ci", "le"], correct:1, accept:["ne"],
+     note:"«La bevo» vorrebbe dire tutta l'acqua; con una quantità si usa <b>ne</b>.",
+     tr:"Do you drink a lot of water? Yes, I drink two litres a day."},
+
+    {cat:"ne_quantita", type:"blank", q:"\u2013 Hai amici in Italia?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> ho tanti.",
+     opts:["li", "gli", "ne", "ci"], correct:2, accept:["ne"],
+     note:"«Tanti» è una quantità, quindi <b>ne</b>: ne ho tanti.",
+     tr:"Do you have friends in Italy? Yes, I have a lot."},
+
+    {cat:"ne_quantita", type:"blank", q:"\u2013 Quante lingue parli?<br>\u2013 <span class=\"blank\">___</span> parlo tre.",
+     opts:["ne", "le", "li", "ci"], correct:0, accept:["ne"],
+     note:"Ne parlo tre. La quantità chiede sempre <b>ne</b>, anche all'inizio di frase.",
+     tr:"How many languages do you speak? I speak three."},
+
+    {cat:"ne_quantita", type:"blank", q:"\u2013 Vuoi del vino?<br>\u2013 No, grazie, non <span class=\"blank\">___</span> voglio.",
+     opts:["lo", "ne", "ci", "la"], correct:1, accept:["ne"],
+     note:"«Del vino» è una parte: <b>ne</b>. «Non lo voglio» sarebbe quel vino preciso, tutto.",
+     tr:"Do you want some wine? No thanks, I don't want any."},
+
+    {cat:"ne_quantita", type:"blank", q:"Prendi ancora un po' di torta? S\u00ec, <span class=\"blank\">___</span> prendo un'altra fetta.",
+     opts:["la", "ne", "ci", "le"], correct:1, accept:["ne"],
+     note:"«Un'altra fetta» è una parte della torta: <b>ne</b> prendo un'altra fetta.",
+     tr:"Another bit of cake? Yes, I'll have another slice."},
+
+    {cat:"ne_quantita", type:"full", q:"Quale frase \u00e8 giusta se hai letto <b>tre</b> dei dieci libri?",
+     opts:["Li ho letti.", "Ne ho letti tre.", "Ci ho letto tre.", "Le ho lette tre."], correct:1, accept:["Ne ho letti tre."],
+     note:"Con il numero serve <b>ne</b> più l'accordo del participio: ne ho letti tre.",
+     tr:"If you read three of the ten books: «ne ho letti tre»."},
+
+    {cat:"ne_cosa", type:"blank", q:"\u2013 Hai visto quella serie?<br>\u2013 <span class=\"blank\">___</span> parlano tutti.",
+     opts:["la", "ne", "ci", "le"], correct:1, accept:["ne"],
+     note:"<b>Parlare di</b> qualcosa: la cosa torna con <b>ne</b>. «Ne parlano tutti» = parlano di quella serie.",
+     tr:"Have you seen that series? Everyone is talking about it."},
+
+    {cat:"ne_cosa", type:"blank", q:"Cosa <span class=\"blank\">___</span> pensi del nuovo direttore?",
+     opts:["ci", "ne", "lo", "gli"], correct:1, accept:["ne"],
+     note:"Per l'<b>opinione</b> si usa «che cosa ne pensi». Con «ci penso» invece dici che te ne occupi tu.",
+     tr:"What do you think of the new manager?"},
+
+    {cat:"ne_cosa", type:"blank", q:"\u2013 Sai qualcosa dell'esame?<br>\u2013 No, non <span class=\"blank\">___</span> so niente.",
+     opts:["lo", "ci", "ne", "li"], correct:2, accept:["ne"],
+     note:"<b>Sapere di</b> qualcosa: non ne so niente.",
+     tr:"Do you know anything about the exam? No, I don't know anything about it."},
+
+    {cat:"ne_cosa", type:"blank", q:"\u2013 Hai voglia di uscire?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> ho voglia.",
+     opts:["ci", "ne", "lo", "la"], correct:1, accept:["ne"],
+     note:"«Avere voglia <b>di</b>» porta <b>ne</b>: ne ho voglia.",
+     tr:"Do you feel like going out? Yes, I do."},
+
+    {cat:"ne_cosa", type:"blank", q:"\u2013 Parliamo del contratto domani?<br>\u2013 Va bene, <span class=\"blank\">___</span> parliamo domani.",
+     opts:["ci", "lo", "ne", "gli"], correct:2, accept:["ne"],
+     note:"Di nuovo <b>parlare di</b>: ne parliamo domani.",
+     tr:"Shall we talk about the contract tomorrow? Fine, we'll talk about it tomorrow."},
+
+    {cat:"ne_cosa", type:"blank", q:"\u2013 Sei sicuro del prezzo?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> sono sicuro.",
+     opts:["ne", "ci", "lo", "li"], correct:0, accept:["ne"],
+     note:"«Sicuro <b>di</b>» chiede <b>ne</b>: ne sono sicuro.",
+     tr:"Are you sure about the price? Yes, I'm sure about it."},
+
+    {cat:"ne_cosa", type:"blank", q:"\u2013 Hai bisogno di aiuto?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> ho proprio bisogno.",
+     opts:["ci", "lo", "ne", "gli"], correct:2, accept:["ne"],
+     note:"«Avere bisogno <b>di</b>»: ne ho bisogno.",
+     tr:"Do you need help? Yes, I really need it."},
+
+    {cat:"ne_cosa", type:"blank", q:"Che cosa <span class=\"blank\">___</span> dici di una pizza stasera?",
+     opts:["ci", "ne", "lo", "la"], correct:1, accept:["ne"],
+     note:"«Che ne dici di...?» è il modo normale di fare una proposta.",
+     tr:"How about a pizza tonight?"},
+
+    {cat:"ne_cosa", type:"blank", q:"Non voglio pi\u00f9 parlare di lavoro: non <span class=\"blank\">___</span> parliamo pi\u00f9.",
+     opts:["ci", "ne", "lo", "li"], correct:1, accept:["ne"],
+     note:"Anche qui è «parlare di»: non ne parliamo più.",
+     tr:"I don't want to talk about work any more: let's not talk about it."},
+
+    {cat:"ne_cosa", type:"blank", q:"\u2013 Hai sentito della festa?<br>\u2013 S\u00ec, me <span class=\"blank\">___</span> ha parlato Luca.",
+     opts:["lo", "ci", "ne", "la"], correct:2, accept:["ne"],
+     note:"Quando ci sono due pronomi, «mi» diventa <b>me</b> e «ne» resta al suo posto: me ne ha parlato Luca.",
+     tr:"Did you hear about the party? Yes, Luca told me about it."},
+
+    {cat:"ne_cosa", type:"full", q:"Quale frase chiede la tua <b>opinione</b> sul film?",
+     opts:["Ci pensi tu al film?", "Cosa ne pensi del film?", "Lo pensi del film?", "Gli pensi del film?"], correct:1, accept:["Cosa ne pensi del film?"],
+     note:"«Cosa ne pensi?» chiede l'opinione. «Ci pensi tu?» vuol dire: te ne occupi tu?",
+     tr:"«Cosa ne pensi?» asks for an opinion; «ci pensi tu?» means «will you take care of it?»."},
+
+    {cat:"ci_luogo", type:"blank", q:"\u2013 Vai a scuola in autobus?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> vado in autobus.",
+     opts:["ne", "ci", "lo", "la"], correct:1, accept:["ci"],
+     note:"<b>Ci</b> sostituisce il luogo: ci vado = vado a scuola.",
+     tr:"Do you go to school by bus? Yes, I go there by bus."},
+
+    {cat:"ci_luogo", type:"blank", q:"\u2013 Sei mai stata in Giappone?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> sono stata due volte.",
+     opts:["ci", "ne", "le", "li"], correct:0, accept:["ci"],
+     note:"Con «essere stato in un posto» il luogo torna con <b>ci</b>: ci sono stata.",
+     tr:"Have you ever been to Japan? Yes, I've been there twice."},
+
+    {cat:"ci_luogo", type:"blank", q:"\u2013 Quando andate a Roma?<br>\u2013 <span class=\"blank\">___</span> andiamo sabato.",
+     opts:["Ne", "Ci", "Li", "Lo"], correct:1, accept:["Ci"],
+     note:"Ci andiamo sabato. <b>Ci</b> vale per qualsiasi luogo, vicino o lontano.",
+     tr:"When are you going to Rome? We're going there on Saturday."},
+
+    {cat:"ci_luogo", type:"blank", q:"\u2013 Quanto resti a Milano?<br>\u2013 <span class=\"blank\">___</span> resto una settimana.",
+     opts:["Ne", "Lo", "Ci", "La"], correct:2, accept:["Ci"],
+     note:"Restare <b>in un posto</b>: ci resto una settimana.",
+     tr:"How long are you staying in Milan? I'm staying there a week."},
+
+    {cat:"ci_luogo", type:"blank", q:"\u2013 Sei gi\u00e0 passato in farmacia?<br>\u2013 No, <span class=\"blank\">___</span> passo dopo.",
+     opts:["ne", "ci", "lo", "gli"], correct:1, accept:["ci"],
+     note:"Passare <b>in</b> un posto: ci passo dopo.",
+     tr:"Have you been to the pharmacy yet? No, I'll go there later."},
+
+    {cat:"ci_luogo", type:"blank", q:"\u2013 Abiti ancora a Torino?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> abito da dieci anni.",
+     opts:["ci", "ne", "la", "lo"], correct:0, accept:["ci"],
+     note:"Abitare <b>a</b> Torino: ci abito da dieci anni.",
+     tr:"Do you still live in Turin? Yes, I've lived there for ten years."},
+
+    {cat:"ci_luogo", type:"blank", q:"\u2013 Torni in ufficio oggi?<br>\u2013 No, oggi non <span class=\"blank\">___</span> torno.",
+     opts:["lo", "ne", "ci", "li"], correct:2, accept:["ci"],
+     note:"Tornare <b>in</b> un posto: non ci torno.",
+     tr:"Are you going back to the office today? No, I'm not going back there today."},
+
+    {cat:"ci_luogo", type:"blank", q:"\u2013 Vieni al mare con noi?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> vengo volentieri.",
+     opts:["ne", "ci", "lo", "gli"], correct:1, accept:["ci"],
+     note:"Venire <b>al</b> mare: ci vengo volentieri.",
+     tr:"Are you coming to the seaside with us? Yes, I'd love to come."},
+
+    {cat:"ci_luogo", type:"blank", q:"\u2013 Sei uscito dall'ufficio?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> sono uscito alle sei.",
+     opts:["ci", "ne", "lo", "gli"], correct:1, accept:["ne"],
+     note:"Attenzione: quando si viene <b>da</b> un posto si usa <b>ne</b>, non «ci». Ci vado, ma ne esco.",
+     tr:"Did you leave the office? Yes, I left (there) at six."},
+
+    {cat:"ci_luogo", type:"blank", q:"\u2013 Come si arriva in centro?<br>\u2013 <span class=\"blank\">___</span> si arriva a piedi in dieci minuti.",
+     opts:["Ne", "Lo", "Ci", "Li"], correct:2, accept:["Ci"],
+     note:"Arrivare <b>in</b> centro: ci si arriva a piedi.",
+     tr:"How do you get to the centre? You can get there on foot in ten minutes."},
+
+    {cat:"ci_luogo", type:"full", q:"Quale frase \u00e8 giusta?",
+     opts:["Sono stato a Napoli, ne sono stato due volte.", "Sono stato a Napoli, ci sono stato due volte.", "Sono stato a Napoli, lo sono stato due volte.", "Sono stato a Napoli, li sono stato due volte."], correct:1, accept:["Sono stato a Napoli, ci sono stato due volte."],
+     note:"«Essere <b>in</b> un posto» chiede <b>ci</b>: ci sono stato due volte.",
+     tr:"«Ci sono stato due volte» = I've been there twice."},
+
+    {cat:"ci_verbi", type:"blank", q:"\u2013 Chi pensa alla cena?<br>\u2013 Non preoccuparti, <span class=\"blank\">___</span> penso io.",
+     opts:["ne", "ci", "lo", "gli"], correct:1, accept:["ci"],
+     note:"<b>Pensarci</b> = occuparsene. «Ci penso io» vuol dire: me ne occupo io. Diverso da «che ne pensi?», che chiede l'opinione.",
+     tr:"Who's taking care of dinner? Don't worry, I'll see to it."},
+
+    {cat:"ci_verbi", type:"blank", q:"\u2013 Credi ai fantasmi?<br>\u2013 No, non <span class=\"blank\">___</span> credo.",
+     opts:["li", "ci", "ne", "gli"], correct:1, accept:["ci"],
+     note:"<b>Credere a</b> qualcosa: non ci credo.",
+     tr:"Do you believe in ghosts? No, I don't believe in them."},
+
+    {cat:"ci_verbi", type:"blank", q:"\u2013 Riesci ad aprire il barattolo?<br>\u2013 No, non <span class=\"blank\">___</span> riesco.",
+     opts:["lo", "ne", "ci", "li"], correct:2, accept:["ci"],
+     note:"<b>Riuscire a</b> fare qualcosa: non ci riesco.",
+     tr:"Can you open the jar? No, I can't manage it."},
+
+    {cat:"ci_verbi", type:"blank", q:"\u2013 Tieni molto a questa foto?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> tengo molto.",
+     opts:["la", "ci", "ne", "le"], correct:1, accept:["ci"],
+     note:"<b>Tenere a</b> qualcosa (= averci affetto): ci tengo molto.",
+     tr:"Do you care about this photo? Yes, I care about it a lot."},
+
+    {cat:"ci_verbi", type:"blank", q:"\u2013 Hai provato a chiamarlo?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> ho provato due volte.",
+     opts:["ci", "ne", "lo", "gli"], correct:0, accept:["ci"],
+     note:"<b>Provare a</b> fare qualcosa: ci ho provato.",
+     tr:"Did you try calling him? Yes, I tried twice."},
+
+    {cat:"ci_verbi", type:"blank", q:"\u2013 Quanto tempo ci vuole da qui alla stazione?<br>\u2013 <span class=\"blank\">___</span> vogliono venti minuti.",
+     opts:["Ne", "Ci", "Li", "Lo"], correct:1, accept:["Ci"],
+     note:"<b>Volerci</b> per il tempo necessario: ci vuole un'ora, ci vogliono venti minuti. Il verbo va con il tempo.",
+     tr:"How long does it take? It takes twenty minutes."},
+
+    {cat:"ci_verbi", type:"blank", q:"\u2013 Quanto hai messo ad arrivare?<br>\u2013 <span class=\"blank\">___</span> ho messo due ore.",
+     opts:["Ne", "Lo", "Ci", "Gli"], correct:2, accept:["Ci"],
+     note:"<b>Metterci</b> = impiegare tempo: ci ho messo due ore. «Volerci» è impersonale, «metterci» ha un soggetto.",
+     tr:"How long did it take you? It took me two hours."},
+
+    {cat:"ci_verbi", type:"blank", q:"\u2013 Fai caso a come parla?<br>\u2013 No, non <span class=\"blank\">___</span> faccio caso.",
+     opts:["lo", "ci", "ne", "gli"], correct:1, accept:["ci"],
+     note:"<b>Fare caso a</b> qualcosa: non ci faccio caso.",
+     tr:"Do you notice how he speaks? No, I don't notice it."},
+
+    {cat:"ci_verbi", type:"blank", q:"\u2013 Capisci qualcosa di motori?<br>\u2013 No, non <span class=\"blank\">___</span> capisco niente.",
+     opts:["ne", "ci", "lo", "li"], correct:1, accept:["ci"],
+     note:"«Non ci capisco niente» è il modo normale di dire che non ci si raccapezza. Con «ne» diventerebbe «non ne so niente», che è un'altra cosa.",
+     tr:"Do you understand anything about engines? No, I don't understand a thing."},
+
+    {cat:"ci_verbi", type:"full", q:"Quale frase vuol dire \u00abme ne occupo io\u00bb?",
+     opts:["Ne penso io.", "Ci penso io.", "Lo penso io.", "Gli penso io."], correct:1, accept:["Ci penso io."],
+     note:"<b>Ci penso io</b> = me ne occupo io. «Che ne pensi» invece chiede un'opinione.",
+     tr:"«Ci penso io» = I'll take care of it."},
+
+    {cat:"diretti", type:"blank", q:"Aspetto il mio amico davanti a scuola. \u2192 <span class=\"blank\">___</span> aspetto davanti a scuola.",
+     opts:["Gli", "Lo", "Ne", "Ci"], correct:1, accept:["Lo"],
+     note:"«Aspettare» regge il complemento diretto, senza preposizione: il mio amico → <b>lo</b>.",
+     tr:"I'm waiting for my friend in front of the school. → I'm waiting for him there."},
+
+    {cat:"diretti", type:"blank", q:"Invito le mie amiche alla festa. \u2192 <span class=\"blank\">___</span> invito alla festa.",
+     opts:["Gli", "Le", "Ne", "Li"], correct:1, accept:["Le"],
+     note:"Femminile plurale diretto: le mie amiche → <b>le</b> invito.",
+     tr:"I'm inviting my friends to the party. → I'm inviting them."},
+
+    {cat:"diretti", type:"blank", q:"Compro il giornale ogni mattina. \u2192 <span class=\"blank\">___</span> compro ogni mattina.",
+     opts:["Ne", "Lo", "Gli", "Ci"], correct:1, accept:["Lo"],
+     note:"Il giornale (uno preciso, tutto) → <b>lo</b>. Se fosse una quantità sarebbe «ne compro due».",
+     tr:"I buy the paper every morning. → I buy it every morning."},
+
+    {cat:"diretti", type:"blank", q:"\u2013 Conosci i miei genitori?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> conosco bene.",
+     opts:["gli", "li", "ne", "ci"], correct:1, accept:["li"],
+     note:"Maschile plurale diretto: <b>li</b> conosco.",
+     tr:"Do you know my parents? Yes, I know them well."},
+
+    {cat:"diretti", type:"blank", q:"\u2013 Prendi tu le chiavi?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> prendo io.",
+     opts:["ne", "le", "gli", "ci"], correct:1, accept:["le"],
+     note:"Le chiavi, tutte → <b>le</b> prendo io.",
+     tr:"Will you take the keys? Yes, I'll take them."},
+
+    {cat:"diretti", type:"blank", q:"\u2013 Mi senti?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> sento benissimo.",
+     opts:["ti", "gli", "ne", "ci"], correct:0, accept:["ti"],
+     note:"Alla seconda persona il pronome diretto è <b>ti</b>: ti sento.",
+     tr:"Can you hear me? Yes, I can hear you perfectly."},
+
+    {cat:"diretti", type:"blank", q:"\u2013 Chiami Marta stasera?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> chiamo dopo cena.",
+     opts:["le", "la", "ne", "gli"], correct:1, accept:["la"],
+     note:"<b>Chiamare</b> è diretto: la chiamo. Attenzione: <b>telefonare a</b> invece è indiretto, «le telefono».",
+     tr:"Are you calling Marta tonight? Yes, I'll call her after dinner."},
+
+    {cat:"diretti", type:"blank", q:"\u2013 Usi spesso il computer?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> uso ogni giorno.",
+     opts:["ne", "lo", "ci", "gli"], correct:1, accept:["lo"],
+     note:"Il computer → <b>lo</b> uso.",
+     tr:"Do you use the computer often? Yes, I use it every day."},
+
+    {cat:"diretti", type:"blank", q:"\u2013 Aiuti tua sorella con i compiti?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> aiuto sempre.",
+     opts:["le", "la", "ne", "gli"], correct:1, accept:["la"],
+     note:"<b>Aiutare</b> è diretto: la aiuto. «Le» sarebbe «a lei», e qui non serve.",
+     tr:"Do you help your sister with her homework? Yes, I always help her."},
+
+    {cat:"diretti", type:"blank", q:"\u2013 Vedi spesso i tuoi cugini?<br>\u2013 <span class=\"blank\">___</span> vedo a Natale.",
+     opts:["Gli", "Li", "Ne", "Ci"], correct:1, accept:["Li"],
+     note:"I cugini → <b>li</b> vedo.",
+     tr:"Do you see your cousins often? I see them at Christmas."},
+
+    {cat:"diretti", type:"full", q:"Quale frase \u00e8 scritta bene?",
+     opts:["Sì, la apro io.", "Sì, l'apro io.", "Sì, gli apro io.", "Sì, ne apro io."], correct:1, accept:["Sì, l'apro io."],
+     note:"Davanti a vocale <b>lo</b> e <b>la</b> perdono la vocale e prendono l'apostrofo: l'apro io.",
+     tr:"Before a vowel, lo and la become l'."},
+
+    {cat:"diretti", type:"full", q:"Quale coppia \u00e8 giusta?",
+     opts:["Chiamo Marta → le chiamo", "Chiamo Marta → la chiamo", "Chiamo Marta → ne chiamo", "Chiamo Marta → ci chiamo"], correct:1, accept:["Chiamo Marta → la chiamo"],
+     note:"«Chiamare qualcuno» non ha preposizione, quindi il pronome è diretto: <b>la</b> chiamo.",
+     tr:"«Chiamare» takes a direct object: la chiamo."},
+
+    {cat:"indiretti", type:"blank", q:"Telefono a mia madre ogni giorno. \u2192 <span class=\"blank\">___</span> telefono ogni giorno.",
+     opts:["La", "Le", "Ne", "Ci"], correct:1, accept:["Le"],
+     note:"«Telefonare <b>a</b> qualcuno»: il pronome è indiretto, e per «a lei» è <b>le</b>.",
+     tr:"I phone my mother every day. → I phone her every day."},
+
+    {cat:"indiretti", type:"blank", q:"Scrivo un messaggio a Leo. \u2192 <span class=\"blank\">___</span> scrivo un messaggio.",
+     opts:["Lo", "Gli", "Ne", "Ci"], correct:1, accept:["Gli"],
+     note:"«Scrivere <b>a</b> qualcuno»: per «a lui» è <b>gli</b>.",
+     tr:"I'm writing a message to Leo. → I'm writing him a message."},
+
+    {cat:"indiretti", type:"blank", q:"Regalo un libro ai miei amici. \u2192 <span class=\"blank\">___</span> regalo un libro.",
+     opts:["Li", "Gli", "Ne", "Le"], correct:1, accept:["Gli"],
+     note:"«A loro» nell'italiano di tutti i giorni è <b>gli</b>: gli regalo un libro.",
+     tr:"I'm giving my friends a book. → I'm giving them a book."},
+
+    {cat:"indiretti", type:"blank", q:"\u2013 Hai risposto a Chiara?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> ho risposto ieri.",
+     opts:["la", "le", "ne", "ci"], correct:1, accept:["le"],
+     note:"«Rispondere <b>a</b> qualcuno» è indiretto: le ho risposto.",
+     tr:"Did you reply to Chiara? Yes, I replied to her yesterday."},
+
+    {cat:"indiretti", type:"blank", q:"\u2013 Cosa regali a tuo padre?<br>\u2013 <span class=\"blank\">___</span> regalo una cravatta.",
+     opts:["Lo", "Gli", "Ne", "Ci"], correct:1, accept:["Gli"],
+     note:"A tuo padre = a lui → <b>gli</b>.",
+     tr:"What are you giving your father? I'm giving him a tie."},
+
+    {cat:"indiretti", type:"blank", q:"\u2013 Mi presti la macchina?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> presto la macchina.",
+     opts:["ti", "lo", "ne", "ci"], correct:0, accept:["ti"],
+     note:"«Prestare <b>a</b> qualcuno»: alla seconda persona è <b>ti</b>, uguale al diretto.",
+     tr:"Will you lend me the car? Yes, I'll lend you the car."},
+
+    {cat:"indiretti", type:"blank", q:"\u2013 Chiedi a Paolo se viene?<br>\u2013 Va bene, <span class=\"blank\">___</span> chiedo.",
+     opts:["lo", "gli", "ne", "ci"], correct:1, accept:["gli"],
+     note:"«Chiedere <b>a</b> qualcuno»: gli chiedo. Attenzione: si chiede <i>qualcosa</i> <b>a</b> qualcuno.",
+     tr:"Will you ask Paolo if he's coming? Fine, I'll ask him."},
+
+    {cat:"indiretti", type:"blank", q:"\u2013 Hai detto la verit\u00e0 a tua sorella?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> ho detto tutto.",
+     opts:["la", "le", "ne", "li"], correct:1, accept:["le"],
+     note:"«Dire qualcosa <b>a</b> qualcuno»: a lei → <b>le</b> ho detto tutto.",
+     tr:"Did you tell your sister the truth? Yes, I told her everything."},
+
+    {cat:"indiretti", type:"blank", q:"\u2013 Ci fai un favore?<br>\u2013 Certo, <span class=\"blank\">___</span> faccio un favore volentieri.",
+     opts:["ci", "vi", "gli", "ne"], correct:1, accept:["vi"],
+     note:"Se loro dicono «ci fai», tu rispondi «<b>vi</b> faccio»: è la seconda persona plurale.",
+     tr:"Will you do us a favour? Of course, I'll do you a favour."},
+
+    {cat:"indiretti", type:"blank", q:"\u2013 Hai parlato al professore?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> ho parlato stamattina.",
+     opts:["lo", "gli", "ne", "ci"], correct:1, accept:["gli"],
+     note:"«Parlare <b>a</b> qualcuno» è indiretto: gli ho parlato. «Parlare <b>di</b> qualcosa» invece vuole «ne».",
+     tr:"Did you speak to the professor? Yes, I spoke to him this morning."},
+
+    {cat:"indiretti", type:"blank", q:"\u2013 Che cosa hai detto a Luca e Sara?<br>\u2013 <span class=\"blank\">___</span> ho detto di aspettare.",
+     opts:["Li", "Gli", "Le", "Ne"], correct:1, accept:["Gli"],
+     note:"A loro → <b>gli</b> ho detto. La forma «ho detto loro» esiste ma è da scritto formale.",
+     tr:"What did you tell Luca and Sara? I told them to wait."},
+
+    {cat:"indiretti", type:"full", q:"Quale frase \u00e8 giusta?",
+     opts:["Telefono a Marta → la telefono", "Telefono a Marta → le telefono", "Telefono a Marta → ne telefono", "Telefono a Marta → ci telefono"], correct:1, accept:["Telefono a Marta → le telefono"],
+     note:"«Telefonare» vuole la preposizione <b>a</b>, quindi pronome indiretto: le telefono. In inglese è il contrario di quello che sembra.",
+     tr:"«Telefonare a» takes an indirect pronoun: le telefono."},
+
+    {cat:"accordo", type:"blank", q:"\u2013 Hai visto Maria?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> ho vista ieri.",
+     opts:["le", "l'", "gli", "ne"], correct:1, accept:["l'"],
+     note:"Davanti a «ho» il pronome <b>la</b> diventa <b>l'</b>, e il participio si accorda: l'ho vist<b>a</b>.",
+     tr:"Did you see Maria? Yes, I saw her yesterday."},
+
+    {cat:"accordo", type:"blank", q:"\u2013 Hai comprato le mele?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> ho comprate.",
+     opts:["ne", "le", "li", "gli"], correct:1, accept:["le"],
+     note:"Con il pronome diretto il participio si accorda: le ho comprat<b>e</b>.",
+     tr:"Did you buy the apples? Yes, I bought them."},
+
+    {cat:"accordo", type:"blank", q:"\u2013 Quanti libri hai letto?<br>\u2013 <span class=\"blank\">___</span> ho letti tre.",
+     opts:["Li", "Ne", "Le", "Ci"], correct:1, accept:["Ne"],
+     note:"Con la quantità si usa <b>ne</b>, e il participio si accorda con la quantità: ne ho lett<b>i</b> tre.",
+     tr:"How many books have you read? I've read three."},
+
+    {cat:"accordo", type:"blank", q:"\u2013 Hai visto le foto?<br>\u2013 S\u00ec, le ho <span class=\"blank\">___</span>.",
+     opts:["visto", "viste", "visti", "vista"], correct:1, accept:["viste"],
+     note:"Il pronome «le» è femminile plurale, quindi il participio finisce in <b>-e</b>: le ho viste.",
+     tr:"Did you see the photos? Yes, I saw them."},
+
+    {cat:"accordo", type:"blank", q:"\u2013 Hai preso le chiavi?<br>\u2013 S\u00ec, ne ho <span class=\"blank\">___</span> due.",
+     opts:["preso", "presi", "prese", "presa"], correct:2, accept:["prese"],
+     note:"Con «ne» il participio si accorda con la cosa contata: due chiavi → ne ho pres<b>e</b> due.",
+     tr:"Did you take the keys? Yes, I took two of them."},
+
+    {cat:"accordo", type:"blank", q:"\u2013 Hai parlato a Giulia?<br>\u2013 S\u00ec, le ho <span class=\"blank\">___</span>.",
+     opts:["parlato", "parlata", "parlate", "parlati"], correct:0, accept:["parlato"],
+     note:"Attenzione: con i pronomi <b>indiretti</b> il participio <b>non</b> si accorda mai. Le ho parlato, non «parlata».",
+     tr:"Did you speak to Giulia? Yes, I spoke to her."},
+
+    {cat:"accordo", type:"blank", q:"\u2013 Hai incontrato Marco?<br>\u2013 S\u00ec, l'ho <span class=\"blank\">___</span> al bar.",
+     opts:["incontrata", "incontrato", "incontrati", "incontrate"], correct:1, accept:["incontrato"],
+     note:"«L'» qui sta per <b>lo</b>, maschile singolare: l'ho incontrat<b>o</b>.",
+     tr:"Did you meet Marco? Yes, I met him at the bar."},
+
+    {cat:"accordo", type:"blank", q:"\u2013 Quante email hai mandato?<br>\u2013 Ne ho <span class=\"blank\">___</span> cinque.",
+     opts:["mandato", "mandata", "mandate", "mandati"], correct:2, accept:["mandate"],
+     note:"Cinque email, femminile plurale: ne ho mandat<b>e</b> cinque.",
+     tr:"How many emails did you send? I sent five."},
+
+    {cat:"accordo", type:"blank", q:"\u2013 Hai chiamato i tuoi?<br>\u2013 S\u00ec, <span class=\"blank\">___</span> ho chiamati stamattina.",
+     opts:["gli", "li", "ne", "le"], correct:1, accept:["li"],
+     note:"«Chiamare» è diretto: li ho chiamat<b>i</b>, con l'accordo.",
+     tr:"Did you call your parents? Yes, I called them this morning."},
+
+    {cat:"accordo", type:"full", q:"Quale frase \u00e8 giusta?",
+     opts:["Le ho scritte una mail.", "Le ho scritto una mail.", "L'ho scritta una mail.", "Ne ho scritte una mail."], correct:1, accept:["Le ho scritto una mail."],
+     note:"«Le» è indiretto (a lei) e con l'indiretto il participio resta invariato: le ho scritto una mail.",
+     tr:"With an indirect pronoun the participle never agrees."}
+  ];
+
+  var CATS = {
+    ne_quantita:  {label:"NE · la quantità",     color:"var(--verde)"},
+    ne_cosa:      {label:"NE · di qualcosa",     color:"var(--saffron)"},
+    ci_luogo:     {label:"CI · i luoghi",        color:"var(--azzurro)"},
+    ci_verbi:     {label:"CI · con i verbi",     color:"var(--viola)"},
+    diretti:      {label:"Pronomi diretti",             color:"var(--rosso)"},
+    indiretti:    {label:"Pronomi indiretti",           color:"var(--arancio)"},
+    accordo:      {label:"Al passato · l'accordo", color:"var(--ink)"}
+  };
+
+  var SETUP = {
+    cat:   [{k:"tutto",label:"Tutto insieme"},{k:"ne_quantita",label:"NE quantità"},{k:"ne_cosa",label:"NE di qualcosa"},{k:"ci_luogo",label:"CI luoghi"},{k:"ci_verbi",label:"CI con i verbi"},{k:"diretti",label:"Diretti"},{k:"indiretti",label:"Indiretti"},{k:"accordo",label:"Al passato"}],
+    input: [{k:"scelta",label:"Scelta multipla",sub:"choose"},{k:"scrivi",label:"Scrivo io",sub:"type"}],
+    len:   [{k:"10",label:"10 domande"},{k:"20",label:"20 domande"},{k:"all",label:"Tutte"}],
+    time:  [{k:"off",label:"Senza fretta"},{k:"18",label:"18 secondi"},{k:"8",label:"8 secondi",sub:"sfida"}]
+  };
+
+  var choice = {cat:"tutto", input:"scelta", len:"10", time:"off"};
+
+  var STORE = "icf_pronomi_records";
+  function getRecords(){
+    try{ var raw = localStorage.getItem(STORE); return raw ? JSON.parse(raw) : {}; }
+    catch(e){ return {}; }
+  }
+  function recordKey(){ return choice.cat + "|" + choice.input + "|" + choice.len + "|" + choice.time; }
+  function getRecord(){ var r = getRecords(); var v = r[recordKey()]; return (v && v.best) || 0; }
+  function setRecord(n){
+    try{
+      var r = getRecords(); var k = recordKey(); var prev = (r[k] && r[k].best) || 0;
+      if(n > prev){ r[k] = {best:n}; localStorage.setItem(STORE, JSON.stringify(r)); return true; }
+    }catch(e){}
+    return false;
+  }
+
+  var $ = function(s){ return document.querySelector(s); };
+  var hub = $("#screen-hub"), game = $("#screen-game"), final = $("#screen-final"), drawer = $("#drawer");
+
+  function shuffle(a){
+    var x = a.slice(), i, j, t;
+    for(i=x.length-1;i>0;i--){ j=Math.floor(Math.random()*(i+1)); t=x[i]; x[i]=x[j]; x[j]=t; }
+    return x;
+  }
+  function norm(s){
+    return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")
+      .replace(/['’`()]/g,"").replace(/\s+/g," ").trim();
+  }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  /* ---------------- Le scelte prima di partire ---------------- */
+  function buildChips(id, list, field){
+    var box = document.getElementById(id);
+    box.innerHTML = list.map(function(o){
+      return '<button class="chip" data-k="'+o.k+'" aria-pressed="'+(choice[field]===o.k)+'">'+
+             o.label + (o.sub ? ' <span class="sub">'+o.sub+'</span>' : '') + '</button>';
+    }).join("");
+    box.addEventListener("click", function(e){
+      var b = e.target.closest(".chip"); if(!b) return;
+      choice[field] = b.getAttribute("data-k");
+      Array.prototype.forEach.call(box.querySelectorAll(".chip"), function(c){
+        c.setAttribute("aria-pressed", String(c.getAttribute("data-k") === choice[field]));
+      });
+      showRecord();
+    });
+  }
+  buildChips("catChips", SETUP.cat, "cat");
+  buildChips("inputChips", SETUP.input, "input");
+  buildChips("lenChips", SETUP.len, "len");
+  buildChips("timeChips", SETUP.time, "time");
+
+  function showRecord(){
+    var r = getRecord();
+    $("#recordLine").textContent = r ? ("il tuo record qui: " + r) : "";
+  }
+  showRecord();
+
+  /* ---------------- Stato della partita ---------------- */
+  var pool = [], idx = 0, score = 0, streak = 0, bestStreak = 0, missed = [], catStats = {}, answered = false;
+  var timerId = null, timeLeft = 0, timeTotal = 0;
+
+  function buildPool(onlyThese){
+    var base;
+    if(onlyThese){
+      base = onlyThese.slice();
+    } else {
+      base = choice.cat === "tutto" ? QUESTIONS.slice() : QUESTIONS.filter(function(q){ return q.cat === choice.cat; });
+      if(choice.input === "scrivi") base = base.filter(function(q){ return q.type === "blank"; });
+    }
+    base = shuffle(base);
+    if(!onlyThese && choice.len !== "all"){
+      var n = parseInt(choice.len, 10);
+      if(base.length > n) base = base.slice(0, n);
+    }
+    return base;
+  }
+
+  function start(onlyThese){
+    pool = buildPool(onlyThese);
+    if(!pool.length) return;
+    idx = 0; score = 0; streak = 0; bestStreak = 0; missed = []; catStats = {};
+    Object.keys(CATS).forEach(function(c){ catStats[c] = {ok:0, tot:0}; });
+    hub.classList.add("hidden"); final.classList.add("hidden"); game.classList.remove("hidden");
+    $("#bestVal").textContent = getRecord();
+    $("#timerTrack").classList.toggle("hidden", choice.time === "off");
+    buildDots();
+    render();
+  }
+
+  function buildDots(){
+    var h = "";
+    for(var i=0;i<pool.length;i++) h += '<span class="dot" data-i="'+i+'"></span>';
+    $("#dots").innerHTML = h;
+  }
+  function markDot(i, ok){
+    var d = $('#dots .dot[data-i="'+i+'"]');
+    if(d){ d.classList.remove("now"); d.classList.add(ok ? "ok" : "no"); }
+  }
+  function markNow(i){
+    var d = $('#dots .dot[data-i="'+i+'"]');
+    if(d) d.classList.add("now");
+  }
+
+  function stopTimer(){ if(timerId){ clearInterval(timerId); timerId = null; } }
+  function startTimer(){
+    stopTimer();
+    if(choice.time === "off") return;
+    timeTotal = parseInt(choice.time, 10);
+    timeLeft = timeTotal;
+    var fill = $("#timerFill");
+    fill.className = "timerfill"; fill.style.width = "100%";
+    timerId = setInterval(function(){
+      timeLeft--;
+      fill.style.width = Math.max(0, timeLeft / timeTotal * 100) + "%";
+      if(timeLeft <= Math.ceil(timeTotal*0.25)) fill.className = "timerfill danger";
+      else if(timeLeft <= Math.ceil(timeTotal*0.5)) fill.className = "timerfill warn";
+      if(timeLeft <= 0){ stopTimer(); timeout(); }
+    }, 1000);
+  }
+
+  function render(){
+    stopTimer();
+    answered = false;
+    var q = pool[idx];
+    markNow(idx);
+
+    var cat = CATS[q.cat];
+    var catEl = $("#qcat");
+    catEl.textContent = cat.label;
+    catEl.style.setProperty("--c", cat.color);
+
+    $("#qtext").innerHTML = q.q;
+
+    var optsWrap = $("#opts"), typeBox = $("#typebox"), typeHint = $("#typehint");
+    optsWrap.innerHTML = ""; optsWrap.classList.add("hidden");
+    typeBox.classList.add("hidden"); typeHint.classList.add("hidden");
+    var inp = $("#typeInput");
+    inp.value = ""; inp.disabled = false; inp.className = "typeinput";
+    $("#checkBtn").disabled = false;
+
+    if(choice.input === "scrivi" && q.type === "blank"){
+      typeBox.classList.remove("hidden"); typeHint.classList.remove("hidden");
+      inp.focus();
+    } else {
+      optsWrap.classList.remove("hidden");
+      var order = shuffle(q.opts.map(function(t,i){ return {t:t, i:i}; }));
+      order.forEach(function(o, n){
+        var b = document.createElement("button");
+        b.className = "opt";
+        b.innerHTML = '<span class="k">' + (n+1) + '</span> ' + esc(o.t);
+        b.setAttribute("data-i", o.i);
+        b.addEventListener("click", function(){ answer(o.i, b); });
+        optsWrap.appendChild(b);
+      });
+    }
+
+    drawer.classList.remove("up");
+    startTimer();
+  }
+
+  function closeOptions(q, chosen){
+    Array.prototype.forEach.call($("#opts").children, function(b){
+      b.disabled = true;
+      var i = parseInt(b.getAttribute("data-i"), 10);
+      if(i === q.correct) b.classList.add("correct");
+      else if(i === chosen) b.classList.add("wrong");
+    });
+  }
+
+  function register(q, ok){
+    catStats[q.cat].tot++;
+    if(ok){
+      catStats[q.cat].ok++;
+      score++; streak++; if(streak > bestStreak) bestStreak = streak;
+    } else {
+      streak = 0; missed.push(q);
+    }
+    markDot(idx, ok);
+    $("#scoreVal").textContent = score;
+    $("#streakVal").textContent = streak;
+  }
+
+  function feedback(ok, q, extra){
+    var fb = $("#feedback");
+    fb.className = "feedback " + (ok ? "ok" : "bad");
+    var verdict = ok ? "Giusto!" : (extra || ("Quasi &middot; era «" + q.opts[q.correct] + "»."));
+    fb.innerHTML = '<span class="verdict">' + verdict + '</span> ' + q.note +
+                   (q.tr ? '<span class="tr">' + q.tr + '</span>' : '');
+    drawer.classList.add("up");
+    $("#nextBtn").textContent = (idx >= pool.length - 1) ? "Vedi il risultato" : "Avanti";
+  }
+
+  function answer(chosen, btn){
+    if(answered) return;
+    answered = true;
+    stopTimer();
+    var q = pool[idx];
+    closeOptions(q, chosen);
+    var ok = chosen === q.correct;
+    register(q, ok);
+    feedback(ok, q);
+  }
+
+  function checkTyped(){
+    if(answered) return;
+    var q = pool[idx];
+    var inp = $("#typeInput");
+    if(inp.disabled) return;
+    answered = true;
+    stopTimer();
+    var val = norm(inp.value);
+    var ok = q.accept.some(function(a){ return norm(a) === val; });
+    inp.disabled = true; $("#checkBtn").disabled = true;
+    inp.classList.add(ok ? "correct" : "wrong");
+    register(q, ok);
+    feedback(ok, q, ok ? null : ("Quasi &middot; era «" + q.opts[q.correct] + "»."));
+  }
+
+  function timeout(){
+    if(answered) return;
+    answered = true;
+    var q = pool[idx];
+    if(choice.input === "scrivi" && q.type === "blank"){
+      var inp = $("#typeInput"); inp.disabled = true; inp.classList.add("wrong"); $("#checkBtn").disabled = true;
+    } else {
+      closeOptions(q, -1);
+    }
+    register(q, false);
+    feedback(false, q, "Tempo scaduto &middot; era «" + q.opts[q.correct] + "».");
+  }
+
+  $("#checkBtn").addEventListener("click", checkTyped);
+  $("#typeInput").addEventListener("keydown", function(e){ if(e.key === "Enter") checkTyped(); });
+
+  $("#nextBtn").addEventListener("click", next);
+  function next(){
+    drawer.classList.remove("up");
+    idx++;
+    if(idx >= pool.length){ showFinal(); return; }
+    render();
+  }
+
+  /* Tastiera: 1-4 per rispondere, invio o spazio per andare avanti */
+  document.addEventListener("keydown", function(e){
+    if(game.classList.contains("hidden")) return;
+    if(answered && (e.key === "Enter" || e.key === " ")){
+      if(document.activeElement && document.activeElement.id === "typeInput") return;
+      e.preventDefault(); next(); return;
+    }
+    if(!answered && /^[1-4]$/.test(e.key)){
+      var opts = $("#opts");
+      if(opts.classList.contains("hidden")) return;
+      var b = opts.children[parseInt(e.key,10) - 1];
+      if(b) b.click();
+    }
+  });
+
+  $("#quitBtn").addEventListener("click", function(){
+    stopTimer(); drawer.classList.remove("up");
+    game.classList.add("hidden"); final.classList.add("hidden"); hub.classList.remove("hidden");
+    showRecord();
+  });
+
+  /* ---------------- Finale ---------------- */
+  function showFinal(){
+    stopTimer();
+    game.classList.add("hidden"); final.classList.remove("hidden");
+    var tot = pool.length, pct = Math.round(score / tot * 100);
+    $("#finScore").textContent = score + " / " + tot;
+
+    var tier, text;
+    if(pct >= 90){ tier = "Ti vengono da sole"; text = "Ne, ci e i pronomi ormai escono senza pensarci: è esattamente il punto."; }
+    else if(pct >= 70){ tier = "Quasi automatico"; text = "Gran parte è acquisita: guarda sotto quale gruppo ti rallenta."; }
+    else if(pct >= 50){ tier = "Sulla buona strada"; text = "Le regole ci sono, serve ancora qualche giro su un gruppo alla volta."; }
+    else { tier = "Da rivedere con calma"; text = "Rileggi le schede in alto e riprova un gruppo alla volta: prima ne, poi ci, poi i pronomi."; }
+    $("#tierText").textContent = tier;
+    $("#finText").textContent = text + " Serie più lunga di risposte giuste: " + bestStreak + ".";
+
+    var isRecord = setRecord(score);
+    $("#finRecord").textContent = isRecord ? "nuovo record in questa modalità!" : ("record in questa modalità: " + getRecord());
+
+    var list = $("#catList"); list.innerHTML = "";
+    var any = false;
+    Object.keys(CATS).forEach(function(c){
+      var s = catStats[c];
+      if(!s || !s.tot) return;
+      any = true;
+      var p = Math.round(s.ok / s.tot * 100);
+      var row = document.createElement("div");
+      row.className = "catrow";
+      row.innerHTML = '<div class="catname"><span>' + CATS[c].label + '</span><span>' + s.ok + '/' + s.tot + '</span></div>' +
+                      '<div class="cattrack"><div class="catfill" style="width:' + p + '%;background:' + CATS[c].color + '"></div></div>';
+      list.appendChild(row);
+    });
+    $("#catBox").classList.toggle("hidden", !any);
+
+    var box = $("#reviewBox"), rev = $("#reviewList");
+    if(missed.length){
+      box.classList.remove("hidden");
+      rev.innerHTML = "";
+      var seen = {};
+      missed.forEach(function(m){
+        if(seen[m.q]) return; seen[m.q] = true;
+        var d = document.createElement("div");
+        d.className = "revitem";
+        d.innerHTML = "<b>" + esc(m.opts[m.correct]) + "</b> &middot; " + m.note;
+        rev.appendChild(d);
+      });
+      $("#missedBtn").classList.remove("hidden");
+    } else {
+      box.classList.add("hidden");
+      $("#missedBtn").classList.add("hidden");
+    }
+  }
+
+  $("#againBtn").addEventListener("click", function(){ start(null); });
+  $("#missedBtn").addEventListener("click", function(){
+    var uniq = [], seen = {};
+    missed.forEach(function(m){ if(!seen[m.q]){ seen[m.q] = true; uniq.push(m); } });
+    start(uniq);
+  });
+  $("#homeBtn").addEventListener("click", function(){
+    final.classList.add("hidden"); hub.classList.remove("hidden"); showRecord();
+  });
+  $("#startBtn").addEventListener("click", function(){ start(null); });
+
+  /* Si può arrivare dritti a una categoria con ?cat=cosa */
+  var wanted = (location.search.match(/[?&]cat=([a-z]+)/i) || [])[1];
+  if(wanted && (wanted === "tutto" || CATS[wanted])){
+    choice.cat = wanted;
+    buildChips("catChips", SETUP.cat, "cat");
+    showRecord();
+  }
+})();
+</script>
+
+</body>
+</html>
