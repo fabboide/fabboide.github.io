@@ -36,7 +36,7 @@
    cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "21 settembre 2026, 02:20";
+var SALDI_AGGIORNATO = "21 settembre 2026, 02:25";
 
 var SALDI = {
 
@@ -67,28 +67,26 @@ var SALDI = {
 
   "rafaela-yrd": {
     nome: "Rafaela",
-    mail: "",
+    mail: "rafaela.con@hotmail.com",
     pacchetto: 24,
     inizio: "2026-09-15",
     fatte_prima: 0,
     fatte: 0,
-    prenotate: 0,
-    rimaste: 24,
-    prossime: [],
-    promemoria: "Per Fabio: appena prenota la prima lezione, qui va la sua mail e il conteggio diventa automatico. Questo campo non compare nella pagina."
+    prenotate: 1,
+    rimaste: 23,
+    prossime: ["2026-09-21T14:00:00+02:00"]
   },
 
   "kristina-xix": {
     nome: "Kristina",
-    mail: "",
+    mail: "kstrozzo@gmail.com",
     pacchetto: 6,
     inizio: "2026-09-21",
     fatte_prima: 0,
     fatte: 0,
     prenotate: 0,
     rimaste: 6,
-    prossime: [],
-    promemoria: "Per Fabio: metti qui la mail di Kristina e il conteggio diventa automatico. Questo campo non compare nella pagina."
+    prossime: []
   }
 
 };
