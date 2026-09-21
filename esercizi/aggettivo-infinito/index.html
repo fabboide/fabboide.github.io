@@ -563,6 +563,12 @@ h1 em{ font-style:normal; color:var(--rosso); }
     disposizione: {label:"Disposizione · A",    short:"a",            color:"var(--rosso)"}
   };
 
+  /* Alcune categorie non hanno frasi scritte a mano ma un generatore:
+     una funzione che ogni volta monta una frase nuova pescando da liste
+     (i luoghi, i mezzi, i nomi con il loro articolo). Così il mazzo non
+     si impara a memoria. */
+  var GEN = {};
+
   var SETUP = {
     input: [{k:"scelta",label:"Scelta multipla",sub:"choose"},{k:"scrivi",label:"Scrivo io",sub:"type"}],
     len:   [{k:"10",label:"10 domande"},{k:"20",label:"20 domande"},{k:"all",label:"Tutte"}]
@@ -617,6 +623,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
     return true;
   }
   function scopeSize(){ return QUESTIONS.filter(inScope).length; }
+  function haGeneratori(){ return choice.cats.some(function(k){ return GEN[k]; }); }
 
   /* ---------------- Le pastiglie ---------------- */
   function renderCatChips(){
@@ -626,9 +633,12 @@ h1 em{ font-style:normal; color:var(--rosso); }
     h += CAT_KEYS.map(function(k){
       var on = choice.cats.indexOf(k) !== -1;
       var n = QUESTIONS.filter(function(q){ return q.cat === k; }).length;
+      /* nei gruppi con il generatore il numero non vuol dire niente:
+         le frasi si montano ogni volta */
+      var quante = GEN[k] ? "&#8734;" : String(n);
       return '<button class="chip cat" data-k="'+k+'" aria-pressed="'+on+'" style="--c:'+CATS[k].color+'">'+
              '<span class="tick">'+(on ? "&#10003;" : "+")+'</span>' + CATS[k].label +
-             ' <span class="sub">'+n+'</span></button>';
+             ' <span class="sub">'+quante+'</span></button>';
     }).join("");
     box.innerHTML = h;
     updateCount();
@@ -636,15 +646,18 @@ h1 em{ font-style:normal; color:var(--rosso); }
   function updateCount(){
     var n = scopeSize();
     var quanti = choice.cats.length;
-    $("#pickCount").textContent = quanti === CAT_KEYS.length
-      ? ("tutti i gruppi, " + n + " frasi")
-      : (quanti + (quanti === 1 ? " gruppo" : " gruppi") + ", " + n + " frasi");
+    var conGen = choice.cats.some(function(k){ return GEN[k]; });
+    var quadro = quanti === CAT_KEYS.length ? "tutti i gruppi" :
+                 (quanti + (quanti === 1 ? " gruppo" : " gruppi"));
+    $("#pickCount").textContent = conGen
+      ? (quadro + ", frasi sempre nuove" + (n ? " (più " + n + " scritte a mano)" : ""))
+      : (quadro + ", " + n + " frasi");
     $("#recVal").textContent = getRecord("sfida");
     var solo = quanti === 1;
     $("#hubNote").textContent = solo
       ? "con un gruppo solo sai già la risposta: tienine accesi almeno due"
       : "";
-    var vuoto = n === 0;
+    var vuoto = n === 0 && !choice.cats.some(function(k){ return GEN[k]; });
     $("#startBtn").disabled = vuoto;
     $("#sfidaBtn").disabled = vuoto;
   }
@@ -687,9 +700,32 @@ h1 em{ font-style:normal; color:var(--rosso); }
   var timerId = null, timeLeft = 0;
   var SFIDA = 60;
 
+  function firma(q){ return q.cat + "|" + q.q + "|" + q.correct; }
+
+  function generate(){
+    var fuori = [];
+    var quante = kind === "sfida" ? 25 : (choice.len === "all" ? 20 : 14);
+    var viste = {};
+    choice.cats.forEach(function(k){
+      if(!GEN[k]) return;
+      var tentativi = 0;
+      while(fuori.filter(function(x){ return x.cat === k; }).length < quante && tentativi < quante * 12){
+        tentativi++;
+        var g = GEN[k]();
+        if(!g) continue;
+        if(choice.input === "scrivi" && g.type !== "blank") continue;
+        var f = firma(g);
+        if(viste[f]) continue;
+        viste[f] = true;
+        fuori.push(g);
+      }
+    });
+    return fuori;
+  }
+
   function buildPool(onlyThese){
     if(onlyThese) return shuffle(onlyThese.slice());
-    var base = shuffle(QUESTIONS.filter(inScope));
+    var base = shuffle(QUESTIONS.filter(inScope).concat(generate()));
     if(kind === "sfida") return base;
     if(choice.len !== "all"){
       var n = parseInt(choice.len, 10);
