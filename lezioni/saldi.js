@@ -51,7 +51,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "21 settembre 2026, 02:40";
+var SALDI_AGGIORNATO = "22 settembre 2026, 13:21";
 
 var SALDI = {
 
@@ -72,11 +72,10 @@ var SALDI = {
     pacchetto: 10,
     inizio: "2026-09-15",
     fatte_prima: 3,
-    fatte: 4,
-    prenotate: 2,
+    fatte: 5,
+    prenotate: 1,
     rimaste: 4,
     prossime: [
-      { quando: "2026-09-21T13:00:00+02:00", gestisci: "https://cal.com/booking/7EEDcSexazUF33seSVh7F5?changes=true" },
       { quando: "2026-09-28T20:00:00+02:00", gestisci: "https://cal.com/booking/4fhVRYitKeELqec1soSxiw?changes=true" }
     ]
   },
@@ -86,12 +85,10 @@ var SALDI = {
     pacchetto: 24,
     inizio: "2026-09-15",
     fatte_prima: 0,
-    fatte: 0,
-    prenotate: 1,
+    fatte: 1,
+    prenotate: 0,
     rimaste: 23,
-    prossime: [
-      { quando: "2026-09-21T14:00:00+02:00", gestisci: "https://cal.com/booking/kv8PdKb11SCYWxSmEZAgZ5?changes=true" }
-    ]
+    prossime: []
   },
 
   "kristina-xix": {
