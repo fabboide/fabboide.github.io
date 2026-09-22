@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Al mercato! · Talk with Fabio</title>
+<meta name="description" content="Gioco di conversazione: una missione di spesa al mercato, da fare in lezione.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --kraft-ink:#3E2A12; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --awning-b:#FFFDF8;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+img{max-width:100%}
+
+/* Awning */
+.awning{height:54px;background:repeating-linear-gradient(90deg,var(--basil) 0 44px,var(--awning-b) 44px 88px);position:relative}
+.awning::after{content:"";position:absolute;left:0;right:0;bottom:-22px;height:22px;
+  background:radial-gradient(circle at 22px 0,var(--basil) 21px,transparent 22px) 0 0/88px 22px repeat-x,
+             radial-gradient(circle at 66px 0,var(--awning-b) 21px,transparent 22px) 0 0/88px 22px repeat-x}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 60px}
+header.sign{padding:44px 0 8px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,7vw,4.4rem);line-height:.95;margin:0;color:var(--basil)}
+.sign p{margin:6px 0 0;color:var(--muted);max-width:52ch}
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+
+/* Steps */
+nav.steps{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 14px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .phrases{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px;color:var(--ink)}
+h3{font-size:1.1rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:70ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px}
+.grid2{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
+@media (max-width:820px){.grid2{grid-template-columns:1fr}}
+
+/* Quiz */
+.quiz-item{font-family:var(--hand);font-size:2.6rem;text-align:center;margin:8px 0 2px}
+.quiz-sub{text-align:center;color:var(--muted);margin-bottom:14px}
+.shops{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media (max-width:520px){.shops{grid-template-columns:repeat(2,1fr)}}
+.shops button{background:var(--stone);border:2px solid var(--line);border-radius:10px;padding:10px 6px;font-weight:700}
+.shops button.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--paper))}
+.shops button.wrong{border-color:var(--warn);background:color-mix(in srgb,var(--warn) 12%,var(--paper))}
+.quiz-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px;flex-wrap:wrap}
+.feedback{min-height:1.5em;font-weight:700}
+.btn{font-family:var(--display);background:var(--basil);color:#fff;border:0;border-radius:10px;padding:10px 16px;font-weight:700}
+.btn.ghost{background:transparent;color:var(--basil);border:2px solid var(--basil)}
+.btn.red{background:var(--tomato)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+ul.talk{margin:0;padding-left:1.1em}
+ul.talk li{margin:8px 0}
+
+/* Mission */
+.mission{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;background:var(--paper);border:1px solid var(--line);border-left:8px solid var(--tomato);border-radius:14px;padding:18px 20px;margin-bottom:18px}
+.mission .big{font-size:2.6rem;line-height:1}
+.mission h3{font-family:var(--display);font-weight:700;font-size:1.45rem;margin:0}
+.mission .meta{color:var(--muted);margin:2px 0 10px}
+.checklist{display:flex;flex-wrap:wrap;gap:6px;padding:0;margin:0;list-style:none}
+.checklist li{border:1.5px dashed var(--line);border-radius:999px;padding:3px 12px;font-size:.92rem}
+.checklist li.done{border-style:solid;border-color:var(--ok);color:var(--ok);font-weight:700}
+.checklist li.done::before{content:"✓ "}
+.mission-empty{text-align:center;padding:26px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-weight:700}
+.timer output{font-family:var(--hand);font-size:1.8rem;font-weight:400;min-width:3.2ch;text-align:right}
+
+.stalls{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:12px}
+@media (max-width:820px){.stalls{grid-template-columns:repeat(3,1fr)}}
+.stalls button{background:var(--paper);border:2px solid var(--line);border-radius:12px;padding:10px 4px;font-weight:700;font-size:.92rem;display:flex;flex-direction:column;align-items:center;gap:2px}
+.stalls button span{font-size:1.6rem}
+.stalls button[aria-pressed="true"]{border-color:var(--basil);background:color-mix(in srgb,var(--basil) 12%,var(--paper))}
+
+.vendor{background:color-mix(in srgb,var(--lemon) 22%,var(--paper));border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:.95rem}
+.vendor b{display:block;margin-bottom:2px}
+
+/* Price tags */
+.tags{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.tag{position:relative;background:var(--kraft);color:var(--kraft-ink);border-radius:6px 6px 6px 6px;padding:18px 12px 12px;clip-path:polygon(14px 0,100% 0,100% 100%,0 100%,0 14px)}
+.tag::before{content:"";position:absolute;top:8px;left:8px;width:8px;height:8px;border-radius:50%;background:var(--stone)}
+.tag .it{font-family:var(--hand);font-weight:700;font-size:1.6rem;line-height:1.05}
+.tag .en{color:var(--kraft-ink);opacity:.75}
+.tag .price{font-family:var(--hand);font-weight:700;font-size:1.4rem;margin:4px 0 8px}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{width:34px;height:34px;border-radius:8px;border:0;background:rgba(255,255,255,.55);font-weight:700;font-size:1.1rem;color:var(--kraft-ink)}
+.qty output{flex:1;text-align:center;font-weight:700;font-size:.9rem}
+.tag .add{width:100%;margin-top:8px;background:var(--basil-deep);color:#fff;border:0;border-radius:8px;padding:7px;font-weight:700}
+
+/* Cart */
+.cart h3{display:flex;justify-content:space-between;align-items:baseline}
+.budget{height:14px;border-radius:999px;background:var(--stone);overflow:hidden;border:1px solid var(--line);margin:6px 0 4px}
+.budget i{display:block;height:100%;width:0;background:var(--basil);transition:width .3s}
+.budget.over i{background:var(--warn)}
+.budget-label{font-size:.9rem;color:var(--muted);margin-bottom:10px}
+.budget-label.over{color:var(--warn);font-weight:700}
+.cart ul{list-style:none;padding:0;margin:0}
+.cart li{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:.95rem}
+.cart li button{background:none;border:0;color:var(--warn);font-weight:700;padding:0 4px}
+.cart .empty{color:var(--muted);font-style:italic}
+.total{display:flex;justify-content:space-between;font-weight:700;font-size:1.1rem;margin-top:10px}
+
+/* Event card */
+.event{margin-top:18px;border:3px solid var(--tomato);border-radius:14px;padding:16px 18px;background:var(--paper);display:none}
+.event.show{display:block}
+.event .title{font-family:var(--hand);font-size:1.7rem;color:var(--tomato)}
+.event p{margin:4px 0}
+@media (prefers-reduced-motion:no-preference){.event.show{animation:pop .35s ease-out}}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+
+/* Receipt */
+.receipt{background:#fff;color:#222;font-family:"Courier New",monospace;font-size:.92rem;padding:18px 16px 26px;max-width:340px;margin:0 auto;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),95% 100%,90% calc(100% - 10px),85% 100%,80% calc(100% - 10px),75% 100%,70% calc(100% - 10px),65% 100%,60% calc(100% - 10px),55% 100%,50% calc(100% - 10px),45% 100%,40% calc(100% - 10px),35% 100%,30% calc(100% - 10px),25% 100%,20% calc(100% - 10px),15% 100%,10% calc(100% - 10px),5% 100%,0 calc(100% - 10px));
+  box-shadow:0 1px 0 var(--line)}
+.receipt .head{text-align:center;font-weight:700;margin-bottom:8px}
+.receipt .row{display:flex;justify-content:space-between;gap:8px}
+.receipt hr{border:0;border-top:1px dashed #999;margin:8px 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+.chips button{background:var(--stone);border:2px solid var(--line);border-radius:999px;padding:5px 12px;font-size:.95rem}
+.chips button[aria-pressed="true"]{background:var(--basil);border-color:var(--basil);color:#fff}
+.score{font-family:var(--hand);font-size:1.8rem;color:var(--basil);margin-top:6px}
+.post-block{margin-bottom:18px}
+
+/* Phrases drawer */
+dialog{border:0;border-radius:16px;padding:0;max-width:640px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.5rem}
+.dlg-body{padding:12px 20px 20px;max-height:70vh;overflow:auto}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.95rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700}
+.dlg-body h3{margin:16px 0 4px;color:var(--basil)}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="awning" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <div>
+      <h1>Al mercato!</h1>
+      <p>Una missione, un budget e sei bancarelle. Fai la spesa parlando con il venditore, come in un vero mercato italiano. <span class="en">A mission, a budget, six stalls: shop by talking to the vendor.</span></p>
+    </div>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Fasi dell'attività">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>Prima di andare</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>Al mercato</button>
+    <button role="tab" aria-selected="false" data-phase="p3"><span class="n">3</span>Dopo la spesa</button>
+    <button class="phrases" id="openPhrases" type="button">Frasi utili</button>
+  </nav>
+
+  <!-- FASE 1 -->
+  <section class="phase active" id="p1">
+    <h2>In quale negozio lo compri?</h2>
+    <p class="lead">Riscaldamento veloce: per ogni prodotto scegli il negozio giusto, poi rispondi alle domande a voce. <span class="en">Pick the right shop for each product.</span></p>
+    <div class="grid2">
+      <div class="panel">
+        <div class="quiz-item" id="qItem"></div>
+        <div class="quiz-sub" id="qCount"></div>
+        <div class="shops" id="qShops"></div>
+        <div class="quiz-foot">
+          <div class="feedback" id="qFeedback" aria-live="polite"></div>
+          <button class="btn" id="qNext" type="button">Prossimo prodotto</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Parliamone</h3>
+        <ul class="talk">
+          <li>Dove fai la spesa di solito: al mercato o al supermercato? Perché?</li>
+          <li>Cosa c'è sempre nel tuo frigo? E cosa non c'è mai?</li>
+          <li>Qual è l'ultimo piatto che hai cucinato? Com'era?</li>
+          <li>Hai mai fatto la spesa in un mercato italiano? Cosa ti ha colpito?</li>
+          <li>Quanto costa più o meno un chilo di pomodori nel tuo paese?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FASE 2 -->
+  <section class="phase" id="p2">
+    <h2>La missione della spesa</h2>
+    <p class="lead">Pesca una missione. Vai alle bancarelle e chiedi a voce quello che ti serve: il venditore risponde. Aggiungi il prodotto al carrello solo dopo averlo chiesto. Attento al budget! <span class="en">Ask out loud first, then add it to the cart.</span></p>
+
+    <div class="toolbar">
+      <button class="btn red" id="drawMission" type="button">Pesca una missione</button>
+      <button class="btn ghost" id="drawEvent" type="button" disabled>Imprevisto!</button>
+      <div class="timer">
+        <output id="timerOut">15:00</output>
+        <button class="btn ghost" id="timerBtn" type="button">Avvia</button>
+      </div>
+    </div>
+
+    <div id="missionBox" class="mission mission-empty panel">
+      <p style="margin:0">Nessuna missione ancora. Premi <b>Pesca una missione</b> per iniziare.</p>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <div class="stalls" id="stalls"></div>
+        <div class="vendor" id="vendor"></div>
+        <div class="tags" id="tags"></div>
+      </div>
+      <aside class="panel cart" aria-label="Carrello">
+        <h3><span>Il tuo carrello</span><span id="cartCount" class="en"></span></h3>
+        <div class="budget" id="budgetBar"><i></i></div>
+        <div class="budget-label" id="budgetLabel">Nessun budget: pesca una missione.</div>
+        <ul id="cartList"><li class="empty">Il carrello è vuoto.</li></ul>
+        <div class="total"><span>Totale</span><span id="cartTotal">€ 0,00</span></div>
+      </aside>
+    </div>
+
+    <div class="event" id="eventCard" role="status" aria-live="polite">
+      <div class="title" id="eventTitle"></div>
+      <p id="eventText"></p>
+      <p class="en" id="eventHint"></p>
+    </div>
+  </section>
+
+  <!-- FASE 3 -->
+  <section class="phase" id="p3">
+    <h2>Dopo la spesa</h2>
+    <p class="lead">Guarda lo scontrino e racconta. Seleziona le parole ed espressioni che usi davvero mentre parli. <span class="en">Tap the words as you use them.</span></p>
+    <div class="grid2">
+      <div>
+        <div class="panel post-block">
+          <h3>Racconta la tua spesa (al passato)</h3>
+          <ul class="talk">
+            <li>Dove sei andato per prima cosa? E poi?</li>
+            <li>Cosa hai comprato e quanto ne hai preso?</li>
+            <li>Quanto hai speso? Sei rimasto nel budget?</li>
+            <li>È successo qualche imprevisto? Come l'hai risolto?</li>
+          </ul>
+        </div>
+        <div class="panel post-block">
+          <h3>Spiega come cucinerai il piatto</h3>
+          <p class="en" style="margin:0">Usa almeno quattro verbi della cucina.</p>
+          <div class="chips" data-group="verbi"></div>
+        </div>
+        <div class="panel post-block">
+          <h3>Descrivi il sapore</h3>
+          <p class="en" style="margin:0">Come sarà il piatto? Usa almeno tre aggettivi.</p>
+          <div class="chips" data-group="gusto"></div>
+        </div>
+        <div class="panel post-block">
+          <h3>Le espressioni del mercato che hai usato</h3>
+          <div class="chips" data-group="mercato"></div>
+          <div class="score" id="score"></div>
+        </div>
+      </div>
+      <div>
+        <div class="receipt" id="receipt"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<dialog id="phrasesDlg" aria-labelledby="dlgTitle">
+  <div class="dlg-head"><h2 id="dlgTitle">Frasi utili</h2><button class="btn ghost" id="closePhrases" type="button">Chiudi</button></div>
+  <div class="dlg-body">
+    <h3>Tu chiedi</h3>
+    <table>
+      <tr><td>Chi è l'ultimo?</td><td class="en">Who's last in line?</td></tr>
+      <tr><td>Buongiorno, vorrei mezzo chilo di...</td><td class="en">I'd like half a kilo of...</td></tr>
+      <tr><td>Mi dà due etti di...?</td><td class="en">Can you give me 200 g of...?</td></tr>
+      <tr><td>Quanto costa al chilo? / all'etto?</td><td class="en">How much per kilo? / per 100 g?</td></tr>
+      <tr><td>Sono freschi? Sono maturi?</td><td class="en">Are they fresh? Are they ripe?</td></tr>
+      <tr><td>Posso assaggiare?</td><td class="en">Can I taste it?</td></tr>
+      <tr><td>Cosa mi consiglia al posto di...?</td><td class="en">What do you suggest instead of...?</td></tr>
+      <tr><td>Me lo può tagliare sottile?</td><td class="en">Can you slice it thinly?</td></tr>
+      <tr><td>Sì, lasci pure.</td><td class="en">Yes, that's fine (a bit over).</td></tr>
+      <tr><td>Basta così, grazie. Quant'è in tutto?</td><td class="en">That's all. How much altogether?</td></tr>
+    </table>
+    <h3>Il venditore dice</h3>
+    <table>
+      <tr><td>Mi dica! / Prego!</td><td class="en">What can I get you?</td></tr>
+      <tr><td>Quanto ne vuole?</td><td class="en">How much do you want?</td></tr>
+      <tr><td>Sono due etti e mezzo, lascio?</td><td class="en">It's 250 g, is that OK?</td></tr>
+      <tr><td>Altro? / Nient'altro?</td><td class="en">Anything else?</td></tr>
+      <tr><td>È finito. Le posso dare...</td><td class="en">It's sold out. I can give you...</td></tr>
+    </table>
+    <h3>Con il NE</h3>
+    <table>
+      <tr><td>Ne vorrei un chilo.</td><td class="en">I'd like a kilo (of it).</td></tr>
+      <tr><td>Me ne dia tre etti.</td><td class="en">Give me 300 g (of it).</td></tr>
+      <tr><td>Ne prendo sei.</td><td class="en">I'll take six.</td></tr>
+      <tr><td>Non ce n'è più.</td><td class="en">There's none left.</td></tr>
+    </table>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  /* ---------- Tabs ---------- */
+  var tabs = document.querySelectorAll("nav.steps [role=tab]");
+  tabs.forEach(function(t){
+    t.addEventListener("click", function(){ showPhase(t.dataset.phase); });
+  });
+  function showPhase(id){
+    tabs.forEach(function(t){ t.setAttribute("aria-selected", t.dataset.phase === id ? "true" : "false"); });
+    document.querySelectorAll("section.phase").forEach(function(s){ s.classList.toggle("active", s.id === id); });
+    if (id === "p3") renderReceipt();
+  }
+
+  /* ---------- Phrases dialog ---------- */
+  var dlg = document.getElementById("phrasesDlg");
+  document.getElementById("openPhrases").addEventListener("click", function(){ dlg.showModal(); });
+  document.getElementById("closePhrases").addEventListener("click", function(){ dlg.close(); });
+
+  /* ---------- Helpers ---------- */
+  function eur(n){ return "€ " + n.toFixed(2).replace(".", ","); }
+  function shuffle(a){ for (var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+
+  /* ---------- FASE 1: quiz ---------- */
+  var SHOPS = ["fruttivendolo","macelleria","pescheria","salumeria","forno","alimentari"];
+  var QUIZ = shuffle([
+    ["il pesce spada","pescheria"],["la salsiccia","macelleria"],["la mortadella","salumeria"],
+    ["la focaccia","forno"],["il basilico","fruttivendolo"],["le vongole","pescheria"],
+    ["la ricotta","salumeria"],["la bistecca","macelleria"],["le pesche","fruttivendolo"],
+    ["i grissini","forno"],["la passata di pomodoro","alimentari"],["una bottiglia di vino rosso","alimentari"],
+    ["il salmone","pescheria"],["il parmigiano","salumeria"],["le melanzane","fruttivendolo"]
+  ]);
+  var qi = 0, qScore = 0, qAnswered = false;
+  var qItem = document.getElementById("qItem"), qCount = document.getElementById("qCount"),
+      qShops = document.getElementById("qShops"), qFb = document.getElementById("qFeedback"),
+      qNext = document.getElementById("qNext");
+  function renderQuiz(){
+    qAnswered = false; qFb.textContent = "";
+    if (qi >= QUIZ.length){
+      qItem.textContent = "Finito!";
+      qCount.textContent = "Punteggio: " + qScore + " su " + QUIZ.length;
+      qShops.innerHTML = ""; qNext.textContent = "Ricomincia"; return;
+    }
+    qItem.textContent = QUIZ[qi][0];
+    qCount.textContent = "Prodotto " + (qi+1) + " di " + QUIZ.length + " · punti: " + qScore;
+    qNext.textContent = "Prossimo prodotto";
+    qShops.innerHTML = "";
+    SHOPS.forEach(function(s){
+      var b = document.createElement("button"); b.type = "button"; b.textContent = s;
+      b.addEventListener("click", function(){
+        if (qAnswered) return; qAnswered = true;
+        var right = QUIZ[qi][1];
+        if (s === right){ b.classList.add("right"); qScore++; qFb.style.color = "var(--ok)"; qFb.textContent = "Giusto! Si compra in " + right + "."; }
+        else {
+          b.classList.add("wrong"); qFb.style.color = "var(--warn)";
+          qFb.textContent = "No, si compra in " + right + ".";
+          Array.prototype.forEach.call(qShops.children, function(x){ if (x.textContent === right) x.classList.add("right"); });
+        }
+      });
+      qShops.appendChild(b);
+    });
+  }
+  qNext.addEventListener("click", function(){
+    if (qi >= QUIZ.length){ qi = 0; qScore = 0; shuffle(QUIZ); } else { qi++; }
+    renderQuiz();
+  });
+  renderQuiz();
+
+  /* ---------- FASE 2: data ---------- */
+  // unit: kg (step 0.5), etto (step 1), pz (step 1, with words)
+  var STALLS = [
+    {id:"fruttivendolo", icon:"🍅", name:"Fruttivendolo",
+     vendor:["Mi dica! Oggi i pomodori sono una favola.","Quanto ne vuole?","Il prezzemolo glielo regalo!"],
+     items:[
+      {id:"pomodori",it:"pomodori",en:"tomatoes",p:2.5,u:"kg"},
+      {id:"melanzane",it:"melanzane",en:"aubergines",p:2.0,u:"kg"},
+      {id:"zucchine",it:"zucchine",en:"courgettes",p:2.2,u:"kg"},
+      {id:"patate",it:"patate",en:"potatoes",p:1.2,u:"kg"},
+      {id:"cipolle",it:"cipolle",en:"onions",p:1.5,u:"kg"},
+      {id:"carote",it:"carote",en:"carrots",p:1.4,u:"kg"},
+      {id:"aglio",it:"aglio",en:"garlic",p:0.8,u:"pz",s:"testa",pl:"teste"},
+      {id:"limoni",it:"limoni",en:"lemons",p:2.5,u:"kg"},
+      {id:"pesche",it:"pesche",en:"peaches",p:3.0,u:"kg"},
+      {id:"anguria",it:"anguria",en:"watermelon",p:5.0,u:"pz",s:"anguria",pl:"angurie"},
+      {id:"fragole",it:"fragole",en:"strawberries",p:3.5,u:"pz",s:"vaschetta",pl:"vaschette"},
+      {id:"basilico",it:"basilico",en:"basil",p:1.0,u:"pz",s:"mazzo",pl:"mazzi"},
+      {id:"prezzemolo",it:"prezzemolo",en:"parsley",p:0,u:"pz",s:"mazzo",pl:"mazzi"}
+     ]},
+    {id:"macelleria", icon:"🥩", name:"Macelleria",
+     vendor:["Buongiorno! Cosa le preparo?","La salsiccia è fatta da noi.","Gliela taglio io?"],
+     items:[
+      {id:"macinato",it:"carne macinata",en:"minced meat",p:12,u:"kg"},
+      {id:"salsiccia",it:"salsiccia",en:"sausage",p:11,u:"kg"},
+      {id:"bistecca",it:"bistecca",en:"steak",p:22,u:"kg"},
+      {id:"pollo",it:"pollo",en:"chicken",p:9,u:"kg"}
+     ]},
+    {id:"pescheria", icon:"🐟", name:"Pescheria",
+     vendor:["Pesce fresco di stamattina!","Glielo pulisco?","Oggi le vongole sono bellissime."],
+     items:[
+      {id:"pescespada",it:"pesce spada",en:"swordfish",p:24,u:"kg"},
+      {id:"vongole",it:"vongole",en:"clams",p:14,u:"kg"},
+      {id:"cozze",it:"cozze",en:"mussels",p:5,u:"kg"},
+      {id:"gamberi",it:"gamberi",en:"prawns",p:26,u:"kg"},
+      {id:"salmone",it:"salmone",en:"salmon",p:20,u:"kg"}
+     ]},
+    {id:"salumeria", icon:"🧀", name:"Salumeria",
+     vendor:["Chi è l'ultimo?","Glielo taglio sottile?","Sono due etti e mezzo, lascio?"],
+     items:[
+      {id:"crudo",it:"prosciutto crudo",en:"cured ham",p:3.2,u:"etto"},
+      {id:"cotto",it:"prosciutto cotto",en:"cooked ham",p:2.2,u:"etto"},
+      {id:"salame",it:"salame",en:"salami",p:2.4,u:"etto"},
+      {id:"mortadella",it:"mortadella",en:"mortadella",p:1.8,u:"etto"},
+      {id:"parmigiano",it:"parmigiano",en:"parmesan",p:2.6,u:"etto"},
+      {id:"ricottasalata",it:"ricotta salata",en:"salted ricotta",p:1.9,u:"etto"},
+      {id:"mozzarella",it:"mozzarella di bufala",en:"buffalo mozzarella",p:2.8,u:"pz",s:"mozzarella",pl:"mozzarelle"}
+     ]},
+    {id:"forno", icon:"🥖", name:"Forno",
+     vendor:["Il pane è appena uscito dal forno!","Intera o mezza?","Vuole anche un dolce?"],
+     items:[
+      {id:"pane",it:"pane",en:"bread",p:2.5,u:"pz",s:"pagnotta",pl:"pagnotte"},
+      {id:"panini",it:"panini",en:"rolls",p:0.4,u:"pz",s:"panino",pl:"panini"},
+      {id:"focaccia",it:"focaccia",en:"focaccia",p:2.0,u:"pz",s:"trancio",pl:"tranci"},
+      {id:"grissini",it:"grissini",en:"breadsticks",p:2.0,u:"pz",s:"pacchetto",pl:"pacchetti"},
+      {id:"cannoli",it:"cannoli",en:"cannoli",p:2.5,u:"pz",s:"cannolo",pl:"cannoli"}
+     ]},
+    {id:"alimentari", icon:"🫒", name:"Alimentari",
+     vendor:["Prego, cosa le serve?","Il vino rosso è in offerta.","Nient'altro?"],
+     items:[
+      {id:"spaghetti",it:"spaghetti",en:"spaghetti",p:1.3,u:"pz",s:"pacco",pl:"pacchi"},
+      {id:"pastacorta",it:"pasta corta",en:"short pasta",p:1.2,u:"pz",s:"pacco",pl:"pacchi"},
+      {id:"tagliatelle",it:"tagliatelle fresche",en:"fresh tagliatelle",p:3.5,u:"pz",s:"confezione",pl:"confezioni"},
+      {id:"passata",it:"passata di pomodoro",en:"tomato purée",p:1.1,u:"pz",s:"bottiglia",pl:"bottiglie"},
+      {id:"olio",it:"olio extravergine",en:"olive oil",p:8.5,u:"pz",s:"bottiglia",pl:"bottiglie"},
+      {id:"olive",it:"olive",en:"olives",p:3.0,u:"pz",s:"barattolo",pl:"barattoli"},
+      {id:"vinorosso",it:"vino rosso",en:"red wine",p:7.0,u:"pz",s:"bottiglia",pl:"bottiglie"},
+      {id:"vinobianco",it:"vino bianco",en:"white wine",p:6.5,u:"pz",s:"bottiglia",pl:"bottiglie"},
+      {id:"acqua",it:"acqua frizzante",en:"sparkling water",p:0.4,u:"pz",s:"bottiglia",pl:"bottiglie"}
+     ]}
+  ];
+  var ITEMS = {}; STALLS.forEach(function(s){ s.items.forEach(function(i){ i.stall = s.id; ITEMS[i.id] = i; }); });
+
+  var MISSIONS = [
+    {icon:"🍆", title:"Pasta alla Norma", who:"per 4 persone", budget:18,
+     text:"Stasera arrivano quattro amici e vuoi cucinare un classico siciliano.",
+     need:["pastacorta","melanzane","pomodori","basilico","ricottasalata","olio"]},
+    {icon:"🥂", title:"Aperitivo in terrazza", who:"per 6 amici", budget:25,
+     text:"Organizzi un aperitivo al tramonto. Deve esserci qualcosa per tutti.",
+     need:["crudo","salame","mozzarella","focaccia","olive","vinobianco"]},
+    {icon:"🐟", title:"Cena di pesce", who:"per 2 persone", budget:32,
+     text:"Una cena romantica: primo con le vongole e secondo di pesce spada.",
+     need:["spaghetti","vongole","pescespada","limoni","prezzemolo","aglio","vinobianco"]},
+    {icon:"🍝", title:"Il ragù della domenica", who:"per 5 persone", budget:28,
+     text:"La domenica si mangia il ragù. Cucini tu per tutta la famiglia.",
+     need:["macinato","salsiccia","passata","cipolle","carote","tagliatelle","parmigiano","vinorosso"]},
+    {icon:"🏖️", title:"Picnic al mare", who:"per 3 persone", budget:15,
+     text:"Domani si va in spiaggia. Serve un pranzo fresco e facile da trasportare.",
+     need:["pane","mortadella","pomodori","pesche","anguria","acqua"]}
+  ];
+
+  var EVENTS = [
+    ["È finito!","Il pesce spada (o il prodotto che volevi) è finito. Chiedi al venditore cosa ti consiglia al suo posto.","Useful: Cosa mi consiglia al posto di...?"],
+    ["Lascio?","Il salumiere ha tagliato un po' di più: \"Sono due etti e mezzo, lascio?\" Rispondi.","Useful: Sì, lasci pure. / No, me ne tolga un po'."],
+    ["C'è la fila","Al banco c'è molta gente. Chiedi chi è l'ultimo e quando tocca a te.","Useful: Chi è l'ultimo? / Tocca a me?"],
+    ["Frutta acerba?","Le pesche sembrano ancora dure. Chiedi se sono mature e se puoi assaggiare.","Useful: Sono mature? Posso assaggiare?"],
+    ["Offerta del giorno","Il fruttivendolo propone le fragole in offerta a 2 euro. Accetti o rifiuti? Spiega perché.","Useful: siccome, però, allora"],
+    ["Altro?","Il venditore chiede: \"Altro?\" Rispondi e chiedi il totale.","Useful: Basta così, grazie. Quant'è in tutto?"],
+    ["Niente resto","Hai solo una banconota da 50 euro e il venditore non ha il resto. Trova una soluzione insieme a lui.","Useful: Posso pagare con la carta? / Torno dopo."],
+    ["Cambio di programma","Un ospite ti scrive: è vegetariano! Cambia qualcosa nella tua spesa e spiega al venditore.","Useful: Invece di... prendo... / Ha qualcosa di vegetariano?"],
+    ["Troppo salato","Il venditore dice che il formaggio che vuoi oggi è molto salato. Chiedi un'alternativa più delicata.","Useful: Ha qualcosa di più dolce / delicato?"],
+    ["Pane non pronto","Il pane caldo non è ancora uscito dal forno. Chiedi quando sarà pronto e decidi se aspettare.","Useful: Quando sarà pronto? Aspetto / Torno tra poco."]
+  ];
+
+  /* ---------- FASE 2: state ---------- */
+  var mission = null, cart = [], currentStall = "fruttivendolo", qtys = {}, eventsUsed = [];
+
+  function stepOf(it){ return it.u === "kg" ? 0.5 : 1; }
+  function qtyText(it, q){
+    if (it.u === "kg"){
+      var whole = Math.floor(q), half = (q - whole) >= 0.5;
+      if (whole === 0) return "mezzo chilo";
+      var w = whole === 1 ? "un chilo" : whole + " chili";
+      return half ? w + " e mezzo" : w;
+    }
+    if (it.u === "etto") return q === 1 ? "un etto" : q + " etti";
+    return q + " " + (q === 1 ? it.s : it.pl);
+  }
+  // cleaner per-piece label
+  function pieceLabel(it){
+    if (it.p === 0) return "Gratis!";
+    if (it.u === "kg") return eur(it.p) + " al chilo";
+    if (it.u === "etto") return eur(it.p) + " all'etto";
+    return eur(it.p) + " a " + it.s;
+  }
+
+  var stallsEl = document.getElementById("stalls"), tagsEl = document.getElementById("tags"),
+      vendorEl = document.getElementById("vendor");
+  STALLS.forEach(function(s){
+    var b = document.createElement("button"); b.type = "button";
+    b.innerHTML = '<span aria-hidden="true">' + s.icon + "</span>" + s.name;
+    b.setAttribute("aria-pressed", s.id === currentStall ? "true" : "false");
+    b.addEventListener("click", function(){ currentStall = s.id; renderStall(); });
+    b.dataset.id = s.id; stallsEl.appendChild(b);
+  });
+
+  function renderStall(){
+    Array.prototype.forEach.call(stallsEl.children, function(b){ b.setAttribute("aria-pressed", b.dataset.id === currentStall ? "true" : "false"); });
+    var s = STALLS.filter(function(x){ return x.id === currentStall; })[0];
+    vendorEl.innerHTML = "<b>Il venditore può dire:</b>" + s.vendor.map(function(v){ return "«" + v + "»"; }).join(" &nbsp; ");
+    tagsEl.innerHTML = "";
+    s.items.forEach(function(it){
+      if (qtys[it.id] === undefined) qtys[it.id] = stepOf(it);
+      var el = document.createElement("div"); el.className = "tag";
+      el.innerHTML =
+        '<div class="it">' + it.it + '</div><div class="en">' + it.en + '</div>' +
+        '<div class="price">' + pieceLabel(it) + '</div>' +
+        '<div class="qty"><button type="button" aria-label="Meno">−</button><output>' + qtyText(it, qtys[it.id]) + '</output><button type="button" aria-label="Più">+</button></div>' +
+        '<button class="add" type="button">L\'ho chiesto: nel carrello</button>';
+      var btns = el.querySelectorAll(".qty button"), out = el.querySelector("output");
+      btns[0].addEventListener("click", function(){ qtys[it.id] = Math.max(stepOf(it), +(qtys[it.id] - stepOf(it)).toFixed(1)); out.textContent = qtyText(it, qtys[it.id]); });
+      btns[1].addEventListener("click", function(){ qtys[it.id] = Math.min(it.u === "etto" ? 20 : 10, +(qtys[it.id] + stepOf(it)).toFixed(1)); out.textContent = qtyText(it, qtys[it.id]); });
+      el.querySelector(".add").addEventListener("click", function(){ addToCart(it, qtys[it.id]); });
+      tagsEl.appendChild(el);
+    });
+  }
+
+  function addToCart(it, q){
+    var existing = cart.filter(function(c){ return c.id === it.id; })[0];
+    if (existing){ existing.q = +(existing.q + q).toFixed(1); }
+    else cart.push({id:it.id, q:q});
+    renderCart();
+  }
+
+  function cartTotal(){ return cart.reduce(function(t,c){ return t + ITEMS[c.id].p * c.q; }, 0); }
+
+  function renderCart(){
+    var list = document.getElementById("cartList");
+    list.innerHTML = "";
+    if (!cart.length) list.innerHTML = '<li class="empty">Il carrello è vuoto.</li>';
+    cart.forEach(function(c, idx){
+      var it = ITEMS[c.id];
+      var li = document.createElement("li");
+      li.innerHTML = "<span>" + qtyText(it, c.q) + " di " + it.it + "</span><span>" + eur(it.p * c.q) + ' <button type="button" aria-label="Togli ' + it.it + '">✕</button></span>';
+      li.querySelector("button").addEventListener("click", function(){ cart.splice(idx,1); renderCart(); });
+      list.appendChild(li);
+    });
+    var tot = cartTotal();
+    document.getElementById("cartTotal").textContent = eur(tot);
+    document.getElementById("cartCount").textContent = cart.length ? cart.length + (cart.length === 1 ? " prodotto" : " prodotti") : "";
+    var bar = document.getElementById("budgetBar"), lbl = document.getElementById("budgetLabel");
+    if (mission){
+      var pct = Math.min(100, tot / mission.budget * 100);
+      bar.querySelector("i").style.width = pct + "%";
+      var over = tot > mission.budget;
+      bar.classList.toggle("over", over); lbl.classList.toggle("over", over);
+      lbl.textContent = over ? "Sei fuori budget di " + eur(tot - mission.budget) + "! Togli qualcosa o chiedi uno sconto."
+                             : "Budget " + eur(mission.budget) + " · ti restano " + eur(mission.budget - tot);
+    }
+    renderChecklist();
+  }
+
+  function renderChecklist(){
+    if (!mission) return;
+    var ids = cart.map(function(c){ return c.id; });
+    var lis = document.querySelectorAll("#needList li");
+    Array.prototype.forEach.call(lis, function(li){ li.classList.toggle("done", ids.indexOf(li.dataset.id) >= 0); });
+  }
+
+  document.getElementById("drawMission").addEventListener("click", function(){
+    var pool = MISSIONS.filter(function(m){ return m !== mission; });
+    mission = pool[Math.floor(Math.random() * pool.length)];
+    cart = []; eventsUsed = [];
+    var box = document.getElementById("missionBox");
+    box.className = "mission";
+    box.innerHTML = '<div class="big" aria-hidden="true">' + mission.icon + '</div><div><h3>' + mission.title + '</h3>' +
+      '<div class="meta">' + mission.who + " · budget " + eur(mission.budget) + "</div>" +
+      "<p style=\"margin:0 0 10px\">" + mission.text + "</p>" +
+      '<ul class="checklist" id="needList">' + mission.need.map(function(id){ return '<li data-id="' + id + '">' + ITEMS[id].it + "</li>"; }).join("") + "</ul></div>";
+    document.getElementById("drawEvent").disabled = false;
+    document.getElementById("eventCard").classList.remove("show");
+    this.textContent = "Cambia missione";
+    renderCart();
+  });
+
+  document.getElementById("drawEvent").addEventListener("click", function(){
+    if (eventsUsed.length >= EVENTS.length) eventsUsed = [];
+    var free = EVENTS.map(function(e,i){ return i; }).filter(function(i){ return eventsUsed.indexOf(i) < 0; });
+    var pick = free[Math.floor(Math.random() * free.length)]; eventsUsed.push(pick);
+    var ev = EVENTS[pick], card = document.getElementById("eventCard");
+    document.getElementById("eventTitle").textContent = "Imprevisto: " + ev[0];
+    document.getElementById("eventText").textContent = ev[1];
+    document.getElementById("eventHint").textContent = ev[2];
+    card.classList.remove("show"); void card.offsetWidth; card.classList.add("show");
+    card.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"nearest"});
+  });
+
+  /* Timer */
+  var tLeft = 15*60, tId = null, tOut = document.getElementById("timerOut"), tBtn = document.getElementById("timerBtn");
+  function tRender(){ var m = Math.floor(tLeft/60), s = tLeft%60; tOut.textContent = m + ":" + (s<10?"0":"") + s; }
+  tBtn.addEventListener("click", function(){
+    if (tId){ clearInterval(tId); tId = null; tBtn.textContent = "Riprendi"; return; }
+    if (tLeft <= 0){ tLeft = 15*60; }
+    tBtn.textContent = "Pausa";
+    tId = setInterval(function(){
+      tLeft--; tRender();
+      if (tLeft <= 0){ clearInterval(tId); tId = null; tBtn.textContent = "Ricomincia"; tOut.textContent = "Tempo!"; }
+    }, 1000);
+  });
+
+  renderStall(); renderCart();
+
+  /* ---------- FASE 3 ---------- */
+  var CHIPS = {
+    verbi:["tagliare","tritare","lavare","sbucciare","mescolare","far bollire","cuocere","friggere","grigliare","cuocere al forno","scolare","condire","aggiungere","assaggiare"],
+    gusto:["saporito","buonissimo","dolce","salato","piccante","fresco","croccante","morbido","leggero","pesante","al dente","insipido"],
+    mercato:["un etto","due etti","mezzo chilo","un chilo","ne vorrei...","me ne dia...","mi dà...?","lasci pure","basta così","quant'è in tutto?","chi è l'ultimo?","posso assaggiare?","cosa mi consiglia?"]
+  };
+  document.querySelectorAll(".chips").forEach(function(box){
+    CHIPS[box.dataset.group].forEach(function(w){
+      var b = document.createElement("button"); b.type = "button"; b.textContent = w; b.setAttribute("aria-pressed","false");
+      b.addEventListener("click", function(){ b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true"); renderScore(); });
+      box.appendChild(b);
+    });
+  });
+  function renderScore(){
+    var used = document.querySelectorAll('.chips button[aria-pressed="true"]').length;
+    var total = CHIPS.verbi.length + CHIPS.gusto.length + CHIPS.mercato.length;
+    var s = document.getElementById("score");
+    s.textContent = used ? "Hai usato " + used + " parole ed espressioni su " + total + (used >= 15 ? ". Da vero palermitano!" : used >= 8 ? ". Ottimo lavoro!" : ". Continua!") : "";
+  }
+
+  function renderReceipt(){
+    var r = document.getElementById("receipt");
+    var d = new Date();
+    var html = '<div class="head">MERCATO DEL QUARTIERE<br>' + d.toLocaleDateString("it-IT") + "</div>";
+    if (!mission){ r.innerHTML = html + "<p>Nessuna missione. Torna alla fase 2 e fai la spesa!</p>"; return; }
+    html += '<div class="row"><span>' + mission.title.toUpperCase() + "</span></div><hr>";
+    if (!cart.length) html += "<p>Carrello vuoto.</p>";
+    cart.forEach(function(c){
+      var it = ITEMS[c.id];
+      html += '<div class="row"><span>' + it.it + " (" + qtyText(it, c.q) + ")</span><span>" + eur(it.p * c.q) + "</span></div>";
+    });
+    var tot = cartTotal(), ids = cart.map(function(c){ return c.id; });
+    var missing = mission.need.filter(function(id){ return ids.indexOf(id) < 0; });
+    html += "<hr>" + '<div class="row"><b>TOTALE</b><b>' + eur(tot) + "</b></div>";
+    html += '<div class="row"><span>Budget</span><span>' + eur(mission.budget) + "</span></div>";
+    html += "<hr><div>" + (tot <= mission.budget ? "Nel budget, ottimo!" : "Fuori budget di " + eur(tot - mission.budget) + ".") + "</div>";
+    html += "<div>" + (missing.length ? "Manca: " + missing.map(function(id){ return ITEMS[id].it; }).join(", ") : "Missione completa!") + "</div>";
+    html += '<div style="text-align:center;margin-top:10px">Grazie e arrivederci!</div>';
+    r.innerHTML = html;
+  }
+})();
+</script>
+</body>
+</html>
