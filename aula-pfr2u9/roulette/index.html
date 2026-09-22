@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La roulette dei verbi &middot; Talk with Fabio</title>
+<meta name="description" content="Generatore di frasi per allenare i verbi in lezione: soggetto, verbo, contesto. Presente e passato prossimo.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+:root{
+  --ink:#16233F;
+  --ink-soft:#4A5670;
+  --paper:#F7F4EC;
+  --paper-2:#FFFDF8;
+  --rule:#DFD8C7;
+  --saffron:#E8A33D;
+  --rosso:#C4312B;
+  --verde:#2E5E4E;
+  --azzurro:#3D6E8F;
+  --arancio:#C4682B;
+  --viola:#7A5A8F;
+
+  --accent:#7A5A8F;
+
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --pen:"Caveat","Segoe Script",cursive;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+
+  --wrap:1040px;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; }
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:1.05rem; line-height:1.6;
+  -webkit-text-size-adjust:100%;
+}
+a{ color:inherit; }
+.wrap{ max-width:var(--wrap); margin:0 auto; padding:0 22px; }
+.hidden{ display:none !important; }
+
+.topbar{ border-bottom:1px solid var(--rule); background:var(--paper-2); }
+.topbar-in{ max-width:var(--wrap); margin:0 auto; padding:14px 22px; display:flex; align-items:center; justify-content:space-between; gap:14px; }
+.logo{ display:flex; align-items:center; gap:10px; text-decoration:none; font-family:var(--display); font-weight:700; font-size:1rem; }
+.logo-mark{
+  width:21px; height:21px; border-radius:50%; border:1px solid var(--ink);
+  background:conic-gradient(from 180deg, var(--saffron) 0 25%, var(--rosso) 0 50%, var(--verde) 0 75%, var(--ink) 0);
+}
+.back-link{ font-family:var(--display); font-weight:600; font-size:.88rem; color:var(--ink-soft); text-decoration:none; }
+.back-link:hover{ color:var(--ink); }
+
+/* ---------- Intro ---------- */
+.intro{ padding:34px 0 6px; }
+.eyebrow{ font-family:var(--mono); font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 10px; }
+h1{ font-family:var(--display); font-weight:800; font-size:clamp(2.1rem,6vw,3.4rem); line-height:1.02; margin:0 0 14px; }
+h1 em{ font-style:normal; color:var(--accent); }
+.lede{ margin:0; max-width:62ch; }
+
+/* ---------- Pannello ---------- */
+.setlab{ font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:22px 0 8px; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.setlab .note{ font-family:var(--body); font-size:.86rem; letter-spacing:0; text-transform:none; color:var(--ink-soft); opacity:.85; }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.chip{
+  font-family:var(--display); font-weight:600; font-size:.9rem;
+  background:var(--paper-2); color:var(--ink); border:2px solid var(--rule);
+  border-radius:999px; padding:8px 16px; cursor:pointer; line-height:1.2;
+}
+.chip:hover{ border-color:var(--ink); }
+.chip[aria-pressed="true"]{ background:var(--ink); color:var(--paper-2); border-color:var(--ink); }
+.chip .n{ font-family:var(--mono); font-size:.72em; opacity:.6; margin-left:6px; }
+.chip.mode[aria-pressed="true"]{ background:var(--accent); border-color:var(--accent); }
+.chip.tempo[aria-pressed="true"]{ background:var(--azzurro); border-color:var(--azzurro); }
+.warn{ font-family:var(--body); font-size:.9rem; color:var(--rosso); margin:8px 0 0; }
+
+.panel{ border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:6px 0 22px; margin-top:18px; }
+.panel-toggle{
+  display:flex; align-items:center; gap:8px; margin:18px 0 0;
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);
+  background:none; border:none; padding:0; cursor:pointer;
+}
+.panel-toggle .car{ transition:transform .2s ease; display:inline-block; }
+.panel-toggle[aria-expanded="true"] .car{ transform:rotate(90deg); }
+
+/* ---------- Tavolo ---------- */
+.board{ padding:26px 0 10px; }
+.reels{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+@media(max-width:720px){ .reels{ grid-template-columns:1fr; gap:10px; } }
+.reel{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:22px;
+  padding:16px 18px 18px; box-shadow:6px 6px 0 rgba(22,35,63,.08);
+  min-height:132px; display:flex; flex-direction:column; justify-content:center; gap:8px;
+  text-align:center; position:relative; overflow:hidden;
+}
+.reel .rl{ font-family:var(--mono); font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); }
+.reel .rv{
+  font-family:var(--display); font-weight:800; font-size:clamp(1.25rem,3.1vw,1.85rem); line-height:1.12;
+  word-break:break-word; min-height:1.2em;
+}
+.reel.sogg .rv{ text-transform:uppercase; color:var(--rosso); letter-spacing:.01em; }
+.reel.verbo .rv{ color:var(--ink); }
+.reel.ctx .rv{ color:var(--verde); }
+.reel.spin .rv{ filter:blur(1.4px); opacity:.72; }
+.reel .ghost{ font-family:var(--body); font-size:.95rem; color:var(--ink-soft); font-style:italic; }
+
+.actionrow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:20px 0 0; }
+.btn{
+  font-family:var(--display); font-weight:700; font-size:.98rem;
+  background:var(--accent); color:#fff; border:2px solid var(--accent);
+  border-radius:999px; padding:11px 22px; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+}
+.btn:hover{ filter:brightness(.92); }
+.btn .kbd{ font-family:var(--mono); font-weight:400; font-size:.68em; opacity:.8; border:1px solid currentColor; border-radius:5px; padding:1px 5px; }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--ink); }
+.btn-ghost:hover{ background:var(--ink); color:var(--paper-2); filter:none; }
+.btn-soft{ background:var(--paper-2); color:var(--ink); border-color:var(--rule); }
+.btn-soft:hover{ border-color:var(--ink); filter:none; }
+.btn-ok{ background:var(--verde); border-color:var(--verde); }
+.btn-no{ background:var(--rosso); border-color:var(--rosso); }
+.btn-big{ font-size:1.1rem; padding:14px 30px; }
+.btn:disabled{ opacity:.35; cursor:not-allowed; }
+
+/* ---------- Soluzione ---------- */
+.sol{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:24px 26px; box-shadow:6px 6px 0 rgba(22,35,63,.08); margin:20px 0 0;
+}
+.sol .lab{ font-family:var(--mono); font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px; }
+.frase{ font-family:var(--display); font-weight:700; font-size:clamp(1.4rem,3.8vw,2.2rem); line-height:1.24; margin:0; }
+.frase .vb{ color:var(--accent); border-bottom:4px solid rgba(122,90,143,.28); }
+.frase .cx{ color:var(--verde); }
+.why{ margin:14px 0 0; font-size:.97rem; color:var(--ink-soft); }
+.why b{ color:var(--ink); font-family:var(--display); }
+.flag{
+  display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:.64rem;
+  letter-spacing:.12em; text-transform:uppercase; border:1px solid var(--c,var(--ink)); color:var(--c,var(--ink));
+  border-radius:999px; padding:.3em .8em; margin:0 6px 6px 0;
+}
+.tblt{
+  border-left:4px solid var(--saffron); background:rgba(232,163,61,.12);
+  border-radius:0 14px 14px 0; padding:12px 16px; margin:18px 0 0;
+}
+.tblt .lab{ color:#8A6A3B; margin-bottom:4px; }
+.tblt p{ margin:0; font-style:italic; }
+.tblt .dom{ margin:8px 0 0; font-family:var(--pen); font-style:normal; font-size:1.3rem; color:var(--arancio); }
+.checkrow{ display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 0; }
+.segnata{
+  margin:18px 0 0; font-family:var(--mono); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--verde); display:flex; align-items:center; gap:8px;
+}
+.segnata.no{ color:var(--rosso); }
+
+/* ---------- Striscia punteggio ---------- */
+.strip{ display:flex; gap:10px; flex-wrap:wrap; align-items:stretch; margin:26px 0 0; }
+.stat{
+  background:var(--paper-2); border:2px solid var(--rule); border-radius:16px;
+  padding:10px 18px; min-width:118px;
+}
+.stat .k{ font-family:var(--mono); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+.stat .v{ font-family:var(--display); font-weight:800; font-size:1.7rem; line-height:1.2; }
+.stat.ok .v{ color:var(--verde); }
+.stat.no .v{ color:var(--rosso); }
+
+.deboli{ margin:22px 0 0; }
+.deboli ul{ list-style:none; margin:10px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+.deboli li{
+  font-family:var(--display); font-weight:600; font-size:.88rem;
+  background:rgba(196,49,43,.08); border:1px solid rgba(196,49,43,.35); color:#8C2F2A;
+  border-radius:999px; padding:6px 14px;
+}
+.deboli li b{ font-family:var(--mono); font-weight:400; font-size:.8em; opacity:.75; margin-left:5px; }
+
+/* ---------- Vero o falso ---------- */
+.vfcard{
+  background:var(--ink); color:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:24px 26px; margin:16px 0 0; box-shadow:6px 6px 0 rgba(22,35,63,.12);
+}
+.vfcard .lab{ font-family:var(--mono); font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; opacity:.62; margin:0 0 10px; }
+.vftxt{ font-family:var(--display); font-weight:800; font-size:clamp(1.4rem,3.8vw,2.2rem); line-height:1.22; margin:0; }
+.vfhint{ margin:12px 0 0; font-size:.95rem; opacity:.7; font-style:italic; }
+
+/* ---------- Catena ---------- */
+.catena{ display:flex; flex-direction:column; gap:10px; }
+.step{
+  display:flex; align-items:center; gap:14px;
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:18px; padding:14px 18px;
+}
+.step .num{
+  font-family:var(--display); font-weight:800; font-size:1rem; color:var(--paper-2);
+  background:var(--ink); border-radius:50%; width:30px; height:30px; flex:0 0 30px;
+  display:flex; align-items:center; justify-content:center;
+}
+.step .txt{ font-family:var(--display); font-weight:700; font-size:clamp(1.1rem,2.8vw,1.5rem); }
+.step .conn{ font-family:var(--pen); font-size:1.3rem; color:var(--arancio); }
+
+/* ---------- Guida ---------- */
+.guida{ margin:38px 0 60px; }
+.guida > summary{
+  cursor:pointer; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);
+  padding:12px 0; border-top:1px solid var(--rule);
+}
+.guida > summary:hover{ color:var(--ink); }
+.gcards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin:12px 0 0; }
+.gcard{ background:var(--paper-2); border:2px solid var(--ink); border-radius:18px; padding:16px 18px; }
+.gcard b{ font-family:var(--display); display:block; margin-bottom:5px; }
+.gcard span{ font-size:.95rem; color:var(--ink-soft); }
+.gcard .ex{ font-family:var(--pen); font-size:1.25rem; color:var(--arancio); display:block; margin-top:8px; }
+.gnote{ margin:18px 0 0; font-size:.97rem; color:var(--ink-soft); max-width:70ch; }
+.gnote b{ color:var(--ink); }
+
+.toast{
+  position:fixed; left:50%; top:18px; transform:translateX(-50%) translateY(-24px); opacity:0;
+  background:var(--ink); color:var(--paper); font-family:var(--display); font-weight:700; font-size:.94rem;
+  padding:10px 22px; border-radius:999px; z-index:50; transition:all .25s ease; pointer-events:none;
+}
+.toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+@media (max-width:640px){
+  .wrap,.topbar-in{ padding-left:16px; padding-right:16px; }
+  .sol{ padding:18px 20px; }
+  .btn-big{ width:100%; justify-content:center; }
+}
+@media (prefers-reduced-motion: reduce){
+  .reel.spin .rv{ filter:none; opacity:1; }
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="https://talkwithfabio.com/">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Talk with Fabio
+    </a>
+    <a class="back-link" href="../">&larr; La mia aula</a>
+  </div>
+</header>
+
+<section class="wrap">
+  <div class="intro">
+    <p class="eyebrow">generatore di frasi &middot; A1 e A2 &middot; solo per me</p>
+    <h1>La roulette <em>dei verbi</em></h1>
+    <p class="lede">Tre colonne girano: soggetto, verbo, contesto. Lei dice la frase coniugata ad alta voce, poi scopriamo la forma giusta e lei la rende vera su di s&eacute;. La coniugazione &egrave; solo il primo passo: il pezzo che fissa i verbi in memoria &egrave; la frase vera.</p>
+  </div>
+
+  <button class="panel-toggle" id="panelBtn" aria-expanded="true" aria-controls="panel"><span class="car">&#9656;</span> Impostazioni del giro</button>
+  <div class="panel" id="panel">
+
+    <p class="setlab">Come giochiamo</p>
+    <div class="chips" id="modeChips"></div>
+
+    <p class="setlab">Tempo verbale</p>
+    <div class="chips" id="tempoChips"></div>
+
+    <p class="setlab">Famiglie di verbi <span class="note">clicca e aggiungi tutte quelle che vuoi allenare</span></p>
+    <div class="chips" id="famChips"></div>
+    <p class="warn hidden" id="famWarn">Tieni almeno una famiglia accesa.</p>
+
+    <p class="setlab">Concordanze</p>
+    <div class="chips" id="genChips"></div>
+
+    <p class="setlab">Punti deboli</p>
+    <div class="chips" id="hardChips"></div>
+  </div>
+</section>
+
+<section class="wrap board">
+
+  <div id="roulettePane">
+    <div class="reels">
+      <article class="reel sogg" id="r0"><span class="rl">Soggetto</span><span class="rv" id="v0">&mdash;</span></article>
+      <article class="reel verbo" id="r1"><span class="rl">Verbo</span><span class="rv" id="v1">&mdash;</span></article>
+      <article class="reel ctx" id="r2"><span class="rl" id="l2">Contesto</span><span class="rv" id="v2">&mdash;</span></article>
+    </div>
+  </div>
+
+  <div id="vfCard" class="vfcard hidden">
+    <p class="lab">Leggila tu, ad alta voce</p>
+    <p class="vftxt" id="vfTxt"></p>
+    <p class="vfhint">Lei risponde: vero, oppure falso e poi la versione giusta.</p>
+  </div>
+
+  <div id="catenaPane" class="hidden">
+    <div class="catena" id="catenaList"></div>
+  </div>
+
+  <div class="actionrow">
+    <button class="btn btn-big" id="spinBtn">Gira <span class="kbd">spazio</span></button>
+    <button class="btn btn-ghost btn-big hidden" id="revealBtn">Scopri la forma <span class="kbd">invio</span></button>
+  </div>
+
+  <div class="sol hidden" id="sol">
+    <p class="lab" id="solLab">La forma corretta</p>
+    <p class="frase" id="frase"></p>
+    <p class="why" id="why"></p>
+    <div class="tblt hidden" id="tblt">
+      <p class="lab">Ora rendila vera su di te</p>
+      <p id="tbltModel"></p>
+      <p class="dom" id="tbltDom"></p>
+    </div>
+    <p class="segnata hidden" id="segnata"></p>
+    <div class="checkrow" id="checkRow">
+      <button class="btn btn-ok" id="okBtn">L'ha detta giusta <span class="kbd">1</span></button>
+      <button class="btn btn-no" id="noBtn">L'ha sbagliata <span class="kbd">2</span></button>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="stat"><span class="k">Girate</span><span class="v" id="sTot">0</span></div>
+    <div class="stat ok"><span class="k">Giuste</span><span class="v" id="sOk">0</span></div>
+    <div class="stat no"><span class="k">Sbagliate</span><span class="v" id="sNo">0</span></div>
+    <div class="stat"><span class="k">Precisione</span><span class="v" id="sPct">&ndash;</span></div>
+  </div>
+
+  <div class="deboli hidden" id="deboli">
+    <p class="setlab" style="margin-top:20px">Da rivedere <span class="note">tornano pi&ugrave; spesso nella roulette</span></p>
+    <ul id="deboliList"></ul>
+    <div class="actionrow" style="margin-top:12px">
+      <button class="btn btn-soft" id="resetBtn">Azzera tutto</button>
+    </div>
+  </div>
+
+  <details class="guida">
+    <summary>Come la gestisco in lezione</summary>
+
+    <div class="gcards">
+      <article class="gcard">
+        <b>Giro 1 &middot; Solo la forma</b>
+        <span>Accuratezza e basta. Gira, lei coniuga ad alta voce, scopriamo, si corregge da sola. Veloce, senza commenti lunghi.</span>
+        <span class="ex">"Tu fai colazione la mattina."</span>
+      </article>
+      <article class="gcard">
+        <b>Giro 2 &middot; Forma + frase vera</b>
+        <span>Dopo la forma corretta, lei la rende vera su di s&eacute;. Io reagisco e chiedo qualcosa: la conversazione nasce dal verbo.</span>
+        <span class="ex">"S&igrave;, io mangio al ristorante il venerd&igrave; con mia sorella."</span>
+      </article>
+      <article class="gcard">
+        <b>Giro 3 &middot; La catena</b>
+        <span>Tre verbi di fila, un soggetto solo. Serve per il discorso continuo, non per la singola forma.</span>
+        <span class="ex">"Io mi sveglio, poi faccio colazione e poi esco."</span>
+      </article>
+      <article class="gcard">
+        <b>Variante &middot; Vero o falso</b>
+        <span>Io leggo la frase sullo schermo, lei dice se &egrave; vera e se &egrave; falsa la corregge col verbo giusto. Ottima per svegliare l'attenzione.</span>
+        <span class="ex">"Secondo me tu ti alleni la sera."</span>
+      </article>
+    </div>
+
+    <p class="gnote"><b>Dove sbaglia di pi&ugrave;:</b> le persone <b>lei</b> e <b>loro</b> (tende a usare la forma di "io"), e i riflessivi, dove perde il <b>mi</b> e il <b>si</b>. Con l'interruttore dei punti deboli acceso la roulette pesca quelle persone e quei verbi molto pi&ugrave; spesso, e tutto quello che sbaglia torna a girare.</p>
+    <p class="gnote"><b>Quando passiamo al passato:</b> non cambia il gioco, cambia solo il tempo. Stessi soggetti, stessi verbi, e il contesto diventa "ieri" al posto di "la mattina". Cos&igrave; sente subito il collegamento invece di ricominciare da zero. Con "misto" le due cose si alternano nello stesso giro, ed &egrave; l&igrave; che si vede se ha capito davvero.</p>
+    <p class="gnote"><b>Regola d'oro:</b> lei dice la frase <b>prima</b> di scoprire la forma. Se leggiamo e poi ripetiamo non alleniamo niente.</p>
+  </details>
+
+</section>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   1. Dati
+   ============================================================ */
+
+/* Tempi: [presente, passato] */
+var T = {
+  ma:["la mattina","ieri mattina",1],
+  se:["la sera","ieri sera",1],
+  po:["il pomeriggio","ieri pomeriggio",1],
+  we:["il fine settimana","il fine settimana scorso",1],
+  ve:["il venerd\u00ec","venerd\u00ec scorso",1],
+  do:["la domenica","domenica scorsa",1],
+  og:["ogni giorno","ieri",1],
+  sm:["sempre","anche ieri",1],
+  pr:["presto","presto",0],
+  ta:["tardi","tardi",0],
+  du:["due volte alla settimana","due volte la settimana scorsa",0],
+  es:["d'estate","l'estate scorsa",1],
+  dl:["dopo il lavoro","dopo il lavoro",1],
+  pc:["prima di cena","prima di cena",1]
+};
+
+/* Luoghi */
+var L = {
+  bar:"al bar", cas:"a casa", ris:"al ristorante", pal:"in palestra",
+  cen:"in centro", uff:"in ufficio", par:"al parco", mar:"al mare",
+  sup:"al supermercato", cuc:"in cucina", let:"a letto", sc:"a scuola"
+};
+
+/* Compagnie. "sol" concorda con il soggetto. */
+var C = {
+  ami:"con un'amica", col:"con i colleghi", sor:"@SORELLA",
+  fam:"con la famiglia", can:"con il cane", vic:"con i vicini",
+  sol:"@SOLO"
+};
+
+/* V(infinito, famiglie, tipo, presente, participio, coda, tempi, luoghi, compagnie, domanda)
+   tipo: R = riflessivo (essere), E = essere, A = avere
+   presente: le 6 forme senza pronome riflessivo                       */
+var VERBI = [];
+function V(inf, fams, tipo, pres, pp, coda, t, l, c, dom){
+  VERBI.push({
+    inf:inf, fams:fams.split(" "), tipo:tipo, pres:pres.split("|"), pp:pp, coda:coda||"",
+    t:t?t.split(" "):[], l:l?l.split(" "):[], c:c?c.split(" "):[], dom:dom||""
+  });
+}
+
+/* --- La giornata --- */
+V("svegliarsi","giornata riflessivi","R","sveglio|svegli|sveglia|svegliamo|svegliate|svegliano","svegliato","",
+  "ma pr ta we og sm","","","A che ora? E nel fine settimana?");
+V("alzarsi","giornata riflessivi","R","alzo|alzi|alza|alziamo|alzate|alzano","alzato","",
+  "ma pr ta og we","","","E se fuori piove?");
+V("fare colazione","giornata bar irregolari","A","faccio|fai|fa|facciamo|fate|fanno","fatto","colazione",
+  "ma pr we og sm","bar cas","ami fam sol","Cosa mangi di solito?");
+V("prepararsi","giornata riflessivi","R","preparo|prepari|prepara|prepariamo|preparate|preparano","preparato","",
+  "ma pr ta se","cas","","Quanto tempo ti serve?");
+V("vestirsi","giornata riflessivi","R","vesto|vesti|veste|vestiamo|vestite|vestono","vestito","",
+  "ma pr ta og","cas","","Cosa ti metti per lavorare?");
+V("lavorare","giornata casa","A","lavoro|lavori|lavora|lavoriamo|lavorate|lavorano","lavorato","",
+  "ma po og we du sm","cas uff cen","col sol","Quante ore al giorno?");
+V("tornare","giornata","E","torno|torni|torna|torniamo|tornate|tornano","tornato","a casa",
+  "se ta pr dl og","","col ami sol","A che ora torni di solito?");
+V("uscire","giornata libero irregolari","E","esco|esci|esce|usciamo|uscite|escono","uscito","",
+  "se we ve og pr dl","","ami col can sor","Dove andate di solito?");
+V("cenare","giornata bar","A","ceno|ceni|cena|ceniamo|cenate|cenano","cenato","",
+  "se ta pr we og","cas ris","fam ami sol","A che ora cenate?");
+V("addormentarsi","giornata riflessivi","R","addormento|addormenti|addormenta|addormentiamo|addormentate|addormentano","addormentato","",
+  "ta pr se og sm","let","","Ti addormenti subito?");
+
+/* --- Bar e ristorante --- */
+V("mangiare","bar","A","mangio|mangi|mangia|mangiamo|mangiate|mangiano","mangiato","",
+  "we ve og du sm ma","ris cas bar","ami fam sor col sol","Cosa? E con chi?");
+V("bere","bar irregolari","A","bevo|bevi|beve|beviamo|bevete|bevono","bevuto","un caffè",
+  "ma po og sm dl","bar cas uff","ami col sol","Quanti al giorno?");
+V("ordinare","bar","A","ordino|ordini|ordina|ordiniamo|ordinate|ordinano","ordinato","una pizza",
+  "ve we se sm du","ris cas","ami fam sor","Con cosa sopra?");
+V("pagare","bar casa","A","pago|paghi|paga|paghiamo|pagate|pagano","pagato","il conto",
+  "sm we ve og","ris bar","ami col fam","Pagate sempre insieme?");
+V("prendere","giornata libero","A","prendo|prendi|prende|prendiamo|prendete|prendono","preso","il treno",
+  "ma pr og du we","","col sol","Quanto dura il viaggio?");
+V("offrire","bar","A","offro|offri|offre|offriamo|offrite|offrono","offerto","il caffè",
+  "sm we ve og","bar uff","","A chi lo offri di solito?");
+V("cucinare","bar casa","A","cucino|cucini|cucina|cuciniamo|cucinate|cucinano","cucinato","",
+  "se we do og du","cas","fam sor ami sol","Cosa ti viene meglio?");
+
+/* --- Tempo libero --- */
+V("incontrare","libero","A","incontro|incontri|incontra|incontriamo|incontrate|incontrano","incontrato","gli amici",
+  "we ve se du og","cen par bar","","Dove vi vedete?");
+V("allenarsi","libero riflessivi","R","alleno|alleni|allena|alleniamo|allenate|allenano","allenato","",
+  "ma se du we og dl","pal par cas","ami sol","Quante volte a settimana?");
+V("guardare","libero","A","guardo|guardi|guarda|guardiamo|guardate|guardano","guardato","un film",
+  "se we ve ta og","cas","fam ami sor sol","Che genere ti piace?");
+V("leggere","libero irregolari","A","leggo|leggi|legge|leggiamo|leggete|leggono","letto","",
+  "se ma pr ta og es","cas par","sol","Cosa stai leggendo adesso?");
+V("ballare","libero","A","ballo|balli|balla|balliamo|ballate|ballano","ballato","",
+  "we ve se sm es","cen cas","ami sor","Che musica?");
+V("viaggiare","libero","A","viaggio|viaggi|viaggia|viaggiamo|viaggiate|viaggiano","viaggiato","",
+  "es we sm du","","fam ami sor sol","Dove vorresti andare?");
+V("divertirsi","libero riflessivi","R","diverto|diverti|diverte|divertiamo|divertite|divertono","divertito","",
+  "we ve se sm es","cen mar par","ami fam sor","Cosa ti diverte di più?");
+V("riposarsi","libero riflessivi","R","riposo|riposi|riposa|riposiamo|riposate|riposano","riposato","",
+  "do we po dl sm","cas mar par","sol","Come ti riposi davvero?");
+V("annoiarsi","libero riflessivi","R","annoio|annoi|annoia|annoiamo|annoiate|annoiano","annoiato","",
+  "do po we sm","cas uff","sol","Quando ti succede?");
+
+/* --- Casa e spesa --- */
+V("comprare","casa bar","A","compro|compri|compra|compriamo|comprate|comprano","comprato","il pane",
+  "ma og sm we ve","sup cen","sor fam sol","Dove lo compri?");
+V("pulire","casa","A","pulisco|pulisci|pulisce|puliamo|pulite|puliscono","pulito","casa",
+  "we do sm du po","","fam sor sol","Quanto ci metti?");
+V("lavare","casa","A","lavo|lavi|lava|laviamo|lavate|lavano","lavato","i piatti",
+  "se og sm dl pc","cuc","fam sor sol","Chi li lava a casa tua?");
+V("mettere in ordine","casa irregolari","A","metto|metti|mette|mettiamo|mettete|mettono","messo","in ordine",
+  "we ma sm do","cas cuc","fam sor sol","Ogni quanto lo fai?");
+V("spendere","casa","A","spendo|spendi|spende|spendiamo|spendete|spendono","speso","troppo",
+  "we sm ve es","sup cen","ami sor","Su cosa spendi di più?");
+V("fare la spesa","casa irregolari","A","faccio|fai|fa|facciamo|fate|fanno","fatto","la spesa",
+  "sm we ve du og","sup cen","fam sor sol","Il sabato o durante la settimana?");
+V("dare una mano","casa irregolari","A","do|dai|dà|diamo|date|danno","dato","una mano",
+  "sm we og du dl","cas cuc","","A chi la dai di solito?");
+
+/* --- Irregolari --- */
+V("andare al lavoro","irregolari giornata","E","vado|vai|va|andiamo|andate|vanno","andato","al lavoro",
+  "ma pr ta og du sm","","col sol","Come ci vai, a piedi o in macchina?");
+V("andare in palestra","irregolari libero","E","vado|vai|va|andiamo|andate|vanno","andato","in palestra",
+  "se ma du we dl og","","ami sol","Quante volte a settimana?");
+V("andare al mare","irregolari libero","E","vado|vai|va|andiamo|andate|vanno","andato","al mare",
+  "es we do ve","","fam ami sor","Dove, di preciso?");
+V("venire","irregolari bar","E","vengo|vieni|viene|veniamo|venite|vengono","venuto","a cena",
+  "we ve se sm do","ris","ami fam sor","Chi viene di solito?");
+V("stare bene","irregolari","E","sto|stai|sta|stiamo|state|stanno","stato","bene",
+  "ma se we og sm","cas mar","fam ami sol","Quando stai meglio?");
+V("essere in ritardo","irregolari","E","sono|sei|è|siamo|siete|sono","stato","in ritardo",
+  "ma sm og du we","","","Ti capita spesso?");
+V("avere fame","irregolari","A","ho|hai|ha|abbiamo|avete|hanno","avuto","fame",
+  "ma se po sm og pc","","","Cosa mangi quando succede?");
+V("dire la verità","irregolari","A","dico|dici|dice|diciamo|dite|dicono","detto","la verità",
+  "sm og we du","","","Ti è mai costato caro?");
+V("scegliere","irregolari","A","scelgo|scegli|sceglie|scegliamo|scegliete|scelgono","scelto","il ristorante",
+  "sm we ve du og","","ami fam sor","Chi sceglie di solito?");
+V("partire","irregolari libero","E","parto|parti|parte|partiamo|partite|partono","partito","",
+  "pr ma we es ve","","fam ami sor sol","Per dove?");
+V("rimanere","irregolari casa","E","rimango|rimani|rimane|rimaniamo|rimanete|rimangono","rimasto","a casa",
+  "do we se sm po","","fam can sol","Cosa fai quando resti dentro?");
+V("volere","irregolari bar","A","voglio|vuoi|vuole|vogliamo|volete|vogliono","voluto","un caffè",
+  "ma po sm dl og","bar uff","col ami","Lungo o macchiato?");
+V("arrabbiarsi","irregolari riflessivi","R","arrabbio|arrabbi|arrabbia|arrabbiamo|arrabbiate|arrabbiano","arrabbiato","",
+  "sm og we","uff cas","col vic fam","Per cosa, di solito?");
+V("mettersi","riflessivi irregolari","R","metto|metti|mette|mettiamo|mettete|mettono","messo","le scarpe",
+  "ma pr og sm","cas","","Quali sono le tue preferite?");
+V("sentirsi bene","riflessivi","R","sento|senti|sente|sentiamo|sentite|sentono","sentito","bene",
+  "ma se we og dl","mar par","","Quando ti senti così?");
+V("lavarsi","riflessivi giornata","R","lavo|lavi|lava|laviamo|lavate|lavano","lavato","le mani",
+  "sm og ma pc","cuc cas","","Prima di mangiare?");
+
+/* Famiglie */
+var FAM = [
+  {k:"giornata",  n:"La giornata"},
+  {k:"bar",       n:"Bar e ristorante"},
+  {k:"libero",    n:"Tempo libero"},
+  {k:"casa",      n:"Casa e spesa"},
+  {k:"riflessivi",n:"Riflessivi"},
+  {k:"irregolari",n:"Irregolari"}
+];
+
+/* La catena racconta azioni in fila: i verbi di stato non ci stanno. */
+var FUORI_CATENA = {"essere in ritardo":1,"stare bene":1,"sentirsi bene":1,"avere fame":1,"annoiarsi":1,"dire la verit\u00e0":1,"volere":1};
+
+var SOGG = ["io","tu","lei","noi","voi","loro"];
+var PRON = ["mi","ti","si","ci","vi","si"];
+var AUX_E = ["sono","sei","è","siamo","siete","sono"];
+var AUX_A = ["ho","hai","ha","abbiamo","avete","hanno"];
+
+var MODI = [
+  {k:"g1", n:"1 &middot; Solo la forma"},
+  {k:"g2", n:"2 &middot; Forma + frase vera"},
+  {k:"g3", n:"3 &middot; La catena"},
+  {k:"vf", n:"Vero o falso"}
+];
+var TEMPI = [
+  {k:"pres", n:"Presente"},
+  {k:"pass", n:"Passato prossimo"},
+  {k:"mix",  n:"Misto"}
+];
+
+var FRAMES_VF = [
+  "Secondo me tu {V}.",
+  "Scommetto che tu {V}.",
+  "Sono sicuro che tu {V}.",
+  "Dimmi se sbaglio: tu {V}."
+];
+
+var DOM_GEN = ["Davvero? Con chi?","Ah sì? Quante volte?","E poi cosa succede?","Sempre o solo qualche volta?","E a te piace?"];
+
+/* ============================================================
+   2. Stato
+   ============================================================ */
+
+var STORE = "icf_roulette_v1";
+var st = {
+  modo:"g2", tempo:"pres", fams:{}, femm:true, hard:true,
+  tot:0, ok:0, deboli:{}
+};
+FAM.forEach(function(f){ st.fams[f.k] = true; });
+
+function load(){
+  try{
+    var raw = localStorage.getItem(STORE);
+    if(!raw) return;
+    var o = JSON.parse(raw);
+    if(o && typeof o === "object"){
+      if(o.modo) st.modo = o.modo;
+      if(o.tempo) st.tempo = o.tempo;
+      if(o.fams) { FAM.forEach(function(f){ if(typeof o.fams[f.k] === "boolean") st.fams[f.k] = o.fams[f.k]; }); }
+      if(typeof o.femm === "boolean") st.femm = o.femm;
+      if(typeof o.hard === "boolean") st.hard = o.hard;
+      if(typeof o.tot === "number") st.tot = o.tot;
+      if(typeof o.ok === "number") st.ok = o.ok;
+      if(o.deboli && typeof o.deboli === "object") st.deboli = o.deboli;
+    }
+  }catch(e){}
+}
+function save(){
+  try{ localStorage.setItem(STORE, JSON.stringify(st)); }catch(e){}
+}
+
+/* ============================================================
+   3. Motore di coniugazione
+   ============================================================ */
+
+function plurale(i){ return i >= 3; }
+
+function concorda(pp, i){
+  var base = pp.slice(0, -1);
+  var fin;
+  if(plurale(i)) fin = st.femm ? "e" : "i";
+  else fin = st.femm ? "a" : "o";
+  return base + fin;
+}
+
+function sorellaAgg(i){
+  return "con " + ["mia","tua","sua","nostra","vostra","la loro"][i] + " sorella";
+}
+function soloAgg(i){
+  if(plurale(i)) return st.femm ? "da sole" : "da soli";
+  return st.femm ? "da sola" : "da solo";
+}
+
+function etichettaSogg(i){
+  if(i === 2) return st.femm ? "lei" : "lui";
+  return SOGG[i];
+}
+
+/* Restituisce il gruppo verbale, senza soggetto. */
+function gruppo(v, i, tempo){
+  var coda = v.coda ? " " + v.coda : "";
+  if(tempo === "pres"){
+    if(v.tipo === "R") return PRON[i] + " " + v.pres[i] + coda;
+    return v.pres[i] + coda;
+  }
+  if(v.tipo === "R") return PRON[i] + " " + AUX_E[i] + " " + concorda(v.pp, i) + coda;
+  if(v.tipo === "E") return AUX_E[i] + " " + concorda(v.pp, i) + coda;
+  return AUX_A[i] + " " + v.pp + coda;
+}
+
+function contestoTesto(ctx, i, tempo){
+  if(ctx.tipo === "t") return T[ctx.k][tempo === "pass" ? 1 : 0];
+  if(ctx.tipo === "c" && ctx.k === "sol") return soloAgg(i);
+  if(ctx.tipo === "c" && ctx.k === "sor") return sorellaAgg(i);
+  if(ctx.tipo === "c") return C[ctx.k];
+  return L[ctx.k];
+}
+
+/* Frase completa, in HTML. */
+function frase(tiro){
+  var i = tiro.s, v = tiro.v, tempo = tiro.tempo;
+  var g = gruppo(v, i, tempo);
+  var cx = tiro.ctx ? contestoTesto(tiro.ctx, i, tempo) : "";
+  var sogg = etichettaSogg(i);
+  var parti;
+  if(tempo === "pass" && tiro.ctx && tiro.ctx.tipo === "t" && T[tiro.ctx.k][2]){
+    parti = esc(cap(cx), "cx") + " " + esc(sogg, "") + " " + esc(g, "vb");
+  } else {
+    parti = esc(cap(sogg), "") + " " + esc(g, "vb") + (cx ? " " + esc(cx, "cx") : "");
+  }
+  return parti + ".";
+}
+function fraseTesto(tiro){
+  return frase(tiro).replace(/<[^>]+>/g, "");
+}
+function esc(s, cls){
+  var t = String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  return cls ? '<span class="' + cls + '">' + t + "</span>" : t;
+}
+function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+/* La frase vera, in prima persona, come modello per lei. */
+function modelloIo(tiro){
+  var v = tiro.v, tempo = tiro.tempo;
+  var g = gruppo(v, 0, tempo);
+  var cx = tiro.ctx ? contestoTesto(tiro.ctx, 0, tempo) : "";
+  if(tempo === "pass" && tiro.ctx && tiro.ctx.tipo === "t" && T[tiro.ctx.k][2]) return cap(cx) + " io " + g + ".";
+  return "Io " + g + (cx ? " " + cx : "") + ".";
+}
+function modelloIoNeg(tiro, senzaPunto){
+  var v = tiro.v, tempo = tiro.tempo;
+  var g = gruppo(v, 0, tempo);
+  var cx = tiro.ctx ? contestoTesto(tiro.ctx, 0, tempo) : "";
+  var neg = v.tipo === "R" ? g.replace(/^(\S+)/, "non $1") : "non " + g;
+  return "No, io " + neg + (cx ? " " + cx : "") + (senzaPunto ? "" : ".");
+}
+
+/* ============================================================
+   4. Sorteggio
+   ============================================================ */
+
+function pool(){
+  return VERBI.filter(function(v){
+    for(var i = 0; i < v.fams.length; i++){ if(st.fams[v.fams[i]]) return true; }
+    return false;
+  });
+}
+
+function chiaveDebole(i, v, tempo){ return i + "|" + v.inf + "|" + tempo; }
+
+function pesoSogg(i){
+  if(!st.hard) return 1;
+  if(i === 2 || i === 5) return 3;   /* lei e loro: sono i suoi punti deboli */
+  return 1;
+}
+function pesoVerbo(v, i, tempo){
+  var p = 1;
+  if(st.hard && v.tipo === "R") p += 1.6;
+  if(st.hard && v.fams.indexOf("irregolari") >= 0) p += 0.8;
+  var d = st.deboli[chiaveDebole(i, v, tempo)];
+  if(d) p += 2.4 * Math.min(d, 3);
+  return p;
+}
+function pescaPesato(arr, peso){
+  var tot = 0, i;
+  for(i = 0; i < arr.length; i++) tot += peso(arr[i], i);
+  var r = Math.random() * tot;
+  for(i = 0; i < arr.length; i++){
+    r -= peso(arr[i], i);
+    if(r <= 0) return arr[i];
+  }
+  return arr[arr.length - 1];
+}
+function pesca(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+
+function tempoDelGiro(){
+  if(st.tempo === "mix") return Math.random() < 0.5 ? "pres" : "pass";
+  return st.tempo;
+}
+
+function pescaContesto(v, tempo){
+  var tempi = [], altri = [];
+  v.t.forEach(function(k){ if(T[k]) tempi.push({tipo:"t", k:k}); });
+  v.l.forEach(function(k){ if(L[k]) altri.push({tipo:"l", k:k}); });
+  v.c.forEach(function(k){ if(C[k]) altri.push({tipo:"c", k:k}); });
+  /* Al passato il contesto di tempo e quello che fa sentire il salto: "ieri" al posto di "la mattina". */
+  if(tempo === "pass" && tempi.length && (!altri.length || Math.random() < 0.7)) return pesca(tempi);
+  var tutti = tempi.concat(altri);
+  if(!tutti.length) return null;
+  return pesca(tutti);
+}
+
+var ultimo = {s:-1, v:"", ctx:""};
+
+function tiroNuovo(){
+  var p = pool();
+  if(!p.length) return null;
+  var tempo = tempoDelGiro();
+  var s, v, ctx, giri = 0;
+  do{
+    giri++;
+    s = pescaPesato([0,1,2,3,4,5], function(x){ return pesoSogg(x); });
+    v = pescaPesato(p, function(vv){ return pesoVerbo(vv, s, tempo); });
+    ctx = pescaContesto(v, tempo);
+  } while(giri < 14 && s === ultimo.s && v.inf === ultimo.v);
+  ultimo = {s:s, v:v.inf, ctx: ctx ? ctx.k : ""};
+  return {s:s, v:v, ctx:ctx, tempo:tempo};
+}
+
+function tiroCatena(){
+  var p = pool().filter(function(v){ return !FUORI_CATENA[v.inf]; });
+  if(p.length < 3) return null;
+  var tempo = tempoDelGiro();
+  var s = pescaPesato([0,1,2,3,4,5], function(x){ return pesoSogg(x); });
+  var scelti = [], usati = {};
+  var guardia = 0;
+  while(scelti.length < 3 && guardia < 200){
+    guardia++;
+    var v = pescaPesato(p, function(vv){ return pesoVerbo(vv, s, tempo); });
+    if(usati[v.inf]) continue;
+    usati[v.inf] = true;
+    scelti.push(v);
+  }
+  if(scelti.length < 3) return null;
+  return {s:s, verbi:scelti, tempo:tempo};
+}
+
+/* ============================================================
+   5. Interfaccia
+   ============================================================ */
+
+function $(id){ return document.getElementById(id); }
+
+var toastT = null;
+function toast(msg){
+  var el = $("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("show"); }, 1600);
+}
+
+function chip(label, on, onClick, cls){
+  var b = document.createElement("button");
+  b.className = "chip" + (cls ? " " + cls : "");
+  b.type = "button";
+  b.innerHTML = label;
+  b.setAttribute("aria-pressed", on ? "true" : "false");
+  b.addEventListener("click", onClick);
+  return b;
+}
+
+function renderChips(){
+  var m = $("modeChips"); m.innerHTML = "";
+  MODI.forEach(function(x){
+    m.appendChild(chip(x.n, st.modo === x.k, function(){
+      st.modo = x.k; save(); renderChips(); resetTavolo();
+    }, "mode"));
+  });
+
+  var t = $("tempoChips"); t.innerHTML = "";
+  TEMPI.forEach(function(x){
+    t.appendChild(chip(x.n, st.tempo === x.k, function(){
+      st.tempo = x.k; save(); renderChips(); resetTavolo();
+    }, "tempo"));
+  });
+
+  var f = $("famChips"); f.innerHTML = "";
+  FAM.forEach(function(x){
+    var n = VERBI.filter(function(v){ return v.fams.indexOf(x.k) >= 0; }).length;
+    f.appendChild(chip(x.n + '<span class="n">' + n + "</span>", !!st.fams[x.k], function(){
+      var accese = FAM.filter(function(y){ return st.fams[y.k]; });
+      if(st.fams[x.k] && accese.length === 1){
+        $("famWarn").classList.remove("hidden");
+        setTimeout(function(){ $("famWarn").classList.add("hidden"); }, 2200);
+        return;
+      }
+      st.fams[x.k] = !st.fams[x.k]; save(); renderChips();
+    }));
+  });
+
+  var g = $("genChips"); g.innerHTML = "";
+  g.appendChild(chip("Al femminile <span class=\"n\">lei, svegliata</span>", st.femm, function(){
+    st.femm = true; save(); renderChips(); ridisegnaSoluzione();
+  }));
+  g.appendChild(chip("Al maschile <span class=\"n\">lui, svegliato</span>", !st.femm, function(){
+    st.femm = false; save(); renderChips(); ridisegnaSoluzione();
+  }));
+
+  var h = $("hardChips"); h.innerHTML = "";
+  h.appendChild(chip("Insisti su lei, loro e riflessivi", st.hard, function(){
+    st.hard = !st.hard; save(); renderChips();
+    toast(st.hard ? "Punti deboli: acceso" : "Punti deboli: spento");
+  }));
+}
+
+/* --- Tavolo --- */
+
+var tiro = null, catena = null, fase = "pronto";
+var spinT = [], spinStop = [];
+
+function resetTavolo(){
+  tiro = null; catena = null; fase = "pronto";
+  $("sol").classList.add("hidden");
+  $("segnata").classList.add("hidden");
+  $("checkRow").classList.remove("hidden");
+  $("vfCard").classList.add("hidden");
+  $("revealBtn").classList.add("hidden");
+  $("spinBtn").classList.remove("hidden");
+  $("spinBtn").disabled = false;
+  var cat = st.modo === "g3";
+  $("roulettePane").classList.toggle("hidden", cat);
+  $("catenaPane").classList.toggle("hidden", !cat);
+  $("spinBtn").innerHTML = (cat ? "Costruisci la catena" : (st.modo === "vf" ? "Genera la frase" : "Gira")) + ' <span class="kbd">spazio</span>';
+  if(cat){
+    $("catenaList").innerHTML = '<div class="step"><span class="num">?</span><span class="txt" style="font-family:var(--body);font-weight:400;color:var(--ink-soft);font-style:italic">Premi il pulsante: esce un soggetto e tre verbi da collegare.</span></div>';
+  } else {
+    $("v0").innerHTML = "&mdash;"; $("v1").innerHTML = "&mdash;"; $("v2").innerHTML = "&mdash;";
+  }
+}
+
+function giraReel(idx, valori, durata, finale){
+  var el = $("r" + idx), val = $("v" + idx);
+  el.classList.add("spin");
+  clearInterval(spinT[idx]);
+  spinT[idx] = setInterval(function(){
+    val.textContent = pesca(valori);
+  }, 70);
+  clearTimeout(spinStop[idx]);
+  spinStop[idx] = setTimeout(function(){
+    clearInterval(spinT[idx]);
+    el.classList.remove("spin");
+    val.textContent = finale;
+  }, durata);
+}
+
+function gira(){
+  if(fase === "girando") return;
+  if(st.modo === "g3") return giraCatena();
+
+  var t = tiroNuovo();
+  if(!t){ toast("Accendi almeno una famiglia"); return; }
+  if(st.modo === "vf"){ t.s = 1; t.ctx = pescaContesto(t.v, t.tempo); t.frame = pesca(FRAMES_VF); }
+  tiro = t;
+  $("vfCard").classList.add("hidden");
+  fase = "girando";
+  $("sol").classList.add("hidden");
+  $("segnata").classList.add("hidden");
+  $("checkRow").classList.remove("hidden");
+  $("revealBtn").classList.add("hidden");
+  $("spinBtn").disabled = true;
+
+  var p = pool();
+  var campSogg = [0,1,2,3,4,5].map(etichettaSogg);
+  var campVerbi = p.map(function(v){ return v.inf; });
+  var campCtx = [];
+  p.forEach(function(v){
+    v.t.forEach(function(k){ if(T[k]) campCtx.push(T[k][t.tempo === "pass" ? 1 : 0]); });
+    v.l.forEach(function(k){ if(L[k]) campCtx.push(L[k]); });
+  });
+  if(!campCtx.length) campCtx = ["a casa"];
+
+  var ctxFin = tiro.ctx ? contestoTesto(tiro.ctx, tiro.s, tiro.tempo) : "";
+  $("l2").innerHTML = tiro.tempo === "pass" ? 'Contesto <span style="color:var(--azzurro)">&middot; passato</span>' : "Contesto";
+
+  giraReel(0, campSogg, 620, etichettaSogg(tiro.s));
+  giraReel(1, campVerbi, 900, tiro.v.inf);
+  giraReel(2, campCtx.length ? campCtx : ["a casa"], 1180, ctxFin || "—");
+
+  setTimeout(function(){
+    fase = "girato";
+    $("spinBtn").disabled = false;
+    $("spinBtn").classList.add("hidden");
+    $("revealBtn").classList.remove("hidden");
+    $("revealBtn").innerHTML = (st.modo === "vf" ? "Scopri la correzione" : "Scopri la forma") + ' <span class="kbd">invio</span>';
+    if(st.modo === "vf"){
+      $("vfTxt").textContent = fraseVF(tiro);
+      $("vfCard").classList.remove("hidden");
+    }
+    $("revealBtn").focus();
+  }, 1220);
+}
+
+function giraCatena(){
+  var c = tiroCatena();
+  if(!c){ toast("Servono almeno tre verbi: accendi altre famiglie"); return; }
+  catena = c;
+  fase = "girato";
+  $("sol").classList.add("hidden");
+  $("segnata").classList.add("hidden");
+  $("checkRow").classList.remove("hidden");
+  var conn = ["poi", "e poi", ""];
+  var html = "";
+  html += '<div class="step"><span class="num">&#9679;</span><span class="txt" style="color:var(--rosso);text-transform:uppercase">'
+        + esc(etichettaSogg(c.s), "") + '</span><span class="conn">'
+        + (c.tempo === "pass" ? "ieri" : "di solito") + '</span></div>';
+  c.verbi.forEach(function(v, k){
+    html += '<div class="step"><span class="num">' + (k + 1) + '</span><span class="txt">' + esc(v.inf, "") + "</span>"
+          + (conn[k] ? '<span class="conn" style="margin-left:auto">' + conn[k] + " \u2193</span>" : "") + "</div>";
+  });
+  $("catenaList").innerHTML = html;
+  $("spinBtn").classList.add("hidden");
+  $("revealBtn").classList.remove("hidden");
+  $("revealBtn").innerHTML = 'Scopri la catena <span class="kbd">invio</span>';
+  $("revealBtn").focus();
+}
+
+function scopri(){
+  if(fase !== "girato") return;
+  fase = "scoperto";
+  $("revealBtn").classList.add("hidden");
+  $("spinBtn").classList.remove("hidden");
+  $("spinBtn").innerHTML = (st.modo === "g3" ? "Nuova catena" : "Gira ancora") + ' <span class="kbd">spazio</span>';
+  ridisegnaSoluzione();
+  $("sol").classList.remove("hidden");
+  $("sol").scrollIntoView({block:"nearest", behavior:"smooth"});
+}
+
+function ridisegnaSoluzione(){
+  if(fase !== "scoperto") return;
+
+  if(st.modo === "g3"){
+    var c = catena;
+    var conn = ["", ", poi ", " e poi "];
+    var txt = cap(etichettaSogg(c.s)) + " ";
+    var pezzi = "";
+    c.verbi.forEach(function(v, k){
+      pezzi += (k === 0 ? "" : conn[k]) + gruppo(v, c.s, c.tempo);
+    });
+    var apertura = c.tempo === "pass" ? "Ieri " + etichettaSogg(c.s) + " " : cap(etichettaSogg(c.s)) + " ";
+    $("solLab").textContent = "La catena, tutta di fila";
+    $("frase").innerHTML = esc(apertura, "") + '<span class="vb">' + esc(pezzi, "") + "</span>.";
+    $("why").innerHTML = "Il soggetto si dice <b>una volta sola</b>, all'inizio. Nei verbi riflessivi il pronome resta attaccato a ogni verbo."
+      + (c.tempo === "pass" ? " Occhio agli ausiliari: cambiano da verbo a verbo dentro la stessa frase." : "");
+    $("tblt").classList.toggle("hidden", true);
+    $("checkRow").classList.remove("hidden");
+    return;
+  }
+
+  if(st.modo === "vf"){
+    $("solLab").textContent = "Se dice falso, ecco il modello";
+    $("frase").innerHTML = esc("Vero → ", "") + '<span class="vb">' + esc("Sì, " + primaMinuscola(modelloIo(tiro)), "") + "</span>";
+    $("why").innerHTML = "Falso &rarr; <b>" + escTxt(modelloIoNeg(tiro, true)) + "</b>, e poi la versione vera con il verbo giusto.<br>"
+      + notaVerbo(tiro);
+    $("tblt").classList.add("hidden");
+    $("checkRow").classList.remove("hidden");
+    return;
+  }
+
+  $("solLab").textContent = tiro.tempo === "pass" ? "La forma corretta \u00b7 passato prossimo" : "La forma corretta \u00b7 presente";
+  $("frase").innerHTML = frase(tiro);
+  $("why").innerHTML = notaVerbo(tiro);
+
+  if(st.modo === "g2"){
+    $("tblt").classList.remove("hidden");
+    $("tbltModel").innerHTML = escTxt("Sì, " + primaMinuscola(modelloIo(tiro))) + "  &nbsp;/&nbsp;  " + escTxt(modelloIoNeg(tiro));
+    $("tbltDom").textContent = tiro.v.dom || pesca(DOM_GEN);
+  } else {
+    $("tblt").classList.add("hidden");
+  }
+  $("checkRow").classList.remove("hidden");
+}
+
+function escTxt(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function primaMinuscola(s){ return s.charAt(0).toLowerCase() + s.slice(1); }
+
+function notaVerbo(t){
+  var v = t.v, i = t.s, out = [];
+  if(v.tipo === "R"){
+    out.push('<span class="flag" style="--c:var(--viola)">riflessivo &middot; ' + PRON[i] + "</span>");
+  }
+  if(v.fams.indexOf("irregolari") >= 0){
+    out.push('<span class="flag" style="--c:var(--rosso)">irregolare</span>');
+  }
+  if(i === 2 || i === 5){
+    out.push('<span class="flag" style="--c:var(--arancio)">persona difficile</span>');
+  }
+  var testo = "";
+  if(t.tempo === "pass"){
+    if(v.tipo === "R"){
+      testo = "Riflessivo al passato: sempre <b>essere</b>, e il participio concorda con il soggetto.";
+    } else if(v.tipo === "E"){
+      testo = "Ausiliare <b>essere</b>: il participio cambia finale insieme al soggetto.";
+    } else {
+      testo = "Ausiliare <b>avere</b>: il participio non si muove, resta <b>" + escTxt(v.pp) + "</b>.";
+    }
+  } else {
+    if(v.tipo === "R"){
+      testo = "Senza il <b>" + PRON[i] + "</b> la frase non esiste. È il pezzo che sparisce per primo.";
+    } else if(v.fams.indexOf("irregolari") >= 0){
+      testo = "Verbo irregolare: la radice cambia, non si ricava dall'infinito.";
+    } else {
+      testo = /isco$/.test(v.pres[0])
+        ? "Verbo in <b>-isc-</b>: torna nelle persone singolari e in <b>" + escTxt(v.pres[5]) + "</b>, sparisce in noi e voi."
+        : "Infinito <b>" + escTxt(v.inf) + "</b>, terza persona plurale accento sulla radice: <b>" + escTxt(v.pres[5]) + "</b>.";
+    }
+  }
+  return out.join(" ") + (out.length ? "<br>" : "") + testo;
+}
+
+/* --- Punteggio --- */
+
+function segna(giusta){
+  if(fase !== "scoperto") return;
+  st.tot++;
+  if(giusta) st.ok++;
+  var chiavi = [];
+  if(st.modo === "g3" && catena){
+    catena.verbi.forEach(function(v){ chiavi.push(chiaveDebole(catena.s, v, catena.tempo)); });
+  } else if(tiro){
+    chiavi.push(chiaveDebole(tiro.s, tiro.v, tiro.tempo));
+  }
+  chiavi.forEach(function(k){
+    if(giusta){
+      if(st.deboli[k]){ st.deboli[k]--; if(st.deboli[k] <= 0) delete st.deboli[k]; }
+    } else {
+      st.deboli[k] = (st.deboli[k] || 0) + 1;
+    }
+  });
+  save();
+  renderPunteggio();
+  fase = "segnato";
+  $("checkRow").classList.add("hidden");
+  var seg = $("segnata");
+  seg.textContent = giusta ? "✓  Segnata come giusta" : "✗  Segnata: tornerà a girare";
+  seg.className = "segnata" + (giusta ? "" : " no");
+  $("spinBtn").focus();
+}
+
+function renderPunteggio(){
+  $("sTot").textContent = st.tot;
+  $("sOk").textContent = st.ok;
+  $("sNo").textContent = st.tot - st.ok;
+  $("sPct").textContent = st.tot ? Math.round(st.ok / st.tot * 100) + "%" : "–";
+
+  var keys = Object.keys(st.deboli).sort(function(a,b){ return st.deboli[b] - st.deboli[a]; });
+  $("deboli").classList.toggle("hidden", keys.length === 0);
+  var ul = $("deboliList");
+  ul.innerHTML = "";
+  keys.slice(0, 18).forEach(function(k){
+    var p = k.split("|");
+    var li = document.createElement("li");
+    li.textContent = etichettaSogg(parseInt(p[0], 10)) + " · " + p[1] + (p[2] === "pass" ? " · passato" : "");
+    var b = document.createElement("b");
+    b.textContent = "×" + st.deboli[k];
+    li.appendChild(b);
+    ul.appendChild(li);
+  });
+}
+
+/* --- Vero o falso: la frase la legge il prof --- */
+
+function fraseVF(t){
+  var g = gruppo(t.v, 1, t.tempo);
+  var cx = t.ctx ? contestoTesto(t.ctx, 1, t.tempo) : "";
+  var corpo = g + (cx ? " " + cx : "");
+  return (t.frame || FRAMES_VF[0]).replace("{V}", corpo);
+}
+
+/* ============================================================
+   6. Eventi
+   ============================================================ */
+
+$("spinBtn").addEventListener("click", gira);
+$("revealBtn").addEventListener("click", scopri);
+$("okBtn").addEventListener("click", function(){ segna(true); });
+$("noBtn").addEventListener("click", function(){ segna(false); });
+$("resetBtn").addEventListener("click", function(){
+  st.tot = 0; st.ok = 0; st.deboli = {};
+  save(); renderPunteggio(); toast("Azzerato");
+});
+
+$("panelBtn").addEventListener("click", function(){
+  var open = this.getAttribute("aria-expanded") === "true";
+  this.setAttribute("aria-expanded", open ? "false" : "true");
+  $("panel").classList.toggle("hidden", open);
+});
+
+document.addEventListener("keydown", function(e){
+  var tag = (e.target && e.target.tagName) || "";
+  if(tag === "INPUT" || tag === "TEXTAREA") return;
+  if(e.key === " " || e.code === "Space"){
+    e.preventDefault();
+    if(fase === "girato") return;
+    gira();
+  } else if(e.key === "Enter"){
+    if(fase === "girato"){ e.preventDefault(); scopri(); }
+  } else if(e.key === "1"){
+    if(fase === "scoperto"){ e.preventDefault(); segna(true); }
+  } else if(e.key === "2"){
+    if(fase === "scoperto"){ e.preventDefault(); segna(false); }
+  }
+});
+
+/* ============================================================
+   7. Avvio
+   ============================================================ */
+
+load();
+renderChips();
+renderPunteggio();
+resetTavolo();
+
+/* Esposto solo per i controlli automatici. */
+window.__ROULETTE = {
+  VERBI:VERBI, SOGG:SOGG, T:T, L:L, C:C,
+  gruppo:gruppo, frase:fraseTesto, modelloIo:modelloIo, modelloIoNeg:modelloIoNeg,
+  st:st, contestoTesto:contestoTesto, etichettaSogg:etichettaSogg,
+  FRAMES_VF:FRAMES_VF, pescaContesto:pescaContesto, fraseVF:fraseVF
+};
+
+})();
+</script>
+</body>
+</html>
