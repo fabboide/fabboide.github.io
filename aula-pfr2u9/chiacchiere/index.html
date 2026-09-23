@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Che mi racconti? · Talk with Fabio</title>
+<meta name="description" content="Gioco di conversazione: le domande di tutti i giorni da fare alle amiche, da allenare in lezione.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+
+/* Fase 1 */
+.risposta{background:var(--bubble);border:1px solid #CBDDD2;border-radius:18px 18px 18px 4px;padding:18px 20px;font-size:1.32rem;line-height:1.45;margin:0 0 6px}
+.risposta::before{content:"lei dice";display:block;font-family:var(--hand);font-size:1.15rem;color:var(--basil);margin-bottom:2px}
+.soluzione{display:none;margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+.soluzione.show{display:block}
+.soluzione ul{margin:6px 0 0;padding-left:20px}
+.soluzione li{margin-bottom:4px}
+.nota-gram{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin-top:10px}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+
+/* Fase 2 */
+.msg{display:flex;gap:12px;align-items:flex-start}
+.avatar{width:46px;height:46px;flex:0 0 46px;border-radius:50%;background:var(--kraft);display:grid;place-items:center;font-size:1.5rem;border:1px solid var(--line)}
+.bolla{background:var(--bubble);border:1px solid #CBDDD2;border-radius:4px 18px 18px 18px;padding:14px 16px;font-size:1.2rem;flex:1}
+.bolla .chi{font-family:var(--display);font-size:.82rem;font-weight:700;color:var(--basil);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+.compito{margin:16px 0 0;padding:14px 16px;border-left:4px solid var(--tomato);background:#FBF0EE;border-radius:0 12px 12px 0}
+.compito b{font-family:var(--display)}
+.spunti{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.spunti span{font-size:.92rem;background:var(--stone);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.pronome-box{margin-top:12px;font-family:var(--hand);font-size:1.25rem;color:var(--basil);display:none}
+.pronome-box.show{display:block}
+.vuoto{color:var(--muted);text-align:center;padding:26px 10px}
+
+/* Fase 3 */
+.scena h3{font-size:1.45rem;margin-bottom:2px}
+.scena .dove{color:var(--muted);margin-bottom:12px}
+.battuta{font-size:1.24rem;background:var(--bubble);border:1px solid #CBDDD2;border-radius:4px 18px 18px 18px;padding:13px 16px;margin-bottom:14px}
+ul.missione{list-style:none;margin:0;padding:0}
+ul.missione li{padding:9px 0 9px 34px;border-bottom:1px solid var(--line);position:relative;cursor:pointer}
+ul.missione li::before{content:"";position:absolute;left:0;top:11px;width:20px;height:20px;border:2px solid var(--line);border-radius:6px;background:var(--paper)}
+ul.missione li.done{color:var(--muted)}
+ul.missione li.done::before{content:"✓";color:var(--paper);background:var(--basil);border-color:var(--basil);display:grid;place-items:center;font-size:.85rem;line-height:1}
+.twist{margin-top:14px;padding:12px 14px;border:1px dashed var(--tomato);border-radius:12px;background:#FBF0EE;display:none}
+.twist.show{display:block}
+.twist b{font-family:var(--display);color:var(--tomato)}
+
+/* Appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.appunti .riga{justify-content:space-between}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+/* Frasi utili */
+dialog{border:0;border-radius:16px;padding:0;max-width:660px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.5rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:54%}
+.dlg-body h3{margin:18px 0 4px;color:var(--basil);font-size:1.12rem}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Che mi racconti?</h1>
+    <p>Le domande di tutti i giorni: quelle che fai davvero alle amiche, al telefono o in chat. Si comincia riconoscendole, poi si risponde ai messaggi, alla fine si chiacchiera davvero. <span class="en">Everyday questions: recognise them, ask them, then just talk.</span></p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Fasi dell'attività">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>Qual era la domanda?</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>La chat</button>
+    <button role="tab" aria-selected="false" data-phase="p3"><span class="n">3</span>Faccia a faccia</button>
+    <button class="side" id="openPhrases" type="button">Frasi utili</button>
+  </nav>
+
+  <!-- FASE 1 -->
+  <section class="phase active" id="p1">
+    <h2>Qual era la domanda?</h2>
+    <p class="lead">Leggi la risposta della tua amica e di' a voce la domanda che l'ha provocata. Poi scopri le possibili domande e confronta. <span class="en">Say the question out loud, then check.</span></p>
+    <div class="grid2">
+      <div class="panel">
+        <p class="risposta" id="r1">&nbsp;</p>
+        <div class="soluzione" id="sol1">
+          <h3>Potevi chiedere</h3>
+          <ul id="solList"></ul>
+          <div class="nota-gram" id="solNota"></div>
+        </div>
+        <div class="riga">
+          <button class="btn red" id="show1" type="button">Scopri le domande</button>
+          <button class="btn ghost" id="next1" type="button">Un'altra risposta</button>
+          <span class="count" id="c1"></span>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Come si gioca</h3>
+        <p style="margin:0 0 10px">Non c'è una sola domanda giusta: se la tua funziona, vale. Le domande in elenco servono solo a farti vedere altri modi di dirla.</p>
+        <h3>Sali di livello</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>fai la domanda in due modi diversi</li>
+          <li>aggiungi una reazione prima di chiedere: «Ah sì? E...»</li>
+          <li>dopo la domanda, aggiungine subito un'altra più curiosa</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FASE 2 -->
+  <section class="phase" id="p2">
+    <h2>La chat delle amiche</h2>
+    <p class="lead">Arriva un messaggio. Rispondi a voce e soprattutto <b>rilancia con delle domande</b>: la conversazione non deve morire. <span class="en">Answer out loud, then keep it alive with questions.</span></p>
+
+    <div class="chips" id="catChips" style="margin-bottom:12px"></div>
+    <div class="toolbar">
+      <button class="btn red" id="drawMsg" type="button">Pesca un messaggio</button>
+      <button class="btn ghost" id="doneMsg" type="button" disabled>Fatto! Prossimo</button>
+      <button class="btn ghost" id="bonusBtn" type="button" aria-pressed="false">Sfida pronomi: off</button>
+      <div class="timer" id="timerWrap">
+        <output id="timerOut">1:30</output>
+        <button class="btn ghost" id="timerBtn" type="button">Avvia</button>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="panel" id="cardBox">
+        <p class="vuoto" id="vuoto2">Scegli un tema qui sopra, poi premi <b>Pesca un messaggio</b>.</p>
+        <div id="cardIn" hidden>
+          <div class="msg">
+            <div class="avatar" id="mAvatar" aria-hidden="true"></div>
+            <div class="bolla"><div class="chi" id="mChi"></div><div id="mTesto"></div></div>
+          </div>
+          <div class="compito"><b>Il tuo compito:</b> <span id="mCompito"></span>
+            <div class="spunti" id="mSpunti"></div>
+            <div class="pronome-box" id="mPronome"></div>
+          </div>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Messaggi fatti</h3>
+        <p class="count" id="c2" style="font-size:2rem;margin:0">0</p>
+        <p class="en" id="c2sub" style="margin:0 0 12px">Ancora nessuno.</p>
+        <h3>Se si blocca</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>«E tu? Come è andata la tua giornata?»</li>
+          <li>«Davvero? Raccontami tutto!»</li>
+          <li>«E poi cosa è successo?»</li>
+          <li>«Come mai?»</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 3 -->
+  <section class="phase" id="p3">
+    <h2>Faccia a faccia</h2>
+    <p class="lead">Una scena, un ruolo, tre obiettivi. Io faccio l'amica, tu porti avanti la conversazione: gli obiettivi si spuntano quando li hai fatti davvero. <span class="en">A scene, a role, three goals to hit while you talk.</span></p>
+    <div class="toolbar">
+      <button class="btn red" id="drawScene" type="button">Pesca una scena</button>
+      <button class="btn ghost" id="twistBtn" type="button" disabled>Colpo di scena</button>
+      <span class="count" id="c3"></span>
+    </div>
+    <div class="grid2">
+      <div class="panel scena">
+        <div id="sceneEmpty" class="vuoto">Nessuna scena. Premi <b>Pesca una scena</b>.</div>
+        <div id="sceneIn" hidden>
+          <h3 id="sTitolo"></h3>
+          <div class="dove" id="sDove"></div>
+          <div class="battuta" id="sVia"></div>
+          <h3>I tuoi tre obiettivi</h3>
+          <ul class="missione" id="sMissione"></ul>
+          <div class="twist" id="sTwist"><b>Colpo di scena:</b> <span id="sTwistTxt"></span></div>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Le regole</h3>
+        <p style="margin:0 0 10px">Non si corregge mentre parla: gli errori finiscono negli appunti qui sotto e si riprendono alla fine.</p>
+        <h3>Per chiudere bene</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>«Dai, ci sentiamo presto!»</li>
+          <li>«Ti faccio sapere, ok?»</li>
+          <li>«Allora ci vediamo sabato!»</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- APPUNTI -->
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Gli errori da riprendere alla fine, le parole nuove, le domande venute male.</p>
+    <textarea id="note" placeholder="Es. «come è andata» → com'è andata · le ho scritto (non l'ho scritto)"></textarea>
+    <div class="riga">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<dialog id="phrasesDlg" aria-labelledby="dlgTitle">
+  <div class="dlg-head"><h2 id="dlgTitle">Frasi utili</h2><button class="btn ghost" id="closePhrases" type="button">Chiudi</button></div>
+  <div class="dlg-body">
+    <h3>Come apri</h3>
+    <table>
+      <tr><td>Ciao! Come stai? / Come va?</td><td class="en">Hi! How are you?</td></tr>
+      <tr><td>Che mi racconti? / Che si dice?</td><td class="en">What's new?</td></tr>
+      <tr><td>Che fai di bello?</td><td class="en">What are you up to?</td></tr>
+      <tr><td>Come è andata oggi? → Com'è andata?</td><td class="en">How did it go today?</td></tr>
+      <tr><td>Che hai fatto nel weekend?</td><td class="en">What did you do at the weekend?</td></tr>
+      <tr><td>Che programmi hai per stasera?</td><td class="en">Any plans for tonight?</td></tr>
+      <tr><td>Ti va di prendere un caffè?</td><td class="en">Fancy a coffee?</td></tr>
+    </table>
+    <h3>Come tieni viva la conversazione</h3>
+    <table>
+      <tr><td>Davvero? E poi?</td><td class="en">Really? And then?</td></tr>
+      <tr><td>Come mai?</td><td class="en">How come?</td></tr>
+      <tr><td>In che senso?</td><td class="en">What do you mean?</td></tr>
+      <tr><td>Raccontami tutto!</td><td class="en">Tell me everything!</td></tr>
+      <tr><td>E tu? Tu piuttosto?</td><td class="en">And you? What about you?</td></tr>
+      <tr><td>Aspetta, non ho capito: chi?</td><td class="en">Wait, I didn't get it: who?</td></tr>
+    </table>
+    <h3>Le reazioni</h3>
+    <table>
+      <tr><td>Che bello! / Che forte!</td><td class="en">How nice! / How cool!</td></tr>
+      <tr><td>Ma dai! / Non ci credo!</td><td class="en">No way!</td></tr>
+      <tr><td>Mamma mia! / Che casino!</td><td class="en">Wow! / What a mess!</td></tr>
+      <tr><td>Che palle! / Che sfiga!</td><td class="en">What a drag! / Bad luck! (informale)</td></tr>
+      <tr><td>Mi dispiace tanto.</td><td class="en">I'm so sorry.</td></tr>
+      <tr><td>Meno male!</td><td class="en">Thank goodness!</td></tr>
+    </table>
+    <h3>I pronomi della chiacchierata</h3>
+    <table>
+      <tr><td><b>ci</b> = lì, in quel posto: «Ci vai spesso?» «Ci sono stata ieri.»</td><td class="en">there</td></tr>
+      <tr><td><b>ci</b> nelle espressioni: «Quanto ci metti?» «Ci penso io.» «Non ci credo!»</td><td class="en">set phrases</td></tr>
+      <tr><td><b>lo, la, li, le</b> = chi o cosa: «L'hai vista?» «Li ho chiamati.»</td><td class="en">direct: him, her, them</td></tr>
+      <tr><td><b>gli, le</b> = a chi: «Le ho scritto.» «Gli ho detto tutto.»</td><td class="en">indirect: to him, to her</td></tr>
+      <tr><td><b>mi, ti</b>: «Mi racconti?» «Ti va?» «Ti disturbo?»</td><td class="en">to me, to you</td></tr>
+      <tr><td><b>ne</b>: «Che ne dici?» «Ne parliamo domani.»</td><td class="en">about it</td></tr>
+    </table>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ DATI: FASE 1 ============ */
+  var RISPOSTE = [
+    {r:"Bene dai, un po' stanca ma bene. Tu?", d:["Come stai?","Come va?","Tutto bene?"]},
+    {r:"Eh, così così. Non è stata una gran settimana.", d:["Come stai?","Come va la settimana?","Tutto bene?"]},
+    {r:"Niente di speciale, sono a casa a fare il bucato.", d:["Che fai?","Che stai facendo?","Che fai di bello?"]},
+    {r:"Sono sul tram, sto andando al lavoro.", d:["Dove sei?","Che stai facendo?","Sei già uscita?"]},
+    {r:"Una giornata infinita: tre riunioni e zero pause.", d:["Com'è andata oggi?","Com'è andata la giornata?","Come è andata al lavoro?"]},
+    {r:"Benissimo! Alla fine il capo mi ha fatto i complimenti.", d:["Com'è andata la riunione?","Com'è andata al lavoro?","Come è finita con il capo?"]},
+    {r:"Ho dormito fino a mezzogiorno, che lusso.", d:["Che hai fatto domenica?","Come hai passato la domenica?"]},
+    {r:"Sono stata al mare con mia sorella.", d:["Che hai fatto nel weekend?","Dove sei stata nel weekend?"]},
+    {r:"Niente di che: sono rimasta a casa a guardare una serie.", d:["Che hai fatto di bello nel weekend?","Che hai combinato sabato?"]},
+    {r:"Sì, ci vado ogni giovedì.", d:["Vai spesso in piscina?","Ci vai spesso?"], n:"Attenzione: «ci» qui vuol dire in piscina."},
+    {r:"No, non ci sono mai stata, ma mi piacerebbe tanto.", d:["Sei mai stata a Napoli?","Conosci Napoli?"], n:"«ci» = a Napoli."},
+    {r:"L'ho vista sabato al mercato, sta benissimo.", d:["Hai visto Giulia?","Quando hai visto Giulia?","La senti ancora?"], n:"«l'ho vista» = ho visto lei, Giulia."},
+    {r:"Le ho scritto ieri ma non mi ha ancora risposto.", d:["Hai sentito Marta?","Hai scritto a Marta?"], n:"«le» = a lei, a Marta."},
+    {r:"Gli ho detto tutto, era ora.", d:["Hai parlato con Luca?","Gliel'hai detto?"], n:"«gli» = a lui."},
+    {r:"Stasera niente, crollo sul divano.", d:["Che fai stasera?","Che programmi hai per stasera?","Usciamo stasera?"]},
+    {r:"Sabato ho un matrimonio, aiuto!", d:["Che programmi hai per il weekend?","Che fai sabato?","Sei libera sabato?"]},
+    {r:"Ad agosto vado in Sicilia per due settimane.", d:["Dove vai in vacanza?","Che programmi hai per l'estate?"]},
+    {r:"Sì, volentieri! A che ora ci vediamo?", d:["Ti va di prendere un caffè?","Vieni al cinema con me?","Ci vediamo domani?"]},
+    {r:"Mi dispiace, non posso: ho lezione fino alle otto.", d:["Ci vediamo stasera?","Vieni a cena da me?","Sei libera dopo?"]},
+    {r:"Da tre anni ormai, dal 2023.", d:["Da quanto tempo vivi a Torino?","Da quanto lavori lì?"]},
+    {r:"Un'ora, purtroppo. Prendo due mezzi.", d:["Quanto ci metti ad arrivare al lavoro?","Quanto ci vuole da casa tua?"], n:"«ci metto un'ora» si dice sempre con ci."},
+    {r:"Sette euro e cinquanta per un caffè e un cornetto, un furto.", d:["Quanto hai pagato?","Quanto costa lì?","Quant'era?"]},
+    {r:"Guarda, sto benissimo da quando ho cambiato lavoro.", d:["Come stai?","Come va il lavoro nuovo?"]},
+    {r:"È successo che alla fine ho mollato il corso.", d:["Cosa è successo?","Come è finita con il corso?","Che mi racconti?"]},
+    {r:"Sinceramente non mi è piaciuto per niente.", d:["Ti è piaciuto il film?","Com'era il film?","Che ne pensi?"]},
+    {r:"Un po' tutte e due, ma preferisco la montagna.", d:["Preferisci il mare o la montagna?","Ti piace di più il mare o la montagna?"]},
+    {r:"Perché mi sono svegliata tardi, scusa!", d:["Perché sei in ritardo?","Come mai non sei ancora arrivata?"]},
+    {r:"Ci penso e ti faccio sapere entro domani.", d:["Allora vieni?","Che ne dici?","Hai deciso?"], n:"«ci penso» = penso a questa cosa."},
+    {r:"Sì, me l'ha detto Chiara ieri sera.", d:["Lo sai di Giulia?","Chi te l'ha detto?","Hai saputo la novità?"]},
+    {r:"No, tranquilla, non mi disturbi mai.", d:["Ti disturbo?","Posso chiamarti adesso?","Sei occupata?"]}
+  ];
+
+  /* ============ DATI: FASE 2 ============ */
+  var MESSAGGI = [
+    /* --- come stai --- */
+    {cat:"Come stai", chi:"Giulia", em:"🙂", t:"Ciaoooo! Quanto tempo! Come stai?",
+     c:"Rispondi davvero (non solo «bene») e rilancia: chiedile come sta lei e cosa fa di bello in questo periodo.",
+     s:["anch'io","e tu?","che mi racconti?"], p:"ti: «Ti trovo bene!»"},
+    {cat:"Come stai", chi:"Marta", em:"😴", t:"Scusa se sparisco, in questi giorni sono stanchissima.",
+     c:"Chiedile perché è così stanca, come dorme e se può riposare nel weekend.",
+     s:["come mai?","da quanto?","riesci a dormire?"], p:"ti: «Ti posso aiutare?»"},
+    {cat:"Come stai", chi:"Chiara", em:"🤒", t:"Sono a casa con la febbre da due giorni.",
+     c:"Chiedile come sta adesso, se ha chiamato il medico e se le serve qualcosa.",
+     s:["ti senti meglio?","hai bisogno di qualcosa?"], p:"le / ti: «Ti porto la spesa?»"},
+    {cat:"Come stai", chi:"Sara", em:"🎉", t:"Oggi sono felicissima!!!",
+     c:"Fai almeno tre domande per farti raccontare tutta la storia.",
+     s:["cosa è successo?","dai, racconta!","e poi?"], p:"me lo: «Me lo racconti?»"},
+    {cat:"Come stai", chi:"Elena", em:"😕", t:"Bah. Giornata no.",
+     c:"Chiedile cosa è successo con delicatezza e offrile qualcosa (una chiamata, un caffè).",
+     s:["che è successo?","vuoi parlarne?","ti chiamo?"], p:"ti: «Ti va di sentirci?»"},
+    {cat:"Come stai", chi:"Giulia", em:"🤨", t:"Tutto bene dai... tu piuttosto? Ti sento strana.",
+     c:"Rispondi alla sua domanda e riporta la palla da lei: cosa vuol dire «tutto bene dai»?",
+     s:["in che senso?","sicura?","dimmi la verità"], p:"mi: «Non mi convinci!»"},
+    /* --- la giornata --- */
+    {cat:"La giornata", chi:"Marta", em:"🏢", t:"Sono appena uscita dall'ufficio. Che giornata...",
+     c:"Chiedile com'è andata, cosa è successo di pesante e cosa fa adesso.",
+     s:["com'è andata?","è successo qualcosa?","e adesso?"], p:"ci: «Ci torni domani?»"},
+    {cat:"La giornata", chi:"Sara", em:"😬", t:"Oggi ho avuto l'esame.",
+     c:"Chiedile com'è andato, cosa le hanno chiesto e quando saprà il voto.",
+     s:["com'è andato?","difficile?","quando esce il voto?"], p:"l': «L'hai passato?»"},
+    {cat:"La giornata", chi:"Chiara", em:"🍝", t:"Ho appena finito di cucinare per dieci persone 😅",
+     c:"Chiedile per chi ha cucinato, cosa ha preparato e come l'ha fatto.",
+     s:["per chi?","che cosa hai fatto?","come si prepara?"], p:"lo/la: «Come la fai la carbonara?»"},
+    {cat:"La giornata", chi:"Elena", em:"📮", t:"Sono in coda alla posta da un'ora.",
+     c:"Chiedile perché è lì, quanto deve aspettare ancora e cosa fa per passare il tempo.",
+     s:["come mai?","quanto manca?","che fai intanto?"], p:"ci: «Quanto ci vuole ancora?»"},
+    {cat:"La giornata", chi:"Giulia", em:"⏰", t:"Stamattina mi sono alzata alle cinque.",
+     c:"Chiedile perché, se è riuscita a dormire e come si sente adesso.",
+     s:["perché così presto?","sei crollata?"], p:"ti: «Ti sei riaddormentata?»"},
+    {cat:"La giornata", chi:"Sara", em:"🐕", t:"Ho portato Kira dal veterinario.",
+     c:"Chiedile come sta la cagnolina, cosa ha detto il veterinario e se deve tornarci.",
+     s:["sta bene?","cosa ha detto?","è grave?"], p:"ci: «Ci devi tornare?»"},
+    /* --- il weekend --- */
+    {cat:"Il weekend", chi:"Giulia", em:"🤩", t:"Weekend pazzesco, ti devo raccontare tutto!",
+     c:"Fai le domande giuste per farti raccontare la storia dall'inizio: dove, con chi, cosa è successo.",
+     s:["dove sei stata?","con chi?","e poi?"], p:"me lo: «Raccontamelo!»"},
+    {cat:"Il weekend", chi:"Marta", em:"🏛️", t:"Sono stata a Firenze due giorni.",
+     c:"Chiedile con chi era, cosa ha visto, dove ha mangiato e se ci tornerebbe.",
+     s:["con chi?","cosa hai visto?","ti è piaciuta?"], p:"ci: «Ci sei già stata prima?»"},
+    {cat:"Il weekend", chi:"Chiara", em:"📦", t:"Ho passato tutto il weekend a fare le scatole per il trasloco.",
+     c:"Chiedile dove va ad abitare, quando trasloca e se le serve una mano.",
+     s:["dove vai?","quando?","ti serve aiuto?"], p:"ti: «Ti do una mano?»"},
+    {cat:"Il weekend", chi:"Elena", em:"🎤", t:"Sabato sono andata al concerto!",
+     c:"Chiedile chi suonava, com'era, con chi c'è andata e quanto è tornata tardi.",
+     s:["chi suonava?","com'era?","a che ora sei tornata?"], p:"ci: «Ci sei andata da sola?»"},
+    {cat:"Il weekend", chi:"Sara", em:"🍽️", t:"Domenica pranzo dai miei, come sempre.",
+     c:"Chiedile chi c'era, cosa ha cucinato sua mamma e se le piace questa abitudine.",
+     s:["chi c'era?","cosa avete mangiato?","ogni domenica?"], p:"li/le: «Li vedi tutte le settimane?»"},
+    {cat:"Il weekend", chi:"Giulia", em:"🛋️", t:"Non ho fatto niente e sono felice così.",
+     c:"Chiedile com'è stato il divano, cosa ha guardato e se aveva bisogno di staccare.",
+     s:["proprio niente?","cosa hai guardato?","ne avevi bisogno?"], p:"ne: «Ne avevi bisogno?»"},
+    /* --- programmi --- */
+    {cat:"Programmi", chi:"Marta", em:"📅", t:"Che fai questo weekend?",
+     c:"Rispondi con un programma preciso e proponile qualcosa da fare insieme.",
+     s:["ti va di...?","sei libera?","che ne dici?"], p:"ne: «Che ne dici di...?»"},
+    {cat:"Programmi", chi:"Chiara", em:"🚄", t:"Ho preso i biglietti per Roma!",
+     c:"Chiedile quando parte, con chi va, dove dorme e cosa vuole vedere.",
+     s:["quando parti?","quanti giorni?","dove dormi?"], p:"ci: «Ci vai in treno?»"},
+    {cat:"Programmi", chi:"Sara", em:"🥳", t:"Sabato faccio una festa a casa mia, vieni?",
+     c:"Accetta (o rifiuta con una scusa), poi chiedi ora, chi c'è e cosa portare.",
+     s:["a che ora?","chi viene?","cosa porto?"], p:"ci: «Ci vengo volentieri!»"},
+    {cat:"Programmi", chi:"Elena", em:"💃", t:"Sto pensando di iscrivermi a un corso di ballo.",
+     c:"Chiedile che ballo, dove, quando e convincila a iscriversi con te.",
+     s:["che tipo di ballo?","quando sono le lezioni?","ci proviamo insieme?"], p:"ci: «Ci andiamo insieme?»"},
+    {cat:"Programmi", chi:"Giulia", em:"🏖️", t:"Ad agosto finalmente ferie!",
+     c:"Chiedile quanti giorni, dove va, con chi e cosa farà appena arrivata.",
+     s:["quanto stai via?","dove vai?","non vedi l'ora?"], p:"ci: «Quanto ci stai?»"},
+    {cat:"Programmi", chi:"Marta", em:"☕", t:"Ti va di fare qualcosa insieme questa settimana?",
+     c:"Di' di sì e mettetevi d'accordo: proponi il giorno, l'ora e il posto.",
+     s:["che giorno?","dove ci vediamo?","a che ora?"], p:"ci: «Ci vediamo alle sette?»"},
+    /* --- novità --- */
+    {cat:"Novità", chi:"Chiara", em:"💍", t:"Indovina un po': Marta si sposa!",
+     c:"Reagisci come si deve, poi chiedi quando, dove e se siete invitate.",
+     s:["ma dai!","quando?","con chi?"], p:"l': «L'hai sentita?»"},
+    {cat:"Novità", chi:"Sara", em:"💼", t:"Ho cambiato lavoro!",
+     c:"Congratulati e chiedi che lavoro è, com'è il nuovo ufficio e come si trova.",
+     s:["che bello!","che fai esattamente?","ti piace?"], p:"ti: «Ti trovi bene?»"},
+    {cat:"Novità", chi:"Elena", em:"💇", t:"Mi sono tagliata i capelli cortissimi!",
+     c:"Chiedi com'è venuta, perché l'ha fatto e se si piace. Poi chiedile una foto.",
+     s:["come stai?","ti piaci?","mandami una foto!"], p:"li: «Li hai tagliati tanto?»"},
+    {cat:"Novità", chi:"Giulia", em:"🐱", t:"Ho adottato un gatto 🐱",
+     c:"Chiedi come si chiama, quanti anni ha, dove l'ha preso e come sta a casa.",
+     s:["come si chiama?","che carattere ha?","dove l'hai preso?"], p:"l': «L'hai chiamato come?»"},
+    {cat:"Novità", chi:"Marta", em:"💔", t:"Ho lasciato Luca.",
+     c:"Reagisci con delicatezza: chiedile come sta, cosa è successo e se vuole vedersi.",
+     s:["mi dispiace","come stai?","vuoi parlarne?"], p:"lo: «Lo hai già detto ai tuoi?»"},
+    {cat:"Novità", chi:"Chiara", em:"📦", t:"Mi trasferisco a Milano il mese prossimo.",
+     c:"Chiedile perché, dove andrà ad abitare e quando potete vedervi prima che parta.",
+     s:["come mai?","in che zona?","ci vediamo prima?"], p:"ci: «Ci vengo a trovarti!»"}
+  ];
+
+  /* ============ DATI: FASE 3 ============ */
+  var SCENE = [
+    {t:"Il caffè al volo", dove:"Al bar, avete dieci minuti prima che lei torni al lavoro.",
+     via:"«Ciao! Che sorpresa, non ci vediamo da mesi! Come stai?»",
+     m:["Chiedile come sta e come va il lavoro","Fatti raccontare cosa ha fatto ieri sera","Scopri che programmi ha per il weekend"],
+     tw:"Il suo telefono squilla: è il capo. Quando riattacca, chiedile cosa voleva."},
+    {t:"La telefonata della domenica", dove:"La chiami di domenica pomeriggio: lei è appena tornata dalle vacanze.",
+     via:"«Pronto! Scusa, sto ancora disfando la valigia. Dimmi tutto!»",
+     m:["Chiedile dove è stata e con chi","Fatti raccontare la cosa più bella del viaggio","Chiedile se ci tornerebbe e perché"],
+     tw:"Ti dice che ha perso una valigia all'aeroporto: chiedile com'è finita."},
+    {t:"Arrivi tardi alla cena", dove:"Cena tra amiche: arrivi quando gli altri hanno già iniziato.",
+     via:"«Eccoti! Ti sei persa la storia di Sara, pazzesca!»",
+     m:["Scusati e spiega perché sei in ritardo","Fatti raccontare la storia che ti sei persa","Chiedi a ognuna come sta"],
+     tw:"Qualcuno propone di andare a ballare dopo: chiedi dove, a che ora, e decidi."},
+    {t:"Dopo sei mesi di silenzio", dove:"Le scrivi (a voce) dopo tanto tempo che non vi sentite.",
+     via:"«Ma ciao!!! Non ci posso credere! È passato un secolo, no?»",
+     m:["Spiega perché sei sparita","Chiedile tre cose che sono cambiate nella sua vita","Proponi di vedervi presto e fissate il giorno"],
+     tw:"Scopri che si è trasferita: chiedile dove abita adesso e com'è la città."},
+    {t:"L'amica giù di morale", dove:"Lei ti ha scritto «giornata no» e tu la chiami.",
+     via:"«Niente... è solo una di quelle giornate, sai?»",
+     m:["Falle dire cosa è successo davvero","Chiedile come si sente adesso","Proponile qualcosa per tirarla su"],
+     tw:"Ti dice che non ha voglia di uscire: insisti con gentilezza e trova un'alternativa."},
+    {t:"Alla festa di Sara", dove:"Una festa a casa di un'amica: conosci una persona nuova.",
+     via:"«Ciao! Tu sei un'amica di Sara? Io la conosco dall'università.»",
+     m:["Presentati e spiega come conosci Sara","Fai tre domande per conoscerla (lavoro, città, tempo libero)","Trovate una cosa che avete in comune"],
+     tw:"Scopri che lavora nel tuo stesso settore: chiedile tutto del suo lavoro."},
+    {t:"Organizziamo il weekend", dove:"Dovete decidere insieme cosa fare sabato.",
+     via:"«Allora, sabato: io sono libera dalle tre in poi. Tu che dici?»",
+     m:["Proponi almeno due idee diverse","Chiedile cosa preferisce e perché","Mettetevi d'accordo su ora, posto e come arrivarci"],
+     tw:"Le previsioni danno pioggia: rifate il programma insieme."},
+    {t:"Pausa pranzo con la collega", dove:"Mensa del lavoro, mezz'ora di pausa.",
+     via:"«Posso sedermi qui? Oggi non ne posso più di riunioni...»",
+     m:["Chiedile com'è andata la mattinata","Parlate di cosa fate fuori dal lavoro","Chiedile un consiglio su qualcosa"],
+     tw:"Arriva il capo e si siede con voi: cambia argomento con eleganza."}
+  ];
+
+  /* ============ UTILI ============ */
+  function $(id){ return document.getElementById(id); }
+  function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+  function pescaDiverso(lista, escluso){
+    var pool = lista.filter(function(x){ return x !== escluso; });
+    if(!pool.length) pool = lista;
+    return pool[Math.floor(Math.random()*pool.length)];
+  }
+
+  /* ============ STATO E SALVATAGGIO ============ */
+  var CHIAVE = "icf_che_mi_racconti";
+  var stato = { f1:0, f2:0, f3:0, fatte2:[], note:"", bonus:false, cat:"tutte" };
+  try{
+    var salvato = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(salvato && typeof salvato === "object"){
+      for(var k in stato){ if(salvato[k] !== undefined) stato[k] = salvato[k]; }
+    }
+  }catch(e){}
+  var salvaTimer = null;
+  function salva(){
+    clearTimeout(salvaTimer);
+    salvaTimer = setTimeout(function(){
+      try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){}
+    }, 250);
+  }
+
+  /* ============ LINGUETTE ============ */
+  var tabs = document.querySelectorAll("nav.steps [role=tab]");
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){
+      Array.prototype.forEach.call(tabs, function(x){
+        x.setAttribute("aria-selected", x === t ? "true" : "false");
+      });
+      Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(s){
+        s.classList.toggle("active", s.id === t.dataset.phase);
+      });
+    });
+  });
+
+  var dlg = $("phrasesDlg");
+  $("openPhrases").addEventListener("click", function(){ dlg.showModal(); });
+  $("closePhrases").addEventListener("click", function(){ dlg.close(); });
+
+  /* ============ FASE 1 ============ */
+  var mazzo1 = shuffle(RISPOSTE.slice()), i1 = 0, corrente1 = null;
+  function mostra1(){
+    if(i1 >= mazzo1.length){ mazzo1 = shuffle(RISPOSTE.slice()); i1 = 0; }
+    corrente1 = mazzo1[i1];
+    $("r1").textContent = corrente1.r;
+    $("sol1").classList.remove("show");
+    $("show1").disabled = false;
+    $("solList").innerHTML = "";
+    $("solNota").textContent = "";
+    conta1();
+  }
+  function conta1(){
+    $("c1").textContent = stato.f1 ? "fatte: " + stato.f1 : "";
+  }
+  $("show1").addEventListener("click", function(){
+    if(!corrente1) return;
+    var ul = $("solList");
+    ul.innerHTML = "";
+    corrente1.d.forEach(function(q){
+      var li = document.createElement("li");
+      li.textContent = "« " + q + " »";
+      ul.appendChild(li);
+    });
+    $("solNota").textContent = corrente1.n || "";
+    $("sol1").classList.add("show");
+    this.disabled = true;
+    stato.f1++; salva(); conta1();
+  });
+  $("next1").addEventListener("click", function(){ i1++; mostra1(); });
+  mostra1();
+
+  /* ============ FASE 2 ============ */
+  var CATEGORIE = MESSAGGI.map(function(m){ return m.cat; })
+    .filter(function(c,i,a){ return a.indexOf(c) === i; });
+  var catChips = $("catChips");
+  [{k:"tutte", l:"Tutti i temi"}].concat(CATEGORIE.map(function(c){ return {k:c, l:c}; }))
+    .forEach(function(f){
+      var b = document.createElement("button");
+      b.type = "button"; b.textContent = f.l; b.dataset.k = f.k;
+      b.setAttribute("aria-pressed", String(f.k === stato.cat));
+      b.addEventListener("click", function(){
+        stato.cat = f.k; salva();
+        Array.prototype.forEach.call(catChips.children, function(c){
+          c.setAttribute("aria-pressed", String(c.dataset.k === stato.cat));
+        });
+      });
+      catChips.appendChild(b);
+    });
+
+  var corrente2 = null;
+  function conta2(){
+    $("c2").textContent = stato.f2;
+    $("c2sub").textContent = stato.f2 === 0 ? "Ancora nessuno."
+      : stato.f2 === 1 ? "Uno, si comincia!"
+      : stato.f2 < 5 ? "Bene così." : "Ottimo ritmo!";
+  }
+  function pescaMsg(){
+    var pool = MESSAGGI.filter(function(m){ return stato.cat === "tutte" || m.cat === stato.cat; });
+    var freschi = pool.filter(function(m){ return stato.fatte2.indexOf(m.t) < 0; });
+    if(!freschi.length){ stato.fatte2 = []; freschi = pool; }
+    corrente2 = pescaDiverso(freschi, corrente2);
+    $("vuoto2").hidden = true;
+    $("cardIn").hidden = false;
+    $("mAvatar").textContent = corrente2.em;
+    $("mChi").textContent = corrente2.chi + " · " + corrente2.cat;
+    $("mTesto").textContent = corrente2.t;
+    $("mCompito").textContent = corrente2.c;
+    var sp = $("mSpunti"); sp.innerHTML = "";
+    corrente2.s.forEach(function(w){
+      var s = document.createElement("span"); s.textContent = w; sp.appendChild(s);
+    });
+    var pb = $("mPronome");
+    pb.textContent = "Sfida pronomi: prova a infilare " + corrente2.p;
+    pb.classList.toggle("show", !!stato.bonus);
+    $("doneMsg").disabled = false;
+    resetTimer();
+  }
+  $("drawMsg").addEventListener("click", function(){
+    pescaMsg();
+    this.textContent = "Un altro messaggio";
+  });
+  $("doneMsg").addEventListener("click", function(){
+    if(corrente2 && stato.fatte2.indexOf(corrente2.t) < 0) stato.fatte2.push(corrente2.t);
+    stato.f2++; salva(); conta2();
+    pescaMsg();
+  });
+  $("bonusBtn").addEventListener("click", function(){
+    stato.bonus = !stato.bonus; salva();
+    this.setAttribute("aria-pressed", String(stato.bonus));
+    this.textContent = "Sfida pronomi: " + (stato.bonus ? "on" : "off");
+    $("mPronome").classList.toggle("show", !!stato.bonus && !!corrente2);
+  });
+  conta2();
+  if(stato.bonus){
+    $("bonusBtn").setAttribute("aria-pressed","true");
+    $("bonusBtn").textContent = "Sfida pronomi: on";
+  }
+
+  /* Cronometro: un minuto e mezzo per messaggio */
+  var DURATA = 90, left = DURATA, tId = null;
+  var tOut = $("timerOut"), tBtn = $("timerBtn"), tWrap = $("timerWrap");
+  function disegnaTimer(){
+    var m = Math.floor(left/60), s = left % 60;
+    tOut.textContent = m + ":" + (s < 10 ? "0" : "") + s;
+    tWrap.classList.toggle("zero", left === 0);
+  }
+  function fermaTimer(){ if(tId){ clearInterval(tId); tId = null; } }
+  function resetTimer(){ fermaTimer(); left = DURATA; disegnaTimer(); tBtn.textContent = "Avvia"; }
+  tBtn.addEventListener("click", function(){
+    if(tId){ fermaTimer(); tBtn.textContent = "Riprendi"; return; }
+    if(left <= 0) left = DURATA;
+    tBtn.textContent = "Pausa";
+    tId = setInterval(function(){
+      left--; disegnaTimer();
+      if(left <= 0){ fermaTimer(); tBtn.textContent = "Ancora"; tOut.textContent = "Tempo!"; }
+    }, 1000);
+  });
+  disegnaTimer();
+
+  /* ============ FASE 3 ============ */
+  var corrente3 = null;
+  function conta3(){ $("c3").textContent = stato.f3 ? "scene fatte: " + stato.f3 : ""; }
+  $("drawScene").addEventListener("click", function(){
+    if(corrente3) { stato.f3++; salva(); }
+    corrente3 = pescaDiverso(SCENE, corrente3);
+    $("sceneEmpty").hidden = true;
+    $("sceneIn").hidden = false;
+    $("sTitolo").textContent = corrente3.t;
+    $("sDove").textContent = corrente3.dove;
+    $("sVia").textContent = corrente3.via;
+    var ul = $("sMissione"); ul.innerHTML = "";
+    corrente3.m.forEach(function(ob){
+      var li = document.createElement("li");
+      li.textContent = ob;
+      li.addEventListener("click", function(){ li.classList.toggle("done"); });
+      ul.appendChild(li);
+    });
+    $("sTwist").classList.remove("show");
+    $("sTwistTxt").textContent = corrente3.tw;
+    $("twistBtn").disabled = false;
+    this.textContent = "Un'altra scena";
+    conta3();
+  });
+  $("twistBtn").addEventListener("click", function(){
+    $("sTwist").classList.add("show");
+    this.disabled = true;
+  });
+  conta3();
+
+  /* ============ APPUNTI ============ */
+  var note = $("note");
+  note.value = stato.note || "";
+  note.addEventListener("input", function(){
+    stato.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("reset").addEventListener("click", function(){
+    stato = { f1:0, f2:0, f3:0, fatte2:[], note:"", bonus:false, cat:"tutte" };
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+})();
+</script>
+</body>
+</html>
