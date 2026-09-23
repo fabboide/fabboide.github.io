@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Identikit &middot; Talk with Fabio</title>
+<meta name="description" content="Trova la persona misteriosa facendo domande sull'aspetto fisico. Tabellone sempre nuovo.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+:root{
+  --ink:#16233F;
+  --ink-soft:#4A5670;
+  --paper:#F7F4EC;
+  --paper-2:#FFFDF8;
+  --rule:#DFD8C7;
+  --saffron:#E8A33D;
+  --rosso:#C4312B;
+  --verde:#2E5E4E;
+  --azzurro:#3D6E8F;
+  --arancio:#C4682B;
+  --viola:#7A5A8F;
+
+  --accent:#3D6E8F;
+
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --pen:"Caveat","Segoe Script",cursive;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+
+  --wrap:1180px;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; }
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:1.05rem; line-height:1.6;
+  -webkit-text-size-adjust:100%;
+}
+a{ color:inherit; }
+.wrap{ max-width:var(--wrap); margin:0 auto; padding:0 22px; }
+.hidden{ display:none !important; }
+
+.topbar{ border-bottom:1px solid var(--rule); background:var(--paper-2); }
+.topbar-in{ max-width:var(--wrap); margin:0 auto; padding:14px 22px; display:flex; align-items:center; justify-content:space-between; gap:14px; }
+.logo{ display:flex; align-items:center; gap:10px; text-decoration:none; font-family:var(--display); font-weight:700; font-size:1rem; }
+.logo-mark{
+  width:21px; height:21px; border-radius:50%; border:1px solid var(--ink);
+  background:conic-gradient(from 180deg, var(--saffron) 0 25%, var(--rosso) 0 50%, var(--verde) 0 75%, var(--ink) 0);
+}
+.back-link{ font-family:var(--display); font-weight:600; font-size:.88rem; color:var(--ink-soft); text-decoration:none; }
+.back-link:hover{ color:var(--ink); }
+
+/* ---------- Intro ---------- */
+.intro{ padding:34px 0 6px; }
+.eyebrow{ font-family:var(--mono); font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 10px; }
+h1{ font-family:var(--display); font-weight:800; font-size:clamp(2.1rem,6vw,3.4rem); line-height:1.02; margin:0 0 14px; }
+h1 em{ font-style:normal; color:var(--accent); }
+.lede{ margin:0; max-width:62ch; }
+
+/* ---------- Pannello ---------- */
+.setlab{ font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:20px 0 8px; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.setlab .note{ font-family:var(--body); font-size:.86rem; letter-spacing:0; text-transform:none; color:var(--ink-soft); opacity:.85; }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.chip{
+  font-family:var(--display); font-weight:600; font-size:.9rem;
+  background:var(--paper-2); color:var(--ink); border:2px solid var(--rule);
+  border-radius:999px; padding:8px 16px; cursor:pointer; line-height:1.2;
+}
+.chip:hover{ border-color:var(--ink); }
+.chip[aria-pressed="true"]{ background:var(--ink); color:var(--paper-2); border-color:var(--ink); }
+.chip[disabled]{ opacity:.55; cursor:not-allowed; }
+.chip .n{ font-family:var(--mono); font-size:.72em; opacity:.6; margin-left:6px; }
+.chip.mode[aria-pressed="true"]{ background:var(--accent); border-color:var(--accent); }
+.warn{ font-family:var(--body); font-size:.9rem; color:var(--rosso); margin:8px 0 0; }
+
+.panel{ border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:6px 0 22px; margin-top:18px; }
+.panel-toggle{
+  display:flex; align-items:center; gap:8px; margin:18px 0 0;
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);
+  background:none; border:none; padding:0; cursor:pointer;
+}
+.panel-toggle .car{ transition:transform .2s ease; display:inline-block; }
+.panel-toggle[aria-expanded="true"] .car{ transform:rotate(90deg); }
+
+.btn{
+  font-family:var(--display); font-weight:700; font-size:.98rem;
+  background:var(--accent); color:#fff; border:2px solid var(--accent);
+  border-radius:999px; padding:11px 22px; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+}
+.btn:hover{ filter:brightness(.92); }
+.btn .kbd{ font-family:var(--mono); font-weight:400; font-size:.68em; opacity:.8; border:1px solid currentColor; border-radius:5px; padding:1px 5px; }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--ink); }
+.btn-ghost:hover{ background:var(--ink); color:var(--paper-2); filter:none; }
+.btn-soft{ background:var(--paper-2); color:var(--ink); border-color:var(--rule); }
+.btn-soft:hover{ border-color:var(--ink); filter:none; }
+.btn-big{ font-size:1.1rem; padding:14px 30px; }
+.btn:disabled{ opacity:.35; cursor:not-allowed; }
+.actionrow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:22px 0 0; }
+
+/* ---------- Tavolo ---------- */
+.gioco{ display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:22px; margin:26px 0 0; align-items:start; }
+@media(max-width:940px){ .gioco{ grid-template-columns:1fr; } }
+
+.board{ display:grid; gap:10px; grid-template-columns:repeat(6,1fr); }
+.board.n12{ grid-template-columns:repeat(4,1fr); }
+@media(max-width:820px){ .board{ grid-template-columns:repeat(4,1fr); } .board.n12{ grid-template-columns:repeat(3,1fr); } }
+@media(max-width:520px){ .board{ grid-template-columns:repeat(3,1fr); } .board.n12{ grid-template-columns:repeat(2,1fr); } }
+
+.persona{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:16px;
+  padding:6px 6px 2px; cursor:pointer; position:relative; overflow:hidden;
+  transition:transform .12s ease, opacity .2s ease;
+  display:block; width:100%; font:inherit; color:inherit; text-align:center;
+}
+.persona svg{ width:100%; height:auto; display:block; }
+.persona .nm{ font-family:var(--display); font-weight:700; font-size:.82rem; padding:3px 0 5px; }
+.persona:hover{ transform:translateY(-2px); }
+.persona.giu{ opacity:.26; }
+.persona.giu::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(to bottom right, transparent calc(50% - 1.5px), var(--rosso) calc(50% - 1.5px), var(--rosso) calc(50% + 1.5px), transparent calc(50% + 1.5px)),
+             linear-gradient(to bottom left, transparent calc(50% - 1.5px), var(--rosso) calc(50% - 1.5px), var(--rosso) calc(50% + 1.5px), transparent calc(50% + 1.5px));
+}
+.board.scelta .persona{ border-color:var(--saffron); box-shadow:0 0 0 3px rgba(232,163,61,.28); }
+.board.scelta .persona.giu{ opacity:.12; }
+.persona.vinta{ border-color:var(--verde); box-shadow:0 0 0 4px rgba(46,94,78,.3); opacity:1 !important; }
+.persona.vinta::after{ display:none; }
+
+/* ---------- Colonna domande ---------- */
+.lato{ position:sticky; top:14px; display:flex; flex-direction:column; gap:14px; }
+@media(max-width:940px){ .lato{ position:static; } }
+
+.risp{
+  border:2px solid var(--ink); border-radius:20px; padding:16px 18px; background:var(--paper-2);
+  box-shadow:5px 5px 0 rgba(22,35,63,.08);
+}
+.risp .lab{ font-family:var(--mono); font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 6px; }
+.risp .dom{ font-family:var(--display); font-weight:700; font-size:1.12rem; line-height:1.2; margin:0 0 10px; }
+.risp .sn{ font-family:var(--display); font-weight:800; font-size:2.4rem; line-height:1; margin:0; }
+.risp.si .sn{ color:var(--verde); }
+.risp.no .sn{ color:var(--rosso); }
+.risp .mod{ margin:6px 0 0; font-style:italic; color:var(--ink-soft); font-size:.98rem; }
+.risp .vuoto{ margin:0; color:var(--ink-soft); font-style:italic; font-size:.97rem; }
+
+.conta{ display:flex; gap:10px; }
+.stat{ background:var(--paper-2); border:2px solid var(--rule); border-radius:14px; padding:8px 14px; flex:1; }
+.stat .k{ font-family:var(--mono); font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+.stat .v{ font-family:var(--display); font-weight:800; font-size:1.5rem; line-height:1.2; }
+.stat.ok .v{ color:var(--verde); }
+
+.domande{ border:2px solid var(--rule); border-radius:20px; background:var(--paper-2); padding:12px 14px 14px; max-height:52vh; overflow:auto; }
+@media(max-width:940px){ .domande{ max-height:none; } }
+.dgruppo{ font-family:var(--mono); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin:12px 0 6px; }
+.dgruppo:first-child{ margin-top:2px; }
+.dlista{ display:flex; flex-wrap:wrap; gap:6px; }
+.dom-btn{
+  font-family:var(--body); font-size:.95rem; background:var(--paper); color:var(--ink);
+  border:1.5px solid var(--rule); border-radius:999px; padding:5px 12px; cursor:pointer; line-height:1.3;
+}
+.dom-btn:hover{ border-color:var(--ink); }
+.dom-btn.fatta{ opacity:.4; text-decoration:line-through; }
+
+/* ---------- Verdetto ---------- */
+.verdetto{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:24px 26px; box-shadow:6px 6px 0 rgba(22,35,63,.08); margin:24px 0 0;
+  display:grid; grid-template-columns:150px minmax(0,1fr); gap:22px; align-items:center;
+}
+@media(max-width:620px){ .verdetto{ grid-template-columns:1fr; } }
+.verdetto .vface svg{ width:100%; height:auto; display:block; }
+.verdetto h2{ font-family:var(--display); font-weight:800; font-size:clamp(1.5rem,4vw,2.2rem); margin:0 0 8px; line-height:1.1; }
+.verdetto h2.si{ color:var(--verde); }
+.verdetto h2.no{ color:var(--rosso); }
+.verdetto .desc{ margin:0; font-size:1.06rem; }
+.verdetto .desc b{ font-family:var(--display); }
+.verdetto .poi{
+  margin:14px 0 0; border-left:4px solid var(--saffron); background:rgba(232,163,61,.12);
+  border-radius:0 12px 12px 0; padding:10px 14px;
+}
+.verdetto .poi .lab{ font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:#8A6A3B; margin:0 0 3px; }
+.verdetto .poi p{ margin:0; font-family:var(--pen); font-size:1.3rem; color:var(--arancio); }
+
+/* ---------- Formulario e guida ---------- */
+.form-box{ border:2px dashed var(--rule); border-radius:20px; padding:4px 18px 16px; margin:26px 0 0; }
+.form-box summary{ cursor:pointer; font-family:var(--mono); font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); padding:12px 0; }
+.frasi{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+.frasi div b{ font-family:var(--display); display:block; font-size:.95rem; margin-bottom:4px; }
+.frasi div p{ margin:0; font-size:.98rem; color:var(--ink-soft); }
+.frasi div p span{ display:block; }
+
+.guida{ margin:30px 0 60px; }
+.guida > summary{
+  cursor:pointer; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);
+  padding:12px 0; border-top:1px solid var(--rule);
+}
+.guida > summary:hover{ color:var(--ink); }
+.gcards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin:12px 0 0; }
+.gcard{ background:var(--paper-2); border:2px solid var(--ink); border-radius:18px; padding:16px 18px; }
+.gcard b{ font-family:var(--display); display:block; margin-bottom:5px; }
+.gcard span{ font-size:.95rem; color:var(--ink-soft); }
+.gcard .ex{ font-family:var(--pen); font-size:1.25rem; color:var(--arancio); display:block; margin-top:8px; }
+.gnote{ margin:18px 0 0; font-size:.97rem; color:var(--ink-soft); max-width:70ch; }
+.gnote b{ color:var(--ink); }
+
+.toast{
+  position:fixed; left:50%; top:18px; transform:translateX(-50%) translateY(-24px); opacity:0;
+  background:var(--ink); color:var(--paper); font-family:var(--display); font-weight:700; font-size:.94rem;
+  padding:10px 22px; border-radius:999px; z-index:50; transition:all .25s ease; pointer-events:none;
+}
+.toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+@media (max-width:640px){
+  .wrap,.topbar-in{ padding-left:16px; padding-right:16px; }
+  .btn-big{ width:100%; justify-content:center; }
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="https://talkwithfabio.com/">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Talk with Fabio
+    </a>
+    <a class="back-link" href="../">&larr; La mia aula</a>
+  </div>
+</header>
+
+<section class="wrap">
+  <div class="intro">
+    <p class="eyebrow">gioco di descrizione &middot; A1 &middot; solo per me</p>
+    <h1>Iden<em>tikit</em></h1>
+    <p class="lede">Penso a una di queste persone. Lei deve trovarla facendo domande, e io rispondo solo s&igrave; o no. Il tabellone &egrave; nuovo a ogni partita: le facce sono disegnate dai tratti, quindi non ce ne sono due uguali e non si impara a memoria.</p>
+  </div>
+
+  <button class="panel-toggle" id="panelBtn" aria-expanded="true" aria-controls="panel"><span class="car">&#9656;</span> Impostazioni della partita</button>
+  <div class="panel" id="panel">
+
+    <p class="setlab">Chi indovina</p>
+    <div class="chips" id="modeChips"></div>
+
+    <p class="setlab">Quante persone</p>
+    <div class="chips" id="sizeChips"></div>
+
+    <p class="setlab">Su cosa pu&ograve; chiedere <span class="note">i capelli e il viso restano sempre accesi</span></p>
+    <div class="chips" id="vocChips"></div>
+
+    <p class="setlab">Chi spegne le facce</p>
+    <div class="chips" id="autoChips"></div>
+  </div>
+
+  <div class="actionrow">
+    <button class="btn btn-big" id="newBtn">Nuova partita <span class="kbd">n</span></button>
+    <button class="btn btn-ghost hidden" id="guessBtn">Ho capito chi &egrave;</button>
+    <button class="btn btn-soft hidden" id="annullaBtn">Annulla</button>
+  </div>
+
+  <div class="gioco hidden" id="gioco">
+    <div>
+      <div class="board" id="board"></div>
+    </div>
+    <div class="lato">
+      <div class="conta">
+        <div class="stat"><span class="k">Domande</span><span class="v" id="sDom">0</span></div>
+        <div class="stat ok"><span class="k">Rimaste in piedi</span><span class="v" id="sVive">0</span></div>
+      </div>
+      <div class="risp" id="risp">
+        <p class="lab">La risposta</p>
+        <p class="vuoto" id="rispVuoto">Lei fa la domanda a voce. Tu clicca qui sotto quella che ha detto.</p>
+        <p class="dom hidden" id="rispDom"></p>
+        <p class="sn hidden" id="rispSn"></p>
+        <p class="mod hidden" id="rispMod"></p>
+      </div>
+      <div class="domande" id="domande"></div>
+    </div>
+  </div>
+
+  <div class="verdetto hidden" id="verdetto">
+    <div class="vface" id="vFace"></div>
+    <div>
+      <h2 id="vTit"></h2>
+      <p class="desc" id="vDesc"></p>
+      <div class="poi">
+        <p class="lab">E adesso</p>
+        <p id="vPoi"></p>
+      </div>
+    </div>
+  </div>
+
+  <details class="form-box" id="formBox">
+    <summary>Le formule delle domande</summary>
+    <div class="frasi">
+      <div><b>Con avere</b><p>
+        <span>Ha i capelli lunghi / corti?</span>
+        <span>Ha i capelli ricci / lisci?</span>
+        <span>Ha i capelli biondi / castani / neri / rossi?</span>
+        <span>Ha gli occhi chiari / scuri?</span>
+        <span>Ha la barba? Ha i baffi?</span>
+      </p></div>
+      <div><b>Con portare</b><p>
+        <span>Porta gli occhiali?</span>
+        <span>Porta il cappello?</span>
+        <span>Porta la sciarpa?</span>
+        <span>Porta gli orecchini?</span>
+      </p></div>
+      <div><b>Con essere</b><p>
+        <span>&Egrave; un uomo? &Egrave; una donna?</span>
+        <span>&Egrave; giovane? &Egrave; anziano?</span>
+        <span>&Egrave; magro? &Egrave; robusto?</span>
+        <span>&Egrave; calvo?</span>
+      </p></div>
+      <div><b>Attenzione alle finali</b><p>
+        <span>Finch&eacute; non sai chi &egrave;, chiedi al maschile: <i>&egrave; anziano?</i></span>
+        <span>Quando sai che &egrave; una donna, cambia: <i>&egrave; anziana, &egrave; magra, &egrave; alta</i>.</span>
+      </p></div>
+    </div>
+  </details>
+
+  <details class="guida">
+    <summary>Come la gestisco in lezione</summary>
+
+    <div class="gcards">
+      <article class="gcard">
+        <b>La regola</b>
+        <span>La domanda si dice a voce <b>prima</b> che io clicchi. Se indica lo schermo e basta, non conta: gliela faccio ripetere in italiano.</span>
+        <span class="ex">"Ha i capelli lunghi?"</span>
+      </article>
+      <article class="gcard">
+        <b>Primo giro</b>
+        <span>Tengo acceso solo capelli e viso e uso dodici facce. Poche domande, ripetute tante volte: &egrave; l&igrave; che la formula entra.</span>
+      </article>
+      <article class="gcard">
+        <b>Secondo giro</b>
+        <span>Accendo tutto e passo a ventiquattro. Ora deve scegliere la domanda che taglia di pi&ugrave;, e questo la costringe a guardare davvero il tabellone.</span>
+      </article>
+      <article class="gcard">
+        <b>Terzo giro, il ribaltone</b>
+        <span>Passo a "indovino io": sceglie lei una faccia in segreto e le domande le faccio io. Adesso tocca a lei rispondere, e le finali degli aggettivi vengono al pettine.</span>
+        <span class="ex">"No, non &egrave; anziana, &egrave; giovane."</span>
+      </article>
+    </div>
+
+    <p class="gnote"><b>Il pezzo che conta di pi&ugrave;</b> arriva alla fine: quando trova la persona, le chiedo di descriverla da sola in tre frasi, senza domande. L&igrave; il lessico appena usato torna fuori in forma affermativa, che &egrave; quello che le serve davvero per parlare.</p>
+    <p class="gnote"><b>Se resta bloccata</b> apro il cassetto delle formule qui sopra e glielo lascio davanti per qualche domanda, poi lo richiudo. Prima l'impalcatura, poi via.</p>
+    <p class="gnote"><b>Nota sulle facce:</b> il colore della pelle c'&egrave; ma non si chiede, e infatti non compare tra le domande. Le persone sono diverse perch&eacute; le persone sono diverse, punto.</p>
+  </details>
+
+</section>
+
+<script>
+/* ============================================================
+   Identikit: il volto e' disegnato dagli attributi.
+   Nessuna foto, nessun disaccordo possibile tra disegno e risposta.
+   ============================================================ */
+
+var PELLE  = ["#F2CBA8","#E3AE83","#C98D61","#9A6340","#6B432C"];
+var CAPELLI = {
+  biondi:"#D9A94B", castani:"#7B4B2A", neri:"#2B2118", rossi:"#B4552B", grigi:"#B5AFA6"
+};
+var OCCHI = { chiari:"#3E8FC4", scuri:"#2A1D12" };
+var MAGLIA = {
+  rossa:"#C4312B", blu:"#3D6E8F", verde:"#2E5E4E", gialla:"#E8A33D", bianca:"#EDE7DA"
+};
+var SCIARPA = "#C4682B";
+var INK = "#16233F";
+
+/* Bordo ondulato per i capelli ricci: una serie di archi lungo il profilo. */
+function ricci(cx, cy, rx, ry, da, a, n, amp){
+  var d = "", i, t, x, y, x2, y2, tm, sweep;
+  for(i = 0; i < n; i++){
+    t  = da + (a - da) * (i / n);
+    tm = da + (a - da) * ((i + 1) / n);
+    x  = cx + rx * Math.cos(t);   y  = cy + ry * Math.sin(t);
+    x2 = cx + rx * Math.cos(tm);  y2 = cy + ry * Math.sin(tm);
+    if(i === 0) d += "M" + r2(x) + "," + r2(y);
+    sweep = 1;
+    d += "A" + amp + "," + amp + " 0 0 " + sweep + " " + r2(x2) + "," + r2(y2);
+  }
+  return d;
+}
+function r2(n){ return Math.round(n * 10) / 10; }
+
+/* p = personaggio. Restituisce l'SVG come stringa. */
+function faccia(p){
+  var s = [];
+  var cap = CAPELLI[p.colore] || CAPELLI.castani;
+  var pelle = PELLE[p.pelle];
+  var largo = p.corpo === "robusto";
+  var rx = largo ? 25 : 20;          /* mezza larghezza della testa */
+  var ry = largo ? 28 : 26;
+  var cx = 50, cy = 46;
+  var vecchio = p.eta === "anziano";
+
+  s.push('<svg viewBox="0 0 100 132" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">');
+
+  /* --- capelli lunghi: massa dietro la testa --- */
+  if(p.capelli === "lunghi"){
+    if(p.forma === "ricci"){
+      s.push('<path d="' + ricci(cx, cy - 2, rx + 8, ry + 6, Math.PI, Math.PI * 2.02, 9, 7)
+        + ' L' + (cx + rx + 8) + ',92 Q' + cx + ',103 ' + (cx - rx - 8) + ',92 Z" fill="' + cap + '" stroke="' + INK + '" stroke-width="1.5" stroke-linejoin="round"/>');
+    } else {
+      s.push('<path d="M' + (cx - rx - 6) + ',' + cy + ' A' + (rx + 6) + ',' + (ry + 5) + ' 0 0 1 '
+        + (cx + rx + 6) + ',' + cy + ' L' + (cx + rx + 7) + ',93 Q' + cx + ',102 ' + (cx - rx - 7) + ',93 Z" fill="' + cap + '" stroke="' + INK + '" stroke-width="1.5" stroke-linejoin="round"/>');
+    }
+  }
+
+  /* --- spalle e maglietta --- */
+  var spalla = largo ? 46 : 39;
+  var ymag = vecchio ? 97 : 94;
+  s.push('<path d="M' + (cx - spalla) + ',132 Q' + (cx - spalla) + ',' + ymag + ' ' + cx + ',' + (ymag - 4)
+    + ' Q' + (cx + spalla) + ',' + ymag + ' ' + (cx + spalla) + ',132 Z" fill="' + (MAGLIA[p.maglia] || MAGLIA.bianca)
+    + '" stroke="' + INK + '" stroke-width="1.6" stroke-linejoin="round"/>');
+
+  /* --- collo --- */
+  s.push('<path d="M' + (cx - 8) + ',' + (cy + ry - 6) + ' h16 v16 h-16 Z" fill="' + pelle + '" stroke="' + INK + '" stroke-width="1.4"/>');
+
+  /* --- sciarpa --- */
+  if(p.sciarpa){
+    s.push('<path d="M' + (cx - 19) + ',' + (ymag - 4) + ' q19,12 38,0 l3,11 q-22,13 -44,0 Z" fill="' + SCIARPA
+      + '" stroke="' + INK + '" stroke-width="1.5" stroke-linejoin="round"/>');
+  }
+
+  /* --- orecchie --- */
+  s.push('<ellipse cx="' + (cx - rx) + '" cy="' + (cy + 4) + '" rx="4" ry="6" fill="' + pelle + '" stroke="' + INK + '" stroke-width="1.4"/>');
+  s.push('<ellipse cx="' + (cx + rx) + '" cy="' + (cy + 4) + '" rx="4" ry="6" fill="' + pelle + '" stroke="' + INK + '" stroke-width="1.4"/>');
+
+  /* --- testa --- */
+  s.push('<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + rx + '" ry="' + ry + '" fill="' + pelle + '" stroke="' + INK + '" stroke-width="1.8"/>');
+
+  /* --- barba (sotto gli altri tratti del viso) --- */
+  if(p.barba){
+    s.push('<path d="M' + (cx - rx + 1) + ',' + (cy + 2) + ' q0,' + (ry + 1) + ' ' + rx + ',' + (ry + 1)
+      + ' q' + rx + ',0 ' + rx + ',-' + (ry + 1) + ' q-6,15 -' + rx + ',15 q-' + rx + ',0 -' + rx + ',-15 Z" fill="' + cap + '" stroke="' + INK + '" stroke-width="1.4" stroke-linejoin="round"/>');
+    /* toppa chiara dietro la bocca, se no sparisce dentro la barba */
+    s.push('<ellipse cx="' + cx + '" cy="' + (cy + (largo ? 14 : 13)) + '" rx="10" ry="6" fill="' + pelle + '" opacity=".92"/>');
+  }
+
+  /* --- occhi --- */
+  var oy = cy - 4, ox = largo ? 10 : 8.5;
+  ["-","+"].forEach(function(seg, i){
+    var x = i === 0 ? cx - ox : cx + ox;
+    /* Niente contorno scuro: sembrerebbe un paio di occhiali. */
+    s.push('<ellipse cx="' + x + '" cy="' + oy + '" rx="5.4" ry="4" fill="#FFFDF8"/>');
+    s.push('<circle cx="' + x + '" cy="' + oy + '" r="3.5" fill="' + OCCHI[p.occhi] + '"/>');
+    s.push('<circle cx="' + x + '" cy="' + oy + '" r="1.1" fill="#140F0B"/>');
+  });
+
+  /* --- sopracciglia --- */
+  var sy = oy - 8;
+  s.push('<path d="M' + (cx - ox - 5) + ',' + (sy + (vecchio ? 1 : 0)) + ' q5,-3 10,0" stroke="' + cap + '" stroke-width="2.4" fill="none" stroke-linecap="round"/>');
+  s.push('<path d="M' + (cx + ox - 5) + ',' + sy + ' q5,-3 10,0" stroke="' + cap + '" stroke-width="2.4" fill="none" stroke-linecap="round"/>');
+
+  /* --- naso --- */
+  s.push('<path d="M' + cx + ',' + (oy + 3) + ' v7 q0,3 3,3" stroke="' + INK + '" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>');
+
+  /* --- baffi --- */
+  if(p.baffi){
+    s.push('<path d="M' + (cx - 9) + ',' + (oy + 14) + ' q9,-5 18,0 q-9,4 -18,0 Z" fill="' + cap + '"/>');
+  }
+
+  /* --- bocca --- */
+  var by = cy + (largo ? 15 : 14);
+  s.push('<path d="M' + (cx - 7) + ',' + by + ' q7,' + (vecchio ? 3 : 5) + ' 14,0" stroke="' + INK + '" stroke-width="1.6" fill="none" stroke-linecap="round"/>');
+
+  /* --- rughe --- */
+  if(vecchio){
+    s.push('<path d="M' + (cx - ox - 8) + ',' + (oy + 2) + ' l-3,-2 M' + (cx - ox - 8) + ',' + (oy + 4) + ' l-3,1" stroke="' + INK + '" stroke-width="1.5" opacity=".7" fill="none" stroke-linecap="round"/>');
+    s.push('<path d="M' + (cx + ox + 8) + ',' + (oy + 2) + ' l3,-2 M' + (cx + ox + 8) + ',' + (oy + 4) + ' l3,1" stroke="' + INK + '" stroke-width="1.1" opacity=".55" fill="none" stroke-linecap="round"/>');
+    s.push('<path d="M' + (cx - 9) + ',' + (by - 6) + ' q-3,5 -1,9 M' + (cx + 9) + ',' + (by - 6) + ' q3,5 1,9" stroke="' + INK + '" stroke-width="1.5" opacity=".6" fill="none" stroke-linecap="round"/>');
+    s.push('<path d="M' + (cx - 8) + ',' + (cy - 20) + ' q8,-2 16,0" stroke="' + INK + '" stroke-width="1.4" opacity=".55" fill="none" stroke-linecap="round"/>');
+  }
+
+  /* --- capelli davanti --- */
+  if(p.capelli !== "calvo"){
+    if(p.forma === "ricci"){
+      s.push('<path d="' + ricci(cx, cy - 4, rx + 3, ry - 2, Math.PI * 1.03, Math.PI * 1.97, 7, 6)
+        + ' Q' + cx + ',' + (cy - 12) + ' ' + (cx - rx - 3) + ',' + (cy - 8) + ' Z" fill="' + cap + '" stroke="' + INK + '" stroke-width="1.5" stroke-linejoin="round"/>');
+    } else {
+      s.push('<path d="M' + (cx - rx - 1) + ',' + (cy - 4) + ' a' + (rx + 1) + ',' + (ry - 1) + ' 0 0 1 ' + (2 * rx + 2) + ',0'
+        + ' q-6,-7 -' + (rx - 4) + ',-6 q-' + (rx + 2) + ',1 -' + (rx + 3) + ',6 Z" fill="' + cap + '" stroke="' + INK + '" stroke-width="1.5" stroke-linejoin="round"/>');
+    }
+    /* basette */
+    s.push('<path d="M' + (cx - rx + 1) + ',' + (cy - 8) + ' q-2,10 0,14 M' + (cx + rx - 1) + ',' + (cy - 8) + ' q2,10 0,14" stroke="' + cap + '" stroke-width="3" fill="none" stroke-linecap="round"/>');
+  }
+
+  /* --- occhiali --- */
+  if(p.occhiali){
+    s.push('<g fill="none" stroke="' + INK + '" stroke-width="1.9">'
+      + '<circle cx="' + (cx - ox) + '" cy="' + oy + '" r="7.6"/>'
+      + '<circle cx="' + (cx + ox) + '" cy="' + oy + '" r="7.6"/>'
+      + '<path d="M' + (cx - ox + 7.6) + ',' + oy + ' h' + (2 * ox - 15.2) + '"/>'
+      + '<path d="M' + (cx - ox - 7.6) + ',' + oy + ' l-' + (rx - ox - 6) + ',-2"/>'
+      + '<path d="M' + (cx + ox + 7.6) + ',' + oy + ' l' + (rx - ox - 6) + ',-2"/></g>');
+  }
+
+  /* --- cappello --- */
+  if(p.cappello){
+    s.push('<path d="M' + (cx - rx - 3) + ',' + (cy - ry + 4) + ' q' + (rx + 3) + ',-' + (ry - 2) + ' ' + (2 * rx + 6) + ',0 Z" fill="' + INK + '"/>');
+    s.push('<rect x="' + (cx - rx - 6) + '" y="' + (cy - ry + 1) + '" width="' + (2 * rx + 12) + '" height="6" rx="3" fill="' + INK + '"/>');
+    s.push('<circle cx="' + cx + '" cy="' + (cy - ry - 9) + '" r="4" fill="' + SCIARPA + '"/>');
+  }
+
+  /* --- orecchini --- */
+  if(p.orecchini){
+    s.push('<circle cx="' + (cx - rx) + '" cy="' + (cy + 11) + '" r="3" fill="' + MAGLIA.gialla + '" stroke="' + INK + '" stroke-width="1.1"/>');
+    s.push('<circle cx="' + (cx + rx) + '" cy="' + (cy + 11) + '" r="3" fill="' + MAGLIA.gialla + '" stroke="' + INK + '" stroke-width="1.1"/>');
+  }
+
+  s.push("</svg>");
+  return s.join("");
+}
+
+
+(function(){
+"use strict";
+
+/* ============================================================
+   1. Nomi e tratti
+   ============================================================ */
+
+var NOMI_M = ["Marco","Luca","Paolo","Andrea","Davide","Simone","Nicola","Stefano","Giulio","Alberto",
+  "Enzo","Piero","Sergio","Vito","Bruno","Carlo","Dario","Emilio","Franco","Gianni","Lorenzo","Matteo",
+  "Riccardo","Tommaso","Vincenzo","Antonio","Giorgio","Pietro","Salvatore","Michele"];
+var NOMI_F = ["Giulia","Sara","Chiara","Elena","Marta","Alice","Laura","Silvia","Paola","Anna",
+  "Rosa","Lucia","Carla","Teresa","Nadia","Gloria","Bianca","Valentina","Martina","Francesca",
+  "Daniela","Cristina","Monica","Serena","Beatrice","Caterina","Ilaria","Michela","Giovanna","Rita"];
+
+var COLORI_BASE = ["biondi","castani","neri","rossi"];
+var MAGLIE = ["rossa","blu","verde","gialla","bianca"];
+
+var GRUPPI = [
+  {k:"viso",      n:"Capelli e viso",   fisso:true},
+  {k:"accessori", n:"Occhiali e cappello"},
+  {k:"corpo",     n:"Et&agrave; e corporatura"},
+  {k:"vestiti",   n:"Vestiti e colori"}
+];
+
+var MODI = [
+  {k:"lei", n:"Indovina lei"},
+  {k:"io",  n:"Indovino io"}
+];
+
+/* ============================================================
+   2. Stato
+   ============================================================ */
+
+var STORE = "icf_identikit_v1";
+var st = { modo:"lei", size:24, voc:{viso:true, accessori:true, corpo:true, vestiti:true}, auto:true };
+
+function load(){
+  try{
+    var o = JSON.parse(localStorage.getItem(STORE) || "null");
+    if(!o) return;
+    if(o.modo) st.modo = o.modo;
+    if(o.size) st.size = o.size;
+    if(typeof o.auto === "boolean") st.auto = o.auto;
+    if(o.voc) GRUPPI.forEach(function(g){ if(typeof o.voc[g.k] === "boolean") st.voc[g.k] = o.voc[g.k]; });
+    st.voc.viso = true;
+  }catch(e){}
+}
+function save(){ try{ localStorage.setItem(STORE, JSON.stringify(st)); }catch(e){} }
+
+/* ============================================================
+   3. Generatore di persone
+   ============================================================ */
+
+function pesca(a){ return a[Math.floor(Math.random() * a.length)]; }
+function dado(p){ return Math.random() < (p === undefined ? 0.5 : p); }
+function mescola(a){
+  var i, j, t;
+  for(i = a.length - 1; i > 0; i--){ j = Math.floor(Math.random() * (i + 1)); t = a[i]; a[i] = a[j]; a[j] = t; }
+  return a;
+}
+
+function unaPersona(){
+  var v = st.voc;
+  var uomo = dado();
+  var p = { uomo:uomo, pelle:Math.floor(Math.random() * 5) };
+
+  /* Et&agrave; e corporatura */
+  p.eta  = v.corpo && dado(0.36) ? "anziano" : "giovane";
+  p.corpo = v.corpo && dado(0.45) ? "robusto" : "magro";
+
+  /* Capelli. Calvo solo agli uomini, grigi solo agli anziani. */
+  if(uomo && dado(0.22)) p.capelli = "calvo";
+  else p.capelli = dado() ? "lunghi" : "corti";
+
+  if(p.capelli === "calvo"){
+    p.forma = "-";
+    p.colore = p.eta === "anziano" ? "grigi" : "neri";  /* serve solo per barba e sopracciglia */
+  } else {
+    p.forma = dado() ? "ricci" : "lisci";
+    if(p.eta === "anziano" && dado(0.62)) p.colore = "grigi";
+    else p.colore = pesca(COLORI_BASE);
+  }
+
+  /* Viso */
+  p.barba = uomo && dado(0.35) ? 1 : 0;
+  p.baffi = uomo && dado(0.3) ? 1 : 0;
+  p.occhi = dado() ? "chiari" : "scuri";
+
+  /* Accessori */
+  p.occhiali = v.accessori && dado(0.4) ? 1 : 0;
+  p.cappello = v.accessori && dado(0.3) ? 1 : 0;
+
+  /* Vestiti */
+  p.maglia    = v.vestiti ? pesca(MAGLIE) : "blu";
+  p.sciarpa   = v.vestiti && dado(0.32) ? 1 : 0;
+  p.orecchini = v.vestiti && dado(0.34) ? 1 : 0;
+
+  return p;
+}
+
+/* La firma tiene solo i tratti su cui si pu&ograve; davvero fare una domanda:
+   se due persone hanno la stessa firma, la partita non si pu&ograve; chiudere. */
+function firma(p){
+  var v = st.voc;
+  var f = [p.uomo ? "u" : "d", p.capelli, p.barba, p.baffi, p.occhi];
+  if(p.capelli !== "calvo") f.push(p.forma, p.colore);
+  if(v.accessori) f.push(p.occhiali, p.cappello);
+  if(v.corpo) f.push(p.eta, p.corpo);
+  if(v.vestiti) f.push(p.maglia, p.sciarpa, p.orecchini);
+  return f.join("|");
+}
+
+function generaTabellone(n){
+  var viste = {}, out = [], giri = 0, p, f;
+  while(out.length < n && giri < n * 400){
+    giri++;
+    p = unaPersona();
+    f = firma(p);
+    if(viste[f]) continue;
+    viste[f] = true;
+    out.push(p);
+  }
+  if(out.length < n) return null;
+
+  /* Nomi: maschili agli uomini, femminili alle donne, senza ripetizioni. */
+  var m = mescola(NOMI_M.slice()), d = mescola(NOMI_F.slice());
+  out.forEach(function(x){ x.nome = x.uomo ? m.pop() : d.pop(); });
+  return mescola(out);
+}
+
+/* ============================================================
+   4. Domande
+   ============================================================ */
+
+/* aff = la frase affermativa. Da l&igrave; escono domanda, s&igrave; e no. */
+function D(gruppo, aff, test){ return { g:gruppo, aff:aff, test:test }; }
+
+function tutteLeDomande(){
+  var v = st.voc, L = [];
+
+  L.push(D("Uomo o donna", "è un uomo",  function(p){ return !!p.uomo; }));
+  L.push(D("Uomo o donna", "è una donna", function(p){ return !p.uomo; }));
+
+  L.push(D("Capelli", "ha i capelli lunghi", function(p){ return p.capelli === "lunghi"; }));
+  L.push(D("Capelli", "ha i capelli corti",  function(p){ return p.capelli === "corti"; }));
+  L.push(D("Capelli", "è calvo",        function(p){ return p.capelli === "calvo"; }));
+  L.push(D("Capelli", "ha i capelli ricci",  function(p){ return p.capelli !== "calvo" && p.forma === "ricci"; }));
+  L.push(D("Capelli", "ha i capelli lisci",  function(p){ return p.capelli !== "calvo" && p.forma === "lisci"; }));
+
+  var colori = COLORI_BASE.slice();
+  if(v.corpo) colori.push("grigi");
+  colori.forEach(function(c){
+    L.push(D("Colore dei capelli", "ha i capelli " + c, function(p){
+      return p.capelli !== "calvo" && p.colore === c;
+    }));
+  });
+
+  L.push(D("Viso", "ha la barba",        function(p){ return !!p.barba; }));
+  L.push(D("Viso", "ha i baffi",         function(p){ return !!p.baffi; }));
+  L.push(D("Viso", "ha gli occhi chiari", function(p){ return p.occhi === "chiari"; }));
+  L.push(D("Viso", "ha gli occhi scuri",  function(p){ return p.occhi === "scuri"; }));
+
+  if(v.accessori){
+    L.push(D("Accessori", "porta gli occhiali", function(p){ return !!p.occhiali; }));
+    L.push(D("Accessori", "porta il cappello",  function(p){ return !!p.cappello; }));
+  }
+  if(v.corpo){
+    L.push(D("Età e corporatura", "è giovane",  function(p){ return p.eta === "giovane"; }));
+    L.push(D("Età e corporatura", "è anziano",  function(p){ return p.eta === "anziano"; }));
+    L.push(D("Età e corporatura", "è magro",    function(p){ return p.corpo === "magro"; }));
+    L.push(D("Età e corporatura", "è robusto",  function(p){ return p.corpo === "robusto"; }));
+  }
+  if(v.vestiti){
+    MAGLIE.forEach(function(c){
+      L.push(D("Vestiti", "ha la maglietta " + c, function(p){ return p.maglia === c; }));
+    });
+    L.push(D("Vestiti", "porta la sciarpa",    function(p){ return !!p.sciarpa; }));
+    L.push(D("Vestiti", "porta gli orecchini", function(p){ return !!p.orecchini; }));
+  }
+  return L;
+}
+
+function testoDomanda(d){ return cap(d.aff) + "?"; }
+function rispostaSi(d){ return "Sì, " + d.aff + "."; }
+function rispostaNo(d){
+  var a = d.aff;
+  var neg = a.replace(/^(ha|porta|è) /, function(m, v0){ return "non " + v0 + " "; });
+  return "No, " + neg + ".";
+}
+function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+/* ============================================================
+   5. Descrizione finale, questa volta accordata come si deve
+   ============================================================ */
+
+/* "a, b e c", non "a e b e c". */
+function elenco(a){
+  if(a.length <= 1) return a[0] || "";
+  return a.slice(0, -1).join(", ") + " e " + a[a.length - 1];
+}
+
+function descrizione(p){
+  var d = p.uomo ? "o" : "a";
+  var pezzi = [];
+  var chi = (p.uomo ? "un uomo" : "una donna");
+  if(st.voc.corpo){
+    chi += " " + (p.eta === "anziano" ? (p.uomo ? "anziano" : "anziana") : "giovane");
+    chi += " e " + (p.corpo === "robusto" ? (p.uomo ? "robusto" : "robusta") : (p.uomo ? "magro" : "magra"));
+  }
+  pezzi.push("È " + chi + ".");
+
+  if(p.capelli === "calvo") pezzi.push((p.uomo ? "È calvo" : "È calva") + ".");
+  else pezzi.push("Ha i capelli " + p.capelli + " e " + p.forma + ", " + p.colore + ".");
+
+  pezzi.push("Ha gli occhi " + p.occhi + ".");
+
+  var extra = [];
+  if(p.barba) extra.push("la barba");
+  if(p.baffi) extra.push("i baffi");
+  if(extra.length) pezzi.push("Ha " + elenco(extra) + ".");
+
+  var porta = [];
+  if(st.voc.accessori){
+    if(p.occhiali) porta.push("gli occhiali");
+    if(p.cappello) porta.push("il cappello");
+  }
+  if(st.voc.vestiti){
+    if(p.sciarpa) porta.push("la sciarpa");
+    if(p.orecchini) porta.push("gli orecchini");
+  }
+  if(porta.length) pezzi.push("Porta " + elenco(porta) + ".");
+  if(st.voc.vestiti) pezzi.push("Ha la maglietta " + p.maglia + ".");
+  return pezzi.join(" ");
+}
+
+function rilanci(p){
+  var o = p.uomo;
+  return [
+    "Adesso descrivi" + (o ? "lo" : "la") + " tu, tre frasi, senza guardare il tabellone.",
+    "Chi ti ricorda? Dimmi chi conosci che " + (o ? "gli" : "le") + " somiglia.",
+    "Raccontami cosa fa nella vita, secondo te. Inventa pure.",
+    "Descrivimi la persona qui accanto, sempre in italiano.",
+    "E adesso dimmi in cosa &egrave; " + (o ? "diverso" : "diversa") + " da te."
+  ];
+}
+
+/* ============================================================
+   6. Interfaccia
+   ============================================================ */
+
+function $(id){ return document.getElementById(id); }
+var toastT = null;
+function toast(m){
+  var e = $("toast"); e.textContent = m; e.classList.add("show");
+  clearTimeout(toastT); toastT = setTimeout(function(){ e.classList.remove("show"); }, 1600);
+}
+function chip(label, on, onClick, cls, disabled){
+  var b = document.createElement("button");
+  b.className = "chip" + (cls ? " " + cls : "");
+  b.type = "button"; b.innerHTML = label;
+  b.setAttribute("aria-pressed", on ? "true" : "false");
+  if(disabled) b.disabled = true;
+  b.addEventListener("click", onClick);
+  return b;
+}
+
+function renderChips(){
+  var m = $("modeChips"); m.innerHTML = "";
+  MODI.forEach(function(x){
+    m.appendChild(chip(x.n, st.modo === x.k, function(){
+      st.modo = x.k; save(); renderChips(); chiudiPartita();
+    }, "mode"));
+  });
+
+  var s = $("sizeChips"); s.innerHTML = "";
+  [12, 24].forEach(function(n){
+    s.appendChild(chip(n + " facce", st.size === n, function(){
+      st.size = n; save(); renderChips(); chiudiPartita();
+    }));
+  });
+
+  var v = $("vocChips"); v.innerHTML = "";
+  GRUPPI.forEach(function(g){
+    v.appendChild(chip(g.n, !!st.voc[g.k], function(){
+      if(g.fisso) return;
+      st.voc[g.k] = !st.voc[g.k]; save(); renderChips(); chiudiPartita();
+    }, null, g.fisso));
+  });
+
+  var a = $("autoChips"); a.innerHTML = "";
+  a.appendChild(chip("Le spegne la pagina", st.auto, function(){
+    st.auto = true; save(); renderChips();
+  }));
+  a.appendChild(chip("Le spegne lei, cliccando", !st.auto, function(){
+    st.auto = false; save(); renderChips();
+  }));
+}
+
+/* --- Partita --- */
+
+var gioco = null;
+
+function chiudiPartita(){
+  gioco = null;
+  $("gioco").classList.add("hidden");
+  $("verdetto").classList.add("hidden");
+  $("guessBtn").classList.add("hidden");
+  $("annullaBtn").classList.add("hidden");
+  $("board").classList.remove("scelta");
+  $("newBtn").innerHTML = 'Nuova partita <span class="kbd">n</span>';
+}
+
+function nuovaPartita(){
+  var gente = generaTabellone(st.size);
+  if(!gente){
+    toast("Accendi un altro gruppo di domande");
+    return;
+  }
+  gioco = {
+    gente: gente,
+    fuori: gente.map(function(){ return false; }),
+    segreto: st.modo === "lei" ? Math.floor(Math.random() * gente.length) : -1,
+    domande: tutteLeDomande(),
+    fatte: {},
+    n: 0,
+    scegliendo: false,
+    finita: false
+  };
+  $("verdetto").classList.add("hidden");
+  $("gioco").classList.remove("hidden");
+  $("guessBtn").classList.remove("hidden");
+  $("guessBtn").innerHTML = st.modo === "lei" ? "Ha capito chi &egrave;" : "Era questa";
+  $("annullaBtn").classList.add("hidden");
+  $("newBtn").innerHTML = 'Un\'altra partita <span class="kbd">n</span>';
+  $("rispVuoto").classList.remove("hidden");
+  $("rispVuoto").textContent = st.modo === "lei"
+    ? "Lei fa la domanda a voce. Tu clicca qui sotto quella che ha detto."
+    : "Fai tu le domande. Clicca quella che hai detto e spegni le facce secondo la sua risposta.";
+  ["rispDom","rispSn","rispMod"].forEach(function(i){ $(i).classList.add("hidden"); });
+  $("risp").className = "risp";
+  disegnaBoard();
+  renderDomande();
+  aggiornaConta();
+}
+
+function disegnaBoard(){
+  var b = $("board");
+  b.innerHTML = "";
+  gioco.celle = gioco.gente.map(function(p, i){
+    var el = document.createElement("button");
+    el.type = "button";
+    el.className = "persona";
+    el.innerHTML = faccia(p) + '<span class="nm">' + p.nome + "</span>";
+    el.setAttribute("aria-label", p.nome);
+    el.addEventListener("click", function(){ cliccaPersona(i); });
+    b.appendChild(el);
+    return el;
+  });
+  aggiornaBoard();
+}
+
+/* Solo le classi: ridisegnare ventiquattro facce a ogni clic non serve a nessuno. */
+function aggiornaBoard(){
+  $("board").className = "board" + (st.size === 12 ? " n12" : "") + (gioco.scegliendo ? " scelta" : "");
+  gioco.celle.forEach(function(el, i){ el.classList.toggle("giu", !!gioco.fuori[i]); });
+}
+
+function cliccaPersona(i){
+  if(!gioco || gioco.finita) return;
+  if(gioco.scegliendo){ verdetto(i); return; }
+  gioco.fuori[i] = !gioco.fuori[i];
+  aggiornaBoard();
+  aggiornaConta();
+}
+
+function renderDomande(){
+  var box = $("domande");
+  box.innerHTML = "";
+  var gruppi = [];
+  gioco.bottoni = {};
+  gioco.domande.forEach(function(d, i){
+    var g = gruppi.filter(function(x){ return x.n === d.g; })[0];
+    if(!g){ g = { n:d.g, items:[] }; gruppi.push(g); }
+    g.items.push(i);
+  });
+  gruppi.forEach(function(g){
+    var h = document.createElement("p");
+    h.className = "dgruppo"; h.textContent = g.n;
+    box.appendChild(h);
+    var lista = document.createElement("div");
+    lista.className = "dlista";
+    g.items.forEach(function(i){
+      var d = gioco.domande[i];
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "dom-btn";
+      gioco.bottoni[i] = b;
+      b.textContent = testoDomanda(d);
+      b.addEventListener("click", function(){ chiedi(i); });
+      lista.appendChild(b);
+    });
+    box.appendChild(lista);
+  });
+}
+
+function chiedi(i){
+  if(!gioco || gioco.finita || gioco.scegliendo) return;
+  var d = gioco.domande[i];
+  if(!gioco.fatte[i]){
+    gioco.n++; gioco.fatte[i] = true;
+    if(gioco.bottoni[i]) gioco.bottoni[i].classList.add("fatta");
+  }
+
+  $("rispVuoto").classList.add("hidden");
+  $("rispDom").classList.remove("hidden");
+  $("rispDom").textContent = testoDomanda(d);
+
+  if(st.modo === "lei"){
+    var seg = gioco.gente[gioco.segreto];
+    var si = d.test(seg);
+    $("risp").className = "risp " + (si ? "si" : "no");
+    $("rispSn").classList.remove("hidden");
+    $("rispSn").textContent = si ? "Sì" : "No";
+    $("rispMod").classList.remove("hidden");
+    $("rispMod").textContent = si ? rispostaSi(d) : rispostaNo(d);
+    if(st.auto){
+      gioco.gente.forEach(function(p, k){
+        if(d.test(p) !== si) gioco.fuori[k] = true;
+      });
+    }
+  } else {
+    $("risp").className = "risp";
+    $("rispSn").classList.add("hidden");
+    $("rispMod").classList.remove("hidden");
+    $("rispMod").textContent = "Lei risponde, poi spegni tu le facce che non vanno più bene.";
+  }
+  aggiornaBoard();
+  aggiornaConta();
+}
+
+function aggiornaConta(){
+  var vive = gioco.fuori.filter(function(x){ return !x; }).length;
+  $("sDom").textContent = gioco.n;
+  $("sVive").textContent = vive;
+}
+
+function verdetto(i){
+  var p = gioco.gente[i];
+  var giusto = st.modo === "io" ? true : (i === gioco.segreto);
+  gioco.finita = true;
+  gioco.scegliendo = false;
+
+  if(st.modo === "lei" && !giusto){
+    /* Sbagliata: non chiudiamo la partita, si continua a chiedere. */
+    gioco.finita = false;
+    gioco.fuori[i] = true;
+    $("board").classList.remove("scelta");
+    $("annullaBtn").classList.add("hidden");
+    $("guessBtn").classList.remove("hidden");
+    $("risp").className = "risp no";
+    $("rispVuoto").classList.add("hidden");
+    $("rispDom").classList.remove("hidden");
+    $("rispDom").textContent = "Era " + p.nome + "?";
+    $("rispSn").classList.remove("hidden");
+    $("rispSn").textContent = "No";
+    $("rispMod").classList.remove("hidden");
+    $("rispMod").textContent = "No, non è " + p.nome + ". Continua a chiedere.";
+    aggiornaBoard();
+    aggiornaConta();
+    return;
+  }
+
+  var vera = st.modo === "io" ? p : gioco.gente[gioco.segreto];
+  $("board").classList.remove("scelta");
+  $("guessBtn").classList.add("hidden");
+  $("annullaBtn").classList.add("hidden");
+  $("vFace").innerHTML = faccia(vera);
+  $("vTit").className = "si";
+  $("vTit").textContent = st.modo === "io"
+    ? "Era " + vera.nome + "."
+    : "Sì! Era " + vera.nome + ".";
+  $("vDesc").innerHTML = "<b>" + gioco.n + (gioco.n === 1 ? " domanda" : " domande") + ".</b> "
+    + descrizione(vera);
+  $("vPoi").innerHTML = pesca(rilanci(vera));
+  $("verdetto").classList.remove("hidden");
+  aggiornaBoard();
+  var el = gioco.celle[st.modo === "io" ? i : gioco.segreto];
+  if(el) el.classList.add("vinta");
+  $("verdetto").scrollIntoView({ block:"nearest", behavior:"smooth" });
+}
+
+/* ============================================================
+   7. Eventi
+   ============================================================ */
+
+$("newBtn").addEventListener("click", nuovaPartita);
+$("guessBtn").addEventListener("click", function(){
+  if(!gioco) return;
+  gioco.scegliendo = true;
+  $("guessBtn").classList.add("hidden");
+  $("annullaBtn").classList.remove("hidden");
+  $("rispVuoto").classList.remove("hidden");
+  ["rispDom","rispSn","rispMod"].forEach(function(i){ $(i).classList.add("hidden"); });
+  $("risp").className = "risp";
+  $("rispVuoto").textContent = "Clicca la faccia. Ma prima fagliela dire tutta: «È lei, si chiama...»";
+  aggiornaBoard();
+});
+$("annullaBtn").addEventListener("click", function(){
+  if(!gioco) return;
+  gioco.scegliendo = false;
+  $("annullaBtn").classList.add("hidden");
+  $("guessBtn").classList.remove("hidden");
+  aggiornaBoard();
+});
+$("panelBtn").addEventListener("click", function(){
+  var open = this.getAttribute("aria-expanded") === "true";
+  this.setAttribute("aria-expanded", open ? "false" : "true");
+  $("panel").classList.toggle("hidden", open);
+});
+document.addEventListener("keydown", function(e){
+  var tag = (e.target && e.target.tagName) || "";
+  if(tag === "INPUT" || tag === "TEXTAREA") return;
+  if(e.key === "n" || e.key === "N"){ e.preventDefault(); nuovaPartita(); }
+  if(e.key === "f" || e.key === "F"){ e.preventDefault(); $("formBox").open = !$("formBox").open; }
+});
+
+/* ============================================================
+   8. Avvio
+   ============================================================ */
+
+load();
+renderChips();
+
+window.__IDENTIKIT = {
+  genera: generaTabellone, domande: tutteLeDomande, firma: firma,
+  descrizione: descrizione, st: st, faccia: faccia,
+  testoDomanda: testoDomanda, rispostaSi: rispostaSi, rispostaNo: rispostaNo
+};
+
+})();
+</script>
+</body>
+</html>
