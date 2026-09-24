@@ -51,7 +51,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "22 settembre 2026, 13:21";
+var SALDI_AGGIORNATO = "24 settembre 2026, 11:00";
 
 var SALDI = {
 
@@ -82,12 +82,12 @@ var SALDI = {
 
   "rafaela-yrd": {
     nome: "Rafaela",
-    pacchetto: 24,
+    pacchetto: 26,
     inizio: "2026-09-15",
     fatte_prima: 0,
     fatte: 1,
     prenotate: 0,
-    rimaste: 23,
+    rimaste: 25,
     prossime: []
   },
 
