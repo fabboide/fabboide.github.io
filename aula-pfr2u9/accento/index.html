@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dove cade l'accento? · Talk with Fabio</title>
+<meta name="description" content="Accento tonico, doppie e lettura ad alta voce: allenamento di pronuncia da fare in lezione.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D; --kraft:#D9BC8C;
+  --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
+  --ok:#2E5E4E; --warn:#C4312B; --soft:#EFE7D6;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.onda{height:10px;background:radial-gradient(circle at 10px -4px,var(--lemon) 9px,transparent 10px) 0 0/20px 10px repeat-x,var(--basil)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,6.6vw,4rem);line-height:.95;margin:0;color:var(--basil)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:62ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--basil)}
+nav.steps .side{margin-left:auto;color:var(--tomato)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:74ch}
+
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 330px;gap:18px;align-items:start}
+@media (max-width:880px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+.vuoto{color:var(--muted);text-align:center;padding:24px 10px}
+
+/* audio */
+.ascolta{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 13px;font-family:var(--display);font-weight:600;font-size:.92rem}
+body.senza-voce .ascolta{display:none}
+.nota-voce{display:none;font-family:var(--hand);font-size:1.15rem;color:var(--muted)}
+body.senza-voce .nota-voce{display:block}
+
+/* fase 1 */
+.sillabe{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:22px 0 10px}
+.sillabe button{font-family:var(--display);font-size:clamp(1.6rem,5vw,2.4rem);font-weight:700;border:2px solid var(--line);background:var(--paper);border-radius:14px;padding:10px 20px;min-width:74px}
+.sillabe button:hover:not(:disabled){border-color:var(--ink)}
+.sillabe button.giusta{background:var(--basil);border-color:var(--basil);color:var(--paper)}
+.sillabe button.sbagliata{background:#F6DEDC;border-color:var(--tomato);color:var(--tomato)}
+.sillabe button:disabled{cursor:default}
+.traduzione{text-align:center;color:var(--muted);font-style:italic}
+.esito{min-height:2.6em;text-align:center;margin-top:8px}
+.esito .parola{font-family:var(--display);font-size:1.5rem;font-weight:700}
+.esito .parola b{color:var(--tomato)}
+.esito .tipo{font-family:var(--hand);font-size:1.3rem;color:var(--basil)}
+.esito .nota{color:var(--muted);font-size:.96rem;max-width:56ch;margin:6px auto 0}
+.barra{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.rivedere{margin-top:12px}
+.rivedere span{display:inline-block;background:#F6DEDC;border:1px solid #E7BEBA;color:var(--tomato);border-radius:999px;padding:3px 10px;margin:0 6px 6px 0;font-size:.92rem}
+
+/* fase 2 */
+.coppia{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 4px}
+@media (max-width:560px){.coppia{grid-template-columns:1fr}}
+.coppia button{font-family:var(--display);font-weight:700;font-size:clamp(1.4rem,4.4vw,2rem);border:2px solid var(--line);background:var(--paper);border-radius:16px;padding:18px 10px;display:block;width:100%}
+.coppia button small{display:block;font-family:var(--text);font-weight:400;font-size:.92rem;color:var(--muted);font-style:italic;margin-top:4px}
+.coppia button.giusta{background:var(--basil);border-color:var(--basil);color:var(--paper)}
+.coppia button.giusta small{color:#D8E6DE}
+.coppia button.sbagliata{background:#F6DEDC;border-color:var(--tomato);color:var(--tomato)}
+.coppia button.sbagliata small{color:var(--tomato)}
+.etichetta{font-family:var(--hand);font-size:1.3rem;color:var(--tomato)}
+
+/* fase 3 */
+.testo{font-size:1.28rem;line-height:1.95}
+.testo b.acc{color:var(--tomato);font-weight:700}
+.scioglilingua{font-size:1.3rem;font-family:var(--display);font-weight:700;line-height:1.5}
+.scioglilingua + .en{display:block;margin-top:6px}
+.lista-testi{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.checklist{list-style:none;margin:0;padding:0}
+.checklist li{padding:8px 0 8px 30px;border-bottom:1px solid var(--line);position:relative;cursor:pointer}
+.checklist li::before{content:"";position:absolute;left:0;top:11px;width:18px;height:18px;border:2px solid var(--line);border-radius:6px;background:var(--paper)}
+.checklist li.done{color:var(--muted)}
+.checklist li.done::before{content:"✓";color:var(--paper);background:var(--basil);border-color:var(--basil);display:grid;place-items:center;font-size:.8rem;line-height:1}
+
+/* appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:110px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.appunti .barra{justify-content:space-between}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+dialog{border:0;border-radius:16px;padding:0;max-width:660px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.5rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body h3{margin:18px 0 4px;color:var(--basil);font-size:1.12rem}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:52%}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="onda" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Dove cade l'accento?</h1>
+    <p>In italiano l'accento quasi mai si scrive, ma cambia tutto: <i>ancora</i> non è <i>àncora</i>, <i>papa</i> non è <i>papà</i>. Qui si allena l'orecchio, poi la bocca. <span class="en">Italian stress is almost never written, but it changes the word.</span></p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Fasi dell'attività">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>La sillaba forte</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>Coppie che ingannano</button>
+    <button role="tab" aria-selected="false" data-phase="p3"><span class="n">3</span>Leggi ad alta voce</button>
+    <button class="side" id="openRegole" type="button">Le regole in due minuti</button>
+  </nav>
+
+  <!-- FASE 1 -->
+  <section class="phase active" id="p1">
+    <h2>La sillaba forte</h2>
+    <p class="lead">Leggi la parola a voce alta, poi tocca la sillaba su cui hai messo la forza. <span class="en">Read it out loud, then tap the syllable you stressed.</span></p>
+    <div class="chips" id="famiglie"></div>
+    <div class="grid2">
+      <div class="panel">
+        <p class="traduzione" id="tradu">&nbsp;</p>
+        <div class="sillabe" id="sillabe"></div>
+        <div class="esito" id="esito"></div>
+        <div class="barra">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="ascolta" id="ascolta1" type="button">🔊 Ascolta</button>
+            <button class="ascolta" id="lento1" type="button">🐢 Piano piano</button>
+            <span class="nota-voce">Su questo computer non c'è una voce italiana: la parola la dici tu.</span>
+          </div>
+          <button class="btn ghost" id="next1" type="button">Un'altra parola</button>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Come va</h3>
+        <p class="count" id="punteggio" style="font-size:1.6rem;margin:0 0 4px">0 / 0</p>
+        <p class="en" id="punteggioSub" style="margin:0 0 14px">Si comincia.</p>
+        <h3>La regola corta</h3>
+        <p style="margin:0 0 10px">Quasi tutte le parole italiane hanno l'accento sulla <b>penultima</b> sillaba. Quando scivola più indietro non si vede: va imparata con la parola.</p>
+        <div id="boxRivedere" hidden>
+          <h3>Da rivedere</h3>
+          <div class="rivedere" id="rivedere"></div>
+          <button class="btn ghost" id="puliRivedere" type="button" style="margin-top:6px">Svuota l'elenco</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 2 -->
+  <section class="phase" id="p2">
+    <h2>Coppie che ingannano</h2>
+    <p class="lead">Due parole quasi uguali: cambia una consonante doppia o il posto dell'accento, e cambia il significato. <span class="en">One double letter, or the stress, and the word is another word.</span></p>
+    <div class="chips" id="tipiCoppie"></div>
+    <div class="toolbar">
+      <button class="btn green" id="drawCoppia" type="button">Nuova coppia</button>
+      <button class="btn ghost" id="indovina" type="button" disabled>Ne scelgo una io</button>
+      <span class="count" id="c2"></span>
+    </div>
+    <div class="grid2">
+      <div class="panel">
+        <div id="coppiaVuota" class="vuoto">Premi <b>Nuova coppia</b> per cominciare.</div>
+        <div id="coppiaIn" hidden>
+          <div class="etichetta" id="etichetta"></div>
+          <div class="coppia" id="coppia"></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+            <button class="ascolta" id="ascoltaA" type="button">🔊 la prima</button>
+            <button class="ascolta" id="ascoltaB" type="button">🔊 la seconda</button>
+            <span class="nota-voce">Niente voce italiana qui: le dice Fabio.</span>
+          </div>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Due modi di giocare</h3>
+        <p style="margin:0 0 10px"><b>Dille tu:</b> leggi le due parole di fila, io ti dico se si sente la differenza.</p>
+        <p style="margin:0 0 10px"><b>Ne scelgo una io:</b> premi il pulsante, io ne dico una sola, tu tocchi quella che hai sentito.</p>
+        <h3>Il segreto delle doppie</h3>
+        <p style="margin:0">La consonante doppia non è più forte: è più <b>lunga</b>. La vocale prima diventa più corta: <i>pala</i> si allarga, <i>palla</i> si stringe.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 3 -->
+  <section class="phase" id="p3">
+    <h2>Leggi ad alta voce</h2>
+    <p class="lead">Prima lentamente, con gli accenti accesi. Poi di nuovo, a velocità normale, con gli accenti spenti. <span class="en">Slow with the marks on, then normal with them off.</span></p>
+    <div class="lista-testi" id="listaTesti"></div>
+    <div class="toolbar">
+      <button class="btn green" id="toggleAcc" type="button" aria-pressed="false">Mostra gli accenti</button>
+      <button class="ascolta" id="ascoltaTesto" type="button">🔊 Ascolta il testo</button>
+      <button class="btn ghost" id="scioglilingua" type="button">Scioglilingua</button>
+      <span class="nota-voce">Qui la voce italiana manca: legge Fabio.</span>
+    </div>
+    <div class="grid2">
+      <div class="panel">
+        <h3 id="titoloTesto"></h3>
+        <div class="testo" id="testo"></div>
+      </div>
+      <aside class="panel">
+        <h3>Mentre legge, ascolto</h3>
+        <ul class="checklist" id="checklist">
+          <li>le vocali restano piene (niente «uh» inglese)</li>
+          <li>le doppie durano davvero</li>
+          <li>l'accento cade dove deve</li>
+          <li>le parole non si staccano una per una</li>
+        </ul>
+        <p class="en" style="margin-top:12px">Le spunte servono a Fabio: dicono cosa riprendere alla fine.</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Le parole sbagliate, i suoni da riprendere, quelle da ripassare a casa.</p>
+    <textarea id="note" placeholder="Es. teléfono (non TÉlefono) · sette/sete ancora incerto"></textarea>
+    <div class="barra">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<dialog id="regoleDlg" aria-labelledby="dlgTitle">
+  <div class="dlg-head"><h2 id="dlgTitle">Le regole in due minuti</h2><button class="btn ghost" id="closeRegole" type="button">Chiudi</button></div>
+  <div class="dlg-body">
+    <h3>Dove cade l'accento</h3>
+    <table>
+      <tr><td>La maggioranza: sulla <b>penultima</b> sillaba (parole <i>piane</i>)</td><td class="en">ami-CO, paro-LA, panino</td></tr>
+      <tr><td>Molte parole comuni: sulla <b>terzultima</b> (<i>sdrucciole</i>)</td><td class="en">teléfono, màcchina, sàbato</td></tr>
+      <tr><td>Sull'<b>ultima</b>: e allora l'accento <b>si scrive</b> (<i>tronche</i>)</td><td class="en">città, caffè, perché</td></tr>
+      <tr><td>I verbi di <i>loro</i> tirano l'accento indietro</td><td class="en">pàrlano, àbitano, teléfonano</td></tr>
+      <tr><td>Ma con <i>noi</i> e <i>voi</i> torna in fondo</td><td class="en">parliàmo, abitàte</td></tr>
+    </table>
+    <h3>Le cinque vocali non cambiano mai</h3>
+    <p style="margin:0">In inglese le vocali non accentate diventano tutte «uh»: <i>banana</i> → b'NAN'. In italiano no: <b>ba-na-na</b>, tutte e tre piene. È la cosa che si sente di più.</p>
+    <h3>Le doppie</h3>
+    <p style="margin:0">Non più forti, più <b>lunghe</b>: la lingua resta ferma un attimo in più. <i>sete / sette</i>, <i>nono / nonno</i>, <i>copia / coppia</i>.</p>
+    <h3>L'accento scritto sui monosillabi</h3>
+    <table>
+      <tr><td><b>è</b> (verbo) / <b>e</b> (and)</td><td class="en">Lei è stanca e va a casa.</td></tr>
+      <tr><td><b>dà</b> (verbo) / <b>da</b> (from)</td><td class="en">Mi dà un caffè da bere.</td></tr>
+      <tr><td><b>sì</b> (yes) / <b>si</b> (oneself)</td><td class="en">Sì, si chiama Ari.</td></tr>
+      <tr><td><b>là</b> (there) / <b>la</b> (the)</td><td class="en">La borsa è là.</td></tr>
+      <tr><td><b>né</b> (nor) / <b>ne</b> (of it)</td><td class="en">Non ne voglio né uno né due.</td></tr>
+    </table>
+    <h3>I suoni da tenere d'occhio</h3>
+    <table>
+      <tr><td><b>ch, gh</b> = k, g dure</td><td class="en">chi, perché, spaghetti</td></tr>
+      <tr><td><b>ci, ce</b> = ch inglese · <b>gi, ge</b> = j</td><td class="en">ciao, cena, gelato, giorno</td></tr>
+      <tr><td><b>gli</b> = una elle morbida, tutta avanti</td><td class="en">famiglia, aglio, figlio</td></tr>
+      <tr><td><b>gn</b> = come «canyon»</td><td class="en">bagno, signora, gnocchi</td></tr>
+      <tr><td><b>sci, sce</b> = sh</td><td class="en">pesce, sciare, uscita</td></tr>
+      <tr><td><b>z</b> = ts oppure dz</td><td class="en">pizza, grazie, zero</td></tr>
+    </table>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+
+/* ============================================================
+   DOVE CADE L'ACCENTO? - dati
+   w = parola, s = sillabe, i = sillaba accentata (da 0),
+   en = traduzione, v:true = forma verbale di "loro",
+   n = nota che compare dopo la risposta
+   ============================================================ */
+
+var PAROLE = [
+  /* ---- piane: la maggioranza ---- */
+  {w:"amico", s:["a","mi","co"], i:1, en:"friend"},
+  {w:"parola", s:["pa","ro","la"], i:1, en:"word"},
+  {w:"giornata", s:["gior","na","ta"], i:1, en:"day"},
+  {w:"ragazza", s:["ra","gaz","za"], i:1, en:"girl"},
+  {w:"cucina", s:["cu","ci","na"], i:1, en:"kitchen"},
+  {w:"finestra", s:["fi","ne","stra"], i:1, en:"window"},
+  {w:"panino", s:["pa","ni","no"], i:1, en:"sandwich"},
+  {w:"studente", s:["stu","den","te"], i:1, en:"student"},
+  {w:"insalata", s:["in","sa","la","ta"], i:2, en:"salad"},
+  {w:"bicicletta", s:["bi","ci","clet","ta"], i:2, en:"bicycle"},
+  {w:"cornetto", s:["cor","net","to"], i:1, en:"croissant"},
+  {w:"domani", s:["do","ma","ni"], i:1, en:"tomorrow"},
+  {w:"lavoro", s:["la","vo","ro"], i:1, en:"work", n:"Attenzione: lavóro (il lavoro, io lavoro) ma lavorò (lui, ieri)."},
+  {w:"quaderno", s:["qua","der","no"], i:1, en:"notebook"},
+  {w:"maestra", s:["ma","e","stra"], i:1, en:"teacher"},
+  {w:"stazione", s:["sta","zio","ne"], i:1, en:"station"},
+  {w:"gelato", s:["ge","la","to"], i:1, en:"ice cream"},
+  {w:"bambino", s:["bam","bi","no"], i:1, en:"child"},
+
+  /* ---- sdrucciole: l'accento scivola indietro ---- */
+  {w:"telefono", s:["te","le","fo","no"], i:1, en:"telephone", n:"In inglese si dice TE-lephone, in italiano te-LÉ-fo-no."},
+  {w:"macchina", s:["mac","chi","na"], i:0, en:"car"},
+  {w:"camera", s:["ca","me","ra"], i:0, en:"room"},
+  {w:"tavolo", s:["ta","vo","lo"], i:0, en:"table"},
+  {w:"medico", s:["me","di","co"], i:0, en:"doctor"},
+  {w:"musica", s:["mu","si","ca"], i:0, en:"music"},
+  {w:"numero", s:["nu","me","ro"], i:0, en:"number"},
+  {w:"sabato", s:["sa","ba","to"], i:0, en:"Saturday"},
+  {w:"domenica", s:["do","me","ni","ca"], i:1, en:"Sunday"},
+  {w:"simpatico", s:["sim","pa","ti","co"], i:1, en:"nice"},
+  {w:"difficile", s:["dif","fi","ci","le"], i:1, en:"difficult"},
+  {w:"possibile", s:["pos","si","bi","le"], i:1, en:"possible"},
+  {w:"isola", s:["i","so","la"], i:0, en:"island"},
+  {w:"albero", s:["al","be","ro"], i:0, en:"tree"},
+  {w:"zucchero", s:["zuc","che","ro"], i:0, en:"sugar"},
+  {w:"ultimo", s:["ul","ti","mo"], i:0, en:"last"},
+  {w:"unico", s:["u","ni","co"], i:0, en:"only, unique"},
+  {w:"rapido", s:["ra","pi","do"], i:0, en:"fast"},
+  {w:"giovane", s:["gio","va","ne"], i:0, en:"young"},
+  {w:"nuvola", s:["nu","vo","la"], i:0, en:"cloud"},
+  {w:"lampada", s:["lam","pa","da"], i:0, en:"lamp"},
+  {w:"pentola", s:["pen","to","la"], i:0, en:"pot"},
+  {w:"scatola", s:["sca","to","la"], i:0, en:"box"},
+  {w:"chiacchiera", s:["chiac","chie","ra"], i:0, en:"a chat"},
+  {w:"fragola", s:["fra","go","la"], i:0, en:"strawberry"},
+  {w:"compito", s:["com","pi","to"], i:0, en:"homework", n:"cómpito (il compito) ma capìto (participio di capire): due parole simili, accenti diversi."},
+  {w:"facile", s:["fa","ci","le"], i:0, en:"easy"},
+  {w:"utile", s:["u","ti","le"], i:0, en:"useful"},
+  {w:"libero", s:["li","be","ro"], i:0, en:"free"},
+  {w:"povero", s:["po","ve","ro"], i:0, en:"poor"},
+  {w:"autobus", s:["au","to","bus"], i:0, en:"bus", n:"àutobus, non auto-BUS: l'accento sta all'inizio."},
+
+  /* ---- tronche: l'unico caso in cui l'accento si scrive ---- */
+  {w:"città", s:["cit","tà"], i:1, en:"city"},
+  {w:"caffè", s:["caf","fè"], i:1, en:"coffee"},
+  {w:"però", s:["pe","rò"], i:1, en:"but"},
+  {w:"perché", s:["per","ché"], i:1, en:"why, because"},
+  {w:"università", s:["u","ni","ver","si","tà"], i:4, en:"university"},
+  {w:"papà", s:["pa","pà"], i:1, en:"dad"},
+  {w:"lunedì", s:["lu","ne","dì"], i:2, en:"Monday"},
+  {w:"così", s:["co","sì"], i:1, en:"like this"},
+  {w:"metà", s:["me","tà"], i:1, en:"half"},
+  {w:"sarà", s:["sa","rà"], i:1, en:"it will be"},
+  {w:"cantò", s:["can","tò"], i:1, en:"he/she sang", n:"Cantò con l'accento scritto: è il passato remoto. Cànto senza accento: io canto adesso."},
+
+  /* ---- i verbi di "loro": il posto dove cade tutto ---- */
+  {w:"parlano", s:["par","la","no"], i:0, en:"they speak", v:true},
+  {w:"mangiano", s:["man","gia","no"], i:0, en:"they eat", v:true},
+  {w:"studiano", s:["stu","dia","no"], i:0, en:"they study", v:true},
+  {w:"lavorano", s:["la","vo","ra","no"], i:1, en:"they work", v:true},
+  {w:"cucinano", s:["cu","ci","na","no"], i:1, en:"they cook", v:true},
+  {w:"ascoltano", s:["a","scol","ta","no"], i:1, en:"they listen", v:true},
+  {w:"abitano", s:["a","bi","ta","no"], i:0, en:"they live", v:true, n:"Àbitano: quattro sillabe e l'accento sulla prima. Ma abitiàmo, con noi, torna in fondo."},
+  {w:"ordinano", s:["or","di","na","no"], i:0, en:"they order", v:true},
+  {w:"telefonano", s:["te","le","fo","na","no"], i:1, en:"they call", v:true},
+  {w:"desiderano", s:["de","si","de","ra","no"], i:1, en:"they wish", v:true},
+  {w:"dimenticano", s:["di","men","ti","ca","no"], i:1, en:"they forget", v:true},
+  {w:"immaginano", s:["im","ma","gi","na","no"], i:1, en:"they imagine", v:true}
+];
+
+/* ============================================================
+   LE COPPIE: due parole che cambiano tutto
+   tipo: "doppia" oppure "accento"
+   ============================================================ */
+
+var COPPIE = [
+  /* doppie */
+  {t:"doppia", a:"nono", ae:"ninth", b:"nonno", be:"grandfather"},
+  {t:"doppia", a:"sete", ae:"thirst", b:"sette", be:"seven"},
+  {t:"doppia", a:"casa", ae:"house", b:"cassa", be:"cash desk, crate"},
+  {t:"doppia", a:"pala", ae:"shovel", b:"palla", be:"ball"},
+  {t:"doppia", a:"fato", ae:"fate", b:"fatto", be:"fact, done"},
+  {t:"doppia", a:"copia", ae:"copy", b:"coppia", be:"couple"},
+  {t:"doppia", a:"note", ae:"notes", b:"notte", be:"night"},
+  {t:"doppia", a:"sono", ae:"I am", b:"sonno", be:"sleepiness"},
+  {t:"doppia", a:"camino", ae:"fireplace", b:"cammino", be:"path, I walk"},
+  {t:"doppia", a:"capello", ae:"hair", b:"cappello", be:"hat"},
+  {t:"doppia", a:"sera", ae:"evening", b:"serra", be:"greenhouse"},
+  {t:"doppia", a:"dona", ae:"he gives", b:"donna", be:"woman"},
+  {t:"doppia", a:"caro", ae:"dear, expensive", b:"carro", be:"cart"},
+  {t:"doppia", a:"polo", ae:"pole", b:"pollo", be:"chicken"},
+  {t:"doppia", a:"colo", ae:"I strain", b:"collo", be:"neck"},
+  {t:"doppia", a:"tori", ae:"bulls", b:"torri", be:"towers"},
+  {t:"doppia", a:"sano", ae:"healthy", b:"sanno", be:"they know"},
+  {t:"doppia", a:"pena", ae:"pity", b:"penna", be:"pen"},
+  {t:"doppia", a:"rosa", ae:"pink, rose", b:"rossa", be:"red"},
+  {t:"doppia", a:"moto", ae:"motorbike", b:"motto", be:"motto"},
+  /* accento */
+  {t:"accento", a:"àncora", ae:"anchor", b:"ancóra", be:"still, again"},
+  {t:"accento", a:"pàpa", ae:"pope", b:"papà", be:"dad"},
+  {t:"accento", a:"càpito", ae:"I happen to be", b:"capìto", be:"understood"},
+  {t:"accento", a:"pàrlo", ae:"I speak", b:"parlò", be:"he/she spoke"},
+  {t:"accento", a:"àbito", ae:"I live / a suit", b:"abitò", be:"he/she lived"},
+  {t:"accento", a:"sùbito", ae:"immediately", b:"subìto", be:"suffered, undergone"},
+  {t:"accento", a:"lèggere", ae:"to read", b:"leggère", be:"light (feminine plural)"},
+  {t:"accento", a:"prìncipi", ae:"princes", b:"princìpi", be:"principles"},
+  {t:"accento", a:"cómpito", ae:"homework, task", b:"compìto", be:"polite"},
+  {t:"accento", a:"nòcciolo", ae:"stone of a fruit", b:"nocciòlo", be:"hazel tree"}
+];
+
+/* ============================================================
+   I TESTI DA LEGGERE
+   Fra { } c'è la vocale accentata delle parole che ingannano:
+   il pulsante "Mostra gli accenti" le accende.
+   ============================================================ */
+
+var TESTI = [
+  {t:"La mattina di corsa", liv:"A2", txt:
+   "La sv{e}glia suona alle sette e mezza, ma io mi alzo s{u}bito solo il lunedì. " +
+   "Apro la fin{e}stra, guardo il cielo e vado in c{u}cina. Accendo la m{a}cchina del caffè, " +
+   "faccio colazione e leggo due mess{a}ggi sul tel{e}fono. Alle otto e un quarto esco di casa " +
+   "e prendo l'{a}utobus: il vi{a}ggio dura venti min{u}ti. Quando arrivo in uff{i}cio " +
+   "i miei colleghi sono già lì: p{a}rlano, b{e}vono il caffè e non lav{o}rano anc{o}ra."},
+
+  {t:"Al telefono con un'amica", liv:"A2", txt:
+   "«Pronto? Ciao! Come stai? Che mi racc{o}nti?» " +
+   "«Tutto bene, ma sono st{a}nca: questa settim{a}na ho lavorato tutti i gi{o}rni, anche s{a}bato.» " +
+   "«Mamma mia! E dom{e}nica che fai? Sei l{i}bera?» " +
+   "«Sì, finalmente! Vado a pranzo dai miei genitori, {a}bitano fuori città. Perché, hai un'id{e}a?» " +
+   "«Pensavo a un caffè in centro, verso le c{i}nque. Che ne dici?» " +
+   "«Volentieri! Ci vediamo lì, è più s{e}mplice.»"},
+
+  {t:"Il fine settimana", liv:"A2-B1", txt:
+   "S{a}bato mattina ho pul{i}to casa, poi sono andata al merc{a}to con mia sorella. " +
+   "Abbiamo comprato le fr{a}gole, un po' di verdura e due etti di prosciutto. " +
+   "Il pomeriggio siamo rimaste sul div{a}no a guardare un film: era troppo l{u}ngo " +
+   "e alla fine ci siamo addormentate. La s{e}ra siamo uscite con gli amici e abbiamo mangiato " +
+   "una pizza buon{i}ssima. Domenica invece non ho fatto pr{o}prio niente, e sono cont{e}nta così."},
+
+  {t:"La città dove abito", liv:"A2", txt:
+   "La mia città non è gr{a}nde, però è c{o}moda: c'è la stazi{o}ne a dieci min{u}ti a piedi, " +
+   "l'università è in centro e la dom{e}nica il mercato riempie la pi{a}zza. " +
+   "Il posto che preferisco è un bar piccolo vicino al fi{u}me, dove fanno un caffè ottimo. " +
+   "D'inverno fa fr{e}ddo e la gente cammina in fretta; d'est{a}te invece tutti r{e}stano fuori fino a tardi."}
+];
+
+var SCIOGLILINGUA = [
+  {s:"Trentatré trentini entrarono a Trento tutti e trentatré trotterellando.", f:"la t e la erre doppia"},
+  {s:"Sopra la panca la capra campa, sotto la panca la capra crepa.", f:"le vocali chiare: campa / crepa"},
+  {s:"Sul tagliere l'aglio taglia, non tagliare la tovaglia.", f:"il suono gli"},
+  {s:"Tre tigri contro tre tigri.", f:"la erre"},
+  {s:"Se l'arcivescovo di Costantinopoli si disarcivescoviscostantinopolizza, tu ti disarcivescoviscostantinopolizzi?", f:"il fiato lungo, per ridere"},
+  {s:"Apelle, figlio di Apollo, fece una palla di pelle di pollo.", f:"le doppie: palla, pelle, pollo"},
+  {s:"Una rana nera e rara sulla rena errò una sera.", f:"la erre e le vocali pure"},
+  {s:"Chi ama chiama chi ama, chiamami tu che chi ami chiama.", f:"il suono chi"}
+];
+
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+  function pescaDiverso(lista, escluso){
+    var pool = lista.filter(function(x){ return x !== escluso; });
+    if(!pool.length) pool = lista;
+    return pool[Math.floor(Math.random()*pool.length)];
+  }
+  function categoria(p){
+    var d = p.s.length - 1 - p.i;
+    return d === 0 ? "tronca" : d === 1 ? "piana" : d === 2 ? "sdrucciola" : "bisdrucciola";
+  }
+  var SPIEGA = {
+    piana:"Piana: l'accento sulla penultima, come quasi sempre.",
+    sdrucciola:"Sdrucciola: l'accento scivola sulla terzultima.",
+    tronca:"Tronca: l'accento in fondo, e infatti si scrive.",
+    bisdrucciola:"Bisdrucciola: l'accento va ancora più indietro, sulla quartultima."
+  };
+
+  /* ---------- voce italiana del browser ---------- */
+  var vociIT = [];
+  function caricaVoci(){
+    try{
+      vociIT = (window.speechSynthesis.getVoices() || []).filter(function(v){ return /^it/i.test(v.lang || ""); });
+    }catch(e){ vociIT = []; }
+    document.body.classList.toggle("senza-voce", !vociIT.length);
+  }
+  if(window.speechSynthesis){
+    caricaVoci();
+    window.speechSynthesis.onvoiceschanged = caricaVoci;
+    setTimeout(caricaVoci, 800);
+  } else {
+    document.body.classList.add("senza-voce");
+  }
+  function parla(testo, lento){
+    if(!window.speechSynthesis || !vociIT.length || !testo) return;
+    try{
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(testo);
+      u.voice = vociIT[0]; u.lang = "it-IT"; u.rate = lento ? 0.62 : 0.92;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+
+  /* ---------- stato ---------- */
+  var CHIAVE = "icf_accento_v1";
+  var stato = { giuste:0, totali:0, rivedere:[], note:"", famiglia:"tutte", tipoCoppia:"tutti", coppieFatte:0 };
+  try{
+    var vecchio = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(vecchio && typeof vecchio === "object"){
+      for(var k in stato){ if(vecchio[k] !== undefined) stato[k] = vecchio[k]; }
+    }
+  }catch(e){}
+  var tSalva = null;
+  function salva(){
+    clearTimeout(tSalva);
+    tSalva = setTimeout(function(){
+      try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){}
+    }, 250);
+  }
+
+  /* ---------- linguette ---------- */
+  var tabs = document.querySelectorAll("nav.steps [role=tab]");
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){
+      Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(s){
+        s.classList.toggle("active", s.id === t.dataset.phase);
+      });
+    });
+  });
+  var dlg = $("regoleDlg");
+  $("openRegole").addEventListener("click", function(){ dlg.showModal(); });
+  $("closeRegole").addEventListener("click", function(){ dlg.close(); });
+
+  /* ================= FASE 1 ================= */
+  var FAMIGLIE = [
+    {k:"tutte", l:"Tutte"},
+    {k:"piana", l:"Piane"},
+    {k:"sdrucciola", l:"Sdrucciole"},
+    {k:"tronca", l:"Tronche"},
+    {k:"bisdrucciola", l:"Bisdrucciole"},
+    {k:"verbi", l:"I verbi di loro"}
+  ];
+  var famEl = $("famiglie");
+  FAMIGLIE.forEach(function(f){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = f.l; b.dataset.k = f.k;
+    b.setAttribute("aria-pressed", String(f.k === stato.famiglia));
+    b.addEventListener("click", function(){
+      stato.famiglia = f.k; salva();
+      Array.prototype.forEach.call(famEl.children, function(c){
+        c.setAttribute("aria-pressed", String(c.dataset.k === stato.famiglia));
+      });
+      nuovaParola();
+    });
+    famEl.appendChild(b);
+  });
+
+  function pool1(){
+    var p = PAROLE.filter(function(x){
+      if(stato.famiglia === "tutte") return true;
+      if(stato.famiglia === "verbi") return !!x.v;
+      return categoria(x) === stato.famiglia;
+    });
+    return p.length ? p : PAROLE;
+  }
+
+  var corrente1 = null, risposto = false;
+  function punteggio(){
+    $("punteggio").textContent = stato.giuste + " / " + stato.totali;
+    var s = $("punteggioSub");
+    if(!stato.totali){ s.textContent = "Si comincia."; return; }
+    var pct = stato.giuste / stato.totali;
+    s.textContent = pct >= 0.9 ? "Orecchio fino!" : pct >= 0.7 ? "Ci siamo quasi." : "Piano piano, è la parte difficile.";
+  }
+  function disegnaRivedere(){
+    var box = $("boxRivedere"), el = $("rivedere");
+    box.hidden = !stato.rivedere.length;
+    el.innerHTML = "";
+    stato.rivedere.slice(-14).forEach(function(w){
+      var s = document.createElement("span"); s.textContent = w; el.appendChild(s);
+    });
+  }
+  function nuovaParola(){
+    corrente1 = pescaDiverso(pool1(), corrente1);
+    risposto = false;
+    $("tradu").textContent = corrente1.en;
+    $("esito").innerHTML = "";
+    var box = $("sillabe"); box.innerHTML = "";
+    corrente1.s.forEach(function(sil, k){
+      var b = document.createElement("button");
+      b.type = "button"; b.textContent = sil;
+      b.addEventListener("click", function(){ rispondi(k, b); });
+      box.appendChild(b);
+    });
+  }
+  function rispondi(k, bottone){
+    if(risposto) return;
+    risposto = true;
+    var giusto = k === corrente1.i;
+    var bottoni = $("sillabe").children;
+    Array.prototype.forEach.call(bottoni, function(b, j){
+      b.disabled = true;
+      if(j === corrente1.i) b.classList.add("giusta");
+    });
+    if(!giusto) bottone.classList.add("sbagliata");
+
+    stato.totali++;
+    if(giusto){ stato.giuste++; }
+    else if(stato.rivedere.indexOf(corrente1.w) < 0){ stato.rivedere.push(corrente1.w); }
+    salva(); punteggio(); disegnaRivedere();
+
+    var parola = corrente1.s.map(function(sil, j){
+      return j === corrente1.i ? "<b>" + esc(sil) + "</b>" : esc(sil);
+    }).join("·");
+    var html = '<div class="parola">' + parola + "</div>" +
+               '<div class="tipo">' + (giusto ? "Giusto! " : "Cade qui. ") + SPIEGA[categoria(corrente1)] + "</div>";
+    if(corrente1.n) html += '<div class="nota">' + esc(corrente1.n) + "</div>";
+    $("esito").innerHTML = html;
+    parla(corrente1.w, false);
+  }
+  $("next1").addEventListener("click", nuovaParola);
+  $("ascolta1").addEventListener("click", function(){ parla(corrente1 && corrente1.w, false); });
+  $("lento1").addEventListener("click", function(){ parla(corrente1 && corrente1.w, true); });
+  $("puliRivedere").addEventListener("click", function(){ stato.rivedere = []; salva(); disegnaRivedere(); });
+  punteggio(); disegnaRivedere(); nuovaParola();
+
+  /* ================= FASE 2 ================= */
+  var TIPI = [{k:"tutti", l:"Tutte"}, {k:"doppia", l:"Doppie"}, {k:"accento", l:"Accento"}];
+  var tipiEl = $("tipiCoppie");
+  TIPI.forEach(function(f){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = f.l; b.dataset.k = f.k;
+    b.setAttribute("aria-pressed", String(f.k === stato.tipoCoppia));
+    b.addEventListener("click", function(){
+      stato.tipoCoppia = f.k; salva();
+      Array.prototype.forEach.call(tipiEl.children, function(c){
+        c.setAttribute("aria-pressed", String(c.dataset.k === stato.tipoCoppia));
+      });
+    });
+    tipiEl.appendChild(b);
+  });
+
+  var corrente2 = null, segreta = null, ordine = [];
+  function disegnaCoppia(){
+    $("coppiaVuota").hidden = true;
+    $("coppiaIn").hidden = false;
+    $("etichetta").textContent = corrente2.t === "doppia"
+      ? "Cambia una consonante doppia"
+      : "Cambia solo il posto dell'accento";
+    var box = $("coppia"); box.innerHTML = "";
+    ordine = shuffle([{w:corrente2.a, e:corrente2.ae}, {w:corrente2.b, e:corrente2.be}]);
+    ordine.forEach(function(x){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.innerHTML = esc(x.w) + "<small>" + esc(x.e) + "</small>";
+      b.addEventListener("click", function(){ scegli(x, b); });
+      box.appendChild(b);
+    });
+    segreta = null;
+    $("indovina").disabled = false;
+    $("indovina").textContent = "Ne scelgo una io";
+    $("c2").textContent = stato.coppieFatte ? "coppie viste: " + stato.coppieFatte : "";
+  }
+  function scegli(x, b){
+    if(!segreta){
+      // modalità "dille tu": si illumina e basta, la parola viene letta
+      parla(x.w, false);
+      return;
+    }
+    var giusto = x.w === segreta.w;
+    Array.prototype.forEach.call($("coppia").children, function(el, j){
+      if(ordine[j].w === segreta.w) el.classList.add("giusta");
+    });
+    if(!giusto) b.classList.add("sbagliata");
+    $("etichetta").textContent = giusto ? "Sì! Era «" + segreta.w + "»." : "Era «" + segreta.w + "».";
+    segreta = null;
+    $("indovina").disabled = false;
+    $("indovina").textContent = "Un'altra a sorpresa";
+  }
+  $("drawCoppia").addEventListener("click", function(){
+    var pool = COPPIE.filter(function(c){ return stato.tipoCoppia === "tutti" || c.t === stato.tipoCoppia; });
+    corrente2 = pescaDiverso(pool, corrente2);
+    stato.coppieFatte++; salva();
+    disegnaCoppia();
+  });
+  $("indovina").addEventListener("click", function(){
+    if(!corrente2) return;
+    Array.prototype.forEach.call($("coppia").children, function(el){
+      el.classList.remove("giusta"); el.classList.remove("sbagliata");
+    });
+    segreta = ordine[Math.floor(Math.random() * ordine.length)];
+    $("etichetta").textContent = "Ne ho scelta una: ascolta e tocca quella giusta.";
+    this.disabled = true;
+    parla(segreta.w, false);
+  });
+  $("ascoltaA").addEventListener("click", function(){ if(ordine[0]) parla(ordine[0].w, false); });
+  $("ascoltaB").addEventListener("click", function(){ if(ordine[1]) parla(ordine[1].w, false); });
+
+  /* ================= FASE 3 ================= */
+  var mostraAcc = false, iTesto = 0, modoScio = false, scio = null;
+  var listaEl = $("listaTesti");
+  TESTI.forEach(function(t, k){
+    var b = document.createElement("button");
+    b.className = "btn ghost"; b.type = "button";
+    b.textContent = t.t;
+    b.addEventListener("click", function(){ modoScio = false; iTesto = k; disegnaTesto(); });
+    listaEl.appendChild(b);
+  });
+  function rendi(txt){
+    return esc(txt).replace(/\{([^}]*)\}/g, function(_, v){
+      return mostraAcc ? '<b class="acc">' + v + "</b>" : v;
+    });
+  }
+  function disegnaTesto(){
+    if(modoScio){
+      $("titoloTesto").textContent = "Scioglilingua";
+      $("testo").innerHTML = '<div class="scioglilingua">' + esc(scio.s) + "</div>" +
+        '<span class="en">Serve per ' + esc(scio.f) + ". Prima piano, poi sempre più veloce.</span>";
+      return;
+    }
+    var t = TESTI[iTesto];
+    $("titoloTesto").textContent = t.t + " · " + t.liv;
+    $("testo").innerHTML = rendi(t.txt);
+  }
+  $("toggleAcc").addEventListener("click", function(){
+    mostraAcc = !mostraAcc;
+    this.setAttribute("aria-pressed", String(mostraAcc));
+    this.textContent = mostraAcc ? "Nascondi gli accenti" : "Mostra gli accenti";
+    disegnaTesto();
+  });
+  $("scioglilingua").addEventListener("click", function(){
+    modoScio = true;
+    scio = pescaDiverso(SCIOGLILINGUA, scio);
+    disegnaTesto();
+  });
+  $("ascoltaTesto").addEventListener("click", function(){
+    var t = modoScio ? scio.s : TESTI[iTesto].txt.replace(/[{}]/g, "");
+    parla(t, false);
+  });
+  Array.prototype.forEach.call($("checklist").children, function(li){
+    li.addEventListener("click", function(){ li.classList.toggle("done"); });
+  });
+  disegnaTesto();
+
+  /* ================= APPUNTI ================= */
+  var note = $("note");
+  note.value = stato.note || "";
+  note.addEventListener("input", function(){
+    stato.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("reset").addEventListener("click", function(){
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+
+  /* ================= TASTIERA ================= */
+  document.addEventListener("keydown", function(e){
+    if(/^(INPUT|TEXTAREA)$/.test((e.target.tagName || "").toUpperCase())) return;
+    if(dlg.open) return;
+    var attiva = document.querySelector("section.phase.active");
+    if(!attiva) return;
+    if(attiva.id === "p1"){
+      if(e.key === "n"){ nuovaParola(); }
+      else if(e.key === " "){ e.preventDefault(); parla(corrente1 && corrente1.w, false); }
+      else if(/^[1-9]$/.test(e.key)){
+        var b = $("sillabe").children[Number(e.key) - 1];
+        if(b && !b.disabled) b.click();
+      }
+    } else if(attiva.id === "p2"){
+      if(e.key === "n") $("drawCoppia").click();
+    } else if(attiva.id === "p3"){
+      if(e.key === "a") $("toggleAcc").click();
+      else if(e.key === "s") $("scioglilingua").click();
+    }
+  });
+})();
+</script>
+</body>
+</html>
