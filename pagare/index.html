@@ -145,6 +145,44 @@ h1 .hl{color:var(--rosso);}
 .nofees b{font-family:var(--display);}
 .nofees .small{font-size:0.92rem; opacity:0.8; margin-top:8px;}
 
+/* ---------- Il foglietto "chiedimi il link" ----------
+   Un mailto da solo non basta: chi non ha configurato l'app di posta
+   (tanti su Mac e su telefono) clicca e non succede niente. Qui diamo
+   tre strade e una di sicuro funziona. */
+.sheet{
+  position:fixed; inset:0; background:rgba(22,35,63,.45); z-index:60;
+  display:flex; align-items:center; justify-content:center; padding:20px;
+}
+.sheet[hidden]{display:none;}
+.sheet-in{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:26px 28px; max-width:520px; width:100%; max-height:90vh; overflow:auto;
+  box-shadow:8px 8px 0 rgba(22,35,63,.16);
+}
+.sheet h3{font-family:var(--display); font-size:1.25rem; margin:0 0 6px;}
+.sheet .sub{color:var(--ink-soft); font-size:.97rem; margin:0 0 16px;}
+.sheet .msg{
+  background:var(--paper); border:1px solid var(--rule); border-radius:14px;
+  padding:14px 16px; font-size:.97rem; color:var(--ink); margin:0 0 8px; white-space:pre-wrap;
+}
+.sheet .addr{
+  font-family:var(--mono); font-size:.9rem; color:var(--ink); word-break:break-all;
+  background:var(--paper); border:1px solid var(--rule); border-radius:14px;
+  padding:10px 14px; margin:0 0 18px;
+}
+.sheet-btns{display:flex; flex-direction:column; gap:9px;}
+.sheet-btns .btn{width:100%;}
+.sheet .close{
+  background:none; border:none; color:var(--ink-soft); font-family:var(--display);
+  font-weight:600; font-size:.92rem; cursor:pointer; padding:10px 0 0; width:100%;
+}
+.sheet .close:hover{color:var(--rosso);}
+.linkish{
+  background:none; border:none; padding:0; font:inherit; cursor:pointer;
+  font-family:var(--display); font-weight:700; color:var(--paper-2);
+  text-decoration:underline; text-underline-offset:3px;
+}
+
 .aside{border-top:1px solid var(--rule); padding:26px 0 60px; color:var(--ink-soft);}
 .aside p{margin:0 0 10px; max-width:62ch;}
 .aside a{font-family:var(--display); font-weight:700; color:var(--rosso); text-decoration:none;}
@@ -187,8 +225,9 @@ h1 .hl{color:var(--rosso);}
     <p><b>No card fees, no exchange markup.</b> If you hold euros, pounds or dollars, this is a
       normal local transfer: free for you, free for me. Nobody takes a cut in the middle, which is
       exactly why I set it up this way.</p>
-    <p class="small">Paying from somewhere else? That's fine too, just ask me and I'll set up a link
-      in your currency.</p>
+    <p class="small">Paying from somewhere else? That's fine too:
+      <button type="button" class="linkish" id="askOther">ask me and I'll set up a link in your
+      currency</button>.</p>
   </section>
 
   <section class="how">
@@ -225,6 +264,21 @@ h1 .hl{color:var(--rosso);}
     </p>
   </section>
 </main>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-in" role="dialog" aria-modal="true" aria-labelledby="sheetTit">
+    <h3 id="sheetTit">Ask me for a payment link</h3>
+    <p class="sub">Send me this and I'll reply with a link you can pay from, usually the same day.</p>
+    <p class="msg" id="sheetMsg"></p>
+    <p class="addr" id="sheetAddr"></p>
+    <div class="sheet-btns">
+      <button type="button" class="btn" id="btnCopy">Copy the message</button>
+      <a class="btn ask" id="btnGmail" target="_blank" rel="noopener">Open in Gmail</a>
+      <a class="btn ask" id="btnMail">Open my mail app</a>
+    </div>
+    <button type="button" class="close" id="sheetClose">Close</button>
+  </div>
+</div>
 
 <script>
 (function(){
@@ -340,11 +394,61 @@ function linkPagamento(importo){
   return base + (base.indexOf("?") >= 0 ? "&" : "?") + PARAM_IMPORTO + "=" + importo;
 }
 
-function linkScrivimi(pac){
-  var ogg = "Payment link: " + pac.titolo + " (" + scelta + ")";
-  var corpo = "Hi Fabio, I'd like the " + pac.titolo.toLowerCase()
-    + " block and I'd like to pay in " + val().nome.toLowerCase() + ". Can you send me the link?";
-  return "mailto:" + MAIL + "?subject=" + encodeURIComponent(ogg) + "&body=" + encodeURIComponent(corpo);
+/* ============================================================
+   Il foglietto per chiedere il link
+
+   Niente mailto secco: su parecchi Mac e su parecchi telefoni l'app
+   di posta non e' configurata, si clicca e non succede niente. Tre
+   strade, e "copia" funziona sempre e ovunque.
+   ============================================================ */
+
+function testoRichiesta(pac){
+  if(!pac) return {
+    ogg: "Paying in another currency",
+    corpo: "Hi Fabio, I'd like to buy a block of lessons but I don't hold euros, pounds or "
+         + "dollars. Could you set up a payment link in my currency?"
+  };
+  return {
+    ogg: "Payment link: " + pac.titolo + " (" + scelta + ")",
+    corpo: "Hi Fabio, I'd like the " + pac.titolo.toLowerCase()
+         + " block and I'd like to pay in " + val().nome.toLowerCase()
+         + ". Could you send me the payment link?"
+  };
+}
+
+function apriFoglietto(pac){
+  var t = testoRichiesta(pac);
+  $("sheetMsg").textContent = t.corpo;
+  $("sheetAddr").textContent = MAIL;
+  $("btnGmail").href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + encodeURIComponent(MAIL)
+    + "&su=" + encodeURIComponent(t.ogg) + "&body=" + encodeURIComponent(t.corpo);
+  $("btnMail").href = "mailto:" + MAIL + "?subject=" + encodeURIComponent(t.ogg)
+    + "&body=" + encodeURIComponent(t.corpo);
+  $("btnCopy").textContent = "Copy the message";
+  $("sheet").hidden = false;
+  $("btnCopy").focus();
+}
+function chiudiFoglietto(){ $("sheet").hidden = true; }
+
+function copiaTesto(testo, poi){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(testo).then(poi, function(){ copiaVecchioModo(testo, poi); });
+  } else {
+    copiaVecchioModo(testo, poi);
+  }
+}
+function copiaVecchioModo(testo, poi){
+  try{
+    var t = document.createElement("textarea");
+    t.value = testo;
+    t.setAttribute("readonly", "");
+    t.style.position = "fixed"; t.style.opacity = "0";
+    document.body.appendChild(t);
+    t.select();
+    document.execCommand("copy");
+    document.body.removeChild(t);
+    poi();
+  }catch(e){}
 }
 
 function renderChips(){
@@ -397,8 +501,9 @@ function renderPiani(){
       a.textContent = "Pay " + soldi(tot, v.sym);
     } else {
       a.className = "btn ask";
-      a.href = linkScrivimi(p);
+      a.href = "#";
       a.textContent = "Ask me for the link";
+      a.addEventListener("click", function(ev){ ev.preventDefault(); apriFoglietto(p); });
     }
     el.appendChild(a);
     box.appendChild(el);
@@ -407,6 +512,16 @@ function renderPiani(){
 
 function render(){ renderChips(); renderPiani(); }
 render();
+
+$("askOther").addEventListener("click", function(){ apriFoglietto(null); });
+$("sheetClose").addEventListener("click", chiudiFoglietto);
+$("sheet").addEventListener("click", function(e){ if(e.target === $("sheet")) chiudiFoglietto(); });
+document.addEventListener("keydown", function(e){ if(e.key === "Escape") chiudiFoglietto(); });
+$("btnCopy").addEventListener("click", function(){
+  copiaTesto($("sheetMsg").textContent + "\n\n" + MAIL, function(){
+    $("btnCopy").textContent = "Copied. Now paste it in an email to me.";
+  });
+});
 
 })();
 </script>
