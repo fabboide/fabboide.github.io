@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il colloquio &middot; Talk with Fabio</title>
+<meta name="description" content="Simulazione di colloquio di lavoro con annuncio generato, curriculum a sorte e una trattativa da vincere parlando.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+:root{
+  --ink:#16233F;
+  --ink-soft:#4A5670;
+  --paper:#F7F4EC;
+  --paper-2:#FFFDF8;
+  --rule:#DFD8C7;
+  --saffron:#E8A33D;
+  --rosso:#C4312B;
+  --verde:#2E5E4E;
+  --azzurro:#3D6E8F;
+  --arancio:#C4682B;
+  --viola:#7A5A8F;
+
+  --accent:#2E5E4E;
+
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --pen:"Caveat","Segoe Script",cursive;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+
+  --wrap:1080px;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; }
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:1.05rem; line-height:1.6;
+  -webkit-text-size-adjust:100%;
+}
+a{ color:inherit; }
+.wrap{ max-width:var(--wrap); margin:0 auto; padding:0 22px; }
+.hidden{ display:none !important; }
+
+.topbar{ border-bottom:1px solid var(--rule); background:var(--paper-2); }
+.topbar-in{ max-width:var(--wrap); margin:0 auto; padding:14px 22px; display:flex; align-items:center; justify-content:space-between; gap:14px; }
+.logo{ display:flex; align-items:center; gap:10px; text-decoration:none; font-family:var(--display); font-weight:700; font-size:1rem; }
+.logo-mark{
+  width:21px; height:21px; border-radius:50%; border:1px solid var(--ink);
+  background:conic-gradient(from 180deg, var(--saffron) 0 25%, var(--rosso) 0 50%, var(--verde) 0 75%, var(--ink) 0);
+}
+.back-link{ font-family:var(--display); font-weight:600; font-size:.88rem; color:var(--ink-soft); text-decoration:none; }
+.back-link:hover{ color:var(--ink); }
+
+/* ---------- Intro ---------- */
+.intro{ padding:34px 0 8px; }
+.eyebrow{ font-family:var(--mono); font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 10px; }
+h1{ font-family:var(--display); font-weight:800; font-size:clamp(2.1rem,6vw,3.4rem); line-height:1.02; margin:0 0 14px; }
+h1 em{ font-style:normal; color:var(--accent); }
+.lede{ margin:0; max-width:62ch; }
+
+/* ---------- Linguette ---------- */
+.tabs{ display:flex; gap:8px; flex-wrap:wrap; margin:26px 0 0; border-bottom:2px solid var(--rule); padding-bottom:0; }
+.tab{
+  font-family:var(--display); font-weight:700; font-size:.95rem;
+  background:none; border:2px solid transparent; border-bottom:none; color:var(--ink-soft);
+  border-radius:14px 14px 0 0; padding:10px 18px; cursor:pointer; position:relative; top:2px;
+}
+.tab:hover{ color:var(--ink); }
+.tab[aria-selected="true"]{
+  background:var(--paper-2); border-color:var(--rule); border-bottom:2px solid var(--paper-2); color:var(--ink);
+}
+.tab .n{ font-family:var(--mono); font-size:.72em; opacity:.55; margin-right:7px; }
+
+/* ---------- Pezzi comuni ---------- */
+.setlab{ font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:24px 0 8px; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.setlab .note{ font-family:var(--body); font-size:.86rem; letter-spacing:0; text-transform:none; opacity:.85; }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.chip{
+  font-family:var(--display); font-weight:600; font-size:.9rem;
+  background:var(--paper-2); color:var(--ink); border:2px solid var(--rule);
+  border-radius:999px; padding:8px 16px; cursor:pointer; line-height:1.2;
+}
+.chip:hover{ border-color:var(--ink); }
+.chip[aria-pressed="true"]{ background:var(--ink); color:var(--paper-2); border-color:var(--ink); }
+.chip.acc[aria-pressed="true"]{ background:var(--accent); border-color:var(--accent); }
+
+.btn{
+  font-family:var(--display); font-weight:700; font-size:.98rem;
+  background:var(--accent); color:#fff; border:2px solid var(--accent);
+  border-radius:999px; padding:11px 22px; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+}
+.btn:hover{ filter:brightness(.92); }
+.btn .kbd{ font-family:var(--mono); font-weight:400; font-size:.68em; opacity:.8; border:1px solid currentColor; border-radius:5px; padding:1px 5px; }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--ink); }
+.btn-ghost:hover{ background:var(--ink); color:var(--paper-2); filter:none; }
+.btn-soft{ background:var(--paper-2); color:var(--ink); border-color:var(--rule); }
+.btn-soft:hover{ border-color:var(--ink); filter:none; }
+.btn-big{ font-size:1.1rem; padding:14px 30px; }
+.btn:disabled{ opacity:.35; cursor:not-allowed; }
+.actionrow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:22px 0 0; }
+
+.pane{ padding:22px 0 30px; }
+
+/* ---------- L'annuncio ---------- */
+.duecol{ display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:20px; align-items:start; }
+@media(max-width:860px){ .duecol{ grid-template-columns:1fr; } }
+
+.annuncio{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:26px 28px; box-shadow:6px 6px 0 rgba(22,35,63,.08);
+}
+.annuncio .testata{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; border-bottom:2px solid var(--rule); padding-bottom:12px; margin-bottom:16px; }
+.annuncio .az{ font-family:var(--display); font-weight:800; font-size:1.15rem; }
+.annuncio .set{ font-family:var(--mono); font-size:.64rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+.annuncio h2{ font-family:var(--display); font-weight:800; font-size:clamp(1.5rem,4vw,2.1rem); line-height:1.1; margin:0 0 4px; color:var(--accent); }
+.annuncio .sede{ margin:0 0 16px; color:var(--ink-soft); font-style:italic; }
+.righe{ display:grid; grid-template-columns:auto 1fr; gap:6px 16px; margin:0 0 16px; }
+.righe dt{ font-family:var(--mono); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft); padding-top:.35em; }
+.righe dd{ margin:0; font-weight:500; }
+.req{ margin:0; padding-left:20px; }
+.req li{ margin-bottom:3px; }
+.particolare{
+  border-left:4px solid var(--saffron); background:rgba(232,163,61,.13);
+  border-radius:0 12px 12px 0; padding:10px 14px; margin:16px 0 0; font-size:.98rem;
+}
+.particolare .lab{ font-family:var(--mono); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:#8A6A3B; display:block; margin-bottom:2px; }
+.particolare b{ font-family:var(--display); color:var(--ink); }
+
+.cvcard{
+  background:var(--ink); color:var(--paper-2); border-radius:22px; padding:22px 24px;
+  box-shadow:6px 6px 0 rgba(22,35,63,.12);
+}
+.cvcard .lab{ font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; opacity:.6; margin:0 0 8px; }
+.cvcard h3{ font-family:var(--display); font-weight:800; font-size:1.35rem; margin:0 0 12px; }
+.cvcard dl{ display:grid; grid-template-columns:auto 1fr; gap:6px 14px; margin:0; }
+.cvcard dt{ font-family:var(--mono); font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; opacity:.55; padding-top:.35em; }
+.cvcard dd{ margin:0; font-size:.98rem; }
+.cvcard .io{ font-family:var(--body); font-style:italic; opacity:.85; margin:0; }
+
+.prep{
+  border:2px dashed var(--rule); border-radius:20px; padding:18px 20px; margin:20px 0 0;
+}
+.prep .lab{ font-family:var(--mono); font-size:.64rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 6px; }
+.prep p{ margin:0; }
+.prep .ex{ font-family:var(--pen); font-size:1.3rem; color:var(--arancio); margin:10px 0 0; }
+
+/* ---------- Il colloquio ---------- */
+.colgrid{ display:grid; grid-template-columns:minmax(0,1fr) 290px; gap:20px; align-items:start; }
+@media(max-width:900px){ .colgrid{ grid-template-columns:1fr; } }
+
+.domcard{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:28px; box-shadow:6px 6px 0 rgba(22,35,63,.08);
+  min-height:250px; display:flex; flex-direction:column; gap:14px;
+}
+.domcard .fase{
+  align-self:flex-start; font-family:var(--mono); font-size:.64rem; letter-spacing:.12em; text-transform:uppercase;
+  border:1px solid var(--c,var(--accent)); color:var(--c,var(--accent)); border-radius:999px; padding:.3em .9em;
+}
+.domcard .q{ font-family:var(--display); font-weight:700; font-size:clamp(1.35rem,3.6vw,2rem); line-height:1.2; margin:0; }
+.domcard .aiuto{
+  border-left:4px solid var(--azzurro); background:rgba(61,110,143,.09);
+  border-radius:0 12px 12px 0; padding:10px 14px; font-size:.97rem; margin:auto 0 0;
+}
+.domcard .aiuto .lab{ font-family:var(--mono); font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; color:var(--azzurro); display:block; margin-bottom:4px; }
+.domcard .aiuto b{ font-family:var(--display); font-weight:700; color:var(--ink); }
+.domcard .vuoto{ margin:auto; text-align:center; color:var(--ink-soft); font-style:italic; }
+
+.lato{ display:flex; flex-direction:column; gap:14px; }
+.box{ background:var(--paper-2); border:2px solid var(--rule); border-radius:20px; padding:16px; }
+.boxlab{ font-family:var(--mono); font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 10px; }
+.clock{
+  font-family:var(--display); font-weight:800; font-size:2.3rem; text-align:center; line-height:1.1;
+  border:2px solid var(--ink); border-radius:16px; padding:6px 0; background:var(--paper);
+  font-variant-numeric:tabular-nums;
+}
+.clock.run{ background:var(--accent); border-color:var(--accent); color:#fff; }
+.clockbtns{ display:flex; gap:8px; margin-top:10px; }
+.clockbtns .btn{ flex:1; justify-content:center; padding:8px 10px; font-size:.86rem; }
+.notes textarea{
+  width:100%; min-height:120px; resize:vertical; font-family:var(--body); font-size:.97rem; color:var(--ink);
+  background:var(--paper); border:2px solid var(--rule); border-radius:14px; padding:10px 12px;
+}
+.notes textarea:focus{ outline:none; border-color:var(--ink); }
+.fasechips{ display:flex; flex-wrap:wrap; gap:6px; }
+.fasechip{
+  font-family:var(--display); font-weight:600; font-size:.82rem;
+  background:var(--paper); border:1.5px solid var(--rule); border-radius:999px;
+  padding:5px 12px; cursor:pointer; color:var(--ink);
+}
+.fasechip:hover{ border-color:var(--ink); }
+.fasechip[aria-pressed="true"]{ background:var(--c,var(--accent)); border-color:var(--c,var(--accent)); color:#fff; }
+.fasechip .n{ font-family:var(--mono); font-size:.76em; opacity:.6; margin-left:5px; }
+
+/* ---------- La trattativa ---------- */
+.obiettivo{
+  background:var(--rosso); color:#fff; border-radius:24px; padding:24px 26px;
+  box-shadow:6px 6px 0 rgba(196,49,43,.18);
+}
+.obiettivo .lab{ font-family:var(--mono); font-size:.64rem; letter-spacing:.14em; text-transform:uppercase; opacity:.75; margin:0 0 8px; }
+.obiettivo p{ font-family:var(--display); font-weight:700; font-size:clamp(1.25rem,3.2vw,1.7rem); line-height:1.22; margin:0; }
+.obiettivo .prof{ font-family:var(--body); font-weight:400; font-style:italic; font-size:.97rem; opacity:.9; margin:12px 0 0; }
+
+.offerta{ background:var(--paper-2); border:2px solid var(--ink); border-radius:24px; padding:22px 24px; }
+.offerta h3{ font-family:var(--display); font-size:1.05rem; margin:0 0 12px; }
+.offerta ul{ margin:0; padding-left:20px; }
+.offerta li{ margin-bottom:4px; }
+
+.giudizio{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:18px 0 0; }
+@media(max-width:560px){ .giudizio{ grid-template-columns:1fr; } }
+.gbtn{ flex-direction:column; gap:2px; padding:14px 10px; justify-content:center; text-align:center; font-size:.92rem; }
+.gbtn small{ font-family:var(--mono); font-weight:400; font-size:.62rem; letter-spacing:.1em; text-transform:uppercase; opacity:.85; }
+.g-no{ background:var(--rosso); border-color:var(--rosso); }
+.g-mezzo{ background:var(--saffron); border-color:var(--saffron); color:var(--ink); }
+.g-si{ background:var(--verde); border-color:var(--verde); }
+
+.esito{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:26px 28px; box-shadow:6px 6px 0 rgba(22,35,63,.08); margin:22px 0 0;
+}
+.esito h2{ font-family:var(--display); font-weight:800; font-size:clamp(1.6rem,4.5vw,2.4rem); line-height:1.05; margin:0 0 10px; }
+.esito h2.si{ color:var(--verde); }
+.esito h2.mezzo{ color:var(--arancio); }
+.esito h2.no{ color:var(--rosso); }
+.esito .riass{ margin:0 0 4px; }
+.esito .riass b{ font-family:var(--display); }
+.esito .appunti{ margin:18px 0 0; border-top:1px solid var(--rule); padding-top:14px; }
+.esito .appunti h3{ font-family:var(--display); font-size:1rem; margin:0 0 8px; }
+.esito .appunti pre{ font-family:var(--body); font-size:1rem; white-space:pre-wrap; margin:0; }
+.esito .poi{
+  margin:16px 0 0; border-left:4px solid var(--saffron); background:rgba(232,163,61,.12);
+  border-radius:0 12px 12px 0; padding:10px 14px;
+}
+.esito .poi .lab{ font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:#8A6A3B; margin:0 0 3px; }
+.esito .poi p{ margin:0; font-family:var(--pen); font-size:1.3rem; color:var(--arancio); }
+
+/* ---------- Guida ---------- */
+.guida{ margin:30px 0 60px; }
+.guida > summary{
+  cursor:pointer; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);
+  padding:12px 0; border-top:1px solid var(--rule);
+}
+.guida > summary:hover{ color:var(--ink); }
+.gcards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin:12px 0 0; }
+.gcard{ background:var(--paper-2); border:2px solid var(--ink); border-radius:18px; padding:16px 18px; }
+.gcard b{ font-family:var(--display); display:block; margin-bottom:5px; }
+.gcard span{ font-size:.95rem; color:var(--ink-soft); }
+.gcard .ex{ font-family:var(--pen); font-size:1.25rem; color:var(--arancio); display:block; margin-top:8px; }
+.gnote{ margin:18px 0 0; font-size:.97rem; color:var(--ink-soft); max-width:70ch; }
+.gnote b{ color:var(--ink); }
+
+.toast{
+  position:fixed; left:50%; top:18px; transform:translateX(-50%) translateY(-24px); opacity:0;
+  background:var(--ink); color:var(--paper); font-family:var(--display); font-weight:700; font-size:.94rem;
+  padding:10px 22px; border-radius:999px; z-index:50; transition:all .25s ease; pointer-events:none;
+}
+.toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+@media (max-width:640px){
+  .wrap,.topbar-in{ padding-left:16px; padding-right:16px; }
+  .annuncio,.domcard,.esito{ padding:20px; }
+  .btn-big{ width:100%; justify-content:center; }
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="https://talkwithfabio.com/">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Talk with Fabio
+    </a>
+    <a class="back-link" href="../">&larr; La mia aula</a>
+  </div>
+</header>
+
+<section class="wrap">
+  <div class="intro">
+    <p class="eyebrow">compito di parlato &middot; A2 e B1 &middot; solo per me</p>
+    <h1>Il <em>colloquio</em></h1>
+    <p class="lede">Esce un annuncio di lavoro, lei si presenta e io faccio il selezionatore. Ma il gioco non &egrave; rispondere bene: &egrave; <b>ottenere una cosa</b>. Ogni partita le d&agrave; un obiettivo da strappare nella trattativa, e io sono pagato per dire di no.</p>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="t1" aria-selected="true" aria-controls="p1"><span class="n">1</span>L'annuncio</button>
+    <button class="tab" role="tab" id="t2" aria-selected="false" aria-controls="p2"><span class="n">2</span>Il colloquio</button>
+    <button class="tab" role="tab" id="t3" aria-selected="false" aria-controls="p3"><span class="n">3</span>La trattativa</button>
+  </div>
+
+  <!-- ==================== 1. L'ANNUNCIO ==================== -->
+  <div class="pane" id="p1" role="tabpanel" aria-labelledby="t1">
+
+    <p class="setlab">Chi fa il candidato</p>
+    <div class="chips" id="modeChips"></div>
+
+    <p class="setlab">Il curriculum <span class="note">se il candidato &egrave; lei</span></p>
+    <div class="chips" id="cvChips"></div>
+
+    <div class="actionrow">
+      <button class="btn btn-big" id="newBtn">Nuovo annuncio <span class="kbd">n</span></button>
+      <button class="btn btn-ghost hidden" id="goBtn">Si accomodi &rarr;</button>
+    </div>
+
+    <div class="duecol" style="margin-top:22px">
+      <article class="annuncio" id="annuncio">
+        <p class="vuoto" style="margin:0;color:var(--ink-soft);font-style:italic">Premi "Nuovo annuncio": esce un'offerta di lavoro con azienda, contratto, orario e stipendio.</p>
+      </article>
+      <div id="cvZone"></div>
+    </div>
+
+    <div class="prep hidden" id="prep">
+      <p class="lab">Prima di entrare &middot; un minuto</p>
+      <p id="prepTxt"></p>
+      <p class="ex" id="prepEx"></p>
+    </div>
+  </div>
+
+  <!-- ==================== 2. IL COLLOQUIO ==================== -->
+  <div class="pane hidden" id="p2" role="tabpanel" aria-labelledby="t2">
+    <div class="colgrid">
+      <div>
+        <div class="fasechips" id="faseChips" style="margin-bottom:14px"></div>
+        <article class="domcard" id="domcard">
+          <p class="vuoto">Scegli una fase qui sopra, poi pesca una domanda.</p>
+        </article>
+        <div class="actionrow">
+          <button class="btn btn-big" id="askBtn">Domanda successiva <span class="kbd">spazio</span></button>
+          <button class="btn btn-soft" id="skipBtn">Un'altra di questa fase</button>
+        </div>
+      </div>
+
+      <aside class="lato">
+        <div class="box">
+          <p class="boxlab">Quanto ha parlato</p>
+          <div class="clock" id="clock">0:00</div>
+          <div class="clockbtns">
+            <button class="btn" id="clockBtn">Via</button>
+            <button class="btn btn-soft" id="clockReset">Azzera</button>
+          </div>
+        </div>
+        <div class="box notes">
+          <p class="boxlab">Appunti della lezione</p>
+          <textarea id="notes" placeholder="Gli errori che sento, senza interromperla. Li riprendo alla fine."></textarea>
+        </div>
+        <div class="box">
+          <p class="boxlab">Domande fatte</p>
+          <div class="clock" id="contaDom" style="font-size:1.8rem">0</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ==================== 3. LA TRATTATIVA ==================== -->
+  <div class="pane hidden" id="p3" role="tabpanel" aria-labelledby="t3">
+    <div class="duecol">
+      <div class="obiettivo" id="obiettivo">
+        <p class="lab">L'obiettivo di questa partita</p>
+        <p id="obTxt">Genera prima un annuncio nella prima linguetta.</p>
+        <p class="prof" id="obProf"></p>
+      </div>
+      <div class="offerta" id="offerta">
+        <h3>Quello che l'azienda offre adesso</h3>
+        <ul id="offertaList"><li>Nessun annuncio ancora.</li></ul>
+      </div>
+    </div>
+
+    <p class="setlab">Come &egrave; andata a finire <span class="note">decidi tu, dopo che ha parlato</span></p>
+    <div class="giudizio">
+      <button class="btn gbtn g-no" data-g="no">Non l'ha ottenuto<small>ha ceduto subito</small></button>
+      <button class="btn gbtn g-mezzo" data-g="mezzo">Mezza vittoria<small>un compromesso</small></button>
+      <button class="btn gbtn g-si" data-g="si">L'ha ottenuto<small>me l'ha strappato</small></button>
+    </div>
+
+    <div class="esito hidden" id="esito">
+      <h2 id="esitoTit"></h2>
+      <p class="riass" id="esitoTxt"></p>
+      <div class="poi">
+        <p class="lab">E adesso</p>
+        <p id="esitoPoi"></p>
+      </div>
+      <div class="appunti hidden" id="esitoApp">
+        <h3>Da riprendere insieme</h3>
+        <pre id="esitoAppTxt"></pre>
+      </div>
+    </div>
+  </div>
+
+  <details class="guida">
+    <summary>Come lo gestisco in lezione</summary>
+
+    <div class="gcards">
+      <article class="gcard">
+        <b>1 &middot; L'annuncio, un minuto</b>
+        <span>Lo legge lei ad alta voce e mi dice tre cose sue da mettere avanti. Serve a tirare fuori il lessico prima di usarlo, non dopo.</span>
+        <span class="ex">"Faccio la traduttrice da tre anni."</span>
+      </article>
+      <article class="gcard">
+        <b>2 &middot; Il colloquio</b>
+        <span>Io do del lei e non correggo mentre parla: gli errori vanno negli appunti. Le fasi si scelgono, non c'&egrave; un ordine obbligatorio: se va in difficolt&agrave; torno al rompighiaccio.</span>
+      </article>
+      <article class="gcard">
+        <b>3 &middot; La trattativa</b>
+        <span>Qui comincia il vero compito. Lei ha un obiettivo, io faccio resistenza almeno due volte. Se cede al primo no, non ha vinto.</span>
+        <span class="ex">"Capisco, per&ograve; per me &egrave; importante."</span>
+      </article>
+      <article class="gcard">
+        <b>Il ribaltone</b>
+        <span>Secondo giro con "il candidato sono io": le domande le fa lei, e io rispondo malissimo di proposito. Deve accorgersene e incalzare.</span>
+      </article>
+    </div>
+
+    <p class="gnote"><b>Perch&eacute; l'obiettivo cambia tutto:</b> senza, un colloquio finto diventa una lista di risposte imparate. Con un obiettivo da strappare, lei deve insistere, spiegare perch&eacute;, proporre un'alternativa. &Egrave; l&igrave; che la lingua smette di essere esercizio e diventa uno strumento, ed &egrave; anche l&igrave; che sbaglia di pi&ugrave;, che &egrave; quello che mi serve.</p>
+    <p class="gnote"><b>Il mio mestiere in questo gioco</b> &egrave; dire di no con garbo. "Mi dispiace, la politica aziendale non lo prevede." Se dico s&igrave; subito, ho rovinato l'esercizio.</p>
+    <p class="gnote"><b>Alla fine</b> le faccio raccontare il colloquio al passato, come se lo raccontasse a un amico: "Allora, sono andata, mi hanno chiesto..." Cos&igrave; lo stesso lessico torna al passato prossimo, e si aggancia alla roulette dei verbi.</p>
+  </details>
+
+</section>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   1. L'annuncio: pezzi che si combinano
+   ============================================================ */
+
+var SETTORI = [
+  { k:"ristorazione", n:"Ristorazione",
+    posizioni:["cameriere / cameriera di sala","cuoco / cuoca","barista","responsabile di sala","aiuto in cucina"] },
+  { k:"scuola", n:"Scuola e formazione",
+    posizioni:["insegnante di inglese","tutor di doposcuola","coordinatore / coordinatrice didattica","insegnante di italiano per stranieri"] },
+  { k:"ufficio", n:"Ufficio",
+    posizioni:["impiegato / impiegata amministrativa","segretario / segretaria di direzione","addetto / addetta alle risorse umane","contabile"] },
+  { k:"tecnologia", n:"Tecnologia",
+    posizioni:["programmatore / programmatrice","grafico / grafica","social media manager","assistenza clienti tecnica"] },
+  { k:"commercio", n:"Commercio",
+    posizioni:["commesso / commessa","responsabile di negozio","addetto / addetta al magazzino"] },
+  { k:"turismo", n:"Turismo",
+    posizioni:["receptionist d'albergo","guida turistica","animatore / animatrice in villaggio"] },
+  { k:"sanita", n:"Sanità",
+    posizioni:["infermiere / infermiera","assistente di studio medico","fisioterapista"] },
+  { k:"editoria", n:"Editoria e traduzione",
+    posizioni:["traduttore / traduttrice dall'inglese","redattore / redattrice","correttore / correttrice di bozze"] }
+];
+
+var AZIENDE = ["Bellavista srl","Officina Cento","Studio Radice","Gruppo Marenco","La Bottega di Anna",
+  "Nordovest Servizi","Casa Serena","Ponte Blu","Verdeacqua","Il Girasole","Fratelli Sartori",
+  "Albachiara spa","Meridiana srl","Cantiere Undici","Punto e Virgola"];
+
+var SEDI = ["in centro a Torino","a Milano, zona Navigli","a Bologna, vicino alla stazione",
+  "a Firenze, fuori dal centro","a Napoli, al Vomero","in un paese vicino a Verona",
+  "a Genova, sul porto","a Padova, in zona universitaria","a Bari, sul lungomare"];
+
+var CONTRATTI = [
+  "a tempo determinato, sei mesi",
+  "a tempo determinato, un anno, rinnovabile",
+  "a tempo indeterminato dopo il periodo di prova",
+  "part time, venti ore alla settimana",
+  "stage di sei mesi con rimborso spese",
+  "a chiamata, nei fine settimana"
+];
+
+var ORARI = [
+  "dalle nove alle diciotto, con un'ora di pausa pranzo",
+  "su turni: mattina, pomeriggio e una settimana di notte al mese",
+  "dal martedì al sabato, il lunedì chiuso",
+  "solo la mattina, dalle otto all'una",
+  "flessibile, con due giorni di lavoro da remoto",
+  "spezzato: mattina e sera, pomeriggio libero"
+];
+
+var STIPENDI = [
+  "1.200 euro al mese netti",
+  "1.350 euro al mese netti, più i buoni pasto",
+  "1.500 euro al mese netti",
+  "1.700 euro al mese netti, tredicesima compresa",
+  "da definire in base all'esperienza",
+  "900 euro al mese per il part time"
+];
+
+var REQUISITI = [
+  "italiano parlato buono, sia con i clienti sia al telefono",
+  "almeno un anno di esperienza nello stesso ruolo",
+  "patente B e macchina propria",
+  "disponibilità nei fine settimana",
+  "buona conoscenza del computer e della posta elettronica",
+  "inglese fluente",
+  "capacità di lavorare in gruppo",
+  "precisione e rispetto delle scadenze",
+  "disponibilità a fare qualche straordinario nei periodi pieni",
+  "diploma o laurea, anche triennale",
+  "bella presenza e modi gentili con il pubblico",
+  "voglia di imparare, il resto lo insegniamo noi"
+];
+
+var PARTICOLARI = [
+  "Si lavora anche il sabato, a turno con i colleghi.",
+  "A marzo ci sono due settimane di trasferta fuori città.",
+  "Il periodo di prova dura sei mesi, non tre.",
+  "Le ferie si prendono a gennaio: d'estate siamo nel periodo più pieno.",
+  "Da noi non si fa smart working, si viene in sede tutti i giorni.",
+  "Una settimana di turno di notte al mese, a rotazione.",
+  "Lo stipendio non è altissimo, ma c'è la mensa e il corso di formazione pagato.",
+  "Cerchiamo qualcuno che cominci lunedì prossimo.",
+  "Il primo anno non si può chiedere il part time.",
+  "Ci sono due candidati e un posto solo."
+];
+
+/* ============================================================
+   2. I curriculum a sorte
+   ============================================================ */
+
+var CV = [
+  { nome:"Giulia Neri, 26 anni",
+    studi:"Laurea triennale in lingue a Bologna, 104 su 110. Erasmus a Siviglia.",
+    esperienza:"Sei mesi da cameriera, poi un anno alla reception di un albergo.",
+    forza:"Parla tre lingue e non si agita mai con i clienti difficili.",
+    debole:"Non sa dire di no e finisce per fare gli straordinari di tutti.",
+    dettaglio:"Vuole cambiare città." },
+  { nome:"Marco Ferri, 31 anni",
+    studi:"Istituto tecnico, poi due anni di ingegneria lasciati a metà.",
+    esperienza:"Cinque anni come operaio, ultimo anno da responsabile di turno.",
+    forza:"Sa gestire un gruppo di persone e risolvere i problemi sul momento.",
+    debole:"Con le mail e i computer va lento.",
+    dettaglio:"Si è licenziato il mese scorso, l'azienda chiudeva." },
+  { nome:"Sara Conti, 23 anni",
+    studi:"Fuori corso di un anno in economia, le mancano tre esami e la tesi.",
+    esperienza:"Nessuna, solo ripetizioni ai ragazzi delle medie.",
+    forza:"Impara in fretta e ha una buona memoria.",
+    debole:"Non ha mai lavorato in un ufficio vero.",
+    dettaglio:"Deve poter studiare: ha la sessione a gennaio." },
+  { nome:"Paolo Ricci, 45 anni",
+    studi:"Laurea magistrale in lettere, un master in comunicazione.",
+    esperienza:"Quindici anni in una casa editrice, chiusa l'anno scorso.",
+    forza:"Scrive benissimo e conosce il mestiere da dentro.",
+    debole:"È abituato a comandare e fatica a prendere ordini.",
+    dettaglio:"È disoccupato da otto mesi." },
+  { nome:"Aisha Rahman, 28 anni",
+    studi:"Laurea in informatica presa nel suo paese, riconosciuta in Italia.",
+    esperienza:"Tre anni da programmatrice in proprio, clienti all'estero.",
+    forza:"Tecnicamente fortissima, lavora bene da remoto.",
+    debole:"L'italiano scritto è ancora incerto nelle mail formali.",
+    dettaglio:"Vuole un contratto vero, basta partita IVA." },
+  { nome:"Elena Vitali, 34 anni",
+    studi:"Diploma di liceo classico, corso professionale di cucina.",
+    esperienza:"Otto anni tra ristoranti e mense, sempre in cucina.",
+    forza:"Regge la pressione del sabato sera senza perdere la testa.",
+    debole:"Ha lasciato tre posti in due anni.",
+    dettaglio:"Ha due figli piccoli: la sera fino a tardi è un problema." },
+  { nome:"Luca Bianchi, 22 anni",
+    studi:"Diploma tecnico, iscritto al primo anno di scienze motorie.",
+    esperienza:"Estati da animatore in villaggio e bagnino.",
+    forza:"Sta bene con la gente, non si stanca mai.",
+    debole:"Zero esperienza di ufficio e di orari fissi.",
+    dettaglio:"Cerca qualcosa che si incastri con le lezioni." },
+  { nome:"Chiara Longo, 39 anni",
+    studi:"Laurea in psicologia, poi corso di risorse umane.",
+    esperienza:"Dieci anni negli uffici del personale di una grande azienda.",
+    forza:"Sa fare i colloqui meglio di chi glieli fa.",
+    debole:"Ha chiesto uno stipendio alto nell'ultimo colloquio ed è stata scartata.",
+    dettaglio:"Torna a lavorare dopo due anni di pausa." }
+];
+
+/* ============================================================
+   3. Le domande, per fase
+   ============================================================ */
+
+var FASI = [
+  { k:"rompi", n:"Rompighiaccio", c:"var(--azzurro)" },
+  { k:"studi", n:"Gli studi",     c:"var(--viola)" },
+  { k:"esper", n:"L'esperienza",  c:"var(--verde)" },
+  { k:"carat", n:"Il carattere",  c:"var(--arancio)" },
+  { k:"scomo", n:"Le scomode",    c:"var(--rosso)" },
+  { k:"sue",   n:"Tocca a lei chiedere", c:"var(--ink)" }
+];
+
+var D = [];
+function q(fase, testo, aiuto){ D.push({ f:fase, q:testo, a:aiuto || "" }); }
+
+/* --- Rompighiaccio --- */
+q("rompi","Si accomodi. Ha trovato facilmente?","Due frasi e basta, poi passa la palla: <b>«Sì, grazie, nessun problema.»</b>");
+q("rompi","Mi parli un po' di lei.","La domanda più temuta. Tre frasi: chi sei, cosa fai adesso, perché sei qui.");
+q("rompi","Perché ha risposto a questo annuncio?","Deve nominare qualcosa dell'annuncio, se no si capisce che non l'ha letto.");
+q("rompi","Cosa sa della nostra azienda?","Se non sa niente, si cava con una domanda: <b>«Poco, me ne parla lei?»</b>");
+q("rompi","Come ha saputo di noi?","<b>Ho visto l'annuncio / me l'ha detto un'amica / vi seguo da tempo.</b>");
+q("rompi","Di cosa si occupa adesso?","<b>Mi occupo di... / Faccio il... / Lavoro come...</b> Tre modi, uno vale l'altro.");
+
+/* --- Gli studi --- */
+q("studi","Che studi ha fatto?","<b>Ho fatto il liceo... / Mi sono laureata in... / Ho un diploma di...</b>");
+q("studi","Perché ha scelto quella facoltà?","Qui deve dare una ragione, non una data. <b>Perché / siccome / visto che.</b>");
+q("studi","Si è laureata? Con che voto?","In Italia si dice il voto senza vergogna: <b>105 su 110</b>, <b>110 e lode</b>.");
+q("studi","Di cosa parlava la sua tesi?","<b>La mia tesi era su... / Ho scritto la tesi sul turismo.</b>");
+q("studi","Ha fatto l'Erasmus? Dove?","Buona occasione per il passato prossimo e per un racconto vero.");
+q("studi","Sta ancora studiando? Quanti esami le mancano?","<b>Mi mancano tre esami e la tesi.</b> Formula da imparare a memoria.");
+q("studi","Cosa le è servito davvero, di quello che ha studiato?","Domanda cattiva ma giusta: la costringe a collegare studio e lavoro.");
+q("studi","Ha seguito altri corsi dopo la scuola?","<b>Ho seguito un corso di... / Sto seguendo un corso online.</b>");
+q("studi","Come studiava, di solito? In biblioteca, a casa?","Lessico dello studio: appunti, manuale, ripassare, imparare a memoria.");
+
+/* --- L'esperienza --- */
+q("esper","Mi racconti il suo ultimo lavoro.","Tutto al passato. Se scivola al presente, lo segno e lo riprendo dopo.");
+q("esper","Di cosa si occupava, esattamente?","<b>Mi occupavo di... / Gestivo... / Rispondevo alle mail e ai clienti.</b>");
+q("esper","Perché si è licenziata?","Trappola: non si parla male del capo vecchio. <b>Cercavo qualcosa di diverso.</b>");
+q("esper","Quante persone gestiva?","<b>Gestivo un gruppo di cinque persone.</b>");
+q("esper","Qual è stato il progetto più difficile?","Racconto lungo, al passato. Lasciala andare, non interrompere.");
+q("esper","Ha mai fatto i turni? E gli straordinari?","<b>Facevo il turno di notte una settimana al mese.</b>");
+q("esper","Ha esperienza con i clienti?","Serve un esempio concreto, non un sì.");
+q("esper","C'è un buco di sei mesi nel suo curriculum. Cosa faceva?","La domanda che mette in difficoltà. Deve rispondere senza scusarsi troppo.");
+q("esper","Ha mai lavorato in proprio? Com'è andata?","<b>Ho lavorato in proprio per due anni.</b>");
+q("esper","Cosa ha imparato nel suo ultimo posto?","<b>Ho imparato a... / Mi ha insegnato a...</b>");
+q("esper","Perché dovrebbe essere brava in questo lavoro?","Collega esperienza e annuncio. Se non lo fa, glielo chiedo apposta.");
+
+/* --- Il carattere --- */
+q("carat","Come si descriverebbe in tre parole?","Tre aggettivi, e poi uno spiegato con un esempio.");
+q("carat","Preferisce lavorare da sola o in gruppo?","<b>Dipende: quando... preferisco...</b> La risposta furba è «dipende», ma va motivata.");
+q("carat","Qual è il suo difetto più grande?","Classico. Un difetto vero, non «sono troppo perfezionista».");
+q("carat","Come reagisce quando una scadenza è troppo vicina?","Lessico: scadenza, consegnare, organizzare, essere pieno di lavoro.");
+q("carat","Cosa fa se un collega non fa la sua parte?","Situazione, non opinione: deve raccontare cosa farebbe, passo per passo.");
+q("carat","Le è mai capitato di litigare con un capo?","Domanda scomoda travestita. Guarda come se la cava.");
+q("carat","Cosa la fa arrabbiare, al lavoro?","<b>Mi dà fastidio quando... / Non sopporto chi...</b>");
+q("carat","Dove si vede fra cinque anni?","<b>Mi piacerebbe... / Vorrei fare carriera in...</b> Condizionale, se ci arriva.");
+q("carat","È più brava a cominciare le cose o a finirle?","Domanda strana apposta: deve improvvisare, non recitare.");
+
+/* --- Le scomode --- */
+q("scomo","Perché dovrei assumere lei e non l'altro candidato?","Il momento di vendersi. Se fa la modesta, la incalzo.");
+q("scomo","Quanto vorrebbe guadagnare?","Non deve dire un numero per prima, se può: <b>«Cosa avete previsto?»</b>");
+q("scomo","È disponibile a trasferirsi?","<b>Dipende da... / Non escludo di...</b>");
+q("scomo","Questo lavoro è sotto il suo livello. Non si annoierà?","Deve difendere la sua scelta senza offendersi.");
+q("scomo","Se fra tre mesi trova di meglio, se ne va?","Trappola vera. La risposta onesta funziona meglio di quella furba.");
+q("scomo","Parla italiano abbastanza bene per i nostri clienti?","La domanda che la riguarda davvero. Si risponde con i fatti, non con le scuse.");
+q("scomo","Ha altri colloqui in corso?","Se è nell'obiettivo, qui ha la sua arma. Ma con garbo.");
+q("scomo","Quando potrebbe cominciare?","<b>Sono disponibile da... / Avrei bisogno di due settimane.</b>");
+q("scomo","Il nostro è un ambiente molto giovane. Come si trova?","Domanda al limite: va bene che impari a riconoscerle.");
+
+/* --- Tocca a lei chiedere --- */
+q("sue","Adesso chieda lei: <b>l'orario</b>.","Non basta «che orario?». <b>Vorrei sapere com'è organizzato l'orario.</b>");
+q("sue","Chieda del <b>contratto e del periodo di prova</b>.","<b>Che tipo di contratto avete in mente? Quanto dura la prova?</b>");
+q("sue","Chieda delle <b>ferie</b>.","<b>Come funzionano le ferie? Si possono prendere ad agosto?</b>");
+q("sue","Chieda <b>chi sarà il suo responsabile</b>.","<b>A chi risponderei? Chi sarebbe il mio responsabile?</b>");
+q("sue","Chieda se si può fare <b>smart working</b>.","<b>È previsto il lavoro da remoto, anche solo un giorno?</b>");
+q("sue","Chieda se c'è <b>formazione</b> all'inizio.","<b>C'è un periodo di formazione? Chi mi affianca?</b>");
+q("sue","Chieda <b>quando le faranno sapere</b>.","<b>Quando pensate di farmi sapere? Posso richiamare io?</b>");
+q("sue","Chieda <b>perché il posto è libero</b>.","Domanda da professionista: <b>Come mai cercate qualcuno adesso?</b>");
+q("sue","Chieda <b>com'è la squadra</b>.","<b>In quanti siete in ufficio? Che aria si respira?</b>");
+
+/* ============================================================
+   4. Gli obiettivi della trattativa
+   ============================================================ */
+
+/* L'obiettivo deve COZZARE con l'annuncio, se no non c'e' niente da
+   negoziare e il compito si sgonfia. Ognuno dichiara quando ha senso:
+   "cozza" assente vuol dire che vale sempre, perche' un datore di lavoro
+   fa resistenza comunque. */
+var OBIETTIVI = [
+  { t:"Ti servono tre settimane di ferie ad agosto. Devi ottenerle.",
+    p:"Io dico che ad agosto siamo nel periodo pi\u00f9 pieno. Cedo solo su due settimane, e solo se insiste." },
+  { t:"Non puoi lavorare nel fine settimana. Trova un accordo.",
+    p:"Io faccio presente che il sabato serve. Propongo un sabato al mese: se lo accetta subito, \u00e8 mezza vittoria.",
+    cozza:function(a, tutto){ return /sabato|fine settimana|turni/.test(tutto); } },
+  { t:"Vuoi almeno due giorni di lavoro da remoto.",
+    p:"Io parto da zero giorni. Arrivo a uno se mi porta una ragione concreta, non un desiderio.",
+    cozza:function(a, tutto){ return !/da remoto|smart working/.test(tutto); } },
+  { t:"Vuoi un contratto a tempo indeterminato, non determinato.",
+    p:"Io offro sei mesi. Posso arrivare a un anno con la promessa scritta, ma glielo devo far sudare.",
+    cozza:function(a){ return a.contratto.indexOf("indeterminato") === -1; } },
+  { t:"Vuoi cento euro in pi\u00f9 al mese di quello che offrono.",
+    p:"Io dico che il budget \u00e8 quello. Posso dare buoni pasto o cinquanta euro, se argomenta con l'esperienza.",
+    cozza:function(a){ return a.stipendio.indexOf("euro") !== -1; } },
+  { t:"Devi finire l'universit\u00e0: ti serve libero il marted\u00ec mattina per le lezioni.",
+    p:"Io storco il naso. Cedo se propone lei come recuperare quelle ore." },
+  { t:"Non puoi fare i turni di notte, per motivi di famiglia.",
+    p:"Io insisto che la notte \u00e8 a rotazione per tutti. Deve proporre un cambio con i colleghi.",
+    cozza:function(a, tutto){ return /notte/.test(tutto); } },
+  { t:"Vuoi cominciare fra due mesi, non luned\u00ec prossimo.",
+    p:"Io ho fretta. Accetto tre settimane, non due mesi, a meno che non mi convinca che ne vale la pena." },
+  { t:"Vuoi che l'azienda ti paghi un corso di italiano.",
+    p:"Io chiedo perch\u00e9 dovrei. Deve spiegarmi cosa ci guadagno io, non cosa ci guadagna lei." },
+  { t:"Hai un'altra offerta migliore. Usala per alzare la posta, ma con garbo.",
+    p:"Io mi irrigidisco se lo dice come una minaccia. Se lo dice bene, mi muovo." },
+  { t:"Vuoi sapere se dopo un anno puoi passare part time.",
+    p:"Io dico che il primo anno non si pu\u00f2. Posso metterlo per iscritto per il secondo anno.",
+    cozza:function(a){ return a.contratto.indexOf("part time") === -1; } },
+  { t:"Vuoi che il periodo di prova sia di tre mesi, non di sei.",
+    p:"Io difendo i sei mesi. Scendo a quattro se me lo chiede con una buona ragione.",
+    cozza:function(a, tutto){ return /periodo di prova/.test(tutto); } }
+];
+
+/* Prima si pesca fra quelli che cozzano davvero con questo annuncio:
+   e' li' che la trattativa ha qualcosa da mordere. */
+function scegliObiettivo(a){
+  var tutto = (a.contratto + " " + a.orario + " " + a.stipendio + " " +
+               a.requisiti.join(" ") + " " + a.particolare).toLowerCase();
+  var validi = OBIETTIVI.filter(function(o){ return !o.cozza || o.cozza(a, tutto); });
+  var specifici = validi.filter(function(o){ return !!o.cozza; });
+  if(specifici.length && Math.random() < 0.7) return pesca(specifici);
+  return pesca(validi.length ? validi : OBIETTIVI);
+}
+
+var RILANCI = [
+  "Adesso raccontami il colloquio al passato, come lo racconteresti a un'amica.",
+  "Riscrivi la risposta a «mi parli di lei» in tre frasi, ma meglio.",
+  "Cosa avresti dovuto chiedere e non hai chiesto?",
+  "Se ti chiamassero domani per dirti di no, cosa chiederesti?",
+  "Rifammi la trattativa, ma questa volta cominci tu."
+];
+
+/* ============================================================
+   5. Stato e interfaccia
+   ============================================================ */
+
+function $(id){ return document.getElementById(id); }
+function pesca(a){ return a[Math.floor(Math.random() * a.length)]; }
+function mescola(a){
+  var x = a.slice(), i, j, t;
+  for(i = x.length - 1; i > 0; i--){ j = Math.floor(Math.random() * (i + 1)); t = x[i]; x[i] = x[j]; x[j] = t; }
+  return x;
+}
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+var toastT = null;
+function toast(m){
+  var e = $("toast"); e.textContent = m; e.classList.add("show");
+  clearTimeout(toastT); toastT = setTimeout(function(){ e.classList.remove("show"); }, 1700);
+}
+
+var st = { modo:"lei", cv:"io", partita:null, fase:"rompi", fatte:{}, nDom:0, sec:0, timer:null };
+
+function chip(label, on, onClick, cls){
+  var b = document.createElement("button");
+  b.className = "chip" + (cls ? " " + cls : "");
+  b.type = "button"; b.innerHTML = label;
+  b.setAttribute("aria-pressed", on ? "true" : "false");
+  b.addEventListener("click", onClick);
+  return b;
+}
+
+function renderChips(){
+  var m = $("modeChips"); m.innerHTML = "";
+  [["lei","Il candidato è lei"],["io","Il candidato sono io"]].forEach(function(x){
+    m.appendChild(chip(x[1], st.modo === x[0], function(){
+      st.modo = x[0]; renderChips(); aggiornaCV();
+      toast(st.modo === "lei" ? "Le domande le faccio io" : "Le domande le fa lei");
+    }, "acc"));
+  });
+  var c = $("cvChips"); c.innerHTML = "";
+  [["io","Sono me stessa"],["sorte","Identità a sorte"]].forEach(function(x){
+    c.appendChild(chip(x[1], st.cv === x[0], function(){
+      st.cv = x[0]; renderChips(); aggiornaCV();
+    }));
+  });
+}
+
+/* --- L'annuncio --- */
+
+function generaAnnuncio(){
+  var s = pesca(SETTORI);
+  var req = mescola(REQUISITI).slice(0, 3);
+  return {
+    settore: s.n,
+    posizione: pesca(s.posizioni),
+    azienda: pesca(AZIENDE),
+    sede: pesca(SEDI),
+    contratto: pesca(CONTRATTI),
+    orario: pesca(ORARI),
+    stipendio: pesca(STIPENDI),
+    requisiti: req,
+    particolare: pesca(PARTICOLARI)
+  };
+}
+
+function nuovaPartita(){
+  var a = generaAnnuncio();
+  st.partita = { a:a, cv:pesca(CV), ob:scegliObiettivo(a) };
+  st.fatte = {}; st.nDom = 0;
+  $("contaDom").textContent = "0";
+  $("domcard").innerHTML = '<p class="vuoto">Scegli una fase qui sopra, poi pesca una domanda.</p>';
+  $("esito").classList.add("hidden");
+  disegnaAnnuncio();
+  aggiornaCV();
+  disegnaTrattativa();
+  $("goBtn").classList.remove("hidden");
+  $("prep").classList.remove("hidden");
+  toast("Annuncio nuovo");
+}
+
+function disegnaAnnuncio(){
+  var a = st.partita.a;
+  var h = "";
+  h += '<div class="testata"><span class="az">' + esc(a.azienda) + '</span><span class="set">' + esc(a.settore) + "</span></div>";
+  h += "<h2>" + esc(a.posizione) + "</h2>";
+  h += '<p class="sede">' + esc(a.sede) + "</p>";
+  h += '<dl class="righe">';
+  h += "<dt>Contratto</dt><dd>" + esc(a.contratto) + "</dd>";
+  h += "<dt>Orario</dt><dd>" + esc(a.orario) + "</dd>";
+  h += "<dt>Stipendio</dt><dd>" + esc(a.stipendio) + "</dd>";
+  h += "</dl>";
+  h += '<p class="set" style="margin:0 0 6px">Cerchiamo una persona con</p><ul class="req">';
+  a.requisiti.forEach(function(r){ h += "<li>" + esc(r) + "</li>"; });
+  h += "</ul>";
+  h += '<div class="particolare"><span class="lab">Da sapere</span>' + esc(a.particolare) + "</div>";
+  $("annuncio").innerHTML = h;
+
+  $("prepTxt").innerHTML = "Legge l'annuncio ad alta voce e mi dice <b>tre cose sue</b> da mettere avanti per questo posto. "
+    + "Una deve venire dagli studi, una dall'esperienza, una dal carattere.";
+  $("prepEx").textContent = "« Faccio la traduttrice da tre anni, quindi le scadenze non mi spaventano. »";
+}
+
+function aggiornaCV(){
+  var z = $("cvZone");
+  if(!st.partita){ z.innerHTML = ""; return; }
+  if(st.modo === "io"){
+    z.innerHTML = '<div class="cvcard"><p class="lab">Il ribaltone</p><h3>Il candidato sono io</h3>'
+      + '<p class="io">Le domande le fa lei, con la lista della linguetta 2. Io rispondo male di proposito: '
+      + 'giro intorno, non dico i numeri, parlo male del capo vecchio. Lei deve accorgersene e incalzare.</p></div>';
+    return;
+  }
+  if(st.cv === "io"){
+    z.innerHTML = '<div class="cvcard"><p class="lab">Il curriculum</p><h3>Quello vero, il suo</h3>'
+      + '<p class="io">Si presenta con i suoi studi, il suo lavoro, la sua storia. '
+      + 'È la versione che serve davvero, ma se si blocca passo all\'identità a sorte: '
+      + 'con un\'altra pelle addosso si parla più liberamente.</p></div>';
+    return;
+  }
+  var c = st.partita.cv;
+  z.innerHTML = '<div class="cvcard"><p class="lab">Il curriculum di oggi</p><h3>' + esc(c.nome) + "</h3><dl>"
+    + "<dt>Studi</dt><dd>" + esc(c.studi) + "</dd>"
+    + "<dt>Esperienza</dt><dd>" + esc(c.esperienza) + "</dd>"
+    + "<dt>Punto forte</dt><dd>" + esc(c.forza) + "</dd>"
+    + "<dt>Punto debole</dt><dd>" + esc(c.debole) + "</dd>"
+    + "<dt>Da sapere</dt><dd>" + esc(c.dettaglio) + "</dd>"
+    + "</dl></div>";
+}
+
+/* --- Il colloquio --- */
+
+function renderFasi(){
+  var box = $("faseChips");
+  box.innerHTML = "";
+  FASI.forEach(function(f){
+    var n = D.filter(function(d){ return d.f === f.k; }).length;
+    var fatte = D.filter(function(d, i){ return d.f === f.k && st.fatte[i]; }).length;
+    var b = document.createElement("button");
+    b.className = "fasechip";
+    b.type = "button";
+    b.style.setProperty("--c", f.c);
+    b.innerHTML = f.n + '<span class="n">' + (n - fatte) + "</span>";
+    b.setAttribute("aria-pressed", st.fase === f.k ? "true" : "false");
+    b.addEventListener("click", function(){ st.fase = f.k; renderFasi(); chiedi(); });
+    box.appendChild(b);
+  });
+}
+
+function chiedi(){
+  var disponibili = [];
+  D.forEach(function(d, i){ if(d.f === st.fase && !st.fatte[i]) disponibili.push(i); });
+  if(!disponibili.length){
+    /* Fase finita: si ricomincia da capo, non si resta a secco in lezione. */
+    D.forEach(function(d, i){ if(d.f === st.fase) delete st.fatte[i]; });
+    D.forEach(function(d, i){ if(d.f === st.fase) disponibili.push(i); });
+    toast("Fase finita, ricomincio da capo");
+  }
+  var idx = pesca(disponibili);
+  st.fatte[idx] = true;
+  st.nDom++;
+  $("contaDom").textContent = st.nDom;
+
+  var d = D[idx];
+  var f = FASI.filter(function(x){ return x.k === d.f; })[0];
+  var h = '<span class="fase" style="--c:' + f.c + '">' + f.n + "</span>";
+  h += '<p class="q">' + d.q + "</p>";
+  if(d.a) h += '<div class="aiuto"><span class="lab">Se si blocca</span>' + d.a + "</div>";
+  $("domcard").innerHTML = h;
+  renderFasi();
+}
+
+/* --- Il cronometro --- */
+
+function mmss(s){ return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
+function tick(){ st.sec++; $("clock").textContent = mmss(st.sec); }
+function clockToggle(){
+  if(st.timer){
+    clearInterval(st.timer); st.timer = null;
+    $("clock").classList.remove("run"); $("clockBtn").textContent = "Via";
+  } else {
+    st.timer = setInterval(tick, 1000);
+    $("clock").classList.add("run"); $("clockBtn").textContent = "Pausa";
+  }
+}
+
+/* --- La trattativa --- */
+
+function disegnaTrattativa(){
+  var p = st.partita;
+  $("obTxt").textContent = p.ob.t;
+  $("obProf").innerHTML = "<b>Il mio copione</b><br>" + esc(p.ob.p);
+  $("offertaList").innerHTML =
+    "<li><b>Posizione:</b> " + esc(p.a.posizione) + ", da " + esc(p.a.azienda) + "</li>" +
+    "<li><b>Contratto:</b> " + esc(p.a.contratto) + "</li>" +
+    "<li><b>Orario:</b> " + esc(p.a.orario) + "</li>" +
+    "<li><b>Stipendio:</b> " + esc(p.a.stipendio) + "</li>" +
+    "<li><b>E poi:</b> " + esc(p.a.particolare) + "</li>";
+}
+
+function giudica(g){
+  if(!st.partita){ toast("Prima genera un annuncio"); return; }
+  var tit = { si:"Assunta, e alle sue condizioni.", mezzo:"Assunta, ma a metà strada.", no:"Assunta, però ha ceduto subito." };
+  var txt = {
+    si: "Ha ottenuto quello che voleva e non ha mollato al primo no. Questa è la partita vinta: non per l'italiano perfetto, ma perché la lingua le è servita a portare a casa una cosa.",
+    mezzo: "Un compromesso, che nella vita vera è il risultato normale. La cosa da guardare è <b>come</b> ci è arrivata: ha proposto lei un'alternativa, o l'ho proposta io?",
+    no: "Ha risposto bene alle domande ma alla trattativa si è arresa. La prossima volta le do lo stesso obiettivo e non lo dico: vediamo se insiste."
+  };
+  $("esitoTit").className = g;
+  $("esitoTit").textContent = tit[g];
+  $("esitoTxt").innerHTML = "<b>" + st.nDom + (st.nDom === 1 ? " domanda" : " domande") + " in " + mmss(st.sec) + ".</b> "
+    + txt[g] + "<br><br><b>Obiettivo:</b> " + esc(st.partita.ob.t);
+  $("esitoPoi").textContent = pesca(RILANCI);
+
+  var note = $("notes").value.trim();
+  $("esitoApp").classList.toggle("hidden", !note);
+  $("esitoAppTxt").textContent = note;
+
+  $("esito").classList.remove("hidden");
+  $("esito").scrollIntoView({ block:"nearest", behavior:"smooth" });
+}
+
+/* --- Le linguette --- */
+
+function apri(n){
+  [1,2,3].forEach(function(i){
+    $("t" + i).setAttribute("aria-selected", i === n ? "true" : "false");
+    $("p" + i).classList.toggle("hidden", i !== n);
+  });
+}
+
+/* ============================================================
+   6. Eventi
+   ============================================================ */
+
+[1,2,3].forEach(function(i){
+  $("t" + i).addEventListener("click", function(){ apri(i); });
+});
+$("newBtn").addEventListener("click", nuovaPartita);
+$("goBtn").addEventListener("click", function(){ apri(2); });
+$("askBtn").addEventListener("click", chiedi);
+$("skipBtn").addEventListener("click", chiedi);
+$("clockBtn").addEventListener("click", clockToggle);
+$("clockReset").addEventListener("click", function(){
+  if(st.timer) clockToggle();
+  st.sec = 0; $("clock").textContent = "0:00";
+});
+Array.prototype.forEach.call(document.querySelectorAll("[data-g]"), function(b){
+  b.addEventListener("click", function(){ giudica(b.getAttribute("data-g")); });
+});
+
+document.addEventListener("keydown", function(e){
+  var tag = (e.target && e.target.tagName) || "";
+  if(tag === "INPUT" || tag === "TEXTAREA") return;
+  if(e.key === " " || e.code === "Space"){ e.preventDefault(); chiedi(); }
+  else if(e.key === "n" || e.key === "N"){ e.preventDefault(); nuovaPartita(); }
+});
+
+/* ============================================================
+   7. Avvio
+   ============================================================ */
+
+renderChips();
+renderFasi();
+
+window.__COLLOQUIO = {
+  D:D, FASI:FASI, CV:CV, OBIETTIVI:OBIETTIVI, SETTORI:SETTORI,
+  generaAnnuncio:generaAnnuncio, scegliObiettivo:scegliObiettivo, st:st
+};
+
+})();
+</script>
+</body>
+</html>
