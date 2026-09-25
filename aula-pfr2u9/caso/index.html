@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il caso · Talk with Fabio</title>
+<meta name="description" content="Enigmi da risolvere facendo domande da sì o no: il gioco delle deduzioni per la lezione in live.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D; --kraft:#D9BC8C; --kraft-ink:#3E2A12;
+  --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.nastro{height:8px;background:repeating-linear-gradient(135deg,var(--ink) 0 18px,var(--lemon) 18px 36px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:38px 0 4px;display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,6.6vw,4rem);line-height:.95;margin:0}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+h2{font-family:var(--display);font-weight:700;font-size:1.6rem;margin:22px 0 6px}
+h3{font-family:var(--display);font-size:1.06rem;margin:0 0 8px}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.schermo{display:none}
+.schermo.active{display:block}
+
+/* scelta del caso */
+.casi{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:6px}
+.caso-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:left;display:flex;flex-direction:column;gap:6px}
+.caso-card:hover{border-color:var(--ink)}
+.caso-card .tit{font-family:var(--display);font-weight:700;font-size:1.2rem}
+.caso-card .meta{font-family:var(--display);font-size:.8rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--basil)}
+.caso-card .ris{font-family:var(--hand);font-size:1.2rem;color:var(--tomato)}
+
+/* il fascicolo in scena */
+.fascicolo{background:var(--kraft);color:var(--kraft-ink);border-radius:4px 16px 16px 16px;padding:22px 24px;position:relative;box-shadow:0 2px 0 rgba(0,0,0,.08)}
+.fascicolo::before{content:"il caso";position:absolute;top:-26px;left:0;background:var(--kraft);color:var(--kraft-ink);font-family:var(--display);font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;padding:5px 16px;border-radius:8px 8px 0 0}
+.fascicolo h2{margin:0 0 8px;font-size:1.35rem}
+.situazione{font-size:clamp(1.25rem,2.6vw,1.72rem);line-height:1.45;margin:0}
+.parole{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.parole span{background:rgba(255,253,248,.72);border:1px solid rgba(62,42,18,.18);border-radius:999px;padding:3px 11px;font-size:.92rem}
+.parole b{font-weight:700}
+.indizio{margin-top:16px;background:#FBF0EE;border:1px dashed var(--tomato);color:var(--ink);border-radius:12px;padding:12px 14px}
+.indizio b{font-family:var(--display);color:var(--tomato)}
+
+/* domande */
+.riga-input{display:flex;gap:10px;margin:18px 0 6px;flex-wrap:wrap}
+.riga-input input{flex:1 1 280px;border:1px solid var(--line);border-radius:999px;padding:11px 18px;background:var(--paper);font-size:1.05rem}
+.risposte{display:flex;gap:10px;flex-wrap:wrap}
+.risposte button{font-family:var(--display);font-weight:700;border-radius:999px;padding:11px 20px;border:2px solid var(--line);background:var(--paper)}
+.risposte .si{border-color:var(--basil);color:var(--basil)}
+.risposte .si:hover{background:var(--basil);color:var(--paper)}
+.risposte .no{border-color:var(--tomato);color:var(--tomato)}
+.risposte .no:hover{background:var(--tomato);color:var(--paper)}
+.risposte .ni{border-color:var(--muted);color:var(--muted)}
+.risposte .ni:hover{background:var(--muted);color:var(--paper)}
+.risposte .rif{border-color:var(--lemon);color:#8A5B12}
+.risposte .rif:hover{background:var(--lemon);color:var(--ink)}
+.avviso{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);min-height:1.6em;margin:4px 0 0}
+ol.domande{list-style:none;margin:14px 0 0;padding:0;counter-reset:d}
+ol.domande li{counter-increment:d;display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line)}
+ol.domande li::before{content:counter(d);font-family:var(--display);font-weight:700;color:var(--muted);min-width:1.6em;text-align:right}
+ol.domande .q{flex:1;cursor:pointer}
+ol.domande li.segnata .q{color:var(--tomato);text-decoration:underline wavy rgba(196,49,43,.5)}
+ol.domande .a{font-family:var(--display);font-weight:700;font-size:.86rem;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:2px 10px;white-space:nowrap}
+ol.domande .a.si{background:#DCE9E2;color:var(--basil)}
+ol.domande .a.no{background:#F6DEDC;color:var(--tomato)}
+ol.domande .a.ni{background:var(--stone);color:var(--muted)}
+ol.domande .a.rif{background:#FAEDD6;color:#8A5B12}
+ol.domande .x{border:0;background:none;color:var(--muted);font-size:1rem;line-height:1;padding:2px 4px}
+.contatori{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:14px;font-family:var(--display);font-weight:700}
+.contatori .num{font-size:1.6rem;color:var(--basil)}
+.vuoto{color:var(--muted);padding:14px 0}
+.due-colonne{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:start}
+@media (max-width:880px){.due-colonne{grid-template-columns:1fr}}
+
+/* finale */
+.soluzione{font-size:1.15rem;background:var(--paper);border-left:4px solid var(--basil);border-radius:0 12px 12px 0;padding:14px 18px}
+.rilancio{margin-top:16px;background:#FAF3E4;border:1px solid var(--kraft);border-radius:12px;padding:14px 16px}
+.rilancio b{font-family:var(--display)}
+
+/* appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:110px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.barra{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+dialog{border:0;border-radius:16px;padding:0;max-width:640px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.4rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body h3{margin:16px 0 4px;color:var(--basil)}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:52%}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="nastro" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <div>
+      <h1>Il caso</h1>
+      <p>Una situazione che non torna. Si può chiedere tutto, ma solo domande da <b>sì o no</b>: io rispondo con un tasto, le domande restano scritte, e dalle risposte si arriva alla storia vera. <span class="en">Ask yes/no questions only, and deduce the story.</span></p>
+    </div>
+    <button class="btn ghost" id="openFormule" type="button">Le formule per chiedere</button>
+  </header>
+
+  <!-- SCHERMO: SCELTA -->
+  <section class="schermo active" id="sScelta">
+    <h2>Scegli il caso</h2>
+    <p class="en" style="margin:0">Otto storie. Il livello dice quanto è difficile la lingua, non l'enigma.</p>
+    <div class="casi" id="listaCasi"></div>
+    <div class="toolbar" style="margin-top:16px">
+      <button class="btn green" id="aCaso" type="button">Pesca un caso a sorte</button>
+    </div>
+  </section>
+
+  <!-- SCHERMO: GIOCO -->
+  <section class="schermo" id="sGioco">
+    <div style="height:30px"></div>
+    <div class="fascicolo">
+      <h2 id="gTitolo"></h2>
+      <p class="situazione" id="gSituazione"></p>
+      <div class="parole" id="gParole"></div>
+      <div class="indizio" id="gIndizio" hidden><b>Indizio:</b> <span id="gIndizioTxt"></span></div>
+    </div>
+
+    <div class="riga-input">
+      <input id="campo" type="text" placeholder="Scrivi qui la domanda che ha appena fatto…" autocomplete="off">
+    </div>
+    <div class="risposte">
+      <button class="si" type="button" data-r="si">Sì</button>
+      <button class="no" type="button" data-r="no">No</button>
+      <button class="ni" type="button" data-r="ni">Non è rilevante</button>
+      <button class="rif" type="button" data-r="rif">Riformula</button>
+    </div>
+    <p class="avviso" id="avviso"></p>
+
+    <div class="due-colonne">
+      <div class="panel">
+        <h3>Quello che sappiamo</h3>
+        <p class="vuoto" id="vuotoLista">Ancora nessuna domanda. Clicca su una riga per segnarla in rosso se la frase era da correggere.</p>
+        <ol class="domande" id="lista"></ol>
+      </div>
+      <aside class="panel">
+        <div class="contatori">
+          <div><span class="num" id="nDomande">0</span> domande</div>
+          <div><span class="num" id="cron">0:00</span></div>
+        </div>
+        <p class="en" id="record" style="margin:6px 0 14px"></p>
+        <div class="toolbar" style="flex-direction:column;align-items:stretch">
+          <button class="btn" id="apriFascicolo" type="button">📁 Il fascicolo (solo Fabio)</button>
+          <button class="btn green" id="risolto" type="button">Ci siamo! Rivela la storia</button>
+          <button class="btn ghost" id="cambia" type="button">Cambia caso</button>
+        </div>
+        <p class="en" style="margin-top:12px">Il fascicolo si apre in una <b>finestra separata</b>: soluzione, indizi e risposte pronte restano fuori dallo schermo condiviso.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- SCHERMO: FINALE -->
+  <section class="schermo" id="sFine">
+    <h2 id="fTitolo"></h2>
+    <div class="soluzione" id="fSoluzione"></div>
+    <div class="rilancio">
+      <b>Adesso raccontala tu.</b> Dall'inizio alla fine, con le tue parole: <i>prima… poi… allora… così… alla fine…</i>
+      Poi la domanda vera: ti è mai capitata una cosa che sembrava strana e aveva una spiegazione semplice?
+    </div>
+    <div class="due-colonne" style="margin-top:18px">
+      <div class="panel">
+        <h3>Le domande di questo caso</h3>
+        <ol class="domande" id="listaFine"></ol>
+      </div>
+      <aside class="panel">
+        <h3>Da riprendere</h3>
+        <div id="fSegnate"><p class="en" style="margin:0">Nessuna domanda segnata.</p></div>
+        <div class="toolbar" style="margin-top:14px;flex-direction:column;align-items:stretch">
+          <button class="btn green" id="altroCaso" type="button">Un altro caso</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Le domande da correggere, le parole nuove, quello che è venuto fuori parlando.</p>
+    <textarea id="note" placeholder="Es. «la donna ha la valigia?» → aveva · «è succeduto di notte?» → è successo"></textarea>
+    <div class="barra">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<dialog id="formuleDlg" aria-labelledby="dlgTitle">
+  <div class="dlg-head"><h2 id="dlgTitle">Le formule per chiedere</h2><button class="btn ghost" id="closeFormule" type="button">Chiudi</button></div>
+  <div class="dlg-body">
+    <p style="margin:0 0 6px"><b>La regola d'oro:</b> qui non si chiede «perché». Solo domande a cui si può rispondere <i>sì</i> o <i>no</i>.</p>
+    <h3>Le domande di base</h3>
+    <table>
+      <tr><td>È una donna? È italiano? È vero che…?</td><td class="en">Is it…?</td></tr>
+      <tr><td>C'è qualcuno? C'era qualcun altro?</td><td class="en">Is there / was there…?</td></tr>
+      <tr><td>Ha una famiglia? Aveva paura?</td><td class="en">Does he have / did he have…?</td></tr>
+      <tr><td>Lo sapeva? La conosceva già?</td><td class="en">Did he know…?</td></tr>
+      <tr><td>Si tratta di un lavoro?</td><td class="en">Is it about…?</td></tr>
+      <tr><td>Succede spesso? È successo di notte?</td><td class="en">Does it happen / did it happen…?</td></tr>
+      <tr><td>L'ha fatto apposta?</td><td class="en">Did he do it on purpose?</td></tr>
+      <tr><td>C'entra il lavoro? C'entra la famiglia?</td><td class="en">Has it got to do with…?</td></tr>
+      <tr><td>È importante il posto? È importante l'ora?</td><td class="en">Does the place / time matter?</td></tr>
+    </table>
+    <h3>Trasformare una domanda aperta</h3>
+    <table>
+      <tr><td>Perché sorride? →</td><td class="en">Sorride perché ha ricevuto qualcosa?</td></tr>
+      <tr><td>Cosa c'è nella valigia? →</td><td class="en">Nella valigia ci sono dei vestiti?</td></tr>
+      <tr><td>Chi è quella donna? →</td><td class="en">La donna lavora lì?</td></tr>
+      <tr><td>Dove è successo? →</td><td class="en">È successo in Italia?</td></tr>
+      <tr><td>Quando è successo? →</td><td class="en">È successo di sera?</td></tr>
+    </table>
+    <h3>Per ragionare a voce</h3>
+    <table>
+      <tr><td>Allora, quindi, forse, secondo me…</td><td class="en">So, therefore, maybe, I think…</td></tr>
+      <tr><td>Se è così, allora…</td><td class="en">If so, then…</td></tr>
+      <tr><td>Aspetta, non ho capito: ripeti?</td><td class="en">Wait, I didn't get it.</td></tr>
+      <tr><td>Ho capito! È perché…</td><td class="en">I've got it!</td></tr>
+    </table>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ==========================================================
+     I CASI
+     s  = la situazione che legge lo studente
+     p  = parole chiave con la traduzione
+     sol= la soluzione, scritta per intero
+     ind= tre indizi, dal più vago al più esplicito
+     qa = domande probabili e risposta da dare
+     ========================================================== */
+  var CASI = [
+    {
+      t:"La valigia in albergo", liv:"A2",
+      s:"Una donna entra in un albergo con una valigia pesante. Dieci minuti dopo esce senza valigia, e sorride.",
+      p:[["la valigia","suitcase"],["l'albergo","hotel"],["la reception","front desk"],["il proprietario","the owner"],["la ricompensa","reward"]],
+      sol:"La valigia non era sua: l'aveva trovata su un treno, dimenticata da un altro passeggero. Dentro c'era un biglietto con il nome dell'albergo e il numero della camera. La donna è andata alla reception, ha lasciato lì la valigia per il proprietario e se n'è andata. Sorride perché l'albergo, per ringraziarla, le ha offerto la cena al ristorante.",
+      ind:["La donna è contenta per qualcosa che ha fatto, non per qualcosa che ha nascosto.",
+           "La domanda giusta è: di chi è la valigia?",
+           "La donna non dorme in albergo e non conosce nessuno lì dentro. La valigia l'ha trovata."],
+      qa:[["La donna dorme in quell'albergo?","No"],
+          ["Lavora in albergo?","No"],
+          ["La valigia è sua?","No"],
+          ["Ha rubato la valigia?","No"],
+          ["Sa cosa c'è dentro la valigia?","No"],
+          ["C'è qualcosa di illegale dentro?","No"],
+          ["Conosce il proprietario della valigia?","No"],
+          ["Ha lasciato la valigia a qualcuno dell'albergo?","Sì"],
+          ["Sorride perché ha ricevuto qualcosa?","Sì"],
+          ["Il colore della valigia è importante?","Non è rilevante"]]
+    },
+    {
+      t:"L'uomo del decimo piano", liv:"A2",
+      s:"Un uomo abita al decimo piano. Ogni mattina prende l'ascensore e scende al piano terra. La sera prende l'ascensore fino al settimo piano e poi sale a piedi. Ma quando piove arriva in ascensore fino al decimo.",
+      p:[["l'ascensore","lift"],["il piano","floor"],["le scale","stairs"],["il tasto","button"],["l'ombrello","umbrella"]],
+      sol:"L'uomo è molto basso. Nell'ascensore arriva a premere solo i tasti fino al numero sette: il dieci è troppo in alto per lui. Per scendere non ha problemi, perché il tasto del piano terra sta in basso. Quando piove ha con sé l'ombrello, e con la punta dell'ombrello riesce ad arrivare al tasto del decimo piano.",
+      ind:["Non è una scelta: è un problema pratico.",
+           "Cosa ha in mano quando piove, che gli altri giorni non ha?",
+           "Guarda i numeri dei tasti: perché proprio il sette, e perché scendere non è mai un problema?"],
+      qa:[["Fa sport / vuole muoversi?","No"],
+          ["L'ascensore è rotto?","No"],
+          ["Ha paura dell'ascensore?","No"],
+          ["Vive da solo?","Sì"],
+          ["Il numero dei piani è importante?","Sì"],
+          ["Con la pioggia ha qualcosa in mano?","Sì"],
+          ["È un problema del suo corpo?","Sì"],
+          ["È basso?","Sì"],
+          ["Incontra qualcuno in ascensore?","Non è rilevante"],
+          ["Il lavoro che fa è importante?","Non è rilevante"]]
+    },
+    {
+      t:"Il tè freddo", liv:"A2-B1",
+      s:"Due amiche ordinano lo stesso tè freddo, nello stesso bar. Una lo beve tutto d'un fiato e sta benissimo. L'altra lo beve piano piano, chiacchierando, e dopo mezz'ora si sente male.",
+      p:[["il ghiaccio","ice"],["sciogliersi","to melt"],["tutto d'un fiato","in one go"],["l'acqua potabile","drinking water"]],
+      sol:"Nei bicchieri c'era del ghiaccio fatto con acqua non potabile. Chi ha bevuto in fretta ha bevuto solo il tè, perché il ghiaccio era ancora intero. Chi ha bevuto piano ha aspettato mezz'ora: il ghiaccio si è sciolto nel bicchiere e lei ha bevuto anche quell'acqua.",
+      ind:["Il tè era identico per tutte e due, e nessuno ha messo niente nel bicchiere.",
+           "Il tempo conta: cosa succede a un bicchiere di tè freddo dopo mezz'ora?",
+           "Nel bicchiere non c'è solo il tè."],
+      qa:[["Qualcuno ha messo qualcosa nel bicchiere?","No"],
+          ["I due tè erano diversi?","No"],
+          ["I bicchieri erano diversi?","No"],
+          ["Una delle due è allergica?","No"],
+          ["La velocità è importante?","Sì"],
+          ["Nel bicchiere c'era del ghiaccio?","Sì"],
+          ["Il problema era nel ghiaccio?","Sì"],
+          ["Hanno mangiato qualcosa?","No"],
+          ["Il bar è importante?","Non è rilevante"],
+          ["Sono italiane?","Non è rilevante"]]
+    },
+    {
+      t:"Il bicchiere d'acqua", liv:"A1-A2",
+      s:"Un uomo entra in un bar e chiede un bicchiere d'acqua. Il barista lo guarda un attimo, poi apre di colpo un ombrello e grida forte. L'uomo dice «grazie» e se ne va senza bere.",
+      p:[["il barista","barman"],["gridare","to shout"],["lo spavento","a fright"],["il singhiozzo","hiccups"],["di colpo","suddenly"]],
+      sol:"L'uomo aveva il singhiozzo: l'acqua gli serviva per farlo passare. Il barista l'ha capito dal modo in cui parlava e gli ha fatto prendere uno spavento, che è il rimedio classico. Il singhiozzo è passato subito, quindi l'acqua non serviva più: per questo l'uomo ringrazia ed esce contento.",
+      ind:["Il barista non è pazzo e non è arrabbiato: sta aiutando.",
+           "Ascolta come parla l'uomo quando entra nel bar.",
+           "C'è un rimedio della nonna che funziona con la paura."],
+      qa:[["Si conoscono?","No"],
+          ["Il barista è arrabbiato?","No"],
+          ["L'uomo ha sete?","No"],
+          ["L'uomo aveva un problema fisico?","Sì"],
+          ["Il barista voleva aiutarlo?","Sì"],
+          ["L'acqua serviva per quel problema?","Sì"],
+          ["Lo spavento ha risolto il problema?","Sì"],
+          ["È un problema grave?","No"],
+          ["L'ombrello è importante?","Non è rilevante"],
+          ["Che ora è?","Non è rilevante"]]
+    },
+    {
+      t:"I dodici compleanni", liv:"A2",
+      s:"Marco ha cinquant'anni, ma nella sua vita ha festeggiato solo dodici volte il compleanno nel giorno giusto.",
+      p:[["il compleanno","birthday"],["festeggiare","to celebrate"],["l'anno bisestile","leap year"],["il calendario","calendar"]],
+      sol:"Marco è nato il 29 febbraio. Quel giorno esiste solo negli anni bisestili, cioè una volta ogni quattro anni: in cinquant'anni il suo compleanno vero è arrivato circa dodici volte. Negli altri anni lo festeggia il 28 febbraio o il 1° marzo, ma non è la data esatta.",
+      ind:["Non è una storia triste: non c'entrano né i soldi né la famiglia.",
+           "È una questione di calendario.",
+           "Ci sono giorni che non esistono tutti gli anni."],
+      qa:[["È povero / non ha soldi per la festa?","No"],
+          ["È stato malato o lontano?","No"],
+          ["Ha problemi con la famiglia?","No"],
+          ["C'entra la data di nascita?","Sì"],
+          ["È nato in un mese particolare?","Sì"],
+          ["È nato a febbraio?","Sì"],
+          ["C'entrano gli anni bisestili?","Sì"],
+          ["È nato in un altro paese?","Non è rilevante"],
+          ["Il numero dodici è importante?","Sì"],
+          ["Ha figli?","Non è rilevante"]]
+    },
+    {
+      t:"La musica si ferma", liv:"B1",
+      s:"La musica si ferma e una donna scoppia a piangere. Nella sala c'è moltissima gente, ma nessuno la consola: tutti si alzano in piedi e applaudono.",
+      p:[["il palco","stage"],["applaudire","to clap"],["la ballerina","dancer"],["andare in pensione","to retire"],["commuoversi","to be moved"]],
+      sol:"La donna è una ballerina ed è sul palco: ha appena finito il suo ultimo spettacolo, perché smette di ballare e va in pensione. Piange per l'emozione, non per il dolore, e il pubblico in piedi la sta applaudendo proprio per quello.",
+      ind:["Non tutte le lacrime sono di tristezza.",
+           "Nessuno si preoccupa perché a tutti sembra normale che lei pianga.",
+           "Attenta a dove si trova: in quella sala c'è chi guarda e c'è chi viene guardato."],
+      qa:[["È successa una disgrazia?","No"],
+          ["Piange di tristezza?","No"],
+          ["La donna è sul palco?","Sì"],
+          ["La gente la sta guardando?","Sì"],
+          ["La gente la conosce?","Sì"],
+          ["È il suo lavoro?","Sì"],
+          ["Ha finito qualcosa di importante?","Sì"],
+          ["Sta per cambiare vita?","Sì"],
+          ["C'è qualcuno di speciale nel pubblico?","Non è rilevante"],
+          ["La musica è importante?","Sì"]]
+    },
+    {
+      t:"Il senso vietato", liv:"A2-B1",
+      s:"Un uomo passa contromano in una strada a senso unico, proprio davanti a due vigili. I due lo vedono benissimo, ma non gli dicono niente.",
+      p:[["contromano","the wrong way"],["il senso unico","one-way street"],["il vigile","traffic officer"],["la multa","fine"],["il pedone","pedestrian"]],
+      sol:"L'uomo non era in macchina: andava a piedi. Il senso unico vale per i veicoli, non per chi cammina sul marciapiede, quindi non stava facendo niente di sbagliato e i vigili non avevano motivo di fermarlo.",
+      ind:["I vigili non lo conoscono e non stanno chiudendo un occhio.",
+           "Non tutti quelli che passano per strada stanno guidando.",
+           "La regola c'è, ma non riguarda lui."],
+      qa:[["È un poliziotto o un'ambulanza?","No"],
+          ["I vigili lo conoscono?","No"],
+          ["È un'emergenza?","No"],
+          ["È in macchina?","No"],
+          ["Sta guidando qualcosa?","No"],
+          ["Va a piedi?","Sì"],
+          ["Sta facendo qualcosa di vietato?","No"],
+          ["I vigili lo vedono davvero?","Sì"],
+          ["L'ora del giorno è importante?","Non è rilevante"],
+          ["La strada è in Italia?","Non è rilevante"]]
+    },
+    {
+      t:"La luce dimenticata", liv:"B1",
+      s:"Un uomo lavora di notte: ogni sera accende una grande luce, poi va a dormire tranquillo. Una notte si dimentica di accenderla. La mattina dopo legge il giornale e scoppia a piangere.",
+      p:[["il faro","lighthouse"],["la nave","ship"],["lo scoglio","rock, reef"],["dimenticarsi","to forget"],["la costa","coast"]],
+      sol:"L'uomo è il guardiano di un faro. La sua luce serve alle navi per stare lontane dagli scogli. Quella notte, senza la luce, una nave ha sbagliato rotta ed è finita sugli scogli. La mattina dopo la notizia era sul giornale, e lui ha capito che era successo per la sua dimenticanza.",
+      ind:["La luce non serve a lui: serve a qualcun altro, lontano.",
+           "Lavora vicino all'acqua.",
+           "Sul giornale c'è la notizia di un incidente, e lui si sente responsabile."],
+      qa:[["Vive in città?","No"],
+          ["La luce serve a illuminare la sua casa?","No"],
+          ["La luce serve a qualcuno che è lontano?","Sì"],
+          ["C'entra il mare?","Sì"],
+          ["Sul giornale c'è la notizia di un incidente?","Sì"],
+          ["L'incidente c'entra con la luce spenta?","Sì"],
+          ["Si sente responsabile?","Sì"],
+          ["Qualcuno lo accusa?","No"],
+          ["È successo d'inverno?","Non è rilevante"],
+          ["Conosce le persone dell'incidente?","No"]]
+    }
+  ];
+
+  /* ---------- utili ---------- */
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+  var ETICHETTA = { si:"Sì", no:"No", ni:"Non è rilevante", rif:"Riformula" };
+
+  /* ---------- stato ---------- */
+  var CHIAVE = "icf_il_caso_v1";
+  var stato = { caso:null, domande:[], note:"", record:{}, secondi:0 };
+  try{
+    var vecchio = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(vecchio && typeof vecchio === "object"){
+      for(var k in stato){ if(vecchio[k] !== undefined) stato[k] = vecchio[k]; }
+    }
+  }catch(e){}
+  var tSalva = null;
+  function salva(){
+    clearTimeout(tSalva);
+    tSalva = setTimeout(function(){
+      try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){}
+    }, 250);
+  }
+
+  /* ---------- schermi ---------- */
+  function mostra(id){
+    Array.prototype.forEach.call(document.querySelectorAll(".schermo"), function(s){
+      s.classList.toggle("active", s.id === id);
+    });
+    window.scrollTo({ top:0, behavior:"auto" });
+  }
+  var dlg = $("formuleDlg");
+  $("openFormule").addEventListener("click", function(){ dlg.showModal(); });
+  $("closeFormule").addEventListener("click", function(){ dlg.close(); });
+
+  /* ---------- scelta del caso ---------- */
+  var listaCasi = $("listaCasi");
+  CASI.forEach(function(c, k){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "caso-card";
+    b.innerHTML = '<span class="meta">' + esc(c.liv) + "</span>" +
+                  '<span class="tit">' + esc(c.t) + "</span>" +
+                  '<span class="ris" data-ris="' + k + '"></span>';
+    b.addEventListener("click", function(){ apriCaso(k); });
+    listaCasi.appendChild(b);
+  });
+  function disegnaRecord(){
+    Array.prototype.forEach.call(document.querySelectorAll("[data-ris]"), function(el){
+      var r = stato.record[el.getAttribute("data-ris")];
+      el.textContent = r ? "risolto in " + r + " domande" : "";
+    });
+  }
+  disegnaRecord();
+  $("aCaso").addEventListener("click", function(){
+    apriCaso(Math.floor(Math.random() * CASI.length));
+  });
+
+  /* ---------- il gioco ---------- */
+  var caso = null, iCaso = -1, cronId = null;
+
+  function apriCaso(k){
+    iCaso = k; caso = CASI[k];
+    if(stato.caso !== k){ stato.domande = []; stato.secondi = 0; }
+    stato.caso = k; salva();
+    $("gTitolo").textContent = caso.t;
+    $("gSituazione").textContent = caso.s;
+    var par = $("gParole"); par.innerHTML = "";
+    caso.p.forEach(function(w){
+      var s = document.createElement("span");
+      s.innerHTML = "<b>" + esc(w[0]) + "</b> · " + esc(w[1]);
+      par.appendChild(s);
+    });
+    $("gIndizio").hidden = true;
+    $("record").textContent = stato.record[k] ? "Il tuo record su questo caso: " + stato.record[k] + " domande." : "";
+    disegnaLista();
+    mostra("sGioco");
+    avviaCronometro();
+    $("campo").focus();
+  }
+
+  function avviaCronometro(){
+    clearInterval(cronId);
+    disegnaCron();
+    cronId = setInterval(function(){
+      stato.secondi++; disegnaCron();
+      if(stato.secondi % 10 === 0) salva();
+    }, 1000);
+  }
+  function disegnaCron(){
+    var m = Math.floor(stato.secondi / 60), s = stato.secondi % 60;
+    $("cron").textContent = m + ":" + (s < 10 ? "0" : "") + s;
+  }
+
+  var APERTE = ["perché","perche","come mai","cosa","che cosa","chi","dove","quando","quanto","quale","quali"];
+  $("campo").addEventListener("input", function(){
+    var t = this.value.trim().toLowerCase();
+    var aperta = APERTE.some(function(w){ return t.indexOf(w) === 0; });
+    $("avviso").textContent = aperta
+      ? "Questa non è una domanda da sì o no: falla trasformare («Perché sorride?» → «Sorride perché ha ricevuto qualcosa?»)."
+      : "";
+  });
+  /* Invio non risponde da solo: la risposta la scegli tu, se no
+     basta un colpo di troppo sulla tastiera per scrivere un "sì". */
+  $("campo").addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+      e.preventDefault();
+      if(this.value.trim()) $("avviso").textContent = "Adesso scegli la risposta: Sì, No, Non è rilevante o Riformula.";
+    }
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll(".risposte button"), function(b){
+    b.addEventListener("click", function(){ aggiungi(b.getAttribute("data-r")); });
+  });
+
+  function aggiungi(risposta){
+    var testo = $("campo").value.trim();
+    if(!testo) { $("campo").focus(); return; }
+    stato.domande.push({ q:testo, r:risposta, seg:false });
+    $("campo").value = ""; $("avviso").textContent = "";
+    salva(); disegnaLista(); $("campo").focus();
+  }
+
+  function contaVere(){
+    return stato.domande.filter(function(d){ return d.r !== "rif"; }).length;
+  }
+
+  function disegnaLista(){
+    var ol = $("lista"); ol.innerHTML = "";
+    $("vuotoLista").hidden = stato.domande.length > 0;
+    stato.domande.forEach(function(d, k){
+      var li = document.createElement("li");
+      if(d.seg) li.className = "segnata";
+      var q = document.createElement("span");
+      q.className = "q"; q.textContent = d.q;
+      q.title = "Clicca per segnare la domanda da correggere";
+      q.addEventListener("click", function(){
+        d.seg = !d.seg; salva(); disegnaLista();
+      });
+      var a = document.createElement("span");
+      a.className = "a " + d.r; a.textContent = ETICHETTA[d.r];
+      var x = document.createElement("button");
+      x.type = "button"; x.className = "x"; x.textContent = "✕";
+      x.title = "Cancella questa riga";
+      x.addEventListener("click", function(){
+        stato.domande.splice(k, 1); salva(); disegnaLista();
+      });
+      li.appendChild(q); li.appendChild(a); li.appendChild(x);
+      ol.appendChild(li);
+    });
+    $("nDomande").textContent = contaVere();
+  }
+
+  /* ---------- il fascicolo, in una finestra a parte ---------- */
+  var finestra = null;
+  function fascicoloHtml(){
+    var righe = caso.qa.map(function(x){
+      return "<tr><td>" + esc(x[0]) + "</td><td class='r'>" + esc(x[1]) + "</td></tr>";
+    }).join("");
+    var indizi = caso.ind.map(function(t, k){
+      return "<div class='ind'><b>Indizio " + (k+1) + "</b><p>" + esc(t) + "</p>" +
+             "<button type='button' data-i='" + k + "'>Mostralo sullo schermo</button></div>";
+    }).join("");
+    return "<!DOCTYPE html><html lang='it'><head><meta charset='UTF-8'>" +
+      "<title>Fascicolo · " + esc(caso.t) + "</title><style>" +
+      "body{margin:0;padding:18px 20px 30px;background:#16233F;color:#FFFDF8;font:16px/1.55 Georgia,serif}" +
+      "h1{font:700 1.3rem/1.2 Helvetica,Arial,sans-serif;margin:0 0 2px}" +
+      "h2{font:700 1rem/1.3 Helvetica,Arial,sans-serif;margin:22px 0 6px;color:#E8A33D;text-transform:uppercase;letter-spacing:.06em}" +
+      ".sit{background:rgba(255,253,248,.08);border-radius:10px;padding:10px 12px;font-style:italic}" +
+      ".sol{background:#2E5E4E;border-radius:10px;padding:12px 14px}" +
+      ".ind{border:1px dashed rgba(255,253,248,.35);border-radius:10px;padding:10px 12px;margin-bottom:10px}" +
+      ".ind p{margin:4px 0 8px}" +
+      "button{font:600 .9rem Helvetica,Arial,sans-serif;background:#E8A33D;color:#16233F;border:0;border-radius:999px;padding:7px 14px;cursor:pointer}" +
+      "button.rivela{background:#C4312B;color:#FFFDF8}" +
+      "table{width:100%;border-collapse:collapse;font-size:.95rem}" +
+      "td{padding:6px 4px;border-bottom:1px solid rgba(255,253,248,.18);vertical-align:top}" +
+      "td.r{width:34%;font-weight:700;color:#E8A33D;text-align:right}" +
+      ".avvertenza{font-size:.86rem;color:#C7CEDB;margin-top:26px}" +
+      "</style></head><body>" +
+      "<h1>" + esc(caso.t) + "</h1><div style='color:#C7CEDB;font-size:.9rem'>Fascicolo riservato · non condividere questa finestra</div>" +
+      "<h2>La situazione</h2><div class='sit'>" + esc(caso.s) + "</div>" +
+      "<h2>La soluzione</h2><div class='sol'>" + esc(caso.sol) + "</div>" +
+      "<h2>Indizi, uno alla volta</h2>" + indizi +
+      "<h2>Se chiede questo, rispondi così</h2><table>" + righe + "</table>" +
+      "<h2>Quando ci è arrivata</h2><button type='button' class='rivela' id='rivela'>Rivela la storia sullo schermo</button>" +
+      "<p class='avvertenza'>Questa finestra è separata dalla pagina del gioco: se condividi solo la scheda del gioco, qui dentro lo studente non vede niente.</p>" +
+      "<script>" +
+      "document.addEventListener('click', function(e){" +
+      " var b = e.target.closest('button'); if(!b || !window.opener) return;" +
+      " if(b.id === 'rivela'){ window.opener.rivelaSoluzione(); return; }" +
+      " var i = b.getAttribute('data-i'); if(i !== null){ window.opener.mostraIndizio(Number(i)); b.textContent = 'Mostrato'; b.disabled = true; }" +
+      "});" +
+      "<\/script></body></html>";
+  }
+  $("apriFascicolo").addEventListener("click", function(){
+    if(!caso) return;
+    try{
+      finestra = window.open("", "fascicolo_" + iCaso, "width=560,height=760,menubar=no,toolbar=no");
+    }catch(e){ finestra = null; }
+    if(!finestra){
+      alert("Il browser ha bloccato la finestra separata. Permetti i pop-up per questa pagina: serve a tenere la soluzione fuori dallo schermo condiviso.");
+      return;
+    }
+    finestra.document.open();
+    finestra.document.write(fascicoloHtml());
+    finestra.document.close();
+    finestra.focus();
+  });
+
+  window.mostraIndizio = function(i){
+    if(!caso || !caso.ind[i]) return;
+    $("gIndizioTxt").textContent = caso.ind[i];
+    $("gIndizio").hidden = false;
+  };
+  window.rivelaSoluzione = function(){ finisci(); };
+  $("risolto").addEventListener("click", finisci);
+
+  function finisci(){
+    if(!caso) return;
+    clearInterval(cronId);
+    var n = contaVere();
+    if(n && (!stato.record[iCaso] || n < stato.record[iCaso])){ stato.record[iCaso] = n; }
+    salva(); disegnaRecord();
+    $("fTitolo").textContent = caso.t + " · risolto in " + n + (n === 1 ? " domanda" : " domande");
+    $("fSoluzione").textContent = caso.sol;
+    var ol = $("listaFine"); ol.innerHTML = "";
+    stato.domande.forEach(function(d){
+      var li = document.createElement("li");
+      if(d.seg) li.className = "segnata";
+      li.innerHTML = '<span class="q">' + esc(d.q) + '</span><span class="a ' + d.r + '">' + ETICHETTA[d.r] + "</span>";
+      ol.appendChild(li);
+    });
+    var seg = stato.domande.filter(function(d){ return d.seg; });
+    $("fSegnate").innerHTML = seg.length
+      ? "<ul style='margin:0;padding-left:18px'>" + seg.map(function(d){ return "<li>" + esc(d.q) + "</li>"; }).join("") + "</ul>"
+      : "<p class='en' style='margin:0'>Nessuna domanda segnata.</p>";
+    mostra("sFine");
+  }
+
+  $("cambia").addEventListener("click", function(){ clearInterval(cronId); mostra("sScelta"); });
+  $("altroCaso").addEventListener("click", function(){ mostra("sScelta"); });
+
+  /* ---------- appunti ---------- */
+  var note = $("note");
+  note.value = stato.note || "";
+  note.addEventListener("input", function(){
+    stato.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("reset").addEventListener("click", function(){
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+
+  /* ---------- riprendi dove eravamo ---------- */
+  if(stato.caso !== null && CASI[stato.caso]){
+    apriCaso(stato.caso);
+  }
+})();
+</script>
+</body>
+</html>
