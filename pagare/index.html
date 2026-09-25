@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pay for your lessons — Talk with Fabio</title>
+<meta name="description" content="Pay for a block of Italian lessons in euros, pounds or dollars. A normal local bank transfer: no card fees, no exchange markup.">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="canonical" href="https://talkwithfabio.com/pagare/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Talk with Fabio">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Pay for your lessons">
+<meta property="og:description" content="Pay in euros, pounds or dollars. A normal local bank transfer: no card fees, no exchange markup.">
+<meta property="og:url" content="https://talkwithfabio.com/pagare/">
+<meta property="og:image" content="https://talkwithfabio.com/img/og-home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pay for your lessons">
+<meta name="twitter:description" content="Pay in euros, pounds or dollars. No card fees, no exchange markup.">
+<meta name="twitter:image" content="https://talkwithfabio.com/img/og-home.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+:root{
+  --ink:#16233F; --ink-soft:#4A5670; --paper:#F7F4EC; --paper-2:#FFFDF8; --rule:#DFD8C7;
+  --saffron:#E8A33D; --rosso:#C4312B; --verde:#2E5E4E;
+  --display:"Bricolage Grotesque", system-ui, sans-serif;
+  --text:"Newsreader", Georgia, serif;
+  --pen:"Caveat", cursive;
+  --mono:ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--text); font-size:1.06rem; line-height:1.6;
+}
+a{color:inherit;}
+.wrap{max-width:1000px; margin:0 auto; padding:0 22px;}
+.hidden{display:none !important;}
+
+.nav{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:18px 0; border-bottom:1px solid var(--rule); background:var(--paper-2);
+}
+.logo{
+  display:flex; align-items:center; gap:10px; text-decoration:none;
+  font-family:var(--display); font-weight:700; font-size:1.05rem;
+}
+.logo-mark{
+  width:26px; height:26px; border-radius:50%; flex:none;
+  background:conic-gradient(from 180deg, var(--verde) 0 25%, var(--saffron) 0 50%, var(--rosso) 0 75%, var(--ink) 0);
+}
+.back{font-family:var(--display); font-weight:500; font-size:0.94rem; text-decoration:none; color:var(--ink-soft);}
+.back:hover{color:var(--rosso);}
+
+.head{padding:46px 0 22px;}
+.eyebrow{
+  font-family:var(--mono); font-size:0.72rem; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--ink-soft); margin:0 0 12px;
+}
+h1{
+  font-family:var(--display); font-weight:800; letter-spacing:-0.02em;
+  font-size:clamp(2.1rem, 6vw, 3.3rem); line-height:1.05; margin:0 0 16px;
+}
+h1 .hl{color:var(--rosso);}
+.lede{color:var(--ink-soft); max-width:62ch; margin:0 0 22px;}
+
+/* ---------- Selettore della valuta ---------- */
+.curbar{
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
+  padding:16px 0; margin:6px 0 30px;
+}
+.curlab{font-family:var(--mono); font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft);}
+.curchips{display:flex; gap:8px; flex-wrap:wrap;}
+.cur{
+  font-family:var(--display); font-weight:700; font-size:0.95rem;
+  background:var(--paper-2); color:var(--ink); border:2px solid var(--rule);
+  border-radius:999px; padding:8px 18px; cursor:pointer; line-height:1.2;
+}
+.cur:hover{border-color:var(--ink);}
+.cur[aria-pressed="true"]{background:var(--ink); color:var(--paper-2); border-color:var(--ink);}
+.cur .code{font-family:var(--mono); font-size:0.72em; opacity:0.6; margin-left:7px;}
+.cur[aria-pressed="true"] .code{opacity:0.75;}
+.curnote{font-family:var(--text); font-size:0.92rem; color:var(--ink-soft); font-style:italic; margin:0;}
+
+/* ---------- I pacchetti ---------- */
+.plans{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:14px; margin:0 0 16px;}
+.plan{
+  background:var(--paper-2); border:1px solid var(--rule); border-radius:22px;
+  padding:22px 20px 20px; display:flex; flex-direction:column; gap:4px; position:relative;
+}
+.plan.best{border:2px solid var(--ink); box-shadow:5px 5px 0 rgba(22,35,63,.08);}
+.plan .flag{
+  position:absolute; top:-11px; left:18px; background:var(--saffron); color:var(--ink);
+  font-family:var(--display); font-weight:700; font-size:0.72rem; border-radius:999px; padding:3px 12px;
+}
+.plan h2{font-family:var(--display); font-weight:700; font-size:1.05rem; margin:0 0 6px;}
+.plan .tot{font-family:var(--display); font-weight:800; font-size:clamp(1.9rem,5vw,2.5rem); line-height:1; letter-spacing:-0.02em;}
+.plan .each{font-size:0.94rem; color:var(--ink-soft); margin:2px 0 0;}
+.plan .save{
+  font-family:var(--display); font-weight:700; font-size:0.85rem; color:var(--verde);
+  margin:8px 0 0;
+}
+.plan .save.empty{color:transparent;}
+.plan .btn{margin-top:14px;}
+.btn{
+  font-family:var(--display); font-weight:700; font-size:0.95rem;
+  background:var(--ink); color:var(--paper-2); border:2px solid var(--ink);
+  border-radius:999px; padding:11px 18px; cursor:pointer; text-align:center;
+  text-decoration:none; display:block;
+}
+.btn:hover{background:var(--rosso); border-color:var(--rosso);}
+.btn.ask{background:transparent; color:var(--ink); border-color:var(--rule);}
+.btn.ask:hover{background:transparent; color:var(--rosso); border-color:var(--rosso);}
+
+.plansnote{color:var(--ink-soft); font-size:0.96rem; max-width:62ch; margin:0 0 36px;}
+
+/* ---------- Come funziona ---------- */
+.how{
+  border-top:1px solid var(--rule); padding:30px 0 0; margin:0 0 10px;
+}
+.how h3{font-family:var(--display); font-size:1.15rem; margin:0 0 16px;}
+.steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin:0 0 26px;}
+.step{background:var(--paper-2); border:1px solid var(--rule); border-radius:18px; padding:16px 18px;}
+.step .n{
+  font-family:var(--display); font-weight:800; font-size:0.78rem; color:var(--paper-2);
+  background:var(--verde); border-radius:999px; padding:2px 10px; display:inline-block; margin-bottom:8px;
+}
+.step p{margin:0; font-size:0.97rem; color:var(--ink-soft);}
+.step b{color:var(--ink); font-family:var(--display);}
+
+.nofees{
+  background:var(--verde); color:var(--paper-2); border-radius:22px; padding:22px 24px; margin:0 0 26px;
+}
+.nofees p{margin:0; max-width:64ch;}
+.nofees b{font-family:var(--display);}
+.nofees .small{font-size:0.92rem; opacity:0.8; margin-top:8px;}
+
+.aside{border-top:1px solid var(--rule); padding:26px 0 60px; color:var(--ink-soft);}
+.aside p{margin:0 0 10px; max-width:62ch;}
+.aside a{font-family:var(--display); font-weight:700; color:var(--rosso); text-decoration:none;}
+.aside a:hover{text-decoration:underline;}
+.pen{font-family:var(--pen); font-size:1.5rem; color:var(--verde); margin:0 0 4px;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+    <a class="logo" href="../"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a>
+    <a class="back" href="../">&larr; Back to the site</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="head">
+    <p class="eyebrow">niente sorprese</p>
+    <h1>Pay in your own currency. <span class="hl">Nothing on top.</span></h1>
+    <p class="lede">
+      Pick your block below. You'll pay with an ordinary bank transfer, the same one you use
+      for anything else, so no card fees and no exchange markup are hiding anywhere.
+    </p>
+  </section>
+
+  <div class="curbar">
+    <span class="curlab">Your currency</span>
+    <div class="curchips" id="curChips"></div>
+    <p class="curnote" id="curNote"></p>
+  </div>
+
+  <div class="plans" id="plans"></div>
+  <p class="plansnote">
+    Lessons never expire and there's no schedule to keep. Once a week, twice a week, or three in the
+    same week before a trip. Your pace, not mine.
+  </p>
+
+  <section class="nofees">
+    <p><b>No card fees, no exchange markup.</b> If you hold euros, pounds or dollars, this is a
+      normal local transfer: free for you, free for me. Nobody takes a cut in the middle, which is
+      exactly why I set it up this way.</p>
+    <p class="small">Paying from somewhere else? That's fine too, just ask me and I'll set up a link
+      in your currency.</p>
+  </section>
+
+  <section class="how">
+    <h3>What happens after you pay</h3>
+    <div class="steps">
+      <div class="step">
+        <span class="n">1</span>
+        <p>You send the transfer. It takes a minute and you <b>don't need an account anywhere</b>,
+          just your usual banking app.</p>
+      </div>
+      <div class="step">
+        <span class="n">2</span>
+        <p>I confirm as soon as it lands, <b>usually the same day</b>. You get a message from me, not
+          from a robot.</p>
+      </div>
+      <div class="step">
+        <span class="n">3</span>
+        <p>Your lessons show up on <b>your own page</b>, where you can see how many you have left and
+          book them whenever you like.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="aside">
+    <p class="pen">una cosa alla volta</p>
+    <p>
+      Not sure which block yet? <a href="../prenota/">Book a single lesson</a> and decide afterwards.
+      Nobody has ever regretted starting small.
+    </p>
+    <p>
+      Anything else, write to me at
+      <a href="mailto:boccuzzifabio@gmail.com">boccuzzifabio@gmail.com</a>.
+      I answer every message myself.
+    </p>
+  </section>
+</main>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   1. I LINK DI PAGAMENTO
+
+   Sono i link "aperti" di Wise, uno per valuta. L'importo non sta
+   dentro il link: glielo passiamo nell'indirizzo, cosi cambiare un
+   prezzo vuol dire cambiare un numero qui sotto e non rifare i link.
+
+   Finche una casella e vuota, il pulsante di quella valuta diventa
+   "scrivimi e te lo mando", quindi la pagina funziona lo stesso.
+   ============================================================ */
+
+var LINK = {
+  EUR: "",
+  GBP: "",
+  USD: ""
+};
+
+/* Il nome del parametro dell'importo: da confermare con un link vero. */
+var PARAM_IMPORTO = "amount";
+
+var MAIL = "boccuzzifabio@gmail.com";
+
+/* ============================================================
+   2. I PREZZI
+
+   Decisi il 25 settembre 2026. Dentro c'e' fra il 2 e il 6% di
+   margine sul cambio, che serve ad assorbire le oscillazioni senza
+   dover toccare niente ogni mese.
+   ============================================================ */
+
+var VALUTE = [
+  { k:"EUR", nome:"Euro",   sym:"€", prezzi:{ p1:55,  p4:200, p8:385, p20:900  } },
+  { k:"GBP", nome:"Pounds", sym:"£", prezzi:{ p1:47,  p4:175, p8:330, p20:780  } },
+  { k:"USD", nome:"Dollars", sym:"$",     prezzi:{ p1:60,  p4:220, p8:424, p20:1000 } }
+];
+
+var PACCHETTI = [
+  { k:"p1",  n:1,  titolo:"Single lesson",
+    nota:"No block, no commitment, no hard feelings." },
+  { k:"p4",  n:4,  titolo:"4 lessons",
+    nota:"Enough to take one thing that has been tripping you up for years and put it to bed." },
+  { k:"p8",  n:8,  titolo:"8 lessons", best:true,
+    nota:"The block where it clicks: you stop building the sentence in English first and just say it." },
+  { k:"p20", n:20, titolo:"20 lessons",
+    nota:"For the ones going all the way to a real conversation. The best price I do." }
+];
+
+/* ============================================================
+   3. QUALE VALUTA MOSTRARE
+
+   Dal fuso orario del browser, che non chiede niente a nessuno e
+   non manda l'indirizzo IP di chi legge a un servizio esterno.
+   E' solo un punto di partenza: le pastiglie restano in vista e la
+   scelta a mano vince sempre, anche alla visita dopo.
+   ============================================================ */
+
+var TZ_EUR = ["Europe/Rome","Europe/Vatican","Europe/San_Marino","Europe/Madrid","Europe/Paris",
+  "Europe/Berlin","Europe/Vienna","Europe/Amsterdam","Europe/Brussels","Europe/Lisbon",
+  "Europe/Dublin","Europe/Athens","Europe/Helsinki","Europe/Tallinn","Europe/Riga",
+  "Europe/Vilnius","Europe/Bratislava","Europe/Ljubljana","Europe/Luxembourg","Europe/Malta",
+  "Europe/Nicosia","Europe/Zagreb","Europe/Podgorica","Europe/Sofia","Europe/Prague",
+  "Europe/Warsaw","Europe/Budapest","Europe/Bucharest","Europe/Copenhagen","Europe/Stockholm",
+  "Europe/Oslo","Europe/Zurich","Europe/Monaco","Europe/Andorra","Atlantic/Canary","Africa/Ceuta"];
+
+var TZ_GBP = ["Europe/London","Europe/Belfast","Europe/Guernsey","Europe/Isle_of_Man","Europe/Jersey"];
+
+function valutaIndovinata(){
+  var tz = "";
+  try{ tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; }catch(e){}
+  if(TZ_GBP.indexOf(tz) >= 0) return "GBP";
+  if(TZ_EUR.indexOf(tz) >= 0) return "EUR";
+  return "USD";
+}
+
+var STORE = "twf_valuta";
+function valutaSalvata(){
+  try{
+    var v = localStorage.getItem(STORE);
+    return VALUTE.filter(function(x){ return x.k === v; }).length ? v : null;
+  }catch(e){ return null; }
+}
+function salvaValuta(v){ try{ localStorage.setItem(STORE, v); }catch(e){} }
+
+var scelta = valutaSalvata();
+var automatica = !scelta;
+if(!scelta) scelta = valutaIndovinata();
+
+/* ============================================================
+   4. Disegno
+   ============================================================ */
+
+function $(id){ return document.getElementById(id); }
+function val(){ return VALUTE.filter(function(x){ return x.k === scelta; })[0]; }
+
+/* 385 diviso 8 fa 48,125: i decimali si mostrano solo se ci sono. */
+function soldi(n, sym){
+  var r = Math.round(n * 100) / 100;
+  var s = (r % 1 === 0) ? String(r) : r.toFixed(2);
+  if(s.length > 3 && s.indexOf(".") === -1 && r >= 1000){
+    s = s.slice(0, s.length - 3) + "," + s.slice(s.length - 3);
+  }
+  return sym + s;
+}
+
+function linkPagamento(importo){
+  var base = LINK[scelta];
+  if(!base) return null;
+  return base + (base.indexOf("?") >= 0 ? "&" : "?") + PARAM_IMPORTO + "=" + importo;
+}
+
+function linkScrivimi(pac){
+  var ogg = "Payment link: " + pac.titolo + " (" + scelta + ")";
+  var corpo = "Hi Fabio, I'd like the " + pac.titolo.toLowerCase()
+    + " block and I'd like to pay in " + val().nome.toLowerCase() + ". Can you send me the link?";
+  return "mailto:" + MAIL + "?subject=" + encodeURIComponent(ogg) + "&body=" + encodeURIComponent(corpo);
+}
+
+function renderChips(){
+  var box = $("curChips");
+  box.innerHTML = "";
+  VALUTE.forEach(function(v){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "cur";
+    b.innerHTML = v.sym + " " + v.nome + '<span class="code">' + v.k + "</span>";
+    b.setAttribute("aria-pressed", v.k === scelta ? "true" : "false");
+    b.addEventListener("click", function(){
+      scelta = v.k; automatica = false; salvaValuta(v.k); render();
+    });
+    box.appendChild(b);
+  });
+  $("curNote").textContent = automatica
+    ? "Picked for you from your time zone. Change it whenever you like."
+    : "";
+}
+
+function renderPiani(){
+  var v = val();
+  var box = $("plans");
+  box.innerHTML = "";
+  PACCHETTI.forEach(function(p){
+    var tot = v.prezzi[p.k];
+    var each = tot / p.n;
+    var pieno = v.prezzi.p1 * p.n;
+    var risparmio = pieno - tot;
+
+    var el = document.createElement("article");
+    el.className = "plan" + (p.best ? " best" : "");
+    var h = "";
+    if(p.best) h += '<span class="flag">Most chosen</span>';
+    h += "<h2>" + p.titolo + "</h2>";
+    h += '<span class="tot">' + soldi(tot, v.sym) + "</span>";
+    h += '<p class="each">' + (p.n > 1 ? soldi(each, v.sym) + " per lesson" : "50 minutes, one to one") + "</p>";
+    h += '<p class="save' + (risparmio > 0 ? "" : " empty") + '">'
+       + (risparmio > 0 ? "You save " + soldi(risparmio, v.sym) : "&nbsp;") + "</p>";
+    el.innerHTML = h;
+
+    var a = document.createElement("a");
+    var pagaUrl = linkPagamento(tot);
+    if(pagaUrl){
+      a.className = "btn";
+      a.href = pagaUrl;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = "Pay " + soldi(tot, v.sym);
+    } else {
+      a.className = "btn ask";
+      a.href = linkScrivimi(p);
+      a.textContent = "Ask me for the link";
+    }
+    el.appendChild(a);
+    box.appendChild(el);
+  });
+}
+
+function render(){ renderChips(); renderPiani(); }
+render();
+
+})();
+</script>
+</body>
+</html>
