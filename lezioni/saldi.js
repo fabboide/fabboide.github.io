@@ -54,9 +54,24 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "28 settembre 2026, 18:40";
+var SALDI_AGGIORNATO = "28 settembre 2026, 23:30";
 
 var SALDI = {
+
+  "luis-q4m": {
+    nome: "Luis",
+    pacchetto: 4,
+    inizio: "2026-09-28",
+    fatte_prima: 0,
+    fatte: 0,
+    prenotate: 1,
+    rimaste: 3,
+    passate: [],
+    prossime: [
+      { quando: "2026-10-09T09:00:00+02:00" }
+    ],
+    promemoria: "Per Fabio: le lezioni di agosto e inizio settembre (27/8, 28/8, 3/9, 10/9) restano fuori da questo pacchetto, il conteggio parte dal 28 settembre. Se vanno incluse, si sposta indietro inizio e si alza pacchetto."
+  },
 
   "elena-8qw": {
     nome: "Elena",
@@ -74,12 +89,15 @@ var SALDI = {
   "sophie-6zk": {
     nome: "Sophie",
     pacchetto: 10,
-    inizio: "2026-09-15",
-    fatte_prima: 3,
+    inizio: "2026-08-26",
+    fatte_prima: 0,
     fatte: 5,
     prenotate: 0,
     rimaste: 5,
     passate: [
+      "2026-08-26T12:00:00+02:00",
+      "2026-09-01T12:00:00+02:00",
+      "2026-09-10T12:00:00+02:00",
       "2026-09-17T11:00:00+02:00",
       "2026-09-21T13:00:00+02:00"
     ],
