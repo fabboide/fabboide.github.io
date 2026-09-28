@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missioni in Italia · Talk with Fabio</title>
+<meta name="description" content="Missioni di sopravvivenza in italiano: il bar, la stazione, il ristorante, il negozio, la strada, l'albergo, la farmacia.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D; --kraft:#D9BC8C; --kraft-ink:#3E2A12;
+  --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700;font-size:.98rem}
+.logo-mark{width:20px;height:20px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.88rem;color:inherit}
+.nastro{height:8px;background:repeating-linear-gradient(90deg,var(--basil) 0 24px,var(--paper) 24px 48px,var(--tomato) 48px 72px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 40px}
+
+header.sign{padding:30px 0 4px;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,6vw,3.5rem);line-height:.95;margin:0}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:56ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+h2{font-family:var(--display);font-weight:700;font-size:1.45rem;margin:18px 0 6px}
+h3{font-family:var(--display);font-size:1.02rem;margin:0 0 8px}
+
+.modi{display:flex;gap:0;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:3px}
+.modi button{font-family:var(--display);font-weight:700;font-size:.9rem;border:0;background:none;border-radius:999px;padding:7px 14px;color:var(--muted)}
+.modi button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:10px 18px}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 13px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.schermo{display:none}
+.schermo.active{display:block}
+
+/* mappa delle missioni */
+.griglia{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:14px;margin-top:6px}
+.m-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:15px 16px;text-align:left;display:flex;flex-direction:column;gap:6px;position:relative;min-height:132px}
+.m-card:hover{border-color:var(--ink)}
+.m-card .dove{font-family:var(--display);font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--basil)}
+.m-card .tit{font-family:var(--display);font-weight:700;font-size:1.12rem;line-height:1.2}
+.m-card .ob{font-size:.95rem;color:var(--muted)}
+.m-card .timbro{position:absolute;top:10px;right:10px;font-size:1.5rem;transform:rotate(9deg)}
+.m-card.fatta{border-color:var(--basil);background:#F2F7F4}
+
+/* la missione */
+.testata{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between}
+.obiettivo{background:var(--kraft);color:var(--kraft-ink);border-radius:6px 16px 16px 16px;padding:18px 20px;margin:32px 0 18px;position:relative}
+.obiettivo::before{content:"missione";position:absolute;top:-24px;left:0;background:var(--kraft);color:var(--kraft-ink);font-family:var(--display);font-weight:700;font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;padding:4px 14px;border-radius:8px 8px 0 0}
+.obiettivo p{margin:0;font-size:clamp(1.15rem,2.6vw,1.5rem);line-height:1.35;font-weight:600}
+ul.prove{list-style:none;margin:0;padding:0}
+ul.prove li{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line);cursor:pointer}
+ul.prove li .box{flex:0 0 24px;height:24px;border:2px solid var(--line);border-radius:7px;background:var(--paper);display:grid;place-items:center;font-size:.9rem;line-height:1;margin-top:2px}
+ul.prove li.ok .box{background:var(--basil);border-color:var(--basil);color:var(--paper)}
+ul.prove li.ok span.txt{color:var(--muted)}
+.parole{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.parole button{font-family:var(--display);font-weight:700;border:2px solid var(--lemon);background:#FBF3E4;border-radius:999px;padding:7px 14px}
+.parole button.detta{background:var(--lemon)}
+.nota-par{font-family:var(--hand);font-size:1.25rem;color:var(--tomato);margin-top:8px;min-height:1.4em}
+.frasi{margin:0;padding-left:18px}
+.frasi li{margin-bottom:5px}
+.sequenza{display:none}
+.sequenza.show{display:block}
+.inviaggio{background:#F2F7F4;border:1px solid #C6D8CE;border-radius:14px;padding:14px 16px;margin-top:16px}
+.inviaggio b{font-family:var(--display)}
+.contatori{display:flex;gap:16px;flex-wrap:wrap;align-items:center;font-family:var(--display);font-weight:700;margin-top:6px}
+.contatori .n{font-size:1.5rem;color:var(--basil)}
+
+/* passaporto */
+.passaporto{background:#20304F;color:#FFFDF8;border-radius:18px;padding:22px 24px}
+.passaporto h2{color:var(--lemon);margin-top:0}
+.timbri{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin-top:14px}
+.timbro-box{border:2px dashed rgba(255,253,248,.28);border-radius:12px;padding:10px;text-align:center;font-size:.86rem;min-height:86px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.timbro-box.fatto{border:2px solid var(--lemon);color:var(--lemon);transform:rotate(-2deg)}
+.timbro-box .em{font-size:1.5rem}
+.timbro-box .pron{font-size:.74rem;color:#FFFDF8}
+.verdetto{margin-top:18px;background:rgba(255,253,248,.1);border-radius:12px;padding:16px 18px}
+.verdetto .tipo{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--lemon)}
+.riepilogo{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-family:var(--display)}
+.riepilogo div span{display:block;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:#C7CEDB;font-weight:700}
+.riepilogo div b{font-size:1.6rem}
+
+/* kit salvavita */
+.kit{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--paper);z-index:40;padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -6px 20px rgba(22,35,63,.18)}
+.kit-bar{max-width:1080px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:12px}
+.kit-bar .eti{font-family:var(--display);font-weight:800;letter-spacing:.04em;font-size:.9rem;white-space:nowrap}
+.kit-bar .mostra{margin-left:auto;font-family:var(--display);font-weight:700;background:var(--lemon);color:var(--ink);border:0;border-radius:999px;padding:8px 15px}
+.kit-grande{flex:1;font-family:var(--display);font-weight:700;font-size:clamp(1rem,2.4vw,1.3rem);min-height:1.5em}
+.kit-lista{max-width:1080px;margin:0 auto;padding:0 18px 16px;display:none;max-height:46vh;overflow:auto}
+.kit.aperto .kit-lista{display:block}
+.kit-lista button{display:block;width:100%;text-align:left;background:rgba(255,253,248,.08);border:0;color:inherit;border-radius:10px;padding:10px 13px;margin-bottom:7px;font-size:1rem}
+.kit-lista button:hover{background:rgba(255,253,248,.16)}
+.kit-lista button small{display:block;color:#C7CEDB;font-style:italic;font-size:.84rem}
+.kit-conta{font-family:var(--display);font-size:.8rem;color:#C7CEDB;padding:0 18px 12px;max-width:1080px;margin:0 auto}
+
+/* appunti */
+.appunti{margin-top:24px}
+.appunti textarea{width:100%;min-height:100px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.barra{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.salvato{font-family:var(--hand);font-size:1.12rem;color:var(--basil)}
+.solo-lezione{display:none}
+body.lezione .solo-lezione{display:block}
+body.lezione .solo-lezione.inline{display:inline-flex}
+body.viaggio .solo-viaggio{display:block}
+.solo-viaggio{display:none}
+</style>
+</head>
+<body class="lezione">
+<header class="topbar"><div class="topbar-in">
+  <a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a>
+  <a class="back-link solo-lezione inline" href="https://talkwithfabio.com/aula-pfr2u9/">&larr; La mia aula</a>
+</div></header>
+<div class="nastro" aria-hidden="true"></div>
+
+<div class="wrap">
+  <header class="sign">
+    <div>
+      <h1>Missioni in Italia</h1>
+      <p>Non domande a cui rispondere: <b>cose da ottenere</b>. La password del wifi, il binario giusto, la taglia più grande. La missione è riuscita solo se l'informazione ce l'hai davvero. <span class="en">Real tasks, real obstacles, one rule: Italian only.</span></p>
+    </div>
+    <div class="modi" role="group" aria-label="Modalità">
+      <button id="modoLez" type="button" aria-pressed="true">In lezione</button>
+      <button id="modoVia" type="button" aria-pressed="false">In viaggio</button>
+    </div>
+  </header>
+
+  <!-- MAPPA -->
+  <section class="schermo active" id="sMappa">
+    <div class="chips" id="chipLuoghi" style="margin:16px 0 14px"></div>
+    <div class="toolbar" style="margin-top:0">
+      <button class="btn" id="aCaso" type="button">Pesca una missione</button>
+      <button class="btn ghost" id="vaiPass" type="button">Il passaporto</button>
+      <span class="count" id="contaMappa" style="font-family:var(--display);font-weight:700;color:var(--basil)"></span>
+    </div>
+    <div class="griglia" id="griglia"></div>
+    <p class="en solo-viaggio" style="margin-top:18px">Questa pagina funziona anche senza rete, una volta aperta: tienila nei preferiti del telefono. Le spunte restano su questo telefono.</p>
+  </section>
+
+  <!-- MISSIONE -->
+  <section class="schermo" id="sMissione">
+    <div class="toolbar" style="margin:16px 0 0">
+      <button class="btn ghost" id="indietro" type="button">&larr; Tutte le missioni</button>
+    </div>
+    <div class="testata" style="margin-top:18px">
+      <h2 id="mTitolo" style="margin:0"></h2>
+      <span class="en" id="mDove"></span>
+    </div>
+    <div class="obiettivo"><p id="mObiettivo"></p></div>
+
+    <div class="panel">
+      <h3>La missione è riuscita se…</h3>
+      <ul class="prove" id="mProve"></ul>
+    </div>
+
+    <div class="panel" style="margin-top:14px">
+      <h3>Da pronunciare bene</h3>
+      <div class="parole" id="mParole"></div>
+      <div class="nota-par" id="mNotaPar"></div>
+    </div>
+
+    <div class="panel" style="margin-top:14px">
+      <h3>Le frasi di questa situazione</h3>
+      <button class="btn ghost" id="mostraFrasi" type="button">Mostra le frasi</button>
+      <div class="sequenza" id="boxFrasi" style="margin-top:12px"><ul class="frasi" id="mFrasi"></ul></div>
+    </div>
+
+    <div class="inviaggio solo-viaggio">
+      <b>Quando sei lì.</b> <span id="mSolo"></span>
+    </div>
+
+    <div class="toolbar">
+      <button class="btn solo-lezione inline" id="apriCopione" type="button">📁 Il copione (solo Fabio)</button>
+      <button class="btn green" id="riuscita" type="button">Missione riuscita</button>
+      <button class="btn ghost solo-lezione inline" id="rimandata" type="button">Rimandata</button>
+      <button class="btn ghost solo-lezione inline" id="bollino" type="button" aria-pressed="false">🌟 Parole dette bene</button>
+      <button class="btn ghost solo-lezione inline" id="piuInglese" type="button">È crollata in inglese +1</button>
+    </div>
+    <p class="en solo-lezione" style="margin-top:10px">Il copione si apre in una finestra separata: battute, ostacolo e informazioni da dare restano fuori dallo schermo condiviso.</p>
+  </section>
+
+  <!-- PASSAPORTO -->
+  <section class="schermo" id="sPassaporto">
+    <div class="toolbar" style="margin:16px 0 18px">
+      <button class="btn ghost" id="indietro2" type="button">&larr; Tutte le missioni</button>
+    </div>
+    <div class="passaporto">
+      <h2>Passaporto italiano</h2>
+      <p style="margin:0;color:#C7CEDB">Un timbro per ogni missione portata a casa. La stellina è la pronuncia: parole dette bene al primo colpo.</p>
+      <div class="riepilogo" id="riepilogo"></div>
+      <div class="timbri" id="timbri"></div>
+      <div class="verdetto" id="verdetto" hidden>
+        <div class="tipo" id="vTipo"></div>
+        <div id="vTesto" style="margin-top:6px"></div>
+      </div>
+      <div class="toolbar">
+        <button class="btn" id="calcolaVerdetto" type="button" style="background:var(--lemon);border-color:var(--lemon);color:var(--ink)">Il verdetto</button>
+        <button class="btn ghost" id="azzeraTimbri" type="button" style="color:#FFFDF8;border-color:rgba(255,253,248,.4)">Azzera i timbri</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="panel appunti solo-lezione">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Le frasi da riprendere, le parole che non aveva, i momenti in cui si è bloccata.</p>
+    <textarea id="note" placeholder="Es. «quanto costa il biglietto per» → per Firenze · ha detto «ripetere lentamente» senza «può»"></textarea>
+    <div class="barra">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<!-- KIT SALVAVITA -->
+<div class="kit" id="kit">
+  <div class="kit-bar">
+    <span class="eti">🆘 Kit salvavita</span>
+    <span class="kit-grande" id="kitGrande">Scusi, non ho capito.</span>
+    <button class="mostra" id="kitToggle" type="button">Apri</button>
+  </div>
+  <div class="kit-lista" id="kitLista"></div>
+  <div class="kit-conta" id="kitConta"></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+/* ============================================================
+   MISSIONI IN ITALIA · i dati
+   ob    = l'obiettivo, in una riga
+   prove = le caselle concrete da spuntare: o ce l'ha o non ce l'ha
+   dati  = l'informazione che lei deve estrarre parlando (solo nel copione)
+   batt  = le battute dell'interlocutore, per Fabio
+   ost   = gli ostacoli compatibili con questa missione
+   par   = le parole da pronunciare bene, con la nota
+   fr    = le frasi utili di questa situazione
+   solo  = la versione da fare davvero in Italia
+   ============================================================ */
+
+var LUOGHI = [
+  {k:"bar",        n:"Il bar",        e:"☕"},
+  {k:"stazione",   n:"La stazione",   e:"🚆"},
+  {k:"ristorante", n:"Il ristorante", e:"🍝"},
+  {k:"negozio",    n:"Il negozio",    e:"👗"},
+  {k:"strada",     n:"La strada",     e:"🧭"},
+  {k:"albergo",    n:"L'albergo",     e:"🛎️"},
+  {k:"farmacia",   n:"La farmacia",   e:"💊"}
+];
+
+var OSTACOLI = {
+  veloce:   "Parli velocissimo e non ripeti se non te lo chiede lei. Se te lo chiede, rallenta davvero.",
+  inglese:  "Le rispondi in inglese («Oh, you want the wifi?»). Molla solo se insiste in italiano due volte.",
+  rumore:   "C'è casino: fai finta di non sentire una parola su due, falla ripetere.",
+  fretta:   "Hai fretta: stai chiudendo, hai la fila dietro. Metti pressione.",
+  resto:    "Non hai il resto: lei ha solo un biglietto grosso e devi risolvere insieme.",
+  finito:   "Quello che chiede è finito o non c'è. Deve farsi dare un'alternativa.",
+  cambio:   "All'ultimo momento cambia tutto (binario, tavolo, orario): diglielo mentre sta per andarsene.",
+  dialetto: "Accento forte e parole strane («un attimino», «mo' arrivo», «me lo segno»).",
+  domanda:  "Le fai una domanda che non si aspetta e a cui deve rispondere per forza."
+};
+
+var MISSIONI = [
+  /* ================= BAR ================= */
+  { l:"bar", t:"Colazione e password", liv:"A1",
+    ob:"Fai colazione e ottieni la password del wifi.",
+    prove:["Hai ordinato qualcosa da mangiare e da bere","Sai la password del wifi","Sai quanto hai pagato"],
+    dati:[["password del wifi","CaffeSole26, tutto attaccato, la C maiuscola"],["conto","3 euro e 80"]],
+    batt:["«Buongiorno! Mi dica.»","«Da bere?»","«Al banco o al tavolo? Al tavolo si paga di più.»","«Altro?»","«Fanno tre e ottanta.»"],
+    ost:["veloce","inglese","resto"],
+    par:[["cappuccino","tre pezzi: cap-puc-CI-no, con la doppia p e la doppia c"],["cornetto","la doppia t si sente: cor-NET-to"]],
+    fr:["Un cappuccino e un cornetto, per favore.","Qual è la password del wifi?","Quanto le devo?","Posso pagare con la carta?"],
+    solo:"Entra in un bar vero, ordina in italiano e chiedi la password del wifi anche se non ti serve." },
+
+  { l:"bar", t:"Il caffè al volo", liv:"A1",
+    ob:"Prendi un caffè al banco e scopri dov'è il bagno e se serve la chiave.",
+    prove:["Hai ordinato al banco","Sai dov'è il bagno","Sai se serve la chiave e dove si prende"],
+    dati:[["bagno","in fondo a destra, dopo le macchinette"],["chiave","sì, si chiede al banco"]],
+    batt:["«Prego?»","«Subito.»","«Il bagno? È là in fondo.»","«La chiave è qui, me la riporti eh.»"],
+    ost:["rumore","veloce","fretta"],
+    par:[["bicchiere","bic-CHIE-re, il ch è duro come in «chi»"],["scontrino","scon-TRI-no"]],
+    fr:["Un caffè, per favore.","Scusi, dov'è il bagno?","Serve la chiave?","Mi fa lo scontrino?"],
+    solo:"Prendi un caffè al banco e chiedi dov'è il bagno prima di uscire." },
+
+  { l:"bar", t:"L'aperitivo", liv:"A2",
+    ob:"Ordina l'aperitivo per due e scopri cosa è compreso nel prezzo.",
+    prove:["Hai ordinato due cose da bere","Sai cosa c'è da mangiare compreso","Sai se potete stare fuori"],
+    dati:[["aperitivo","otto euro, con il buffet compreso"],["fuori","sì, ma i tavoli fuori sono liberi solo dopo le sette"]],
+    batt:["«Buonasera! Due?»","«Cosa bevete?»","«Il buffet è là, vi servite quando volete.»","«Fuori adesso è pieno, fra poco si libera.»"],
+    ost:["fretta","domanda","rumore"],
+    par:[["aperitivo","l'accento in mezzo: a-pe-ri-TI-vo"],["stuzzichini","stuz-zi-CHI-ni, la doppia z si sente"]],
+    fr:["Due aperitivi, per favore.","Cosa c'è compreso nel prezzo?","Possiamo sederci fuori?","Cosa mi consiglia?"],
+    solo:"Ordina un aperitivo e fatti spiegare cosa è compreso prima di pagare." },
+
+  /* ================= STAZIONE ================= */
+  { l:"stazione", t:"Il biglietto per Firenze", liv:"A1",
+    ob:"Compra il biglietto e scopri da che binario parte e a che ora.",
+    prove:["Hai comprato il biglietto giusto","Sai l'orario di partenza","Sai il binario"],
+    dati:[["prezzo","dodici euro e cinquanta, solo andata"],["orario","parte alle 14:35"],["binario","binario 7, ma poi cambia al 12"]],
+    batt:["«Mi dica.»","«Solo andata o andata e ritorno?»","«Regionale o freccia? Il regionale ci mette un'ora in più.»","«Dodici e cinquanta.»","«Ah, guardi: hanno cambiato, parte dal dodici.»"],
+    ost:["veloce","cambio","domanda"],
+    par:[["biglietteria","cinque sillabe: bi-glie-tte-RI-a, con il gli morbido"],["binario","bi-NA-rio"]],
+    fr:["Un biglietto per Firenze, per favore.","Solo andata.","A che ora parte?","Da che binario parte?","Devo cambiare treno?"],
+    solo:"Compra un biglietto allo sportello, non alla macchinetta, e chiedi il binario a voce." },
+
+  { l:"stazione", t:"Il treno cancellato", liv:"B1",
+    ob:"Capisci perché il treno non parte e fatti dare una soluzione.",
+    prove:["Hai capito il motivo","Sai che alternativa c'è","Sai come chiedere il rimborso"],
+    dati:[["motivo","sciopero dei treni fino alle sedici"],["alternativa","alle 16:10 con cambio a Bologna, arriva due ore dopo"],["rimborso","si chiede sul sito con il codice del biglietto"]],
+    batt:["«Signora, oggi c'è sciopero.»","«Eh, no, fino alle quattro non parte niente.»","«Può prendere quello delle sedici e dieci, ma cambia a Bologna.»","«Per il rimborso deve fare online, qui non possiamo.»"],
+    ost:["veloce","fretta","dialetto"],
+    par:[["sciopero","SCIO-pero: lo sci si legge come «sh»"],["rimborso","rim-BOR-so, la erre non si mangia"]],
+    fr:["Scusi, perché non parte?","E adesso cosa posso fare?","C'è un altro treno?","Come faccio per il rimborso?","Può scrivermi l'orario, per favore?"],
+    solo:"Se qualcosa va storto davvero, chiedi una soluzione in italiano prima di aprire l'app." },
+
+  { l:"stazione", t:"Il deposito bagagli", liv:"A2",
+    ob:"Lascia la valigia e scopri prezzo e orari per riprenderla.",
+    prove:["Sai dov'è il deposito","Sai quanto costa","Sai fino a che ora puoi tornare a prenderla"],
+    dati:[["dove","sotto il binario 1, si scende a destra"],["prezzo","sei euro per cinque ore"],["orari","chiude alle 22, dopo non si ritira più"]],
+    batt:["«Il deposito è sotto, al binario uno.»","«Quante ore?»","«Sei euro. Mi serve un documento.»","«Guardi che alle dieci chiudiamo, eh.»"],
+    ost:["rumore","finito","domanda"],
+    par:[["deposito","de-PO-si-to, l'accento va sulla seconda"],["bagagli","ba-GA-gli, il gli morbido come in «famiglia»"]],
+    fr:["Dove posso lasciare la valigia?","Quanto costa per cinque ore?","Fino a che ora siete aperti?","Cosa vi serve, un documento?"],
+    solo:"In una stazione vera, chiedi dov'è il deposito bagagli e quanto costa, anche se non ti serve." },
+
+  /* ================= RISTORANTE ================= */
+  { l:"ristorante", t:"Il tavolo", liv:"A1",
+    ob:"Ottieni un tavolo per due e il menù in italiano.",
+    prove:["Hai chiesto il tavolo per due","Sai quanto dovete aspettare","Hai in mano il menù italiano"],
+    dati:[["attesa","dentro subito, fuori venti minuti"],["menù","c'è quello in inglese, quello italiano è nell'altra cartella"]],
+    batt:["«Buonasera, avete prenotato?»","«In quanti siete?»","«Dentro o fuori? Fuori c'è da aspettare.»","«Here's the English menu!»"],
+    ost:["inglese","fretta","cambio"],
+    par:[["tavolo","TA-vo-lo, l'accento sulla prima"],["fuori","FUO-ri, tutte e tre le vocali si sentono"]],
+    fr:["Un tavolo per due, per favore.","Quanto dobbiamo aspettare?","Possiamo stare fuori?","Preferisco il menù in italiano, grazie."],
+    solo:"Chiedi il tavolo in italiano e, se ti danno il menù in inglese, chiedi quello italiano." },
+
+  { l:"ristorante", t:"Ordinare senza capire il menù", liv:"A2",
+    ob:"Fatti spiegare due piatti che non conosci e ordina un primo e un secondo.",
+    prove:["Hai chiesto cosa sono almeno due piatti","Hai ordinato un primo e un secondo","Hai detto cosa non mangi o non ti piace"],
+    dati:[["strozzapreti","pasta fatta a mano, tipo gnocchetti lunghi, col sugo di salsiccia"],["scottadito","costolette di agnello alla griglia, si mangiano con le mani"],["finito","il pesce è finito, c'è il pollo"]],
+    batt:["«Allora, cosa prendete?»","«Gli strozzapreti? Sono una pasta nostra, fatta a mano.»","«Il pesce oggi è finito, mi dispiace.»","«E da bere?»"],
+    ost:["veloce","domanda","finito"],
+    par:[["penne","PEN-ne con la doppia n: se dici «pene» ridono tutti"],["pesce","PE-sce, lo sce come «sh»"]],
+    fr:["Cosa sono gli strozzapreti?","Che cosa mi consiglia?","Per primo prendo…, per secondo…","Non mangio il maiale.","C'è qualcosa senza glutine?"],
+    solo:"Ordina qualcosa che non hai mai mangiato, facendotelo spiegare prima." },
+
+  { l:"ristorante", t:"Il conto", liv:"A2",
+    ob:"Chiedi il conto, capisci una voce strana e paghi come vuoi tu.",
+    prove:["Hai chiesto il conto","Hai capito cos'è il coperto","Hai pagato come volevi (carta o contanti)"],
+    dati:[["coperto","due euro a persona, è il pane e il servizio"],["carta","si può, ma sotto i dieci euro no"],["totale","trentadue euro"]],
+    batt:["«Tutto bene? Vi è piaciuto?»","«Il coperto? È il pane, signora.»","«Con la carta? Sì, va bene.»","«Vuole anche il caffè?»"],
+    ost:["resto","domanda","fretta"],
+    par:[["conto","CON-to, la n si sente"],["coperto","co-PER-to"]],
+    fr:["Il conto, per favore.","Scusi, cos'è il coperto?","Posso pagare con la carta?","Avete il resto di cinquanta?","Era tutto buonissimo."],
+    solo:"Chiedi il conto e fatti spiegare una voce che non capisci, invece di pagare e basta." },
+
+  /* ================= NEGOZIO ================= */
+  { l:"negozio", t:"La taglia giusta", liv:"A1",
+    ob:"Prova una cosa, chiedi una taglia diversa e vieni via con lo scontrino.",
+    prove:["Hai chiesto di provare","Hai chiesto un'altra taglia","Hai lo scontrino in mano"],
+    dati:[["taglie","la L non c'è in questo colore, c'è solo in nero"],["camerino","in fondo a sinistra, massimo tre capi"]],
+    batt:["«Le serve aiuto?»","«Che taglia porta?»","«La emme le sta benissimo!»","«In quel colore la elle è finita.»"],
+    ost:["finito","inglese","domanda"],
+    par:[["taglia","TA-glia, gli morbido"],["camerino","ca-me-RI-no"]],
+    fr:["Posso provarlo?","Ce l'ha una taglia più grande?","Dov'è il camerino?","Mi fa lo scontrino, per favore?","Ci penso, grazie."],
+    solo:"Entra in un negozio, chiedi di provare qualcosa e poi esci anche senza comprare, in italiano." },
+
+  { l:"negozio", t:"Si può cambiare?", liv:"A2",
+    ob:"Scopri se puoi cambiare quello che hai comprato, entro quando e come.",
+    prove:["Sai se si può cambiare","Sai entro quanti giorni","Sai cosa devi portare"],
+    dati:[["cambio","sì, entro 14 giorni"],["serve","lo scontrino, senza non si fa niente"],["soldi","non ridanno i soldi, fanno un buono"]],
+    batt:["«Certo, si cambia.»","«Ha lo scontrino? Lo tenga da parte.»","«I soldi no, le facciamo un buono.»","«Ha quattordici giorni, mi raccomando.»"],
+    ost:["veloce","domanda","fretta"],
+    par:[["cambio","CAM-bio"],["scontrino","scon-TRI-no, la doppia n no, ma la erre sì"]],
+    fr:["Se non va bene, posso cambiarlo?","Entro quando?","Devo portare lo scontrino?","Mi ridate i soldi o fate un buono?"],
+    solo:"Prima di comprare qualcosa, chiedi sempre come funziona il cambio." },
+
+  { l:"negozio", t:"Un regalo", liv:"A2",
+    ob:"Fatti consigliare un regalo e chiedi il pacchetto.",
+    prove:["Hai spiegato per chi è il regalo","Ti sei fatta consigliare qualcosa","Hai chiesto il pacchetto regalo"],
+    dati:[["consiglio","una sciarpa di seta, venticinque euro"],["pacchetto","gratis, ma ci vogliono cinque minuti"]],
+    batt:["«Per chi è il regalo?»","«Quanto vuole spendere?»","«Questa va sempre bene, guardi.»","«Glielo incarto? Ci metto un attimo.»"],
+    ost:["domanda","fretta","finito"],
+    par:[["pacchetto","pac-CHET-to, doppia c e doppia t"],["regalo","re-GA-lo"]],
+    fr:["Cerco un regalo per mia sorella.","Cosa mi consiglia?","Quanto costa?","Me lo può incartare?","È un regalo, quindi tolga il prezzo."],
+    solo:"Compra un souvenir facendoti consigliare, invece di prendere il primo che vedi." },
+
+  /* ================= STRADA ================= */
+  { l:"strada", t:"Mi sono persa", liv:"A1",
+    ob:"Fatti indicare la strada e capisci quanto ci vuole.",
+    prove:["Hai chiesto dov'è il posto","Hai capito la strada (sai ripeterla)","Sai quanto ci vuole a piedi"],
+    dati:[["strada","seconda a destra, poi sempre dritto fino alla chiesa, e la piazza è lì dietro"],["tempo","dieci minuti a piedi"]],
+    batt:["«Allora, guardi: prende la seconda a destra…»","«…poi sempre dritto fino alla chiesa.»","«Dieci minuti, eh, non di più.»","«Ha capito? Glielo ripeto.»"],
+    ost:["veloce","dialetto","domanda"],
+    par:[["dritto","DRIT-to, doppia t"],["destra","DE-stra"]],
+    fr:["Scusi, dov'è la piazza?","È lontano?","Quanto ci vuole a piedi?","Può ripetere più lentamente?","Allora: seconda a destra e poi dritto. Giusto?"],
+    solo:"Chiedi la strada a una persona anche se hai il telefono in tasca, e ripeti a voce quello che ti ha detto." },
+
+  { l:"strada", t:"Quale autobus?", liv:"A2",
+    ob:"Scopri che autobus prendere, dove si compra il biglietto e quante fermate sono.",
+    prove:["Sai il numero dell'autobus","Sai dove si compra il biglietto","Sai quante fermate fare"],
+    dati:[["autobus","il 12, la fermata è dall'altra parte della strada"],["biglietto","dal tabaccaio, il distributore è rotto"],["fermate","quattro fermate, e si timbra salendo"]],
+    batt:["«Deve prendere il dodici.»","«Il biglietto lo compra dal tabaccaio, lì all'angolo.»","«Quattro fermate e scende.»","«Mi raccomando, lo timbri!»"],
+    ost:["veloce","finito","rumore"],
+    par:[["fermata","fer-MA-ta"],["tabaccaio","ta-bac-CA-io, la doppia c"]],
+    fr:["Quale autobus va in centro?","Dove si compra il biglietto?","Quante fermate sono?","Mi può avvisare quando devo scendere?"],
+    solo:"Prendi un autobus in una città che non conosci chiedendo informazioni a voce." },
+
+  { l:"strada", t:"Il telefono scarico", liv:"A2",
+    ob:"Il telefono è morto: fatti aiutare a trovare una soluzione.",
+    prove:["Hai spiegato il problema","Hai trovato dove caricare o dove c'è il wifi","Hai ringraziato come si deve"],
+    dati:[["soluzione","il bar all'angolo ha una presa dietro, e il wifi è libero"],["wifi","si chiede il codice alla cassa"]],
+    batt:["«Eh, qui in giro non c'è niente.»","«Provi al bar là all'angolo, quelli sono gentili.»","«Il wifi ce l'hanno, chieda alla cassa.»"],
+    ost:["domanda","dialetto","fretta"],
+    par:[["caricabatterie","lunghissima: ca-ri-ca-bat-te-RI-e"],["presa","PRE-sa"]],
+    fr:["Mi si è scaricato il telefono.","C'è un posto dove posso caricarlo?","Sa se qui c'è il wifi?","Grazie mille, gentilissimo."],
+    solo:"Chiedi a qualcuno il wifi o una presa invece di girare cercando da sola." },
+
+  /* ================= ALBERGO ================= */
+  { l:"albergo", t:"Il check-in", liv:"A1",
+    ob:"Prendi la camera e scopri colazione e wifi.",
+    prove:["Hai dato nome e documento","Sai a che ora è la colazione","Sai la password del wifi"],
+    dati:[["camera","214, secondo piano, l'ascensore è a destra"],["colazione","dalle 7 alle 10, sala al piano terra"],["wifi","HotelSole, password sole2026"]],
+    batt:["«Buonasera, ha una prenotazione?»","«Mi serve un documento, grazie.»","«Camera 214, secondo piano.»","«Colazione dalle sette alle dieci.»"],
+    ost:["veloce","domanda","inglese"],
+    par:[["camera","CA-me-ra, l'accento sulla prima"],["colazione","co-la-ZIO-ne"]],
+    fr:["Ho una prenotazione a nome…","A che ora è la colazione?","Qual è la password del wifi?","A che piano è la camera?"],
+    solo:"Fai il check-in tutto in italiano, anche se ti parlano in inglese." },
+
+  { l:"albergo", t:"C'è un problema in camera", liv:"B1",
+    ob:"Spiega cosa non va e ottieni che lo risolvano.",
+    prove:["Hai spiegato il problema","Hai detto cosa vuoi (riparare o cambiare camera)","Sai quando lo risolveranno"],
+    dati:[["tecnico","arriva solo dopo le sei di sera"],["alternativa","c'è una camera libera, ma è più piccola e senza balcone"]],
+    batt:["«Mi dica, signora.»","«L'aria condizionata? Adesso chiamo il tecnico.»","«Guardi, prima delle sei non viene.»","«Se vuole le do un'altra camera, però è più piccola.»"],
+    ost:["fretta","finito","domanda"],
+    par:[["asciugamano","a-sciu-ga-MA-no, lo sciu come «shoe»"],["aria condizionata","con-di-zio-NA-ta"]],
+    fr:["Scusi, in camera c'è un problema.","L'aria condizionata non funziona.","Potete ripararla oggi?","Preferirei cambiare camera.","Per quando?"],
+    solo:"Se qualcosa non va, dillo alla reception in italiano invece di sopportare." },
+
+  { l:"albergo", t:"Check-out e valigie", liv:"A2",
+    ob:"Lascia la camera, tieni le valigie lì e fatti chiamare un taxi.",
+    prove:["Hai fatto il check-out","Sai fino a che ora puoi lasciare le valigie","Sai quando arriva il taxi e quanto costa"],
+    dati:[["valigie","si possono lasciare fino alle 19, nello sgabuzzino dietro"],["taxi","dieci minuti di attesa, venti euro per l'aeroporto"]],
+    batt:["«Tutto bene il soggiorno?»","«Le valigie? Me le tenga pure qui.»","«Il taxi glielo chiamo io, ci mette dieci minuti.»","«Per l'aeroporto sono sui venti euro.»"],
+    ost:["domanda","resto","fretta"],
+    par:[["valigia","va-LI-gia"],["aeroporto","a-e-ro-POR-to, quattro vocali di fila all'inizio"]],
+    fr:["Vorrei fare il check-out.","Posso lasciare le valigie fino alle cinque?","Mi può chiamare un taxi?","Quanto ci vuole per l'aeroporto?"],
+    solo:"Fatti chiamare un taxi dalla reception invece di prenotarlo con l'app." },
+
+  /* ================= FARMACIA ================= */
+  { l:"farmacia", t:"Mal di testa", liv:"A1",
+    ob:"Ottieni qualcosa per il mal di testa e capisci come si prende.",
+    prove:["Hai spiegato cosa ti fa male","Sai quante volte al giorno prenderlo","Sai quanto costa"],
+    dati:[["medicina","compresse, sei euro e cinquanta"],["come","una ogni otto ore, sempre dopo mangiato"]],
+    batt:["«Mi dica.»","«È allergica a qualcosa?»","«Una ogni otto ore, ma dopo i pasti eh.»","«Sei e cinquanta.»"],
+    ost:["veloce","domanda","inglese"],
+    par:[["compresse","com-PRES-se, doppia s"],["stomaco","STO-ma-co, l'accento sulla prima"]],
+    fr:["Ho mal di testa.","Mi può dare qualcosa?","Quante volte al giorno?","Prima o dopo i pasti?","Serve la ricetta?"],
+    solo:"Entra in farmacia e spiega un piccolo problema in italiano, senza mostrare il telefono." },
+
+  { l:"farmacia", t:"La scottatura", liv:"A2",
+    ob:"Spiega il problema e fatti consigliare la cosa giusta.",
+    prove:["Hai spiegato cosa è successo","Ti sei fatta consigliare un prodotto","Sai come e quante volte metterlo"],
+    dati:[["prodotto","crema dopo-sole, dodici euro"],["come","due volte al giorno, sulla pelle asciutta, e niente sole per due giorni"]],
+    batt:["«Ahi, si è bruciata per bene.»","«Quanto è stata al sole?»","«Questa è la migliore. Due volte al giorno.»","«E domani niente spiaggia, mi raccomando.»"],
+    ost:["domanda","fretta","dialetto"],
+    par:[["scottatura","scot-ta-TU-ra, doppia t"],["spiaggia","SPIAG-gia, la doppia g"]],
+    fr:["Mi sono scottata al mare.","Cosa mi consiglia?","Quante volte al giorno la metto?","Posso stare al sole domani?"],
+    solo:"Fatti consigliare un prodotto da una farmacista, spiegando il problema a parole tue." },
+
+  { l:"farmacia", t:"Serve la ricetta?", liv:"B1",
+    ob:"Scopri che senza ricetta non te lo danno e trova cosa fare.",
+    prove:["Hai capito che serve la ricetta","Sai dove andare per averla","Sai gli orari"],
+    dati:[["ricetta","sì, senza ricetta non si può, è antibiotico"],["dove","guardia medica in via Verdi, dietro la chiesa"],["orari","apre alle 20, prima deve andare dal medico normale"]],
+    batt:["«Eh no, quello senza ricetta non glielo posso dare.»","«Deve andare dal medico.»","«C'è la guardia medica in via Verdi, ma apre alle otto di sera.»","«Mi dispiace, è la legge.»"],
+    ost:["dialetto","cambio","veloce"],
+    par:[["ricetta","ri-CET-ta, doppia t"],["guardia medica","GUAR-dia ME-di-ca"]],
+    fr:["Serve la ricetta?","E come faccio? Non ho un medico qui.","Dove posso andare?","A che ora aprono?","Può scrivermi l'indirizzo?"],
+    solo:"Se ti serve una medicina, chiedi prima in farmacia cosa si può avere senza ricetta." }
+];
+
+var KIT = [
+  ["Scusi, non ho capito.", "Sorry, I didn't understand."],
+  ["Può ripetere più lentamente, per favore?", "Can you repeat more slowly?"],
+  ["Come si dice… in italiano?", "How do you say… in Italian?"],
+  ["Può scriverlo, per favore?", "Can you write it down?"],
+  ["Parlo un po' d'italiano, sto imparando.", "I speak a little Italian, I'm learning."],
+  ["Un attimo, per favore.", "One moment, please. (to buy time)"],
+  ["Preferisco parlare italiano, mi aiuta ad allenarmi.", "I'd rather speak Italian, it helps me practise."]
+];
+
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+  function pescaDiverso(lista, escluso){
+    var pool = lista.filter(function(x){ return x !== escluso; });
+    if(!pool.length) pool = lista;
+    return pool[Math.floor(Math.random()*pool.length)];
+  }
+  function idMissione(m){ return m.l + "-" + m.t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+  function luogoDi(k){
+    for(var i=0;i<LUOGHI.length;i++){ if(LUOGHI[i].k === k) return LUOGHI[i]; }
+    return {k:k, n:k, e:"📍"};
+  }
+
+  /* ---------- stato ---------- */
+  var CHIAVE = "icf_missioni_v1";
+  var stato = { modo:"lezione", luogo:"tutti", lez:{}, viaggio:{}, kit:0, inglese:0, note:"" };
+  try{
+    var vecchio = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(vecchio && typeof vecchio === "object"){
+      for(var k in stato){ if(vecchio[k] !== undefined) stato[k] = vecchio[k]; }
+    }
+  }catch(e){}
+  var tSalva = null;
+  function salva(){
+    clearTimeout(tSalva);
+    tSalva = setTimeout(function(){
+      try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){}
+    }, 250);
+  }
+  function quaderno(){ return stato.modo === "lezione" ? stato.lez : stato.viaggio; }
+  function riga(id){
+    var q = quaderno();
+    if(!q[id]) q[id] = { ok:false, pron:false, prove:[] };
+    return q[id];
+  }
+
+  /* ---------- modalità ---------- */
+  function applicaModo(){
+    document.body.className = stato.modo;
+    $("modoLez").setAttribute("aria-pressed", String(stato.modo === "lezione"));
+    $("modoVia").setAttribute("aria-pressed", String(stato.modo === "viaggio"));
+    disegnaGriglia();
+    disegnaPassaporto();
+    /* ridisegno la missione aperta solo se siamo davvero lì: cambiare modalità
+       dal passaporto non deve buttarci dentro una missione */
+    if(missione && $("sMissione").classList.contains("active")) apriMissione(missione, true);
+  }
+  $("modoLez").addEventListener("click", function(){ stato.modo = "lezione"; salva(); applicaModo(); });
+  $("modoVia").addEventListener("click", function(){ stato.modo = "viaggio"; salva(); applicaModo(); });
+
+  /* ---------- schermi ---------- */
+  function mostra(id){
+    Array.prototype.forEach.call(document.querySelectorAll(".schermo"), function(s){
+      s.classList.toggle("active", s.id === id);
+    });
+    window.scrollTo({ top:0, behavior:"auto" });
+  }
+  $("indietro").addEventListener("click", function(){ mostra("sMappa"); disegnaGriglia(); });
+  $("indietro2").addEventListener("click", function(){ mostra("sMappa"); disegnaGriglia(); });
+  $("vaiPass").addEventListener("click", function(){ disegnaPassaporto(); mostra("sPassaporto"); });
+
+  /* ---------- mappa ---------- */
+  var chipLuoghi = $("chipLuoghi");
+  [{k:"tutti", n:"Tutte", e:"🗺️"}].concat(LUOGHI).forEach(function(l){
+    var b = document.createElement("button");
+    b.type = "button"; b.dataset.k = l.k;
+    b.innerHTML = '<span aria-hidden="true">' + l.e + "</span> " + esc(l.n);
+    b.setAttribute("aria-pressed", String(l.k === stato.luogo));
+    b.addEventListener("click", function(){
+      stato.luogo = l.k; salva();
+      Array.prototype.forEach.call(chipLuoghi.children, function(c){
+        c.setAttribute("aria-pressed", String(c.dataset.k === stato.luogo));
+      });
+      disegnaGriglia();
+    });
+    chipLuoghi.appendChild(b);
+  });
+
+  function elencoFiltrato(){
+    return MISSIONI.filter(function(m){ return stato.luogo === "tutti" || m.l === stato.luogo; });
+  }
+  function disegnaGriglia(){
+    var g = $("griglia"); g.innerHTML = "";
+    elencoFiltrato().forEach(function(m){
+      var r = quaderno()[idMissione(m)];
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "m-card" + (r && r.ok ? " fatta" : "");
+      b.innerHTML =
+        '<span class="dove">' + luogoDi(m.l).e + " " + esc(luogoDi(m.l).n) + " · " + esc(m.liv) + "</span>" +
+        '<span class="tit">' + esc(m.t) + "</span>" +
+        '<span class="ob">' + esc(m.ob) + "</span>" +
+        (r && r.ok ? '<span class="timbro" aria-hidden="true">' + (r.pron ? "🌟" : "✅") + "</span>" : "");
+      b.addEventListener("click", function(){ apriMissione(m); });
+      g.appendChild(b);
+    });
+    var fatte = MISSIONI.filter(function(m){ var r = quaderno()[idMissione(m)]; return r && r.ok; }).length;
+    $("contaMappa").textContent = fatte + " missioni su " + MISSIONI.length;
+  }
+  $("aCaso").addEventListener("click", function(){
+    var pool = elencoFiltrato().filter(function(m){ var r = quaderno()[idMissione(m)]; return !(r && r.ok); });
+    if(!pool.length) pool = elencoFiltrato();
+    apriMissione(pool[Math.floor(Math.random()*pool.length)]);
+  });
+
+  /* ---------- la missione ---------- */
+  var missione = null, ostacolo = null;
+  function apriMissione(m, senzaCambiare){
+    missione = m;
+    var r = riga(idMissione(m));
+    if(!senzaCambiare) ostacolo = (m.ost && m.ost.length) ? m.ost[Math.floor(Math.random()*m.ost.length)] : null;
+    $("mTitolo").textContent = m.t;
+    $("mDove").textContent = luogoDi(m.l).e + " " + luogoDi(m.l).n + " · livello " + m.liv;
+    $("mObiettivo").textContent = m.ob;
+
+    var ul = $("mProve"); ul.innerHTML = "";
+    m.prove.forEach(function(p, i){
+      var li = document.createElement("li");
+      li.className = r.prove[i] ? "ok" : "";
+      li.innerHTML = '<span class="box" aria-hidden="true">' + (r.prove[i] ? "✓" : "") + '</span><span class="txt">' + esc(p) + "</span>";
+      li.addEventListener("click", function(){
+        r.prove[i] = !r.prove[i]; salva(); apriMissione(m, true);
+      });
+      ul.appendChild(li);
+    });
+
+    var par = $("mParole"); par.innerHTML = ""; $("mNotaPar").textContent = "";
+    m.par.forEach(function(p){
+      var b = document.createElement("button");
+      b.type = "button"; b.textContent = p[0];
+      if(r.pron) b.classList.add("detta");
+      b.addEventListener("click", function(){ $("mNotaPar").textContent = p[1]; });
+      par.appendChild(b);
+    });
+
+    var fr = $("mFrasi"); fr.innerHTML = "";
+    m.fr.forEach(function(f){
+      var li = document.createElement("li"); li.textContent = f; fr.appendChild(li);
+    });
+    $("boxFrasi").classList.toggle("show", stato.modo === "viaggio");
+    $("mostraFrasi").textContent = stato.modo === "viaggio" ? "Nascondi le frasi" : "Mostra le frasi";
+    $("mSolo").textContent = m.solo;
+    $("riuscita").textContent = stato.modo === "viaggio" ? "Fatto davvero!" : "Missione riuscita";
+    $("bollino").setAttribute("aria-pressed", String(!!r.pron));
+    $("bollino").textContent = r.pron ? "🌟 Stellina data" : "🌟 Parole dette bene";
+    mostra("sMissione");
+  }
+  $("mostraFrasi").addEventListener("click", function(){
+    var on = !$("boxFrasi").classList.contains("show");
+    $("boxFrasi").classList.toggle("show", on);
+    this.textContent = on ? "Nascondi le frasi" : "Mostra le frasi";
+  });
+
+  function chiudiMissione(ok){
+    if(!missione) return;
+    var r = riga(idMissione(missione));
+    r.ok = ok;
+    salva();
+    disegnaGriglia(); disegnaPassaporto();
+    mostra("sMappa");
+  }
+  /* la stellina della pronuncia si dà qui, senza finestrelle di conferma */
+  $("bollino").addEventListener("click", function(){
+    if(!missione) return;
+    var r = riga(idMissione(missione));
+    r.pron = !r.pron; salva();
+    this.setAttribute("aria-pressed", String(r.pron));
+    this.textContent = r.pron ? "🌟 Stellina data" : "🌟 Parole dette bene";
+    Array.prototype.forEach.call($("mParole").children, function(b){ b.classList.toggle("detta", r.pron); });
+  });
+  $("riuscita").addEventListener("click", function(){ chiudiMissione(true); });
+  $("rimandata").addEventListener("click", function(){ chiudiMissione(false); });
+  $("piuInglese").addEventListener("click", function(){
+    stato.inglese++; salva();
+    this.textContent = "È crollata in inglese +1 (" + stato.inglese + ")";
+  });
+  if(stato.inglese) $("piuInglese").textContent = "È crollata in inglese +1 (" + stato.inglese + ")";
+
+  /* ---------- il copione, in una finestra a parte ---------- */
+  var finestra = null;
+  function copioneHtml(){
+    var m = missione;
+    var dati = m.dati.map(function(d){
+      return "<tr><td>" + esc(d[0]) + "</td><td class='v'>" + esc(d[1]) + "</td></tr>";
+    }).join("");
+    var battute = m.batt.map(function(b){ return "<li>" + esc(b) + "</li>"; }).join("");
+    var altri = (m.ost || []).map(function(o){
+      return "<button type='button' data-o='" + esc(o) + "'>" + esc(o) + "</button>";
+    }).join(" ");
+    return "<!DOCTYPE html><html lang='it'><head><meta charset='UTF-8'>" +
+      "<title>Copione · " + esc(m.t) + "</title><style>" +
+      "body{margin:0;padding:18px 20px 30px;background:#16233F;color:#FFFDF8;font:16px/1.55 Georgia,serif}" +
+      "h1{font:700 1.25rem/1.2 Helvetica,Arial,sans-serif;margin:0 0 2px}" +
+      "h2{font:700 .95rem/1.3 Helvetica,Arial,sans-serif;margin:20px 0 6px;color:#E8A33D;text-transform:uppercase;letter-spacing:.06em}" +
+      ".ost{background:#C4312B;border-radius:10px;padding:12px 14px;font-weight:700}" +
+      ".ob{background:rgba(255,253,248,.08);border-radius:10px;padding:10px 12px;font-style:italic}" +
+      "table{width:100%;border-collapse:collapse}" +
+      "td{padding:7px 4px;border-bottom:1px solid rgba(255,253,248,.18);vertical-align:top}" +
+      "td.v{font-weight:700;color:#E8A33D}" +
+      "ul{margin:0;padding-left:18px} li{margin-bottom:6px}" +
+      "button{font:600 .88rem Helvetica,Arial,sans-serif;background:#E8A33D;color:#16233F;border:0;border-radius:999px;padding:7px 13px;cursor:pointer;margin:4px 4px 0 0}" +
+      "button.ok{background:#2E5E4E;color:#FFFDF8} button.no{background:transparent;color:#FFFDF8;border:1px solid rgba(255,253,248,.4)}" +
+      ".avv{font-size:.85rem;color:#C7CEDB;margin-top:22px}" +
+      "</style></head><body>" +
+      "<h1>" + esc(m.t) + "</h1><div style='color:#C7CEDB;font-size:.88rem'>" + esc(luogoDi(m.l).n) + " · " + esc(m.liv) + " · finestra riservata</div>" +
+      "<h2>Il suo obiettivo</h2><div class='ob'>" + esc(m.ob) + "</div>" +
+      "<h2>L'ostacolo di oggi</h2><div class='ost' id='ost'>" + esc(OSTACOLI[ostacolo] || "Nessuno: fila liscia.") + "</div>" +
+      "<div>Cambia: " + altri + "</div>" +
+      "<h2>Le informazioni da dare (solo se le chiede)</h2><table>" + dati + "</table>" +
+      "<h2>Le tue battute</h2><ul>" + battute + "</ul>" +
+      "<h2>Alla fine</h2>" +
+      "<button type='button' class='ok' id='ok'>Missione riuscita</button>" +
+      "<button type='button' class='no' id='no'>Rimandata</button>" +
+      "<p class='avv'>Condividi solo la scheda del gioco: questa finestra resta tua. Le informazioni qui sopra sono quelle che lei deve estrarre parlando.</p>" +
+      "<script>" +
+      "document.addEventListener('click', function(e){" +
+      " var b = e.target.closest('button'); if(!b || !window.opener) return;" +
+      " if(b.id === 'ok'){ window.opener.esitoMissione(true); window.close(); return; }" +
+      " if(b.id === 'no'){ window.opener.esitoMissione(false); window.close(); return; }" +
+      " var o = b.getAttribute('data-o');" +
+      " if(o){ document.getElementById('ost').textContent = window.opener.cambiaOstacolo(o); }" +
+      "});" +
+      "<\/script></body></html>";
+  }
+  $("apriCopione").addEventListener("click", function(){
+    if(!missione) return;
+    try{
+      finestra = window.open("", "copione", "width=560,height=780,menubar=no,toolbar=no");
+    }catch(e){ finestra = null; }
+    if(!finestra){
+      alert("Il browser ha bloccato la finestra separata. Permetti i pop-up per questa pagina: serve a tenere il copione fuori dallo schermo condiviso.");
+      return;
+    }
+    finestra.document.open();
+    finestra.document.write(copioneHtml());
+    finestra.document.close();
+    finestra.focus();
+  });
+  window.esitoMissione = function(ok){ chiudiMissione(ok); };
+  window.cambiaOstacolo = function(o){ ostacolo = o; return OSTACOLI[o] || ""; };
+
+  /* ---------- passaporto ---------- */
+  function disegnaPassaporto(){
+    var q = quaderno();
+    var fatte = 0, stelle = 0;
+    var box = $("timbri"); box.innerHTML = "";
+    MISSIONI.forEach(function(m){
+      var r = q[idMissione(m)];
+      var d = document.createElement("div");
+      d.className = "timbro-box" + (r && r.ok ? " fatto" : "");
+      if(r && r.ok){ fatte++; if(r.pron) stelle++; }
+      d.innerHTML = '<span class="em" aria-hidden="true">' + (r && r.ok ? luogoDi(m.l).e : "·") + "</span>" +
+                    "<span>" + esc(m.t) + "</span>" +
+                    (r && r.ok && r.pron ? '<span class="pron">🌟 pronuncia</span>' : "");
+      box.appendChild(d);
+    });
+    $("riepilogo").innerHTML =
+      "<div><span>missioni</span><b>" + fatte + "/" + MISSIONI.length + "</b></div>" +
+      "<div><span>pronuncia</span><b>" + stelle + "</b></div>" +
+      "<div><span>kit usato</span><b>" + stato.kit + "</b></div>" +
+      (stato.modo === "lezione" ? "<div><span>inglese</span><b>" + stato.inglese + "</b></div>" : "");
+    return { fatte:fatte, stelle:stelle };
+  }
+  $("calcolaVerdetto").addEventListener("click", function(){
+    var c = disegnaPassaporto();
+    var tipo, testo;
+    var pct = c.fatte / MISSIONI.length;
+    if(c.fatte === 0){
+      tipo = "Ancora in valigia";
+      testo = "Non c'è nessun timbro: si comincia da una missione qualsiasi, magari il bar.";
+    } else if(pct >= 0.7 && stato.inglese <= 2){
+      tipo = "Se la cava da sola";
+      testo = "Missioni portate a casa senza scappare nell'inglese: in Italia chiedi, insisti e ottieni. Adesso l'unica cosa che manca è farlo con gente che non ti conosce.";
+    } else if(pct >= 0.7){
+      tipo = "Brava, ma con la rete";
+      testo = "Le missioni le chiudi, però l'inglese esce ancora quando si mette male. La prossima volta, prima di cambiare lingua, prova due frasi del kit: sono lì per questo.";
+    } else if(pct >= 0.35){
+      tipo = "Turista che se la gioca";
+      testo = "Metà strada fatta. Le situazioni che ti mancano sono quelle dove qualcosa va storto: sono le più importanti, perché in viaggio succede sempre.";
+    } else {
+      tipo = "Primi passi";
+      testo = "Poche missioni, ma ci sono. Meglio poche e vere che tante e finte: la prossima la scegli tu.";
+    }
+    if(c.stelle >= 5) testo += " E le parole difficili le dici bene: ti capiscono al primo colpo, che è mezza battaglia.";
+    $("vTipo").textContent = tipo;
+    $("vTesto").textContent = testo;
+    $("verdetto").hidden = false;
+  });
+  $("azzeraTimbri").addEventListener("click", function(){
+    if(!window.confirm("Cancello tutti i timbri di questa modalità?")) return;
+    if(stato.modo === "lezione"){ stato.lez = {}; stato.inglese = 0; } else { stato.viaggio = {}; }
+    salva(); disegnaGriglia(); disegnaPassaporto();
+    $("verdetto").hidden = true;
+  });
+
+  /* ---------- kit salvavita ---------- */
+  var listaKit = $("kitLista");
+  KIT.forEach(function(f){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.innerHTML = esc(f[0]) + "<small>" + esc(f[1]) + "</small>";
+    b.addEventListener("click", function(){
+      $("kitGrande").textContent = f[0];
+      stato.kit++; salva(); contaKit();
+    });
+    listaKit.appendChild(b);
+  });
+  function contaKit(){
+    $("kitConta").textContent = stato.kit
+      ? "Kit usato " + stato.kit + (stato.kit === 1 ? " volta" : " volte") + ": non è barare, è la rete che ti tiene in italiano."
+      : "Sette frasi: con queste non sei mai senza parole.";
+  }
+  $("kitToggle").addEventListener("click", function(){
+    var on = !$("kit").classList.contains("aperto");
+    $("kit").classList.toggle("aperto", on);
+    this.textContent = on ? "Chiudi" : "Apri";
+    spazioInFondo();
+  });
+  /* la barra è fissa: lascio sotto alla pagina esattamente lo spazio che occupa,
+     se no il kit aperto copre le ultime missioni e non si riesce a toccarle */
+  function spazioInFondo(){
+    var h = $("kit").offsetHeight || 84;
+    document.body.style.paddingBottom = (h + 18) + "px";
+  }
+  window.addEventListener("resize", spazioInFondo);
+  spazioInFondo();
+  contaKit();
+
+  /* ---------- appunti ---------- */
+  var note = $("note");
+  note.value = stato.note || "";
+  note.addEventListener("input", function(){
+    stato.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("reset").addEventListener("click", function(){
+    if(!window.confirm("Azzero tutto: timbri, appunti e contatori.")) return;
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+
+  /* ---------- tastiera ---------- */
+  document.addEventListener("keydown", function(e){
+    if(/^(INPUT|TEXTAREA)$/.test((e.target.tagName || "").toUpperCase())) return;
+    if(e.key === "k"){ $("kitToggle").click(); }
+    else if(e.key === "Escape" && $("sMissione").classList.contains("active")){ $("indietro").click(); }
+  });
+
+  applicaModo();
+})();
+</script>
+</body>
+</html>
