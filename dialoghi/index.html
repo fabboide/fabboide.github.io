@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dialoghi da ripetere · Talk with Fabio</title>
+<meta name="description" content="Dieci dialoghi di tutti i giorni: prima si leggono, poi si nascondono le tue battute e tocca a te.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D;
+  --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:820px;margin:0 auto;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700;font-size:.98rem}
+.logo-mark{width:20px;height:20px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px 60px}
+header.sign{padding:32px 0 2px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,6vw,3.2rem);line-height:1;margin:0}
+.sign p{margin:8px 0 0;color:var(--muted)}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 16px}
+.chips button{font-family:var(--display);font-weight:700;font-size:.92rem;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 14px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:10px 18px}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[aria-pressed="true"]{background:var(--tomato);border-color:var(--tomato);color:var(--paper)}
+.nota{font-family:var(--hand);font-size:1.2rem;color:var(--muted)}
+
+.dialogo{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.dialogo h2{font-family:var(--display);font-size:1.4rem;margin:0 0 2px}
+.dialogo .dove{color:var(--muted);margin-bottom:18px}
+.battuta{display:flex;gap:14px;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.battuta:last-child{border-bottom:0}
+.battuta .chi{font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;flex:0 0 76px;padding-top:5px;color:var(--muted)}
+.battuta.tu .chi{color:var(--tomato)}
+.battuta .corpo{flex:1}
+.battuta .it{font-size:1.18rem;line-height:1.45}
+.battuta .en{color:var(--muted);font-style:italic;font-size:.9rem}
+.battuta.tu .it{font-weight:600}
+.battuta.coperta .it{display:none}
+.battuta.coperta .corpo::before{
+  content:"dillo tu ↓";font-family:var(--hand);font-size:1.2rem;color:var(--tomato);display:block;line-height:1.1
+}
+.battuta.coperta .en{font-style:normal;color:var(--ink);font-size:1.05rem}
+.battuta.scoperta{background:#F2F7F4;border-radius:10px;padding-left:10px;padding-right:10px}
+.senza-voce{display:none}
+body.muta .con-voce{display:none}
+body.muta .senza-voce{display:inline}
+
+@media print{
+  .topbar,.chips,.toolbar,.sign p,.stampa-no{display:none!important}
+  body{background:#fff;font-size:11pt}
+  .dialogo{border:0;padding:0}
+  .battuta{page-break-inside:avoid}
+  .battuta.coperta .it{display:block}
+  .battuta.coperta .corpo::before{content:""}
+}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in">
+  <a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a>
+</div></header>
+
+<div class="wrap">
+  <header class="sign">
+    <h1>Dialoghi da ripetere</h1>
+    <p>Prima si legge insieme. Poi nascondi le tue battute: resta l'inglese, e l'italiano lo dici tu. Tocca una riga per sentirla o per scoprirla.</p>
+  </header>
+
+  <div class="chips" id="chips"></div>
+
+  <div class="toolbar">
+    <button class="btn" id="nascondi" type="button" aria-pressed="false">Nascondi le mie battute</button>
+    <button class="btn ghost" id="scopriTutto" type="button">Scopri tutto</button>
+    <button class="btn ghost stampa-no" id="stampa" type="button">Stampa</button>
+    <span class="nota senza-voce">Su questo computer non c'è una voce italiana.</span>
+  </div>
+
+  <div class="dialogo">
+    <h2 id="titolo"></h2>
+    <div class="dove" id="dove"></div>
+    <div id="righe"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* chi = "tu" oppure il ruolo dell'altro */
+  var DIALOGHI = [
+    { t:"Al bar", dove:"Colazione al banco, la mattina presto.", altro:"Barista", righe:[
+      ["altro","Buongiorno! Mi dica.","Good morning! What can I get you?"],
+      ["tu","Buongiorno. Un cappuccino e un cornetto, per favore.","Good morning. A cappuccino and a croissant, please."],
+      ["altro","Il cornetto normale o alla marmellata?","Plain croissant or with jam?"],
+      ["tu","Alla marmellata, grazie.","With jam, thanks."],
+      ["altro","Al banco o al tavolo? Al tavolo si paga di più.","At the counter or at a table? Tables cost more."],
+      ["tu","Al banco va bene.","The counter is fine."],
+      ["altro","Ecco a lei. Altro?","Here you go. Anything else?"],
+      ["tu","No, basta così. Scusi, qual è la password del wifi?","No, that's all. Sorry, what's the wifi password?"],
+      ["altro","È scritta lì sulla lavagnetta, tutto attaccato.","It's written on the board there, all one word."],
+      ["tu","Perfetto. Quanto le devo?","Perfect. How much do I owe you?"],
+      ["altro","Tre e ottanta.","Three eighty."],
+      ["tu","Ecco. Posso avere lo scontrino?","Here you are. Can I have the receipt?"]
+    ]},
+
+    { t:"Al ristorante", dove:"Cena, due persone, senza prenotazione.", altro:"Cameriere", righe:[
+      ["altro","Buonasera. Avete prenotato?","Good evening. Do you have a reservation?"],
+      ["tu","No, siamo in due. C'è posto?","No, there are two of us. Is there a table?"],
+      ["altro","Dentro sì, fuori dovete aspettare venti minuti.","Inside yes, outside you'd have to wait twenty minutes."],
+      ["tu","Dentro va benissimo, grazie.","Inside is great, thank you."],
+      ["altro","Ecco il menù. Da bere?","Here's the menu. Something to drink?"],
+      ["tu","Una bottiglia d'acqua naturale, per favore. Scusi, cosa sono gli strozzapreti?","A bottle of still water, please. Sorry, what are strozzapreti?"],
+      ["altro","È una pasta fatta a mano, da noi la facciamo con la salsiccia.","It's a handmade pasta, we make it with sausage."],
+      ["tu","Allora prendo quelli. E come secondo cosa mi consiglia?","I'll have those then. And what do you recommend as a main?"],
+      ["altro","Oggi il pesce è finito, ma il pollo alla griglia è buonissimo.","We're out of fish today, but the grilled chicken is very good."],
+      ["tu","Va bene il pollo. Io non mangio il maiale, me lo segno?","The chicken is fine. I don't eat pork, can you make a note?"],
+      ["altro","Certo, nessun problema.","Of course, no problem."],
+      ["tu","Grazie. Ah, e il conto quando può.","Thank you. Oh, and the bill whenever you can."]
+    ]},
+
+    { t:"Alla biglietteria", dove:"Stazione, devi andare a Firenze in giornata.", altro:"Bigliettaio", righe:[
+      ["altro","Mi dica.","Yes?"],
+      ["tu","Un biglietto per Firenze, per favore.","A ticket to Florence, please."],
+      ["altro","Solo andata o andata e ritorno?","One way or return?"],
+      ["tu","Andata e ritorno, torno stasera.","Return, I'm coming back tonight."],
+      ["altro","Regionale o freccia? Il regionale ci mette un'ora in più.","Regional or fast train? The regional takes an hour longer."],
+      ["tu","Quanto costa il freccia?","How much is the fast train?"],
+      ["altro","Ventinove euro. Il regionale dodici e cinquanta.","Twenty-nine euros. The regional is twelve fifty."],
+      ["tu","Prendo il regionale. A che ora parte?","I'll take the regional. What time does it leave?"],
+      ["altro","Alle 14:35, binario sette.","At 2:35 pm, platform seven."],
+      ["tu","Scusi, può ripetere il binario?","Sorry, can you repeat the platform?"],
+      ["altro","Sette. Ma guardi il tabellone, a volte cambiano.","Seven. But check the board, sometimes they change."],
+      ["tu","Va bene, grazie mille.","All right, thank you very much."]
+    ]},
+
+    { t:"In negozio", dove:"Vuoi provare una maglietta che ti piace.", altro:"Commessa", righe:[
+      ["altro","Buongiorno, le serve aiuto?","Hello, do you need any help?"],
+      ["tu","Sì, posso provare questa?","Yes, can I try this on?"],
+      ["altro","Certo. Che taglia porta?","Of course. What size do you wear?"],
+      ["tu","Non lo so, in Italia non sono sicura. Di solito una media.","I don't know, I'm not sure about Italian sizes. Usually a medium."],
+      ["altro","Il camerino è in fondo a sinistra.","The fitting room is at the back on the left."],
+      ["tu","Grazie… Scusi, è un po' stretta. Ce l'ha una taglia più grande?","Thanks… Sorry, it's a bit tight. Do you have a bigger size?"],
+      ["altro","In questo colore la elle è finita. Ce l'ho in nero.","We're out of large in this colour. I have it in black."],
+      ["tu","Posso vederla?","Can I see it?"],
+      ["altro","Ecco qua.","Here it is."],
+      ["tu","Questa va bene. Se non mi sta, posso cambiarla?","This one is fine. If it doesn't fit, can I exchange it?"],
+      ["altro","Sì, entro quattordici giorni con lo scontrino.","Yes, within fourteen days with the receipt."],
+      ["tu","Perfetto, la prendo.","Perfect, I'll take it."]
+    ]},
+
+    { t:"Per strada", dove:"Ti sei persa e cerchi la piazza principale.", altro:"Signora", righe:[
+      ["tu","Scusi, mi sono persa. Sa dov'è Piazza Grande?","Excuse me, I'm lost. Do you know where Piazza Grande is?"],
+      ["altro","Sì, guardi: prende la seconda a destra…","Yes, look: take the second right…"],
+      ["tu","Scusi, può ripetere più lentamente?","Sorry, can you repeat more slowly?"],
+      ["altro","Certo. La seconda strada a destra, poi sempre dritto.","Of course. The second street on the right, then straight on."],
+      ["tu","Sempre dritto fino a dove?","Straight on until where?"],
+      ["altro","Fino alla chiesa. La piazza è subito dietro.","Until the church. The square is right behind it."],
+      ["tu","È lontano a piedi?","Is it far on foot?"],
+      ["altro","Dieci minuti, non di più.","Ten minutes, no more."],
+      ["tu","Allora: seconda a destra, dritto fino alla chiesa. Giusto?","So: second right, straight on to the church. Is that right?"],
+      ["altro","Esatto, brava!","Exactly, well done!"],
+      ["tu","Grazie mille, gentilissima.","Thank you so much, very kind of you."]
+    ]},
+
+    { t:"In albergo", dove:"Arrivo, hai una prenotazione.", altro:"Receptionist", righe:[
+      ["altro","Buonasera, ha una prenotazione?","Good evening, do you have a reservation?"],
+      ["tu","Sì, a nome Ferrero, due notti.","Yes, under Ferrero, two nights."],
+      ["altro","Perfetto. Mi serve un documento, per favore.","Perfect. I need an ID, please."],
+      ["tu","Ecco il passaporto.","Here's my passport."],
+      ["altro","Grazie. Camera 214, secondo piano.","Thank you. Room 214, second floor."],
+      ["tu","A che ora è la colazione?","What time is breakfast?"],
+      ["altro","Dalle sette alle dieci, nella sala qui a destra.","From seven to ten, in the room here on the right."],
+      ["tu","E qual è la password del wifi?","And what's the wifi password?"],
+      ["altro","Gliela scrivo qui sul foglietto.","I'll write it down for you here."],
+      ["tu","Grazie. Un'ultima cosa: posso lasciare la valigia dopo il check-out?","Thanks. One last thing: can I leave my suitcase after check-out?"],
+      ["altro","Sì, fino alle sette di sera.","Yes, until seven in the evening."],
+      ["tu","Benissimo, grazie e buonasera.","Great, thank you and good evening."]
+    ]},
+
+    { t:"In farmacia", dove:"Hai mal di gola da due giorni.", altro:"Farmacista", righe:[
+      ["altro","Buongiorno, mi dica.","Hello, how can I help?"],
+      ["tu","Ho mal di gola da due giorni. Mi può dare qualcosa?","I've had a sore throat for two days. Can you give me something?"],
+      ["altro","Ha anche la febbre?","Do you have a fever too?"],
+      ["tu","No, solo la gola. E un po' di tosse la notte.","No, just my throat. And a bit of a cough at night."],
+      ["altro","È allergica a qualcosa?","Are you allergic to anything?"],
+      ["tu","No, a niente.","No, to nothing."],
+      ["altro","Allora prenda queste pastiglie, una ogni quattro ore.","Then take these lozenges, one every four hours."],
+      ["tu","Prima o dopo i pasti?","Before or after meals?"],
+      ["altro","Quando vuole, ma non più di sei al giorno.","Whenever you like, but no more than six a day."],
+      ["tu","Serve la ricetta?","Do I need a prescription?"],
+      ["altro","No, queste no. Sono sei e cinquanta.","No, not for these. That's six fifty."],
+      ["tu","Ecco. Grazie e buona giornata.","Here you are. Thank you and have a good day."]
+    ]},
+
+    { t:"Al telefono", dove:"Prenoti un tavolo per sabato sera.", altro:"Ristorante", righe:[
+      ["altro","Ristorante da Nino, buongiorno.","Da Nino restaurant, good morning."],
+      ["tu","Buongiorno, vorrei prenotare un tavolo per sabato sera.","Good morning, I'd like to book a table for Saturday evening."],
+      ["altro","Per quante persone?","For how many people?"],
+      ["tu","Per quattro.","For four."],
+      ["altro","A che ora?","What time?"],
+      ["tu","Alle otto e mezza, se è possibile.","At half past eight, if possible."],
+      ["altro","Alle otto e mezza è pieno. Alle otto o alle nove e mezza.","Half past eight is full. Eight or half past nine."],
+      ["tu","Allora alle nove e mezza va bene.","Half past nine is fine then."],
+      ["altro","A che nome?","Under what name?"],
+      ["tu","Ferrero. Le scrivo il cognome?","Ferrero. Shall I spell it for you?"],
+      ["altro","Sì, grazie, me lo dica lettera per lettera.","Yes, thanks, tell me letter by letter."],
+      ["tu","Effe, e, erre, erre, e, erre, o. Ferrero.","F, e, r, r, e, r, o. Ferrero."],
+      ["altro","Perfetto, a sabato!","Perfect, see you Saturday!"]
+    ]},
+
+    { t:"Al mercato", dove:"Frutta e verdura, la mattina.", altro:"Fruttivendolo", righe:[
+      ["altro","Chi è l'ultimo? … Prego, signora.","Who's last? … Go ahead, madam."],
+      ["tu","Vorrei mezzo chilo di pomodori.","I'd like half a kilo of tomatoes."],
+      ["altro","Questi o quelli? Questi sono da insalata.","These or those? These are for salad."],
+      ["tu","Quelli per il sugo, grazie.","Those for sauce, thanks."],
+      ["altro","Sono sei e otto. Lascio?","That's 680 grams. Shall I leave it?"],
+      ["tu","Sì, lasci pure. Quanto costano al chilo?","Yes, leave it. How much are they per kilo?"],
+      ["altro","Due e cinquanta. Altro?","Two fifty. Anything else?"],
+      ["tu","Due limoni e un mazzo di basilico.","Two lemons and a bunch of basil."],
+      ["altro","Il basilico glielo regalo.","The basil's on me."],
+      ["tu","Che gentile, grazie! Quant'è in tutto?","How kind, thank you! How much altogether?"],
+      ["altro","Quattro euro tondi.","Four euros even."],
+      ["tu","Ecco a lei. Buona giornata!","Here you are. Have a good day!"]
+    ]},
+
+    { t:"Fare conoscenza", dove:"A una cena, conosci una persona nuova.", altro:"Persona", righe:[
+      ["altro","Ciao! Tu sei un'amica di Sara?","Hi! Are you a friend of Sara's?"],
+      ["tu","Sì, ci conosciamo dal lavoro. Io sono Ellie, piacere.","Yes, we know each other from work. I'm Ellie, nice to meet you."],
+      ["altro","Piacere, Marco. Ma non sei italiana, vero?","Nice to meet you, Marco. You're not Italian though, are you?"],
+      ["tu","No, sono inglese. Parlo un po' d'italiano, sto imparando.","No, I'm English. I speak a little Italian, I'm learning."],
+      ["altro","Parli benissimo! Da quanto tempo studi?","You speak really well! How long have you been studying?"],
+      ["tu","Da un anno circa. Faccio lezione una volta a settimana.","About a year. I have a lesson once a week."],
+      ["altro","E come mai l'italiano?","And why Italian?"],
+      ["tu","Perché vengo spesso in Italia e voglio capire la gente.","Because I come to Italy often and I want to understand people."],
+      ["altro","Bravissima. E cosa fai nella vita?","Well done. And what do you do?"],
+      ["tu","Lavoro in una scuola. E tu?","I work in a school. And you?"],
+      ["altro","Io faccio il grafico. Senti, ci prendiamo un caffè uno di questi giorni?","I'm a graphic designer. Listen, shall we get a coffee one of these days?"],
+      ["tu","Volentieri! Ti do il mio numero.","I'd love to! I'll give you my number."]
+    ]}
+  ];
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  /* voce italiana del browser, se c'è */
+  var voci = [];
+  function caricaVoci(){
+    try{ voci = (window.speechSynthesis.getVoices() || []).filter(function(v){ return /^it/i.test(v.lang || ""); }); }
+    catch(e){ voci = []; }
+    document.body.classList.toggle("muta", !voci.length);
+  }
+  if(window.speechSynthesis){
+    caricaVoci();
+    window.speechSynthesis.onvoiceschanged = caricaVoci;
+    setTimeout(caricaVoci, 800);
+  } else { document.body.classList.add("muta"); }
+  function parla(t){
+    if(!window.speechSynthesis || !voci.length) return;
+    try{
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      u.voice = voci[0]; u.lang = "it-IT"; u.rate = 0.9;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+
+  var i = 0, nascosto = false;
+  try{
+    var s = JSON.parse(localStorage.getItem("icf_dialoghi") || "null");
+    if(s && typeof s.i === "number" && DIALOGHI[s.i]) i = s.i;
+  }catch(e){}
+  function salva(){
+    try{ localStorage.setItem("icf_dialoghi", JSON.stringify({ i:i })); }catch(e){}
+  }
+
+  var chips = $("chips");
+  DIALOGHI.forEach(function(d, k){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = d.t;
+    b.setAttribute("aria-pressed", String(k === i));
+    b.addEventListener("click", function(){
+      i = k; salva();
+      Array.prototype.forEach.call(chips.children, function(c, j){
+        c.setAttribute("aria-pressed", String(j === i));
+      });
+      disegna();
+    });
+    chips.appendChild(b);
+  });
+
+  function disegna(){
+    var d = DIALOGHI[i];
+    $("titolo").textContent = d.t;
+    $("dove").textContent = d.dove;
+    var box = $("righe"); box.innerHTML = "";
+    d.righe.forEach(function(r){
+      var mio = r[0] === "tu";
+      var div = document.createElement("div");
+      div.className = "battuta " + (mio ? "tu" : "altro") + (mio && nascosto ? " coperta" : "");
+      div.innerHTML = '<div class="chi">' + esc(mio ? "Tu" : d.altro) + "</div>" +
+        '<div class="corpo"><div class="it">' + esc(r[1]) + '</div><div class="en">' + esc(r[2]) + "</div></div>";
+      div.addEventListener("click", function(){
+        if(div.classList.contains("coperta")){
+          div.classList.remove("coperta");
+          div.classList.add("scoperta");
+        }
+        parla(r[1]);
+      });
+      box.appendChild(div);
+    });
+  }
+
+  $("nascondi").addEventListener("click", function(){
+    nascosto = !nascosto;
+    this.setAttribute("aria-pressed", String(nascosto));
+    this.textContent = nascosto ? "Mostra le mie battute" : "Nascondi le mie battute";
+    disegna();
+  });
+  $("scopriTutto").addEventListener("click", function(){
+    Array.prototype.forEach.call(document.querySelectorAll(".battuta.coperta"), function(b){
+      b.classList.remove("coperta"); b.classList.add("scoperta");
+    });
+  });
+  $("stampa").addEventListener("click", function(){ window.print(); });
+
+  document.addEventListener("keydown", function(e){
+    if(e.key === "n"){ $("nascondi").click(); }
+    else if(e.key === "ArrowRight"){ chips.children[(i + 1) % DIALOGHI.length].click(); }
+    else if(e.key === "ArrowLeft"){ chips.children[(i - 1 + DIALOGHI.length) % DIALOGHI.length].click(); }
+  });
+
+  disegna();
+})();
+</script>
+</body>
+</html>
