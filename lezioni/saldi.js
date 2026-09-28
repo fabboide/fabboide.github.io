@@ -12,6 +12,9 @@
        fatte_prima: 3,                        lezioni gia fatte prima di quella data
 
        fatte: 4, prenotate: 1, rimaste: 5,    calcolati dal calendario, non toccare a mano
+       passate: [                             le lezioni gia fatte, con data e ora
+         "2026-09-17T11:00:00+02:00"
+       ],
        prossime: [                            le lezioni gia prenotate
          { quando: "2026-09-17T10:00:00+02:00",
            gestisci: "https://cal.com/booking/xxxx?changes=true" }
@@ -51,7 +54,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "27 settembre 2026, 21:12";
+var SALDI_AGGIORNATO = "28 settembre 2026, 18:40";
 
 var SALDI = {
 
@@ -63,6 +66,7 @@ var SALDI = {
     fatte: 0,
     prenotate: 0,
     rimaste: 2,
+    passate: [],
     prossime: [],
     promemoria: "Per Fabio: aggiungi la mail di Elena a mail-studenti.json e il conteggio diventa automatico."
   },
@@ -75,6 +79,10 @@ var SALDI = {
     fatte: 5,
     prenotate: 0,
     rimaste: 5,
+    passate: [
+      "2026-09-17T11:00:00+02:00",
+      "2026-09-21T13:00:00+02:00"
+    ],
     prossime: []
   },
 
@@ -86,6 +94,9 @@ var SALDI = {
     fatte: 1,
     prenotate: 0,
     rimaste: 25,
+    passate: [
+      "2026-09-21T14:00:00+02:00"
+    ],
     prossime: []
   },
 
@@ -97,6 +108,7 @@ var SALDI = {
     fatte: 0,
     prenotate: 1,
     rimaste: 5,
+    passate: [],
     prossime: [
       { quando: "2026-10-08T17:00:00+02:00", gestisci: "https://cal.com/booking/asKRjCiSj1X5Y4F3NH6UEy?changes=true" }
     ]

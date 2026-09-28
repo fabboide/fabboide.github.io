@@ -105,6 +105,25 @@ h1 .hl{color:var(--rosso);}
   border-bottom:1px solid rgba(0,0,0,0.22);
 }
 .lista-prenotate .gestisci:hover{color:var(--rosso); border-bottom-color:currentColor;}
+.lista-fatte{
+  margin:10px 0 0; padding:0; list-style:none;
+}
+.lista-fatte li{
+  display:grid; grid-template-columns:9px 1fr; gap:0 10px; padding:6px 0;
+  font-family:var(--display); font-weight:500; font-size:0.98rem; color:var(--ink-soft);
+}
+.lista-fatte li::before{
+  content:""; width:9px; height:9px; border-radius:50%; background:transparent;
+  border:1.5px solid rgba(0,0,0,0.25); flex:none; margin-top:0.42em; box-sizing:border-box;
+}
+.lista-fatte li.nascosta{display:none;}
+.lista-fatte .riga{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+.lista-fatte .quando{font-family:var(--text); font-size:0.93rem;}
+.mostra-tutte{
+  margin:8px 0 0; padding:0; border:0; background:none; cursor:pointer;
+  font-family:var(--display); font-weight:700; font-size:0.88rem; color:var(--rosso);
+}
+.mostra-tutte:hover{text-decoration:underline;}
 .prenotate-aiuto{
   margin:12px 0 0; font-family:var(--text); font-size:0.88rem; color:var(--ink-soft);
 }
@@ -284,6 +303,58 @@ function avviaPagina() {
       '<p class="prenotate-aiuto">' + aiuto + "</p>";
   }
 
+  /* Le lezioni gia fatte: stesse date, stesso fuso del browser, ma senza
+     link e in ordine dalla piu recente. Le prime sei si vedono subito,
+     le altre stanno sotto un "show all" per non allungare la pagina. */
+  function fatteHtml(passate, fatte) {
+    var adesso = Date.now(), lista = [];
+    var date = passate || [];
+    for (var i = 0; i < date.length; i++) {
+      var voce = date[i];
+      var quando = (voce && typeof voce === "object") ? voce.quando : voce;
+      var t = new Date(quando);
+      if (!isNaN(t.getTime()) && t.getTime() <= adesso) lista.push(t);
+    }
+    lista.sort(function (a, b) { return b - a; });
+
+    /* Le lezioni precedenti alla data di inizio del conteggio non hanno
+       una data: si dicono come numero, se no sparirebbero. */
+    var prima = Math.max(0, (Number(fatte) || 0) - lista.length);
+    if (!lista.length && !prima) return "";
+
+    var fmt;
+    try {
+      fmt = new Intl.DateTimeFormat(undefined, {
+        weekday: "short", day: "numeric", month: "long",
+        hour: "2-digit", minute: "2-digit"
+      });
+    } catch (err) { fmt = null; }
+
+    var righe = lista.map(function (t, i) {
+      var testo = fmt ? fmt.format(t) : t.toString();
+      var pezzi = testo.split(/,\s*/);
+      var giorno = pezzi.shift();
+      return '<li class="' + (i >= 6 ? "nascosta" : "") + '">' +
+        '<div class="riga"><strong>' + esc(giorno) + "</strong>" +
+        '<span class="quando">' + esc(pezzi.join(", ")) + "</span></div></li>";
+    }).join("");
+
+    if (prima) {
+      righe += '<li class="' + (lista.length >= 6 ? "nascosta" : "") + '">' +
+        '<div class="riga"><strong>+ ' + prima + " earlier " +
+        (prima === 1 ? "lesson" : "lessons") + "</strong></div></li>";
+    }
+
+    var quante = lista.length + (prima ? 1 : 0);
+    var bottone = quante > 6
+      ? '<button class="mostra-tutte" type="button" id="tutte-fatte">Show all ' + quante + "</button>"
+      : "";
+
+    return '<p class="prenotate-titolo">Lessons you have done</p>' +
+      '<p class="legend" style="margin-top:4px;">shown in your local time</p>' +
+      '<ul class="lista-fatte">' + righe + "</ul>" + bottone;
+  }
+
   /* Il blocco dei numeri, rifatto da solo quando arriva il conteggio vero. */
   function saldoHtml(total, left, booked, quando) {
     return '<div class="balance">' +
@@ -377,6 +448,7 @@ function avviaPagina() {
         (s.nota ? '<p class="note">' + esc(s.nota) + "</p>" : "") +
       "</div>" +
       prenotateHtml(s.prossime) +
+      fatteHtml(s.passate, (fonte.fatte != null ? fonte.fatte : s.fatte)) +
       (over
         ? '<p class="booknote">Want to keep going?</p>' +
           '<div class="card"><p>Tell me and I\'ll set up the next block, or pick one here.</p>' +
@@ -387,6 +459,15 @@ function avviaPagina() {
             "<p>If it doesn't appear, write to me and we'll find a time by email.</p></div>" +
           "</div>") +
       '<p class="pen">a presto!</p>';
+
+    var bottoneTutte = document.getElementById("tutte-fatte");
+    if (bottoneTutte) {
+      bottoneTutte.addEventListener("click", function () {
+        var nascoste = document.querySelectorAll(".lista-fatte li.nascosta");
+        for (var i = 0; i < nascoste.length; i++) nascoste[i].className = "";
+        bottoneTutte.style.display = "none";
+      });
+    }
 
     if (!over) loadCalendar(toCalLink(s.link), s.nome || "", s.mail || "");
   }
