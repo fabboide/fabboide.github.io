@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Racconta il passato · Talk with Fabio</title>
+<meta name="description" content="Passato prossimo e imperfetto: carte da raccontare, storie da montare, scelta del tempo e domande a raffica.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D; --kraft:#D9BC8C;
+  --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
+  --imp:#2E5E4E; --imp-soft:#E1EBE5; --pp:#C4312B; --pp-soft:#F8E6E3;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.nastro{height:9px;background:linear-gradient(90deg,var(--imp) 0 50%,var(--pp) 50% 100%)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:38px 0 4px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,6.6vw,4rem);line-height:.95;margin:0}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:64ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 14px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+nav.steps .side{margin-left:auto;color:var(--tomato)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.55rem;margin:8px 0 4px}
+h3{font-family:var(--display);font-size:1.05rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 16px;max-width:74ch}
+
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.due-colonne{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:start}
+@media (max-width:880px){.due-colonne{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.green{background:var(--imp);border-color:var(--imp)}
+.btn.red{background:var(--pp);border-color:var(--pp)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+.crono{font-family:var(--display);font-weight:700;font-variant-numeric:tabular-nums}
+.crono.zero{color:var(--tomato)}
+
+/* fase 1: la carta */
+.carta{background:var(--paper);border:1px solid var(--line);border-left:8px solid var(--lemon);border-radius:8px 18px 18px 8px;padding:26px 28px;min-height:190px;display:flex;flex-direction:column;justify-content:center}
+.carta .tema{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,3.4vw,2.2rem);line-height:1.2}
+.guida{margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);display:none}
+.guida.show{display:block}
+.guida div{margin-bottom:6px}
+.guida .q{font-family:var(--hand);font-size:1.3rem;margin-right:6px}
+.guida .imp .q{color:var(--imp)}
+.guida .pp .q{color:var(--pp)}
+
+/* fase 2: i due pezzi */
+.pezzo{border-radius:14px;padding:16px 18px;margin-bottom:12px;position:relative}
+.pezzo .lab{font-family:var(--display);font-size:.78rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;margin-bottom:6px}
+.pezzo .val{font-size:clamp(1.15rem,2.4vw,1.5rem);line-height:1.4}
+.pezzo.scena{background:var(--imp-soft);border:1px solid #C6D8CE}
+.pezzo.scena .lab{color:var(--imp)}
+.pezzo.azione{background:var(--pp-soft);border:1px solid #EAC9C5}
+.pezzo.azione .lab{color:var(--pp)}
+.pezzo .lucchetto{position:absolute;top:12px;right:12px;border:1px solid rgba(22,35,63,.2);background:rgba(255,253,248,.7);border-radius:999px;font-size:.85rem;font-family:var(--display);font-weight:600;padding:3px 10px}
+.pezzo .lucchetto[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.finale{font-family:var(--hand);font-size:1.35rem;color:var(--muted);margin-top:4px}
+
+/* fase 3: il quiz */
+.frase{font-size:clamp(1.2rem,2.6vw,1.6rem);line-height:1.5}
+.frase .buco{color:var(--pp);font-weight:700}
+.frase .inf{color:var(--muted);font-size:.86em}
+.scelte{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.scelte button{flex:1 1 200px;font-family:var(--display);font-weight:700;font-size:1.05rem;border:2px solid var(--line);background:var(--paper);border-radius:14px;padding:14px}
+.scelte button.giusta{background:var(--imp);border-color:var(--imp);color:var(--paper)}
+.scelte button.sbagliata{background:var(--pp-soft);border-color:var(--pp);color:var(--pp)}
+.passo{margin-top:18px;padding:14px 16px;border-left:4px solid var(--ink);background:var(--stone);border-radius:0 12px 12px 0;display:none}
+.passo.show{display:block}
+.passo .sol{font-size:1.2rem;font-weight:700;font-family:var(--display)}
+.passo .perche{color:var(--muted);margin-top:4px}
+.passo .tocca{font-family:var(--hand);font-size:1.3rem;color:var(--tomato);margin-top:8px}
+.etichetta-cat{font-family:var(--display);font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+
+/* fase 4 */
+.domanda{font-size:clamp(1.4rem,3.4vw,2.1rem);font-family:var(--display);font-weight:700;line-height:1.25;min-height:2.4em;display:flex;align-items:center}
+
+/* regole extra */
+.regole-extra{margin-top:22px}
+.regole-extra .chips button[aria-pressed="true"]{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+
+/* punteggio */
+.punti{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.punti .p{text-align:center;min-width:62px}
+.punti .p span{display:block;font-family:var(--display);font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.punti .p b{font-family:var(--display);font-size:1.7rem;line-height:1}
+.punti .piu{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:4px 11px;font-family:var(--display);font-weight:700}
+
+/* appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:110px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.barra{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+dialog{border:0;border-radius:16px;padding:0;max-width:680px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.4rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body h3{margin:18px 0 4px;font-size:1.1rem}
+.dlg-body h3.imp{color:var(--imp)}
+.dlg-body h3.pp{color:var(--pp)}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:52%}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="nastro" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Racconta il passato</h1>
+    <p>Due tempi, un racconto solo: <b style="color:var(--imp)">l'imperfetto</b> dice com'era, <b style="color:var(--pp)">il passato prossimo</b> dice cosa è successo. Quattro giri, dal racconto libero al drill veloce. <span class="en">Imperfect sets the scene, present perfect moves the story.</span></p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Le quattro modalità">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>Carte da raccontare</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>Monta la storia</button>
+    <button role="tab" aria-selected="false" data-phase="p3"><span class="n">3</span>Che tempo uso?</button>
+    <button role="tab" aria-selected="false" data-phase="p4"><span class="n">4</span>Domande a raffica</button>
+    <button class="side" id="openRegole" type="button">Quando si usa quale</button>
+  </nav>
+
+  <div class="chips" style="margin-bottom:16px">
+    <button id="genere" type="button" aria-pressed="false">Concordanze: femminile</button>
+  </div>
+
+  <!-- FASE 1 -->
+  <section class="phase active" id="p1">
+    <h2>Carte da raccontare</h2>
+    <p class="lead">Una carta, un ricordo. Deve raccontare per almeno un minuto usando <b>tutti e due i tempi</b>: com'era la scena e cosa è successo. Le domande guida si mostrano solo se si blocca.</p>
+    <div class="due-colonne">
+      <div>
+        <div class="carta">
+          <div class="tema" id="c1tema">Premi «Pesca una carta»</div>
+          <div class="guida" id="c1guida">
+            <div class="imp"><span class="q">Com'era?</span><span id="c1imp"></span></div>
+            <div class="pp"><span class="q">Cosa è successo?</span><span id="c1pp"></span></div>
+          </div>
+        </div>
+        <div class="toolbar">
+          <button class="btn" id="pesca1" type="button">Pesca una carta</button>
+          <button class="btn ghost" id="aiuto1" type="button">Mostra le domande guida</button>
+          <button class="btn ghost" id="cron1btn" type="button">Avvia il minuto</button>
+          <span class="crono" id="cron1">1:00</span>
+        </div>
+        <p class="en" id="c1conta" style="margin-top:10px">Carte raccontate: 0</p>
+      </div>
+      <aside class="panel">
+        <h3>Come si conduce</h3>
+        <p style="margin:0 0 10px">Non si corregge mentre parla: gli errori vanno negli appunti in fondo e si riprendono alla fine del giro.</p>
+        <h3>Se resta corta</h3>
+        <ul style="margin:0;padding-left:18px">
+          <li>«E prima? Cosa stava succedendo?»</li>
+          <li>«Come ti sentivi in quel momento?»</li>
+          <li>«E alla fine, com'è andata a finire?»</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 2 -->
+  <section class="phase" id="p2">
+    <h2>Monta la storia</h2>
+    <p class="lead">Una scenografia all'imperfetto e un'azione al passato prossimo, pescate a caso: a volte vengono fuori accostamenti assurdi, ed è il bello. Lei unisce i due pezzi e <b>continua con almeno altre due frasi</b>. Il lucchetto tiene fermo un pezzo mentre si ripesca l'altro.</p>
+    <div class="due-colonne">
+      <div>
+        <div class="pezzo scena">
+          <button class="lucchetto" id="lockA" type="button" aria-pressed="false">🔓 tieni</button>
+          <div class="lab">La scenografia · imperfetto</div>
+          <div class="val" id="p2a">Premi «Mescola»</div>
+        </div>
+        <div class="pezzo azione">
+          <button class="lucchetto" id="lockB" type="button" aria-pressed="false">🔓 tieni</button>
+          <div class="lab">L'azione · passato prossimo</div>
+          <div class="val" id="p2b">e vediamo che storia esce</div>
+        </div>
+        <div class="finale" id="p2fin"></div>
+        <div class="toolbar">
+          <button class="btn red" id="mescola" type="button">Mescola</button>
+          <button class="btn ghost" id="finale" type="button">Dammi un finale</button>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Il giro completo</h3>
+        <ol style="margin:0;padding-left:18px">
+          <li>unisce i due pezzi in una frase sola</li>
+          <li>aggiunge due frasi: cosa è successo dopo</li>
+          <li>chiude con il finale pescato</li>
+        </ol>
+        <h3 style="margin-top:14px">Per alzare l'asticella</h3>
+        <p style="margin:0">Le chiedi di raccontare la stessa storia <b>dal punto di vista di un'altra persona</b> che c'era.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 3 -->
+  <section class="phase" id="p3">
+    <h2>Che tempo uso?</h2>
+    <p class="lead">Due passi, sempre in quest'ordine: prima sceglie <b>il tempo</b>, poi dice <b>la frase intera ad alta voce</b>, e solo dopo si scopre la soluzione. Scegliere è facile, coniugare è il punto.</p>
+    <div class="chips" id="filtriQuiz" style="margin-bottom:14px"></div>
+    <div class="due-colonne">
+      <div class="panel">
+        <div class="etichetta-cat" id="q3cat"></div>
+        <div class="frase" id="q3frase">Premi «Prossima frase» per iniziare</div>
+        <div class="scelte">
+          <button id="q3imp" type="button" disabled>Imperfetto</button>
+          <button id="q3pp" type="button" disabled>Passato prossimo</button>
+        </div>
+        <div class="passo" id="q3passo">
+          <div id="q3attesa"><b>Adesso dilla tutta intera.</b> Poi scopri la frase giusta.</div>
+          <div id="q3sol" hidden>
+            <div class="sol" id="q3soluzione"></div>
+            <div class="perche" id="q3perche"></div>
+            <div class="tocca" id="q3tocca"></div>
+          </div>
+        </div>
+        <div class="toolbar">
+          <button class="btn" id="q3next" type="button">Prossima frase</button>
+          <button class="btn ghost" id="q3scopri" type="button" disabled>Scopri la frase</button>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Come va</h3>
+        <p class="count" id="q3punti" style="font-size:1.5rem;margin:0 0 4px">0 / 0</p>
+        <p class="en" id="q3sub" style="margin:0 0 14px">Si comincia.</p>
+        <div id="q3boxSbagliate" hidden>
+          <h3>Da rivedere</h3>
+          <ul id="q3sbagliate" style="margin:0;padding-left:18px;color:var(--pp)"></ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 4 -->
+  <section class="phase" id="p4">
+    <h2>Domande a raffica</h2>
+    <p class="lead">Sessanta secondi, risposte brevi ma <b>in una frase completa</b>. Non si corregge: si conta. Alla fine si guarda quante ne ha fatte e si riprende quello che è uscito storto.</p>
+    <div class="chips" id="filtriDom" style="margin-bottom:14px"></div>
+    <div class="due-colonne">
+      <div>
+        <div class="panel">
+          <div class="domanda" id="d4">Pronta? Premi «Via!»</div>
+        </div>
+        <div class="toolbar">
+          <button class="btn red" id="via" type="button">Via! (60 secondi)</button>
+          <button class="btn ghost" id="next4" type="button">Prossima domanda</button>
+          <span class="crono" id="cron4">1:00</span>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>In questo giro</h3>
+        <p class="count" id="d4conta" style="font-size:1.8rem;margin:0">0</p>
+        <p class="en" id="d4sub" style="margin:0 0 12px">domande fatte</p>
+        <p class="en" id="d4record" style="margin:0"></p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- PUNTEGGIO E REGOLE -->
+  <div class="panel regole-extra">
+    <div class="barra" style="margin-top:0">
+      <div class="punti">
+        <div class="p"><span>studente</span><b id="pS">0</b></div>
+        <button class="piu" id="piuS" type="button">+1</button>
+        <div class="p"><span>insegnante</span><b id="pT">0</b></div>
+        <button class="piu" id="piuT" type="button">+1</button>
+        <button class="piu" id="azzeraP" type="button">azzera</button>
+      </div>
+      <span class="en" style="flex:1 1 260px">Un punto a lei per ogni racconto completo senza errori grossi, un punto a te ogni volta che devi correggere un tempo verbale.</span>
+    </div>
+    <h3 style="margin-top:18px">Regole extra · accendile quando vuoi alzare il livello</h3>
+    <div class="chips" id="regoleExtra"></div>
+  </div>
+
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Gli errori da riprendere alla fine, le parole nuove, le frasi venute bene.</p>
+    <textarea id="note" placeholder="Es. «sono andata al mare tutte le estati» → andavo · participio di rimanere"></textarea>
+    <div class="barra">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<dialog id="regoleDlg" aria-labelledby="dlgTitle">
+  <div class="dlg-head"><h2 id="dlgTitle">Quando si usa quale</h2><button class="btn ghost" id="closeRegole" type="button">Chiudi</button></div>
+  <div class="dlg-body">
+    <p style="margin:0">Un modo solo per dirlo, e funziona quasi sempre: <b>l'imperfetto è la fotografia</b> (com'era, cosa c'era, cosa si faceva di solito), <b>il passato prossimo è il film</b> (cosa è successo, una cosa dopo l'altra).</p>
+    <h3 class="imp">Imperfetto</h3>
+    <table>
+      <tr><td>Descrizione: com'era una cosa, un posto, una persona</td><td class="en">La casa era piccola. Lui era simpatico.</td></tr>
+      <tr><td>Abitudine: quello che si faceva sempre</td><td class="en">Da bambina andavo al mare ogni estate.</td></tr>
+      <tr><td>Stato d'animo e condizione fisica</td><td class="en">Ero stanca. Avevo fame. Non stavo bene.</td></tr>
+      <tr><td>Ora, età, tempo atmosferico</td><td class="en">Erano le otto. Aveva vent'anni. Pioveva.</td></tr>
+      <tr><td>Due azioni in parallelo</td><td class="en">Mentre cucinavo, lui guardava la partita.</td></tr>
+      <tr><td>Le parole spia</td><td class="en">sempre, di solito, ogni…, mentre, tutti i giorni, da bambina</td></tr>
+    </table>
+    <h3 class="pp">Passato prossimo</h3>
+    <table>
+      <tr><td>Azione conclusa in un momento preciso</td><td class="en">Ieri sono andata al cinema.</td></tr>
+      <tr><td>Una dopo l'altra: la storia che avanza</td><td class="en">Sono uscita, ho preso il treno e sono arrivata tardi.</td></tr>
+      <tr><td>L'azione che interrompe la scena</td><td class="en">Mentre cenavamo, ha suonato il telefono.</td></tr>
+      <tr><td>Un numero preciso di volte</td><td class="en">Ci sono stata tre volte.</td></tr>
+      <tr><td>Un periodo chiuso, anche lungo</td><td class="en">Ho vissuto a Roma per dieci anni.</td></tr>
+      <tr><td>Le parole spia</td><td class="en">ieri, l'anno scorso, due settimane fa, all'improvviso, poi, subito</td></tr>
+    </table>
+    <h3>Le due trappole vere</h3>
+    <table>
+      <tr><td><b>Mentre</b> vuole l'imperfetto, sempre</td><td class="en">Mentre camminavo (mai «mentre ho camminato»)</td></tr>
+      <tr><td>Un periodo lungo ma <b>chiuso</b> vuole il passato prossimo</td><td class="en">Ho lavorato lì per cinque anni. (ora non più)</td></tr>
+    </table>
+    <h3>L'ausiliare, in due righe</h3>
+    <table>
+      <tr><td><b>essere</b> + participio che concorda</td><td class="en">andare, venire, uscire, entrare, tornare, restare, nascere, i riflessivi: sono andata, ci siamo viste</td></tr>
+      <tr><td><b>avere</b> + participio fermo</td><td class="en">mangiare, fare, vedere, comprare, dire: ho fatto, abbiamo visto</td></tr>
+    </table>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ DATI ============
+     [a] = vocale che cambia con l'interruttore femminile/maschile  */
+
+  var CARTE = [
+    ["L'ultima vacanza al mare","Com'era la spiaggia? Che tempo faceva? Con chi eri?","Cosa hai fatto il giorno più bello?"],
+    ["Il primo giorno in una città nuova","Come ti sentivi? Cosa sapevi di quel posto?","Cosa hai fatto appena arrivat[a]?"],
+    ["Una cena con gli amici che ricordi bene","Dov'eravate? Com'era il locale?","Cosa avete mangiato e di cosa avete parlato?"],
+    ["Una giornata di lavoro difficile","Com'era l'aria in ufficio quella mattina?","Cosa è successo esattamente?"],
+    ["Il fine settimana scorso","Che tempo faceva? Com'era il tuo umore?","Cosa hai fatto sabato sera?"],
+    ["Come hai conosciuto una persona importante per te","Dov'eri? Com'era lui o lei quel giorno?","Cosa è successo? Chi ha parlato per primo?"],
+    ["L'ultima volta che hai riso tanto","Con chi eri? Dove eravate?","Cosa è successo di così divertente?"],
+    ["Un viaggio che ricordi benissimo","Com'era il posto? C'era molta gente?","Dove sei andat[a] e con chi?"],
+    ["La casa dove abitavi da bambin[a]","Com'era la casa? Cosa facevi ogni giorno?","Ti ricordi un giorno in particolare?"],
+    ["Un ristorante dove sei stat[a] benissimo","Com'era il locale? Com'erano i camerieri?","Cosa hai ordinato? Ti è piaciuto?"],
+    ["Il giorno di una buona notizia","Come ti sentivi prima? Cosa pensavi?","Cosa hai fatto per festeggiare?"],
+    ["Una vacanza andata storta","Che programmi avevi? Com'era la situazione?","Cosa è andato male?"],
+    ["L'ultimo film o libro che ti è piaciuto","Di cosa parlava? Com'erano i personaggi?","Quando l'hai visto o letto? Perché ti è piaciuto?"],
+    ["Una persona conosciuta in vacanza","Com'era? Quanti anni aveva?","Come vi siete conosciuti? Di cosa avete parlato?"],
+    ["Il tuo primo lavoro","Cosa facevi ogni giorno? Com'erano i colleghi?","Ti ricordi il primo giorno? Cosa è successo?"],
+    ["Una giornata di pioggia che ricordi","Com'era la città? Com'eri vestit[a]?","Cosa hai fatto per non annoiarti?"],
+    ["Il tuo compleanno più bello","Quanti anni compivi? Chi c'era?","Cosa avete fatto? Che regalo hai ricevuto?"],
+    ["La prima volta che hai parlato italiano con qualcuno","Come ti sentivi? Cosa sapevi dire?","Cosa è successo? Ti hanno capit[a]?"],
+    ["La scuola quando eri ragazz[a]","Com'erano le giornate? Chi era il tuo professore preferito?","Ti ricordi un giorno che è andato storto?"],
+    ["Un trasloco","Com'era la casa vecchia? Cosa ti dispiaceva lasciare?","Come è andata la giornata del trasloco?"],
+    ["Un concerto o una festa","Quanta gente c'era? Com'era la musica?","A che ora sei tornat[a] a casa?"],
+    ["Una cosa che hai imparato a fare da grande","Perché volevi impararla? Eri brav[a] all'inizio?","Come è andata la prima volta?"],
+    ["Un regalo che ricordi","Chi te l'ha fatto? Cosa ti aspettavi?","Come hai reagito quando l'hai aperto?"],
+    ["Un giorno in cui hai cambiato idea su qualcosa","Cosa pensavi prima? Perché la pensavi così?","Cosa è successo che ti ha fatto cambiare idea?"]
+  ];
+
+  var SCENA = [
+    "Mentre camminavo sul lungomare al tramonto,",
+    "Faceva un caldo terribile e non c'era un filo di vento,",
+    "Ero in ufficio e sembravano tutti nervosi,",
+    "Il ristorante era pieno e la musica era altissima,",
+    "Non conoscevo nessuno alla festa e mi sentivo un po' a disagio,",
+    "Pioveva forte e naturalmente non avevo l'ombrello,",
+    "Ero stanchissim[a] e volevo solo tornare a casa,",
+    "Il treno era in ritardo e la stazione era piena di gente,",
+    "Mentre parlavo al telefono con un cliente,",
+    "La spiaggia era deserta e il mare era calmissimo,",
+    "Avevo una fame incredibile ma erano tutti chiusi,",
+    "Mentre cercavo il ristorante sul telefono,",
+    "Era mezzanotte e la strada era completamente vuota,",
+    "Il volo era in ritardo di tre ore e l'aeroporto era gelido,",
+    "Era il mio primo giorno e non sapevo dove mettere le mani,",
+    "Nevicava e le macchine andavano pianissimo,",
+    "Ero sicur[a] di essere in anticipo,",
+    "La casa era silenziosa e fuori era ancora buio,",
+    "Mentre aspettavo il mio turno dal medico,",
+    "Il supermercato stava per chiudere e io ero ancora in fila,"
+  ];
+
+  var AZIONE = [
+    "ho incontrato un vecchio amico che non vedevo da anni.",
+    "ho perso il portafoglio.",
+    "ho ricevuto una telefonata dall'ufficio.",
+    "ho deciso di cambiare completamente programma.",
+    "ho conosciuto una persona molto simpatica.",
+    "è arrivato un temporale improvviso.",
+    "ho comprato una cosa che non mi serviva assolutamente.",
+    "ho dimenticato del tutto l'appuntamento.",
+    "ho visto una scena incredibile.",
+    "il cameriere ha rovesciato il vino sul tavolo.",
+    "ho fatto una figuraccia terribile.",
+    "abbiamo trovato il posto più bello della vacanza.",
+    "mi sono mess[a] a ridere senza riuscire a fermarmi.",
+    "ho capito che avevo sbagliato strada.",
+    "è saltata la corrente in tutto il palazzo.",
+    "mi hanno chiamat[a] per darmi una notizia bellissima.",
+    "sono rimast[a] chius[a] fuori casa.",
+    "ho ritrovato una cosa che cercavo da mesi.",
+    "un cane mi è corso incontro scodinzolando.",
+    "ho detto una cosa che non avrei dovuto dire."
+  ];
+
+  var FINALI = [
+    "…e alla fine è andata meglio di così.",
+    "…e da quel giorno non l'ho più fatto.",
+    "…e per fortuna è finita lì.",
+    "…e ancora adesso ci rido su.",
+    "…e la prossima volta farò diversamente.",
+    "…e alla fine abbiamo riso tutti."
+  ];
+
+  /* c = categoria, t = tempo giusto, sol = frase intera, p = perché, r = rilancio */
+  var FRASI = [
+    {f:"Ieri sera ______ al cinema con un'amica.", v:"andare", t:"pp", c:"azione conclusa",
+     sol:"Ieri sera sono andat[a] al cinema con un'amica.", p:"Momento preciso e finito: ieri sera.",
+     r:"E tu, dove sei andat[a] l'ultima volta la sera?"},
+    {f:"Da bambin[a] ______ al mare tutte le estati.", v:"andare", t:"imp", c:"abitudine",
+     sol:"Da bambin[a] andavo al mare tutte le estati.", p:"Abitudine ripetuta: tutte le estati.",
+     r:"E tu, dove andavi in vacanza da piccol[a]?"},
+    {f:"Quando sono arrivat[a] in albergo ______ le otto di sera.", v:"essere", t:"imp", c:"ora ed età",
+     sol:"Quando sono arrivat[a] in albergo erano le otto di sera.", p:"L'ora nel passato vuole sempre l'imperfetto.",
+     r:"A che ora sei arrivat[a] a casa ieri? Dillo così: «erano le…»"},
+    {f:"L'estate scorsa ______ una coppia molto simpatica.", v:"conoscere", t:"pp", c:"azione conclusa",
+     sol:"L'estate scorsa ho conosciuto una coppia molto simpatica.", p:"Fatto singolo e concluso.",
+     r:"Chi hai conosciuto di nuovo quest'anno?"},
+    {f:"Il mare ______ calmo e non c'era vento.", v:"essere", t:"imp", c:"descrizione",
+     sol:"Il mare era calmo e non c'era vento.", p:"Pura descrizione dello sfondo.",
+     r:"Descrivi il posto più bello che hai visto quest'anno: tre cose."},
+    {f:"Mentre lavoravo ______ una mail urgente.", v:"arrivare", t:"pp", c:"interruzione",
+     sol:"Mentre lavoravo è arrivata una mail urgente.", p:"L'azione che interrompe la scena va al passato prossimo.",
+     r:"Ti è mai arrivata una telefonata nel momento peggiore? Racconta."},
+    {f:"Ogni mattina ______ il caffè al bar sotto l'ufficio.", v:"prendere", t:"imp", c:"abitudine",
+     sol:"Ogni mattina prendevo il caffè al bar sotto l'ufficio.", p:"Abitudine: ogni mattina.",
+     r:"Cosa facevi ogni mattina nel tuo primo lavoro?"},
+    {f:"Sabato scorso ______ con gli amici.", v:"uscire", t:"pp", c:"azione conclusa",
+     sol:"Sabato scorso sono uscit[a] con gli amici.", p:"Momento preciso e concluso.",
+     r:"Con chi sei uscit[a] l'ultima volta?"},
+    {f:"Quando ero student[e] ______ in un appartamento piccolissimo.", v:"abitare", t:"imp", c:"descrizione",
+     sol:"Quando ero student[e] abitavo in un appartamento piccolissimo.", p:"Situazione che dura, senza inizio né fine precisi.",
+     r:"Dove abitavi dieci anni fa? Com'era?"},
+    {f:"______ a casa alla fine di agosto.", v:"tornare", t:"pp", c:"azione conclusa",
+     sol:"Sono tornat[a] a casa alla fine di agosto.", p:"Azione conclusa con una data precisa.",
+     r:"Quando sei tornat[a] dall'ultima vacanza?"},
+    {f:"Ero stanchissim[a], così ______ di restare a casa.", v:"decidere", t:"pp", c:"interruzione",
+     sol:"Ero stanchissim[a], così ho deciso di restare a casa.", p:"La stanchezza è lo sfondo, la decisione è l'azione.",
+     r:"L'ultima volta che eri stanchissim[a], cosa hai deciso di fare?"},
+    {f:"Il locale ______ pieno e la musica era altissima.", v:"essere", t:"imp", c:"descrizione",
+     sol:"Il locale era pieno e la musica era altissima.", p:"Descrizione dell'ambiente.",
+     r:"Com'era l'ultimo locale dove sei stat[a]?"},
+    {f:"Due settimane fa ______ un cappotto nuovo.", v:"comprare", t:"pp", c:"azione conclusa",
+     sol:"Due settimane fa ho comprato un cappotto nuovo.", p:"Momento preciso: due settimane fa.",
+     r:"Qual è l'ultima cosa che hai comprato senza pensarci troppo?"},
+    {f:"Mentre cenavamo ______ il telefono.", v:"suonare", t:"pp", c:"interruzione",
+     sol:"Mentre cenavamo ha suonato il telefono.", p:"«Mentre» regge l'imperfetto; l'azione improvvisa va al passato prossimo.",
+     r:"Cosa stavi facendo quando hai ricevuto l'ultima notizia importante?"},
+    {f:"Da giovane ______ molto sport.", v:"fare", t:"imp", c:"abitudine",
+     sol:"Da giovane facevo molto sport.", p:"Abitudine di un intero periodo della vita.",
+     r:"Che sport facevi? E adesso?"},
+    {f:"Ad agosto ______ dieci giorni in montagna.", v:"passare", t:"pp", c:"periodo chiuso",
+     sol:"Ad agosto ho passato dieci giorni in montagna.", p:"Periodo delimitato e finito: dieci giorni.",
+     r:"Quanti giorni di vacanza hai fatto quest'anno? Dove?"},
+    {f:"Quando sono uscit[a] ______ e non avevo l'ombrello.", v:"piovere", t:"imp", c:"tempo atmosferico",
+     sol:"Quando sono uscit[a] pioveva e non avevo l'ombrello.", p:"Il tempo atmosferico come sfondo va all'imperfetto.",
+     r:"Che tempo faceva stamattina quando sei uscit[a]?"},
+    {f:"La settimana scorsa ______ tre riunioni difficili.", v:"avere", t:"pp", c:"quante volte",
+     sol:"La settimana scorsa ho avuto tre riunioni difficili.", p:"Fatti contati e conclusi: tre riunioni.",
+     r:"Quante volte sei uscit[a] la settimana scorsa?"},
+    {f:"Da piccol[a] non ______ le verdure.", v:"mangiare", t:"imp", c:"abitudine",
+     sol:"Da piccol[a] non mangiavo le verdure.", p:"Abitudine dell'infanzia.",
+     r:"Cosa non mangiavi da bambin[a] e adesso ti piace?"},
+    {f:"Stamattina ______ alle sei e mezza.", v:"svegliarsi", t:"pp", c:"azione conclusa",
+     sol:"Stamattina mi sono svegliat[a] alle sei e mezza.", p:"Azione puntuale di oggi. Riflessivo: vuole essere.",
+     r:"A che ora ti sei svegliat[a] oggi? E di solito?"},
+    {f:"Mentre io cucinavo, lui ______ la partita.", v:"guardare", t:"imp", c:"due azioni insieme",
+     sol:"Mentre io cucinavo, lui guardava la partita.", p:"Due azioni parallele che durano: tutte e due all'imperfetto.",
+     r:"Cosa fate di solito la sera, ognuno per conto suo?"},
+    {f:"______ a Roma per dieci anni, poi mi sono trasferit[a].", v:"vivere", t:"pp", c:"periodo chiuso",
+     sol:"Ho vissuto a Roma per dieci anni, poi mi sono trasferit[a].", p:"Periodo lungo ma chiuso: adesso non è più così.",
+     r:"Quanto tempo hai vissuto nella tua città precedente?"},
+    {f:"Mia nonna ______ sempre il pane in casa.", v:"fare", t:"imp", c:"abitudine",
+     sol:"Mia nonna faceva sempre il pane in casa.", p:"«Sempre» qui vuol dire «ogni volta»: abitudine.",
+     r:"Cosa faceva sempre qualcuno della tua famiglia?"},
+    {f:"Ieri ______ tutto il giorno senza fermarmi.", v:"lavorare", t:"pp", c:"periodo chiuso",
+     sol:"Ieri ho lavorato tutto il giorno senza fermarmi.", p:"Trappola: è lungo, ma è un blocco chiuso dentro «ieri».",
+     r:"Cosa hai fatto ieri, dall'inizio alla fine? Tre frasi."},
+    {f:"Quel giorno ______ paura di parlare.", v:"avere", t:"imp", c:"stato d'animo",
+     sol:"Quel giorno avevo paura di parlare.", p:"Stato d'animo che dura: imperfetto.",
+     r:"Quando hai avuto paura di parlare in italiano? Com'è andata?"},
+    {f:"Appena ______ la notizia, ho chiamato mia sorella.", v:"sapere", t:"pp", c:"azione conclusa",
+     sol:"Appena ho saputo la notizia, ho chiamato mia sorella.", p:"Due azioni una dopo l'altra: la storia avanza.",
+     r:"A chi telefoni per prim[a] quando hai una bella notizia?"},
+    {f:"Il ragazzo del bar ______ i capelli lunghi e portava gli occhiali.", v:"avere", t:"imp", c:"descrizione",
+     sol:"Il ragazzo del bar aveva i capelli lunghi e portava gli occhiali.", p:"Descrizione di una persona nel passato.",
+     r:"Descrivi una persona che hai conosciuto di recente."},
+    {f:"Ci ______ tre volte, e ogni volta mi sono trovat[a] bene.", v:"andare", t:"pp", c:"quante volte",
+     sol:"Ci sono andat[a] tre volte, e ogni volta mi sono trovat[a] bene.", p:"Numero preciso di volte: passato prossimo.",
+     r:"Qual è un posto dove sei tornat[a] più di una volta?"},
+    {f:"Non ______ bene, così sono rimast[a] a letto.", v:"stare", t:"imp", c:"stato d'animo",
+     sol:"Non stavo bene, così sono rimast[a] a letto.", p:"La condizione fisica è lo sfondo, restare a letto è l'azione.",
+     r:"Quando sei rimast[a] a casa l'ultima volta? Perché?"},
+    {f:"All'improvviso ______ tutte le luci.", v:"spegnersi", t:"pp", c:"interruzione",
+     sol:"All'improvviso si sono spente tutte le luci.", p:"«All'improvviso» è la parola spia dell'azione secca.",
+     r:"Ti è mai andata via la corrente in un momento sbagliato?"},
+    {f:"A vent'anni ______ tutta un'altra musica.", v:"ascoltare", t:"imp", c:"abitudine",
+     sol:"A vent'anni ascoltavo tutta un'altra musica.", p:"Abitudine di un periodo della vita, introdotta dall'età.",
+     r:"Che musica ascoltavi a vent'anni? La ascolti ancora?"},
+    {f:"L'anno scorso ______ l'esame al primo tentativo.", v:"passare", t:"pp", c:"azione conclusa",
+     sol:"L'anno scorso ho passato l'esame al primo tentativo.", p:"Fatto singolo, concluso, datato.",
+     r:"Qual è l'ultima cosa difficile che sei riuscit[a] a fare?"},
+    {f:"Ogni domenica ______ a pranzo dai miei.", v:"andare", t:"imp", c:"abitudine",
+     sol:"Ogni domenica andavo a pranzo dai miei.", p:"«Ogni domenica»: si ripeteva.",
+     r:"Che abitudine avevi la domenica e adesso non hai più?"},
+    {f:"Mentre aspettavo il treno ______ a leggere.", v:"mettersi", t:"pp", c:"interruzione",
+     sol:"Mentre aspettavo il treno mi sono mess[a] a leggere.", p:"L'attesa dura (imperfetto), mettersi a leggere è il momento preciso.",
+     r:"Cosa fai di solito mentre aspetti? E l'ultima volta?"}
+  ];
+
+  var DOMANDE = [
+    ["Cosa hai fatto ieri sera?","pp"],
+    ["Dove sei andat[a] in vacanza l'anno scorso?","pp"],
+    ["A che ora ti sei svegliat[a] oggi?","pp"],
+    ["Cosa hai mangiato a pranzo?","pp"],
+    ["Chi hai visto la settimana scorsa?","pp"],
+    ["Cosa hai comprato di recente?","pp"],
+    ["Quanto tempo sei rimast[a] in vacanza?","pp"],
+    ["Cosa hai fatto domenica?","pp"],
+    ["Chi ti ha scritto oggi?","pp"],
+    ["Qual è l'ultima cosa bella che ti è successa?","pp"],
+    ["Dove hai cenato l'ultima volta fuori casa?","pp"],
+    ["Cosa hai fatto il primo giorno di vacanza?","pp"],
+    ["Hai già parlato italiano questa settimana? Con chi?","pp"],
+    ["Cosa non ti è piaciuto dell'ultimo viaggio?","pp"],
+    ["Quando hai riso l'ultima volta? Perché?","pp"],
+    ["Cosa hai guardato ieri sera?","pp"],
+    ["Quando eri piccol[a], che sport facevi?","imp"],
+    ["Com'era la tua città quando eri bambin[a]?","imp"],
+    ["Dove abitavi dieci anni fa?","imp"],
+    ["Com'era il tuo primo capo?","imp"],
+    ["Cosa facevi il sabato quando eri student[e]?","imp"],
+    ["Cosa bevevi a colazione da bambin[a]?","imp"],
+    ["Che musica ascoltavi a vent'anni?","imp"],
+    ["Come festeggiavi il Natale da piccol[a]?","imp"],
+    ["C'era qualcosa che ti faceva paura da bambin[a]?","imp"],
+    ["Com'era la tua camera quando eri ragazz[a]?","imp"],
+    ["Cosa ti piaceva mangiare da bambin[a]?","imp"],
+    ["Chi era il tuo migliore amico a scuola? Com'era?","imp"],
+    ["Che tempo faceva stamattina?","imp"],
+    ["Cosa facevi di solito d'estate?","imp"],
+    ["Com'era il tuo primo telefono?","imp"],
+    ["Dove andavi il sabato sera a vent'anni?","imp"]
+  ];
+
+  var REGOLE = [
+    "Vietato dire IO",
+    "Vietato l'inglese",
+    "Usa «mi è piaciuto / mi sono piaciuti»",
+    "Almeno cinque frasi",
+    "Nascondi una bugia: io devo indovinarla",
+    "Aggiungi tre dettagli di colore",
+    "Ogni frase deve avere un tempo diverso dalla precedente"
+  ];
+
+  /* ============ UTILI ============ */
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function pescaDiverso(lista, escluso){
+    var pool = lista.filter(function(x){ return x !== escluso; });
+    if(!pool.length) pool = lista;
+    return pool[Math.floor(Math.random()*pool.length)];
+  }
+
+  /* ============ STATO ============ */
+  var CHIAVE = "icf_passato_v1";
+  var stato = { m:false, punti:{s:0,t:0}, note:"", giuste:0, totali:0, sbagliate:[],
+                carte:0, recordRaffica:0, regole:[], filtroQuiz:"tutte", filtroDom:"tutte" };
+  try{
+    var vecchio = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(vecchio && typeof vecchio === "object"){
+      for(var k in stato){ if(vecchio[k] !== undefined) stato[k] = vecchio[k]; }
+    }
+  }catch(e){}
+  var tSalva = null;
+  function salva(){
+    clearTimeout(tSalva);
+    tSalva = setTimeout(function(){
+      try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){}
+    }, 250);
+  }
+
+  /* genere: [a] diventa a oppure o, [e] student[e] resta uguale al maschile */
+  function g(testo){
+    return String(testo)
+      .replace(/\[a\]/g, stato.m ? "o" : "a")
+      .replace(/\[e\]/g, stato.m ? "e" : "essa");
+  }
+  function aggiornaGenere(){
+    $("genere").textContent = "Concordanze: " + (stato.m ? "maschile" : "femminile");
+    $("genere").setAttribute("aria-pressed", String(stato.m));
+    if(carta1) disegnaCarta();
+    disegnaPezzi();
+    if(corrente3) disegnaFrase(true);
+    if(domanda4) $("d4").textContent = g(domanda4[0]);
+  }
+  $("genere").addEventListener("click", function(){
+    stato.m = !stato.m; salva(); aggiornaGenere();
+  });
+
+  /* ============ LINGUETTE ============ */
+  var tabs = document.querySelectorAll("nav.steps [role=tab]");
+  var attiva = "p1";
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){
+      attiva = t.dataset.phase;
+      Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(s){
+        s.classList.toggle("active", s.id === attiva);
+      });
+    });
+  });
+  var dlg = $("regoleDlg");
+  $("openRegole").addEventListener("click", function(){ dlg.showModal(); });
+  $("closeRegole").addEventListener("click", function(){ dlg.close(); });
+
+  /* ============ FASE 1 ============ */
+  var carta1 = null;
+  function disegnaCarta(){
+    $("c1tema").textContent = g(carta1[0]);
+    $("c1imp").textContent = g(carta1[1]);
+    $("c1pp").textContent = g(carta1[2]);
+  }
+  $("pesca1").addEventListener("click", function(){
+    carta1 = pescaDiverso(CARTE, carta1);
+    disegnaCarta();
+    $("c1guida").classList.remove("show");
+    $("aiuto1").textContent = "Mostra le domande guida";
+    stato.carte++; salva();
+    $("c1conta").textContent = "Carte raccontate: " + stato.carte;
+    resetCron1();
+  });
+  $("aiuto1").addEventListener("click", function(){
+    if(!carta1) return;
+    var mostra = !$("c1guida").classList.contains("show");
+    $("c1guida").classList.toggle("show", mostra);
+    this.textContent = mostra ? "Nascondi le domande guida" : "Mostra le domande guida";
+  });
+  $("c1conta").textContent = "Carte raccontate: " + stato.carte;
+
+  var c1left = 60, c1id = null;
+  function disegnaCron1(){
+    var m = Math.floor(c1left/60), s = c1left % 60;
+    $("cron1").textContent = m + ":" + (s < 10 ? "0" : "") + s;
+    $("cron1").classList.toggle("zero", c1left === 0);
+  }
+  function resetCron1(){ clearInterval(c1id); c1id = null; c1left = 60; disegnaCron1(); $("cron1btn").textContent = "Avvia il minuto"; }
+  $("cron1btn").addEventListener("click", function(){
+    if(c1id){ clearInterval(c1id); c1id = null; this.textContent = "Riprendi"; return; }
+    if(c1left <= 0) c1left = 60;
+    this.textContent = "Pausa";
+    var self = this;
+    c1id = setInterval(function(){
+      c1left--; disegnaCron1();
+      if(c1left <= 0){ clearInterval(c1id); c1id = null; self.textContent = "Ancora un minuto"; }
+    }, 1000);
+  });
+  disegnaCron1();
+
+  /* ============ FASE 2 ============ */
+  var scenaCorr = null, azioneCorr = null;
+  function disegnaPezzi(){
+    $("p2a").textContent = scenaCorr ? g(scenaCorr) : "Premi «Mescola»";
+    $("p2b").textContent = azioneCorr ? g(azioneCorr) : "e vediamo che storia esce";
+  }
+  $("mescola").addEventListener("click", function(){
+    if($("lockA").getAttribute("aria-pressed") !== "true") scenaCorr = pescaDiverso(SCENA, scenaCorr);
+    if($("lockB").getAttribute("aria-pressed") !== "true") azioneCorr = pescaDiverso(AZIONE, azioneCorr);
+    $("p2fin").textContent = "";
+    disegnaPezzi();
+  });
+  $("finale").addEventListener("click", function(){
+    $("p2fin").textContent = pescaDiverso(FINALI, $("p2fin").textContent);
+  });
+  [["lockA"],["lockB"]].forEach(function(x){
+    var b = $(x[0]);
+    b.addEventListener("click", function(){
+      var on = b.getAttribute("aria-pressed") !== "true";
+      b.setAttribute("aria-pressed", String(on));
+      b.textContent = on ? "🔒 fermo" : "🔓 tieni";
+    });
+  });
+
+  /* ============ FASE 3 ============ */
+  var CAT = ["tutte"].concat(FRASI.map(function(f){ return f.c; })
+    .filter(function(c,i,a){ return a.indexOf(c) === i; }));
+  var filtriQuiz = $("filtriQuiz");
+  CAT.forEach(function(c){
+    var b = document.createElement("button");
+    b.type = "button"; b.dataset.k = c;
+    b.textContent = c === "tutte" ? "Tutte le categorie" : c;
+    b.setAttribute("aria-pressed", String(c === stato.filtroQuiz));
+    b.addEventListener("click", function(){
+      stato.filtroQuiz = c; salva();
+      Array.prototype.forEach.call(filtriQuiz.children, function(x){
+        x.setAttribute("aria-pressed", String(x.dataset.k === stato.filtroQuiz));
+      });
+    });
+    filtriQuiz.appendChild(b);
+  });
+
+  var corrente3 = null, risposto3 = false;
+  function disegnaFrase(soloTesto){
+    $("q3cat").textContent = corrente3.c;
+    $("q3frase").innerHTML = esc(g(corrente3.f)).replace("______", '<span class="buco">______</span>') +
+      ' <span class="inf">(' + esc(corrente3.v) + ")</span>";
+    $("q3soluzione").textContent = g(corrente3.sol);
+    $("q3perche").textContent = corrente3.p;
+    $("q3tocca").textContent = "Tocca a te: " + g(corrente3.r);
+    if(soloTesto) return;
+    risposto3 = false;
+    $("q3passo").classList.remove("show");
+    $("q3sol").hidden = true;
+    $("q3attesa").hidden = false;
+    $("q3scopri").disabled = true;
+    ["q3imp","q3pp"].forEach(function(id){
+      var b = $(id); b.disabled = false; b.className = "";
+    });
+  }
+  function puntiQuiz(){
+    $("q3punti").textContent = stato.giuste + " / " + stato.totali;
+    var s = $("q3sub");
+    if(!stato.totali){ s.textContent = "Si comincia."; return; }
+    var pct = stato.giuste / stato.totali;
+    s.textContent = pct >= 0.85 ? "La differenza ce l'ha in testa." : pct >= 0.6 ? "Ci siamo quasi." : "Vale la pena insistere qui.";
+    var box = $("q3boxSbagliate"), ul = $("q3sbagliate");
+    box.hidden = !stato.sbagliate.length;
+    ul.innerHTML = "";
+    stato.sbagliate.slice(-8).forEach(function(t){
+      var li = document.createElement("li"); li.textContent = t; ul.appendChild(li);
+    });
+  }
+  function rispondi3(scelta){
+    if(!corrente3 || risposto3) return;
+    risposto3 = true;
+    var giusto = corrente3.t;
+    stato.totali++;
+    if(scelta === giusto){ stato.giuste++; }
+    else if(stato.sbagliate.indexOf(corrente3.c) < 0){ stato.sbagliate.push(corrente3.c); }
+    salva();
+    $("q3imp").className = giusto === "imp" ? "giusta" : (scelta === "imp" ? "sbagliata" : "");
+    $("q3pp").className  = giusto === "pp"  ? "giusta" : (scelta === "pp"  ? "sbagliata" : "");
+    $("q3imp").disabled = true; $("q3pp").disabled = true;
+    $("q3passo").classList.add("show");
+    $("q3scopri").disabled = false;
+    puntiQuiz();
+  }
+  $("q3imp").addEventListener("click", function(){ rispondi3("imp"); });
+  $("q3pp").addEventListener("click", function(){ rispondi3("pp"); });
+  $("q3scopri").addEventListener("click", function(){
+    $("q3attesa").hidden = true;
+    $("q3sol").hidden = false;
+    this.disabled = true;
+  });
+  $("q3next").addEventListener("click", function(){
+    var pool = FRASI.filter(function(f){ return stato.filtroQuiz === "tutte" || f.c === stato.filtroQuiz; });
+    corrente3 = pescaDiverso(pool, corrente3);
+    disegnaFrase(false);
+  });
+  puntiQuiz();
+
+  /* ============ FASE 4 ============ */
+  var FILTRI4 = [{k:"tutte",l:"Tutte"},{k:"pp",l:"Solo passato prossimo"},{k:"imp",l:"Solo imperfetto"}];
+  var filtriDom = $("filtriDom");
+  FILTRI4.forEach(function(f){
+    var b = document.createElement("button");
+    b.type = "button"; b.dataset.k = f.k; b.textContent = f.l;
+    b.setAttribute("aria-pressed", String(f.k === stato.filtroDom));
+    b.addEventListener("click", function(){
+      stato.filtroDom = f.k; salva();
+      Array.prototype.forEach.call(filtriDom.children, function(x){
+        x.setAttribute("aria-pressed", String(x.dataset.k === stato.filtroDom));
+      });
+    });
+    filtriDom.appendChild(b);
+  });
+
+  var domanda4 = null, conta4 = 0, c4left = 60, c4id = null;
+  function prossimaDomanda(){
+    var pool = DOMANDE.filter(function(d){ return stato.filtroDom === "tutte" || d[1] === stato.filtroDom; });
+    domanda4 = pescaDiverso(pool, domanda4);
+    $("d4").textContent = g(domanda4[0]);
+    conta4++;
+    $("d4conta").textContent = conta4;
+  }
+  function disegnaCron4(){
+    var m = Math.floor(c4left/60), s = c4left % 60;
+    $("cron4").textContent = c4left > 0 ? m + ":" + (s < 10 ? "0" : "") + s : "Stop!";
+    $("cron4").classList.toggle("zero", c4left === 0);
+  }
+  $("next4").addEventListener("click", prossimaDomanda);
+  $("via").addEventListener("click", function(){
+    clearInterval(c4id);
+    conta4 = 0; c4left = 60; disegnaCron4();
+    prossimaDomanda();
+    $("d4sub").textContent = "domande fatte";
+    c4id = setInterval(function(){
+      c4left--; disegnaCron4();
+      if(c4left <= 0){
+        clearInterval(c4id); c4id = null;
+        if(conta4 > stato.recordRaffica){ stato.recordRaffica = conta4; salva(); }
+        $("d4sub").textContent = "domande in sessanta secondi";
+        $("d4record").textContent = "Record: " + stato.recordRaffica + " domande.";
+      }
+    }, 1000);
+  });
+  if(stato.recordRaffica) $("d4record").textContent = "Record: " + stato.recordRaffica + " domande.";
+  disegnaCron4();
+
+  /* ============ PUNTEGGIO E REGOLE EXTRA ============ */
+  function disegnaPunti(){
+    $("pS").textContent = stato.punti.s;
+    $("pT").textContent = stato.punti.t;
+  }
+  $("piuS").addEventListener("click", function(){ stato.punti.s++; salva(); disegnaPunti(); });
+  $("piuT").addEventListener("click", function(){ stato.punti.t++; salva(); disegnaPunti(); });
+  $("azzeraP").addEventListener("click", function(){ stato.punti = {s:0,t:0}; salva(); disegnaPunti(); });
+  disegnaPunti();
+
+  var boxRegole = $("regoleExtra");
+  REGOLE.forEach(function(r){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = r;
+    b.setAttribute("aria-pressed", String(stato.regole.indexOf(r) >= 0));
+    b.addEventListener("click", function(){
+      var i = stato.regole.indexOf(r);
+      if(i >= 0) stato.regole.splice(i, 1); else stato.regole.push(r);
+      b.setAttribute("aria-pressed", String(i < 0));
+      salva();
+    });
+    boxRegole.appendChild(b);
+  });
+
+  /* ============ APPUNTI ============ */
+  var note = $("note");
+  note.value = stato.note || "";
+  note.addEventListener("input", function(){
+    stato.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("reset").addEventListener("click", function(){
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+
+  /* ============ TASTIERA ============ */
+  document.addEventListener("keydown", function(e){
+    if(/^(INPUT|TEXTAREA)$/.test((e.target.tagName || "").toUpperCase())) return;
+    if(dlg.open) return;
+    if(e.key === " "){
+      e.preventDefault();
+      if(attiva === "p1") $("pesca1").click();
+      else if(attiva === "p2") $("mescola").click();
+      else if(attiva === "p3") $("q3next").click();
+      else $("next4").click();
+      return;
+    }
+    if(attiva === "p3"){
+      if(e.key === "1") $("q3imp").click();
+      else if(e.key === "2") $("q3pp").click();
+      else if(e.key === "Enter") $("q3scopri").click();
+    }
+  });
+
+  aggiornaGenere();
+})();
+</script>
+</body>
+</html>
