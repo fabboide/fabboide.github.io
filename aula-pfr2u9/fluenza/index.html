@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fluenza · Talk with Fabio</title>
+<meta name="description" content="Tre allenamenti per non fermarsi: il Compressore, Raffica, Parole Bomba. B1-B2.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D; --kraft:#D9BC8C;
+  --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.55}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1000px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700;font-size:.95rem}
+.logo-mark{width:19px;height:19px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.88rem;color:inherit}
+.nastro{height:8px;background:linear-gradient(90deg,var(--basil) 0 33%,var(--lemon) 33% 66%,var(--tomato) 66% 100%)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 18px 50px}
+
+header.sign{padding:26px 0 2px;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5.4vw,3rem);line-height:1;margin:0}
+.sign p{margin:6px 0 0;color:var(--muted);max-width:58ch}
+.nome{display:flex;align-items:center;gap:8px;font-family:var(--display);font-size:.85rem;font-weight:700;color:var(--muted)}
+.nome input{border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:var(--paper);width:150px;font-family:var(--display);font-weight:700;font-size:.95rem}
+
+.schermo{display:none}
+.schermo.active{display:block}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:11px 20px}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.giallo{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.grande{font-size:1.15rem;padding:16px 30px}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}
+.riga-alta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:18px}
+.en{color:var(--muted);font-style:italic;font-size:.9em}
+
+/* scelta */
+.scelta{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:22px}
+.modo-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px;text-align:left;display:flex;flex-direction:column;gap:8px;min-height:210px}
+.modo-card:hover{border-color:var(--ink)}
+.modo-card .num{font-family:var(--hand);font-size:2rem;line-height:1}
+.modo-card .tit{font-family:var(--display);font-weight:800;font-size:1.5rem;line-height:1.1}
+.modo-card .ob{color:var(--muted)}
+.modo-card .come{font-size:.95rem;margin-top:auto;padding-top:10px;border-top:1px dashed var(--line)}
+.modo-card.uno .num{color:var(--basil)} .modo-card.uno:hover{border-color:var(--basil)}
+.modo-card.due .num{color:var(--lemon)} .modo-card.due:hover{border-color:var(--lemon)}
+.modo-card.tre .num{color:var(--tomato)} .modo-card.tre:hover{border-color:var(--tomato)}
+.regole-comuni{margin-top:24px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 20px}
+.regole-comuni b{font-family:var(--display)}
+
+/* palco condiviso */
+.palco{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:26px 28px;margin-top:16px;text-align:center}
+.etichetta{font-family:var(--display);font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.tema{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,4.6vw,2.7rem);line-height:1.15;margin:8px 0 0}
+.anello{width:min(240px,52vw);height:min(240px,52vw);margin:14px auto 0;display:block;transform:rotate(-90deg)}
+.anello circle{fill:none;stroke-width:10;stroke-linecap:round}
+.anello .sfondo{stroke:var(--line)}
+.anello .quadrante{stroke:var(--basil);transition:stroke-dashoffset .2s linear}
+.anello.poco .quadrante{stroke:var(--tomato)}
+.tempo-dentro{position:relative;display:inline-block}
+.tempo-testo{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,7vw,3.6rem);font-variant-numeric:tabular-nums}
+.giri{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.giro{border:2px solid var(--line);border-radius:14px;padding:10px 18px;min-width:96px;font-family:var(--display)}
+.giro .d{font-size:.8rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.giro .n{font-size:1.8rem;font-weight:800}
+.giro.corrente{border-color:var(--basil);background:#F1F6F3}
+.giro.fatto{border-color:var(--line);background:var(--stone)}
+.conteggione{font-family:var(--display);font-weight:800;font-size:clamp(3rem,12vw,6rem);line-height:1}
+
+/* raffica */
+.domanda{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,6vw,3.4rem);line-height:1.15;min-height:2.3em;display:flex;align-items:center;justify-content:center}
+.barra{height:14px;border-radius:999px;background:var(--line);overflow:hidden;margin-top:10px}
+.barra i{display:block;height:100%;width:100%;background:var(--lemon);transition:width .1s linear}
+.barra.poco i{background:var(--tomato)}
+.contatorini{display:flex;gap:24px;justify-content:center;font-family:var(--display);font-weight:700;margin-top:14px}
+.contatorini span{display:block;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.contatorini b{font-size:1.7rem}
+
+/* bomba */
+.bomba-parola{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,9vw,5rem);line-height:1;color:var(--tomato)}
+.bomba-attesa{font-family:var(--hand);font-size:1.5rem;color:var(--muted)}
+.trofei{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+.trofei span{font-family:var(--display);font-weight:700;font-size:.95rem;border:1px solid var(--basil);color:var(--basil);background:#F1F6F3;border-radius:999px;padding:5px 13px}
+.trofei span.persa{border-color:var(--line);color:var(--muted);background:var(--stone);text-decoration:line-through}
+.raccordi{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+.raccordi span{font-family:var(--display);font-size:.92rem;font-weight:600;background:#FAF3E4;border:1px solid var(--kraft);border-radius:999px;padding:5px 12px}
+
+/* riepilogo */
+.riepilogo{background:#20304F;color:#FFFDF8;border-radius:18px;padding:24px 26px;margin-top:18px;text-align:center}
+.riepilogo h2{font-family:var(--display);color:var(--lemon);margin:0 0 6px;font-size:1.4rem}
+.riepilogo .numeroni{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:16px 0 8px}
+.riepilogo .numeroni div{min-width:100px}
+.riepilogo .numeroni span{display:block;font-family:var(--display);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:#C7CEDB;font-weight:700}
+.riepilogo .numeroni b{font-family:var(--display);font-size:2.6rem;line-height:1.1}
+.riepilogo .frase{font-family:var(--hand);font-size:1.4rem;color:var(--lemon);margin-top:6px}
+
+.nota-piede{margin-top:22px;color:var(--muted);font-size:.92rem}
+kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 7px;background:var(--paper)}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in">
+  <a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a>
+  <a class="back-link" href="../">&larr; La mia aula</a>
+</div></header>
+<div class="nastro" aria-hidden="true"></div>
+
+<div class="wrap">
+  <header class="sign">
+    <div>
+      <h1>Fluenza</h1>
+      <p>Tre allenamenti con un obiettivo solo: <b>non fermarsi</b>. Non si corregge, non si conta se è giusto. B1-B2.</p>
+    </div>
+    <label class="nome">chi si allena
+      <input id="nome" type="text" placeholder="" autocomplete="off">
+    </label>
+  </header>
+
+  <!-- SCELTA -->
+  <section class="schermo active" id="sScelta">
+    <div class="scelta">
+      <button class="modo-card uno" type="button" data-modo="sCompressore">
+        <span class="num">1</span>
+        <span class="tit">Il Compressore</span>
+        <span class="ob">Ridurre le pause raccontando la stessa cosa sempre più veloce.</span>
+        <span class="come">Stesso tema tre volte: 90 secondi, poi 60, poi 40. Io conto i blocchi, alla fine si vedono i tre numeri.</span>
+      </button>
+      <button class="modo-card due" type="button" data-modo="sRaffica">
+        <span class="num">2</span>
+        <span class="tit">Raffica</span>
+        <span class="ob">Abbattere il tempo di reazione, cioè la traduzione mentale.</span>
+        <span class="come">Trenta micro-domande, cinque secondi l'una, una frase completa. Va avanti da sola: non c'è tempo per tradurre.</span>
+      </button>
+      <button class="modo-card tre" type="button" data-modo="sBomba">
+        <span class="num">3</span>
+        <span class="tit">Parole Bomba</span>
+        <span class="ob">Non fermarsi quando arriva l'imprevisto.</span>
+        <span class="come">Parla di un tema e ogni quindici secondi esplode una parola che non c'entra niente: dieci secondi per infilarla nel discorso.</span>
+      </button>
+    </div>
+    <div class="regole-comuni">
+      <p style="margin:0 0 8px"><b>Le regole, uguali per tutte e tre.</b> Non si corregge mentre parla. Non si contano gli errori. L'unica cosa che si misura è che <b>non si è fermata</b>.</p>
+      <p style="margin:0" class="en">Gli errori li scrivo a parte e li riprendo dopo, a motore spento.</p>
+    </div>
+  </section>
+
+  <!-- 1 · COMPRESSORE -->
+  <section class="schermo" id="sCompressore">
+    <div class="riga-alta">
+      <button class="btn ghost indietro" type="button">&larr; Gli allenamenti</button>
+      <span class="etichetta">1 · Il Compressore</span>
+    </div>
+    <div class="palco">
+      <div class="etichetta">il tema</div>
+      <p class="tema" id="cTema">Premi «Pesca un tema»</p>
+      <div class="tempo-dentro">
+        <svg class="anello" id="cAnello" viewBox="0 0 120 120" aria-hidden="true">
+          <circle class="sfondo" cx="60" cy="60" r="54"></circle>
+          <circle class="quadrante" id="cQuadrante" cx="60" cy="60" r="54"></circle>
+        </svg>
+        <div class="tempo-testo" id="cTempo">1:30</div>
+      </div>
+      <div class="giri" id="cGiri"></div>
+    </div>
+    <div class="toolbar">
+      <button class="btn" id="cPesca" type="button">Pesca un tema</button>
+      <button class="btn green grande" id="cVai" type="button" disabled>Via</button>
+      <button class="btn giallo grande" id="cBlocco" type="button" disabled>Si è bloccata +1</button>
+      <button class="btn ghost" id="cChiudi" type="button" disabled>Chiudi il giro</button>
+      <button class="btn ghost" id="cAzzera" type="button">Ricomincia</button>
+    </div>
+    <p class="nota-piede"><kbd>spazio</kbd> conta un blocco · <kbd>invio</kbd> chiude il giro. Fra un giro e l'altro si dice solo: <i>«uguale, ma in meno tempo»</i>.</p>
+    <div class="riepilogo" id="cFine" hidden>
+      <h2>Compressione fatta</h2>
+      <div class="numeroni" id="cNumeroni"></div>
+      <div class="frase" id="cFrase"></div>
+    </div>
+  </section>
+
+  <!-- 2 · RAFFICA -->
+  <section class="schermo" id="sRaffica">
+    <div class="riga-alta">
+      <button class="btn ghost indietro" type="button">&larr; Gli allenamenti</button>
+      <span class="etichetta">2 · Raffica</span>
+    </div>
+    <div class="palco">
+      <div class="etichetta" id="rEtichetta">domanda 0 di 30</div>
+      <div class="domanda" id="rDomanda">Pronta? Una frase intera, sempre.</div>
+      <div class="barra" id="rBarra"><i id="rRiempi"></i></div>
+      <div class="contatorini">
+        <div><span>risposte in tempo</span><b id="rRisposte">0</b></div>
+        <div><span>lasciate andare</span><b id="rPerse">0</b></div>
+      </div>
+    </div>
+    <div class="toolbar">
+      <button class="btn red grande" id="rVia" type="button">Via!</button>
+      <button class="btn green grande" id="rPresa" type="button" disabled>Ha risposto</button>
+      <button class="btn ghost" id="rStop" type="button" disabled>Ferma</button>
+      <button class="btn ghost" id="rSuono" type="button" aria-pressed="true">Suono: acceso</button>
+    </div>
+    <p class="nota-piede"><kbd>spazio</kbd> = ha risposto, e si passa subito alla prossima. Se scadono i cinque secondi si va avanti lo stesso: <b>non si torna indietro</b>.</p>
+    <div class="riepilogo" id="rFine" hidden>
+      <h2>Raffica finita</h2>
+      <div class="numeroni" id="rNumeroni"></div>
+      <div class="frase" id="rFrase"></div>
+    </div>
+  </section>
+
+  <!-- 3 · PAROLE BOMBA -->
+  <section class="schermo" id="sBomba">
+    <div class="riga-alta">
+      <button class="btn ghost indietro" type="button">&larr; Gli allenamenti</button>
+      <span class="etichetta">3 · Parole Bomba</span>
+    </div>
+    <div class="palco">
+      <div class="etichetta">si parla di</div>
+      <p class="tema" id="bTema">Premi «Pesca un tema»</p>
+      <div style="margin-top:18px">
+        <div class="bomba-attesa" id="bAttesa">La prossima parola fra…</div>
+        <div class="bomba-parola" id="bParola"></div>
+        <div class="barra" id="bBarra" hidden><i id="bRiempi"></i></div>
+      </div>
+      <div class="trofei" id="bTrofei"></div>
+      <div class="raccordi" id="bRaccordi"></div>
+    </div>
+    <div class="toolbar">
+      <button class="btn" id="bPesca" type="button">Pesca un tema</button>
+      <button class="btn red grande" id="bVia" type="button" disabled>Via</button>
+      <button class="btn green grande" id="bPiazzata" type="button" disabled>Piazzata!</button>
+      <button class="btn ghost" id="bStop" type="button" disabled>Fine</button>
+    </div>
+    <p class="nota-piede"><kbd>spazio</kbd> = l'ha piazzata. Le parole non c'entrano niente col tema, ed è il punto: serve una giravolta, non un collegamento sensato.</p>
+    <div class="riepilogo" id="bFine" hidden>
+      <h2>Fine del campo minato</h2>
+      <div class="numeroni" id="bNumeroni"></div>
+      <div class="frase" id="bFrase"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var TEMI = [
+    "La tua giornata di ieri, dall'inizio alla fine",
+    "Il posto più bello dove sei stata",
+    "Una persona che ti ha cambiato qualcosa",
+    "Com'è cambiato il tuo lavoro negli anni",
+    "Il tuo rapporto con la tecnologia",
+    "Una cosa che hai imparato a fare da grande",
+    "Il tuo quartiere: com'è e cosa gli manca",
+    "Un viaggio andato storto",
+    "Come sarebbe la tua giornata perfetta",
+    "La cucina di casa tua",
+    "Un litigio finito bene",
+    "Cosa fai per stare bene",
+    "La scuola che hai fatto",
+    "Il tuo rapporto con i soldi",
+    "Un film o una serie che ti ha lasciato qualcosa",
+    "Il tuo primo lavoro",
+    "Come scegliete le vacanze",
+    "La tua famiglia: chi c'è e come vi vedete",
+    "Le domeniche",
+    "Un cambiamento che stai facendo adesso",
+    "La città dove vivi e quella dove sei cresciuta",
+    "Un hobby che vorresti iniziare",
+    "Come ti tieni informata",
+    "Il tuo rapporto con lo sport",
+    "Cosa ti stressa e come lo gestisci",
+    "La tua routine della mattina",
+    "Un oggetto a cui sei affezionata",
+    "Come festeggiate le feste in famiglia",
+    "Il tuo italiano: cos'è cambiato in un anno",
+    "Una decisione difficile che hai preso"
+  ];
+
+  var DOMANDE = [
+    "Cosa hai mangiato ieri sera?",
+    "Che tempo fa oggi da te?",
+    "Qual è l'ultima cosa che hai comprato?",
+    "Dove vorresti essere adesso?",
+    "Chi hai sentito per ultimo al telefono?",
+    "Cosa fai di solito la domenica mattina?",
+    "Qual è il tuo posto preferito in casa?",
+    "Cosa ti fa arrabbiare nel traffico?",
+    "Che film consiglieresti a un'amica?",
+    "Cosa hai in tasca adesso?",
+    "Cosa ti manca di quando eri bambina?",
+    "Che cosa non compreresti mai?",
+    "Come ti svegli la mattina?",
+    "Qual è il tuo rumore preferito?",
+    "Cosa fai quando non riesci a dormire?",
+    "Che regalo vorresti ricevere?",
+    "Qual è il piatto della domenica da voi?",
+    "Cosa ti spaventa un po'?",
+    "Dove andresti domani con cento euro?",
+    "Cosa hai imparato questo mese?",
+    "Qual è la tua scusa preferita?",
+    "Cosa c'è nel tuo frigo adesso?",
+    "Che musica metti in macchina?",
+    "Chi vorresti incontrare per caso?",
+    "Cosa fai quando sei nervosa?",
+    "Qual è la cosa più bella della tua città?",
+    "Che cosa rimandi sempre?",
+    "Come festeggi il tuo compleanno?",
+    "Cosa diresti a te stessa di dieci anni fa?",
+    "Cosa mangi quando hai fretta?",
+    "Che cosa ti fa ridere sempre?",
+    "Dove hai messo le chiavi stamattina?",
+    "Qual è il tuo mezzo di trasporto preferito?",
+    "Cosa porteresti su un'isola deserta?",
+    "Che lavoro non faresti mai?",
+    "Qual è l'ultimo libro che hai lasciato a metà?",
+    "Cosa fai la sera prima di dormire?",
+    "Che cosa cambieresti di casa tua?",
+    "Qual è il tuo dolce preferito?",
+    "Cosa ti ha sorpreso di recente?",
+    "Con chi parli di più durante la settimana?",
+    "Che stagione preferisci?",
+    "Cosa hai fatto di bello il weekend scorso?",
+    "Qual è la tua abitudine peggiore?",
+    "Cosa faresti con un giorno libero improvviso?",
+    "Che cosa collezionavi da piccola?",
+    "Qual è la tua app più usata?",
+    "Cosa non mangi per niente al mondo?",
+    "Che cosa ti rilassa dopo il lavoro?",
+    "Dove ti piacerebbe vivere per un anno?",
+    "Qual è il complimento più bello che hai ricevuto?",
+    "Cosa fai quando piove tutto il giorno?",
+    "Che cosa ti fa sentire a casa?",
+    "Qual è l'ultima foto che hai fatto?",
+    "Cosa metteresti in valigia per tre giorni?",
+    "Che consiglio daresti a chi impara l'italiano?",
+    "Qual è la tua parola italiana preferita?",
+    "Cosa farai domani alle otto di sera?",
+    "Chi cucina a casa tua?",
+    "Qual è stata l'ultima cosa che ti ha fatto arrabbiare?"
+  ];
+
+  var PAROLE = [
+    "pinguino","semaforo","gelato","calzino","ombrello","tostapane","zanzara","ascensore",
+    "spazzolino","lavatrice","cactus","ciabatte","francobollo","cavolfiore","martello","pigiama",
+    "elicottero","cuscino","tartaruga","forchetta","cipolla","dinosauro","ombrellone","orologio",
+    "cocomero","valigia","scarpone","bicicletta","coccodrillo","sedia","tappeto","piscina",
+    "mozzarella","chiodo","scoiattolo","ventilatore","lampadina","barattolo","pennello",
+    "aspirapolvere","canguro","biscotto","guanto","formica","trapano","salvagente","cravatta",
+    "matita","zucchina","tromba","paracadute","asciugacapelli","sciarpa","scogliera","girasole",
+    "pentola","mappamondo","temperino","criceto","altalena","fischietto","portafoglio","spugna",
+    "trattore","farfalla","catena","mandarino","chitarra","faro","forbici","gomitolo","sombrero",
+    "rospo","ghiacciolo","pattini","telecomando","zainetto","nuvola","campanello","pinza",
+    "carrello","moka","piumino","scatolone","fungo","grattacielo","pesce rosso","medusa",
+    "bullone","tegola","seme di girasole","carriola"
+  ];
+
+  var RACCORDI = ["a proposito","comunque","tipo","insomma","adesso che ci penso","per dire","tra l'altro","guarda caso"];
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function pescaDiverso(lista, escluso){
+    var pool = lista.filter(function(x){ return x !== escluso; });
+    if(!pool.length) pool = lista;
+    return pool[Math.floor(Math.random()*pool.length)];
+  }
+  function mescola(a){ a = a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+  function mmss(s){ var m = Math.floor(s/60), r = Math.round(s%60); return m + ":" + (r<10?"0":"") + r; }
+  function nome(){ return ($("nome").value || "").trim(); }
+
+  /* un bip corto, senza file audio */
+  var ctxAudio = null, suono = true;
+  function bip(alto){
+    if(!suono) return;
+    try{
+      if(!ctxAudio) ctxAudio = new (window.AudioContext || window.webkitAudioContext)();
+      var o = ctxAudio.createOscillator(), g = ctxAudio.createGain();
+      o.frequency.value = alto ? 880 : 440; o.type = "sine";
+      g.gain.value = 0.06;
+      o.connect(g); g.connect(ctxAudio.destination);
+      o.start();
+      g.gain.exponentialRampToValueAtTime(0.0001, ctxAudio.currentTime + 0.18);
+      o.stop(ctxAudio.currentTime + 0.2);
+    }catch(e){}
+  }
+
+  /* ---------- schermi ---------- */
+  var attivo = "sScelta";
+  function mostra(id){
+    attivo = id;
+    Array.prototype.forEach.call(document.querySelectorAll(".schermo"), function(s){
+      s.classList.toggle("active", s.id === id);
+    });
+    window.scrollTo({ top:0, behavior:"auto" });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("[data-modo]"), function(b){
+    b.addEventListener("click", function(){ mostra(b.dataset.modo); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll(".indietro"), function(b){
+    b.addEventListener("click", function(){ fermaTutto(); mostra("sScelta"); });
+  });
+
+  /* ============ 1 · IL COMPRESSORE ============ */
+  var DURATE = [90, 60, 40];
+  var GIRO = 2 * Math.PI * 54;
+  $("cQuadrante").style.strokeDasharray = GIRO;
+
+  var comp = { tema:null, giro:-1, blocchi:[], resta:0, id:null, inCorso:false };
+
+  function cDisegnaAnello(frazione){
+    $("cQuadrante").style.strokeDashoffset = GIRO * (1 - frazione);
+    $("cAnello").classList.toggle("poco", frazione <= 0.2);
+  }
+  function cDisegnaGiri(){
+    var box = $("cGiri"); box.innerHTML = "";
+    DURATE.forEach(function(d, i){
+      var el = document.createElement("div");
+      el.className = "giro" + (i === comp.giro ? " corrente" : (comp.blocchi[i] != null ? " fatto" : ""));
+      el.innerHTML = '<div class="d">' + d + " secondi</div>" +
+                     '<div class="n">' + (comp.blocchi[i] != null ? comp.blocchi[i] : "·") + "</div>";
+      box.appendChild(el);
+    });
+  }
+  function cAzzera(){
+    clearInterval(comp.id); comp.id = null;
+    comp.giro = -1; comp.blocchi = []; comp.inCorso = false; comp.resta = DURATE[0];
+    $("cTempo").textContent = mmss(DURATE[0]);
+    cDisegnaAnello(1); cDisegnaGiri();
+    $("cVai").disabled = !comp.tema;
+    $("cVai").textContent = "Via";
+    $("cBlocco").disabled = true;
+    $("cChiudi").disabled = true;
+    $("cFine").hidden = true;
+  }
+  function cAvviaGiro(){
+    comp.giro++;
+    if(comp.giro >= DURATE.length){ cFinale(); return; }
+    comp.blocchi[comp.giro] = 0;
+    comp.resta = DURATE[comp.giro];
+    comp.inCorso = true;
+    $("cTempo").textContent = mmss(comp.resta);
+    cDisegnaAnello(1); cDisegnaGiri();
+    $("cVai").disabled = true; $("cBlocco").disabled = false; $("cChiudi").disabled = false;
+    bip(true);
+    clearInterval(comp.id);
+    comp.id = setInterval(function(){
+      comp.resta -= 0.1;
+      if(comp.resta <= 0){ comp.resta = 0; }
+      $("cTempo").textContent = mmss(Math.ceil(comp.resta));
+      cDisegnaAnello(comp.resta / DURATE[comp.giro]);
+      if(comp.resta <= 0) cChiudiGiro();
+    }, 100);
+  }
+  function cChiudiGiro(){
+    clearInterval(comp.id); comp.id = null; comp.inCorso = false;
+    bip(false);
+    cDisegnaGiri();
+    $("cBlocco").disabled = true; $("cChiudi").disabled = true;
+    if(comp.giro >= DURATE.length - 1){ cFinale(); return; }
+    $("cVai").disabled = false;
+    $("cVai").textContent = "Giro " + (comp.giro + 2) + " · " + DURATE[comp.giro + 1] + " secondi";
+    $("cTempo").textContent = mmss(DURATE[comp.giro + 1]);
+    cDisegnaAnello(1);
+  }
+  function cFinale(){
+    var n = $("cNumeroni"); n.innerHTML = "";
+    DURATE.forEach(function(d, i){
+      n.innerHTML += "<div><span>" + d + " secondi</span><b>" + (comp.blocchi[i] != null ? comp.blocchi[i] : "·") + "</b></div>";
+    });
+    var primo = comp.blocchi[0] || 0, ultimo = comp.blocchi[DURATE.length - 1] || 0;
+    var chi = nome() ? nome() + ", " : "";
+    var frase;
+    if(primo > ultimo) frase = chi + "da " + primo + " blocchi a " + ultimo + ": meno tempo e meno pause. È esattamente quello che doveva succedere.";
+    else if(primo === ultimo) frase = chi + "stesso numero di blocchi in meno tempo: vuol dire che sei andata più veloce a parità di inciampi.";
+    else frase = chi + "il terzo giro è il più duro: il tempo si stringe. Riprova domani sullo stesso tema e guarda i numeri.";
+    $("cFrase").textContent = frase;
+    $("cFine").hidden = false;
+    $("cVai").disabled = true; $("cBlocco").disabled = true; $("cChiudi").disabled = true;
+  }
+  $("cPesca").addEventListener("click", function(){
+    comp.tema = pescaDiverso(TEMI, comp.tema);
+    $("cTema").textContent = comp.tema;
+    cAzzera();
+  });
+  $("cVai").addEventListener("click", cAvviaGiro);
+  $("cChiudi").addEventListener("click", function(){ if(comp.inCorso) cChiudiGiro(); });
+  $("cBlocco").addEventListener("click", function(){
+    if(!comp.inCorso) return;
+    comp.blocchi[comp.giro]++; cDisegnaGiri();
+  });
+  $("cAzzera").addEventListener("click", cAzzera);
+  cAzzera();
+
+  /* ============ 2 · RAFFICA ============ */
+  var SECONDI = 5, QUANTE = 30;
+  var raff = { mazzo:[], i:0, prese:0, perse:0, resta:0, id:null, inCorso:false };
+
+  function rDisegnaBarra(frazione){
+    $("rRiempi").style.width = (frazione * 100) + "%";
+    $("rBarra").classList.toggle("poco", frazione <= 0.34);
+  }
+  function rProssima(){
+    if(raff.i >= QUANTE){ rFinale(); return; }
+    $("rEtichetta").textContent = "domanda " + (raff.i + 1) + " di " + QUANTE;
+    $("rDomanda").textContent = raff.mazzo[raff.i];
+    raff.resta = SECONDI;
+    rDisegnaBarra(1);
+    bip(true);
+  }
+  function rVia(){
+    raff.mazzo = mescola(DOMANDE).slice(0, QUANTE);
+    raff.i = 0; raff.prese = 0; raff.perse = 0; raff.inCorso = true;
+    $("rRisposte").textContent = "0"; $("rPerse").textContent = "0";
+    $("rFine").hidden = true;
+    $("rVia").disabled = true; $("rPresa").disabled = false; $("rStop").disabled = false;
+    rProssima();
+    clearInterval(raff.id);
+    raff.id = setInterval(function(){
+      raff.resta -= 0.1;
+      rDisegnaBarra(Math.max(0, raff.resta / SECONDI));
+      if(raff.resta <= 0){
+        raff.perse++; $("rPerse").textContent = raff.perse;
+        raff.i++; rProssima();
+      }
+    }, 100);
+  }
+  function rPresa(){
+    if(!raff.inCorso) return;
+    raff.prese++; $("rRisposte").textContent = raff.prese;
+    raff.i++; rProssima();
+  }
+  function rFerma(){
+    clearInterval(raff.id); raff.id = null; raff.inCorso = false;
+    $("rVia").disabled = false; $("rPresa").disabled = true; $("rStop").disabled = true;
+    rDisegnaBarra(0);
+  }
+  function rFinale(){
+    rFerma();
+    $("rDomanda").textContent = "Finita.";
+    $("rEtichetta").textContent = "raffica completata";
+    var fatte = raff.prese;
+    $("rNumeroni").innerHTML =
+      "<div><span>in tempo</span><b>" + fatte + "</b></div>" +
+      "<div><span>su</span><b>" + QUANTE + "</b></div>" +
+      "<div><span>secondi a testa</span><b>" + SECONDI + "</b></div>";
+    var chi = nome() ? nome() + ", " : "";
+    var frase;
+    if(fatte >= 26) frase = chi + "non stai più traducendo: stai parlando. Questa è la soglia.";
+    else if(fatte >= 18) frase = chi + "buon ritmo. Le domande perse sono quelle dove sei tornata in inglese per un attimo.";
+    else if(fatte >= 10) frase = chi + "metà: normalissimo all'inizio. Il trucco è rispondere una cosa qualsiasi, subito, anche banale.";
+    else frase = chi + "poche, ma la prima volta conta pochissimo. Rifalla domani: si sale in fretta.";
+    $("rFrase").textContent = frase;
+    $("rFine").hidden = false;
+  }
+  $("rVia").addEventListener("click", rVia);
+  $("rPresa").addEventListener("click", rPresa);
+  $("rStop").addEventListener("click", function(){ rFerma(); rFinale(); });
+  $("rSuono").addEventListener("click", function(){
+    suono = !suono;
+    this.setAttribute("aria-pressed", String(suono));
+    this.textContent = "Suono: " + (suono ? "acceso" : "spento");
+  });
+  rDisegnaBarra(0);
+
+  /* ============ 3 · PAROLE BOMBA ============ */
+  var OGNI = 15, FINESTRA = 10;
+  var bomba = { tema:null, stato:"fermo", resta:0, parola:null, piazzate:[], perse:0, id:null, usate:[] };
+
+  RACCORDI.forEach(function(r){
+    var s = document.createElement("span"); s.textContent = r; $("bRaccordi").appendChild(s);
+  });
+
+  function bDisegnaTrofei(){
+    var box = $("bTrofei"); box.innerHTML = "";
+    bomba.piazzate.forEach(function(p){
+      var s = document.createElement("span");
+      s.textContent = p.parola;
+      if(!p.ok) s.className = "persa";
+      box.appendChild(s);
+    });
+  }
+  function bFermo(){
+    clearInterval(bomba.id); bomba.id = null; bomba.stato = "fermo";
+    $("bVia").disabled = !bomba.tema; $("bVia").textContent = "Via";
+    $("bPiazzata").disabled = true; $("bStop").disabled = true;
+    $("bBarra").hidden = true;
+  }
+  function bNuovaParola(){
+    /* non ripeto una parola finché non sono finite tutte */
+    var disponibili = PAROLE.filter(function(p){ return bomba.usate.indexOf(p) < 0; });
+    if(!disponibili.length){ bomba.usate = []; disponibili = PAROLE; }
+    bomba.parola = pescaDiverso(disponibili, bomba.parola);
+    bomba.usate.push(bomba.parola);
+    bomba.stato = "parola"; bomba.resta = FINESTRA;
+    $("bAttesa").textContent = "infilala nel discorso!";
+    $("bParola").textContent = bomba.parola;
+    $("bBarra").hidden = false;
+    $("bPiazzata").disabled = false;
+    bip(true);
+  }
+  function bChiudiParola(ok){
+    if(bomba.stato !== "parola") return;
+    bomba.piazzate.push({ parola: bomba.parola, ok: ok });
+    if(!ok){ bomba.perse++; bip(false); }
+    bDisegnaTrofei();
+    bomba.stato = "attesa"; bomba.resta = OGNI;
+    $("bParola").textContent = "";
+    $("bBarra").hidden = true;
+    $("bPiazzata").disabled = true;
+  }
+  function bVia(){
+    bomba.stato = "attesa"; bomba.resta = OGNI;
+    bomba.piazzate = []; bomba.perse = 0; bomba.usate = [];
+    bDisegnaTrofei();
+    $("bFine").hidden = true;
+    $("bVia").disabled = true; $("bStop").disabled = false;
+    $("bParola").textContent = "";
+    clearInterval(bomba.id);
+    bomba.id = setInterval(function(){
+      bomba.resta -= 0.1;
+      if(bomba.stato === "attesa"){
+        $("bAttesa").textContent = "la prossima parola fra " + Math.ceil(Math.max(0, bomba.resta)) + "…";
+        if(bomba.resta <= 0) bNuovaParola();
+      } else if(bomba.stato === "parola"){
+        $("bRiempi").style.width = Math.max(0, bomba.resta / FINESTRA * 100) + "%";
+        $("bBarra").classList.toggle("poco", bomba.resta <= 3.5);
+        if(bomba.resta <= 0) bChiudiParola(false);
+      }
+    }, 100);
+  }
+  function bFinale(){
+    bFermo();
+    var ok = bomba.piazzate.filter(function(p){ return p.ok; }).length;
+    var tot = bomba.piazzate.length;
+    $("bNumeroni").innerHTML =
+      "<div><span>piazzate</span><b>" + ok + "</b></div>" +
+      "<div><span>arrivate</span><b>" + tot + "</b></div>" +
+      "<div><span>saltate</span><b>" + bomba.perse + "</b></div>";
+    var chi = nome() ? nome() + ", " : "";
+    var frase;
+    if(tot === 0) frase = "Nessuna bomba: il giro è stato troppo corto.";
+    else if(ok === tot) frase = chi + "tutte piazzate senza fermarti. È la cosa che in Italia ti servirà più della grammatica.";
+    else if(ok >= tot / 2) frase = chi + "più della metà agganciate al volo. Quelle saltate erano le più assurde, ed è normale.";
+    else frase = chi + "le parole ti hanno spiazzata: la prossima volta prova a partire sempre da «a proposito…», ti dà due secondi.";
+    $("bFrase").textContent = frase;
+    $("bAttesa").textContent = "";
+    $("bFine").hidden = false;
+  }
+  $("bPesca").addEventListener("click", function(){
+    bomba.tema = pescaDiverso(TEMI, bomba.tema);
+    $("bTema").textContent = bomba.tema;
+    bFermo();
+    $("bAttesa").textContent = "La prossima parola fra…";
+    $("bParola").textContent = "";
+    bomba.piazzate = []; bDisegnaTrofei();
+    $("bFine").hidden = true;
+  });
+  $("bVia").addEventListener("click", bVia);
+  $("bPiazzata").addEventListener("click", function(){ bChiudiParola(true); });
+  $("bStop").addEventListener("click", bFinale);
+  bFermo();
+
+  /* ---------- tastiera ---------- */
+  function fermaTutto(){
+    clearInterval(comp.id); comp.id = null; comp.inCorso = false;
+    rFerma();
+    bFermo();
+  }
+  document.addEventListener("keydown", function(e){
+    if(/^(INPUT|TEXTAREA)$/.test((e.target.tagName || "").toUpperCase())) return;
+    if(e.key === " "){
+      e.preventDefault();
+      if(attivo === "sCompressore") $("cBlocco").click();
+      else if(attivo === "sRaffica"){ if(raff.inCorso) $("rPresa").click(); else $("rVia").click(); }
+      else if(attivo === "sBomba"){ if(bomba.stato === "parola") $("bPiazzata").click(); }
+    } else if(e.key === "Enter" && attivo === "sCompressore"){
+      e.preventDefault();
+      if(comp.inCorso) $("cChiudi").click(); else if(!$("cVai").disabled) $("cVai").click();
+    } else if(e.key === "Escape"){
+      fermaTutto(); mostra("sScelta");
+    }
+  });
+})();
+</script>
+</body>
+</html>
