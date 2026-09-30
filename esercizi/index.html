@@ -267,6 +267,15 @@ a.ex:hover{
   font-family:var(--mono); font-size:0.68rem; letter-spacing:0.13em;
   text-transform:uppercase; color:var(--ink-soft);
 }
+/* La vignetta quadrata accanto al titolo. Se manca il file sparisce
+   da sola e la card torna quella di prima. */
+.ex-head{ display:flex; align-items:center; gap:12px; }
+.ex-head h3{ margin:0; }
+.ex-ico{
+  flex:0 0 auto; width:56px; height:56px; border-radius:14px;
+  border:1px solid var(--rule); background:var(--paper); object-fit:cover;
+}
+.ex.is-locked .ex-ico, .ex.is-soon .ex-ico{ filter:saturate(.55); }
 .ex p.blurb{ color:var(--ink-soft); font-size:0.99rem; }
 .ex-go{
   margin-top:auto; padding-top:8px;
@@ -472,99 +481,99 @@ const EXERCISES = [
   // ---------- A1 ----------
   { level:"A1", skill:"Speaking", title:"Your first 80 phrases",
     blurb:"Not words: whole sentences you can use on day one, grouped by the moment you need them. Three ways to train, one of them a game.",
-    href:"prime-frasi/", access:"free" },
+    icon:"icone/prime-frasi.webp", href:"prime-frasi/", access:"free" },
 
   { level:"A1", skill:"Vocabulary", title:"The first 186 words",
     blurb:"Flashcards for the words you meet first, nouns with their article and a real sentence on the back. The ones you miss come back sooner.",
-    href:"parole-a1/", access:"free" },
+    icon:"icone/parole-a1.webp", href:"parole-a1/", access:"free" },
 
   { level:"A1", skill:"Vocabulary", title:"Describing people",
     blurb:"Hair, face, build, age, what they wear, what they are like, plus the phrases that hold it together. Where a word can be drawn, the back of the card draws it: you learn ricci by seeing curly hair.",
-    href:"descrivere/", access:"locked" },
+    icon:"icone/descrivere.webp", href:"descrivere/", access:"locked" },
 
   { level:"A1", skill:"Grammar", title:"The words that open a question",
     blurb:"Chi, cosa, quando, dove, come, perch\u00e9, quanto. Plus the three that change with the noun: quanta acqua, quanti amici, queste chiavi.",
-    href:"parole-domanda/", access:"locked" },
+    icon:"icone/parole-domanda.webp", href:"parole-domanda/", access:"locked" },
 
   { level:"A1", skill:"Grammar", title:"Mio, tuo, suo: the possessives",
     blurb:"My phone, your keys, their house. Pick the right person, then make it agree with the noun, family words included.",
-    href:"possessivi/", access:"locked" },
+    icon:"icone/possessivi.webp", href:"possessivi/", access:"locked" },
 
   { level:"A1", skill:"Grammar", title:"Essere and avere, finally",
     blurb:"The two verbs everything else is built on. Twenty sentences, corrected as you go.",
-    href:"a1-essere-avere/", access:"soon" },
+    icon:"icone/essere-avere.webp", href:"a1-essere-avere/", access:"soon" },
 
   // ---------- A2 ----------
   { level:"A2", skill:"Grammar", title:"Molto: when it changes, when it doesn't",
     blurb:"Very, or a lot of? One is fixed, the other agrees. Hundreds of sentences, never the same round twice.",
-    href:"palestra-grammatica/?mode=molto", access:"locked" },
+    icon:"icone/molto.webp", href:"palestra-grammatica/?mode=molto", access:"locked" },
 
   { level:"A2", skill:"Grammar", title:"Agreement: the gym",
     blurb:"Adjectives, questo, tutto, c'\u00e8 and ci sono. Warm up, then beat your own record against the clock.",
-    href:"palestra-grammatica/?mode=accordo", access:"locked" },
+    icon:"icone/accordo.webp", href:"palestra-grammatica/?mode=accordo", access:"locked" },
 
   { level:"A2", skill:"Grammar", title:"Prepositions, simple and articulated",
     blurb:"A Roma, in Italia, in treno, sul tavolo, nella borsa, dalle nove alle cinque. Six families instead of a list to memorise, and four of them build new sentences every single round.",
-    href:"preposizioni/", access:"locked" },
+    icon:"icone/preposizioni.webp", href:"preposizioni/", access:"locked" },
 
   { level:"A2", skill:"Grammar", title:"Passato prossimo 1: essere or avere?",
     blurb:"The past tense Italians use all day, starting with the half everyone gets wrong. Pick the auxiliary and conjugate it.",
-    href:"passato-prossimo/?mode=aux", access:"free" },
+    icon:"icone/pp-aux.webp", href:"passato-prossimo/?mode=aux", access:"free" },
 
   { level:"A2", skill:"Grammar", title:"Passato prossimo 2: the participle",
     blurb:"Regular endings first, then the handful of irregulars worth learning. With essere it agrees, with avere it never does.",
-    href:"passato-prossimo/?mode=part", access:"locked" },
+    icon:"icone/pp-part.webp", href:"passato-prossimo/?mode=part", access:"locked" },
 
   { level:"A2", skill:"Grammar", title:"Passato prossimo 3: both at once",
     blurb:"Auxiliary and participle together, agreement included. Sixty verbs, hundreds of sentences, sixty seconds on the clock.",
-    href:"passato-prossimo/?mode=all", access:"locked" },
+    icon:"icone/pp-all.webp", href:"passato-prossimo/?mode=all", access:"locked" },
 
   { level:"A2", skill:"Vocabulary", title:"300 more words",
     blurb:"The deck after the first 186: work, money, health, feelings, and the words that link one sentence to the next. Its own boxes, so the two decks never mix.",
-    href:"parole-a2/", access:"locked" },
+    icon:"icone/parole-a2.webp", href:"parole-a2/", access:"locked" },
 
   { level:"A2", skill:"Writing", title:"Write a message that sounds Italian",
     blurb:"Not translated from English. Ten real messages to rewrite, with my corrections.",
-    href:"a2-messaggi/", access:"soon" },
+    icon:"icone/messaggi.webp", href:"a2-messaggi/", access:"soon" },
 
   // ---------- B1 ----------
   { level:"B1", skill:"Grammar", title:"Ne, ci and the pronouns",
     blurb:"Ne ho due, ci vado sabato, la chiamo, le telefono. 191 sentences: quantity, places, direct, indirect and agreement in the past. Choose which groups go into the deck, then take the sixty second challenge.",
-    href:"pronomi/", access:"locked" },
+    icon:"icone/pronomi.webp", href:"pronomi/", access:"locked" },
 
   { level:"B1", skill:"Grammar", title:"Two pronouns at once",
     blurb:"Te lo presto, glielo dico, gliene parlo, ce l'ho. The step after the single pronouns: who first, what second, and the everyday formulas.",
-    href:"pronomi-combinati/", access:"locked" },
+    icon:"icone/pronomi-combinati.webp", href:"pronomi-combinati/", access:"locked" },
 
   { level:"B1", skill:"Grammar", title:"Adjective + infinitive: di, da, a or nothing",
     blurb:"\u00c8 bello viaggiare, ma questo libro \u00e8 bello DA leggere. Four constructions that look alike and never are. Choose, type, or race the clock.",
-    href:"aggettivo-infinito/", access:"locked" },
+    icon:"icone/aggettivo-infinito.webp", href:"aggettivo-infinito/", access:"locked" },
 
   { level:"B1", skill:"Listening", title:"Italians speaking at normal speed",
     blurb:"Short clips, no slow-motion voice. Listen, guess, reveal, listen again.",
-    href:"b1-ascolto/", access:"soon" },
+    icon:"icone/ascolto.webp", href:"b1-ascolto/", access:"soon" },
 
   { level:"B1", skill:"Grammar", title:"Imperfetto vs passato prossimo",
     blurb:"The one that separates people who studied Italian from people who speak it.",
-    href:"b1-imperfetto/", access:"soon" },
+    icon:"icone/imperfetto.webp", href:"b1-imperfetto/", access:"soon" },
 
   { level:"B1", skill:"Vocabulary", title:"Words for arguing politely",
     blurb:"Disagreeing, insisting, changing your mind. What conversation is actually made of.",
-    href:"b1-discutere/", access:"soon" },
+    icon:"icone/discutere.webp", href:"b1-discutere/", access:"soon" },
 
   // ---------- B2 ----------
   { level:"B2", skill:"Grammar", title:"Congiuntivo, the honest guide",
     blurb:"When it is really needed, when Italians skip it, and how to stop being afraid of it.",
-    href:"b2-congiuntivo/", access:"soon" },
+    icon:"icone/congiuntivo.webp", href:"b2-congiuntivo/", access:"soon" },
 
   { level:"B2", skill:"Listening", title:"Regional accents, one at a time",
     blurb:"Milan, Rome, Naples, Palermo. The same sentence, four mouths.",
-    href:"b2-accenti/", access:"soon" },
+    icon:"icone/accenti.webp", href:"b2-accenti/", access:"soon" },
 
   // ---------- C1 ----------
   { level:"C1", skill:"Writing", title:"Idioms that give you away",
     blurb:"The expressions that make people ask where you learned your Italian.",
-    href:"c1-modi-di-dire/", access:"soon" },
+    icon:"icone/modi-di-dire.webp", href:"c1-modi-di-dire/", access:"soon" },
 ];
 
 /* ================================================================
@@ -627,7 +636,11 @@ const EXERCISES = [
     return "<" + tag + ' class="' + cls + '"' + attrs + ' data-lvl="' + ex.level + '">' +
       '<div class="ex-top"><span class="lvl">' + ex.level + '</span>' +
       '<span class="skill">' + ex.skill + "</span>" + badge + "</div>" +
-      "<h3>" + ex.title + "</h3>" +
+      '<div class="ex-head">' +
+        (ex.icon ? '<img class="ex-ico" src="' + ex.icon + '" alt="" loading="lazy" decoding="async"' +
+                   ' width="112" height="112" onerror="this.style.display=\'none\'">' : "") +
+        "<h3>" + ex.title + "</h3>" +
+      "</div>" +
       '<p class="blurb">' + ex.blurb + "</p>" +
       '<p class="ex-go">' + foot + "</p>" +
       "</" + tag + ">";
