@@ -63,6 +63,7 @@ header.sign{padding:28px 0 2px}
 .tag-cat{display:inline-block;font-family:var(--display);font-size:.72rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;border-radius:999px;padding:5px 13px;position:relative;z-index:1}
 .carta-testo{font-family:var(--display);font-weight:700;font-size:clamp(1.25rem,3.2vw,1.9rem);line-height:1.35;margin:14px auto 0;max-width:34ch;position:relative;z-index:1}
 .carta-vuota{color:var(--muted);font-family:var(--text);font-weight:400;font-style:italic;font-size:1.05rem}
+.appigli{font-family:var(--hand);font-size:1.3rem;color:var(--muted);margin:12px 0 0;position:relative;z-index:1}
 
 /* cronometro */
 .orologio{font-family:var(--display);font-weight:800;font-size:clamp(3.4rem,13vw,6rem);line-height:1;font-variant-numeric:tabular-nums;margin:6px 0 4px;transition:color .3s}
@@ -191,74 +192,123 @@ canvas#coriandoli{position:fixed;inset:0;pointer-events:none;z-index:40}
   "use strict";
 
   var CAT = {
-    convincere: { l:"Convincere",   c:"#C4312B" },
-    sport:      { l:"Sport e corsi", c:"#2E5E4E" },
-    viaggi:  { l:"Viaggi",        c:"#E8A33D" },
-    lavoro:  { l:"Lavoro",        c:"#16233F" },
-    persone: { l:"Persone",       c:"#8A5B12" },
-    jolly:   { l:"Jolly",         c:"#7A4B8C" }
+    racconta: { l:"Racconta",     c:"#C4312B" },
+    descrivi: { l:"Descrivi",     c:"#2E5E4E" },
+    spiega:   { l:"Spiega",       c:"#E8A33D" },
+    difendi:  { l:"Difendi",      c:"#16233F" },
+    panni:    { l:"Nei panni di", c:"#8A5B12" },
+    sese:     { l:"E se…",        c:"#7A4B8C" }
   };
 
+  /* t = la carta · a = i tre appigli per quando si blocca a metà */
   var CARTE = [
-    /* ---- convincere ---- */
-    {k:"convincere", t:"Devi convincere chi decide a darti un'occasione importante, anche se non hai mai fatto prima quel tipo di cosa."},
-    {k:"convincere", t:"Devi dire a qualcuno cosa non ha funzionato in una cosa di cui va fiero, con eleganza e un filo di ironia. Te lo sta chiedendo davvero."},
-    {k:"convincere", t:"All'ultimo momento manca la persona chiave: convinci gli altri a cavarsela insieme a te, adesso."},
-    {k:"convincere", t:"Stai intervistando qualcuno che vuole parlare di tutt'altro: riportalo sul punto senza essere sgarbata."},
-    {k:"convincere", t:"Devi convincere chi mette i soldi a restare, dopo che l'ultima cosa \u00e8 andata malissimo."},
-    {k:"convincere", t:"Devi spiegare a una persona che il suo lavoro va tagliato a met\u00e0, e l'ha scritto lei."},
-    {k:"convincere", t:"\u00c8 gi\u00e0 entrato il pubblico e qualcosa non funziona: tieni buona la sala per dieci minuti, parlando."},
-    {k:"convincere", t:"Convinci una persona che dice \u00abquella cosa non fa per me\u00bb a provarla una volta sola."},
+    /* ---- racconta ---- */
+    {k:"racconta", t:"La volta che ti sei persa e la cosa è durata più del previsto.",
+      a:["dove eri","chi c'era con te","come è finita"]},
+    {k:"racconta", t:"La cena peggiore della tua vita, dall'invito al ritorno a casa.",
+      a:["chi ti aveva invitata","il momento esatto","cosa hai detto uscendo"]},
+    {k:"racconta", t:"La volta che hai detto una bugia e si è complicata da sola.",
+      a:["perché l'hai detta","quando si è ingrandita","come ne sei uscita"]},
+    {k:"racconta", t:"Il viaggio in cui è andato storto tutto quello che poteva andare storto.",
+      a:["il primo intoppo","il peggiore","cosa rifaresti uguale"]},
+    {k:"racconta", t:"La volta che ti è venuto da ridere in un momento in cui non si poteva ridere.",
+      a:["dov'eri","chi ti ha fatto ridere","come è andata a finire"]},
+    {k:"racconta", t:"Una giornata cominciata malissimo e finita bene.",
+      a:["la sveglia","il momento della svolta","la sera"]},
+    {k:"racconta", t:"La volta che hai incontrato per caso qualcuno che non vedevi da anni.",
+      a:["dove","chi ha parlato per primo","com'era cambiato"]},
+    {k:"racconta", t:"Il regalo più strano che hai ricevuto, o che hai fatto tu.",
+      a:["chi","la faccia di chi l'ha aperto","che fine ha fatto"]},
 
-    /* ---- sport e corsi ---- */
-    {k:"sport", t:"Sei la pi\u00f9 esperta del gruppo: convinci una principiante terrorizzata a non mollare dopo la prima brutta figura."},
-    {k:"sport", t:"Spiega a chi ti fa domande perch\u00e9 hai rinunciato proprio il giorno della gara, dopo mesi di preparazione."},
-    {k:"sport", t:"Rispondi a un genitore convinto che quello sport sia troppo pericoloso per suo figlio."},
-    {k:"sport", t:"Hai perso per una decisione che ritieni sbagliata: parlane con chi l'ha presa, senza perdere la calma."},
-    {k:"sport", t:"Convinci l'amica pi\u00f9 scettica a provare una sola lezione di una cosa che tu ami."},
-    {k:"sport", t:"Devi dire al tuo insegnante che cambi corso, e ti segue da anni."},
-    {k:"sport", t:"Spiega a chi non ne sa niente perch\u00e9 perdere in allenamento non \u00e8 una brutta cosa."},
-    {k:"sport", t:"Una persona del gruppo si comporta in modo pericoloso per gli altri: diglielo senza umiliarla davanti a tutti."},
+    /* ---- descrivi ---- */
+    {k:"descrivi", t:"La casa dei tuoi nonni, stanza per stanza.",
+      a:["l'odore","la stanza proibita","chi c'era sempre seduto"]},
+    {k:"descrivi", t:"La persona più strana che hai conosciuto, senza dire che è strana.",
+      a:["come parlava","una cosa che faceva sempre","come l'hai conosciuta"]},
+    {k:"descrivi", t:"Il tuo posto del cuore in un giorno qualsiasi, a partire dalle otto del mattino.",
+      a:["i rumori","chi ci trovi","perché proprio quello"]},
+    {k:"descrivi", t:"Cosa vede una persona che entra in casa tua per la prima volta.",
+      a:["la prima cosa","quella che nascondi","quella di cui vai fiera"]},
+    {k:"descrivi", t:"La tua città alle sette di sera d'inverno.",
+      a:["le luci","la gente","dove finisci sempre"]},
+    {k:"descrivi", t:"Il posto dove lavori, a chi non c'è mai stato.",
+      a:["com'è fatto","i rumori","la persona che lo tiene in piedi"]},
+    {k:"descrivi", t:"Una fotografia che hai in mente adesso.",
+      a:["chi c'è","cosa succede fuori dall'inquadratura","perché te la ricordi"]},
+    {k:"descrivi", t:"Il negozio o il mercato dove vai sempre.",
+      a:["chi ci lavora","cosa compri sempre","cosa non compri mai"]},
 
-    /* ---- viaggi ---- */
-    {k:"viaggi", t:"Hai perso il volo per pochi minuti: convinci l'impiegata al gate a farti salire comunque."},
-    {k:"viaggi", t:"Racconta a un'amica un episodio di viaggio che ti ha cambiato prospettiva, senza fare la predica."},
-    {k:"viaggi", t:"Sei in una città straniera e convinci un'amica riluttante a cambiare all'ultimo tutti i piani della serata."},
-    {k:"viaggi", t:"Tratta con un tassista che chiede palesemente troppo, senza offenderlo e senza cedere del tutto."},
-    {k:"viaggi", t:"Spiega a un amico scettico perché, secondo te, vale davvero la pena imparare una lingua straniera."},
-    {k:"viaggi", t:"Hanno perso la tua valigia e parti domani: convinci l'addetto a trovare una soluzione stasera."},
-    {k:"viaggi", t:"Hai prenotato una stanza che non assomiglia per niente alle foto: chiedi il cambio o i soldi indietro."},
-    {k:"viaggi", t:"Convinci i tuoi compagni di viaggio a rinunciare al museo più famoso per fare una cosa più strana."},
+    /* ---- spiega ---- */
+    {k:"spiega", t:"Spiega a un alieno come si fa il caffè con la moka, e perché ci teniamo tanto.",
+      a:["gli oggetti","i passaggi","l'errore classico"]},
+    {k:"spiega", t:"Insegna la carbonara per telefono a qualcuno che non ha mai cucinato niente.",
+      a:["cosa serve","i tempi","l'errore da evitare"]},
+    {k:"spiega", t:"Spiega le regole del tuo gioco preferito a chi non ha mai giocato a niente.",
+      a:["l'obiettivo","come si vince","la regola che nessuno capisce"]},
+    {k:"spiega", t:"Racconta la trama di un film che non hai visto, solo guardando il poster.",
+      a:["i personaggi","cosa succede","il finale"]},
+    {k:"spiega", t:"Spiega come si arriva da casa tua al centro, senza mappa e senza telefono.",
+      a:["il primo pezzo","il punto dove sbagliano tutti","quanto ci vuole"]},
+    {k:"spiega", t:"Spiega il tuo lavoro a un bambino di sei anni.",
+      a:["cosa fai tutto il giorno","a cosa serve","la parte bella"]},
+    {k:"spiega", t:"Insegna una cosa che sai fare tu e quasi nessun altro.",
+      a:["perché l'hai imparata","i passaggi","l'errore dei principianti"]},
+    {k:"spiega", t:"Spiega una festa del tuo paese a uno straniero che non ne ha mai sentito parlare.",
+      a:["cosa si fa","cosa si mangia","perché piace a tutti"]},
 
-    /* ---- lavoro ---- */
-    {k:"lavoro", t:"Chiedi al tuo capo due giorni da casa alla settimana, sapendo che lui è contrario per principio."},
-    {k:"lavoro", t:"Devi dire a un collega che il lavoro che ha fatto va rifatto da capo, e lui ci ha messo una settimana."},
-    {k:"lavoro", t:"Presenti un'idea che sai che non piacerà, e hai tre minuti prima che ti interrompano."},
-    {k:"lavoro", t:"Spieghi a un cliente arrabbiato perché il suo ordine arriverà con due settimane di ritardo."},
-    {k:"lavoro", t:"Ti offrono una promozione che non vuoi: dillo senza sembrare ingrata né poco ambiziosa."},
-    {k:"lavoro", t:"Convinci una persona in gamba a lavorare con te, sapendo che puoi offrirle meno di quanto guadagna."},
-    {k:"lavoro", t:"Devi ammettere davanti a tutti un errore che è costato tempo e soldi."},
-    {k:"lavoro", t:"Il tuo lavoro non si capisce mai: spiega cosa fai davvero, a qualcuno che non c'entra niente."},
+    /* ---- difendi ---- */
+    {k:"difendi", t:"L'inverno è meglio dell'estate, e chi dice il contrario mente.",
+      a:["tre argomenti","l'obiezione più forte","la tua risposta"]},
+    {k:"difendi", t:"Difendi la tua serie preferita davanti a chi la trova stupidissima.",
+      a:["perché ti piace","la scena che vince","cosa rispondi a «è banale»"]},
+    {k:"difendi", t:"I gatti sono meglio dei cani, davanti a un pubblico ostile. Oppure il contrario.",
+      a:["il primo argomento","l'esempio personale","la chiusura"]},
+    {k:"difendi", t:"L'ananas sulla pizza: prendi una posizione e tienila per tutto il tempo.",
+      a:["il principio","chi la pensa come te","la concessione che non fai"]},
+    {k:"difendi", t:"È meglio viaggiare da soli che in compagnia.",
+      a:["cosa guadagni","cosa perdi","la volta che l'hai provato"]},
+    {k:"difendi", t:"Il telefono ci ha migliorato la vita più di quanto ce l'abbia rovinata.",
+      a:["tre cose che prima non si potevano fare","l'accusa più comune","la risposta"]},
+    {k:"difendi", t:"La domenica pomeriggio è il momento più bello della settimana.",
+      a:["com'è fatta la tua","chi non è d'accordo","perché ha torto"]},
+    {k:"difendi", t:"Sostieni un'eresia gastronomica a tua scelta, e non ritrattare.",
+      a:["qual è","da quando la pratichi","chi ti ha guardato male"]},
 
-    /* ---- persone ---- */
-    {k:"persone", t:"Un'amica ti chiede un parere sincero su una scelta che secondo te è sbagliata. Dillo."},
-    {k:"persone", t:"Devi disdire all'ultimo una cosa importante per l'altra persona, e la verità non è bella."},
-    {k:"persone", t:"Convinci un parente testardo a fare una visita medica che rimanda da un anno."},
-    {k:"persone", t:"Racconta a qualcuno una brutta figura che hai fatto, in modo che sia divertente e non triste."},
-    {k:"persone", t:"Chiedi scusa per una cosa di cui, in fondo, non ti senti del tutto colpevole."},
-    {k:"persone", t:"Devi dire a un'amica che il suo nuovo compagno non ti piace, e lei te lo sta chiedendo davvero."},
-    {k:"persone", t:"Convinci la tua famiglia a passare le feste in modo completamente diverso dal solito."},
-    {k:"persone", t:"Spieghi a una persona molto più giovane perché una cosa che sembra enorme adesso, fra dieci anni non lo sarà."},
+    /* ---- nei panni di ---- */
+    {k:"panni", t:"Sei la guida turistica del posto più noioso del mondo e devi renderlo imperdibile.",
+      a:["la tappa principale","il momento clou","la frase della brochure"]},
+    {k:"panni", t:"Televendita: tre minuti per vendere una cosa completamente inutile.",
+      a:["il problema che risolve","la dimostrazione","il prezzo e l'offerta"]},
+    {k:"panni", t:"Il discorso di ringraziamento per un premio che sai di non meritare.",
+      a:["chi ringrazi","l'aneddoto","la finta modestia"]},
+    {k:"panni", t:"Il tuo cane racconta la sua giornata, e di te non parla benissimo.",
+      a:["la sveglia","il momento migliore","cosa non sopporta di te"]},
+    {k:"panni", t:"Sei il telecronista di una cosa domestica: due persone che montano un mobile.",
+      a:["i giocatori","l'azione decisiva","il commento finale"]},
+    {k:"panni", t:"Fai il brindisi al matrimonio di due persone che conosci appena.",
+      a:["come li conosci","l'aneddoto inventato","l'augurio"]},
+    {k:"panni", t:"Sei il meteorologo che deve annunciare una settimana orribile, ma con il sorriso.",
+      a:["giorno per giorno","la buona notizia","il consiglio finale"]},
+    {k:"panni", t:"Sei l'agente immobiliare che deve vendere la casa dove vivi tu, difetti compresi.",
+      a:["il punto forte","come giri il difetto","a chi la venderesti"]},
 
-    /* ---- jolly ---- */
-    {k:"jolly", t:"Ti svegli certa di aver già vissuto la giornata di ieri: convinci un amico che non sei impazzita."},
-    {k:"jolly", t:"Sei l'ultima cliente prima della chiusura: convinci il commesso a farti entrare per un motivo assurdo ma per te vitale."},
-    {k:"jolly", t:"Ti hanno scelta per rappresentare il paese in uno sport che detesti: spiega perché hai accettato."},
-    {k:"jolly", t:"Sei la persona pi\u00f9 famosa del paese ma senza trucco non ti riconosce nessuno: convinci la security a farti entrare alla festa data in tuo onore."},
-    {k:"jolly", t:"Giuri di aver visto un fantasma nel posto dove ti alleni: convinci gli altri a crederti."},
-    {k:"jolly", t:"Puoi cancellare una sola invenzione dalla storia dell'umanità: scegli e difendi la scelta."},
-    {k:"jolly", t:"Devi vendere una cosa completamente inutile a qualcuno che ha già capito che è inutile."},
-    {k:"jolly", t:"Torni indietro di dieci anni per cinque minuti: cosa dici a te stessa, e perché proprio quello."}
+    /* ---- e se ---- */
+    {k:"sese", t:"Ti restano ventiquattro ore in questa città: dall'alba a mezzanotte, cosa fai.",
+      a:["la mattina","con chi","l'ultima cosa"]},
+    {k:"sese", t:"Ti svegli nel corpo di una persona che conosci: racconta la prima mattina.",
+      a:["chi è","la prima difficoltà","cosa scopri di lei"]},
+    {k:"sese", t:"Gli alieni distruggono la Terra ma tu puoi salvarne una cosa sola.",
+      a:["cosa salvi","come glielo spieghi","cosa lasci andare"]},
+    {k:"sese", t:"Vinci una montagna di soldi ma li devi spendere tutti in un giorno.",
+      a:["la prima spesa","la più assurda","cosa ti resta la sera"]},
+    {k:"sese", t:"Puoi cancellare un'invenzione dalla storia dell'umanità: scegli e difendi la scelta.",
+      a:["quale","cosa cambia","chi ti odierebbe"]},
+    {k:"sese", t:"Torni per un giorno ai tuoi sedici anni sapendo quello che sai adesso.",
+      a:["che giorno scegli","cosa fai di diverso","cosa non tocchi"]},
+    {k:"sese", t:"Puoi invitare a cena tre persone, vive o morte: chi, e com'è andata la serata.",
+      a:["chi e perché","il menù","chi ha parlato di più"]},
+    {k:"sese", t:"Da domani puoi fare qualsiasi lavoro per un anno, senza conseguenze.",
+      a:["quale","il primo giorno","cosa impareresti"]}
   ];
 
   /* L'ascoltatore cambia a ogni turno: è la parte che Fabio interpreta */
@@ -353,7 +403,8 @@ canvas#coriandoli{position:fixed;inset:0;pointer-events:none;z-index:40}
     var c = CAT[carta.k];
     $("carta").innerHTML =
       '<span class="tag-cat" style="background:' + c.c + '1A;color:' + c.c + ';border:1px solid ' + c.c + '55">' + esc(c.l) + "</span>" +
-      '<p class="carta-testo">' + esc(carta.t) + "</p>";
+      '<p class="carta-testo">' + esc(carta.t) + "</p>" +
+      '<p class="appigli">' + (carta.a || []).map(esc).join(" · ") + "</p>";
     $("cambia").disabled = false;
     $("pannelloTempo").hidden = false;
     preparaTurni();
