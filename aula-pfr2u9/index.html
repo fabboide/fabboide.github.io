@@ -119,10 +119,17 @@ h1{ font-family:var(--display); font-weight:800; font-size:clamp(2rem,5.5vw,3.1r
 .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:18px; }
 .card{
   background:var(--paper-2); border:2px solid var(--ink); border-radius:20px;
-  padding:20px; display:flex; flex-direction:column; gap:10px;
+  --pad:20px; padding:var(--pad); display:flex; flex-direction:column; gap:10px;
   box-shadow:4px 4px 0 rgba(22,35,63,.08);
 }
 .card-top{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+/* La copertina sborda del padding della card e chiude in alto con il bordo */
+.cover{
+  margin:calc(var(--pad) * -1) calc(var(--pad) * -1) 4px;
+  border-bottom:2px solid var(--ink); border-radius:18px 18px 0 0;
+  overflow:hidden; background:var(--paper); aspect-ratio:16 / 9;
+}
+.cover img{ display:block; width:100%; height:100%; object-fit:cover; }
 .tag{
   font-family:var(--mono); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase;
   border:1px solid var(--rule); border-radius:999px; padding:.22em .6em; color:var(--ink-soft);
@@ -177,7 +184,7 @@ footer{
   .controls{ padding:10px 0; }
   .controls-in{ padding:0 16px; }
   .wrap, .topbar-in{ padding-left:16px; padding-right:16px; }
-  .card{ padding:18px; }
+  .card{ --pad:18px; }
 }
 </style>
 </head>
@@ -310,95 +317,113 @@ footer{
      ========================================================== */
   var E = "https://talkwithfabio.com/esercizi/";
 
+  /* Le copertine stanno ancora sul CDN di Higgsfield. Quando i PNG sono
+     nel repo, rimetti img:"copertine/<nome>.webp" e cancella questa nota.
+     Se un URL muore la fascia si toglie da sola, la card resta valida. */
   var MATERIALI = [
     {
       titolo:"Il colloquio", livello:"A2", tipo:"Giochi",
       cosa:"Simulazione di colloquio di lavoro: esce un annuncio generato (azienda, contratto, orario, stipendio), lei si presenta e io faccio il selezionatore. 53 domande divise in sei fasi, e una trattativa finale con un obiettivo da strappare.",
       live:"Il cuore non \u00e8 il colloquio, \u00e8 la trattativa: lei ha un obiettivo (le ferie ad agosto, niente turni di notte, cento euro in pi\u00f9) e io sono pagato per dire di no almeno due volte. Se cede al primo rifiuto non ha vinto. Alla fine le faccio raccontare tutto al passato.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204757_f2c64dad-5a23-476f-aa52-b0273939a5dd_min.webp",
       href:"colloquio/", tag:"lavoro studio professioni colloquio curriculum contratto stipendio ferie universit\u00e0 esami laurea a2 b1 trattativa role play parlato"
     },
     {
       titolo:"Identikit", livello:"A1", tipo:"Giochi",
       cosa:"Trova la persona misteriosa facendo domande sull'aspetto fisico. Il tabellone \u00e8 generato a ogni partita e le facce sono disegnate dai tratti, quindi non ce ne sono mai due uguali.",
       live:"Serve a farle fare le domande, non a risponderle: nell'oca lei risponde e basta. Regola ferrea, la domanda si dice a voce prima che io clicchi. Primo giro con dodici facce e solo capelli e viso, poi ventiquattro e tutto acceso. Alla fine le chiedo di descrivere la persona da sola.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204838_63bb03df-69dc-41b0-bc61-161d9cb88db9_min.webp",
       href:"identikit/", tag:"aspetto fisico descrizione capelli occhi barba occhiali domande interrogative a1 indovina chi persona"
     },
     {
       titolo:"La roulette dei verbi", livello:"A1", tipo:"Grammatica",
       cosa:"Generatore di frasi a tre colonne: soggetto, verbo e contesto. Lei coniuga ad alta voce, poi scopre la forma e la rende vera su di s\u00e9. Presente, passato prossimo o misto, con la catena di tre azioni e la variante vero o falso.",
       live:"Il cuore \u00e8 il secondo giro: dopo la forma corretta le chiedo di dire se \u00e8 vera per lei, e da l\u00ec parte la conversazione. Tengo acceso l'interruttore dei punti deboli, cos\u00ec tornano lei, loro e i riflessivi, che sono i posti dove cade.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204756_587a146b-c0e4-454c-9dd4-e75579aba6dd_min.webp",
       href:"roulette/", tag:"verbi coniugazione presente passato prossimo riflessivi irregolari giornata routine a1 a2 generatore parlato tblt catena vero falso"
     },
     {
       titolo:"Missione Italia", livello:"A1", tipo:"Giochi",
       cosa:"Gioco dell'oca da 30 caselle: ogni casella \u00e8 un compito parlato, con due livelli di difficolt\u00e0 per giocatore.",
       live:"Condivido lo schermo e conduco io. Le stelle danno un tiro in pi\u00f9, e con tre si compra il tiro doppio: serve a tenere alta l'attenzione a fine lezione.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204756_b00ea103-9609-4803-8c0e-6c8f2ace78b7_min.webp",
       href:"oca/", tag:"gioco oca dado casa giornata spesa tavola strada insieme principianti a1 due studenti"
     },
     {
       titolo:"Il Giro del Mondo", livello:"A2", tipo:"Giochi",
       cosa:"Reality show a tempo: viaggio, cibo, imprevisti e confessionale. Io faccio la giuria e do i punti.",
       live:"Perfetto per sciogliere chi parla poco: cronometro, punteggio e nessuna correzione durante la prova. Gli errori li scrivo negli appunti e li riprendo alla fine.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204838_8e3b636c-ce1f-4f27-bb35-ffed628920fd_min.webp",
       href:"giro-del-mondo/", tag:"gioco reality viaggio cibo imprevisto sfida lampo parlato a2 b1 punteggio"
     },
     {
       titolo:"Il Processo", livello:"B1", tipo:"Giochi",
       cosa:"Tribunale dell'italiano: accuse assurde da smontare parlando, con il pubblico ministero che incalza al congiuntivo.",
       live:"Da B1 in su. Le battute dell'accusa sono tutte al congiuntivo: gliele leggo a voce e gli chiedo di rispondere nello stesso registro.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204756_54bb5129-674f-4de2-a37e-be08d71d9316_min.webp",
       href:"processo/", tag:"gioco processo tribunale accuse alibi congiuntivo difesa b1 b2 parlato"
     },
     {
       titolo:"Al mercato!", livello:"A2", tipo:"Giochi",
       cosa:"Missione di spesa con budget: sei bancarelle, prezzi all'etto e al chilo, imprevisti da risolvere parlando e scontrino finale.",
       live:"Condivido lo schermo e faccio il venditore: il prodotto va nel carrello solo dopo che l'ha chiesto a voce. Un imprevisto ogni due bancarelle; alla fine racconta la spesa al passato e spiega come cucina il piatto.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204756_22de204f-dc9d-4ec9-8edc-8e24512695e3_min.webp",
       href:"mercato/", tag:"gioco mercato spesa cibo cucina negozi etto chilo ne partitivo budget imprevisti tblt a2 b1 parlato"
     },
     {
       titolo:"Che mi racconti?", livello:"A2", tipo:"Giochi",
       cosa:"Le domande di tutti i giorni: indovina la domanda dalla risposta, rispondi ai messaggi delle amiche e chiudi con un role-play a tre obiettivi.",
       live:"Faccio io l'amica. Nella fase 2 non le lascio dire solo \u00abbene\u00bb: deve sempre rilanciare con due domande sue. Con la sfida pronomi accesa ogni carta chiede un ci / lo / le, cos\u00ec ripassa i pronomi mentre parla.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204755_4890e319-8cc3-4ca8-ae92-c4d7754394b3_min.webp",
       href:"chiacchiere/", tag:"gioco domande conversazione quotidiano chat amiche come stai giornata weekend programmi novita reazioni role play pronomi ci diretti indiretti a2 b1 parlato"
     },
     {
       titolo:"Dove cade l'accento?", livello:"A2", tipo:"Pronuncia",
       cosa:"Accento tonico, doppie e lettura ad alta voce: si tocca la sillaba forte, si distinguono le coppie (sete/sette, ancora/\u00e0ncora) e si legge un testo con gli accenti a scomparsa.",
       live:"Chiesto da Ari. Prima legge la parola a voce alta, poi tocca la sillaba: l'ipotesi viene prima della verifica. Nei testi accendo gli accenti al primo giro e li spengo al secondo. Se il computer ha una voce italiana compaiono i pulsanti Ascolta, se no le parole le dico io.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204839_fcca9c89-73d9-41a0-b794-97137610b963_min.webp",
       href:"accento/", tag:"pronuncia accento tonico sillabe piane sdrucciole tronche doppie coppie minime lettura ad alta voce scioglilingua vocali a2 b1 ari"
     },
     {
       titolo:"Il caso", livello:"A2", tipo:"Giochi",
       cosa:"Otto enigmi da risolvere facendo domande da s\u00ec o no: le domande restano scritte sullo schermo e la deduzione si costruisce riga dopo riga.",
       live:"Io rispondo solo con i tre tasti e scrivo la domanda mentre la dice. Vietato chiedere perch\u00e9: le domande aperte vanno trasformate, ed \u00e8 l\u00ec che si impara. Soluzione, indizi e risposte pronte stanno nel fascicolo, che si apre in una finestra separata dallo schermo condiviso.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204757_b2294034-b41d-4162-8d1e-3b672f664a8e_min.webp",
       href:"caso/", tag:"gioco enigmi deduzione domande si no chiuse indovinelli lateral thinking giallo investigazione parlato a2 b1 elena"
     },
     {
       titolo:"Racconta il passato", livello:"A2", tipo:"Giochi",
       cosa:"Passato prossimo e imperfetto in quattro giri: carte da raccontare, scenografia e azione da montare, scelta del tempo in due passi e domande a raffica.",
       live:"Il primo giro \u00e8 racconto libero col cronometro da un minuto, gli ultimi due sono drill. Nella fase 3 prima sceglie il tempo, poi dice la frase intera ad alta voce, e solo dopo scopriamo la soluzione: scegliere \u00e8 facile, coniugare \u00e8 il punto. L'interruttore delle concordanze cambia tutti i participi.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204757_987c9f21-d8de-491c-92f3-72909c7bcef1_min.webp",
       href:"passato/", tag:"gioco passato prossimo imperfetto racconto tempi verbali participio concordanze carte storie drill domande raffica a2 b1 parlato"
     },
     {
       titolo:"Missioni in Italia", livello:"A2", tipo:"Giochi",
       cosa:"Ventuno missioni di sopravvivenza in sette luoghi: ottenere la password del wifi, il binario, la taglia giusta. Con ostacoli veri e il passaporto dei timbri.",
       live:"Faccio io il barista, il bigliettaio, la commessa. Il copione con ostacolo e informazioni si apre in una finestra separata dallo schermo condiviso. La missione vale solo se l'informazione ce l'ha davvero. Sta fuori dall'aula, su /missioni/, perch\u00e9 lo studente se la riapre da solo in viaggio: il link glielo mando io.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204756_dffe1f23-9d78-4414-8821-5bac098e9218_min.webp",
       href:"https://talkwithfabio.com/missioni/", tag:"gioco missioni viaggio sopravvivenza bar stazione ristorante negozio strada albergo farmacia ostacoli kit frasi passaporto timbri pronuncia a1 a2 b1 parlato"
     },
     {
       titolo:"Dialoghi da ripetere", livello:"A2", tipo:"Parlato",
       cosa:"Dieci dialoghi di tutti i giorni (bar, ristorante, biglietteria, negozio, strada, albergo, farmacia, telefono, mercato, conoscersi) con la traduzione riga per riga.",
       live:"Prima lo leggiamo insieme a due voci. Poi premo Nascondi le mie battute: resta l'inglese e l'italiano lo deve produrre lei. Tocco una riga e la sento (voce del browser), o la scopro se \u00e8 coperta. Si stampa anche.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204854_659bee7e-f2c4-46a2-96ff-c6269b5dd424_min.webp",
       href:"https://talkwithfabio.com/dialoghi/", tag:"dialoghi frasi situazioni bar ristorante stazione negozio strada albergo farmacia telefono mercato viaggio frasario ripetere a1 a2 parlato"
     },
     {
       titolo:"Fluenza: i tre allenamenti", livello:"B1", tipo:"Parlato",
       cosa:"Il Compressore (stesso racconto in 90, 60 e 40 secondi), Raffica (30 micro-domande da cinque secondi) e Parole Bomba (una parola a caso da infilare nel discorso ogni quindici secondi).",
       live:"Qui non si corregge e non si conta se \u00e8 giusto: l'unica cosa che misuro \u00e8 che non si sia fermata. Nel Compressore premo spazio a ogni blocco e alla fine vede i tre numeri affiancati. In Raffica va avanti da sola: se scadono i cinque secondi si passa comunque. Tutto a caratteri grandi, si condivide lo schermo.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204855_276ea99c-3580-4de0-948a-ec9baee5751b_min.webp",
       href:"fluenza/", tag:"fluenza fluency parlare veloce pause reazione traduzione mentale compressore raffica parole bomba raccordi a proposito comunque b1 b2 parlato cronometro"
     },
     {
       titolo:"La sedia calda", livello:"B2", tipo:"Parlato",
       cosa:"Improvvisazione a tempo con la tecnica 4/3/2: 48 carte da raccontare, descrivere, spiegare, difendere, interpretare o immaginare, ognuna con tre appigli, e la stessa cosa detta tre volte con sempre meno tempo.",
       live:"Il contenuto non cambia mai, cambia solo il tempo: al terzo giro il cervello \u00e8 libero di occuparsi di come dirlo. A ogni turno cambia anche l'ascoltatore, e quello lo faccio io: prima ascolto e basta, poi ho fretta, alla fine non le credo. Nelle note ho la lista di cosa ascoltare da spuntare, e gli appunti restano in fondo.",
+      img:"https://d8j0ntlcm91z4.cloudfront.net/user_39MqeQkJyaOaI4MBe0KT0jMh1d7/hf_20260930_204856_f6404014-2514-452e-aa08-bc8f3568eac0_min.webp",
       href:"sedia-calda/", tag:"improvvisazione 4/3/2 fluenza ripetizione carte racconta descrivi spiega difendi nei panni di e se monologo appigli cronometro ascoltatore role play b1 b2 parlato"
     }
   ];
@@ -458,6 +483,10 @@ footer{
 
   function scheda(m){
     var h = '<article class="card">';
+    if(m.img){
+      h += '<div class="cover"><img src="'+esc(m.img)+'" alt="" loading="lazy" decoding="async" width="1200" height="675"'+
+           ' onerror="var c=this.parentNode; if(c&&c.parentNode) c.parentNode.removeChild(c);"></div>';
+    }
     h += '<div class="card-top"><span class="tag lv">'+esc(m.livello === "tutti" ? "A1 · A2" : m.livello)+'</span>';
     h += '<span class="tag">'+esc(m.tipo)+'</span>';
     if(!m.href) h += '<span class="tag">da scrivere</span>';
