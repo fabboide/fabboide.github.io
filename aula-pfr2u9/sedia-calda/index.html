@@ -191,8 +191,8 @@ canvas#coriandoli{position:fixed;inset:0;pointer-events:none;z-index:40}
   "use strict";
 
   var CAT = {
-    teatro:  { l:"Teatro",        c:"#C4312B" },
-    judo:    { l:"Judo e BJJ",    c:"#2E5E4E" },
+    convincere: { l:"Convincere",   c:"#C4312B" },
+    sport:      { l:"Sport e corsi", c:"#2E5E4E" },
     viaggi:  { l:"Viaggi",        c:"#E8A33D" },
     lavoro:  { l:"Lavoro",        c:"#16233F" },
     persone: { l:"Persone",       c:"#8A5B12" },
@@ -200,25 +200,25 @@ canvas#coriandoli{position:fixed;inset:0;pointer-events:none;z-index:40}
   };
 
   var CARTE = [
-    /* ---- teatro ---- */
-    {k:"teatro", t:"Sei un'attrice e devi convincere un regista scettico a darti la parte principale, anche se non hai mai fatto un ruolo drammatico."},
-    {k:"teatro", t:"Sei una critica teatrale: devi dire all'attore protagonista, con eleganza e un filo di ironia, cosa non ha funzionato nel suo spettacolo."},
-    {k:"teatro", t:"Cinque minuti prima del debutto il protagonista è sparito: convinci il resto della compagnia a improvvisare la scena con te."},
-    {k:"teatro", t:"Intervisti un'attrice subito dopo gli applausi, ma lei vuole parlare di tutt'altro: riportala sul pezzo senza essere sgarbata."},
-    {k:"teatro", t:"Dirigi un piccolo teatro e devi convincere un finanziatore a restare, dopo uno spettacolo andato malissimo."},
-    {k:"teatro", t:"Devi spiegare a un attore che il suo monologo va tagliato di metà, e lui l'ha scritto lui."},
-    {k:"teatro", t:"Il pubblico è entrato e le luci non funzionano: parla al pubblico e tienilo lì per dieci minuti."},
-    {k:"teatro", t:"Convinci una persona che «il teatro non fa per me» a venire a vedere uno spettacolo, uno solo."},
+    /* ---- convincere ---- */
+    {k:"convincere", t:"Devi convincere chi decide a darti un'occasione importante, anche se non hai mai fatto prima quel tipo di cosa."},
+    {k:"convincere", t:"Devi dire a qualcuno cosa non ha funzionato in una cosa di cui va fiero, con eleganza e un filo di ironia. Te lo sta chiedendo davvero."},
+    {k:"convincere", t:"All'ultimo momento manca la persona chiave: convinci gli altri a cavarsela insieme a te, adesso."},
+    {k:"convincere", t:"Stai intervistando qualcuno che vuole parlare di tutt'altro: riportalo sul punto senza essere sgarbata."},
+    {k:"convincere", t:"Devi convincere chi mette i soldi a restare, dopo che l'ultima cosa \u00e8 andata malissimo."},
+    {k:"convincere", t:"Devi spiegare a una persona che il suo lavoro va tagliato a met\u00e0, e l'ha scritto lei."},
+    {k:"convincere", t:"\u00c8 gi\u00e0 entrato il pubblico e qualcosa non funziona: tieni buona la sala per dieci minuti, parlando."},
+    {k:"convincere", t:"Convinci una persona che dice \u00abquella cosa non fa per me\u00bb a provarla una volta sola."},
 
-    /* ---- judo e bjj ---- */
-    {k:"judo", t:"Sei cintura nera di judo: convinci una principiante terrorizzata a non mollare dopo la prima sconfitta in gara."},
-    {k:"judo", t:"Sei un'atleta di BJJ e devi spiegare a un giornalista perché ti sei ritirata proprio il giorno della finale."},
-    {k:"judo", t:"Insegni judo ai bambini e devi rispondere a un genitore convinto che sia uno sport troppo violento."},
-    {k:"judo", t:"Hai perso per una decisione arbitrale che ritieni sbagliata: parla con l'arbitro senza perdere la calma."},
-    {k:"judo", t:"Convinci la tua amica più scettica sugli sport da combattimento a provare una sola lezione."},
-    {k:"judo", t:"Devi dire al tuo maestro che vuoi cambiare palestra, e lui ti allena da otto anni."},
-    {k:"judo", t:"Spiega a chi non ne sa niente perché perdere in allenamento non è una brutta cosa."},
-    {k:"judo", t:"Un compagno si allena in modo pericoloso per gli altri: diglielo, senza umiliarlo davanti a tutti."},
+    /* ---- sport e corsi ---- */
+    {k:"sport", t:"Sei la pi\u00f9 esperta del gruppo: convinci una principiante terrorizzata a non mollare dopo la prima brutta figura."},
+    {k:"sport", t:"Spiega a chi ti fa domande perch\u00e9 hai rinunciato proprio il giorno della gara, dopo mesi di preparazione."},
+    {k:"sport", t:"Rispondi a un genitore convinto che quello sport sia troppo pericoloso per suo figlio."},
+    {k:"sport", t:"Hai perso per una decisione che ritieni sbagliata: parlane con chi l'ha presa, senza perdere la calma."},
+    {k:"sport", t:"Convinci l'amica pi\u00f9 scettica a provare una sola lezione di una cosa che tu ami."},
+    {k:"sport", t:"Devi dire al tuo insegnante che cambi corso, e ti segue da anni."},
+    {k:"sport", t:"Spiega a chi non ne sa niente perch\u00e9 perdere in allenamento non \u00e8 una brutta cosa."},
+    {k:"sport", t:"Una persona del gruppo si comporta in modo pericoloso per gli altri: diglielo senza umiliarla davanti a tutti."},
 
     /* ---- viaggi ---- */
     {k:"viaggi", t:"Hai perso il volo per pochi minuti: convinci l'impiegata al gate a farti salire comunque."},
@@ -254,7 +254,7 @@ canvas#coriandoli{position:fixed;inset:0;pointer-events:none;z-index:40}
     {k:"jolly", t:"Ti svegli certa di aver già vissuto la giornata di ieri: convinci un amico che non sei impazzita."},
     {k:"jolly", t:"Sei l'ultima cliente prima della chiusura: convinci il commesso a farti entrare per un motivo assurdo ma per te vitale."},
     {k:"jolly", t:"Ti hanno scelta per rappresentare il paese in uno sport che detesti: spiega perché hai accettato."},
-    {k:"jolly", t:"Sei così famosa che senza trucco non ti riconosce nessuno: convinci la security a farti entrare al tuo spettacolo."},
+    {k:"jolly", t:"Sei la persona pi\u00f9 famosa del paese ma senza trucco non ti riconosce nessuno: convinci la security a farti entrare alla festa data in tuo onore."},
     {k:"jolly", t:"Giuri di aver visto un fantasma nel posto dove ti alleni: convinci gli altri a crederti."},
     {k:"jolly", t:"Puoi cancellare una sola invenzione dalla storia dell'umanità: scegli e difendi la scelta."},
     {k:"jolly", t:"Devi vendere una cosa completamente inutile a qualcuno che ha già capito che è inutile."},
@@ -293,6 +293,10 @@ canvas#coriandoli{position:fixed;inset:0;pointer-events:none;z-index:40}
     var v = JSON.parse(localStorage.getItem(CHIAVE) || "null");
     if(v && typeof v === "object"){ for(var k in stato){ if(v[k] !== undefined) stato[k] = v[k]; } }
   }catch(e){}
+  /* se la categoria salvata non esiste piu' (o e' stata rinominata) si torna a "tutto":
+     se no il mazzo resterebbe vuoto e la pesca non darebbe niente */
+  if(stato.cat !== "tutto" && !CAT[stato.cat]) stato.cat = "tutto";
+  if(!SET.some(function(s){ return s.k === stato.set; })) stato.set = "classico";
   var tSalva = null;
   function salva(){
     clearTimeout(tSalva);
