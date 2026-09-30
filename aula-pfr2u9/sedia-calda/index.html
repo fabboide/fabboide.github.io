@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La sedia calda · Talk with Fabio</title>
+<meta name="description" content="Improvvisazione a tempo con la tecnica 4/3/2: stessa storia tre volte, sempre in meno tempo e con un ascoltatore sempre più difficile.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D; --kraft:#D9BC8C;
+  --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
+  --g1:#2E5E4E; --g2:#E8A33D; --g3:#C4312B;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.55}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:960px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700;font-size:.95rem}
+.logo-mark{width:19px;height:19px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.88rem;color:inherit}
+.nastro{height:8px;background:linear-gradient(90deg,var(--g1) 0 33%,var(--g2) 33% 66%,var(--g3) 66% 100%)}
+.wrap{max-width:960px;margin:0 auto;padding:0 18px 60px}
+
+header.sign{padding:28px 0 2px}
+.kicker{display:inline-block;font-family:var(--display);font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--tomato);border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:5px 13px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,6vw,3.3rem);line-height:1;margin:10px 0 0}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:66ch}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:700;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 14px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:11px 20px}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.giallo{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.grande{font-size:1.1rem;padding:15px 28px}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.en{color:var(--muted);font-style:italic;font-size:.9em}
+
+/* la carta in scena */
+.scena{position:relative;margin-top:18px;border:1px solid var(--line);border-radius:22px;background:var(--paper);padding:30px 28px;text-align:center;overflow:hidden}
+.scena::before{content:"";position:absolute;left:50%;top:-140px;width:420px;height:300px;transform:translateX(-50%);
+  background:radial-gradient(ellipse at center,rgba(232,163,61,.28),transparent 70%);pointer-events:none;transition:background .6s}
+.scena.giro2::before{background:radial-gradient(ellipse at center,rgba(232,163,61,.42),transparent 70%)}
+.scena.giro3::before{background:radial-gradient(ellipse at center,rgba(196,49,43,.36),transparent 70%)}
+.tag-cat{display:inline-block;font-family:var(--display);font-size:.72rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;border-radius:999px;padding:5px 13px;position:relative;z-index:1}
+.carta-testo{font-family:var(--display);font-weight:700;font-size:clamp(1.25rem,3.2vw,1.9rem);line-height:1.35;margin:14px auto 0;max-width:34ch;position:relative;z-index:1}
+.carta-vuota{color:var(--muted);font-family:var(--text);font-weight:400;font-style:italic;font-size:1.05rem}
+
+/* cronometro */
+.orologio{font-family:var(--display);font-weight:800;font-size:clamp(3.4rem,13vw,6rem);line-height:1;font-variant-numeric:tabular-nums;margin:6px 0 4px;transition:color .3s}
+.barra{height:14px;border-radius:999px;background:var(--line);overflow:hidden;max-width:520px;margin:0 auto}
+.barra i{display:block;height:100%;width:100%;border-radius:999px;transition:width 1s linear,background-color .4s}
+.turni{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.turno{border:2px solid var(--line);border-radius:14px;padding:8px 16px;min-width:92px;font-family:var(--display);background:var(--paper)}
+.turno .n{font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.turno .t{font-size:1.35rem;font-weight:800}
+.turno.corrente{border-color:var(--ink);background:var(--stone)}
+.turno.fatto{opacity:.55}
+.ascoltatore{margin-top:16px;background:#FBF0EE;border:1px dashed var(--tomato);border-radius:14px;padding:12px 16px;max-width:620px;margin-left:auto;margin-right:auto}
+.ascoltatore b{font-family:var(--display);color:var(--tomato)}
+.promemoria{font-family:var(--hand);font-size:1.3rem;color:var(--muted);margin-top:12px}
+
+/* finale */
+.finale{background:#20304F;color:#FFFDF8;border-radius:18px;padding:22px 24px;margin-top:18px}
+.finale h2{font-family:var(--display);color:var(--lemon);margin:0 0 8px;font-size:1.4rem}
+.finale p{margin:0 0 10px}
+.finale ul{margin:8px 0 0 18px;padding:0}
+.finale li{margin-bottom:6px}
+
+/* note del tutor + appunti */
+.pannello{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin-top:18px}
+.pannello h3{font-family:var(--display);font-size:1.05rem;margin:0 0 8px}
+.pannello.chiuso .dentro{display:none}
+.ascolto{list-style:none;margin:0;padding:0}
+.ascolto li{padding:8px 0 8px 30px;border-bottom:1px solid var(--line);position:relative;cursor:pointer}
+.ascolto li::before{content:"";position:absolute;left:0;top:11px;width:18px;height:18px;border:2px solid var(--line);border-radius:6px;background:var(--paper)}
+.ascolto li.ok{color:var(--muted)}
+.ascolto li.ok::before{content:"✓";color:var(--paper);background:var(--basil);border-color:var(--basil);display:grid;place-items:center;font-size:.78rem;line-height:1}
+.appunti textarea{width:100%;min-height:96px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.barra-piede{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.salvato{font-family:var(--hand);font-size:1.12rem;color:var(--basil)}
+kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 7px;background:var(--paper)}
+canvas#coriandoli{position:fixed;inset:0;pointer-events:none;z-index:40}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in">
+  <a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a>
+  <a class="back-link" href="../">&larr; La mia aula</a>
+</div></header>
+<div class="nastro" aria-hidden="true"></div>
+
+<div class="wrap">
+  <header class="sign">
+    <span class="kicker">improvvisazione a tempo · tecnica 4/3/2</span>
+    <h1>La sedia calda</h1>
+    <p>Pesca una carta, entra nel personaggio e racconta. Poi la stessa identica storia una seconda e una terza volta, con meno tempo e con un ascoltatore sempre più difficile. Non deve venire perfetta: deve venire <b>più scorrevole</b>.</p>
+  </header>
+
+  <div class="chips" id="chipCat"></div>
+  <div class="chips" id="chipSet" style="margin-top:10px"></div>
+
+  <div class="scena" id="scena">
+    <div id="carta"><p class="carta-vuota">Scegli una categoria e premi «Pesca una carta».</p></div>
+  </div>
+
+  <div class="toolbar">
+    <button class="btn" id="pesca" type="button">Pesca una carta</button>
+    <button class="btn ghost" id="cambia" type="button" disabled>Cambia carta</button>
+  </div>
+
+  <div class="pannello" id="pannelloTempo" hidden style="text-align:center">
+    <div class="turni" id="turni"></div>
+    <div class="orologio" id="orologio">4:00</div>
+    <div class="barra"><i id="riempi"></i></div>
+    <div class="ascoltatore" id="ascoltatore"></div>
+    <p class="promemoria">stessa storia, stesse cose: cambia solo il tempo</p>
+    <div class="toolbar" style="justify-content:center">
+      <button class="btn green grande" id="avvia" type="button">Avvia il turno 1</button>
+      <button class="btn ghost" id="pausa" type="button" disabled>Pausa</button>
+      <button class="btn ghost" id="rifai" type="button" disabled>Rifai questo turno</button>
+      <button class="btn ghost" id="salta" type="button" disabled>Chiudi il turno</button>
+    </div>
+    <p class="en" style="margin:10px 0 0"><kbd>spazio</kbd> avvia e mette in pausa · <kbd>invio</kbd> chiude il turno</p>
+
+    <div class="finale" id="finale" hidden style="text-align:left">
+      <h2>Tre turni, una storia sola</h2>
+      <p>La stessa cosa raccontata tre volte con sempre meno tempo e un ascoltatore sempre più scomodo. Adesso si guarda indietro, invece di andare avanti.</p>
+      <p style="margin-bottom:4px"><b>Tre domande, a voce:</b></p>
+      <ul>
+        <li>Cosa è stato più facile la terza volta rispetto alla prima?</li>
+        <li>C'è una frase che hai riusato apposta perché ti era piaciuta?</li>
+        <li>Cosa hai <i>tolto</i> per stare nel tempo, e ti è dispiaciuto toglierlo?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pannello chiuso" id="pannelloNote">
+    <h3 style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+      Note per l'insegnante
+      <button class="btn ghost" id="apriNote" type="button" style="padding:6px 14px;font-size:.85rem">Mostra</button>
+    </h3>
+    <div class="dentro">
+      <p style="margin:0 0 10px"><b>Perché funziona.</b> Non è solo un cronometro che stringe. Ripetere lo stesso contenuto tre volte sposta l'attenzione dal <i>cosa dire</i>, già risolto al primo giro, al <i>come dirlo</i>. Fra il turno 1 e il turno 3 si sentono meno esitazioni, frasi più lunghe, meno autocorrezioni ad alta voce.</p>
+      <p style="margin:0 0 10px"><b>L'ascoltatore cambia a ogni turno</b>, ed è la parte che fa lavorare davvero: nel 4/3/2 originale si cambia interlocutore, qui cambia il suo atteggiamento. Tu lo interpreti: al secondo giro hai fretta, al terzo non ci credi. Lei deve adattare il racconto, non solo accorciarlo.</p>
+      <p style="margin:0 0 6px"><b>Cosa ascoltare, senza interrompere.</b> Spunta quello che senti: serve per il minuto di correzione alla fine.</p>
+      <ul class="ascolto" id="ascolto">
+        <li>Preposizioni con l'infinito (pronta a, felice di, bello da, difficile da)</li>
+        <li>Congiuntivo dopo opinione, dubbio, desiderio</li>
+        <li>Connettivi alti al posto di «e poi» (tuttavia, anzi, a dire il vero, fatto sta che)</li>
+        <li>Discorso indiretto, se racconta cosa ha detto qualcuno</li>
+        <li>Autocorrezioni spontanee: buon segno, non si interrompe per farle notare</li>
+        <li>Parole cercate e non trovate: quelle vanno negli appunti</li>
+      </ul>
+      <p style="margin:12px 0 0"><b>Dopo i tre turni.</b> Vale più un minuto su una cosa sola che un elenco di correzioni. Le tre domande finali servono a farglielo notare da sola.</p>
+    </div>
+  </div>
+
+  <div class="pannello appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Le parole cercate e non trovate, le strutture da riprendere, le frasi venute bene.</p>
+    <textarea id="note" placeholder="Es. cercava «affrontare» · «ho detto che era» → fosse · bellissimo «fatto sta che»"></textarea>
+    <div class="barra-piede">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="azzeraTutto" type="button">Nuova lezione (azzera)</button>
+    </div>
+  </div>
+</div>
+<canvas id="coriandoli"></canvas>
+
+<script>
+(function(){
+  "use strict";
+
+  var CAT = {
+    teatro:  { l:"Teatro",        c:"#C4312B" },
+    judo:    { l:"Judo e BJJ",    c:"#2E5E4E" },
+    viaggi:  { l:"Viaggi",        c:"#E8A33D" },
+    lavoro:  { l:"Lavoro",        c:"#16233F" },
+    persone: { l:"Persone",       c:"#8A5B12" },
+    jolly:   { l:"Jolly",         c:"#7A4B8C" }
+  };
+
+  var CARTE = [
+    /* ---- teatro ---- */
+    {k:"teatro", t:"Sei un'attrice e devi convincere un regista scettico a darti la parte principale, anche se non hai mai fatto un ruolo drammatico."},
+    {k:"teatro", t:"Sei una critica teatrale: devi dire all'attore protagonista, con eleganza e un filo di ironia, cosa non ha funzionato nel suo spettacolo."},
+    {k:"teatro", t:"Cinque minuti prima del debutto il protagonista è sparito: convinci il resto della compagnia a improvvisare la scena con te."},
+    {k:"teatro", t:"Intervisti un'attrice subito dopo gli applausi, ma lei vuole parlare di tutt'altro: riportala sul pezzo senza essere sgarbata."},
+    {k:"teatro", t:"Dirigi un piccolo teatro e devi convincere un finanziatore a restare, dopo uno spettacolo andato malissimo."},
+    {k:"teatro", t:"Devi spiegare a un attore che il suo monologo va tagliato di metà, e lui l'ha scritto lui."},
+    {k:"teatro", t:"Il pubblico è entrato e le luci non funzionano: parla al pubblico e tienilo lì per dieci minuti."},
+    {k:"teatro", t:"Convinci una persona che «il teatro non fa per me» a venire a vedere uno spettacolo, uno solo."},
+
+    /* ---- judo e bjj ---- */
+    {k:"judo", t:"Sei cintura nera di judo: convinci una principiante terrorizzata a non mollare dopo la prima sconfitta in gara."},
+    {k:"judo", t:"Sei un'atleta di BJJ e devi spiegare a un giornalista perché ti sei ritirata proprio il giorno della finale."},
+    {k:"judo", t:"Insegni judo ai bambini e devi rispondere a un genitore convinto che sia uno sport troppo violento."},
+    {k:"judo", t:"Hai perso per una decisione arbitrale che ritieni sbagliata: parla con l'arbitro senza perdere la calma."},
+    {k:"judo", t:"Convinci la tua amica più scettica sugli sport da combattimento a provare una sola lezione."},
+    {k:"judo", t:"Devi dire al tuo maestro che vuoi cambiare palestra, e lui ti allena da otto anni."},
+    {k:"judo", t:"Spiega a chi non ne sa niente perché perdere in allenamento non è una brutta cosa."},
+    {k:"judo", t:"Un compagno si allena in modo pericoloso per gli altri: diglielo, senza umiliarlo davanti a tutti."},
+
+    /* ---- viaggi ---- */
+    {k:"viaggi", t:"Hai perso il volo per pochi minuti: convinci l'impiegata al gate a farti salire comunque."},
+    {k:"viaggi", t:"Racconta a un'amica un episodio di viaggio che ti ha cambiato prospettiva, senza fare la predica."},
+    {k:"viaggi", t:"Sei in una città straniera e convinci un'amica riluttante a cambiare all'ultimo tutti i piani della serata."},
+    {k:"viaggi", t:"Tratta con un tassista che chiede palesemente troppo, senza offenderlo e senza cedere del tutto."},
+    {k:"viaggi", t:"Spiega a un amico scettico perché, secondo te, vale davvero la pena imparare una lingua straniera."},
+    {k:"viaggi", t:"Hanno perso la tua valigia e parti domani: convinci l'addetto a trovare una soluzione stasera."},
+    {k:"viaggi", t:"Hai prenotato una stanza che non assomiglia per niente alle foto: chiedi il cambio o i soldi indietro."},
+    {k:"viaggi", t:"Convinci i tuoi compagni di viaggio a rinunciare al museo più famoso per fare una cosa più strana."},
+
+    /* ---- lavoro ---- */
+    {k:"lavoro", t:"Chiedi al tuo capo due giorni da casa alla settimana, sapendo che lui è contrario per principio."},
+    {k:"lavoro", t:"Devi dire a un collega che il lavoro che ha fatto va rifatto da capo, e lui ci ha messo una settimana."},
+    {k:"lavoro", t:"Presenti un'idea che sai che non piacerà, e hai tre minuti prima che ti interrompano."},
+    {k:"lavoro", t:"Spieghi a un cliente arrabbiato perché il suo ordine arriverà con due settimane di ritardo."},
+    {k:"lavoro", t:"Ti offrono una promozione che non vuoi: dillo senza sembrare ingrata né poco ambiziosa."},
+    {k:"lavoro", t:"Convinci una persona in gamba a lavorare con te, sapendo che puoi offrirle meno di quanto guadagna."},
+    {k:"lavoro", t:"Devi ammettere davanti a tutti un errore che è costato tempo e soldi."},
+    {k:"lavoro", t:"Il tuo lavoro non si capisce mai: spiega cosa fai davvero, a qualcuno che non c'entra niente."},
+
+    /* ---- persone ---- */
+    {k:"persone", t:"Un'amica ti chiede un parere sincero su una scelta che secondo te è sbagliata. Dillo."},
+    {k:"persone", t:"Devi disdire all'ultimo una cosa importante per l'altra persona, e la verità non è bella."},
+    {k:"persone", t:"Convinci un parente testardo a fare una visita medica che rimanda da un anno."},
+    {k:"persone", t:"Racconta a qualcuno una brutta figura che hai fatto, in modo che sia divertente e non triste."},
+    {k:"persone", t:"Chiedi scusa per una cosa di cui, in fondo, non ti senti del tutto colpevole."},
+    {k:"persone", t:"Devi dire a un'amica che il suo nuovo compagno non ti piace, e lei te lo sta chiedendo davvero."},
+    {k:"persone", t:"Convinci la tua famiglia a passare le feste in modo completamente diverso dal solito."},
+    {k:"persone", t:"Spieghi a una persona molto più giovane perché una cosa che sembra enorme adesso, fra dieci anni non lo sarà."},
+
+    /* ---- jolly ---- */
+    {k:"jolly", t:"Ti svegli certa di aver già vissuto la giornata di ieri: convinci un amico che non sei impazzita."},
+    {k:"jolly", t:"Sei l'ultima cliente prima della chiusura: convinci il commesso a farti entrare per un motivo assurdo ma per te vitale."},
+    {k:"jolly", t:"Ti hanno scelta per rappresentare il paese in uno sport che detesti: spiega perché hai accettato."},
+    {k:"jolly", t:"Sei così famosa che senza trucco non ti riconosce nessuno: convinci la security a farti entrare al tuo spettacolo."},
+    {k:"jolly", t:"Giuri di aver visto un fantasma nel posto dove ti alleni: convinci gli altri a crederti."},
+    {k:"jolly", t:"Puoi cancellare una sola invenzione dalla storia dell'umanità: scegli e difendi la scelta."},
+    {k:"jolly", t:"Devi vendere una cosa completamente inutile a qualcuno che ha già capito che è inutile."},
+    {k:"jolly", t:"Torni indietro di dieci anni per cinque minuti: cosa dici a te stessa, e perché proprio quello."}
+  ];
+
+  /* L'ascoltatore cambia a ogni turno: è la parte che Fabio interpreta */
+  var ASCOLTATORI = [
+    [ "ti ascolta e basta, non interrompe mai",
+      "è dalla tua parte e annuisce: prenditi tutto il tempo",
+      "è curioso e ti guarda: nessuna pressione" ],
+    [ "ha fretta e guarda l'orologio: vai al punto",
+      "si distrae e controlla il telefono: riprendilo con la voce",
+      "ti interrompe con «e quindi?» ogni volta che rallenti" ],
+    [ "non ti crede: ogni due frasi fa «mah, sarà…»",
+      "l'ha già sentita e si annoia: devi sorprenderlo",
+      "ha otto anni: semplifica tutto, ma non perdere il punto" ]
+  ];
+
+  var SET = [
+    { k:"classico", l:"4 · 3 · 2", t:[240,180,120] },
+    { k:"corto",    l:"3 · 2 · 1", t:[180,120,60] },
+    { k:"lampo",    l:"2 · 1,5 · 1", t:[120,90,60] }
+  ];
+  var COLORI = ["#2E5E4E", "#E8A33D", "#C4312B"];
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function mmss(s){ var m = Math.floor(s/60), r = Math.round(s%60); return m + ":" + (r<10?"0":"") + r; }
+  function aCaso(a){ return a[Math.floor(Math.random()*a.length)]; }
+
+  /* ---------- memoria ---------- */
+  var CHIAVE = "icf_sedia_calda_v1";
+  var stato = { cat:"tutto", set:"classico", note:"", ascolto:[] };
+  try{
+    var v = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(v && typeof v === "object"){ for(var k in stato){ if(v[k] !== undefined) stato[k] = v[k]; } }
+  }catch(e){}
+  var tSalva = null;
+  function salva(){
+    clearTimeout(tSalva);
+    tSalva = setTimeout(function(){
+      try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){}
+    }, 250);
+  }
+
+  /* ---------- filtri ---------- */
+  var chipCat = $("chipCat");
+  [{k:"tutto", l:"Tutto"}].concat(Object.keys(CAT).map(function(k){ return {k:k, l:CAT[k].l}; })).forEach(function(c){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = c.l; b.dataset.k = c.k;
+    b.setAttribute("aria-pressed", String(c.k === stato.cat));
+    b.addEventListener("click", function(){
+      stato.cat = c.k; salva(); mazzo = [];
+      Array.prototype.forEach.call(chipCat.children, function(x){
+        x.setAttribute("aria-pressed", String(x.dataset.k === stato.cat));
+      });
+    });
+    chipCat.appendChild(b);
+  });
+  var chipSet = $("chipSet");
+  SET.forEach(function(s){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = "Minuti " + s.l; b.dataset.k = s.k;
+    b.setAttribute("aria-pressed", String(s.k === stato.set));
+    b.addEventListener("click", function(){
+      stato.set = s.k; salva();
+      Array.prototype.forEach.call(chipSet.children, function(x){
+        x.setAttribute("aria-pressed", String(x.dataset.k === stato.set));
+      });
+      if(carta) preparaTurni();
+    });
+    chipSet.appendChild(b);
+  });
+  function tempi(){
+    for(var i=0;i<SET.length;i++){ if(SET[i].k === stato.set) return SET[i].t; }
+    return SET[0].t;
+  }
+
+  /* ---------- il mazzo ---------- */
+  var mazzo = [], carta = null;
+  function pool(){
+    return stato.cat === "tutto" ? CARTE : CARTE.filter(function(c){ return c.k === stato.cat; });
+  }
+  function pescaCarta(){
+    var p = pool();
+    if(!mazzo.length){
+      mazzo = p.map(function(_, i){ return i; });
+      for(var i=mazzo.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=mazzo[i];mazzo[i]=mazzo[j];mazzo[j]=t; }
+    }
+    carta = p[mazzo.pop()];
+    var c = CAT[carta.k];
+    $("carta").innerHTML =
+      '<span class="tag-cat" style="background:' + c.c + '1A;color:' + c.c + ';border:1px solid ' + c.c + '55">' + esc(c.l) + "</span>" +
+      '<p class="carta-testo">' + esc(carta.t) + "</p>";
+    $("cambia").disabled = false;
+    $("pannelloTempo").hidden = false;
+    preparaTurni();
+  }
+  $("pesca").addEventListener("click", pescaCarta);
+  $("cambia").addEventListener("click", pescaCarta);
+
+  /* ---------- i tre turni ---------- */
+  var giro = 0, resta = 0, id = null, inCorso = false, ascoltatori = [];
+
+  function disegnaTurni(){
+    var T = tempi(), box = $("turni"); box.innerHTML = "";
+    T.forEach(function(s, i){
+      var el = document.createElement("div");
+      el.className = "turno" + (i === giro ? " corrente" : (i < giro ? " fatto" : ""));
+      el.style.borderColor = i === giro ? COLORI[i] : "";
+      el.innerHTML = '<div class="n">turno ' + (i+1) + "</div>" +
+                     '<div class="t" style="color:' + COLORI[i] + '">' + mmss(s) + "</div>";
+      box.appendChild(el);
+    });
+  }
+  function disegnaTempo(){
+    var T = tempi();
+    $("orologio").textContent = mmss(Math.ceil(resta));
+    $("orologio").style.color = COLORI[giro];
+    $("riempi").style.width = Math.max(0, resta / T[giro] * 100) + "%";
+    $("riempi").style.background = COLORI[giro];
+    $("scena").className = "scena" + (giro === 1 ? " giro2" : giro === 2 ? " giro3" : "");
+    $("ascoltatore").innerHTML = "<b>Il tuo ascoltatore:</b> " + esc(ascoltatori[giro]);
+    $("avvia").textContent = "Avvia il turno " + (giro + 1);
+  }
+  function preparaTurni(){
+    ferma();
+    giro = 0; resta = tempi()[0];
+    ascoltatori = ASCOLTATORI.map(function(lista){ return aCaso(lista); });
+    $("finale").hidden = true;
+    $("avvia").disabled = false; $("pausa").disabled = true;
+    $("rifai").disabled = true; $("salta").disabled = true;
+    disegnaTurni(); disegnaTempo();
+  }
+  function ferma(){ clearInterval(id); id = null; inCorso = false; }
+  function avvia(){
+    if(inCorso || !carta) return;
+    inCorso = true;
+    $("avvia").disabled = true; $("pausa").disabled = false;
+    $("rifai").disabled = false; $("salta").disabled = false;
+    $("pausa").textContent = "Pausa";
+    bip(true);
+    clearInterval(id);
+    id = setInterval(function(){
+      resta -= 0.2;
+      if(resta <= 0){ resta = 0; disegnaTempo(); chiudiTurno(); return; }
+      disegnaTempo();
+    }, 200);
+  }
+  function chiudiTurno(){
+    ferma();
+    bip(false);
+    if(giro < tempi().length - 1){
+      giro++;
+      resta = tempi()[giro];
+      disegnaTurni(); disegnaTempo();
+      $("avvia").disabled = false; $("pausa").disabled = true;
+      $("rifai").disabled = true; $("salta").disabled = true;
+    } else {
+      giro = tempi().length - 1;
+      disegnaTurni();
+      $("avvia").disabled = true; $("pausa").disabled = true;
+      $("rifai").disabled = false; $("salta").disabled = true;
+      $("finale").hidden = false;
+      coriandoli();
+    }
+  }
+  $("avvia").addEventListener("click", avvia);
+  $("pausa").addEventListener("click", function(){
+    if(inCorso){ ferma(); this.textContent = "Riprendi"; $("avvia").disabled = true; }
+    else { avvia(); }
+  });
+  $("rifai").addEventListener("click", function(){
+    ferma(); resta = tempi()[giro];
+    $("avvia").disabled = false; $("pausa").disabled = true; $("rifai").disabled = true; $("salta").disabled = true;
+    $("finale").hidden = true;
+    disegnaTempo();
+  });
+  $("salta").addEventListener("click", function(){ if(inCorso || resta > 0) chiudiTurno(); });
+
+  /* ---------- note e appunti ---------- */
+  $("apriNote").addEventListener("click", function(){
+    var p = $("pannelloNote");
+    var chiuso = p.classList.toggle("chiuso");
+    this.textContent = chiuso ? "Mostra" : "Nascondi";
+  });
+  var voci = $("ascolto").children;
+  Array.prototype.forEach.call(voci, function(li, i){
+    if(stato.ascolto.indexOf(i) >= 0) li.classList.add("ok");
+    li.addEventListener("click", function(){
+      var k = stato.ascolto.indexOf(i);
+      if(k >= 0) stato.ascolto.splice(k, 1); else stato.ascolto.push(i);
+      li.classList.toggle("ok"); salva();
+    });
+  });
+  var note = $("note");
+  note.value = stato.note || "";
+  note.addEventListener("input", function(){
+    stato.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("azzeraTutto").addEventListener("click", function(){
+    if(!window.confirm("Azzero appunti e spunte?")) return;
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+
+  /* ---------- un bip, senza file audio ---------- */
+  var ctxA = null;
+  function bip(alto){
+    try{
+      if(!ctxA) ctxA = new (window.AudioContext || window.webkitAudioContext)();
+      var o = ctxA.createOscillator(), g = ctxA.createGain();
+      o.frequency.value = alto ? 880 : 420; o.type = "sine"; g.gain.value = 0.05;
+      o.connect(g); g.connect(ctxA.destination); o.start();
+      g.gain.exponentialRampToValueAtTime(0.0001, ctxA.currentTime + 0.2);
+      o.stop(ctxA.currentTime + 0.22);
+    }catch(e){}
+  }
+
+  /* ---------- coriandoli, nei colori del sito ---------- */
+  var tela = $("coriandoli"), pennello = tela.getContext("2d");
+  function misura(){ tela.width = window.innerWidth; tela.height = window.innerHeight; }
+  misura(); window.addEventListener("resize", misura);
+  function coriandoli(){
+    var colori = ["#2E5E4E","#E8A33D","#C4312B","#D9BC8C","#16233F"];
+    var pezzi = [], i;
+    for(i=0;i<90;i++){
+      pezzi.push({ x:Math.random()*tela.width, y:-20-Math.random()*tela.height*0.3,
+        w:6+Math.random()*6, h:8+Math.random()*8, vy:2+Math.random()*3, vx:-1.5+Math.random()*3,
+        r:Math.random()*360, vr:-6+Math.random()*12, c:colori[Math.floor(Math.random()*colori.length)] });
+    }
+    var f = 0;
+    (function passo(){
+      f++;
+      pennello.clearRect(0,0,tela.width,tela.height);
+      pezzi.forEach(function(p){
+        p.x += p.vx; p.y += p.vy; p.r += p.vr;
+        pennello.save(); pennello.translate(p.x,p.y); pennello.rotate(p.r*Math.PI/180);
+        pennello.fillStyle = p.c; pennello.fillRect(-p.w/2,-p.h/2,p.w,p.h); pennello.restore();
+      });
+      if(f < 200) requestAnimationFrame(passo);
+      else pennello.clearRect(0,0,tela.width,tela.height);
+    })();
+  }
+
+  /* ---------- tastiera ---------- */
+  document.addEventListener("keydown", function(e){
+    if(/^(INPUT|TEXTAREA)$/.test((e.target.tagName || "").toUpperCase())) return;
+    if(e.key === " "){
+      e.preventDefault();
+      if(!carta){ $("pesca").click(); return; }
+      if(inCorso) $("pausa").click(); else if(!$("avvia").disabled) $("avvia").click();
+    } else if(e.key === "Enter"){
+      e.preventDefault();
+      if(carta && !$("salta").disabled) $("salta").click();
+    } else if(e.key === "n"){
+      $("pesca").click();
+    }
+  });
+})();
+</script>
+</body>
+</html>
