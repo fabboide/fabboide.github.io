@@ -64,6 +64,9 @@ header.sign{padding:32px 0 2px}
 .senza-voce{display:none}
 body.muta .con-voce{display:none}
 body.muta .senza-voce{display:inline}
+/* la riga che sta suonando, durante l'ascolto di tutto il dialogo */
+.battuta.suona{background:#FBF3E4;border-radius:10px;padding-left:10px;padding-right:10px}
+.battuta.suona .chi::after{content:" \25B6";color:var(--tomato)}
 
 @media print{
   .topbar,.chips,.toolbar,.sign p,.stampa-no{display:none!important}
@@ -91,8 +94,8 @@ body.muta .senza-voce{display:inline}
   <div class="toolbar">
     <button class="btn" id="nascondi" type="button" aria-pressed="false">Nascondi le mie battute</button>
     <button class="btn ghost" id="scopriTutto" type="button">Scopri tutto</button>
+    <button class="btn ghost stampa-no" id="ascolta" type="button" aria-pressed="false">Ascolta tutto il dialogo</button>
     <button class="btn ghost stampa-no" id="stampa" type="button">Stampa</button>
-    <span class="nota senza-voce">Su questo computer non c'è una voce italiana.</span>
   </div>
 
   <div class="dialogo">
@@ -284,6 +287,29 @@ body.muta .senza-voce{display:inline}
     }catch(e){}
   }
 
+  /* Le battute sono registrate: una voce per lo studente, una per l'altro.
+     Se un file non arriva si ripiega sulla voce del browser, che c'era prima. */
+  var lettore = new Audio();
+  lettore.preload = "none";
+  function due(n){ return (n < 10 ? "0" : "") + n; }
+  function traccia(d, r){ return "audio/d" + due(d + 1) + "-" + due(r + 1) + ".mp3"; }
+
+  function dilla(d, r, testo, poi){
+    try{ window.speechSynthesis && window.speechSynthesis.cancel(); }catch(e){}
+    lettore.onended = null; lettore.onerror = null;
+    try{ lettore.pause(); }catch(e){}
+    lettore.onended = function(){ if(poi) poi(); };
+    lettore.onerror = function(){ parla(testo); if(poi) setTimeout(poi, 1200); };
+    lettore.src = traccia(d, r);
+    var p = lettore.play();
+    if(p && p.catch) p.catch(function(){ parla(testo); if(poi) setTimeout(poi, 1200); });
+  }
+
+  function zitto(){
+    try{ lettore.onended = null; lettore.onerror = null; lettore.pause(); }catch(e){}
+    try{ window.speechSynthesis && window.speechSynthesis.cancel(); }catch(e){}
+  }
+
   var i = 0, nascosto = false;
   try{
     var s = JSON.parse(localStorage.getItem("icf_dialoghi") || "null");
@@ -299,7 +325,7 @@ body.muta .senza-voce{display:inline}
     b.type = "button"; b.textContent = d.t;
     b.setAttribute("aria-pressed", String(k === i));
     b.addEventListener("click", function(){
-      i = k; salva();
+      i = k; salva(); fermaAscolto();
       Array.prototype.forEach.call(chips.children, function(c, j){
         c.setAttribute("aria-pressed", String(j === i));
       });
@@ -313,7 +339,7 @@ body.muta .senza-voce{display:inline}
     $("titolo").textContent = d.t;
     $("dove").textContent = d.dove;
     var box = $("righe"); box.innerHTML = "";
-    d.righe.forEach(function(r){
+    d.righe.forEach(function(r, n){
       var mio = r[0] === "tu";
       var div = document.createElement("div");
       div.className = "battuta " + (mio ? "tu" : "altro") + (mio && nascosto ? " coperta" : "");
@@ -324,11 +350,41 @@ body.muta .senza-voce{display:inline}
           div.classList.remove("coperta");
           div.classList.add("scoperta");
         }
-        parla(r[1]);
+        fermaAscolto();
+        dilla(i, n, r[1]);
       });
       box.appendChild(div);
     });
   }
+
+  /* Ascolto continuo: una battuta dopo l'altra, con la riga in corso segnata.
+     Non scopre niente, cosi si puo' ascoltare anche con le battute nascoste. */
+  var inAscolto = false;
+  function fermaAscolto(){
+    if(!inAscolto) return;
+    inAscolto = false;
+    zitto();
+    $("ascolta").setAttribute("aria-pressed", "false");
+    $("ascolta").textContent = "Ascolta tutto il dialogo";
+    Array.prototype.forEach.call(document.querySelectorAll(".battuta.suona"),
+      function(x){ x.classList.remove("suona"); });
+  }
+  function ascoltaDa(n){
+    var righe = document.querySelectorAll(".battuta");
+    Array.prototype.forEach.call(righe, function(x){ x.classList.remove("suona"); });
+    if(!inAscolto || n >= righe.length){ fermaAscolto(); return; }
+    righe[n].classList.add("suona");
+    dilla(i, n, DIALOGHI[i].righe[n][1], function(){
+      if(inAscolto) setTimeout(function(){ ascoltaDa(n + 1); }, 420);
+    });
+  }
+  $("ascolta").addEventListener("click", function(){
+    if(inAscolto){ fermaAscolto(); return; }
+    inAscolto = true;
+    this.setAttribute("aria-pressed", "true");
+    this.textContent = "Ferma l'ascolto";
+    ascoltaDa(0);
+  });
 
   $("nascondi").addEventListener("click", function(){
     nascosto = !nascosto;
