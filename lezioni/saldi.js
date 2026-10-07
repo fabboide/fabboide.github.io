@@ -64,13 +64,11 @@ var SALDI = {
     inizio: "2026-09-28",
     fatte_prima: 0,
     fatte: 0,
-    prenotate: 1,
-    rimaste: 3,
+    prenotate: 0,
+    rimaste: 4,
     passate: [],
-    prossime: [
-      { quando: "2026-10-09T09:00:00+02:00" }
-    ],
-    promemoria: "Per Fabio: le lezioni di agosto e inizio settembre (27/8, 28/8, 3/9, 10/9) restano fuori da questo pacchetto, il conteggio parte dal 28 settembre. Se vanno incluse, si sposta indietro inizio e si alza pacchetto."
+    prossime: [],
+    promemoria: "Per Fabio: la lezione del 9 ottobre alle 9:00 che sta sul calendario NON vale e non va contata, quindi qui il pacchetto risulta intero: quattro da fare. Attenzione: il conteggio notturno rilegge il calendario e, finché quell'evento esiste con la mail di Luis tra gli invitati, rimette prenotate a 1. Per tenerlo fuori davvero bisogna disdire l'evento, oppure togliere Luis da mail-studenti.json e gestire i suoi numeri a mano. · Le lezioni di agosto e inizio settembre (27/8, 28/8, 3/9, 10/9) restano fuori da questo pacchetto: il conteggio parte dal 28 settembre."
   },
 
   "elena-8qw": {
