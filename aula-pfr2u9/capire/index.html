@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scusi, può ripetere? · Talk with Fabio</title>
+<meta name="description" content="Capire la risposta di un italiano che parla veloce, e riformularla per esserne sicuri: l'esercizio per la lezione in live.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D; --kraft:#D9BC8C; --kraft-ink:#3E2A12;
+  --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.nastro{height:8px;background:repeating-linear-gradient(135deg,var(--basil) 0 18px,var(--lemon) 18px 36px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:38px 0 4px;display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,6vw,3.6rem);line-height:.95;margin:0}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:62ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+h2{font-family:var(--display);font-weight:700;font-size:1.6rem;margin:22px 0 6px}
+h3{font-family:var(--display);font-size:1.06rem;margin:0 0 8px}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+
+/* linguette delle fasi */
+.fasi{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 4px}
+.fasi button{font-family:var(--display);font-weight:600;font-size:.92rem;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 15px;display:flex;gap:8px;align-items:center}
+.fasi button .n{font-size:.78rem;color:var(--muted)}
+.fasi button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.fasi button[aria-pressed="true"] .n{color:var(--lemon)}
+.schermo{display:none}
+.schermo.active{display:block}
+.intro-fase{color:var(--muted);margin:10px 0 0;max-width:68ch}
+.intro-fase b{color:var(--ink)}
+
+/* la carta grande, uguale in tutte le fasi */
+.carta{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px 26px;margin-top:16px;position:relative}
+.carta .etichetta{font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--basil);margin:0 0 10px}
+.carta .grande{font-size:clamp(1.3rem,2.9vw,1.85rem);line-height:1.35;margin:0;font-family:var(--display);font-weight:700}
+.carta .sotto{margin:10px 0 0;color:var(--muted)}
+.carta .aiuto{margin:16px 0 0;font-family:var(--hand);font-size:1.3rem;color:var(--tomato)}
+.vuota{color:var(--muted);font-family:var(--hand);font-size:1.3rem}
+
+/* i tre dati da portare a casa */
+.dati{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:9px}
+.dati li{display:flex;gap:11px;align-items:flex-start;background:var(--stone);border:1px dashed var(--line);border-radius:12px;padding:11px 14px;color:var(--muted)}
+.dati li .pallino{font-family:var(--display);font-weight:700;color:var(--kraft-ink);background:var(--kraft);border-radius:50%;width:1.7em;height:1.7em;display:flex;align-items:center;justify-content:center;flex:0 0 auto;font-size:.82rem}
+.dati li.visto{border-style:solid;border-color:var(--basil);background:#EAF1ED;color:var(--ink)}
+.dati li .testo{flex:1}
+.dati li.nascosto .testo{filter:blur(5px);user-select:none}
+.modello{margin-top:16px;background:#FAF3E4;border:1px solid var(--kraft);border-radius:12px;padding:14px 16px}
+.modello b{font-family:var(--display);display:block;margin-bottom:4px;color:var(--kraft-ink)}
+.modello .frase{font-size:1.12rem}
+
+/* la striscia delle formule, sempre a portata di mano */
+.striscia{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.striscia .titolo{font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 9px}
+.chip-formule{display:flex;flex-wrap:wrap;gap:7px}
+.chip-formule button{font-size:.93rem;background:var(--stone);border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-family:var(--text);display:flex;gap:7px;align-items:center}
+.chip-formule button:hover{border-color:var(--ink)}
+.chip-formule button .volte{font-family:var(--display);font-weight:700;font-size:.78rem;color:var(--paper);background:var(--basil);border-radius:999px;padding:0 .5em;min-width:1.5em;text-align:center}
+.chip-formule button[data-usata="0"] .volte{display:none}
+
+/* contatori */
+.contatori{display:flex;gap:22px;flex-wrap:wrap;align-items:baseline;margin-top:16px;font-family:var(--display);font-weight:600;color:var(--muted);font-size:.92rem}
+.contatori .num{font-size:1.7rem;font-weight:700;color:var(--basil);display:block;line-height:1}
+.contatori .rosso .num{color:var(--tomato)}
+
+/* elenchi delle formule */
+.gruppi{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;margin-top:16px}
+.gruppo{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.gruppo h3{margin:0 0 9px;padding-bottom:7px;border-bottom:2px solid currentColor}
+.gruppo ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.gruppo li .it{font-size:1.04rem}
+.gruppo li .en{display:block}
+
+/* le cose da ottenere nella transazione */
+.ottieni{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:8px}
+.ottieni li{display:flex;gap:11px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;background:var(--stone)}
+.ottieni li .box{width:1.25em;height:1.25em;border:2px solid var(--muted);border-radius:5px;flex:0 0 auto}
+.ottieni li.fatto{background:#EAF1ED;border-color:var(--basil)}
+.ottieni li.fatto .box{background:var(--basil);border-color:var(--basil);position:relative}
+.ottieni li.fatto .box::after{content:"";position:absolute;left:.3em;top:.05em;width:.3em;height:.6em;border:solid var(--paper);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.ottieni li.fatto .testo{text-decoration:line-through;color:var(--muted)}
+
+/* la catena */
+.passi{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:8px;counter-reset:p}
+.passi li{counter-increment:p;display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:11px 14px;cursor:pointer;background:var(--stone)}
+.passi li::before{content:counter(p);font-family:var(--display);font-weight:700;color:var(--paper);background:var(--muted);border-radius:50%;width:1.8em;height:1.8em;display:flex;align-items:center;justify-content:center;flex:0 0 auto;font-size:.85rem}
+.passi li.fatto{background:#EAF1ED;border-color:var(--basil)}
+.passi li.fatto::before{background:var(--basil)}
+
+/* il drill delle situazioni */
+.situazione{font-size:clamp(1.2rem,2.6vw,1.6rem);font-family:var(--display);font-weight:700;margin:0}
+.risposta-drill{margin-top:16px;display:none}
+.risposta-drill.aperta{display:block}
+
+/* appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:110px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.barra{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+.avviso-gobbo{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin:10px 0 0;min-height:1.4em}
+
+dialog{border:0;border-radius:16px;padding:0;max-width:680px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.4rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body h3{margin:16px 0 4px;color:var(--basil)}
+.dlg-body table{width:100%;border-collapse:collapse}
+.dlg-body td{padding:5px 8px 5px 0;vertical-align:top;border-bottom:1px solid var(--line)}
+
+@media (max-width:620px){
+  .carta{padding:18px}
+  .wrap{padding-bottom:50px}
+}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="nastro" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <div>
+      <h1>Scusi, può ripetere?</h1>
+      <p>Fare la domanda lo sa già fare. Il problema è l'altro che <b>risponde veloce e non si ferma</b>. Qui non deve capire tutto: deve tirare fuori le tre cose che contano e ridirle a modo suo per essere sicura. <span class="en">Understanding a fast answer, and checking you got it.</span></p>
+    </div>
+    <button class="btn ghost" id="openFormule" type="button">Tutte le formule</button>
+  </header>
+
+  <div class="fasi" id="fasi">
+    <button type="button" data-s="s1" aria-pressed="true"><span class="n">1</span> Al contrario</button>
+    <button type="button" data-s="s2" aria-pressed="false"><span class="n">2</span> Troppo veloce</button>
+    <button type="button" data-s="s3" aria-pressed="false"><span class="n">3</span> Le formule</button>
+    <button type="button" data-s="s4" aria-pressed="false"><span class="n">4</span> La transazione</button>
+    <button type="button" data-s="s5" aria-pressed="false"><span class="n">5</span> La catena</button>
+  </div>
+
+  <!-- ---------- FASE 1 ---------- -->
+  <section class="schermo active" id="s1">
+    <p class="intro-fase">Si invertono i ruoli: <b>chiede lei, rispondo io</b>, piano. Serve solo a rimettere in moto il lessico dall'altro lato. Cinque minuti, non di più.</p>
+    <div class="carta">
+      <p class="etichetta">Devi ottenere questo</p>
+      <p class="grande" id="s1Testo">Premi «Pesca» per cominciare.</p>
+      <p class="aiuto" id="s1Aiuto"></p>
+    </div>
+    <div class="toolbar">
+      <button class="btn green" id="s1Pesca" type="button">Pesca <span class="en" style="font-style:normal;opacity:.8">spazio</span></button>
+      <button class="btn ghost" id="s1Mostra" type="button" disabled>Se si blocca, la formula</button>
+      <span class="en" id="s1Conta"></span>
+    </div>
+  </section>
+
+  <!-- ---------- FASE 2 ---------- -->
+  <section class="schermo" id="s2">
+    <p class="intro-fase">Il cuore della lezione. Lei chiede, <b>io rispondo a velocità vera</b>, lungo, senza rallentare. Lei non deve capire tutto: deve ricostruire e <b>confermare</b>. La mia risposta sta nella finestra separata, così sullo schermo condiviso non la legge.</p>
+    <div class="carta">
+      <p class="etichetta" id="s2Dove">La situazione</p>
+      <p class="grande" id="s2Chiedi">Apri la finestra separata e pesca una situazione.</p>
+      <ul class="dati" id="s2Dati"></ul>
+      <div class="modello" id="s2Modello" hidden>
+        <b>Come poteva riformulare</b>
+        <div class="frase" id="s2ModelloFrase"></div>
+      </div>
+    </div>
+    <div class="toolbar">
+      <button class="btn green" id="s2Pesca" type="button">Un'altra situazione <span class="en" style="font-style:normal;opacity:.8">spazio</span></button>
+      <button class="btn" id="s2Gobbo" type="button">Apri la mia risposta</button>
+      <button class="btn ghost" id="s2Dato" type="button" disabled>Mostra un dato</button>
+      <button class="btn ghost" id="s2Mostra" type="button" disabled>Mostra il modello</button>
+    </div>
+    <div class="toolbar">
+      <button class="btn green" id="s2Ok" type="button" disabled>Ha riformulato bene</button>
+      <button class="btn red" id="s2Rip" type="button" disabled>Ha chiesto di ripetere</button>
+    </div>
+    <p class="avviso-gobbo" id="s2Avviso"></p>
+    <div class="striscia">
+      <p class="titolo">Le formule, da usare adesso</p>
+      <div class="chip-formule" id="strisciaA"></div>
+    </div>
+  </section>
+
+  <!-- ---------- FASE 3 ---------- -->
+  <section class="schermo" id="s3">
+    <p class="intro-fase">Poche, ma devono venire da sole. Il gruppo rosso è quello che conta: <b>chi sa verificare non si blocca mai</b>, nemmeno quando perde metà delle parole.</p>
+    <div class="carta">
+      <p class="etichetta">Che cosa dici se…</p>
+      <p class="situazione" id="s3Sit">Premi «Pesca una situazione».</p>
+      <div class="risposta-drill" id="s3Ris"></div>
+    </div>
+    <div class="toolbar">
+      <button class="btn green" id="s3Pesca" type="button">Pesca una situazione <span class="en" style="font-style:normal;opacity:.8">spazio</span></button>
+      <button class="btn ghost" id="s3Scopri" type="button" disabled>Scopri le formule buone</button>
+    </div>
+    <h2>Tutte le formule</h2>
+    <div class="gruppi" id="s3Gruppi"></div>
+  </section>
+
+  <!-- ---------- FASE 4 ---------- -->
+  <section class="schermo" id="s4">
+    <p class="intro-fase">È arrivata a destinazione, adesso deve <b>ottenere qualcosa</b>. Io faccio il commesso di fretta, e ogni carta ha un intoppo che lei non vede: sta nella finestra separata insieme al copione.</p>
+    <div class="carta">
+      <p class="etichetta" id="s4Luogo">Il posto</p>
+      <p class="grande" id="s4Ob">Pesca una transazione.</p>
+      <p class="sotto">Deve uscire di lì sapendo queste tre cose. Clicca quando le ha ottenute.</p>
+      <ul class="ottieni" id="s4Ottieni"></ul>
+    </div>
+    <div class="toolbar">
+      <button class="btn green" id="s4Pesca" type="button">Un'altra transazione <span class="en" style="font-style:normal;opacity:.8">spazio</span></button>
+      <button class="btn" id="s4Gobbo" type="button">Apri il mio copione</button>
+    </div>
+    <div class="striscia">
+      <p class="titolo">Le formule, da usare adesso</p>
+      <div class="chip-formule" id="strisciaB"></div>
+    </div>
+  </section>
+
+  <!-- ---------- FASE 5 ---------- -->
+  <section class="schermo" id="s5">
+    <p class="intro-fase">Chiusura: <b>tutto di seguito, senza fermarsi</b>. Mi ferma per strada, chiede, io rispondo veloce, lei riformula, «arriva», e fa quello che deve fare. È la simulazione di quello che le succederà davvero.</p>
+    <div class="carta">
+      <p class="etichetta" id="s5Da">Dove sei</p>
+      <p class="grande" id="s5Meta">Pesca una catena.</p>
+      <ol class="passi" id="s5Passi"></ol>
+    </div>
+    <div class="toolbar">
+      <button class="btn green" id="s5Pesca" type="button">Un'altra catena <span class="en" style="font-style:normal;opacity:.8">spazio</span></button>
+      <button class="btn ghost" id="s5Chiudi" type="button" disabled>Catena completata</button>
+      <span class="en" id="s5Conta"></span>
+    </div>
+    <div class="striscia">
+      <p class="titolo">Le formule, da usare adesso</p>
+      <div class="chip-formule" id="strisciaC"></div>
+    </div>
+  </section>
+
+  <!-- ---------- contatori + appunti ---------- -->
+  <div class="contatori">
+    <span><span class="num" id="cRif">0</span> riformulazioni riuscite</span>
+    <span><span class="num" id="cFor">0</span> formule usate</span>
+    <span class="rosso"><span class="num" id="cRip">0</span> volte «può ripetere?»</span>
+    <span><span class="num" id="cCat">0</span> catene chiuse</span>
+  </div>
+  <p class="aiuto" id="verdetto" style="font-family:var(--hand);font-size:1.3rem;color:var(--basil);min-height:1.5em"></p>
+
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Le parole che l'hanno fermata, le formule che non le vengono, gli errori da riprendere alla fine.</p>
+    <textarea id="note" placeholder="Es. «binario» non l'ha riconosciuta · dice «ripeta per favore» invece di «può ripetere?»"></textarea>
+    <div class="barra">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<dialog id="formuleDlg" aria-labelledby="dlgTitle">
+  <div class="dlg-head"><h2 id="dlgTitle">Tutte le formule</h2><button class="btn ghost" id="closeFormule" type="button">Chiudi</button></div>
+  <div class="dlg-body" id="dlgBody"></div>
+</dialog>
+
+<script>
+(function(){
+  /* ============================================================
+     FASE 1 · Al contrario. Lei chiede, io rispondo piano.
+     Non do la frase fatta: do l'obiettivo, la frase la costruisce lei.
+     ============================================================ */
+  var SCALDA = [
+    { t:"Devi sapere dov'è il bagno.", f:"Scusi, dov'è il bagno?" },
+    { t:"Devi sapere quanto costa il biglietto.", f:"Quanto costa il biglietto?" },
+    { t:"Devi sapere a che ora apre il museo.", f:"A che ora apre?" },
+    { t:"Devi sapere se si può pagare con la carta.", f:"Si può pagare con la carta?" },
+    { t:"Devi sapere quanto ci vuole a piedi.", f:"Quanto ci vuole a piedi?" },
+    { t:"Devi sapere se il treno è in orario.", f:"Il treno è in orario?" },
+    { t:"Devi sapere dove si comprano i biglietti dell'autobus.", f:"Dove si comprano i biglietti?" },
+    { t:"Devi sapere se c'è un bancomat qui vicino.", f:"C'è un bancomat qui vicino?" },
+    { t:"Devi sapere cosa c'è dentro un piatto del menù.", f:"Scusi, cosa c'è dentro?" },
+    { t:"Devi sapere se il negozio è aperto la domenica.", f:"Siete aperti la domenica?" },
+    { t:"Devi sapere a quale fermata devi scendere.", f:"A quale fermata devo scendere?" },
+    { t:"Devi sapere se questo autobus va in centro.", f:"Questo autobus va in centro?" },
+    { t:"Devi sapere se per quella medicina serve la ricetta.", f:"Serve la ricetta?" },
+    { t:"Devi sapere quanto dura il viaggio.", f:"Quanto dura il viaggio?" },
+    { t:"Devi sapere se c'è il wifi e qual è la password.", f:"C'è il wifi? Qual è la password?" },
+    { t:"Devi sapere dove si butta la plastica.", f:"Dove si butta la plastica?" }
+  ];
+
+  /* ============================================================
+     FASE 2 · La risposta troppo veloce. Il cuore.
+     `risposta` non deve MAI finire sullo schermo condiviso: sta nel
+     gobbo, la finestra separata. Lo studente vede solo `dove` e `chiedi`.
+     `dati` sono le tre cose da portare a casa, si mostrano una alla volta
+     e solo se serve. `modello` è la riformulazione buona, per ultima.
+     ============================================================ */
+  var VELOCI = [
+    { dove:"Per strada, in una città che non conosci.",
+      chiedi:"Chiedi come si arriva alla stazione.",
+      risposta:"Allora guardi, la stazione è un po' fuori, eh, però a piedi ci arriva tranquillamente, dieci minuti scarsi. Lei va dritto di qui fino al semaforo, non il primo che è solo un attraversamento, il secondo, quello vero, lì gira a destra e prende via Garibaldi, la fa tutta, passa davanti a una banca, e poi in fondo se la trova davanti. Ah, guardi che l'ingresso principale è dall'altra parte, dietro, quindi quando arriva deve girarci intorno.",
+      dati:["dieci minuti a piedi","al secondo semaforo a destra, poi sempre dritto","l'ingresso è dietro, bisogna girare intorno"],
+      modello:"Quindi vado dritto fino al secondo semaforo, giro a destra e vado sempre dritto. E l'ingresso è dall'altra parte. Giusto?" },
+
+    { dove:"Domenica pomeriggio, ti serve una medicina.",
+      chiedi:"Chiedi dov'è una farmacia aperta adesso.",
+      risposta:"Eh, di domenica è un problema. Quella qui all'angolo è chiusa, ha chiuso alle dodici e mezza. Quella di turno questa settimana è in piazza Matteotti, sa dov'è il mercato? Ecco, dietro il mercato. Però guardi, fino alle tre fanno solo le urgenze, bisogna suonare il campanello e aspettare, non è che si entra. Dopo le tre invece è aperta normale.",
+      dati:["la farmacia di turno è in piazza Matteotti, dietro il mercato","fino alle tre bisogna suonare il campanello","dopo le tre è aperta normalmente"],
+      modello:"Quindi vado in piazza Matteotti, dietro il mercato, e se arrivo prima delle tre devo suonare. Ho capito bene?" },
+
+    { dove:"Alla fermata, con la valigia.",
+      chiedi:"Chiedi quale autobus va in centro e dove si prende.",
+      risposta:"Dunque, il quattro ci va, però fa un giro lunghissimo, passa da tutto il quartiere. Se ha fretta prenda il dodici, che è diretto, otto minuti e ci siamo. La fermata del dodici non è questa qui, è quella dopo il distributore, cento metri più avanti. E i biglietti non si fanno a bordo, eh, deve comprarlo prima dal tabaccaio, quello lì con l'insegna blu.",
+      dati:["il dodici è diretto, otto minuti","la fermata è cento metri avanti, dopo il distributore","il biglietto si compra prima, dal tabaccaio"],
+      modello:"Allora prendo il dodici, la fermata è più avanti dopo il distributore, e il biglietto lo compro prima dal tabaccaio. Giusto?" },
+
+    { dove:"Davanti al museo, è quasi sera.",
+      chiedi:"Chiedi se il museo è aperto e quanto costa.",
+      risposta:"Sì sì è aperto, oggi fino alle sette, l'ultimo ingresso però è alle sei e mezza quindi non venga all'ultimo momento. Il biglietto intero sono dodici euro, ma se lei ha meno di venticinque anni paga sei, basta che mostri un documento. Il lunedì è chiuso, e la prima domenica del mese si entra gratis ma c'è una fila che non le dico.",
+      dati:["ultimo ingresso alle sei e mezza","dodici euro, sei sotto i venticinque anni con un documento","il lunedì è chiuso"],
+      modello:"Quindi devo entrare entro le sei e mezza, e con il documento pago sei euro. Ho capito bene?" },
+
+    { dove:"In stazione. Il treno è appena partito senza di te.",
+      chiedi:"Chiedi cosa puoi fare adesso.",
+      risposta:"Eh, signora, con questo biglietto qui non può salire sul prossimo così com'è, deve farselo cambiare. Vada allo sportello numero tre, non quello delle informazioni, il tre, e chieda il cambio prenotazione: paga otto euro di differenza e basta. Il prossimo per Firenze c'è alle sette e dieci, ma le conviene il regionale delle sette meno un quarto, che costa meno e arriva quasi uguale.",
+      dati:["bisogna cambiare il biglietto allo sportello tre","il cambio costa otto euro","conviene il regionale delle sette meno un quarto"],
+      modello:"Quindi vado allo sportello tre, pago otto euro per il cambio, e prendo il regionale di meno un quarto. Giusto?" },
+
+    { dove:"In albergo, la sera, hai fame.",
+      chiedi:"Chiedi un ristorante buono qui vicino.",
+      risposta:"Guardi, qui intorno ci sono tre o quattro posti ma sono tutti per turisti, si mangia male e si paga tanto. Se si fa dieci minuti a piedi, in via dei Macelli c'è una trattoria che si chiama Da Peppino, lì si mangia come a casa. Però la sera senza prenotare non la fanno entrare, è piccolissima, sei tavoli. Chiami adesso, il numero lo trova su internet.",
+      dati:["Da Peppino, in via dei Macelli, dieci minuti a piedi","la sera bisogna prenotare","è piccolo, sei tavoli"],
+      modello:"Quindi vado in via dei Macelli, cerco Da Peppino, e prima chiamo per prenotare. Ho capito bene?" },
+
+    { dove:"All'ufficio postale, con un pacco in mano.",
+      chiedi:"Chiedi come si fa a spedirlo.",
+      risposta:"Allora, per spedire deve prendere il numero lì a quel distributore, scelga la lettera P che è per i pacchi, se prende la A aspetta un'ora per niente. Il pacco deve essere già chiuso e con l'indirizzo scritto sopra bene, se no glielo rifiutano. E porti un documento, senza documento non le accettano niente. L'ultimo ritiro è all'una e mezza, dopo parte domani.",
+      dati:["prendere il numero con la lettera P","serve un documento","l'ultimo ritiro è all'una e mezza"],
+      modello:"Quindi prendo il numero P, mi serve un documento, e devo essere qui prima dell'una e mezza. Giusto?" },
+
+    { dove:"Alla reception, il wifi non funziona.",
+      chiedi:"Chiedi aiuto per il wifi.",
+      risposta:"Ah sì, succede spesso al secondo piano, il ripetitore fa i capricci. Provi così: si disconnetta, aspetti un minuto buono, e si riconnetta alla rete che si chiama Ospiti2, con il due, non quella senza numero che è per noi dello staff. La password è la stessa del foglietto, tutta minuscola. Se ancora non va me lo venga a dire che chiamo il tecnico, ma di sera non viene prima di domani.",
+      dati:["collegarsi alla rete Ospiti2, quella con il due","la password è la stessa, tutta minuscola","se non funziona il tecnico viene domani"],
+      modello:"Quindi mi collego a Ospiti2 con la password di prima, tutta minuscola, e se non va torno da lei. Ho capito bene?" },
+
+    { dove:"In giro per la città, la valigia è piena di roba sporca.",
+      chiedi:"Chiedi dove puoi lavare i vestiti.",
+      risposta:"C'è una lavanderia a gettoni in via Battisti, sempre aperta, ci va con le monete o con la carta. Le macchine grandi sono quelle in fondo, costano sei euro ma ci sta tutto. Il sapone lo compra lì da un distributore, un euro. Guardi che l'asciugatrice è a parte, altri tre euro, e se non li ha in moneta il cambiamonete sta fuori, all'ingresso.",
+      dati:["lavanderia a gettoni in via Battisti, sempre aperta","sei euro il lavaggio più tre l'asciugatrice","il sapone si compra lì, un euro"],
+      modello:"Quindi vado in via Battisti, mi servono circa dieci euro, e il sapone lo compro lì. Giusto?" },
+
+    { dove:"Devi tornare in albergo ed è tardi.",
+      chiedi:"Chiedi come si chiama un taxi.",
+      risposta:"Qui in strada non li ferma, non funziona come a Londra, deve chiamarli. Il numero è zero cinque sette uno, poi tre volte otto, se lo segni. Oppure c'è il posteggio davanti al teatro, lì ne trova sempre uno o due. Dall'aeroporto invece c'è la tariffa fissa, trentacinque euro, se le chiedono di più non è regolare e lei chieda la ricevuta.",
+      dati:["in strada non si fermano: o si chiama, o si va al posteggio","il posteggio è davanti al teatro","dall'aeroporto la tariffa fissa è trentacinque euro"],
+      modello:"Quindi non li fermo per strada: o chiamo, o vado al posteggio del teatro. E dall'aeroporto sono trentacinque euro fissi. Ho capito bene?" },
+
+    { dove:"Un'amica ti racconta il weekend, di corsa, come si fa tra amiche.",
+      chiedi:"Chiedile com'è andata.",
+      risposta:"Ah, un disastro, nel senso bello però. Allora sabato dovevamo andare al mare con Giulia e Marco, solo che Marco all'ultimo ha avuto un problema con la macchina, quindi niente mare, siamo rimasti in città. Alla fine siamo finiti a quella sagra fuori città, quella della toma, e ci siamo divertiti un sacco, abbiamo ballato fino alle due. Domenica ovviamente morta, non mi sono alzata dal divano.",
+      dati:["il piano era il mare, è saltato per la macchina di Marco","sono finiti a una sagra fuori città","domenica non ha fatto niente"],
+      modello:"Quindi niente mare per via della macchina, siete andati a una sagra, e domenica eri a pezzi. Ho capito bene?" },
+
+    { dove:"Al telefono con un collega, lui ha fretta.",
+      chiedi:"Chiedi a che ora è la riunione di domani.",
+      risposta:"Dunque, era alle dieci ma l'hanno spostata, adesso è alle nove e mezza perché alle undici c'è l'altra cosa con i fornitori. Si fa in sala grande, non in quella di sopra. Ah, e porta i numeri di settembre stampati, che il proiettore è rotto da una settimana e nessuno viene ad aggiustarlo.",
+      dati:["la riunione è alle nove e mezza, l'hanno spostata","si fa in sala grande","bisogna portare i numeri stampati"],
+      modello:"Quindi domani alle nove e mezza, sala grande, e porto i fogli stampati. Giusto?" },
+
+    { dove:"Dal meccanico, la macchina è ancora sul ponte.",
+      chiedi:"Chiedi quando è pronta.",
+      risposta:"Eh, guardi, il pezzo non ce l'ho, devo ordinarlo. Se lo ordino stamattina mi arriva giovedì, giovedì pomeriggio glielo monto e venerdì mattina se la riprende. Se invece vuole il pezzo originale, quello ci mette una settimana e costa il doppio. Le faccio sapere il preventivo per messaggio stasera, così decide con calma.",
+      dati:["la macchina è pronta venerdì mattina","con il pezzo originale ci vuole una settimana e costa il doppio","manda il preventivo per messaggio stasera"],
+      modello:"Quindi venerdì mattina è pronta, e stasera mi manda il preventivo. Ho capito bene?" },
+
+    { dove:"Sulle scale, incontri il vicino.",
+      chiedi:"Chiedi perché non c'è l'acqua calda.",
+      risposta:"Stanno facendo i lavori alla caldaia, hanno staccato tutto stamattina presto. Dicono che entro le sei di sera rimettono a posto, ma io non ci conterei troppo, l'altra volta hanno finito il giorno dopo. L'acqua fredda c'è, quella non l'hanno toccata. Se ha bisogno, al piano terra c'è il rubinetto del cortile che è su un altro impianto.",
+      dati:["lavori alla caldaia, l'acqua calda è staccata","dovrebbero finire entro le sei, ma forse domani","l'acqua fredda funziona"],
+      modello:"Quindi è la caldaia, forse torna entro le sei, e intanto l'acqua fredda c'è. Giusto?" },
+
+    { dove:"In palestra, al bancone dell'accoglienza.",
+      chiedi:"Chiedi quanto costa l'abbonamento.",
+      risposta:"Dipende da quello che fa. Solo sala pesi sono trentacinque al mese, con i corsi inclusi quarantotto. C'è anche la formula dieci ingressi che costa quaranta e vale sei mesi, buona se viene poco. L'iscrizione annuale è venticinque una tantum, ma questo mese è in promozione e non la paga. Il certificato medico però serve, senza quello non la facciamo entrare.",
+      dati:["trentacinque al mese la sala pesi, quarantotto con i corsi","questo mese l'iscrizione è gratis","serve il certificato medico"],
+      modello:"Quindi quarantotto al mese con i corsi, adesso l'iscrizione non la pago, e devo portare il certificato medico. Ho capito bene?" },
+
+    { dove:"Primo giorno nella casa nuova, il vicino ti spiega.",
+      chiedi:"Chiedi come funziona la raccolta differenziata.",
+      risposta:"Allora: il sacco giallo, quello della plastica, va fuori il martedì sera, non la mattina, la sera prima. L'umido invece è due volte, mercoledì e sabato, e va nel bidone marrone piccolo, quello con la chiave. La carta è ogni quindici giorni, il giovedì, ma solo quelli dispari, c'è il calendario appeso in portineria. Il vetro non lo ritirano, lo deve portare lei alla campana verde all'angolo.",
+      dati:["la plastica il martedì sera","l'umido mercoledì e sabato, nel bidone marrone","il vetro lo porta lei alla campana verde"],
+      modello:"Quindi plastica il martedì sera, umido mercoledì e sabato, e il vetro lo porto io alla campana. Giusto?" }
+  ];
+
+  /* ============================================================
+     FASE 3 · Le formule. Il gruppo che conta davvero è «verificare»:
+     è quello che impedisce di bloccarsi anche quando si perde metà
+     delle parole. Le altre servono a prendere tempo per arrivarci.
+     ============================================================ */
+  var FORMULE = [
+    { g:"Far ripetere", c:"var(--basil)", v:[
+      ["Scusi, può ripetere?","Sorry, could you repeat that?"],
+      ["Mi scusi, come ha detto?","Sorry, what did you say?"],
+      ["Scusi, non ho sentito bene.","Sorry, I didn't catch that."]
+    ]},
+    { g:"Far rallentare", c:"var(--basil)", v:[
+      ["Più lentamente, per favore.","More slowly, please."],
+      ["Può parlare un po' più piano?","Could you speak a bit more slowly?"],
+      ["Scusi, sto imparando l'italiano.","Sorry, I'm learning Italian."]
+    ]},
+    { g:"Dire che non hai capito", c:"var(--lemon)", v:[
+      ["Non ho capito bene.","I didn't quite understand."],
+      ["Scusi, mi sono persa.","Sorry, I've lost you."],
+      ["Mi può aiutare? Non parlo bene italiano.","Can you help me? I don't speak Italian well."]
+    ]},
+    { g:"Chiedere che cosa vuol dire", c:"var(--lemon)", v:[
+      ["Che cosa vuol dire…?","What does … mean?"],
+      ["Scusi, che cos'è…?","Sorry, what is a …?"],
+      ["Come si dice…?","How do you say …?"],
+      ["Me lo può scrivere, per favore?","Could you write it down for me?"]
+    ]},
+    { g:"Verificare di aver capito", c:"var(--tomato)", v:[
+      ["Quindi devo…?","So I have to…?"],
+      ["Ho capito bene se dico che…?","Have I got it right if I say…?"],
+      ["Allora: … Giusto?","So: … Is that right?"],
+      ["Mi faccia capire: …?","Let me get this straight: …?"],
+      ["Cioè? In che senso?","Meaning? In what sense?"]
+    ]},
+    { g:"Prendere tempo", c:"var(--muted)", v:[
+      ["Un attimo che penso.","One second, let me think."],
+      ["Allora… dunque…","So… right…"],
+      ["Aspetti un secondo.","Hold on a second."]
+    ]}
+  ];
+
+  /* Le situazioni del drill: la pagina non corregge, mostra il gruppo
+     giusto e le frasi possibili. Quasi sempre ce n'è più di una. */
+  var SITUAZIONI = [
+    { s:"Ha parlato velocissimo e non hai capito una parola.", g:["Far ripetere","Far rallentare"] },
+    { s:"Hai capito tutto tranne una parola, ma è quella importante.", g:["Chiedere che cosa vuol dire"] },
+    { s:"Hai capito il senso, ma vuoi essere sicura dei numeri.", g:["Verificare di aver capito"] },
+    { s:"Ti ha detto tre cose e tu ne hai prese due.", g:["Verificare di aver capito","Far ripetere"] },
+    { s:"Non sai come si dice la parola che ti serve.", g:["Chiedere che cosa vuol dire"] },
+    { s:"Ti serve un secondo per mettere insieme la frase.", g:["Prendere tempo"] },
+    { s:"Ti ha spiegato la strada e vuoi ripetergliela per controllo.", g:["Verificare di aver capito"] },
+    { s:"Ha usato una parola che non avevi mai sentito.", g:["Chiedere che cosa vuol dire"] },
+    { s:"Parla benissimo ma troppo veloce, e non vuoi sembrare scortese.", g:["Far rallentare"] },
+    { s:"Hai perso completamente il filo a metà del discorso.", g:["Dire che non hai capito"] },
+    { s:"È un indirizzo o un numero: a voce non lo prendi.", g:["Chiedere che cosa vuol dire"] },
+    { s:"Hai capito le parole ma la risposta è ambigua.", g:["Verificare di aver capito"] }
+  ];
+
+  /* ============================================================
+     FASE 4 · Le transazioni. `intoppo` è il mio copione e sta nel
+     gobbo: se lo legge prima, non è più un imprevisto.
+     ============================================================ */
+  var TRANSAZIONI = [
+    { l:"Alla biglietteria", o:"Compra un biglietto per Bologna per domani mattina.",
+      intoppo:"Il diretto di domani mattina è pieno. C'è solo con cambio a Firenze, oppure il giorno dopo. Non glielo dico tutto insieme: prima dico solo «è pieno» e aspetto che chieda.",
+      ott:["a che ora parte","se c'è un cambio e dove","quanto costa"] },
+    { l:"In farmacia", o:"Chiedi qualcosa per il mal di testa.",
+      intoppo:"Prima di darle qualcosa le chiedo se è allergica a qualcosa e se sta già prendendo altri farmaci. Parlo veloce e uso «principio attivo».",
+      ott:["come si chiama il prodotto","ogni quante ore si prende","se serve la ricetta"] },
+    { l:"Al bar", o:"Ordina un caffè e un tramezzino da portare via.",
+      intoppo:"I tramezzini sono finiti. Le propongo focaccia o una pizzetta, elencando in fretta quello che c'è. E il caffè da portare via qui non si fa nel bicchiere di carta.",
+      ott:["che cosa prende al posto del tramezzino","se può portarlo via","quanto paga"] },
+    { l:"In tabaccheria", o:"Compra i biglietti dell'autobus e fai una ricarica al telefono.",
+      intoppo:"I biglietti ci sono, ma la ricarica di quel gestore lì non la facciamo. Le dico dove si fa, in fretta, e intanto le chiedo quanti biglietti vuole.",
+      ott:["quanti biglietti compra e quanto costano","dove può fare la ricarica","quanto paga in tutto"] },
+    { l:"In un negozio di scarpe", o:"Cerca un paio di scarpe numero 38.",
+      intoppo:"Il 38 di quel modello è finito. Le propongo il 38 e mezzo da provare, o lo stesso modello in un altro colore. Insisto un po'.",
+      ott:["che cosa prova","se si possono cambiare","entro quanti giorni"] },
+    { l:"In albergo, dopo il check-out", o:"Chiedi di lasciare la valigia fino a sera.",
+      intoppo:"Si può, ma il deposito chiude alle sette e bisogna lasciare un documento. E la valigia grande non ci sta nell'armadietto, va dietro il bancone.",
+      ott:["fino a che ora può lasciarla","se si paga","che cosa deve lasciare"] },
+    { l:"All'ufficio informazioni", o:"Chiedi una mappa e cosa vedere in mezza giornata.",
+      intoppo:"Il museo principale oggi è chiuso. Propongo due alternative parlando in fretta, con nomi di vie che lei non conosce.",
+      ott:["due cose da vedere","come ci arriva","quanto tempo serve"] },
+    { l:"In panetteria", o:"Compra il pane per quattro persone e qualcosa di dolce.",
+      intoppo:"Le chiedo che tipo di pane, e ne elenco cinque di fila senza fermarmi. Poi le chiedo se lo vuole tagliato.",
+      ott:["che pane prende","quanto ne prende","che cosa prende di dolce"] },
+    { l:"Al mercato", o:"Compra la frutta per la settimana. Hai dieci euro.",
+      intoppo:"Faccio i prezzi al chilo e il totale arriva a dodici e mezzo. Deve accorgersene e togliere qualcosa, oppure chiedere di meno.",
+      ott:["che cosa compra","quanto pesa","quanto spende"] },
+    { l:"Allo sportello del comune", o:"Chiedi un certificato di residenza.",
+      intoppo:"Serve un documento che lei non ha con sé, e questo non è lo sportello giusto: la mando al secondo piano, stanza 214, ma solo la mattina.",
+      ott:["quale documento serve","dove deve andare","quando può tornare"] }
+  ];
+
+  /* ============================================================
+     FASE 5 · La catena. Tutto di seguito, senza fermarsi.
+     ============================================================ */
+  var CATENE = [
+    { da:"Sei in piazza, davanti alla fontana.", a:"alla stazione", fai:"comprare un biglietto per Bologna" },
+    { da:"Sei davanti al duomo.", a:"a una farmacia", fai:"comprare qualcosa per la tosse" },
+    { da:"Sei al mercato.", a:"all'ufficio postale", fai:"spedire una cartolina" },
+    { da:"Sei appena uscita dall'albergo.", a:"a un supermercato", fai:"comprare la colazione per domani" },
+    { da:"Sei alla fermata dell'autobus.", a:"al museo", fai:"comprare due biglietti ridotti" },
+    { da:"Sei arrivata in stazione adesso.", a:"a una tabaccheria", fai:"comprare i biglietti dell'autobus" },
+    { da:"Sei in centro e devi lavorare un po'.", a:"a un bar con il wifi", fai:"ordinare qualcosa e farti dare la password" },
+    { da:"Sei vicino al parco.", a:"a una lavanderia a gettoni", fai:"capire come funziona e quanto costa" }
+  ];
+
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function mescola(a){
+    var b = a.slice();
+    for(var i = b.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = b[i]; b[i] = b[j]; b[j] = t;
+    }
+    return b;
+  }
+
+  /* Un mazzo che non ripete finché non è finito: serve in tutte le fasi. */
+  function Mazzo(lista){
+    this.lista = lista; this.resto = [];
+  }
+  Mazzo.prototype.pesca = function(){
+    if(!this.resto.length) this.resto = mescola(this.lista);
+    return this.resto.pop();
+  };
+
+  var STORE = "icf_capire_v1";
+  var stato = { rif:0, rip:0, cat:0, formule:{}, note:"" };
+  try{
+    var s = JSON.parse(localStorage.getItem(STORE) || "null");
+    if(s && typeof s === "object"){
+      stato.rif = s.rif || 0; stato.rip = s.rip || 0; stato.cat = s.cat || 0;
+      stato.formule = s.formule || {}; stato.note = s.note || "";
+    }
+  }catch(e){}
+  function salva(){
+    try{ localStorage.setItem(STORE, JSON.stringify(stato)); }catch(e){}
+  }
+
+  /* ---------- la finestra separata: la mia risposta, non la sua ---------- */
+  var finestra = null;
+
+  function apriGobbo(){
+    if(finestra && !finestra.closed) return true;
+    try{
+      finestra = window.open("", "gobbo_capire", "width=620,height=820,menubar=no,toolbar=no");
+    }catch(e){ finestra = null; }
+    if(!finestra){
+      $("s2Avviso").textContent = "Il browser ha bloccato la finestra separata. Permetti i pop-up: serve a tenere la mia risposta fuori dallo schermo condiviso.";
+      return false;
+    }
+    $("s2Avviso").textContent = "";
+    return true;
+  }
+
+  function scriviGobbo(corpo){
+    if(!finestra || finestra.closed) return;
+    var html = "<!DOCTYPE html><html lang='it'><head><meta charset='UTF-8'>" +
+      "<title>Il gobbo - solo per me</title><style>" +
+      "body{margin:0;padding:22px;background:#12202C;color:#F2F6F4;font-family:Georgia,serif;font-size:1.08rem;line-height:1.55}" +
+      "h1{font-family:Helvetica,Arial,sans-serif;font-size:1.25rem;margin:0 0 2px}" +
+      "h2{font-family:Helvetica,Arial,sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#8FB8A6;margin:22px 0 7px}" +
+      ".avv{color:#9BB0C4;font-size:.84rem;margin:0 0 18px}" +
+      ".leggi{font-size:1.32rem;line-height:1.6;background:#1B2E3C;border-left:4px solid #E8A33D;border-radius:0 10px 10px 0;padding:16px 18px}" +
+      ".dato{background:#1B2E3C;border-radius:10px;padding:10px 13px;margin:0 0 8px;display:flex;gap:11px;align-items:center}" +
+      ".dato span{flex:1}" +
+      ".mod{background:#1B2E3C;border-left:4px solid #6FBF9A;border-radius:0 10px 10px 0;padding:14px 16px;font-size:1.15rem}" +
+      "button{font-family:Helvetica,Arial,sans-serif;font-weight:700;font-size:.9rem;border:0;border-radius:999px;padding:8px 15px;background:#E8A33D;color:#12202C;cursor:pointer}" +
+      "button[disabled]{opacity:.4;cursor:default}" +
+      "button.verde{background:#6FBF9A}" +
+      ".riga{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}" +
+      "</style></head><body>" + corpo +
+      "<script>document.addEventListener('click', function(e){" +
+      " var b = e.target.closest('button'); if(!b || !window.opener || window.opener.closed) return;" +
+      " var d = b.getAttribute('data-dato');" +
+      " if(d !== null){ window.opener.mostraDato(Number(d)); b.disabled = true; b.textContent = 'mostrato'; return; }" +
+      " if(b.id === 'tuttiDati'){ window.opener.mostraDato(-1); b.disabled = true; return; }" +
+      " if(b.id === 'mostraModello'){ window.opener.mostraModello(); b.disabled = true; }" +
+      "});<\/script></body></html>";
+    try{
+      finestra.document.open();
+      finestra.document.write(html);
+      finestra.document.close();
+      finestra.focus();
+    }catch(e){}
+  }
+
+  function gobboVeloce(v){
+    if(!v) return;
+    var dati = v.dati.map(function(d, i){
+      return "<div class='dato'><span>" + esc(d) + "</span>" +
+             "<button type='button' data-dato='" + i + "'>mostra</button></div>";
+    }).join("");
+    scriviGobbo(
+      "<h1>Il gobbo</h1><p class='avv'>Finestra separata: se condividi solo la scheda del gioco, qui dentro lo studente non vede niente.</p>" +
+      "<h2>Lei ti chiede</h2><div>" + esc(v.chiedi) + "</div>" +
+      "<h2>Tu rispondi così, a velocità vera, senza fermarti</h2><div class='leggi'>" + esc(v.risposta) + "</div>" +
+      "<h2>Le tre cose che deve portare a casa</h2>" + dati +
+      "<div class='riga'><button type='button' id='tuttiDati'>Mostrali tutti e tre</button></div>" +
+      "<h2>La riformulazione buona</h2><div class='mod'>" + esc(v.modello) + "</div>" +
+      "<div class='riga'><button type='button' class='verde' id='mostraModello'>Mostra il modello sullo schermo</button></div>"
+    );
+  }
+
+  function gobboTransazione(t){
+    if(!t) return;
+    scriviGobbo(
+      "<h1>Il gobbo</h1><p class='avv'>Il copione dell'intoppo. Lo studente non deve leggerlo prima.</p>" +
+      "<h2>" + esc(t.l) + "</h2><div>" + esc(t.o) + "</div>" +
+      "<h2>L'intoppo, come lo giochi</h2><div class='leggi'>" + esc(t.intoppo) + "</div>" +
+      "<h2>Non chiudere finché non ha ottenuto</h2>" +
+      t.ott.map(function(o){ return "<div class='dato'><span>" + esc(o) + "</span></div>"; }).join("")
+    );
+  }
+
+  /* ---------- contatori ---------- */
+  function aggiornaContatori(){
+    $("cRif").textContent = stato.rif;
+    $("cRip").textContent = stato.rip;
+    $("cCat").textContent = stato.cat;
+    var usate = 0;
+    for(var k in stato.formule){ if(stato.formule[k]) usate++; }
+    $("cFor").textContent = usate;
+
+    var v = "";
+    if(stato.rif >= 3 && stato.rip <= stato.rif) v = "Sta riformulando più di quanto chieda di ripetere: è esattamente il punto.";
+    else if(stato.rip >= 4 && stato.rif < 2) v = "Chiede di ripetere ma non riformula: insisti sul «quindi… giusto?».";
+    else if(stato.rif + stato.rip >= 6) v = "Sta reggendo la pressione. Allunga le risposte.";
+    $("verdetto").textContent = v;
+  }
+
+  /* ---------- la striscia delle formule ---------- */
+  var TUTTE = [];
+  FORMULE.forEach(function(g){
+    g.v.forEach(function(f){ TUTTE.push({ it:f[0], en:f[1], g:g.g, c:g.c }); });
+  });
+
+  function disegnaStriscia(el){
+    el.innerHTML = TUTTE.map(function(f, i){
+      var n = stato.formule[f.it] || 0;
+      return "<button type='button' data-f='" + i + "' data-usata='" + n + "'>" +
+             esc(f.it) + "<span class='volte'>" + n + "</span></button>";
+    }).join("");
+  }
+  function tutteLeStrisce(){
+    ["strisciaA","strisciaB","strisciaC"].forEach(function(id){ disegnaStriscia($(id)); });
+  }
+  function clicStriscia(e){
+    var b = e.target.closest("button[data-f]");
+    if(!b) return;
+    var f = TUTTE[Number(b.getAttribute("data-f"))];
+    stato.formule[f.it] = (stato.formule[f.it] || 0) + 1;
+    salva(); tutteLeStrisce(); aggiornaContatori();
+  }
+  ["strisciaA","strisciaB","strisciaC"].forEach(function(id){
+    $(id).addEventListener("click", clicStriscia);
+  });
+
+  /* ---------- fase 1 ---------- */
+  var mazzo1 = new Mazzo(SCALDA), carta1 = null, fatte1 = 0;
+  function pesca1(){
+    carta1 = mazzo1.pesca();
+    $("s1Testo").textContent = carta1.t;
+    $("s1Aiuto").textContent = "";
+    $("s1Mostra").disabled = false;
+    fatte1++;
+    $("s1Conta").textContent = fatte1 + " su " + SCALDA.length;
+  }
+  $("s1Pesca").addEventListener("click", pesca1);
+  $("s1Mostra").addEventListener("click", function(){
+    if(carta1) $("s1Aiuto").textContent = "Una che va bene: « " + carta1.f + " »";
+  });
+
+  /* ---------- fase 2 ---------- */
+  var mazzo2 = new Mazzo(VELOCI), veloce = null;
+  function disegnaDati(){
+    if(!veloce){ $("s2Dati").innerHTML = ""; return; }
+    $("s2Dati").innerHTML = veloce.dati.map(function(d, i){
+      return "<li class='nascosto' data-i='" + i + "'><span class='pallino'>" + (i + 1) + "</span>" +
+             "<span class='testo'>" + esc(d) + "</span></li>";
+    }).join("");
+  }
+  function pesca2(){
+    veloce = mazzo2.pesca();
+    $("s2Dove").textContent = veloce.dove;
+    $("s2Chiedi").textContent = veloce.chiedi;
+    $("s2Modello").hidden = true;
+    $("s2ModelloFrase").textContent = "";
+    $("s2Dato").disabled = false;
+    $("s2Mostra").disabled = false;
+    $("s2Ok").disabled = false;
+    $("s2Rip").disabled = false;
+    disegnaDati();
+    gobboVeloce(veloce);
+  }
+  /* chiamate dalla finestra separata */
+  window.mostraDato = function(i){
+    var li = $("s2Dati").children;
+    for(var k = 0; k < li.length; k++){
+      if(i === -1 || k === i){ li[k].classList.remove("nascosto"); li[k].classList.add("visto"); }
+    }
+  };
+  window.mostraModello = function(){
+    if(!veloce) return;
+    $("s2ModelloFrase").textContent = "« " + veloce.modello + " »";
+    $("s2Modello").hidden = false;
+  };
+  $("s2Pesca").addEventListener("click", pesca2);
+  $("s2Gobbo").addEventListener("click", function(){
+    if(apriGobbo()){
+      if(!veloce) pesca2(); else gobboVeloce(veloce);
+    }
+  });
+  $("s2Dato").addEventListener("click", function(){
+    var li = $("s2Dati").querySelector("li.nascosto");
+    if(li){ li.classList.remove("nascosto"); li.classList.add("visto"); }
+  });
+  $("s2Mostra").addEventListener("click", window.mostraModello);
+  $("s2Ok").addEventListener("click", function(){
+    stato.rif++; salva(); aggiornaContatori();
+  });
+  $("s2Rip").addEventListener("click", function(){
+    stato.rip++; salva(); aggiornaContatori();
+  });
+
+  /* ---------- fase 3 ---------- */
+  var mazzo3 = new Mazzo(SITUAZIONI), sit = null;
+  function pesca3(){
+    sit = mazzo3.pesca();
+    $("s3Sit").textContent = sit.s;
+    $("s3Ris").classList.remove("aperta");
+    $("s3Ris").innerHTML = "";
+    $("s3Scopri").disabled = false;
+  }
+  $("s3Pesca").addEventListener("click", pesca3);
+  $("s3Scopri").addEventListener("click", function(){
+    if(!sit) return;
+    var h = sit.g.map(function(nome){
+      var g = FORMULE.filter(function(x){ return x.g === nome; })[0];
+      if(!g) return "";
+      return "<div class='gruppo' style='color:" + g.c + "'><h3>" + esc(g.g) + "</h3><ul>" +
+        g.v.map(function(f){
+          return "<li style='color:var(--ink)'><span class='it'>" + esc(f[0]) + "</span>" +
+                 "<span class='en'>" + esc(f[1]) + "</span></li>";
+        }).join("") + "</ul></div>";
+    }).join("");
+    $("s3Ris").innerHTML = "<div class='gruppi' style='margin-top:0'>" + h + "</div>";
+    $("s3Ris").classList.add("aperta");
+  });
+  $("s3Gruppi").innerHTML = FORMULE.map(function(g){
+    return "<div class='gruppo' style='color:" + g.c + "'><h3>" + esc(g.g) + "</h3><ul>" +
+      g.v.map(function(f){
+        return "<li style='color:var(--ink)'><span class='it'>" + esc(f[0]) + "</span>" +
+               "<span class='en'>" + esc(f[1]) + "</span></li>";
+      }).join("") + "</ul></div>";
+  }).join("");
+
+  /* ---------- fase 4 ---------- */
+  var mazzo4 = new Mazzo(TRANSAZIONI), tran = null;
+  function pesca4(){
+    tran = mazzo4.pesca();
+    $("s4Luogo").textContent = tran.l;
+    $("s4Ob").textContent = tran.o;
+    $("s4Ottieni").innerHTML = tran.ott.map(function(o){
+      return "<li><span class='box' aria-hidden='true'></span><span class='testo'>" + esc(o) + "</span></li>";
+    }).join("");
+    if(finestra && !finestra.closed) gobboTransazione(tran);
+  }
+  $("s4Pesca").addEventListener("click", pesca4);
+  $("s4Gobbo").addEventListener("click", function(){
+    if(apriGobbo()){
+      if(!tran) pesca4(); else gobboTransazione(tran);
+    }
+  });
+  $("s4Ottieni").addEventListener("click", function(e){
+    var li = e.target.closest("li");
+    if(li) li.classList.toggle("fatto");
+  });
+
+  /* ---------- fase 5 ---------- */
+  var mazzo5 = new Mazzo(CATENE), catena = null;
+  var PASSI = ["Chiede la strada", "Io rispondo veloce", "Lei riformula e conferma", "Arriva e fa la transazione"];
+  function pesca5(){
+    catena = mazzo5.pesca();
+    $("s5Da").textContent = catena.da;
+    $("s5Meta").textContent = "Devi arrivare " + catena.a + ". Una volta lì, devi " + catena.fai + ".";
+    $("s5Passi").innerHTML = PASSI.map(function(p){
+      return "<li><span class='testo'>" + esc(p) + "</span></li>";
+    }).join("");
+    $("s5Chiudi").disabled = false;
+  }
+  $("s5Pesca").addEventListener("click", pesca5);
+  $("s5Passi").addEventListener("click", function(e){
+    var li = e.target.closest("li");
+    if(li) li.classList.toggle("fatto");
+  });
+  $("s5Chiudi").addEventListener("click", function(){
+    stato.cat++; salva(); aggiornaContatori();
+    $("s5Conta").textContent = stato.cat + " catene chiuse";
+  });
+
+  /* ---------- linguette ---------- */
+  var attiva = "s1";
+  $("fasi").addEventListener("click", function(e){
+    var b = e.target.closest("button[data-s]");
+    if(!b) return;
+    attiva = b.getAttribute("data-s");
+    Array.prototype.forEach.call($("fasi").children, function(x){
+      x.setAttribute("aria-pressed", String(x.getAttribute("data-s") === attiva));
+    });
+    ["s1","s2","s3","s4","s5"].forEach(function(id){
+      $(id).classList.toggle("active", id === attiva);
+    });
+  });
+
+  /* ---------- tastiera: spazio pesca nella fase aperta ---------- */
+  document.addEventListener("keydown", function(e){
+    var t = e.target.tagName;
+    if(t === "TEXTAREA" || t === "INPUT" || $("formuleDlg").open) return;
+    if(e.code === "Space" || e.key === " "){
+      e.preventDefault();
+      ({ s1:pesca1, s2:pesca2, s3:pesca3, s4:pesca4, s5:pesca5 })[attiva]();
+    } else if(e.key === "f" || e.key === "F"){
+      e.preventDefault();
+      $("formuleDlg").showModal();
+    }
+  });
+
+  /* ---------- il cassetto ---------- */
+  $("dlgBody").innerHTML =
+    "<p style='margin:0 0 6px'><b>La regola:</b> non deve capire tutto. Deve prendere le cose che contano e <i>ridirle</i>. Il gruppo «verificare» è quello che le cambia la vita.</p>" +
+    FORMULE.map(function(g){
+      return "<h3>" + esc(g.g) + "</h3><table>" + g.v.map(function(f){
+        return "<tr><td>" + esc(f[0]) + "</td><td class='en'>" + esc(f[1]) + "</td></tr>";
+      }).join("") + "</table>";
+    }).join("");
+  $("openFormule").addEventListener("click", function(){ $("formuleDlg").showModal(); });
+  $("closeFormule").addEventListener("click", function(){ $("formuleDlg").close(); });
+
+  /* ---------- appunti ---------- */
+  $("note").value = stato.note;
+  var attesa = null;
+  $("note").addEventListener("input", function(){
+    stato.note = this.value;
+    clearTimeout(attesa);
+    attesa = setTimeout(function(){
+      salva();
+      $("salvato").textContent = "Salvato.";
+      setTimeout(function(){ $("salvato").textContent = "Si salva da solo su questo computer."; }, 1400);
+    }, 400);
+  });
+  $("reset").addEventListener("click", function(){
+    if(!confirm("Azzero contatori, formule usate e appunti. Sicuro?")) return;
+    stato = { rif:0, rip:0, cat:0, formule:{}, note:"" };
+    salva();
+    $("note").value = "";
+    $("s5Conta").textContent = "";
+    tutteLeStrisce();
+    aggiornaContatori();
+  });
+
+  tutteLeStrisce();
+  aggiornaContatori();
+  if(stato.cat) $("s5Conta").textContent = stato.cat + " catene chiuse";
+})();
+</script>
+</body>
+</html>
