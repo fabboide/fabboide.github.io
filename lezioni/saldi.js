@@ -54,7 +54,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "7 ottobre 2026, 16:10";
+var SALDI_AGGIORNATO = "8 ottobre 2026, 16:12";
 
 var SALDI = {
 
@@ -64,11 +64,13 @@ var SALDI = {
     inizio: "2026-09-28",
     fatte_prima: 0,
     fatte: 0,
-    prenotate: 0,
-    rimaste: 4,
+    prenotate: 1,
+    rimaste: 3,
     passate: [],
-    prossime: [],
-    promemoria: "Per Fabio: la lezione del 9 ottobre alle 9:00 che sta sul calendario NON vale e non va contata, quindi qui il pacchetto risulta intero: quattro da fare. Attenzione: il conteggio notturno rilegge il calendario e, finché quell'evento esiste con la mail di Luis tra gli invitati, rimette prenotate a 1. Per tenerlo fuori davvero bisogna disdire l'evento, oppure togliere Luis da mail-studenti.json e gestire i suoi numeri a mano. · Le lezioni di agosto e inizio settembre (27/8, 28/8, 3/9, 10/9) restano fuori da questo pacchetto: il conteggio parte dal 28 settembre."
+    prossime: [
+      { quando: "2026-10-09T17:00:00+02:00", gestisci: "https://cal.com/booking/bFT6mN9oQw4g5aGFrPgUff?changes=true" }
+    ],
+    promemoria: "Per Fabio: quella del 9 ottobre alle 9:00 non c'è più sul calendario, l'ha spostata lui: adesso è il 9 alle 17:00, prenotata da Cal.com il 7 ottobre, e quella la conto. · Le lezioni di agosto e inizio settembre (27/8, 28/8, 3/9, 10/9) restano fuori da questo pacchetto: il conteggio parte dal 28 settembre."
   },
 
   "elena-8qw": {
@@ -110,12 +112,15 @@ var SALDI = {
     inizio: "2026-09-15",
     fatte_prima: 0,
     fatte: 1,
-    prenotate: 0,
-    rimaste: 25,
+    prenotate: 1,
+    rimaste: 24,
     passate: [
       "2026-09-21T14:00:00+02:00"
     ],
-    prossime: []
+    prossime: [
+      { quando: "2026-10-19T16:00:00+02:00", gestisci: "https://cal.com/booking/mizdFz134cTcWa4EMevt3A?changes=true" }
+    ],
+    promemoria: "Per Fabio: Rafaela prenota con due indirizzi, uno con una enne e uno con due. Vanno tenuti tutti e due in mail-studenti.json, se no metà delle sue lezioni non viene contata."
   },
 
   "kristina-xix": {
@@ -128,7 +133,7 @@ var SALDI = {
     rimaste: 5,
     passate: [],
     prossime: [
-      { quando: "2026-10-08T17:00:00+02:00", gestisci: "https://cal.com/booking/asKRjCiSj1X5Y4F3NH6UEy?changes=true" }
+      { quando: "2026-10-09T18:00:00+02:00", gestisci: "https://cal.com/booking/vA9237LfQrNA6W2MF5dTN7?changes=true" }
     ]
   }
 
