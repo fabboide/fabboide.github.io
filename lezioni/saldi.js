@@ -54,7 +54,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "8 ottobre 2026, 16:12";
+var SALDI_AGGIORNATO = "10 ottobre 2026, 13:20";
 
 var SALDI = {
 
@@ -63,12 +63,14 @@ var SALDI = {
     pacchetto: 4,
     inizio: "2026-09-28",
     fatte_prima: 0,
-    fatte: 0,
+    fatte: 1,
     prenotate: 1,
-    rimaste: 3,
-    passate: [],
+    rimaste: 2,
+    passate: [
+      "2026-10-09T17:00:00+02:00"
+    ],
     prossime: [
-      { quando: "2026-10-09T17:00:00+02:00", gestisci: "https://cal.com/booking/bFT6mN9oQw4g5aGFrPgUff?changes=true" }
+      { quando: "2026-10-12T16:30:00+02:00", gestisci: "https://cal.com/booking/vEihCwNuK9pKPaDAZD2ZAg?changes=true" }
     ],
     promemoria: "Per Fabio: quella del 9 ottobre alle 9:00 non c'è più sul calendario, l'ha spostata lui: adesso è il 9 alle 17:00, prenotata da Cal.com il 7 ottobre, e quella la conto. · Le lezioni di agosto e inizio settembre (27/8, 28/8, 3/9, 10/9) restano fuori da questo pacchetto: il conteggio parte dal 28 settembre."
   },
@@ -91,18 +93,19 @@ var SALDI = {
     pacchetto: 10,
     inizio: "2026-08-26",
     fatte_prima: 0,
-    fatte: 5,
+    fatte: 6,
     prenotate: 1,
-    rimaste: 4,
+    rimaste: 3,
     passate: [
       "2026-08-26T12:00:00+02:00",
       "2026-09-01T12:00:00+02:00",
       "2026-09-10T12:00:00+02:00",
       "2026-09-17T11:00:00+02:00",
-      "2026-09-21T13:00:00+02:00"
+      "2026-09-21T13:00:00+02:00",
+      "2026-10-09T15:00:00+02:00"
     ],
     prossime: [
-      { quando: "2026-10-09T15:00:00+02:00", gestisci: "https://cal.com/booking/7eefpzjBKUKhCfq1Paswhn?changes=true" }
+      { quando: "2026-10-16T18:00:00+02:00", gestisci: "https://cal.com/booking/7DZXUt6EZVbRcy8iKX5xZx?changes=true" }
     ]
   },
 
@@ -128,12 +131,14 @@ var SALDI = {
     pacchetto: 6,
     inizio: "2026-09-21",
     fatte_prima: 0,
-    fatte: 0,
+    fatte: 1,
     prenotate: 1,
-    rimaste: 5,
-    passate: [],
+    rimaste: 4,
+    passate: [
+      "2026-10-09T18:00:00+02:00"
+    ],
     prossime: [
-      { quando: "2026-10-09T18:00:00+02:00", gestisci: "https://cal.com/booking/vA9237LfQrNA6W2MF5dTN7?changes=true" }
+      { quando: "2026-10-16T17:00:00+02:00", gestisci: "https://cal.com/booking/jxpWUyWnpST8jWm6orJNw4?changes=true" }
     ]
   }
 
