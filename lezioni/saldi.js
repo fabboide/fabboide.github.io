@@ -150,8 +150,7 @@ var SALDI = {
     fatte: 0,
     prenotate: 0,
     rimaste: 1,
-    prossime: [],
-    promemoria: "Per Fabio: aggiungi la loro mail a mail-studenti.json e il conteggio diventa automatico. Finche' manca, il numero lo cambio io a mano."
+    prossime: []
   }
 
 };
