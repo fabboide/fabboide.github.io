@@ -54,7 +54,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "12 ottobre 2026, 13:30";
+var SALDI_AGGIORNATO = "12 ottobre 2026, 18:00";
 
 var SALDI = {
 
@@ -146,6 +146,18 @@ var SALDI = {
 
   "robmarie-7vc": {
     nome: "Rob & Marie",
+    pacchetto: 1,
+    inizio: "2026-10-12",
+    fatte_prima: 0,
+    fatte: 0,
+    prenotate: 0,
+    rimaste: 1,
+    passate: [],
+    prossime: []
+  },
+
+  "ellie-3mw": {
+    nome: "Ellie",
     pacchetto: 1,
     inizio: "2026-10-12",
     fatte_prima: 0,
