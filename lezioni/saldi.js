@@ -54,7 +54,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "12 ottobre 2026, 10:30";
+var SALDI_AGGIORNATO = "12 ottobre 2026, 13:30";
 
 var SALDI = {
 
@@ -115,12 +115,14 @@ var SALDI = {
     inizio: "2026-09-15",
     fatte_prima: 0,
     fatte: 1,
-    prenotate: 1,
-    rimaste: 24,
+    prenotate: 3,
+    rimaste: 22,
     passate: [
       "2026-09-21T14:00:00+02:00"
     ],
     prossime: [
+      { quando: "2026-10-15T09:30:00+02:00", gestisci: "https://cal.com/booking/uRshUbzmCQntBp5yW9tE98?changes=true" },
+      { quando: "2026-10-16T09:30:00+02:00", gestisci: "https://cal.com/booking/oUg9GEAaDKpXkuiv3hQ62N?changes=true" },
       { quando: "2026-10-19T16:00:00+02:00", gestisci: "https://cal.com/booking/mizdFz134cTcWa4EMevt3A?changes=true" }
     ],
     promemoria: "Per Fabio: Rafaela prenota con due indirizzi, uno con una enne e uno con due. Vanno tenuti tutti e due in mail-studenti.json, se no metà delle sue lezioni non viene contata."
@@ -150,6 +152,7 @@ var SALDI = {
     fatte: 0,
     prenotate: 0,
     rimaste: 1,
+    passate: [],
     prossime: []
   }
 
