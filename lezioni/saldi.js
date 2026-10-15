@@ -54,7 +54,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "13 ottobre 2026, 21:40";
+var SALDI_AGGIORNATO = "15 ottobre 2026, 23:25";
 
 var SALDI = {
 
@@ -63,14 +63,17 @@ var SALDI = {
     pacchetto: 4,
     inizio: "2026-09-28",
     fatte_prima: 0,
-    fatte: 2,
-    prenotate: 0,
-    rimaste: 2,
+    fatte: 3,
+    prenotate: 1,
+    rimaste: 0,
     passate: [
       "2026-10-09T17:00:00+02:00",
-      "2026-10-12T16:30:00+02:00"
+      "2026-10-12T16:30:00+02:00",
+      "2026-10-15T16:30:00+02:00"
     ],
-    prossime: [],
+    prossime: [
+      { quando: "2026-10-22T16:30:00+02:00", gestisci: "https://cal.com/booking/3tgQUbZ9rTfdC2kikHb3to?changes=true" }
+    ],
     promemoria: "Per Fabio: quella del 9 ottobre alle 9:00 non c'è più sul calendario, l'ha spostata lui: adesso è il 9 alle 17:00, prenotata da Cal.com il 7 ottobre, e quella la conto. · Le lezioni di agosto e inizio settembre (27/8, 28/8, 3/9, 10/9) restano fuori da questo pacchetto: il conteggio parte dal 28 settembre."
   },
 
@@ -104,7 +107,7 @@ var SALDI = {
       "2026-10-09T15:00:00+02:00"
     ],
     prossime: [
-      { quando: "2026-10-16T18:00:00+02:00", gestisci: "https://cal.com/booking/7DZXUt6EZVbRcy8iKX5xZx?changes=true" }
+      { quando: "2026-10-16T15:00:00+02:00", gestisci: "https://cal.com/booking/rceXrPxF5bbAuqpfRARvEv?changes=true" }
     ]
   },
 
@@ -113,16 +116,15 @@ var SALDI = {
     pacchetto: 26,
     inizio: "2026-09-15",
     fatte_prima: 0,
-    fatte: 1,
-    prenotate: 3,
-    rimaste: 22,
+    fatte: 2,
+    prenotate: 1,
+    rimaste: 23,
     passate: [
-      "2026-09-21T14:00:00+02:00"
+      "2026-09-21T14:00:00+02:00",
+      "2026-10-15T09:30:00+02:00"
     ],
     prossime: [
-      { quando: "2026-10-15T09:30:00+02:00", gestisci: "https://cal.com/booking/uRshUbzmCQntBp5yW9tE98?changes=true" },
-      { quando: "2026-10-16T09:30:00+02:00", gestisci: "https://cal.com/booking/oUg9GEAaDKpXkuiv3hQ62N?changes=true" },
-      { quando: "2026-10-19T16:00:00+02:00", gestisci: "https://cal.com/booking/mizdFz134cTcWa4EMevt3A?changes=true" }
+      { quando: "2026-10-16T09:30:00+02:00", gestisci: "https://cal.com/booking/oUg9GEAaDKpXkuiv3hQ62N?changes=true" }
     ],
     promemoria: "Per Fabio: Rafaela prenota con due indirizzi, uno con una enne e uno con due. Vanno tenuti tutti e due in mail-studenti.json, se no metà delle sue lezioni non viene contata."
   },
