@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Italian numbers 1 to 1000 — Talk with Fabio</title>
+<meta name="description" content="Learn Italian numbers from 1 to 1000 in three steps. The seven rules that build every number, then listening and writing drills with a 60 second challenge.">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="canonical" href="https://talkwithfabio.com/esercizi/numeri/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Talk with Fabio">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Italian numbers 1 to 1000">
+<meta property="og:description" content="Learn Italian numbers from 1 to 1000 in three steps. The seven rules that build every number, then listening and writing drills with a 60 second challenge.">
+<meta property="og:url" content="https://talkwithfabio.com/esercizi/numeri/">
+<meta property="og:image" content="https://talkwithfabio.com/img/og-numeri.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16233F; --ink-soft:#4A5670; --paper:#F7F4EC; --paper-2:#FFFDF8; --rule:#DFD8C7;
+  --saffron:#E8A33D; --rosso:#C4312B; --verde:#2E5E4E;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --serif:"Newsreader",Georgia,serif;
+  --pen:"Caveat",cursive;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.55}
+.nastro{height:6px;background:linear-gradient(90deg,var(--verde) 0 25%,var(--saffron) 25% 50%,var(--rosso) 50% 75%,var(--rule) 75% 100%)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding:12px 20px;border-bottom:1px solid var(--rule);background:var(--paper-2)}
+.topbar a{color:var(--ink-soft);text-decoration:none;font-family:var(--display);font-size:.9rem}
+.topbar a:hover{color:var(--ink)}
+.topbar .marchio{font-family:var(--display);font-weight:800;letter-spacing:-.01em}
+.wrap{max-width:780px;margin:0 auto;padding:24px 20px 90px}
+h1{font-family:var(--display);font-weight:800;font-size:2.1rem;letter-spacing:-.025em;margin:8px 0 6px}
+h2{font-family:var(--display);font-weight:700;font-size:1.32rem;margin:28px 0 8px}
+h3{font-family:var(--display);font-size:1.04rem;margin:0 0 6px}
+.lede{color:var(--ink-soft);font-size:1.06rem;margin:0 0 4px}
+.pen{font-family:var(--pen);font-size:1.2rem;color:var(--verde);margin:6px 0 0}
+.en{color:var(--ink-soft);font-style:italic;font-size:.93rem}
+.btn{font-family:var(--display);font-weight:700;font-size:.95rem;border:1px solid var(--ink);
+  background:var(--ink);color:var(--paper-2);border-radius:999px;padding:10px 18px;cursor:pointer}
+.btn.verde{background:var(--verde);border-color:var(--verde)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
+.btn:disabled{opacity:.45;cursor:default}
+.riga{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.panel{background:var(--paper-2);border:1px solid var(--rule);border-radius:16px;padding:16px 18px;margin:12px 0}
+
+/* scalini e modi */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 6px}
+.chips button{font-family:var(--display);font-weight:700;font-size:.9rem;border:1px solid var(--rule);
+  background:var(--paper-2);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
+.chips button.on{background:var(--ink);color:var(--paper-2);border-color:var(--ink)}
+.scalDillo{color:var(--ink-soft);font-size:.95rem;margin:2px 0 12px}
+#modi{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 16px}
+#modi button{font-family:var(--display);font-weight:700;font-size:.92rem;border:1px solid var(--rule);
+  background:var(--paper-2);color:var(--ink);border-radius:12px;padding:10px 14px;cursor:pointer}
+#modi button.on{background:var(--verde);color:var(--paper-2);border-color:var(--verde)}
+#modi button[disabled]{opacity:.4}
+.sez{display:none}
+.sez.on{display:block}
+
+/* regole */
+.regola{background:var(--paper-2);border:1px solid var(--rule);border-left:5px solid var(--saffron);
+  border-radius:14px;padding:14px 16px;margin:10px 0}
+.regola h3{margin-bottom:4px}
+.regola .corpo{margin:0 0 6px}
+.regola .perche{color:var(--ink-soft);font-size:.95rem;margin:6px 0 0}
+.esempi{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.esempi span{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:6px 11px;font-size:.95rem}
+.esempi b{font-family:var(--display);color:var(--rosso);margin-right:6px}
+
+/* domanda */
+.domanda{background:var(--paper-2);border:1px solid var(--rule);border-radius:18px;padding:22px;text-align:center;margin:12px 0}
+.cifrona{font-family:var(--display);font-weight:800;font-size:3.4rem;letter-spacing:-.03em;line-height:1.05;margin:4px 0 2px}
+.cifrona.parola{font-size:2.1rem;word-break:break-word}
+.dove{color:var(--ink-soft);font-size:.95rem;margin:0 0 4px}
+.chiedo{font-family:var(--display);font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);margin:0}
+input[type=text]{font-family:var(--serif);font-size:1.25rem;width:100%;max-width:420px;padding:11px 14px;
+  border:1px solid var(--rule);border-radius:12px;background:var(--paper);color:var(--ink);text-align:center}
+input[type=text]:focus{outline:2px solid var(--verde);outline-offset:1px}
+.opzioni{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+.opzioni button{font-family:var(--serif);font-size:1.05rem;border:1px solid var(--rule);background:var(--paper);
+  color:var(--ink);border-radius:12px;padding:12px 10px;cursor:pointer;word-break:break-word}
+.opzioni button:hover{border-color:var(--ink)}
+.opzioni button.giusta{background:var(--verde);color:var(--paper-2);border-color:var(--verde)}
+.opzioni button.storta{background:var(--rosso);color:var(--paper-2);border-color:var(--rosso)}
+.opzioni button .tasto{font-family:var(--display);font-size:.72rem;opacity:.55;margin-right:7px}
+
+.esito{min-height:28px;margin-top:12px;font-family:var(--display);font-weight:700}
+.esito.si{color:var(--verde)}
+.esito.no{color:var(--rosso)}
+.esito .giusto{display:block;font-family:var(--serif);font-weight:400;color:var(--ink);font-size:1.15rem;margin-top:4px}
+.esito .regolina{display:block;font-family:var(--serif);font-weight:400;color:var(--ink-soft);font-size:.93rem;margin-top:4px}
+.esito .quasi{display:block;font-family:var(--serif);font-weight:400;color:var(--saffron);font-size:.93rem;margin-top:4px}
+
+/* punteggio */
+.conti{display:flex;gap:18px;flex-wrap:wrap;margin:14px 0 4px;align-items:baseline}
+.conti div{display:flex;gap:7px;align-items:baseline}
+.conti b{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.02em}
+.conti .g b{color:var(--verde)} .conti .s b{color:var(--rosso)}
+.conti span{font-family:var(--display);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.crono{font-family:var(--display);font-weight:800;font-size:1.6rem;font-variant-numeric:tabular-nums}
+.crono.poco{color:var(--rosso)}
+
+/* da rivedere */
+.rivedere{margin-top:16px}
+.rivedere h3{color:var(--rosso)}
+.listaRiv{display:flex;gap:7px;flex-wrap:wrap;margin-top:6px}
+.listaRiv span{border:1px solid var(--rosso);color:var(--rosso);border-radius:999px;padding:4px 11px;font-size:.92rem}
+.listaRiv b{font-family:var(--display);margin-right:5px}
+
+.avviso{border:1px solid var(--saffron);background:rgba(232,163,61,.14);border-radius:14px;padding:12px 15px;margin:12px 0;font-size:.95rem}
+.avviso b{font-family:var(--display)}
+.record{font-family:var(--display);font-size:.9rem;color:var(--ink-soft)}
+.record b{color:var(--ink)}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);color:var(--ink-soft);font-size:.92rem}
+footer a{color:var(--verde)}
+@media (max-width:620px){
+  .wrap{padding:18px 16px 70px}
+  h1{font-size:1.65rem}
+  .cifrona{font-size:2.7rem}
+  .cifrona.parola{font-size:1.6rem}
+  .opzioni{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="nastro"></div>
+<div class="topbar">
+  <a href="https://talkwithfabio.com/esercizi/">&larr; Tutti gli esercizi</a>
+  <span class="marchio">Talk with Fabio</span>
+</div>
+
+<div class="wrap">
+  <h1>I numeri, da 1 a 1000</h1>
+  <p class="lede">Tre scalini. Prima le sette regole che costruiscono tutti i numeri, poi si allena finché non ci pensi più.</p>
+  <p class="pen">A memoria si impara solo da 11 a 19. Tutto il resto si costruisce.</p>
+
+  <div class="chips" id="scalini"></div>
+  <p class="scalDillo" id="scalDillo"></p>
+
+  <div id="modi"></div>
+
+  <!-- ===== le regole ===== -->
+  <section class="sez" id="mRegole">
+    <p class="lede">Sette regole, e con queste scrivi qualsiasi numero fino a mille. Leggile una volta, poi vai ad allenarti: è allenandoti che restano.</p>
+    <div id="regole"></div>
+  </section>
+
+  <!-- ===== riconosci ===== -->
+  <section class="sez" id="mRiconosci">
+    <div class="domanda">
+      <p class="chiedo">Quale numero è?</p>
+      <p class="cifrona parola" id="recParola">&nbsp;</p>
+      <p class="dove" id="recDove"></p>
+      <div class="opzioni" id="recOpz"></div>
+      <div class="esito" id="recEsito"></div>
+    </div>
+    <div class="riga"><button class="btn verde" id="recAvanti" type="button">Avanti</button></div>
+    <div class="conti" id="recConti"></div>
+  </section>
+
+  <!-- ===== scrivi ===== -->
+  <section class="sez" id="mScrivi">
+    <div class="domanda">
+      <p class="chiedo">Scrivilo in lettere</p>
+      <p class="cifrona" id="scrCifra">&nbsp;</p>
+      <p class="dove" id="scrDove"></p>
+      <input type="text" id="scrInput" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="scrivi qui…">
+      <div class="riga" style="justify-content:center;margin-top:12px">
+        <button class="btn" id="scrControlla" type="button">Controlla</button>
+        <button class="btn ghost" id="scrSalta" type="button">Non lo so</button>
+      </div>
+      <div class="esito" id="scrEsito"></div>
+    </div>
+    <div class="riga"><button class="btn verde" id="scrAvanti" type="button">Avanti</button></div>
+    <div class="conti" id="scrConti"></div>
+  </section>
+
+  <!-- ===== ascolta ===== -->
+  <section class="sez" id="mAscolta">
+    <div id="ascNoVoce" class="avviso" hidden>
+      <b>Questo apparecchio non ha una voce italiana.</b> Senza quella non posso dire i numeri ad alta voce.
+      Su iPhone e Mac c'è di serie; su Android si aggiunge dalle impostazioni della voce. Intanto gli altri tre modi funzionano tutti.
+    </div>
+    <div id="ascCorpo">
+      <div class="domanda">
+        <p class="chiedo">Ascolta e scrivi la cifra</p>
+        <div class="riga" style="justify-content:center;margin:10px 0">
+          <button class="btn" id="ascDillo" type="button">Ripeti</button>
+          <button class="btn ghost" id="ascPiano" type="button">Più lento</button>
+        </div>
+        <input type="text" id="ascInput" inputmode="numeric" autocomplete="off" placeholder="solo cifre">
+        <div class="riga" style="justify-content:center;margin-top:12px">
+          <button class="btn" id="ascControlla" type="button">Controlla</button>
+          <button class="btn ghost" id="ascSalta" type="button">Non lo so</button>
+        </div>
+        <div class="esito" id="ascEsito"></div>
+      </div>
+      <div class="riga"><button class="btn verde" id="ascAvanti" type="button">Avanti</button></div>
+      <div class="conti" id="ascConti"></div>
+    </div>
+  </section>
+
+  <!-- ===== sfida ===== -->
+  <section class="sez" id="mSfida">
+    <p class="lede">Sessanta secondi. Non devi pensarci: devi saperlo.</p>
+    <p class="record" id="sfiRecord"></p>
+    <div class="riga" style="margin:12px 0"><button class="btn verde" id="sfiVia" type="button">Via!</button>
+      <span class="crono" id="sfiCrono">60</span></div>
+    <div id="sfiCorpo" hidden>
+      <div class="domanda">
+        <p class="chiedo">Quale numero è?</p>
+        <p class="cifrona parola" id="sfiParola">&nbsp;</p>
+        <div class="opzioni" id="sfiOpz"></div>
+      </div>
+      <div class="conti" id="sfiConti"></div>
+    </div>
+    <div id="sfiFine"></div>
+  </section>
+
+  <!-- da rivedere -->
+  <div class="rivedere panel" id="rivedere" hidden>
+    <h3>Da rivedere</h3>
+    <p class="en" style="margin:0">I numeri che hai sbagliato tornano più spesso finché non li prendi.</p>
+    <div class="listaRiv" id="listaRiv"></div>
+    <div class="riga" style="margin-top:12px"><button class="btn ghost" id="azzera" type="button">Ricomincia da capo</button></div>
+  </div>
+
+  <footer>
+    Fai lezione con me? <a href="https://talkwithfabio.com/prenota/">Prenota una lezione</a> ·
+    <a href="https://talkwithfabio.com/esercizi/">Tutti gli esercizi</a>
+  </footer>
+</div>
+
+<script>
+/* =====================================================================
+   Da cifra a parola, da 0 a 9999.
+   Le regole vere dell'italiano, non una lista scritta a mano:
+   - le decine perdono la vocale finale davanti a UNO e OTTO
+     (ventuno, ventotto, trentuno, trentotto...)
+   - il TRE finale prende l'accento (ventitré, centotré)
+   - CENTO perde la o davanti a OTTO e OTTANTA (centotto, centottanta)
+   - CENTO e MILLE non cambiano al plurale: duecento, ma duemila
+   ===================================================================== */
+
+var UNITA = ["zero","uno","due","tre","quattro","cinque","sei","sette","otto","nove"];
+var DIECI = ["dieci","undici","dodici","tredici","quattordici","quindici","sedici",
+             "diciassette","diciotto","diciannove"];
+var DECINE = ["","","venti","trenta","quaranta","cinquanta","sessanta","settanta","ottanta","novanta"];
+
+function sotto100(n){
+  if(n < 10) return UNITA[n];
+  if(n < 20) return DIECI[n - 10];
+  var d = DECINE[Math.floor(n / 10)], u = n % 10;
+  if(u === 0) return d;
+  if(u === 1 || u === 8) return d.slice(0, -1) + UNITA[u];   /* ventuno, ventotto */
+  return d + UNITA[u];
+}
+
+function sotto1000(n){
+  if(n < 100) return sotto100(n);
+  var c = Math.floor(n / 100), r = n % 100;
+  var testa = (c === 1 ? "cento" : UNITA[c] + "cento");
+  if(r === 0) return testa;
+  var coda = sotto100(r);
+  /* cento + otto = centotto, cento + ottanta = centottanta */
+  if(coda.charAt(0) === "o") return testa.slice(0, -1) + coda;
+  return testa + coda;
+}
+
+function inParole(n){
+  var p;
+  if(n < 1000){
+    p = sotto1000(n);
+  } else {
+    var m = Math.floor(n / 1000), r = n % 1000;
+    var testa = (m === 1 ? "mille" : UNITA[m] + "mila");
+    p = (r === 0 ? testa : testa + sotto1000(r));
+  }
+  /* il TRE finale prende l'accento solo quando e' in fondo a un numero composto:
+     tre resta tre, ma ventitre' diventa ventitré e centotre' centotré */
+  if(n > 3 && /tre$/.test(p)) p = p.slice(0, -3) + "tré";
+  return p;
+}
+
+/* forme alternative accettate come giuste */
+function altreForme(n){
+  var alt = [];
+  var p = inParole(n);
+  if(/^cento(uno|undici)/.test(p)) alt.push(p.replace(/^cento/, "cent"));
+  if(/cento(uno|undici)/.test(p) && !/^cento/.test(p)) alt.push(p.replace(/cento(uno|undici)/, "cent$1"));
+  return alt;
+}
+
+
+
+
+/* =====================================================================
+   I NUMERI · contenuti scritti a mano
+   (le parole dei numeri non stanno qui: le costruisce numero.js)
+   ===================================================================== */
+
+var REGOLE = [
+  { t: "Da 11 a 16 la decina sta in fondo, da 17 passa davanti",
+    c: "undici, dodici, tredici, quattordici, quindici, se<b>dici</b> → poi si gira: <b>dici</b>assette, <b>dici</b>otto, <b>dici</b>annove.",
+    p: "È il punto in cui sbagliano tutti. Se ti blocchi su un numero fra 11 e 19, è quasi sempre qui.",
+    en: "From 11 to 16 the “ten” part comes last; from 17 it jumps to the front.",
+    es: [[16, "sedici"], [17, "diciassette"], [18, "diciotto"], [19, "diciannove"]] },
+
+  { t: "Le decine perdono la vocale davanti a UNO e OTTO",
+    c: "venti + uno non fa « ventiuno », fa <b>ventuno</b>. Venti + otto fa <b>ventotto</b>.",
+    p: "Vale per tutte le decine, sempre, e solo davanti a questi due. Con gli altri numeri non cambia niente: ventidue, ventisei.",
+    en: "Tens drop their final vowel before UNO and OTTO. Only before those two.",
+    es: [[21, "ventuno"], [28, "ventotto"], [41, "quarantuno"], [68, "sessantotto"], [91, "novantuno"]] },
+
+  { t: "Il TRE finale prende l'accento",
+    c: "tre da solo si scrive <b>tre</b>, ma in fondo a un numero più lungo diventa <b>tré</b>: ventitré, quarantatré, centotré.",
+    p: "Se non lo scrivi, la parola si legge con l'accento sbagliato. È l'unico accento scritto in tutti i numeri.",
+    en: "A final TRE takes a written accent: tré. It is the only accent in the numbers.",
+    es: [[3, "tre"], [23, "ventitré"], [43, "quarantatré"], [103, "centotré"]] },
+
+  { t: "CENTO non cambia mai, MILLE diventa MILA",
+    c: "due<b>cento</b>, tre<b>cento</b>, nove<b>cento</b>: cento resta sempre uguale. Mille invece al plurale è <b>mila</b>: due<b>mila</b>, tre<b>mila</b>.",
+    p: "In inglese dici « two hundred », staccato e al singolare. In italiano è una parola sola, e mille è l'unico che cambia.",
+    en: "CENTO never changes. MILLE becomes MILA in the plural.",
+    es: [[200, "duecento"], [900, "novecento"], [1000, "mille"], [2000, "duemila"]] },
+
+  { t: "Anche CENTO perde la o davanti a OTTO",
+    c: "cento + otto fa <b>centotto</b>, cento + ottanta fa <b>centottanta</b>. Stessa regola delle decine.",
+    p: "Attenzione a non confonderlo: <b>centotto</b> è 108, <b>centodiciotto</b> è 118. Una sillaba sola di differenza.",
+    en: "CENTO also drops its o before OTTO and OTTANTA.",
+    es: [[108, "centotto"], [118, "centodiciotto"], [180, "centottanta"], [188, "centottantotto"]] },
+
+  { t: "Tutto attaccato, una parola sola",
+    c: "Fino al milione il numero si scrive tutto unito, per lungo che sia: <b>millenovecentonovantotto</b>.",
+    p: "Non ci vanno spazi, trattini né « e ». Se ti sembra assurdo, è perché in inglese si fa il contrario.",
+    en: "Up to a million an Italian number is written as one single word.",
+    es: [[247, "duecentoquarantasette"], [1998, "millenovecentonovantotto"], [2026, "duemilaventisei"]] },
+
+  { t: "Le doppie si sentono, e cambiano la parola",
+    c: "dicia<b>ss</b>ette, dicia<b>nn</b>ove, se<b>ss</b>anta, no<b>vant</b>anove.",
+    p: "Se dici « dicia-sette » con una esse sola non si capisce. Sulle doppie la voce si ferma un attimo: è il modo più veloce per farsi capire al telefono.",
+    en: "Double consonants are pronounced long, and they change the word.",
+    es: [[17, "diciassette"], [19, "diciannove"], [60, "sessanta"], [70, "settanta"]] }
+];
+
+/* numeri come arrivano nella vita vera: scritti a mano, perché qui
+   non basta la parola, serve come si dice davvero la cosa intera */
+var MONDO = [
+  { cifra: "3,50 \u20ac",  dire: "tre euro e cinquanta",   dove: "al bar",            tipo: "soldi" },
+  { cifra: "12,90 \u20ac", dire: "dodici euro e novanta",  dove: "il conto",          tipo: "soldi" },
+  { cifra: "7,25 \u20ac",  dire: "sette euro e venticinque", dove: "il biglietto",    tipo: "soldi" },
+  { cifra: "0,80 \u20ac",  dire: "ottanta centesimi",      dove: "il resto",          tipo: "soldi" },
+
+  { cifra: "1,5 kg",   dire: "un chilo e mezzo",       dove: "dal fruttivendolo", tipo: "quantita" },
+  { cifra: "500 g",    dire: "cinquecento grammi",     dove: "dal salumiere",     tipo: "quantita" },
+  { cifra: "250 g",    dire: "due etti e mezzo",       dove: "dal salumiere",     tipo: "quantita" },
+  { cifra: "2 l",      dire: "due litri",              dove: "al supermercato",   tipo: "quantita" },
+
+  { cifra: "1998",     dire: "millenovecentonovantotto", dove: "l'anno di nascita", tipo: "anno" },
+  { cifra: "2026",     dire: "duemilaventisei",        dove: "quest'anno",        tipo: "anno" },
+  { cifra: "1861",     dire: "milleottocentosessantuno", dove: "l'unit\u00e0 d'Italia", tipo: "anno" },
+  { cifra: "1492",     dire: "millequattrocentonovantadue", dove: "una data di storia", tipo: "anno" },
+
+  { cifra: "2 giugno",  dire: "il due giugno",         dove: "una festa",         tipo: "data" },
+  { cifra: "25 aprile", dire: "il venticinque aprile", dove: "una festa",         tipo: "data" },
+  { cifra: "15 agosto", dire: "il quindici agosto",    dove: "ferragosto",        tipo: "data" },
+  { cifra: "24 dicembre", dire: "il ventiquattro dicembre", dove: "la vigilia",   tipo: "data" },
+
+  { cifra: "14:35",    dire: "le quattordici e trentacinque", dove: "l'orario del treno", tipo: "ora" },
+  { cifra: "8:15",     dire: "le otto e un quarto",    dove: "l'appuntamento",    tipo: "ora" },
+  { cifra: "19:40",    dire: "le diciannove e quaranta", dove: "il volo",         tipo: "ora" },
+  { cifra: "6:30",     dire: "le sei e mezza",         dove: "la sveglia",        tipo: "ora" },
+
+  { cifra: "binario 7", dire: "binario sette",         dove: "in stazione",       tipo: "numero" },
+  { cifra: "347 892 4410", dire: "tre quattro sette, otto nove due, quattro quattro uno zero", dove: "il telefono, cifra per cifra", tipo: "numero" },
+  { cifra: "118",      dire: "centodiciotto",          dove: "il numero dell'ambulanza", tipo: "numero" },
+  { cifra: "via Dante 17", dire: "via Dante diciassette", dove: "l'indirizzo",    tipo: "numero" },
+
+  { cifra: "42",       dire: "quarantadue",            dove: "la taglia delle scarpe", tipo: "misura" },
+  { cifra: "34 anni",  dire: "trentaquattro anni",     dove: "l'et\u00e0",       tipo: "misura" },
+  { cifra: "pagina 128", dire: "pagina centoventotto", dove: "a lezione",         tipo: "misura" },
+  { cifra: "80 km/h",  dire: "ottanta all'ora",        dove: "in macchina",       tipo: "misura" }
+];
+
+/* i tre scalini, come li ha chiesti Fabio, piu il mondo vero */
+var SCALINI = [
+  { k: "20",    eti: "Da 1 a 20",   da: 1, a: 20,
+    dillo: "I venti numeri da cui dipende tutto il resto. Qui dentro c'è l'unico pezzo che va imparato a memoria: da 11 a 19." },
+  { k: "100",   eti: "Da 1 a 100",  da: 1, a: 100,
+    dillo: "Da qui in poi non si impara più niente a memoria: si combinano le decine con quello che sai già." },
+  { k: "1000",  eti: "Da 1 a 1000", da: 1, a: 1000,
+    dillo: "Centinaia. La parola diventa lunga, ma la regola è la stessa: cento, poi quello che hai già imparato." },
+  { k: "mondo", eti: "Nel mondo vero", da: 0, a: 0,
+    dillo: "Prezzi, anni, orari, numeri di telefono. Non è un altro livello: è dove i numeri ti arrivano davvero addosso." }
+];
+
+
+(function(){
+  "use strict";
+  var CHIAVE = "icf_numeri_v1";
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(s){
+    return String(s == null ? "" : s)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+  function a_caso(n){ return Math.floor(Math.random() * n); }
+
+  var MODI = [
+    { k:"regole",    eti:"Le regole",      sez:"mRegole" },
+    { k:"riconosci", eti:"Riconosci",      sez:"mRiconosci" },
+    { k:"scrivi",    eti:"Scrivi",         sez:"mScrivi" },
+    { k:"ascolta",   eti:"Ascolta",        sez:"mAscolta" },
+    { k:"sfida",     eti:"Sfida · 60 s",   sez:"mSfida" }
+  ];
+
+  var stato = { scalino:"20", modo:"regole", deboli:{}, record:{},
+                conti:{ riconosci:[0,0], scrivi:[0,0], ascolta:[0,0] } };
+
+  function salva(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){} }
+  function carica(){
+    try{
+      var g = localStorage.getItem(CHIAVE);
+      if(g){ var d = JSON.parse(g); if(d && d.conti) stato = d; }
+    }catch(e){}
+    if(!stato.deboli) stato.deboli = {};
+    if(!stato.record) stato.record = {};
+  }
+
+  /* ---------------- l'estrazione ---------------- */
+
+  function scalino(){ return SCALINI.filter(function(s){ return s.k === stato.scalino; })[0]; }
+
+  /* quanto pesa un numero: i punti difficili escono piu spesso */
+  function peso(n){
+    var p = 1;
+    if(n >= 11 && n <= 19) p += 2;           /* il pezzo da imparare a memoria */
+    var u = n % 10;
+    if(u === 1 || u === 8) p += 1.5;         /* l'elisione */
+    if(u === 3) p += 1;                      /* l'accento */
+    if(n >= 100 && (n % 100 === 8 || (n % 100 >= 80 && n % 100 <= 89))) p += 1.5;  /* centotto, centottanta */
+    p += (stato.deboli[n] || 0) * 2;         /* quelli che ha sbagliato */
+    return p;
+  }
+
+  var ultimo = null;
+
+  function pesca(){
+    var s = scalino();
+    if(s.k === "mondo"){
+      var m, giri = 0;
+      do { m = MONDO[a_caso(MONDO.length)]; giri++; } while(m === ultimo && giri < 8);
+      ultimo = m;
+      return { mondo:true, cifra:m.cifra, parola:m.dire, dove:m.dove, tipo:m.tipo, chiave:m.cifra };
+    }
+    /* estrazione pesata */
+    var tot = 0, i, pesi = [];
+    for(i = s.da; i <= s.a; i++){ var w = peso(i); pesi.push(w); tot += w; }
+    var tiro = Math.random() * tot, acc = 0, scelto = s.da;
+    for(i = 0; i < pesi.length; i++){
+      acc += pesi[i];
+      if(tiro <= acc){ scelto = s.da + i; break; }
+    }
+    if(scelto === ultimo && s.a - s.da > 3) return pesca();
+    ultimo = scelto;
+    return { mondo:false, n:scelto, cifra:String(scelto), parola:inParole(scelto), chiave:scelto };
+  }
+
+  /* quale regola spiega questo numero */
+  function regolina(n){
+    if(typeof n !== "number") return "";
+    var u = n % 10;
+    if(n >= 11 && n <= 16) return "Da 11 a 16 la decina sta in fondo: " + inParole(n) + ".";
+    if(n >= 17 && n <= 19) return "Da 17 in poi si gira e comincia con dici-: " + inParole(n) + ".";
+    if(n > 20 && (u === 1 || u === 8)) return "La decina perde la vocale davanti a " + UNITA[u] + ": " + inParole(n) + ", non « " + DECINE[Math.floor((n % 100) / 10)] + UNITA[u] + " ».";
+    if(u === 3 && n > 3) return "Il tre finale prende l'accento: " + inParole(n) + ".";
+    if(n >= 100 && (n % 100 === 8 || (n % 100 >= 80 && n % 100 <= 88))) return "Anche cento perde la o davanti a otto: " + inParole(n) + ".";
+    if(n >= 100) return "Cento non cambia mai, e si scrive tutto attaccato: " + inParole(n) + ".";
+    return "";
+  }
+
+  /* distrattori che somigliano davvero */
+  function distrattori(d){
+    var fuori = [], visti = {};
+    visti[d.parola] = 1;
+    function metti(p){ if(p && !visti[p]){ visti[p] = 1; fuori.push(p); } }
+
+    if(!d.mondo){
+      var n = d.n, u = n % 10, dec = Math.floor(n / 10) % 10;
+      /* le confusioni vere */
+      if(n >= 10 && n <= 19) metti(inParole(n + 10));            /* sedici / ventisei */
+      if(n >= 16 && n <= 19) metti(inParole(n === 16 ? 17 : 16));
+      if(dec === 7) metti(inParole(n + 20));                      /* settanta / novanta */
+      if(dec === 9) metti(inParole(n - 20));
+      if(dec === 6) metti(inParole(n + 10));                      /* sessanta / settanta */
+      if(u) metti(inParole(n - u + (u % 9) + 1));
+      metti(inParole(n >= 20 ? n - 10 : n + 1));
+      metti(inParole(n + 10));
+      metti(inParole(n + 1));
+      metti(inParole(n > 1 ? n - 1 : n + 2));
+      if(n >= 100) metti(inParole(n - 100 > 0 ? n - 100 : n + 100));
+    } else {
+      /* prima quelli dello stesso tipo: confrontare un prezzo con un anno non allena niente */
+      var simili = MONDO.filter(function(m){ return m.cifra !== d.cifra && m.tipo === d.tipo; });
+      var resto  = MONDO.filter(function(m){ return m.cifra !== d.cifra && m.tipo !== d.tipo; });
+      while(simili.length) metti(simili.splice(a_caso(simili.length), 1)[0].cifra);
+      while(resto.length && fuori.length < 3) metti(resto.splice(a_caso(resto.length), 1)[0].cifra);
+    }
+    /* tre distrattori */
+    var tre = [];
+    while(tre.length < 3 && fuori.length) tre.push(fuori.splice(0, 1)[0]);
+    return tre;
+  }
+
+  /* ---------------- confronto delle risposte ---------------- */
+
+  function pulisci(s){
+    return String(s || "").toLowerCase().trim()
+      .replace(/\s+/g, "")
+      .replace(/[.,;:!?'"]/g, "");
+  }
+  function senzaAccenti(s){
+    return s.replace(/[àá]/g, "a").replace(/[éè]/g, "e").replace(/[íì]/g, "i")
+            .replace(/[óò]/g, "o").replace(/[úù]/g, "u");
+  }
+
+  /* torna "si" | "quasi" | "no" */
+  function confronta(scritto, giusto, n){
+    var a = pulisci(scritto), b = pulisci(giusto);
+    if(!a) return "no";
+    if(a === b) return "si";
+    if(senzaAccenti(a) === senzaAccenti(b)) return "quasi";        /* ventitre invece di ventitré */
+    if(typeof n === "number"){
+      var alt = altreForme(n).map(pulisci);
+      if(alt.indexOf(a) >= 0) return "si";
+      if(alt.map(senzaAccenti).indexOf(senzaAccenti(a)) >= 0) return "quasi";
+    }
+    return "no";
+  }
+
+  function segna(modo, giusto, chiave){
+    stato.conti[modo][giusto ? 0 : 1]++;
+    if(!giusto && typeof chiave === "number"){
+      stato.deboli[chiave] = Math.min(4, (stato.deboli[chiave] || 0) + 1);
+    } else if(giusto && typeof chiave === "number" && stato.deboli[chiave]){
+      stato.deboli[chiave]--;
+      if(stato.deboli[chiave] <= 0) delete stato.deboli[chiave];
+    }
+    disegnaConti(modo);
+    disegnaDeboli();
+    salva();
+  }
+
+  function disegnaConti(modo){
+    var c = stato.conti[modo];
+    var el = $(modo === "riconosci" ? "recConti" : modo === "scrivi" ? "scrConti" : "ascConti");
+    if(el) el.innerHTML = "<div class='g'><b>" + c[0] + "</b><span>giuste</span></div>" +
+                          "<div class='s'><b>" + c[1] + "</b><span>sbagliate</span></div>";
+  }
+
+  function disegnaDeboli(){
+    var ks = Object.keys(stato.deboli);
+    $("rivedere").hidden = !ks.length;
+    if(!ks.length) return;
+    ks.sort(function(a, b){ return Number(a) - Number(b); });
+    $("listaRiv").innerHTML = ks.slice(0, 40).map(function(k){
+      return "<span><b>" + esc(k) + "</b>" + esc(inParole(Number(k))) + "</span>";
+    }).join("");
+  }
+
+  /* ---------------- la voce ---------------- */
+
+  var voceIt = null, voceCercata = false;
+
+  function trovaVoce(){
+    if(!("speechSynthesis" in window)) return null;
+    var vs = window.speechSynthesis.getVoices() || [];
+    for(var i = 0; i < vs.length; i++){
+      if(/^it(-|_|$)/i.test(vs[i].lang)) return vs[i];
+    }
+    return null;
+  }
+  function aggiornaVoce(){
+    voceIt = trovaVoce(); voceCercata = true;
+    $("ascNoVoce").hidden = !!voceIt;
+    $("ascCorpo").hidden = !voceIt;
+    var b = document.querySelector("#modi button[data-m='ascolta']");
+    if(b) b.disabled = !voceIt;
+  }
+  function dillo(testo, lento){
+    if(!voceIt || !("speechSynthesis" in window)) return;
+    try{ window.speechSynthesis.cancel(); }catch(e){}
+    var u = new SpeechSynthesisUtterance(testo);
+    u.voice = voceIt; u.lang = voceIt.lang; u.rate = lento ? 0.6 : 0.92;
+    window.speechSynthesis.speak(u);
+  }
+
+  /* ---------------- le regole ---------------- */
+
+  function disegnaRegole(){
+    $("regole").innerHTML = REGOLE.map(function(r){
+      return "<div class='regola'>" +
+        "<h3>" + esc(r.t) + "</h3>" +
+        "<p class='corpo'>" + r.c + "</p>" +
+        "<p class='en'>" + esc(r.en) + "</p>" +
+        "<p class='perche'>" + r.p + "</p>" +
+        "<div class='esempi'>" + r.es.map(function(e){
+          return "<span><b>" + esc(e[0]) + "</b>" + esc(e[1]) + "</span>";
+        }).join("") + "</div>" +
+      "</div>";
+    }).join("");
+  }
+
+  /* ---------------- riconosci ---------------- */
+
+  var recOra = null, recRisposto = false;
+
+  function recNuova(){
+    recOra = pesca(); recRisposto = false;
+    $("recParola").textContent = recOra.parola;
+    $("recDove").textContent = recOra.mondo ? recOra.dove : "";
+    /* le opzioni sono sempre nella stessa forma della risposta giusta: cifre */
+    var opz = recOra.mondo
+      ? distrattori(recOra).concat([recOra.cifra])
+      : distrattori(recOra).map(function(p){ return String(parolaACifra(p)); }).concat([String(recOra.n)]);
+    opz = opz.filter(function(v, i, a){ return a.indexOf(v) === i; });
+    while(opz.length < 4 && !recOra.mondo){
+      var extra = String(recOra.n + a_caso(21) - 10);
+      if(opz.indexOf(extra) < 0 && Number(extra) > 0) opz.push(extra);
+    }
+    opz.sort(function(){ return Math.random() - 0.5; });
+    $("recOpz").innerHTML = opz.map(function(o, i){
+      return "<button type='button' data-v=\"" + esc(o) + "\"><span class='tasto'>" + (i+1) + "</span>" + esc(o) + "</button>";
+    }).join("");
+    $("recEsito").className = "esito"; $("recEsito").innerHTML = "";
+  }
+
+  /* dalla parola alla cifra, per costruire le opzioni dei distrattori */
+  var MAPPA = null;
+  function parolaACifra(p){
+    if(!MAPPA){ MAPPA = {}; for(var i = 0; i <= 1000; i++) MAPPA[inParole(i)] = i; }
+    return MAPPA[p] != null ? MAPPA[p] : p;
+  }
+
+  function recRispondi(v){
+    if(recRisposto) return;
+    recRisposto = true;
+    var giusta = recOra.mondo ? recOra.cifra : String(recOra.n);
+    var ok = (v === giusta);
+    Array.prototype.forEach.call($("recOpz").children, function(b){
+      var bv = b.getAttribute("data-v");
+      if(bv === giusta) b.classList.add("giusta");
+      else if(bv === v) b.classList.add("storta");
+    });
+    var e = $("recEsito");
+    e.className = "esito " + (ok ? "si" : "no");
+    e.innerHTML = (ok ? "Giusto" : "No") +
+      (ok ? "" : "<span class='giusto'>" + esc(recOra.parola) + " = " + esc(giusta) + "</span>") +
+      (recOra.mondo ? "" : "<span class='regolina'>" + esc(regolina(recOra.n)) + "</span>");
+    segna("riconosci", ok, recOra.chiave);
+  }
+
+  /* ---------------- scrivi ---------------- */
+
+  var scrOra = null, scrRisposto = false;
+
+  function scrNuova(){
+    scrOra = pesca(); scrRisposto = false;
+    $("scrCifra").textContent = scrOra.cifra;
+    $("scrDove").textContent = scrOra.mondo ? scrOra.dove : "";
+    $("scrInput").value = "";
+    $("scrEsito").className = "esito"; $("scrEsito").innerHTML = "";
+    $("scrInput").focus();
+  }
+
+  function scrControlla(salta){
+    if(scrRisposto) return;
+    scrRisposto = true;
+    var r = salta ? "no" : confronta($("scrInput").value, scrOra.parola, scrOra.mondo ? null : scrOra.n);
+    var e = $("scrEsito");
+    e.className = "esito " + (r === "no" ? "no" : "si");
+    if(r === "si"){
+      e.innerHTML = "Giusto";
+    } else if(r === "quasi"){
+      e.innerHTML = "Quasi" +
+        "<span class='quasi'>Manca l'accento: si scrive <b>" + esc(scrOra.parola) + "</b></span>";
+    } else {
+      e.innerHTML = "No" +
+        "<span class='giusto'>" + esc(scrOra.parola) + "</span>" +
+        (scrOra.mondo ? "" : "<span class='regolina'>" + esc(regolina(scrOra.n)) + "</span>");
+    }
+    segna("scrivi", r !== "no", scrOra.chiave);
+  }
+
+  /* ---------------- ascolta ---------------- */
+
+  var ascOra = null, ascRisposto = false;
+
+  function ascNuova(){
+    ascOra = pesca(); ascRisposto = false;
+    $("ascInput").value = "";
+    $("ascEsito").className = "esito"; $("ascEsito").innerHTML = "";
+    dillo(ascOra.parola, false);
+    $("ascInput").focus();
+  }
+  function ascControlla(salta){
+    if(ascRisposto) return;
+    ascRisposto = true;
+    var atteso = ascOra.mondo ? ascOra.cifra.replace(/[^0-9]/g, "") : String(ascOra.n);
+    var dato = String($("ascInput").value || "").replace(/[^0-9]/g, "");
+    var ok = !salta && dato === atteso && dato !== "";
+    var e = $("ascEsito");
+    e.className = "esito " + (ok ? "si" : "no");
+    e.innerHTML = (ok ? "Giusto" : "No") +
+      "<span class='giusto'>" + esc(ascOra.cifra) + " · " + esc(ascOra.parola) + "</span>" +
+      (ascOra.mondo || ok ? "" : "<span class='regolina'>" + esc(regolina(ascOra.n)) + "</span>");
+    segna("ascolta", ok, ascOra.chiave);
+  }
+
+  /* ---------------- sfida ---------------- */
+
+  var sfiT = null, sfiSec = 60, sfiPunti = 0, sfiOra = null;
+
+  function chiaveRecord(){ return "sfida|" + stato.scalino; }
+  function disegnaRecord(){
+    var r = stato.record[chiaveRecord()] || 0;
+    $("sfiRecord").innerHTML = r ? "Il tuo record su questo scalino: <b>" + r + "</b>" : "Non hai ancora un record su questo scalino.";
+  }
+
+  function sfiNuova(){
+    sfiOra = pesca();
+    $("sfiParola").textContent = sfiOra.parola;
+    var giusta = sfiOra.mondo ? sfiOra.cifra : String(sfiOra.n);
+    var opz = sfiOra.mondo
+      ? distrattori(sfiOra).concat([giusta])
+      : distrattori(sfiOra).map(function(p){ return String(parolaACifra(p)); }).concat([giusta]);
+    opz = opz.filter(function(v, i, a){ return a.indexOf(v) === i; });
+    while(opz.length < 4 && !sfiOra.mondo){
+      var x = String(sfiOra.n + a_caso(21) - 10);
+      if(opz.indexOf(x) < 0 && Number(x) > 0) opz.push(x);
+    }
+    opz.sort(function(){ return Math.random() - 0.5; });
+    $("sfiOpz").innerHTML = opz.map(function(o, i){
+      return "<button type='button' data-v=\"" + esc(o) + "\"><span class='tasto'>" + (i+1) + "</span>" + esc(o) + "</button>";
+    }).join("");
+  }
+
+  function sfiRispondi(v){
+    if(!sfiT) return;
+    var giusta = sfiOra.mondo ? sfiOra.cifra : String(sfiOra.n);
+    if(v === giusta){ sfiPunti++; }
+    else if(typeof sfiOra.chiave === "number"){
+      stato.deboli[sfiOra.chiave] = Math.min(4, (stato.deboli[sfiOra.chiave] || 0) + 1);
+      disegnaDeboli();
+    }
+    $("sfiConti").innerHTML = "<div class='g'><b>" + sfiPunti + "</b><span>giuste</span></div>";
+    sfiNuova();
+  }
+
+  function sfiVia(){
+    sfiPunti = 0; sfiSec = 60;
+    $("sfiCorpo").hidden = false; $("sfiFine").innerHTML = "";
+    $("sfiVia").disabled = true;
+    $("sfiConti").innerHTML = "<div class='g'><b>0</b><span>giuste</span></div>";
+    sfiNuova();
+    sfiT = setInterval(function(){
+      sfiSec--;
+      $("sfiCrono").textContent = sfiSec;
+      $("sfiCrono").classList.toggle("poco", sfiSec <= 10);
+      if(sfiSec <= 0) sfiFine();
+    }, 1000);
+  }
+
+  function sfiFine(){
+    clearInterval(sfiT); sfiT = null;
+    $("sfiCorpo").hidden = true;
+    $("sfiVia").disabled = false;
+    $("sfiCrono").textContent = "60";
+    $("sfiCrono").classList.remove("poco");
+    var k = chiaveRecord(), vecchio = stato.record[k] || 0, nuovo = sfiPunti > vecchio;
+    if(nuovo) stato.record[k] = sfiPunti;
+    salva(); disegnaRecord();
+    $("sfiFine").innerHTML = "<div class='panel'><h3>" + sfiPunti + " in sessanta secondi</h3>" +
+      "<p style='margin:0'>" + (nuovo ? "È il tuo record su questo scalino." :
+        "Il tuo record resta " + vecchio + ". Riprova.") + "</p></div>";
+  }
+
+  /* ---------------- scalini e modi ---------------- */
+
+  function disegnaScalini(){
+    $("scalini").innerHTML = SCALINI.map(function(s){
+      return "<button type='button' data-s='" + s.k + "'>" + esc(s.eti) + "</button>";
+    }).join("");
+    $("modi").innerHTML = MODI.map(function(m){
+      return "<button type='button' data-m='" + m.k + "'>" + esc(m.eti) + "</button>";
+    }).join("");
+  }
+
+  function vaiScalino(k){
+    stato.scalino = k;
+    Array.prototype.forEach.call($("scalini").children, function(b){
+      b.classList.toggle("on", b.getAttribute("data-s") === k);
+    });
+    $("scalDillo").textContent = scalino().dillo;
+    ultimo = null;
+    disegnaRecord();
+    if(sfiT) sfiFine();
+    if(stato.modo === "riconosci") recNuova();
+    if(stato.modo === "scrivi") scrNuova();
+    if(stato.modo === "ascolta" && voceIt) ascNuova();
+    salva();
+  }
+
+  function vaiModo(k){
+    if(k === "ascolta" && !voceIt) return;
+    stato.modo = k;
+    MODI.forEach(function(m){ $(m.sez).classList.toggle("on", m.k === k); });
+    Array.prototype.forEach.call($("modi").children, function(b){
+      b.classList.toggle("on", b.getAttribute("data-m") === k);
+    });
+    if(k === "riconosci"){ recNuova(); disegnaConti("riconosci"); }
+    if(k === "scrivi"){ scrNuova(); disegnaConti("scrivi"); }
+    if(k === "ascolta"){ ascNuova(); disegnaConti("ascolta"); }
+    if(k !== "sfida" && sfiT) sfiFine();
+    salva();
+  }
+
+  /* ---------------- i collegamenti ---------------- */
+
+  document.addEventListener("click", function(ev){
+    var t = ev.target;
+    if(!t.closest) return;
+    var s = t.closest("#scalini button"); if(s){ vaiScalino(s.getAttribute("data-s")); return; }
+    var m = t.closest("#modi button");    if(m){ vaiModo(m.getAttribute("data-m")); return; }
+    var r = t.closest("#recOpz button");  if(r){ recRispondi(r.getAttribute("data-v")); return; }
+    var f = t.closest("#sfiOpz button");  if(f){ sfiRispondi(f.getAttribute("data-v")); return; }
+  });
+
+  $("recAvanti").addEventListener("click", recNuova);
+  $("scrControlla").addEventListener("click", function(){ scrControlla(false); });
+  $("scrSalta").addEventListener("click", function(){ scrControlla(true); });
+  $("scrAvanti").addEventListener("click", scrNuova);
+  $("scrInput").addEventListener("keydown", function(ev){
+    if(ev.key === "Enter"){ ev.preventDefault(); if(scrRisposto) scrNuova(); else scrControlla(false); }
+  });
+  $("ascDillo").addEventListener("click", function(){ dillo(ascOra ? ascOra.parola : "", false); });
+  $("ascPiano").addEventListener("click", function(){ dillo(ascOra ? ascOra.parola : "", true); });
+  $("ascControlla").addEventListener("click", function(){ ascControlla(false); });
+  $("ascSalta").addEventListener("click", function(){ ascControlla(true); });
+  $("ascAvanti").addEventListener("click", ascNuova);
+  $("ascInput").addEventListener("keydown", function(ev){
+    if(ev.key === "Enter"){ ev.preventDefault(); if(ascRisposto) ascNuova(); else ascControlla(false); }
+  });
+  $("sfiVia").addEventListener("click", sfiVia);
+  $("azzera").addEventListener("click", function(){
+    stato.deboli = {}; stato.conti = { riconosci:[0,0], scrivi:[0,0], ascolta:[0,0] };
+    salva(); disegnaDeboli(); disegnaConti(stato.modo === "sfida" ? "riconosci" : stato.modo);
+  });
+
+  document.addEventListener("keydown", function(ev){
+    if(/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) return;
+    if(ev.key >= "1" && ev.key <= "4"){
+      var lista = stato.modo === "sfida" ? $("sfiOpz") : stato.modo === "riconosci" ? $("recOpz") : null;
+      if(lista && lista.children[Number(ev.key) - 1]) lista.children[Number(ev.key) - 1].click();
+    }
+    if(ev.key === "Enter" && stato.modo === "riconosci") recNuova();
+  });
+
+  /* ---------------- via ---------------- */
+
+  carica();
+  disegnaScalini();
+  disegnaRegole();
+  disegnaDeboli();
+  vaiScalino(stato.scalino);
+  vaiModo(stato.modo === "ascolta" ? "regole" : stato.modo);
+
+  if("speechSynthesis" in window){
+    aggiornaVoce();
+    window.speechSynthesis.onvoiceschanged = aggiornaVoce;
+    setTimeout(aggiornaVoce, 400);
+  } else {
+    aggiornaVoce();
+  }
+})();
+</script>
+</body>
+</html>
