@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>The Italian subjunctive, step by step — Talk with Fabio</title>
+<meta name="description" content="Learn the Italian congiuntivo by working it out yourself: seven steps, each one a question first, then the rule, then practice. Covers the five families, the forms, the fixed expressions and the sequence of tenses.">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="canonical" href="https://talkwithfabio.com/esercizi/congiuntivo/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Talk with Fabio">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="The Italian subjunctive, step by step">
+<meta property="og:description" content="Seven steps. Each one starts with a question, not a rule: you try first, then you find out. Then you practise straight away.">
+<meta property="og:url" content="https://talkwithfabio.com/esercizi/congiuntivo/">
+<meta property="og:image" content="https://talkwithfabio.com/img/og-congiuntivo.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16233F; --ink-soft:#4A5670; --paper:#F7F4EC; --paper-2:#FFFDF8; --rule:#DFD8C7;
+  --saffron:#E8A33D; --rosso:#C4312B; --verde:#2E5E4E; --azzurro:#3D6E8F;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --serif:"Newsreader",Georgia,serif;
+  --pen:"Caveat",cursive;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.58}
+.nastro{height:6px;background:linear-gradient(90deg,var(--verde) 0 25%,var(--saffron) 25% 50%,var(--rosso) 50% 75%,var(--rule) 75% 100%)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding:12px 20px;border-bottom:1px solid var(--rule);background:var(--paper-2)}
+.topbar a{color:var(--ink-soft);text-decoration:none;font-family:var(--display);font-size:.9rem}
+.topbar a:hover{color:var(--ink)}
+.topbar .marchio{font-family:var(--display);font-weight:800;letter-spacing:-.01em}
+.wrap{max-width:760px;margin:0 auto;padding:24px 20px 90px}
+h1{font-family:var(--display);font-weight:800;font-size:2.1rem;letter-spacing:-.025em;margin:8px 0 6px}
+h2{font-family:var(--display);font-weight:700;font-size:1.3rem;margin:0 0 2px}
+h3{font-family:var(--display);font-size:1.02rem;margin:0 0 6px}
+.lede{color:var(--ink-soft);font-size:1.05rem;margin:0 0 6px}
+.pen{font-family:var(--pen);font-size:1.22rem;color:var(--verde);margin:8px 0 0}
+.en{color:var(--ink-soft);font-style:italic;font-size:.93rem}
+.btn{font-family:var(--display);font-weight:700;font-size:.95rem;border:1px solid var(--ink);
+  background:var(--ink);color:var(--paper-2);border-radius:999px;padding:10px 18px;cursor:pointer}
+.btn.verde{background:var(--verde);border-color:var(--verde)}
+.btn.ghost{background:transparent;color:var(--ink-soft);border-color:var(--rule)}
+.btn:disabled{opacity:.4;cursor:default}
+.riga{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* il percorso */
+.mappa{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 6px}
+.mappa button{font-family:var(--display);font-weight:700;font-size:.82rem;border:1px solid var(--rule);
+  background:var(--paper-2);color:var(--ink-soft);border-radius:999px;width:36px;height:36px;cursor:pointer;padding:0}
+.mappa button.on{background:var(--ink);color:var(--paper-2);border-color:var(--ink)}
+.mappa button.fatta{background:var(--verde);color:var(--paper-2);border-color:var(--verde)}
+.mappa button.fine{width:auto;padding:0 14px}
+.barra{height:6px;border-radius:99px;background:var(--rule);overflow:hidden;margin:8px 0 22px}
+.barra i{display:block;height:100%;background:var(--verde);transition:width .3s}
+
+/* la tappa */
+.tappa{background:var(--paper-2);border:1px solid var(--rule);border-radius:18px;padding:22px;margin:14px 0}
+.tappa .num{font-family:var(--display);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--saffron)}
+.tappa .sotto{color:var(--ink-soft);margin:0 0 4px}
+
+.momento{margin-top:20px;padding-top:18px;border-top:1px dashed var(--rule)}
+.momento:first-of-type{border-top:none;padding-top:0}
+.eti{font-family:var(--display);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:8px}
+.eti.verde{color:var(--verde)}
+
+.quesito{font-size:1.12rem;font-weight:600;margin:0 0 12px}
+.opz{display:flex;flex-direction:column;gap:8px}
+.opz.fila{flex-direction:row;flex-wrap:wrap}
+.opz.fila button{flex:1 1 140px;text-align:center}
+.opz button{text-align:left;font-family:var(--serif);font-size:1.03rem;border:1px solid var(--rule);
+  background:var(--paper);color:var(--ink);border-radius:12px;padding:11px 15px;cursor:pointer}
+.opz button:hover:not(:disabled){border-color:var(--ink)}
+.opz button.giusta{background:var(--verde);color:var(--paper-2);border-color:var(--verde)}
+.opz button.storta{background:var(--rosso);color:var(--paper-2);border-color:var(--rosso)}
+.opz button:disabled{cursor:default}
+.dopo{margin-top:12px;font-size:1.02rem}
+.dopo.si{color:var(--verde)}
+.dopo.no{color:var(--ink)}
+
+/* la regola */
+.regola{background:var(--paper);border-left:5px solid var(--verde);border-radius:0 14px 14px 0;padding:16px 18px;margin-top:4px}
+.regola .corpo{margin:0 0 10px}
+.chiave{font-family:var(--pen);font-size:1.25rem;color:var(--rosso);margin:12px 0 0}
+.esempi{margin:10px 0 0;padding:0;list-style:none}
+.esempi li{display:flex;gap:12px;flex-wrap:wrap;padding:6px 0;border-bottom:1px solid var(--rule)}
+.esempi li:last-child{border-bottom:none}
+.esempi b{flex:1 1 240px;font-family:var(--serif);font-weight:600}
+.esempi span{flex:1 1 160px;color:var(--ink-soft);font-size:.94rem}
+.fam{margin:10px 0 0}
+.fam div{padding:7px 0;border-bottom:1px solid var(--rule)}
+.fam div:last-child{border-bottom:none}
+/* l'etichetta ha una classe sua: se fosse un <b> qualsiasi, ogni grassetto
+   dentro la spiegazione andrebbe a capo. Errore gia' pagato col Colloquio. */
+.fam .capo{font-family:var(--display);font-size:.95rem;font-weight:700;display:block}
+.fam span b{font-family:var(--display);font-weight:700}
+.fam span{color:var(--ink-soft);font-size:.95rem}
+.due{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:10px 0 0;border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.due div{padding:8px 11px;border-bottom:1px solid var(--rule);font-size:.96rem}
+.due div:nth-child(odd){background:rgba(46,94,78,.07)}
+.due div:nth-child(even){background:rgba(196,49,43,.06)}
+.due .capo{font-family:var(--display);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+table{width:100%;border-collapse:collapse;margin:10px 0 0;font-size:.95rem}
+td,th{padding:6px 9px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{font-family:var(--display);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+td:first-child{font-family:var(--display);font-weight:700;white-space:nowrap}
+
+/* le prove immediate */
+.mini{margin-top:12px}
+.mini .frase{font-size:1.1rem;font-family:var(--display);font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+.mini .vuoto{display:inline-block;min-width:80px;border-bottom:3px solid var(--rosso);margin:0 4px}
+.mini .vuoto.pieno{border-bottom-color:var(--verde)}
+.mini .verbo{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--ink-soft);font-size:.95rem;margin-left:7px}
+.mini .nota{margin-top:10px;color:var(--ink-soft);font-size:.95rem;min-height:22px}
+.mini .passi{font-family:var(--display);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+
+.fatta{background:rgba(46,94,78,.1);border:1px solid var(--verde);border-radius:14px;padding:14px 16px;margin-top:18px}
+.fatta h3{color:var(--verde);margin-bottom:2px}
+
+/* allenamento finale */
+.finale .frase{font-size:1.25rem}
+.conti{display:flex;gap:18px;flex-wrap:wrap;margin:14px 0 0;align-items:baseline}
+.conti div{display:flex;gap:7px;align-items:baseline}
+.conti b{font-family:var(--display);font-weight:800;font-size:1.5rem}
+.conti .g b{color:var(--verde)} .conti .s b{color:var(--rosso)}
+.conti span{font-family:var(--display);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.esito{margin-top:16px}
+.esito .riquadro{background:var(--paper-2);border:2px solid var(--ink);border-radius:16px;padding:18px 20px}
+.esito .voto{font-family:var(--display);font-weight:800;font-size:2rem;margin:0}
+.ripassa{margin:10px 0 0;padding-left:20px}
+.ripassa li{margin:5px 0}
+.ripassa a{color:var(--verde);cursor:pointer;text-decoration:underline}
+
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);color:var(--ink-soft);font-size:.92rem}
+footer a{color:var(--verde)}
+@media (max-width:620px){
+  .wrap{padding:18px 16px 70px}
+  h1{font-size:1.62rem}
+  .tappa{padding:17px}
+  .due{grid-template-columns:1fr}
+  .due div:nth-child(even){border-top:none}
+}
+</style>
+</head>
+<body>
+<div class="nastro"></div>
+<div class="topbar">
+  <a href="https://talkwithfabio.com/esercizi/">&larr; Tutti gli esercizi</a>
+  <span class="marchio">Talk with Fabio</span>
+</div>
+
+<div class="wrap">
+  <h1>Il congiuntivo, un passo alla volta</h1>
+  <p class="lede">Sette tappe. Ognuna comincia con una domanda, non con una regola: prima provi,
+    poi scopri, poi ti alleni subito.</p>
+  <p class="pen">Sbagliare la prima domanda non è un problema: è il modo in cui funziona.</p>
+
+  <div class="mappa" id="mappa"></div>
+  <div class="barra"><i id="barra" style="width:0%"></i></div>
+
+  <div id="tappe"></div>
+
+  <!-- allenamento finale -->
+  <div class="tappa finale" id="finale" hidden>
+    <span class="num">Alla fine</span>
+    <h2>Tutto mescolato</h2>
+    <p class="sotto">Ventiquattro frasi da tutte e sette le tappe, in ordine sparso. Mescolare gli argomenti
+      rende l'esercizio più difficile adesso e più utile dopo: ogni volta devi riconoscere di che caso si tratta,
+      che è esattamente quello che ti serve quando parli.</p>
+    <div class="mini" id="finCorpo">
+      <div class="passi" id="finPassi"></div>
+      <div class="frase" id="finFrase"></div>
+      <div class="opz fila" id="finOpz"></div>
+      <div class="nota" id="finNota"></div>
+    </div>
+    <div class="conti" id="finConti"></div>
+    <div class="esito" id="finEsito"></div>
+  </div>
+
+  <footer>
+    Questa pagina spiega e fa esercitare, ma non ti sente parlare.
+    Quello lo faccio io: <a href="https://talkwithfabio.com/prenota/">prenota una lezione</a> ·
+    <a href="https://talkwithfabio.com/esercizi/">tutti gli esercizi</a>
+  </footer>
+</div>
+
+<script>
+/* =====================================================================
+   IL CONGIUNTIVO · percorso pubblico (B1)
+
+   Ogni tappa ha tre momenti, in quest'ordine:
+     1. PROVA   una domanda PRIMA di qualunque spiegazione
+     2. REGOLA  che arriva come risposta al tentativo
+     3. SUBITO  tre prove immediate
+
+   L'ordine non e' estetico: il tentativo prima della spiegazione e'
+   la parte che fa la differenza, e la spiegazione deve arrivare
+   subito dopo, se no il tentativo non serve a niente.
+   ===================================================================== */
+
+var PERCORSO = [
+
+/* ---------------------------------------------------------- 1 */
+{
+  t: "Quando serve, davvero",
+  s: "Non è il « che » ad aprire il congiuntivo",
+  prova: {
+    d: "Due frasi quasi identiche. In quale delle due ci vuole il congiuntivo?",
+    o: ["So che Marco ___ ragione.", "Penso che Marco ___ ragione.", "In tutte e due: c'è « che »."],
+    g: 1,
+    dopo: "È la seconda. E la terza risposta è la trappola in cui cadono quasi tutti: il « che » non c'entra niente."
+  },
+  regola: {
+    html: "A decidere è <b>la frase principale</b>, quella prima del « che ».<br>" +
+          "Se dice un <b>fatto certo</b>, verifi&shy;cabile → <b>indicativo</b>.<br>" +
+          "Se dice qualcosa di <b>soggettivo</b> (un'opinione, un desiderio, un dubbio, una paura, una possibilità) → <b>congiuntivo</b>.",
+    en: "The main clause decides, not the word « che ». Certain fact → indicative. Opinion, wish, doubt, fear, possibility → subjunctive.",
+    es: [["So che è tardi.", "lo so: è un fatto"],
+         ["Penso che sia tardi.", "lo suppongo: è una mia idea"],
+         ["È vero che costa molto.", "constatazione"],
+         ["È possibile che costi molto.", "ipotesi"]],
+    chiave: "Chiediti: sto dicendo un fatto oggettivo o qualcosa di mio?"
+  },
+  subito: [
+    { f: ["È vero che ", " tardi."], v: "essere", o: ["è", "sia", "fosse"], g: 0, n: "« È vero che » è una certezza: indicativo." },
+    { f: ["Credo che ", " tardi."], v: "essere", o: ["è", "sia", "fosse"], g: 1, n: "« Credo che » è un'opinione: congiuntivo." },
+    { f: ["Mi hanno detto che ", " domani."], v: "arrivare, lui", o: ["arriva", "arrivi", "arrivasse"], g: 0, n: "Riportare quello che ti hanno detto è un fatto: indicativo." }
+  ]
+},
+
+/* ---------------------------------------------------------- 2 */
+{
+  t: "Le cinque famiglie",
+  s: "Opinione, desiderio, paura, dubbio, possibilità",
+  prova: {
+    d: "Una di queste tre espressioni NON apre il congiuntivo. Quale?",
+    o: ["ho paura che", "può darsi che", "è chiaro che"],
+    g: 2,
+    dopo: "« È chiaro che » dice che la cosa è evidente, cioè certa. Le altre due aprono il congiuntivo."
+  },
+  regola: {
+    html: "Le espressioni che vogliono il congiuntivo stanno quasi tutte in cinque famiglie. " +
+          "Impararle a gruppi costa meno che impararle una per una.",
+    en: "Almost every subjunctive trigger belongs to one of five families. Learn the families, not the list.",
+    fam: [
+      ["Opinione", "penso che · credo che · mi sembra che · immagino che · trovo che"],
+      ["Desiderio", "voglio che · spero che · preferisco che · desidero che"],
+      ["Paura ed emozione", "ho paura che · temo che · sono contento che · mi dispiace che"],
+      ["Dubbio", "dubito che · non credo che · non penso che · non sono sicuro che"],
+      ["Possibilità", "è possibile che · può darsi che · è impossibile che · sembra che"]
+    ],
+    chiave: "Cinque famiglie, non cinquanta parole."
+  },
+  subito: [
+    { f: ["Spero che tu ", " presto."], v: "guarire", o: ["guarisci", "guarisca", "guarissi"], g: 1, n: "Desiderio: congiuntivo. E attento alla seconda persona, è lì che si sbaglia di più." },
+    { f: ["Mi dispiace che ", " così."], v: "finire, esso", o: ["finisce", "finisca", "finirà"], g: 1, n: "Emozione: congiuntivo." },
+    { f: ["Può darsi che ", " ritardo."], v: "esserci", o: ["c'è", "ci sia", "ci sarà"], g: 1, n: "Possibilità: congiuntivo." }
+  ]
+},
+
+/* ---------------------------------------------------------- 3 */
+{
+  t: "La trappola di « sono sicuro »",
+  s: "Sembra soggettivo, ma è una certezza",
+  prova: {
+    d: "Completa: « Sono sicura che Luca ___ bravo. »",
+    o: ["sia", "è", "fosse"],
+    g: 1,
+    dopo: "Indicativo. Se sei sicuro di qualcosa, per te è un fatto, e i fatti vogliono l'indicativo."
+  },
+  regola: {
+    html: "Molti studenti mettono il congiuntivo dopo <b>essere sicuro</b> perché « suona da congiuntivo ». " +
+          "È il contrario: la sicurezza è una certezza.<br><br>" +
+          "Ma attenzione, <b>la negazione ribalta tutto</b>: togliere la certezza riapre il congiuntivo.",
+    en: "« Essere sicuro » states a fact, so it takes the indicative. Negate it and the certainty is gone, so the subjunctive comes back.",
+    due: [["Sono sicura che Luca è bravo.", "Non sono sicura che Luca sia bravo."],
+          ["So che questa fragranza piace.", "Dubito che questa fragranza piaccia."],
+          ["È chiaro che il mercato cresce.", "Sembra che il mercato cresca."],
+          ["Sono certa che la riunione è domani.", "Non credo che la riunione sia domani."]],
+    chiave: "Certezza → indicativo. Togli la certezza → congiuntivo."
+  },
+  subito: [
+    { f: ["Sono sicuro che Luca ", " in tempo."], v: "arrivare", o: ["arriva", "arrivi", "arrivasse"], g: 0, n: "Certezza: indicativo." },
+    { f: ["Non sono sicuro che Luca ", " in tempo."], v: "arrivare", o: ["arriva", "arrivi", "arrivasse"], g: 1, n: "Stessa frase, una parola in più davanti, e il modo cambia. È la coppia da ricordare." },
+    { f: ["Dubito che ", " a tutti."], v: "piacere, esso", o: ["piace", "piaccia", "piacerà"], g: 1, n: "Dubitare è l'opposto di essere sicuro: congiuntivo." }
+  ]
+},
+
+/* ---------------------------------------------------------- 4 */
+{
+  t: "Le forme del presente",
+  s: "Meno di quante sembrano",
+  prova: {
+    d: "« io sia, tu sia, lui sia »: quante forme diverse ci sono nelle prime tre persone?",
+    o: ["Tre, una per persona", "Due", "Una sola, uguale per tutte e tre"],
+    g: 2,
+    dopo: "Una sola. Vale per <b>tutti</b> i verbi al congiuntivo presente, non solo per essere."
+  },
+  regola: {
+    html: "Le prime tre persone sono sempre identiche. Quindi un verbo al congiuntivo presente " +
+          "ha <b>quattro forme da ricordare, non sei</b>. Chi parla si capisce dal contesto, " +
+          "e infatti il pronome spesso si dice (<i>che tu sia</i>, <i>che lui sia</i>).",
+    en: "The first three persons are always identical, so there are four forms to learn, not six. That is why the pronoun is often said out loud.",
+    tab: [
+      ["essere", "sia · sia · sia", "siamo", "siate", "siano"],
+      ["avere", "abbia · abbia · abbia", "abbiamo", "abbiate", "abbiano"],
+      ["parlare", "parli · parli · parli", "parliamo", "parliate", "parlino"],
+      ["prendere", "prenda · prenda · prenda", "prendiamo", "prendiate", "prendano"],
+      ["partire", "parta · parta · parta", "partiamo", "partiate", "partano"],
+      ["capire", "capisca · capisca · capisca", "capiamo", "capiate", "capiscano"]
+    ],
+    chiave: "Quattro forme, non sei. E il « tu » si dice."
+  },
+  subito: [
+    { f: ["Penso che ", " ragione."], v: "avere, lei", o: ["ha", "abbia", "abbiano"], g: 1, n: "Terza persona singolare: abbia." },
+    { f: ["Credo che ", " già partiti."], v: "essere, loro", o: ["sono", "siano", "sia"], g: 1, n: "Loro: siano. È l'unica persona che si confonde poco." },
+    { f: ["Spero che voi ", " la situazione."], v: "capire", o: ["capite", "capiate", "capiscano"], g: 1, n: "Voi: capiate. Non capiscano, che è loro." }
+  ]
+},
+
+/* ---------------------------------------------------------- 5 */
+{
+  t: "Le espressioni fisse",
+  s: "Quelle che vogliono il congiuntivo sempre",
+  prova: {
+    d: "« Vengo, a meno che non piova. » Che cosa vuol dire?",
+    o: ["Vengo anche se piove.", "Vengo, tranne se piove.", "Non vengo se piove, ma forse vengo lo stesso."],
+    g: 1,
+    dopo: "« A meno che non » vuol dire « tranne se ». E quel <b>non non nega niente</b>: fa parte dell'espressione e non si toglie mai."
+  },
+  regola: {
+    html: "Alcune espressioni aprono il congiuntivo <b>sempre</b>, qualunque cosa dica la frase principale. " +
+          "Queste non si ragionano, si imparano.",
+    en: "Some expressions always take the subjunctive, whatever the main clause says. These are learned, not worked out.",
+    fam: [
+      ["Impersonali, tutte con <b>che</b>", "è facile · è difficile · è possibile · è impossibile · è importante · è strano · è giusto · non è giusto · si dice · bisogna"],
+      ["A meno che <b>non</b>", "il « non » è fisso e non nega: « vengo, a meno che non piova »"],
+      ["Senza che", "soggetti diversi: « è uscita senza che io lo sapessi ». Stesso soggetto → senza + infinito: « è uscita senza dire niente »"],
+      ["Prima che", "« chiama prima che parta ». Ma <b>dopo che</b> vuole l'indicativo: « dopo che è partito »"],
+      ["Nonostante · sebbene · malgrado", "formali, scritti. Nel parlato si usa <b>anche se</b>, che vuole l'<b>indicativo</b>"]
+    ],
+    chiave: "Prima che → congiuntivo. Dopo che → indicativo. Non chiedere perché."
+  },
+  subito: [
+    { f: ["È importante che il team ", " la strategia."], v: "capire", o: ["capisce", "capisca", "capirà"], g: 1, n: "Impersonale: congiuntivo." },
+    { f: ["Chiamalo prima che ", " per il viaggio."], v: "partire, lui", o: ["parte", "parta", "partirà"], g: 1, n: "Prima che: congiuntivo, sempre." },
+    { f: ["Anche se ", " molto, non mi lamento."], v: "lavorare, io", o: ["lavoro", "lavori", "lavorassi"], g: 0, n: "« Anche se » vuole l'indicativo. È il gemello parlato di « sebbene », che invece vuole il congiuntivo." }
+  ]
+},
+
+/* ---------------------------------------------------------- 6 */
+{
+  t: "Vorrei che tu...",
+  s: "Il condizionale chiama il congiuntivo imperfetto",
+  prova: {
+    d: "Completa: « Vorrei che tu ___ in orario stasera. »",
+    o: ["arrivi", "arrivassi", "arriverai"],
+    g: 1,
+    dopo: "Congiuntivo imperfetto. E non è un passato: il desiderio è per stasera."
+  },
+  regola: {
+    html: "Quando la frase principale ha un <b>condizionale</b> (vorrei, preferirei, avrei voluto), " +
+          "la dipendente va al <b>congiuntivo imperfetto</b>. Sempre, senza eccezioni.<br><br>" +
+          "L'imperfetto qui <b>non vuol dire passato</b>: è solo la forma che la struttura richiede. " +
+          "<i>Vorrei che tu arrivassi in orario</i> parla di stasera.<br><br>" +
+          "Quello che cambia il significato è il condizionale davanti, non il congiuntivo dietro:",
+    en: "A conditional in the main clause always takes the imperfect subjunctive. The imperfect here does not mean past: it is just the form the structure requires.",
+    due: [["Vorrei che tu leggessi questo libro.", "Avrei voluto che tu leggessi questo libro."],
+          ["(puoi ancora farlo)", "(non l'hai fatto)"],
+          ["Preferirei che il team capisse.", "Avrei preferito che il team capisse."],
+          ["(è ancora possibile)", "(non è successo)"]],
+    chiave: "Vorrei = ancora possibile. Avrei voluto = non è successo. La dipendente non cambia."
+  },
+  subito: [
+    { f: ["Vorrei che questa fragranza ", " disponibile tutto l'anno."], v: "essere", o: ["è", "sia", "fosse"], g: 2, n: "Condizionale davanti: congiuntivo imperfetto dietro." },
+    { f: ["Avrei voluto che la presentazione ", " meglio."], v: "andare", o: ["va", "vada", "fosse andata"], g: 2, n: "Con il condizionale passato si può anche salire al trapassato, quando l'azione è davvero conclusa." },
+    { f: ["Preferirei che il cliente ", " il profumo di persona."], v: "provare", o: ["prova", "provi", "provasse"], g: 2, n: "Preferirei è condizionale: imperfetto." }
+  ]
+},
+
+/* ---------------------------------------------------------- 7 */
+{
+  t: "Quale tempo, quando",
+  s: "La linea che non si attraversa",
+  prova: {
+    d: "Completa: « Pensavo che il cliente ___ il valore della fragranza. »",
+    o: ["capisca", "capisse", "capirà"],
+    g: 1,
+    dopo: "Imperfetto. La frase principale è al passato, e da lì non si torna più ai tempi del presente."
+  },
+  regola: {
+    html: "Non devi scegliere fra quattro tempi: devi scegliere fra <b>due</b>, e quali due lo decide " +
+          "la frase principale.",
+    en: "You never choose between four tenses, only between two. The main clause decides which pair.",
+    tab2: [
+      ["Principale al PRESENTE", "penso che...", "stessa cosa o dopo → <b>presente</b><br><i>Penso che sia pronta.</i>", "prima → <b>passato</b><br><i>Penso che sia andata bene.</i>"],
+      ["Principale al PASSATO", "pensavo che...", "stessa cosa o dopo → <b>imperfetto</b><br><i>Pensavo che fosse pronta.</i>", "prima → <b>trapassato</b><br><i>Pensavo che fosse già andata.</i>"]
+    ],
+    chiave: "Presente comanda presente e passato. Passato comanda imperfetto e trapassato. La linea in mezzo non si attraversa."
+  },
+  subito: [
+    { f: ["Penso che il lancio della settimana scorsa ", " molto bene."], v: "andare", o: ["vada", "sia andato", "fosse andato"], g: 1, n: "Principale al presente, azione già conclusa: congiuntivo passato." },
+    { f: ["Credevo che il fornitore ", " già i campioni."], v: "spedire", o: ["abbia spedito", "avesse spedito", "spedisca"], g: 1, n: "Principale al passato, azione prima ancora: trapassato." },
+    { f: ["Spero che il lancio ", " bene la settimana prossima."], v: "andare", o: ["vada", "sia andato", "andasse"], g: 0, n: "Principale al presente, azione futura: congiuntivo presente. Il futuro non ha un congiuntivo suo." }
+  ]
+}
+];
+
+/* =====================================================================
+   L'allenamento finale: tutto mescolato.
+   Mescolare argomenti diversi rende l'esercizio piu' difficile sul
+   momento e piu' utile dopo, perche' costringe a riconoscere ogni
+   volta di che caso si tratta.
+   ===================================================================== */
+var FINALE = [
+  { f: ["So che ", " molto occupato."], v: "essere, lui", o: ["è", "sia", "fosse"], g: 0, tappa: 0 },
+  { f: ["Immagino che ", " stanca."], v: "essere, tu", o: ["sei", "sia", "fossi"], g: 1, tappa: 1 },
+  { f: ["È chiaro che il progetto ", " tempo."], v: "richiedere", o: ["richiede", "richieda", "richiedesse"], g: 0, tappa: 0 },
+  { f: ["Ho paura che il fornitore non ", " i tempi."], v: "rispettare", o: ["rispetta", "rispetti", "rispettasse"], g: 1, tappa: 1 },
+  { f: ["Non sono sicura che ", " la scelta giusta."], v: "essere, essa", o: ["è", "sia", "fosse"], g: 1, tappa: 2 },
+  { f: ["Sono sicura che ", " la scelta giusta."], v: "essere, essa", o: ["è", "sia", "fosse"], g: 0, tappa: 2 },
+  { f: ["Penso che tu ", " ragione."], v: "avere", o: ["hai", "abbia", "avessi"], g: 1, tappa: 3 },
+  { f: ["Spero che loro ", " presto."], v: "arrivare", o: ["arrivano", "arrivino", "arrivassero"], g: 1, tappa: 3 },
+  { f: ["Bisogna che il team ", " pronto."], v: "essere", o: ["è", "sia", "fosse"], g: 1, tappa: 4 },
+  { f: ["Vengo, a meno che non ", " problemi."], v: "esserci", o: ["ci sono", "ci siano", "ci sarebbero"], g: 1, tappa: 4 },
+  { f: ["È uscita senza che io lo ", "."], v: "sapere", o: ["so", "sappia", "sapessi"], g: 2, tappa: 4 },
+  { f: ["Dopo che ", " , ti chiamo."], v: "finire, io", o: ["ho finito", "abbia finito", "finissi"], g: 0, tappa: 4 },
+  { f: ["Chiama prima che ", " l'ufficio."], v: "chiudere, esso", o: ["chiude", "chiuda", "chiudesse"], g: 1, tappa: 4 },
+  { f: ["Anche se ", " caro, l'ho comprato."], v: "essere, esso", o: ["era", "fosse", "sia"], g: 0, tappa: 4 },
+  { f: ["Sebbene ", " caro, l'ho comprato."], v: "essere, esso", o: ["era", "fosse", "sia"], g: 1, tappa: 4 },
+  { f: ["Vorrei che tu ", " con noi."], v: "venire", o: ["vieni", "venga", "venissi"], g: 2, tappa: 5 },
+  { f: ["Avrei voluto che me lo ", " prima."], v: "dire, tu", o: ["dici", "dica", "dicessi"], g: 2, tappa: 5 },
+  { f: ["Preferirei che ", " tu."], v: "decidere", o: ["decidi", "decida", "decidessi"], g: 2, tappa: 5 },
+  { f: ["Penso che ", " bene ieri."], v: "andare, esso", o: ["vada", "sia andato", "fosse andato"], g: 1, tappa: 6 },
+  { f: ["Pensavo che ", " bene."], v: "andare, esso", o: ["vada", "andasse", "sia andato"], g: 1, tappa: 6 },
+  { f: ["Credevo che ", " già uscito."], v: "essere, lui", o: ["sia", "fosse", "era"], g: 1, tappa: 6 },
+  { f: ["Spero che domani ", " bel tempo."], v: "fare", o: ["faccia", "facesse", "abbia fatto"], g: 0, tappa: 6 },
+  { f: ["È possibile che ", " rimandato."], v: "essere, esso", o: ["è", "sia", "fosse"], g: 1, tappa: 1 },
+  { f: ["Mi sembra che ", " tutto a posto."], v: "essere", o: ["è", "sia", "fosse"], g: 1, tappa: 1 }
+];
+
+
+(function(){
+  "use strict";
+  var CHIAVE = "icf_congiuntivo_pub_v1";
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(s){
+    return String(s == null ? "" : s)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  var stato = { aperta: 0, fatte: [], finale: { i: 0, g: 0, s: 0, sbagli: [] } };
+  function salva(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){} }
+  function carica(){
+    try{
+      var g = localStorage.getItem(CHIAVE);
+      if(g){ var d = JSON.parse(g); if(d && d.fatte) stato = d; }
+    }catch(e){}
+    if(!stato.fatte) stato.fatte = [];
+    if(!stato.finale) stato.finale = { i:0, g:0, s:0, sbagli:[] };
+  }
+  function fatta(i){ return stato.fatte.indexOf(i) >= 0; }
+
+  /* ---------------- la mappa ---------------- */
+
+  function disegnaMappa(){
+    var h = PERCORSO.map(function(t, i){
+      return "<button type='button' data-t='" + i + "' title='" + esc(t.t) + "'>" + (i+1) + "</button>";
+    }).join("");
+    h += "<button type='button' class='fine' data-t='fin'>Tutto mescolato</button>";
+    $("mappa").innerHTML = h;
+    rinfrescaMappa();
+  }
+  function rinfrescaMappa(){
+    Array.prototype.forEach.call($("mappa").children, function(b){
+      var k = b.getAttribute("data-t");
+      b.classList.toggle("on", String(stato.aperta) === k);
+      b.classList.toggle("fatta", k !== "fin" && fatta(Number(k)) && String(stato.aperta) !== k);
+    });
+    $("barra").style.width = Math.round((stato.fatte.length / PERCORSO.length) * 100) + "%";
+  }
+
+  /* ---------------- una tappa ---------------- */
+
+  function apriTappa(i){
+    stato.aperta = i;
+    $("finale").hidden = true;
+    $("tappe").innerHTML = disegnaTappa(i);
+    collegaTappa(i);
+    rinfrescaMappa(); salva();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function disegnaTappa(i){
+    var t = PERCORSO[i];
+    return "<div class='tappa' data-tappa='" + i + "'>" +
+      "<span class='num'>Tappa " + (i+1) + " di " + PERCORSO.length + "</span>" +
+      "<h2>" + esc(t.t) + "</h2>" +
+      "<p class='sotto'>" + esc(t.s) + "</p>" +
+
+      "<div class='momento'>" +
+        "<span class='eti'>Prima prova tu</span>" +
+        "<p class='quesito'>" + esc(t.prova.d) + "</p>" +
+        "<div class='opz' id='pOpz'>" +
+          t.prova.o.map(function(o, j){
+            return "<button type='button' data-j='" + j + "'>" + esc(o) + "</button>";
+          }).join("") +
+        "</div>" +
+        "<div class='riga' style='margin-top:10px'>" +
+          "<button class='btn ghost' id='pSalta' type='button'>Non lo so, mostrami</button>" +
+        "</div>" +
+        "<div class='dopo' id='pDopo'></div>" +
+      "</div>" +
+
+      "<div class='momento' id='mRegola' hidden>" +
+        "<span class='eti verde'>Adesso la regola</span>" +
+        disegnaRegola(t.regola) +
+      "</div>" +
+
+      "<div class='momento' id='mSubito' hidden>" +
+        "<span class='eti'>Prova subito</span>" +
+        "<div class='mini'>" +
+          "<div class='passi' id='sPassi'></div>" +
+          "<div class='frase' id='sFrase'></div>" +
+          "<div class='opz fila' id='sOpz'></div>" +
+          "<div class='nota' id='sNota'></div>" +
+        "</div>" +
+      "</div>" +
+
+      "<div id='mFine'></div>" +
+    "</div>";
+  }
+
+  function disegnaRegola(r){
+    var h = "<div class='regola'><p class='corpo'>" + r.html + "</p>" +
+            "<p class='en'>" + esc(r.en) + "</p>";
+    if(r.es){
+      h += "<ul class='esempi'>" + r.es.map(function(e){
+        return "<li><b>" + esc(e[0]) + "</b><span>" + esc(e[1]) + "</span></li>"; }).join("") + "</ul>";
+    }
+    if(r.fam){
+      h += "<div class='fam'>" + r.fam.map(function(f){
+        /* l'etichetta puo' contenere grassetto: e' testo scritto da noi, non da fuori */
+        return "<div><span class='capo'>" + f[0] + "</span><span>" + f[1] + "</span></div>"; }).join("") + "</div>";
+    }
+    if(r.due){
+      h += "<div class='due'>" + r.due.map(function(d){
+        return "<div>" + esc(d[0]) + "</div><div>" + esc(d[1]) + "</div>"; }).join("") + "</div>";
+    }
+    if(r.tab){
+      h += "<table><tr><th>verbo</th><th>io · tu · lui/lei</th><th>noi</th><th>voi</th><th>loro</th></tr>" +
+        r.tab.map(function(x){
+          return "<tr>" + x.map(function(c){ return "<td>" + c + "</td>"; }).join("") + "</tr>"; }).join("") +
+        "</table>";
+    }
+    if(r.tab2){
+      h += "<table><tr><th>principale</th><th>esempio</th><th>contemporanea o dopo</th><th>prima</th></tr>" +
+        r.tab2.map(function(x){
+          return "<tr><td>" + x[0] + "</td><td><i>" + x[1] + "</i></td><td>" + x[2] + "</td><td>" + x[3] + "</td></tr>";
+        }).join("") + "</table>";
+    }
+    h += "<p class='chiave'>" + esc(r.chiave) + "</p></div>";
+    return h;
+  }
+
+  /* ---- il filo della tappa: prova, regola, tre prove, fine ---- */
+
+  function collegaTappa(i){
+    var t = PERCORSO[i], risposto = false, passo = 0, miniFatta = false;
+
+    function mostraRegola(giusto){
+      $("pDopo").className = "dopo " + (giusto ? "si" : "no");
+      $("pDopo").innerHTML = (giusto ? "<b>Esatto.</b> " : "") + t.prova.dopo;
+      $("pSalta").hidden = true;
+      $("mRegola").hidden = false;
+      $("mSubito").hidden = false;
+      disegnaMini();
+    }
+
+    $("pOpz").addEventListener("click", function(ev){
+      var b = ev.target.closest("button");
+      if(!b || risposto) return;
+      risposto = true;
+      var j = Number(b.getAttribute("data-j")), ok = j === t.prova.g;
+      Array.prototype.forEach.call($("pOpz").children, function(x, k){
+        x.disabled = true;
+        if(k === t.prova.g) x.classList.add("giusta");
+        else if(k === j) x.classList.add("storta");
+      });
+      mostraRegola(ok);
+    });
+
+    $("pSalta").addEventListener("click", function(){
+      if(risposto) return;
+      risposto = true;
+      Array.prototype.forEach.call($("pOpz").children, function(x, k){
+        x.disabled = true;
+        if(k === t.prova.g) x.classList.add("giusta");
+      });
+      mostraRegola(false);
+    });
+
+    function disegnaMini(){
+      if(passo >= t.subito.length){ chiudiTappa(); return; }
+      var m = t.subito[passo];
+      $("sPassi").textContent = "Frase " + (passo + 1) + " di " + t.subito.length;
+      $("sFrase").innerHTML = esc(m.f[0]) + "<span class='vuoto' id='sVuoto'>&nbsp;</span>" + esc(m.f[1]) +
+        "<span class='verbo'>(" + esc(m.v) + ")</span>";
+      $("sOpz").innerHTML = m.o.map(function(o, j){
+        return "<button type='button' data-j='" + j + "'>" + esc(o) + "</button>";
+      }).join("");
+      $("sNota").innerHTML = "";
+      miniFatta = false;
+    }
+
+    $("mSubito").addEventListener("click", function(ev){
+      var b = ev.target.closest("#sOpz button");
+      if(!b) return;
+      var m = t.subito[passo];
+      if(miniFatta){ return; }
+      miniFatta = true;
+      var j = Number(b.getAttribute("data-j")), ok = j === m.g;
+      Array.prototype.forEach.call($("sOpz").children, function(x, k){
+        x.disabled = true;
+        if(k === m.g) x.classList.add("giusta");
+        else if(k === j) x.classList.add("storta");
+      });
+      var v = $("sVuoto");
+      if(v){ v.textContent = m.o[m.g]; v.classList.add("pieno"); }
+      $("sNota").innerHTML = (ok ? "" : "<b>Era « " + esc(m.o[m.g]) + " ».</b> ") + esc(m.n);
+      passo++;
+      setTimeout(function(){
+        var av = document.createElement("button");
+        av.className = "btn verde"; av.type = "button";
+        av.textContent = (passo >= t.subito.length) ? "Ho finito la tappa" : "Avanti";
+        av.addEventListener("click", function(){ av.remove(); disegnaMini(); });
+        $("sNota").appendChild(document.createElement("br"));
+        $("sNota").appendChild(av);
+      }, 120);
+    });
+
+    function chiudiTappa(){
+      if(!fatta(i)){ stato.fatte.push(i); salva(); rinfrescaMappa(); }
+      var ultima = i >= PERCORSO.length - 1;
+      $("mSubito").hidden = true;
+      $("mFine").innerHTML = "<div class='fatta'><h3>Tappa " + (i+1) + " fatta</h3>" +
+        "<p style='margin:0 0 10px'>" + esc(t.regola.chiave) + "</p>" +
+        "<div class='riga'>" +
+          (ultima ? "<button class='btn verde' id='vaiFinale' type='button'>Vai all'allenamento finale</button>"
+                  : "<button class='btn verde' id='vaiAvanti' type='button'>Tappa " + (i+2) + " &rarr;</button>") +
+          "<button class='btn ghost' id='rifai' type='button'>Rifai questa tappa</button>" +
+        "</div></div>";
+      var a = $("vaiAvanti"); if(a) a.addEventListener("click", function(){ apriTappa(i + 1); });
+      var f = $("vaiFinale"); if(f) f.addEventListener("click", apriFinale);
+      $("rifai").addEventListener("click", function(){ apriTappa(i); });
+    }
+  }
+
+  /* ---------------- allenamento finale ---------------- */
+
+  var ordine = [], finFatta = false;
+
+  function apriFinale(){
+    stato.aperta = "fin";
+    $("tappe").innerHTML = "";
+    $("finale").hidden = false;
+    stato.finale = { i:0, g:0, s:0, sbagli:[] };
+    ordine = FINALE.map(function(_, i){ return i; });
+    for(var j = ordine.length - 1; j > 0; j--){
+      var k = Math.floor(Math.random() * (j + 1)), t = ordine[j]; ordine[j] = ordine[k]; ordine[k] = t;
+    }
+    $("finEsito").innerHTML = "";
+    $("finCorpo").hidden = false;
+    disegnaFin();
+    rinfrescaMappa(); salva();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function disegnaFin(){
+    var f = stato.finale;
+    if(f.i >= ordine.length){ chiudiFinale(); return; }
+    var m = FINALE[ordine[f.i]];
+    $("finPassi").textContent = "Frase " + (f.i + 1) + " di " + ordine.length;
+    $("finFrase").innerHTML = esc(m.f[0]) + "<span class='vuoto' id='finVuoto'>&nbsp;</span>" + esc(m.f[1]) +
+      "<span class='verbo'>(" + esc(m.v) + ")</span>";
+    $("finOpz").innerHTML = m.o.map(function(o, j){
+      return "<button type='button' data-j='" + j + "'>" + esc(o) + "</button>";
+    }).join("");
+    $("finNota").innerHTML = "";
+    finFatta = false;
+    disegnaContiFin();
+  }
+
+  function disegnaContiFin(){
+    $("finConti").innerHTML = "<div class='g'><b>" + stato.finale.g + "</b><span>giuste</span></div>" +
+                              "<div class='s'><b>" + stato.finale.s + "</b><span>sbagliate</span></div>";
+  }
+
+  $("finOpz").addEventListener("click", function(ev){
+    var b = ev.target.closest("button");
+    if(!b || finFatta) return;
+    finFatta = true;
+    var m = FINALE[ordine[stato.finale.i]];
+    var j = Number(b.getAttribute("data-j")), ok = j === m.g;
+    Array.prototype.forEach.call($("finOpz").children, function(x, k){
+      x.disabled = true;
+      if(k === m.g) x.classList.add("giusta");
+      else if(k === j) x.classList.add("storta");
+    });
+    var v = $("finVuoto");
+    if(v){ v.textContent = m.o[m.g]; v.classList.add("pieno"); }
+    if(ok) stato.finale.g++;
+    else { stato.finale.s++; stato.finale.sbagli.push(m.tappa); }
+    $("finNota").innerHTML = ok ? "<b style='color:var(--verde)'>Giusto</b>"
+      : "<b>Era « " + esc(m.o[m.g]) + " ».</b> Tappa " + (m.tappa + 1) + ": " + esc(PERCORSO[m.tappa].t) + ".";
+    stato.finale.i++;
+    disegnaContiFin(); salva();
+    setTimeout(function(){
+      var av = document.createElement("button");
+      av.className = "btn verde"; av.type = "button";
+      av.textContent = stato.finale.i >= ordine.length ? "Vedi il risultato" : "Avanti";
+      av.addEventListener("click", function(){ av.remove(); disegnaFin(); });
+      $("finNota").appendChild(document.createElement("br"));
+      $("finNota").appendChild(av);
+    }, 120);
+  });
+
+  function chiudiFinale(){
+    $("finCorpo").hidden = true;
+    var f = stato.finale, tot = f.g + f.s;
+    var perc = tot ? Math.round((f.g / tot) * 100) : 0;
+    var conta = {};
+    f.sbagli.forEach(function(t){ conta[t] = (conta[t] || 0) + 1; });
+    var deboli = Object.keys(conta).sort(function(a, b){ return conta[b] - conta[a]; });
+
+    var h = "<div class='riquadro'><p class='voto'>" + f.g + " su " + tot + "</p>" +
+      "<p style='margin:4px 0 0;color:var(--ink-soft)'>" +
+        (perc >= 85 ? "Il congiuntivo ce l'hai. Adesso serve dirlo a voce, che è un altro mestiere."
+         : perc >= 65 ? "Ci sei quasi. Le tappe qui sotto sono quelle che ti sono costate di più."
+         : "C'è ancora da lavorare, ed è normale: il congiuntivo non si impara in un pomeriggio. Rifai le tappe qui sotto.") +
+      "</p>";
+    if(deboli.length){
+      h += "<p style='margin:14px 0 0'><b>Da ripassare:</b></p><ul class='ripassa'>" +
+        deboli.map(function(t){
+          return "<li><a data-vai='" + t + "'>Tappa " + (Number(t)+1) + " · " + esc(PERCORSO[t].t) + "</a> · " +
+                 conta[t] + (conta[t] === 1 ? " errore" : " errori") + "</li>";
+        }).join("") + "</ul>";
+    } else {
+      h += "<p style='margin:14px 0 0'>Nessun errore. Non capita spesso.</p>";
+    }
+    h += "<div class='riga' style='margin-top:16px'>" +
+      "<button class='btn verde' id='rifaiFin' type='button'>Rifai mescolando</button>" +
+      "<a class='btn ghost' href='https://talkwithfabio.com/prenota/' style='text-decoration:none'>Provalo a voce con me</a>" +
+      "</div></div>";
+    $("finEsito").innerHTML = h;
+    $("rifaiFin").addEventListener("click", apriFinale);
+    Array.prototype.forEach.call($("finEsito").querySelectorAll("[data-vai]"), function(a){
+      a.addEventListener("click", function(){ apriTappa(Number(a.getAttribute("data-vai"))); });
+    });
+  }
+
+  /* ---------------- via ---------------- */
+
+  $("mappa").addEventListener("click", function(ev){
+    var b = ev.target.closest("button");
+    if(!b) return;
+    var k = b.getAttribute("data-t");
+    if(k === "fin") apriFinale(); else apriTappa(Number(k));
+  });
+
+  carica();
+  disegnaMappa();
+  if(stato.aperta === "fin") apriFinale();
+  else apriTappa(Number(stato.aperta) || 0);
+})();
+</script>
+</body>
+</html>
