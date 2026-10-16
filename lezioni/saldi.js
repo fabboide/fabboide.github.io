@@ -54,7 +54,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "15 ottobre 2026, 23:25";
+var SALDI_AGGIORNATO = "16 ottobre 2026, 13:23";
 
 var SALDI = {
 
@@ -116,16 +116,15 @@ var SALDI = {
     pacchetto: 26,
     inizio: "2026-09-15",
     fatte_prima: 0,
-    fatte: 2,
-    prenotate: 1,
+    fatte: 3,
+    prenotate: 0,
     rimaste: 23,
     passate: [
       "2026-09-21T14:00:00+02:00",
-      "2026-10-15T09:30:00+02:00"
+      "2026-10-15T09:30:00+02:00",
+      "2026-10-16T09:30:00+02:00"
     ],
-    prossime: [
-      { quando: "2026-10-16T09:30:00+02:00", gestisci: "https://cal.com/booking/oUg9GEAaDKpXkuiv3hQ62N?changes=true" }
-    ],
+    prossime: [],
     promemoria: "Per Fabio: Rafaela prenota con due indirizzi, uno con una enne e uno con due. Vanno tenuti tutti e due in mail-studenti.json, se no metà delle sue lezioni non viene contata."
   },
 
