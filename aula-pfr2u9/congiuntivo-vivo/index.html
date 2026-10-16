@@ -1,0 +1,935 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Il congiuntivo vivo · La mia aula</title>
+<link rel="icon" href="../../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D; --kraft:#D9BC8C;
+  --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --serif:"Newsreader",Georgia,serif;
+  --pen:"Caveat",cursive;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--stone);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.55}
+.nastro{height:6px;background:linear-gradient(90deg,var(--tomato) 0 25%,var(--lemon) 25% 50%,var(--basil) 50% 75%,var(--kraft) 75% 100%)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding:12px 20px;border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar a{color:var(--muted);text-decoration:none;font-family:var(--display);font-size:.9rem}
+.topbar a:hover{color:var(--ink)}
+.topbar .marchio{font-family:var(--display);font-weight:800;letter-spacing:-.01em}
+.wrap{max-width:820px;margin:0 auto;padding:22px 20px 90px}
+h1{font-family:var(--display);font-weight:800;font-size:2.05rem;letter-spacing:-.025em;margin:8px 0 4px}
+h2{font-family:var(--display);font-weight:700;font-size:1.3rem;margin:26px 0 8px}
+h3{font-family:var(--display);font-size:1.03rem;margin:0 0 6px}
+.lede{color:var(--muted);margin:0 0 6px}
+.pen{font-family:var(--pen);font-size:1.2rem;color:var(--basil);margin:6px 0 0}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:12px 0}
+.btn{font-family:var(--display);font-weight:700;font-size:.94rem;border:1px solid var(--ink);
+  background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 17px;cursor:pointer}
+.btn.verde{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn:disabled{opacity:.42;cursor:default}
+.riga{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.kbd{font-size:.72em;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin-left:7px}
+@media (hover:none){.kbd{display:none}}
+
+/* rimando all'altra pagina */
+.gemella{border:1px dashed var(--line);border-radius:14px;padding:12px 15px;margin:14px 0;
+  display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--paper)}
+.gemella p{margin:0;flex:1 1 240px;color:var(--muted);font-size:.95rem}
+.gemella a{color:var(--basil);font-family:var(--display);font-weight:700;text-decoration:none;white-space:nowrap}
+.gemella a:hover{text-decoration:underline}
+
+/* fasi */
+#fasi{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 14px}
+#fasi button{font-family:var(--display);font-weight:700;font-size:.9rem;border:1px solid var(--line);
+  background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
+#fasi button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+#fasi button .n{color:var(--lemon);margin-right:6px}
+.sez{display:none}
+.sez.on{display:block}
+
+/* la scena */
+.scena{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--lemon);
+  border-radius:16px;padding:16px 18px;margin:12px 0}
+.scena .eti{font-family:var(--display);font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--lemon);display:block;margin-bottom:5px}
+.scena p{margin:0;font-size:1.1rem}
+.battute{display:flex;flex-direction:column;gap:9px;margin:12px 0}
+.battute button{text-align:left;font-family:var(--serif);font-size:1.05rem;border:1px solid var(--line);
+  background:var(--paper);color:var(--ink);border-radius:13px;padding:12px 15px;cursor:pointer;position:relative}
+.battute button:hover:not(:disabled){border-color:var(--ink)}
+.battute button .lett{font-family:var(--display);font-weight:700;color:var(--muted);margin-right:9px}
+.battute button.giusta{border-color:var(--basil);background:rgba(46,94,78,.09)}
+.battute button.giusta .lett{color:var(--basil)}
+.battute button.storta{border-color:var(--tomato);background:rgba(196,49,43,.07)}
+.battute button.storta .lett{color:var(--tomato)}
+.battute button.pure{border-color:var(--lemon);background:rgba(232,163,61,.12)}
+.battute button.pure .lett{color:var(--lemon)}
+.battute .spieg{display:block;margin-top:7px;font-size:.93rem;color:var(--muted);font-family:var(--serif)}
+.battute button.giusta .spieg{color:var(--basil)}
+.battute button:disabled{cursor:default;opacity:1}
+
+/* domanda con il buco */
+.dom{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px;margin:12px 0}
+.frase{font-size:1.45rem;font-family:var(--display);font-weight:700;letter-spacing:-.01em;line-height:1.35}
+.frase .vuoto{display:inline-block;min-width:92px;border-bottom:3px solid var(--tomato);margin:0 4px}
+.frase .vuoto.pieno{border-bottom-color:var(--basil)}
+.verbo{font-family:var(--serif);font-weight:400;font-style:italic;color:var(--muted);font-size:1rem;margin-left:8px}
+.chiedo{font-size:1.2rem;margin:0 0 4px}
+.opz{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.opz button{font-family:var(--serif);font-size:1.05rem;border:1px solid var(--line);background:var(--stone);
+  color:var(--ink);border-radius:12px;padding:11px 16px;cursor:pointer;flex:1 1 150px}
+.opz button:hover:not(:disabled){border-color:var(--ink)}
+.opz button.giusta{background:var(--basil);color:var(--paper);border-color:var(--basil)}
+.opz button.storta{background:var(--tomato);color:var(--paper);border-color:var(--tomato)}
+.opz button .tasto{font-family:var(--display);font-size:.72rem;opacity:.55;margin-right:7px}
+.nota{margin-top:12px;color:var(--muted);font-size:.96rem;min-height:24px}
+.nota b{color:var(--ink)}
+.tipino{display:inline-block;font-family:var(--display);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 9px;margin-bottom:8px}
+
+/* contatori */
+.conti{display:flex;gap:18px;flex-wrap:wrap;margin:14px 0 4px;align-items:baseline}
+.conti div{display:flex;gap:7px;align-items:baseline}
+.conti b{font-family:var(--display);font-weight:800;font-size:1.45rem;letter-spacing:-.02em}
+.conti .g b{color:var(--basil)} .conti .s b{color:var(--tomato)}
+.conti span{font-family:var(--display);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* arena */
+.arena{background:var(--ink);color:var(--paper);border-radius:18px;padding:20px;margin:12px 0}
+.arena .alto{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+.arena .crono{font-family:var(--display);font-weight:800;font-size:2rem;font-variant-numeric:tabular-nums}
+.arena .crono.poco{color:var(--lemon)}
+.arena .punti{font-family:var(--display);font-weight:800;font-size:2rem}
+.arena .eti{font-family:var(--display);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;opacity:.65}
+.arena .frase{color:var(--paper);margin:18px 0 0}
+.arena .frase .vuoto{border-bottom-color:var(--lemon)}
+.arena .verbo{color:var(--kraft)}
+.arena .opz button{background:rgba(255,255,255,.08);color:var(--paper);border-color:rgba(255,255,255,.22)}
+.arena .opz button:hover:not(:disabled){border-color:var(--paper)}
+.arena .opz button.giusta{background:var(--basil);border-color:var(--basil)}
+.arena .opz button.storta{background:var(--tomato);border-color:var(--tomato)}
+.combo{font-family:var(--display);font-weight:800;color:var(--lemon);min-height:26px;margin-top:10px}
+.combo.spento{opacity:0}
+.record{font-family:var(--display);font-size:.92rem;color:var(--muted)}
+.record b{color:var(--ink)}
+
+/* cassetto */
+dialog{border:1px solid var(--ink);border-radius:18px;padding:0;max-width:620px;width:94vw;background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(22,35,63,.45)}
+.dlgTesta{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.dlgTesta h3{margin:0}
+.dlgCorpo{padding:14px 18px;max-height:68vh;overflow:auto}
+.dlgCorpo table{width:100%;border-collapse:collapse;margin:4px 0 10px}
+.dlgCorpo td{padding:6px 8px;border-bottom:1px solid var(--line);font-size:.97rem;vertical-align:top}
+.dlgCorpo td:first-child{font-family:var(--display);font-weight:700;white-space:nowrap;padding-right:14px}
+.dlgCorpo td:last-child{color:var(--muted)}
+.dlgCorpo .sottonota{color:var(--muted);font-size:.92rem;margin:0 0 18px}
+
+/* da rivedere */
+.rivedere{margin-top:16px}
+.rivedere h3{color:var(--tomato)}
+.listaRiv{display:flex;gap:7px;flex-wrap:wrap;margin-top:6px}
+.listaRiv span{border:1px solid var(--tomato);color:var(--tomato);border-radius:999px;padding:4px 11px;font-size:.92rem}
+
+textarea{font-family:var(--serif);font-size:1rem;width:100%;min-height:110px;padding:11px 13px;
+  border:1px solid var(--line);border-radius:12px;background:var(--stone);color:var(--ink);resize:vertical}
+footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+@media (max-width:620px){
+  .wrap{padding:18px 16px 70px}
+  h1{font-size:1.6rem}
+  .frase{font-size:1.2rem}
+  .opz button{flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+<div class="nastro"></div>
+<div class="topbar">
+  <a href="../">← La mia aula</a>
+  <span class="marchio">Il congiuntivo vivo</span>
+</div>
+
+<div class="wrap">
+  <h1>Il congiuntivo vivo</h1>
+  <p class="lede">Non le regole: i posti dove il congiuntivo cambia davvero quello che stai dicendo,
+    quelli dove sta in piedi da solo, e quello dove sbagliano anche gli italiani.</p>
+  <p class="pen">Qui non c'è nessuna spia che faccia il lavoro al posto tuo.</p>
+
+  <div class="gemella">
+    <p>Le spie, la concordanza dei tempi e <i>di + infinito</i> stanno nell'altra pagina.
+      Se la forma ancora non viene da sola, si comincia da lì.</p>
+    <a href="../congiuntivo/">Le costruzioni del congiuntivo →</a>
+  </div>
+
+  <div class="riga" style="margin:12px 0">
+    <button class="btn ghost" id="apriCass" type="button">Le formule<span class="kbd">f</span></button>
+  </div>
+
+  <div id="fasi"></div>
+
+  <!-- ===== 1 · le scene ===== -->
+  <section class="sez" id="s1">
+    <p class="lede">Una situazione, tre battute. Tutte e tre si possono dire in italiano:
+      una sola dice quello che la situazione chiede. Dopo la risposta vedi anche cosa avresti detto con le altre due.</p>
+    <div class="scena" id="scena"><span class="eti">La situazione</span><p id="sitTesto">Pesca una scena per cominciare.</p></div>
+    <div class="battute" id="battute"></div>
+    <div class="riga">
+      <button class="btn verde" id="s1Pesca" type="button">Un'altra scena<span class="kbd">spazio</span></button>
+    </div>
+    <div class="conti" id="s1Conti"></div>
+  </section>
+
+  <!-- ===== 2 · da solo ===== -->
+  <section class="sez" id="s2">
+    <p class="lede">Nessuna spia davanti: solo il congiuntivo, da solo, come si usa quando si parla.
+      Desideri, dubbi, cortesia, formule intere.</p>
+    <div class="riga" id="s2Chips" style="margin-bottom:4px"></div>
+    <div class="dom">
+      <span class="tipino" id="s2Tipo">&nbsp;</span>
+      <div class="frase" id="s2Frase">Pesca una frase per cominciare.</div>
+      <div class="opz" id="s2Opz"></div>
+      <div class="nota" id="s2Nota"></div>
+    </div>
+    <div class="riga">
+      <button class="btn verde" id="s2Pesca" type="button">Un'altra<span class="kbd">spazio</span></button>
+    </div>
+    <div class="conti" id="s2Conti"></div>
+  </section>
+
+  <!-- ===== 3 · la seconda persona ===== -->
+  <section class="sez" id="s3">
+    <p class="lede"><b>Credo che tu hai capito.</b> Lo dicono in tanti, anche in Italia, e non è corretto.
+      Succede perché con i verbi in <i>-are</i> la differenza non si sente: <i>tu parli</i> e <i>che tu parli</i> sono identici.
+      Poi l'orecchio generalizza, e con <i>essere</i> e <i>avere</i> casca.</p>
+    <div class="dom">
+      <div class="frase" id="s3Frase">Pesca una frase per cominciare.</div>
+      <div class="opz" id="s3Opz"></div>
+      <div class="nota" id="s3Nota"></div>
+    </div>
+    <div class="riga">
+      <button class="btn verde" id="s3Pesca" type="button">Un'altra<span class="kbd">spazio</span></button>
+    </div>
+    <div class="conti" id="s3Conti"></div>
+  </section>
+
+  <!-- ===== 4 · arena ===== -->
+  <section class="sez" id="s4">
+    <p class="lede">Novanta secondi. Qui non si ragiona, si risponde: serve a rendere automatico quello
+      che nelle altre tre fasi hai capito. Le risposte di fila valgono di più.</p>
+    <p class="record" id="arRecord"></p>
+    <div class="riga" style="margin:12px 0">
+      <button class="btn verde" id="arVia" type="button">Via!</button>
+    </div>
+    <div class="arena" id="arCorpo" hidden>
+      <div class="alto">
+        <div><div class="eti">Tempo</div><div class="crono" id="arCrono">90</div></div>
+        <div style="text-align:right"><div class="eti">Punti</div><div class="punti" id="arPunti">0</div></div>
+      </div>
+      <div class="frase" id="arFrase"></div>
+      <div class="opz" id="arOpz"></div>
+      <div class="combo spento" id="arCombo">&nbsp;</div>
+    </div>
+    <div id="arFine"></div>
+  </section>
+
+  <!-- da rivedere -->
+  <div class="rivedere panel" id="rivedere" hidden>
+    <h3>Da rivedere</h3>
+    <p class="lede" style="margin:0">Le forme che hai sbagliato. Tornano più spesso finché non le prendi.</p>
+    <div class="listaRiv" id="listaRiv"></div>
+  </div>
+
+  <!-- appunti -->
+  <div class="panel">
+    <h3>Appunti della lezione</h3>
+    <p class="lede">Cosa ha detto, cosa gli è venuto spontaneo, cosa riprendere alla fine.</p>
+    <textarea id="note" placeholder="…"></textarea>
+    <div class="riga" style="margin-top:10px;justify-content:space-between">
+      <span class="lede" style="margin:0">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="azzera" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+
+  <footer>Pagina privata, non indicizzata.</footer>
+</div>
+
+<dialog id="cass">
+  <div class="dlgTesta">
+    <h3>Le formule che servono</h3>
+    <button class="btn ghost" id="chiudiCass" type="button">Chiudi</button>
+  </div>
+  <div class="dlgCorpo" id="cassCorpo"></div>
+</dialog>
+
+<script>
+/* =====================================================================
+   IL CONGIUNTIVO VIVO · i contenuti
+
+   Qui non si allena la spia (quello lo fa gia' l'altra pagina).
+   Qui si allenano tre cose che restano scoperte:
+     1. il congiuntivo che cambia il significato della frase
+     2. il congiuntivo che sta da solo, senza niente davanti
+     3. la seconda persona singolare, dove cadono anche gli italiani
+   ===================================================================== */
+
+/* ---------------------------------------------------------------
+   1 · LE SCENE
+   Tre battute tutte dicibili. Quella giusta e' quella che dice
+   davvero quello che la situazione chiede. Per ognuna delle altre
+   la pagina spiega che cosa avresti detto.
+   --------------------------------------------------------------- */
+var SCENE = [
+  { sit: "Sei al telefono con un'amica. Secondo te Marco è già partito, ma non ne hai la certezza.",
+    o: ["Penso che Marco è partito.",
+        "Penso che Marco sia partito.",
+        "Penso che Marco parta."],
+    g: 1,
+    p: ["Con l'indicativo dici che ne sei convinto, lo dai per un fatto.",
+        "Giusto: supponi, non sei sicuro. È esattamente quello che ti serve.",
+        "Il presente sposta tutto a adesso o al futuro: diresti che parte, non che è già partito."] },
+
+  { sit: "Cerchi casa. Non hai ancora visto niente: ti va bene qualunque casa, purché abbia il giardino.",
+    o: ["Cerco una casa che ha il giardino.",
+        "Cerco una casa che abbia il giardino.",
+        "Cerco una casa che avesse il giardino."],
+    g: 1,
+    p: ["Con l'indicativo quella casa esiste e tu sai già quale è: la stai cercando per ritrovarla.",
+        "Giusto: una qualunque, basta che il giardino ci sia. È il congiuntivo che dice « non so ancora quale ».",
+        "L'imperfetto qui non regge: la reggente è al presente."] },
+
+  { sit: "La casa l'hai già vista: è quella di via Verdi, quella col giardino. La stai cercando sulla mappa.",
+    o: ["Cerco la casa che ha il giardino.",
+        "Cerco la casa che abbia il giardino.",
+        "Cerco una casa che abbia il giardino."],
+    g: 0,
+    p: ["Giusto: la casa esiste e sai quale è. Qui il congiuntivo sarebbe fuori posto.",
+        "Con « la » e il congiuntivo insieme la frase si contraddice: dici « quella precisa » e « una qualsiasi » nella stessa riga.",
+        "Questa è la frase di chi non ha ancora trovato niente: non è il tuo caso."] },
+
+  { sit: "Sta piovendo da stamattina e tu volevi andare al mare. Sbuffi e lo dici a voce alta.",
+    o: ["Magari non piove.",
+        "Magari non piova.",
+        "Magari non piovesse!"],
+    g: 2,
+    p: ["Questo vuol dire « forse non piove »: stai facendo un'ipotesi, non un lamento.",
+        "Questa forma non si usa: magari con il congiuntivo presente non funziona.",
+        "Giusto: con l'imperfetto il magari diventa un desiderio su una cosa che purtroppo è vera."] },
+
+  { sit: "Un amico non risponde al telefono da due giorni. Pensi a voce alta, parlando quasi da solo.",
+    o: ["È malato?",
+        "Che sia malato?",
+        "Sarà malato."],
+    g: 1,
+    p: ["Questa è una domanda a qualcuno che la risposta ce l'ha. Qui invece non c'è nessuno che lo sappia.",
+        "Giusto: « che + congiuntivo » è il dubbio detto ad alta voce, la domanda che fai a te stesso.",
+        "Questo è il futuro del dubbio: non chiedi più, stai già dando una risposta probabile."] },
+
+  { sit: "Una signora che non conosci è in piedi nel tuo ufficio. La inviti a sedersi.",
+    o: ["Siediti, prego.",
+        "Si sieda, prego.",
+        "Si siede, prego."],
+    g: 1,
+    p: ["Questo è il tu: a una persona che non conosci suona confidenziale.",
+        "Giusto. E attenzione: questo è un congiuntivo. L'imperativo di cortesia in italiano è il congiuntivo.",
+        "Con l'indicativo non stai invitando, stai descrivendo quello che la signora fa."] },
+
+  { sit: "Hai comprato il biglietto a prezzo pieno. Il giorno dopo scopri che c'era l'offerta.",
+    o: ["Avessi saputo!",
+        "Ho saputo!",
+        "Sapessi!"],
+    g: 0,
+    p: ["Giusto: il trapassato da solo è il rimpianto. « Se l'avessi saputo » con il se sottinteso.",
+        "Questo dice solo che l'informazione ti è arrivata. Nessun rimpianto.",
+        "« Sapessi » serve per un'altra cosa: per dire all'altro che non immagina. Vedi la scena del lunedì."] },
+
+  { sit: "È stata una giornata tremenda e la tua amica non ha idea di quanto. Vuoi dirglielo.",
+    o: ["Sai che giornata!",
+        "Sapessi che giornata!",
+        "Avessi saputo che giornata!"],
+    g: 1,
+    p: ["Con l'indicativo dici che lei lo sa già. È il contrario di quello che vuoi dire.",
+        "Giusto: « sapessi » è rivolto all'altro e vuol dire « tu non puoi immaginare ».",
+        "Questo è il rimpianto tuo, e qui non c'entra: non ti stai pentendo di niente."] },
+
+  { sit: "Hai deciso: parti comunque, qualunque cosa succeda, e non vuoi più discuterne.",
+    o: ["Va come va, io parto.",
+        "Vada come vada, io parto.",
+        "Andasse come andasse, io parto."],
+    g: 1,
+    p: ["Con l'indicativo stai descrivendo come stanno andando le cose, non chiudendo il discorso.",
+        "Giusto: è una formula fissa, e sta tutta al congiuntivo. Come « costi quel che costi ».",
+        "L'imperfetto sposterebbe tutto in un'ipotesi del passato."] },
+
+  { sit: "Tuo fratello dice che secondo lui hai sbagliato. Tu sei sicurissimo di avere ragione.",
+    o: ["Sono sicuro che ho ragione.",
+        "Sono sicuro che abbia ragione.",
+        "Credo che io abbia ragione."],
+    g: 0,
+    p: ["Giusto: « sono sicuro » è una certezza, e le certezze vogliono l'indicativo.",
+        "Il congiuntivo qui toglierebbe la sicurezza che hai appena dichiarato: la frase si morde la coda.",
+        "Questa è molto più debole: dici che supponi, mentre tu sei sicuro."] },
+
+  { sit: "Devi uscire di casa e vuoi chiudere le finestre, ma prima che esca anche il tuo coinquilino.",
+    o: ["Chiudo le finestre prima che esci.",
+        "Chiudo le finestre prima che tu esca.",
+        "Chiudo le finestre dopo che sei uscito."],
+    g: 1,
+    p: ["« Prima che » vuole sempre il congiuntivo, e qui serve anche il « tu » per dire chi esce.",
+        "Giusto. E nota il « tu »: senza, la frase sembra parlare di una terza persona.",
+        "Questa è giusta in italiano, ma dice il contrario: aspetti che sia uscito."] },
+
+  { sit: "Hanno suonato alla porta. Non aspetti nessuno e non hai nessuna intenzione di aprire.",
+    o: ["Chiunque è, non apro.",
+        "Chiunque sia, non apro.",
+        "Chiunque sarà, non apro."],
+    g: 1,
+    p: ["« Chiunque » non prende mai l'indicativo: è una parola che apre il congiuntivo per forza.",
+        "Giusto: chiunque, qualunque, dovunque, comunque vogliono tutte il congiuntivo.",
+        "Il futuro non risolve: il problema è il modo, non il tempo."] },
+
+  { sit: "Una collega dice che il treno è in ritardo. Tu l'hai appena controllato sull'app: è vero.",
+    o: ["Penso che il treno è in ritardo.",
+        "Penso che il treno sia in ritardo.",
+        "So che il treno è in ritardo."],
+    g: 2,
+    p: ["Qui non stai pensando: lo hai verificato. « Penso » sminuisce quello che sai.",
+        "Ancora peggio: il congiuntivo dice che stai supponendo, e invece hai la prova in mano.",
+        "Giusto: quando una cosa la sai, si dice « so che » e l'indicativo."] },
+
+  { sit: "Il tuo capo ti chiede se hai finito. Non hai finito, e vuoi dire che ti serve ancora tempo, con garbo.",
+    o: ["Bisogna che ho ancora un giorno.",
+        "Bisogna che abbia ancora un giorno.",
+        "Avrei bisogno di un altro giorno."],
+    g: 2,
+    p: ["« Bisogna che » vuole il congiuntivo, ma il problema è un altro: questa frase in italiano non si dice così.",
+        "Il modo è giusto, ma la frase resta strana: « bisogna che io abbia un altro giorno » non è come parla un italiano.",
+        "Giusto. E impara anche questo: a volte la frase giusta non è quella con il congiuntivo, è quella che si dice davvero."] },
+
+  { sit: "Sei a cena da amici. Il padrone di casa ti offre dell'altro vino e tu ne vuoi ancora.",
+    o: ["Sì, grazie, faccia pure.",
+        "Sì, grazie, fai pure.",
+        "Sì, grazie, facesse pure."],
+    g: 0, anche: [1],
+    p: ["Giusto se gli dai del lei: « faccia » è il congiuntivo che fa da imperativo di cortesia.",
+        "Questa va benissimo se siete in confidenza. Dipende solo da come vi parlate.",
+        "L'imperfetto qui non esiste: non si dà mai un permesso con « facesse »."] },
+
+  { sit: "Vuoi dire a un amico che se dipendesse da te partireste subito, ma non dipende da te.",
+    o: ["Fosse per me, partiamo subito.",
+        "Fosse per me, partiremmo subito.",
+        "Se è per me, partiremmo subito."],
+    g: 1,
+    p: ["La prima parte è giusta, ma poi serve il condizionale: è un'ipotesi, non un programma.",
+        "Giusto: congiuntivo imperfetto nell'ipotesi, condizionale nella conseguenza. La coppia classica.",
+        "Con l'indicativo l'ipotesi sparisce e la frase diventa sgrammaticata."] },
+
+  { sit: "Tua madre ti ha appena detto una cosa che ti ha ferito. Te ne esce una frase sola, a mezza voce.",
+    o: ["Non l'hai mai detto.",
+        "Non lo dicessi mai.",
+        "Non l'avessi mai detto."],
+    g: 2,
+    p: ["Questo è un rimprovero all'altra persona, e per di più falso: l'ha appena detto.",
+        "Questa forma non si usa in italiano.",
+        "Giusto: « non l'avessi mai detto » è il rimpianto per aver parlato. Una delle frasi più italiane che ci siano."] },
+
+  { sit: "Un amico ti chiede se Giulia verrà alla festa. Tu non ne hai idea, proprio zero.",
+    o: ["Non so se viene.",
+        "Non so se venga.",
+        "Non so che venga."],
+    g: 0, anche: [1],
+    p: ["Giusto, ed è la più normale nel parlato. Attenzione: qui anche il congiuntivo è corretto, ma suona più formale.",
+        "Non è sbagliata: è la versione scritta e formale. In una chiacchierata fra amici stona un po'.",
+        "« Non so che venga » non si dice: dopo « non so » ci vuole « se »."] }
+];
+
+/* ---------------------------------------------------------------
+   2 · DA SOLO
+   Il congiuntivo senza niente davanti. Qui non c'e' nessuna spia
+   che faccia il lavoro: o sai la forma, o non ci arrivi.
+   --------------------------------------------------------------- */
+var SOLO = [
+  { f: ["Magari ", " qui adesso!"], o: ["fosse", "è", "sia"], g: 0, v: "essere, lui",
+    t: "desiderio", n: "Magari + congiuntivo imperfetto: un desiderio su una cosa che non è vera." },
+
+  { f: ["Magari ", " venire anch'io!"], o: ["posso", "potessi", "possa"], g: 1, v: "potere, io",
+    t: "desiderio", n: "Stesso schema: il desiderio che sai già irrealizzabile vuole l'imperfetto." },
+
+  { f: ["Se solo lo ", " prima!"], o: ["ho saputo", "sapevo", "avessi saputo"], g: 2, v: "sapere, io",
+    t: "rimpianto", n: "Il rimpianto su una cosa passata vuole il trapassato. « Se solo lo sapevo » si sente, ma è parlato sciatto." },
+
+  { f: ["Non l'", " mai detto!"], o: ["ho", "avessi", "avrei"], g: 1, v: "avere, io",
+    t: "rimpianto", n: "« Non l'avessi mai detto » e « non l'avessi mai fatto »: due frasi da imparare intere." },
+
+  { f: ["Che ", " già arrivati?"], o: ["sono", "siano", "fossero"], g: 1, v: "essere, loro",
+    t: "dubbio", n: "« Che + congiuntivo » è il dubbio che ti fai da solo, con il punto interrogativo." },
+
+  { f: ["Che ", " perso il treno?"], o: ["ha", "abbia", "avrebbe"], g: 1, v: "avere, lui",
+    t: "dubbio", n: "Stessa cosa al passato: che + congiuntivo passato." },
+
+  { f: ["", " pure, si accomodi."], o: ["Entra", "Entri", "Entrasse"], g: 1, v: "entrare, lei",
+    t: "cortesia", n: "L'imperativo di cortesia è un congiuntivo. Con il lei si dice sempre così." },
+
+  { f: ["", " pazienza, signora."], o: ["Abbia", "Ha", "Avrebbe"], g: 0, v: "avere, lei",
+    t: "cortesia", n: "Abbia, faccia, dica, venga, stia: le cinque che servono ogni giorno." },
+
+  { f: ["", " attento, mi raccomando."], o: ["Sta", "Stia", "Stesse"], g: 1, v: "stare, lei",
+    t: "cortesia", n: "Con il tu sarebbe « sta' attento ». Cambia solo la persona a cui parli." },
+
+  { f: ["", " pure, la ascolto."], o: ["Dica", "Dice", "Dicesse"], g: 0, v: "dire, lei",
+    t: "cortesia", n: "« Dica pure » è quello che ti dice il salumiere quando tocca a te." },
+
+  { f: ["Vada come ", "."], o: ["va", "vada", "andasse"], g: 1, v: "andare",
+    t: "formula", n: "Formula fissa: il verbo si ripete, tutte e due al congiuntivo." },
+
+  { f: ["Costi quel che ", "."], o: ["costa", "costi", "costasse"], g: 1, v: "costare",
+    t: "formula", n: "Stesso stampo: succeda quel che succeda, sia quel che sia, costi quel che costi." },
+
+  { f: ["Sia quel che ", "."], o: ["è", "sia", "fosse"], g: 1, v: "essere",
+    t: "formula", n: "Si dice quando hai smesso di preoccuparti del risultato." },
+
+  { f: ["", " che giornata ho avuto!"], o: ["Sai", "Sapessi", "Sapresti"], g: 1, v: "sapere, tu",
+    t: "desiderio", n: "« Sapessi » vuol dire « non puoi immaginare ». È rivolto all'altro, non è un rimpianto tuo." },
+
+  { f: ["Se solo ", " più tempo!"], o: ["ho", "avessi", "avrei"], g: 1, v: "avere, io",
+    t: "desiderio", n: "Se solo + imperfetto: il desiderio di adesso che non si può avere." },
+
+  { f: ["Fosse per me, ", " subito."], o: ["partiamo", "partiremmo", "partissimo"], g: 1, v: "partire, noi",
+    t: "ipotesi", n: "Congiuntivo nell'ipotesi, condizionale nella conseguenza. Mai due congiuntivi." },
+
+  { f: ["Che ", " pure quello che vogliono."], o: ["dicono", "dicano", "dicessero"], g: 1, v: "dire, loro",
+    t: "cortesia", n: "Qui « che » non è un dubbio: è un permesso dato con una scrollata di spalle." },
+
+  { f: ["Venisse almeno ", "!"], o: ["lui", "lui!", "lui?"], g: 0, v: "venire, lui",
+    t: "desiderio", n: "Il congiuntivo imperfetto da solo, con il punto esclamativo, è un desiderio. Senza nessun magari davanti." },
+
+  { f: ["Avesse ", " prima, adesso sarebbe qui."], o: ["partito", "partisse", "parte"], g: 0, v: "partire, lui",
+    t: "ipotesi", n: "Trapassato nell'ipotesi che non si è avverata: avesse + participio." },
+
+  { f: ["", " Dio!"], o: ["Volesse", "Vuole", "Vorrebbe"], g: 0, v: "volere",
+    t: "formula", n: "« Volesse Dio » si dice quando speri una cosa che sembra impossibile." }
+];
+
+/* ---------------------------------------------------------------
+   3 · LA SECONDA PERSONA
+   Il punto dove sbagliano anche gli italiani: credo che tu HAI.
+   --------------------------------------------------------------- */
+var SECONDA = [
+  { f: ["Credo che tu ", " ragione."], o: ["hai", "abbia", "abbi"], g: 1, n: "avere: che tu abbia. « Abbi » esiste, ma è l'imperativo: abbi pazienza." },
+  { f: ["Non credo che tu ", " capito."], o: ["hai", "abbia", "avessi"], g: 1, n: "È proprio qui che casca l'italiano medio: « credo che hai capito » si sente ovunque, ma non è corretto." },
+  { f: ["Penso che tu ", " stanco."], o: ["sei", "sia", "fossi"], g: 1, n: "essere: che tu sia. La più frequente di tutte." },
+  { f: ["Spero che tu ", " venire."], o: ["puoi", "possa", "potresti"], g: 1, n: "potere: che tu possa." },
+  { f: ["Voglio che tu ", " la verità."], o: ["dici", "dica", "dicessi"], g: 1, n: "dire: che tu dica." },
+  { f: ["Mi dispiace che tu ", " via così presto."], o: ["vai", "vada", "andassi"], g: 1, n: "andare: che tu vada." },
+  { f: ["Spero che tu ", " presto."], o: ["vieni", "venga", "venissi"], g: 1, n: "venire: che tu venga." },
+  { f: ["Non so se tu ", " come si fa."], o: ["sai", "sappia", "sapessi"], g: 1, n: "sapere: che tu sappia." },
+  { f: ["Basta che tu ", " attento."], o: ["stai", "stia", "stessi"], g: 1, n: "stare: che tu stia." },
+  { f: ["Credo che tu ", " torto, stavolta."], o: ["fai", "faccia", "facessi"], g: 1, n: "fare: che tu faccia." },
+  { f: ["Immagino che tu ", " andare a casa."], o: ["vuoi", "voglia", "volessi"], g: 1, n: "volere: che tu voglia." },
+  { f: ["Mi pare che tu ", " di uscire."], o: ["devi", "debba", "dovessi"], g: 1, n: "dovere: che tu debba." },
+  { f: ["Aspetto che tu ", " dal lavoro."], o: ["esci", "esca", "uscissi"], g: 1, n: "uscire: che tu esca." },
+  { f: ["Non credo che tu ", " il problema."], o: ["capisci", "capisca", "capissi"], g: 1, n: "I verbi in -isc: che tu capisca, che tu finisca, che tu preferisca." },
+  { f: ["Spero che tu ", " bene la strada."], o: ["scegli", "scelga", "scegliessi"], g: 1, n: "scegliere: che tu scelga. Irregolare, e si sente poco: vale la pena ripassarla." },
+  { f: ["Penso che tu ", " troppo poco."], o: ["dormi", "dorma", "dormissi"], g: 1, n: "I verbi in -ire normali: che tu dorma, che tu parta, che tu senta." },
+
+  /* il caso in cui l'errore e' invisibile: qui la domanda cambia */
+  { chiedo: "In « Credo che tu <b>parli</b> troppo veloce », quella forma che cos'è?",
+    o: ["indicativo", "congiuntivo", "tutte e due: si scrivono uguale"], g: 2, uguali: true,
+    n: "Nei verbi in -are la seconda persona del congiuntivo è identica all'indicativo: tu parli, che tu parli. È per questo che l'orecchio prende il vizio, e poi sbaglia dove la differenza si sente." },
+  { chiedo: "E in « Spero che tu <b>mangi</b> bene »?",
+    o: ["indicativo", "congiuntivo", "tutte e due: si scrivono uguale"], g: 2, uguali: true,
+    n: "Stessa cosa: mangiare, lavorare, guardare, chiamare. Con questi non sbagli mai, e infatti non impari niente." }
+];
+
+/* ---------------------------------------------------------------
+   il cassetto
+   --------------------------------------------------------------- */
+var CASSETTO = [
+  { tit: "Le cinque della cortesia",
+    righe: [["Abbia", "pazienza, signora."], ["Faccia", "pure."], ["Dica", "pure, la ascolto."],
+            ["Venga", "avanti."], ["Stia", "tranquillo."]],
+    nota: "Sono congiuntivi, anche se sembrano ordini. In italiano si dà del lei così." },
+
+  { tit: "Le formule intere, da imparare così come sono",
+    righe: [["Vada come vada", "qualunque cosa succeda"], ["Costi quel che costi", "a qualsiasi prezzo"],
+            ["Succeda quel che succeda", "comunque vada"], ["Sia quel che sia", "ormai pazienza"],
+            ["Volesse il cielo", "magari fosse vero"]],
+    nota: "Non si analizzano, si imparano intere. Come « in bocca al lupo »." },
+
+  { tit: "Il desiderio e il rimpianto",
+    righe: [["Magari fosse vero!", "lo vorrei, ma non lo è"], ["Se solo avessi tempo!", "non ce l'ho"],
+            ["Sapessi che fatica!", "tu non puoi immaginare"], ["Non l'avessi mai detto!", "mi pento di averlo detto"],
+            ["Avessi saputo!", "se lo avessi saputo prima"]],
+    nota: "Presente che non c'è → imperfetto. Passato di cui ti penti → trapassato." },
+
+  { tit: "La seconda persona, una per una",
+    righe: [["che tu sia", "non: che tu sei"], ["che tu abbia", "non: che tu hai"],
+            ["che tu faccia", "non: che tu fai"], ["che tu vada", "non: che tu vai"],
+            ["che tu possa", "non: che tu puoi"], ["che tu sappia", "non: che tu sai"],
+            ["che tu dica", "non: che tu dici"], ["che tu venga", "non: che tu vieni"]],
+    nota: "Con i verbi in -are non si sente (che tu parli = tu parli): è lì che l'orecchio prende il vizio." }
+];
+
+
+(function(){
+  "use strict";
+  var CHIAVE = "icf_cong_vivo_v1";
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(s){
+    return String(s == null ? "" : s)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+  function caso(n){ return Math.floor(Math.random() * n); }
+
+  /* un mazzo che non ripete finche' non e' finito */
+  function Mazzo(n){
+    this.n = n; this.resto = [];
+  }
+  Mazzo.prototype.pesca = function(ammessi){
+    var lista = ammessi || null;
+    if(!this.resto.length){
+      this.resto = [];
+      for(var i = 0; i < this.n; i++) if(!lista || lista.indexOf(i) >= 0) this.resto.push(i);
+      for(var j = this.resto.length - 1; j > 0; j--){
+        var k = caso(j + 1), t = this.resto[j]; this.resto[j] = this.resto[k]; this.resto[k] = t;
+      }
+    }
+    return this.resto.pop();
+  };
+
+  var stato = {
+    fase: "s1",
+    conti: { s1:[0,0], s2:[0,0], s3:[0,0] },
+    deboli: {}, record: 0, note: "", tipo: "tutti"
+  };
+  function salva(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){} }
+  function carica(){
+    try{
+      var g = localStorage.getItem(CHIAVE);
+      if(g){ var d = JSON.parse(g); if(d && d.conti) stato = d; }
+    }catch(e){}
+    if(!stato.deboli) stato.deboli = {};
+  }
+
+  var FASI = [
+    { k:"s1", eti:"Le scene" },
+    { k:"s2", eti:"Da solo" },
+    { k:"s3", eti:"La seconda persona" },
+    { k:"s4", eti:"Arena · 90 s" }
+  ];
+
+  function disegnaFasi(){
+    $("fasi").innerHTML = FASI.map(function(f, i){
+      return "<button type='button' data-f='" + f.k + "'><span class='n'>" + (i+1) + "</span>" + esc(f.eti) + "</button>";
+    }).join("");
+  }
+  function vai(k){
+    stato.fase = k;
+    FASI.forEach(function(f){ $(f.k).classList.toggle("on", f.k === k); });
+    Array.prototype.forEach.call($("fasi").children, function(b){
+      b.classList.toggle("on", b.getAttribute("data-f") === k);
+    });
+    if(k !== "s4" && arT) arFine();
+    salva();
+  }
+
+  function conta(fase, giusto, chiave){
+    stato.conti[fase][giusto ? 0 : 1]++;
+    if(chiave){
+      if(!giusto) stato.deboli[chiave] = Math.min(4, (stato.deboli[chiave] || 0) + 1);
+      else if(stato.deboli[chiave]){
+        stato.deboli[chiave]--;
+        if(stato.deboli[chiave] <= 0) delete stato.deboli[chiave];
+      }
+    }
+    disegnaConti(fase); disegnaDeboli(); salva();
+  }
+  function disegnaConti(fase){
+    var c = stato.conti[fase], el = $(fase + "Conti");
+    if(el) el.innerHTML = "<div class='g'><b>" + c[0] + "</b><span>giuste</span></div>" +
+                          "<div class='s'><b>" + c[1] + "</b><span>sbagliate</span></div>";
+  }
+  function disegnaDeboli(){
+    var ks = Object.keys(stato.deboli);
+    $("rivedere").hidden = !ks.length;
+    if(ks.length) $("listaRiv").innerHTML = ks.slice(0, 30).map(function(k){
+      return "<span>" + esc(k) + "</span>"; }).join("");
+  }
+
+  /* ---------------- 1 · le scene ---------------- */
+
+  var mazzoScene = new Mazzo(SCENE.length), scenaOra = null, scenaFatta = false;
+
+  function pescaScena(){
+    scenaOra = SCENE[mazzoScene.pesca()]; scenaFatta = false;
+    $("sitTesto").textContent = scenaOra.sit;
+    $("battute").innerHTML = scenaOra.o.map(function(t, i){
+      return "<button type='button' data-i='" + i + "'>" +
+        "<span class='lett'>" + "ABC".charAt(i) + "</span>" + esc(t) + "</button>";
+    }).join("");
+  }
+
+  function rispondiScena(i){
+    if(scenaFatta || !scenaOra) return;
+    scenaFatta = true;
+    var anche = scenaOra.anche || [];
+    var ok = (i === scenaOra.g) || anche.indexOf(i) >= 0;
+    Array.prototype.forEach.call($("battute").children, function(b, j){
+      b.disabled = true;
+      b.classList.add(j === scenaOra.g ? "giusta" : anche.indexOf(j) >= 0 ? "pure" : "storta");
+      b.insertAdjacentHTML("beforeend", "<span class='spieg'>" + esc(scenaOra.p[j]) + "</span>");
+    });
+    conta("s1", ok, null);
+  }
+
+  /* ---------------- 2 · da solo ---------------- */
+
+  var TIPI = ["tutti"];
+  SOLO.forEach(function(x){ if(TIPI.indexOf(x.t) < 0) TIPI.push(x.t); });
+  var mazzoSolo = new Mazzo(SOLO.length), soloOra = null, soloFatta = false;
+
+  function disegnaChips(){
+    $("s2Chips").innerHTML = TIPI.map(function(t){
+      return "<button class='btn ghost' type='button' data-t='" + esc(t) + "'>" +
+        esc(t === "tutti" ? "Tutti" : t.charAt(0).toUpperCase() + t.slice(1)) + "</button>";
+    }).join("");
+    rinfrescaChips();
+  }
+  function rinfrescaChips(){
+    Array.prototype.forEach.call($("s2Chips").children, function(b){
+      var on = b.getAttribute("data-t") === stato.tipo;
+      b.classList.toggle("verde", on);
+      b.classList.toggle("ghost", !on);
+    });
+  }
+  function ammessiSolo(){
+    if(stato.tipo === "tutti") return null;
+    var l = [];
+    SOLO.forEach(function(x, i){ if(x.t === stato.tipo) l.push(i); });
+    return l;
+  }
+
+  function pescaSolo(){
+    var i = mazzoSolo.pesca(ammessiSolo());
+    soloOra = SOLO[i]; soloFatta = false;
+    $("s2Tipo").textContent = soloOra.t;
+    $("s2Frase").innerHTML = esc(soloOra.f[0]) + "<span class='vuoto' id='s2Vuoto'>&nbsp;</span>" +
+      esc(soloOra.f[1]) + "<span class='verbo'>(" + esc(soloOra.v) + ")</span>";
+    $("s2Opz").innerHTML = soloOra.o.map(function(t, j){
+      return "<button type='button' data-i='" + j + "'><span class='tasto'>" + (j+1) + "</span>" + esc(t) + "</button>";
+    }).join("");
+    $("s2Nota").innerHTML = "";
+  }
+
+  function rispondiSolo(j){
+    if(soloFatta || !soloOra) return;
+    soloFatta = true;
+    var ok = j === soloOra.g;
+    Array.prototype.forEach.call($("s2Opz").children, function(b, k){
+      b.disabled = true;
+      if(k === soloOra.g) b.classList.add("giusta");
+      else if(k === j) b.classList.add("storta");
+    });
+    var v = $("s2Vuoto");
+    if(v){ v.textContent = soloOra.o[soloOra.g]; v.classList.add("pieno"); }
+    $("s2Nota").innerHTML = (ok ? "" : "<b>Era « " + esc(soloOra.o[soloOra.g]) + " ».</b> ") + esc(soloOra.n);
+    conta("s2", ok, soloOra.o[soloOra.g]);
+  }
+
+  /* ---------------- 3 · la seconda persona ---------------- */
+
+  var mazzoSec = new Mazzo(SECONDA.length), secOra = null, secFatta = false;
+
+  function pescaSec(){
+    secOra = SECONDA[mazzoSec.pesca()]; secFatta = false;
+    if(secOra.chiedo){
+      $("s3Frase").innerHTML = "<span class='chiedo'>" + secOra.chiedo + "</span>";
+    } else {
+      $("s3Frase").innerHTML = esc(secOra.f[0]) + "<span class='vuoto' id='s3Vuoto'>&nbsp;</span>" + esc(secOra.f[1]);
+    }
+    $("s3Opz").innerHTML = secOra.o.map(function(t, j){
+      return "<button type='button' data-i='" + j + "'><span class='tasto'>" + (j+1) + "</span>" + esc(t) + "</button>";
+    }).join("");
+    $("s3Nota").innerHTML = "";
+  }
+
+  function rispondiSec(j){
+    if(secFatta || !secOra) return;
+    secFatta = true;
+    var ok = j === secOra.g;
+    Array.prototype.forEach.call($("s3Opz").children, function(b, k){
+      b.disabled = true;
+      if(k === secOra.g) b.classList.add("giusta");
+      else if(k === j) b.classList.add("storta");
+    });
+    var v = $("s3Vuoto");
+    if(v){ v.textContent = secOra.o[secOra.g]; v.classList.add("pieno"); }
+    $("s3Nota").innerHTML = (ok ? "" : "<b>Era « " + esc(secOra.o[secOra.g]) + " ».</b> ") + esc(secOra.n);
+    conta("s3", ok, secOra.uguali ? null : secOra.o[secOra.g]);
+  }
+
+  /* ---------------- 4 · arena ---------------- */
+
+  /* il mazzo dell'arena: le frasi col buco delle fasi 2 e 3 */
+  var ARENA = [];
+  SOLO.forEach(function(x){ ARENA.push({ f:x.f, o:x.o, g:x.g, v:x.v }); });
+  SECONDA.forEach(function(x){ if(!x.chiedo) ARENA.push({ f:x.f, o:x.o, g:x.g, v:"" }); });
+
+  var mazzoAr = new Mazzo(ARENA.length);
+  var arT = null, arSec = 90, arPunti = 0, arCombo = 0, arOra = null;
+
+  function disegnaRecord(){
+    $("arRecord").innerHTML = stato.record
+      ? "Il tuo record: <b>" + stato.record + "</b> punti"
+      : "Non hai ancora un record. Il primo giro lo fa.";
+  }
+
+  function pescaArena(){
+    arOra = ARENA[mazzoAr.pesca()];
+    $("arFrase").innerHTML = esc(arOra.f[0]) + "<span class='vuoto'>&nbsp;</span>" + esc(arOra.f[1]) +
+      (arOra.v ? "<span class='verbo'>(" + esc(arOra.v) + ")</span>" : "");
+    $("arOpz").innerHTML = arOra.o.map(function(t, j){
+      return "<button type='button' data-i='" + j + "'><span class='tasto'>" + (j+1) + "</span>" + esc(t) + "</button>";
+    }).join("");
+  }
+
+  function rispondiArena(j){
+    if(!arT || !arOra) return;
+    var ok = j === arOra.g;
+    if(ok){
+      arCombo++;
+      var punti = 10 + Math.min(40, (arCombo - 1) * 5);
+      arPunti += punti;
+      $("arCombo").className = "combo";
+      $("arCombo").textContent = arCombo >= 2 ? arCombo + " di fila · +" + punti : "+" + punti;
+    } else {
+      arCombo = 0;
+      $("arCombo").className = "combo";
+      $("arCombo").innerHTML = "Era « " + esc(arOra.o[arOra.g]) + " »";
+      stato.deboli[arOra.o[arOra.g]] = Math.min(4, (stato.deboli[arOra.o[arOra.g]] || 0) + 1);
+      disegnaDeboli();
+    }
+    $("arPunti").textContent = arPunti;
+    pescaArena();
+  }
+
+  function arVia(){
+    arPunti = 0; arCombo = 0; arSec = 90;
+    $("arCorpo").hidden = false; $("arFine").innerHTML = "";
+    $("arVia").disabled = true;
+    $("arPunti").textContent = "0";
+    $("arCrono").textContent = "90";
+    $("arCrono").classList.remove("poco");
+    $("arCombo").className = "combo spento";
+    pescaArena();
+    arT = setInterval(function(){
+      arSec--;
+      $("arCrono").textContent = arSec;
+      $("arCrono").classList.toggle("poco", arSec <= 15);
+      if(arSec <= 0) arFine();
+    }, 1000);
+  }
+
+  function arFine(){
+    clearInterval(arT); arT = null;
+    $("arCorpo").hidden = true;
+    $("arVia").disabled = false;
+    var nuovo = arPunti > stato.record;
+    if(nuovo) stato.record = arPunti;
+    salva(); disegnaRecord();
+    $("arFine").innerHTML = "<div class='panel'><h3>" + arPunti + " punti</h3><p style='margin:0'>" +
+      (nuovo ? "Record nuovo." : "Il record resta " + stato.record + ". Ancora un giro?") + "</p></div>";
+  }
+
+  /* ---------------- cassetto ---------------- */
+
+  function disegnaCassetto(){
+    $("cassCorpo").innerHTML = CASSETTO.map(function(b){
+      return "<h3>" + esc(b.tit) + "</h3><table>" +
+        b.righe.map(function(r){
+          return "<tr><td>" + esc(r[0]) + "</td><td>" + esc(r[1]) + "</td></tr>";
+        }).join("") + "</table>" +
+        "<p class='sottonota'>" + esc(b.nota) + "</p>";
+    }).join("");
+  }
+
+  /* ---------------- collegamenti ---------------- */
+
+  document.addEventListener("click", function(ev){
+    var t = ev.target;
+    if(!t.closest) return;
+    var f = t.closest("#fasi button");     if(f){ vai(f.getAttribute("data-f")); return; }
+    var b = t.closest("#battute button");  if(b){ rispondiScena(Number(b.getAttribute("data-i"))); return; }
+    var o2 = t.closest("#s2Opz button");   if(o2){ rispondiSolo(Number(o2.getAttribute("data-i"))); return; }
+    var o3 = t.closest("#s3Opz button");   if(o3){ rispondiSec(Number(o3.getAttribute("data-i"))); return; }
+    var oa = t.closest("#arOpz button");   if(oa){ rispondiArena(Number(oa.getAttribute("data-i"))); return; }
+    var c = t.closest("#s2Chips button");
+    if(c){ stato.tipo = c.getAttribute("data-t"); mazzoSolo.resto = []; rinfrescaChips(); pescaSolo(); salva(); return; }
+  });
+
+  $("s1Pesca").addEventListener("click", pescaScena);
+  $("s2Pesca").addEventListener("click", pescaSolo);
+  $("s3Pesca").addEventListener("click", pescaSec);
+  $("arVia").addEventListener("click", arVia);
+  $("apriCass").addEventListener("click", function(){ $("cass").showModal(); });
+  $("chiudiCass").addEventListener("click", function(){ $("cass").close(); });
+  $("note").addEventListener("input", function(){ stato.note = $("note").value; salva(); });
+  $("azzera").addEventListener("click", function(){
+    if(!confirm("Azzero punteggi, da rivedere e appunti?")) return;
+    stato = { fase: stato.fase, conti:{ s1:[0,0], s2:[0,0], s3:[0,0] }, deboli:{}, record:0, note:"", tipo:"tutti" };
+    salva();
+    $("note").value = "";
+    ["s1","s2","s3"].forEach(disegnaConti);
+    disegnaDeboli(); disegnaRecord(); rinfrescaChips();
+  });
+
+  document.addEventListener("keydown", function(ev){
+    if(/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) return;
+    if(ev.key === "f" || ev.key === "c"){
+      ev.preventDefault();
+      if($("cass").open) $("cass").close(); else $("cass").showModal();
+      return;
+    }
+    if(ev.key === " "){
+      ev.preventDefault();
+      if(stato.fase === "s1") pescaScena();
+      else if(stato.fase === "s2") pescaSolo();
+      else if(stato.fase === "s3") pescaSec();
+      return;
+    }
+    if(ev.key >= "1" && ev.key <= "3"){
+      var n = Number(ev.key) - 1;
+      var lista = stato.fase === "s1" ? $("battute")
+                : stato.fase === "s2" ? $("s2Opz")
+                : stato.fase === "s3" ? $("s3Opz")
+                : stato.fase === "s4" ? $("arOpz") : null;
+      if(lista && lista.children[n]) lista.children[n].click();
+    }
+  });
+
+  /* ---------------- via ---------------- */
+
+  carica();
+  disegnaFasi();
+  disegnaChips();
+  disegnaCassetto();
+  disegnaRecord();
+  disegnaDeboli();
+  ["s1","s2","s3"].forEach(disegnaConti);
+  $("note").value = stato.note || "";
+  pescaScena(); pescaSolo(); pescaSec();
+  vai(stato.fase || "s1");
+})();
+</script>
+</body>
+</html>
