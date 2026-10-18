@@ -54,7 +54,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "16 ottobre 2026, 13:23";
+var SALDI_AGGIORNATO = "18 ottobre 2026, 13:12";
 
 var SALDI = {
 
@@ -95,19 +95,20 @@ var SALDI = {
     pacchetto: 10,
     inizio: "2026-08-26",
     fatte_prima: 0,
-    fatte: 6,
+    fatte: 7,
     prenotate: 1,
-    rimaste: 3,
+    rimaste: 2,
     passate: [
       "2026-08-26T12:00:00+02:00",
       "2026-09-01T12:00:00+02:00",
       "2026-09-10T12:00:00+02:00",
       "2026-09-17T11:00:00+02:00",
       "2026-09-21T13:00:00+02:00",
-      "2026-10-09T15:00:00+02:00"
+      "2026-10-09T15:00:00+02:00",
+      "2026-10-16T15:00:00+02:00"
     ],
     prossime: [
-      { quando: "2026-10-16T15:00:00+02:00", gestisci: "https://cal.com/booking/rceXrPxF5bbAuqpfRARvEv?changes=true" }
+      { quando: "2026-10-29T15:30:00+01:00", gestisci: "https://cal.com/booking/vKRaPgsGjRLKgBjqFdtFcp?changes=true" }
     ]
   },
 
@@ -117,14 +118,17 @@ var SALDI = {
     inizio: "2026-09-15",
     fatte_prima: 0,
     fatte: 3,
-    prenotate: 0,
-    rimaste: 23,
+    prenotate: 2,
+    rimaste: 21,
     passate: [
       "2026-09-21T14:00:00+02:00",
       "2026-10-15T09:30:00+02:00",
       "2026-10-16T09:30:00+02:00"
     ],
-    prossime: [],
+    prossime: [
+      { quando: "2026-10-19T09:00:00+02:00", gestisci: "https://cal.com/booking/frET3YLdJChxZcbLFCCUwP?changes=true" },
+      { quando: "2026-11-12T09:30:00+01:00", gestisci: "https://cal.com/booking/5gAV5gGZe2e53mSi5Pm6xj?changes=true" }
+    ],
     promemoria: "Per Fabio: Rafaela prenota con due indirizzi, uno con una enne e uno con due. Vanno tenuti tutti e due in mail-studenti.json, se no metà delle sue lezioni non viene contata."
   },
 
@@ -133,15 +137,14 @@ var SALDI = {
     pacchetto: 6,
     inizio: "2026-09-21",
     fatte_prima: 0,
-    fatte: 1,
-    prenotate: 1,
+    fatte: 2,
+    prenotate: 0,
     rimaste: 4,
     passate: [
-      "2026-10-09T18:00:00+02:00"
+      "2026-10-09T18:00:00+02:00",
+      "2026-10-16T17:00:00+02:00"
     ],
-    prossime: [
-      { quando: "2026-10-16T17:00:00+02:00", gestisci: "https://cal.com/booking/jxpWUyWnpST8jWm6orJNw4?changes=true" }
-    ]
+    prossime: []
   },
 
   "robmarie-7vc": {
