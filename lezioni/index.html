@@ -245,6 +245,35 @@ function avviaPagina() {
     return /^https:\/\/(app\.)?cal\.com\/[^\s"'<>]+$/i.test(String(u || "")) ? String(u) : "";
   }
 
+  /* Una lezione e finita quando finisce, non quando comincia: mentre la
+     si fa resta fra le prenotate. Il campo "fine" lo scrive il conteggio
+     automatico; sulle righe vecchie che non lo hanno si da per buona
+     un'ora di lezione. */
+  var DURATA_MIN = 60;
+
+  function fineDi(voce, inizio) {
+    var f = (voce && typeof voce === "object") ? new Date(voce.fine) : new Date(NaN);
+    if (!isNaN(f.getTime())) return f.getTime();
+    return inizio.getTime() + DURATA_MIN * 60000;
+  }
+
+  /* Le lezioni prenotate che intanto sono finite. Quando una lezione
+     termina nessuno prenota niente, quindi nessun conteggio sul server
+     se ne accorge: a spostarla fra le fatte ci pensa questa pagina, che
+     sa che ore sono. Cosi il saldo e giusto al minuto anche se il
+     conteggio vero e di stanotte. */
+  function scadute(prossime) {
+    var adesso = Date.now(), fuori = [], i, voce, quando, t;
+    var date = prossime || [];
+    for (i = 0; i < date.length; i++) {
+      voce = date[i];
+      quando = (voce && typeof voce === "object") ? voce.quando : voce;
+      t = new Date(quando);
+      if (!isNaN(t.getTime()) && fineDi(voce, t) <= adesso) fuori.push(quando);
+    }
+    return fuori;
+  }
+
   function prenotateHtml(date) {
     if (!date || !date.length) return "";
 
@@ -257,7 +286,7 @@ function avviaPagina() {
       var quando = (voce && typeof voce === "object") ? voce.quando : voce;
       var gestisci = (voce && typeof voce === "object") ? voce.gestisci : "";
       var t = new Date(quando);
-      if (!isNaN(t.getTime()) && t.getTime() > adesso) {
+      if (!isNaN(t.getTime()) && fineDi(voce, t) > adesso) {
         buone.push({ t: t, link: linkSicuro(gestisci) });
       }
     }
@@ -433,7 +462,12 @@ function avviaPagina() {
     var fonte = live || s;
     var total = Math.max(0, Number(fonte.pacchetto) || 0);
     var left = Math.max(0, Math.min(total, Number(fonte.rimaste)));
-    var booked = Math.max(0, Math.min(total - left, Number(fonte.prenotate) || 0));
+    /* Le rimaste non cambiano col tempo: una lezione che da prenotata
+       diventa fatta non libera niente. Cambia solo come si dividono le
+       altre, e quello lo sistemiamo qui. */
+    var finite = scadute(s.prossime);
+    var booked = Math.max(0, Math.min(total - left,
+      (Number(fonte.prenotate) || 0) - finite.length));
     var quando = live ? live.aggiornato : "";
     var name = s.nome ? esc(s.nome) : "";
     var over = left === 0;
@@ -448,7 +482,8 @@ function avviaPagina() {
         (s.nota ? '<p class="note">' + esc(s.nota) + "</p>" : "") +
       "</div>" +
       prenotateHtml(s.prossime) +
-      fatteHtml(s.passate, (fonte.fatte != null ? fonte.fatte : s.fatte)) +
+      fatteHtml((s.passate || []).concat(finite),
+        (fonte.fatte != null ? Number(fonte.fatte) : Number(s.fatte) || 0) + finite.length) +
       (over
         ? '<p class="booknote">Want to keep going?</p>' +
           '<div class="card"><p>Tell me and I\'ll set up the next block, or pick one here.</p>' +

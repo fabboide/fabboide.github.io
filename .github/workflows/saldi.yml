@@ -1,0 +1,77 @@
+# Conteggio delle lezioni.
+#
+# Parte da sola in tre modi:
+#   schedule              ogni notte, come rete di sicurezza
+#   repository_dispatch   appena Cal.com segnala una prenotazione
+#   workflow_dispatch     a mano, col bottone "Run workflow"
+#
+# Il minuto 17 non e per bellezza: quasi tutti i cron del mondo girano
+# al minuto 0 e GitHub li mette in coda. Spostarsi fuori da quella
+# calca significa partire puntuali.
+
+name: Saldi lezioni
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  repository_dispatch:
+    types: [prenotazione]
+  workflow_dispatch:
+    inputs:
+      forza:
+        description: "Pubblica anche i salti sospetti (oltre 3 lezioni di differenza)"
+        type: boolean
+        default: false
+
+# Webhook e cron possono sovrapporsi. Uno alla volta, in coda, cosi due
+# conteggi non si pestano i piedi sullo stesso push.
+concurrency:
+  group: saldi-lezioni
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  conta:
+    runs-on: ubuntu-latest
+    steps:
+      # La deploy key invece del token automatico: un push firmato con
+      # una chiave vera fa ripartire la pubblicazione di GitHub Pages,
+      # quello col token automatico a volte no.
+      - uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Conta le lezioni sul calendario
+        env:
+          GCAL_SA_KEY: ${{ secrets.GCAL_SA_KEY }}
+          MAIL_STUDENTI: ${{ secrets.MAIL_STUDENTI }}
+          FORZA: ${{ inputs.forza }}
+        run: node scripts/aggiorna-saldi.mjs
+
+      # Controlli prima di pubblicare: deve restare JavaScript valido e
+      # non deve esserci finita dentro nessuna mail.
+      - name: Verifica il file
+        run: |
+          node -e "eval(require('fs').readFileSync('lezioni/saldi.js','utf8')); if (typeof SALDI !== 'object') { throw new Error('SALDI non e un oggetto'); } console.log(Object.keys(SALDI).length + ' studenti nel file');"
+          if grep -q "@" lezioni/saldi.js; then
+            echo "C'e una chiocciola in saldi.js: il file e pubblico, mi fermo." >&2
+            exit 1
+          fi
+
+      - name: Pubblica se e cambiato
+        run: |
+          if git diff --quiet -- lezioni/saldi.js; then
+            echo "Nessun cambiamento, niente commit."
+            exit 0
+          fi
+          git config user.name "conteggio lezioni"
+          git config user.email "boccuzzifabio@gmail.com"
+          git add lezioni/saldi.js
+          git commit -m "Saldi lezioni aggiornati dal calendario"
+          git push
