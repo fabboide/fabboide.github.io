@@ -29,16 +29,21 @@ concurrency:
   group: saldi-lezioni
   cancel-in-progress: false
 
+# Serve per il push quando non c'e la deploy key: in quel caso pubblica
+# il token automatico del workflow.
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   conta:
     runs-on: ubuntu-latest
     steps:
-      # La deploy key invece del token automatico: un push firmato con
-      # una chiave vera fa ripartire la pubblicazione di GitHub Pages,
-      # quello col token automatico a volte no.
+      # Il segreto DEPLOY_KEY e facoltativo. Se c'e, il push viene firmato
+      # con una chiave vera, e un push cosi fa ripartire con certezza la
+      # pubblicazione di GitHub Pages. Se il segreto non c'e, questo campo
+      # resta vuoto e si pubblica col token automatico del workflow: in
+      # quel caso, se il sito non si aggiorna da solo dopo un commit,
+      # aggiungere la chiave e la prima cosa da provare.
       - uses: actions/checkout@v4
         with:
           ssh-key: ${{ secrets.DEPLOY_KEY }}

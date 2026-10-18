@@ -19,15 +19,22 @@ server di GitHub.
    webhook perso, una lezione che Fabio sposta a mano sul calendario, un
    disservizio di Cal.com.
 
-## I tre segreti su GitHub
+## I segreti su GitHub
 
 Settings della repo, poi Secrets and variables, poi Actions.
 
-| Nome | Cosa ci va dentro |
-|---|---|
-| `GCAL_SA_KEY` | tutto il file JSON della chiave del service account Google |
-| `MAIL_STUDENTI` | tutto il contenuto di `mail-studenti.json` |
-| `DEPLOY_KEY` | la chiave privata di deploy della repo (il file `deploy-key`) |
+| Nome | Cosa ci va dentro | |
+|---|---|---|
+| `GCAL_SA_KEY` | tutto il file JSON della chiave del service account Google | serve |
+| `MAIL_STUDENTI` | tutto il contenuto di `mail-studenti.json` | serve |
+| `DEPLOY_KEY` | la chiave privata di deploy della repo (il file `deploy-key`) | facoltativo |
+
+`DEPLOY_KEY` e facoltativo. Senza, il conteggio pubblica col token
+automatico del workflow e funziona. Con la chiave, il push e firmato da
+una credenziale vera, e un push cosi fa ripartire con certezza la
+pubblicazione di GitHub Pages. Quindi: se dopo un commit del conteggio il
+sito non si aggiorna da solo, aggiungere questa chiave e la prima cosa da
+provare.
 
 Le mail delle studentesse stanno **solo** qui dentro. Nella repo non ci
 finiscono mai, e il conteggio ha un controllo che si rifiuta di
