@@ -54,7 +54,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "18 ottobre 2026, 13:12";
+var SALDI_AGGIORNATO = "19 ottobre 2026, 01:52";
 
 var SALDI = {
 
@@ -72,7 +72,7 @@ var SALDI = {
       "2026-10-15T16:30:00+02:00"
     ],
     prossime: [
-      { quando: "2026-10-22T16:30:00+02:00", gestisci: "https://cal.com/booking/3tgQUbZ9rTfdC2kikHb3to?changes=true" }
+      { quando: "2026-10-22T16:30:00+02:00", fine: "2026-10-22T17:20:00+02:00", gestisci: "https://cal.com/booking/3tgQUbZ9rTfdC2kikHb3to?changes=true" }
     ],
     promemoria: "Per Fabio: quella del 9 ottobre alle 9:00 non c'è più sul calendario, l'ha spostata lui: adesso è il 9 alle 17:00, prenotata da Cal.com il 7 ottobre, e quella la conto. · Le lezioni di agosto e inizio settembre (27/8, 28/8, 3/9, 10/9) restano fuori da questo pacchetto: il conteggio parte dal 28 settembre."
   },
@@ -108,7 +108,7 @@ var SALDI = {
       "2026-10-16T15:00:00+02:00"
     ],
     prossime: [
-      { quando: "2026-10-29T15:30:00+01:00", gestisci: "https://cal.com/booking/vKRaPgsGjRLKgBjqFdtFcp?changes=true" }
+      { quando: "2026-10-29T15:30:00+01:00", fine: "2026-10-29T16:20:00+01:00", gestisci: "https://cal.com/booking/vKRaPgsGjRLKgBjqFdtFcp?changes=true" }
     ]
   },
 
@@ -126,8 +126,8 @@ var SALDI = {
       "2026-10-16T09:30:00+02:00"
     ],
     prossime: [
-      { quando: "2026-10-19T09:00:00+02:00", gestisci: "https://cal.com/booking/frET3YLdJChxZcbLFCCUwP?changes=true" },
-      { quando: "2026-11-12T09:30:00+01:00", gestisci: "https://cal.com/booking/5gAV5gGZe2e53mSi5Pm6xj?changes=true" }
+      { quando: "2026-10-19T09:00:00+02:00", fine: "2026-10-19T09:50:00+02:00", gestisci: "https://cal.com/booking/frET3YLdJChxZcbLFCCUwP?changes=true" },
+      { quando: "2026-11-12T09:30:00+01:00", fine: "2026-11-12T10:20:00+01:00", gestisci: "https://cal.com/booking/5gAV5gGZe2e53mSi5Pm6xj?changes=true" }
     ],
     promemoria: "Per Fabio: Rafaela prenota con due indirizzi, uno con una enne e uno con due. Vanno tenuti tutti e due in mail-studenti.json, se no metà delle sue lezioni non viene contata."
   },
