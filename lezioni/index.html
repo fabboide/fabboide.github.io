@@ -71,10 +71,36 @@ h1 .hl{color:var(--rosso);}
 .dot{width:16px; height:16px; border-radius:50%; flex:none; background:var(--rule);}
 .dot.left{background:var(--verde);}
 .dot.booked{background:var(--saffron);}
+/* Oltre le dodici lezioni i pallini diventano una fila troppo lunga da
+   contare, e al loro posto va questa barra. Il grigio del fondo e' il
+   "fatte": quello che non e' coperto dai due segmenti. */
+.barra{
+  display:flex; height:14px; border-radius:999px; overflow:hidden;
+  background:var(--rule); margin:0 0 8px;
+}
+.barra span{display:block; height:100%; flex:none; min-width:3px;}
+.barra .done{flex:1 1 auto; min-width:0;}
+.barra .left{background:var(--verde);}
+.barra .booked{background:var(--saffron);}
+/* Un capello di carta fra due segmenti, se no i colori si toccano. */
+.barra span + span{box-shadow:inset 1px 0 0 var(--paper-2);}
 .legend{
   font-family:var(--mono); font-size:0.68rem; letter-spacing:0.1em;
   text-transform:uppercase; color:var(--ink-soft); margin:0;
 }
+/* La riga delle chiavi va a capo da sola sugli schermi stretti, e senza
+   puntini di separazione: a separare bastano i pallini colorati, e un
+   puntino che resta appeso a fine riga e' brutto. */
+.legend.chiavi{display:flex; flex-wrap:wrap; gap:2px 14px;}
+.legend .voce{white-space:nowrap;}
+/* I colori si spiegano da soli accanto alle parole: con la barra non c'e'
+   la fila di pallini sopra a fare da legenda. */
+.chiave{
+  display:inline-block; width:8px; height:8px; border-radius:50%;
+  margin-right:5px; background:var(--rule);
+}
+.chiave.left{background:var(--verde);}
+.chiave.booked{background:var(--saffron);}
 
 .booknote{
   margin:26px 0 12px; font-family:var(--display); font-weight:700; font-size:1.06rem;
@@ -218,17 +244,72 @@ function avviaPagina() {
     return String(raw).replace(/^https?:\/\/(app\.)?cal\.com\//i, "").replace(/^\/+|\/+$/g, "");
   }
 
-  function dots(total, left, booked) {
+  /* Il quadro delle lezioni.
+
+     Fino a dodici si disegnano i pallini: con numeri piccoli e interi,
+     poterli contare a occhio vale piu' di qualunque percentuale. Sopra i
+     dodici la fila diventa una striscia troppo lunga da contare, e al suo
+     posto arriva una barra a segmenti.
+
+     La soglia guarda il totale del pacchetto, quindi il passaggio e'
+     automatico nei due versi: se un giorno il pacchetto torna piccolo, i
+     pallini tornano da soli. Non c'e' niente da impostare per studente.
+
+     Niente grafico a torta e niente rosso, e non per gusto: gli angoli di
+     una torta non si contano, e il rosso vuol dire errore, mentre una
+     lezione fatta e' valore ricevuto. I tre colori si distinguono anche
+     per chiarezza, non solo per tinta, cosi' restano leggibili a chi
+     confonde i rossi e i verdi. */
+  var SOGLIA_PALLINI = 12;
+
+  function etichetta(total, left) {
+    return left + " of " + total + " lessons left";
+  }
+
+  function legenda(total, left, booked) {
+    var done = Math.max(0, total - left - booked);
+    /* Le voci a zero non si scrivono: "0 done" su un pacchetto appena
+       comprato e' una riga che non dice niente. Le rimaste si scrivono
+       sempre, anche a zero, perche' sono il numero della pagina. */
+    var voci = '<span class="voce"><i class="chiave left"></i>' + left + " left</span>";
+    if (booked) {
+      voci += '<span class="voce"><i class="chiave booked"></i>' + booked + " booked</span>";
+    }
+    if (done) {
+      voci += '<span class="voce"><i class="chiave"></i>' + done + " done</span>";
+    }
+    return '<p class="legend chiavi">' + voci + "</p>";
+  }
+
+  function pallini(total, left, booked) {
     var out = "", classe;
     for (var i = 0; i < total; i++) {
       classe = i < left ? "left" : (i < left + booked ? "booked" : "");
       out += '<span class="dot ' + classe + '"></span>';
     }
-    var legenda = left + " left";
-    if (booked) legenda += " &middot; " + booked + (booked === 1 ? " booked" : " booked");
-    legenda += " &middot; " + Math.max(0, total - left - booked) + " done";
-    return '<div class="dots" role="img" aria-label="' + left + " of " + total + ' lessons left">' + out + "</div>" +
-           '<p class="legend">' + legenda + "</p>";
+    return '<div class="dots" role="img" aria-label="' + etichetta(total, left) + '">' +
+      out + "</div>";
+  }
+
+  function barra(total, left, booked) {
+    var done = Math.max(0, total - left - booked);
+    var pezzi = "";
+    var cento = function (n) { return (n / total * 100).toFixed(2) + "%"; };
+    if (left) pezzi += '<span class="left" style="width:' + cento(left) + '"></span>';
+    if (booked) pezzi += '<span class="booked" style="width:' + cento(booked) + '"></span>';
+    /* L'ultimo segmento prende quello che resta, cosi' gli arrotondamenti
+       non lasciano una fessura in fondo alla barra. */
+    if (done) pezzi += '<span class="done"></span>';
+    return '<div class="barra" role="img" aria-label="' + etichetta(total, left) + '">' +
+      pezzi + "</div>";
+  }
+
+  function quadro(total, left, booked) {
+    if (!(total > 0)) return "";
+    var disegno = total > SOGLIA_PALLINI
+      ? barra(total, left, booked)
+      : pallini(total, left, booked);
+    return disegno + legenda(total, left, booked);
   }
 
   function stampHtml(quando) {
@@ -390,7 +471,7 @@ function avviaPagina() {
         '<span class="n">' + left + "</span>" +
         '<div class="side">' +
           '<p class="of">of ' + total + " in your block</p>" +
-          (total > 0 && total <= 40 ? dots(total, left, booked) : "") +
+          quadro(total, left, booked) +
         "</div>" +
       "</div>" + stampHtml(quando);
   }
