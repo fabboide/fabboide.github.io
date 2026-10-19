@@ -1034,14 +1034,14 @@ a{ color:inherit; }
 </style>
 <script>
 (function () {
-  if (!window.matchMedia || !matchMedia("(pointer: coarse)").matches) return;
-
   var gioco = document.getElementById("screen-game");
   var pannello = document.querySelector(".drawer, .tray");
 
   /* 1. Segna sul body quando si sta giocando. Guarda la visibilita'
         vera invece della classe, cosi' va bene per tutte le pagine
-        comunque nascondano le loro schermate. */
+        comunque nascondano le loro schermate. La classe si mette anche
+        sul computer: non cambia niente, perche' a decidere e' il CSS
+        qui sopra, ed e' un pezzo in meno che puo' sbagliare. */
   if (gioco) {
     var inCoda = false;
     function guarda() {
@@ -1066,7 +1066,13 @@ a{ color:inherit; }
         pagina: funziona comunque sia fatta dentro. */
   if (gioco && pannello) {
     var eraA = 0, aperto = false;
+    var tattile = window.matchMedia && matchMedia("(pointer: coarse)");
     function reagisci() {
+      /* La domanda "sei un telefono?" si fa adesso, non al caricamento:
+         al caricamento la risposta puo' non essere ancora pronta, e poi
+         cosi' vale anche per i portatili con lo schermo tattile e per
+         chi gira il telefono a meta' esercizio. */
+      if (!tattile || !tattile.matches) return;
       var su = pannello.classList.contains("up") || pannello.classList.contains("on");
       if (su === aperto) return;
       aperto = su;
