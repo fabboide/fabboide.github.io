@@ -63,7 +63,7 @@ html{ -webkit-text-size-adjust:100%; }
 
 body{
   margin:0;
-  min-height:100vh;
+  min-height:100vh; min-height:100dvh;
   background:var(--paper);
   color:var(--ink);
   font-family:var(--body);
@@ -1095,6 +1095,88 @@ a{ color:inherit; }
   /* Si può arrivare dritti a una modalità con ?mode=molto o ?mode=accordo */
   var wanted = (location.search.match(/[?&]mode=([a-z]+)/i) || [])[1];
   if(wanted && MODES[wanted]) openLevels(wanted); else showScreen("hub");
+})();
+</script>
+
+
+<!-- =====================================================================
+     RITOCCHI PER IL TELEFONO                            19 ottobre 2026
+
+     Blocco autonomo, uguale su tutte le pagine esercizi. Non dipende da
+     come e' fatta dentro la singola pagina, e se non trova quello che
+     cerca non fa niente.
+
+     Si accende SOLO su schermi tattili: sul computer questa pagina resta
+     esattamente com'era prima, riga per riga.
+     ===================================================================== -->
+<style>
+/* Mentre si gioca l'intestazione del sito non serve: nessuno torna alla
+   home a meta' di un esercizio a tempo. Sono 56 pixel che su un telefono
+   con la tastiera aperta valgono piu' del 10% dello schermo. */
+@media (pointer: coarse) and (max-height: 820px) {
+  body.in-gioco > header { display: none; }
+}
+/* Il pannello del riscontro non puo' prendersi mezzo schermo: oltre il
+   limite scorre dentro di se'. */
+@media (pointer: coarse) {
+  .drawer, .tray { max-height: 60dvh; overflow-y: auto; }
+}
+</style>
+<script>
+(function () {
+  if (!window.matchMedia || !matchMedia("(pointer: coarse)").matches) return;
+
+  var gioco = document.getElementById("screen-game");
+  var pannello = document.querySelector(".drawer, .tray");
+
+  /* 1. Segna sul body quando si sta giocando. Guarda la visibilita'
+        vera invece della classe, cosi' va bene per tutte le pagine
+        comunque nascondano le loro schermate. */
+  if (gioco) {
+    var inCoda = false;
+    function guarda() {
+      inCoda = false;
+      document.body.classList.toggle("in-gioco", gioco.offsetParent !== null);
+    }
+    function chiedi() {
+      if (!inCoda) { inCoda = true; requestAnimationFrame(guarda); }
+    }
+    new MutationObserver(chiedi).observe(document.body, {
+      attributes: true, subtree: true,
+      attributeFilter: ["class", "style", "hidden"]
+    });
+    guarda();
+  }
+
+  /* 2. Il riscontro non deve coprire la frase di cui parla. Era il
+        difetto peggiore: su uno schermo corto il pannello e' alto 193
+        pixel su 480 e si mangiava la domanda e la risposta appena data.
+        Quando sale si misura quanto nasconde, si fa spazio sotto e si
+        scorre esattamente di quel tanto. Nessun selettore interno alla
+        pagina: funziona comunque sia fatta dentro. */
+  if (gioco && pannello) {
+    var eraA = 0, aperto = false;
+    function reagisci() {
+      var su = pannello.classList.contains("up") || pannello.classList.contains("on");
+      if (su === aperto) return;
+      aperto = su;
+      if (su) {
+        var nascosto = gioco.getBoundingClientRect().bottom -
+                       pannello.getBoundingClientRect().top + 12;
+        if (nascosto > 0) {
+          eraA = window.scrollY;
+          gioco.style.paddingBottom = (pannello.offsetHeight + 16) + "px";
+          window.scrollBy({ top: nascosto, behavior: "smooth" });
+        }
+      } else {
+        gioco.style.paddingBottom = "";
+        window.scrollTo({ top: eraA, behavior: "smooth" });
+      }
+    }
+    new MutationObserver(reagisci).observe(pannello, {
+      attributes: true, attributeFilter: ["class"]
+    });
+  }
 })();
 </script>
 
