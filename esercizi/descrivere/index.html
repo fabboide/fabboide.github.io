@@ -1416,7 +1416,12 @@ var WORDS = [
       document.body.classList.toggle("in-gioco", gioco.offsetParent !== null);
     }
     function chiedi() {
-      if (!inCoda) { inCoda = true; requestAnimationFrame(guarda); }
+      /* Si accorpano le raffiche di modifiche in un giro solo. Con
+         setTimeout e non con requestAnimationFrame: quest'ultimo non
+         scatta quando la scheda e' in secondo piano, e una scheda in
+         secondo piano e' esattamente quella di chi torna all'esercizio
+         dopo aver risposto a un messaggio. */
+      if (!inCoda) { inCoda = true; setTimeout(guarda, 0); }
     }
     new MutationObserver(chiedi).observe(document.body, {
       attributes: true, subtree: true,
