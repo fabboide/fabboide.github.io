@@ -776,29 +776,53 @@ var WORDS = [
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
   /* ================= la voce =================
-     Legge l'italiano con la voce del browser. Se il computer non ha una
-     voce italiana installata, body prende la classe "senza-voce" e tutti
-     i pulsanti spariscono da soli: la pagina resta esattamente com'era.
-     Nessun file audio da mantenere. */
+     Legge l'italiano con la voce del browser. Tre cose non ovvie, tutte
+     pagate sul campo:
+     - l'ordine delle voci va per qualita', non per "installata": su macOS
+       la regola "preferisci quelle locali" fa vincere Alice, che e' la
+       piu' vecchia di tutte
+     - il motore di Chrome puo' restare appeso: accetta le frasi e non ne
+       fa partire nessuna. Se non parte entro un secondo e mezzo si
+       sblocca e si riprova con la voce successiva
+     - l'oggetto va tenuto in un elenco, se no il garbage collector se lo
+       porta via prima che parli
+     Se non c'e' nessuna voce italiana, body prende la classe "senza-voce"
+     e tutti i pulsanti spariscono: la pagina resta com'era. */
   var VOCE = (function(){
-    var voci = [], pronta = false;
+    var pronta = false, scelta = null, ultimo = 0;
+    var TENUTE = [];
+
+    try{ scelta = localStorage.getItem("icf_voce_scelta") || null; }catch(e){}
+
+    /* piu' alto = piu' naturale. Google e' la voce di rete di Chrome,
+       Alice e' la voce storica di macOS */
+    function punteggio(v){
+      var n = (v.name || "").toLowerCase();
+      if(n.indexOf("google") >= 0) return 3;
+      if(n.indexOf("alice") >= 0) return 0;
+      return 2;
+    }
 
     function italiane(){
       var tutte = [];
       try{ tutte = window.speechSynthesis.getVoices() || []; }catch(e){ tutte = []; }
       var it = tutte.filter(function(v){ return /^it/i.test(v.lang || ""); });
-      it.sort(function(a, b){ return (b.localService ? 1 : 0) - (a.localService ? 1 : 0); });
+      it.sort(function(a, b){ return punteggio(b) - punteggio(a); });
+      if(scelta){
+        for(var i = 0; i < it.length; i++){
+          if(it[i].name === scelta){ it.unshift(it.splice(i, 1)[0]); break; }
+        }
+      }
       return it;
     }
+
     function carica(){
-      voci = italiane();
-      pronta = voci.length > 0;
+      pronta = italiane().length > 0;
       if(document.body) document.body.classList.toggle("senza-voce", !pronta);
     }
 
     if(window.speechSynthesis && typeof window.SpeechSynthesisUtterance === "function"){
       carica();
-      /* su molti browser l'elenco delle voci arriva dopo: si riprova */
       try{ window.speechSynthesis.onvoiceschanged = carica; }catch(e){}
       setTimeout(carica, 400);
       setTimeout(carica, 1500);
@@ -806,28 +830,61 @@ var WORDS = [
       document.body.classList.add("senza-voce");
     }
 
-    function di(testo, lento){
-      if(!pronta || !testo) return;
+    function dillo(testo, lento, n, tok){
+      if(tok !== ultimo) return;          /* nel frattempo ne e' partita un'altra */
+      var voci = italiane();
+      if(!voci.length) return;
+      var ss = window.speechSynthesis;
+      var v = voci[Math.min(n, voci.length - 1)];
+      var partita = false;
+
+      function riprova(){
+        if(n >= 1 || tok !== ultimo) return;   /* un solo secondo tentativo */
+        try{ ss.cancel(); ss.resume(); }catch(e){}
+        setTimeout(function(){ dillo(testo, lento, n + 1, tok); }, 250);
+      }
+
       try{
-        /* il cancel() a vuoto su alcuni browser lascia il motore in pausa e
-           la frase dopo non esce: si chiama solo se sta davvero parlando */
-        if(window.speechSynthesis.speaking || window.speechSynthesis.pending){
-          window.speechSynthesis.cancel();
-        }
+        if(ss.speaking || ss.pending) ss.cancel();
         var u = new window.SpeechSynthesisUtterance(String(testo));
         u.lang = "it-IT";
-        /* le voci si rileggono adesso: un oggetto voce preso al caricamento
-           puo' essere scaduto, e allora speak() resta muto senza dire niente */
-        var ora = italiane();
-        if(ora.length) u.voice = ora[0];
+        u.voice = v;
         u.rate = lento ? 0.6 : 0.95;
-        window.speechSynthesis.speak(u);
-        /* se il motore era rimasto in pausa, questo lo sblocca */
-        setTimeout(function(){ try{ window.speechSynthesis.resume(); }catch(e){} }, 60);
+        u.onstart = function(){ partita = true; };
+        u.onerror = function(e){
+          var err = (e && e.error) || "";
+          /* questi due li provochiamo noi quando si cambia parola */
+          if(err === "canceled" || err === "interrupted") return;
+          riprova();
+        };
+        TENUTE.push(u);
+        if(TENUTE.length > 8) TENUTE.shift();
+        ss.speak(u);
+        setTimeout(function(){ try{ ss.resume(); }catch(e){} }, 60);
+        setTimeout(function(){ if(!partita && !ss.speaking) riprova(); }, 1500);
       }catch(e){}
     }
 
-    return { di: di, pronta: function(){ return pronta; } };
+    return {
+      di: function(testo, lento){
+        if(!pronta || !testo) return;
+        ultimo++;
+        dillo(testo, lento, 0, ultimo);
+      },
+      voci: function(){ return italiane().map(function(v){ return v.name; }); },
+      quale: function(){
+        var it = italiane();
+        return it.length ? it[0].name : "";
+      },
+      prossima: function(){
+        var it = italiane();
+        if(it.length < 2) return "";
+        scelta = it[1].name;
+        try{ localStorage.setItem("icf_voce_scelta", scelta); }catch(e){}
+        return scelta;
+      },
+      pronta: function(){ return pronta; }
+    };
   })();
 
   var ICONA_VOCE =
@@ -852,6 +909,7 @@ var WORDS = [
       ' data-action="say" data-say="' + t + '"' +
       ' aria-label="Ascolta: ' + t + '" title="ascolta &middot; listen">' + ICONA_VOCE + "</button>";
   }
+
 
   function norm(s){
     return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")
@@ -910,6 +968,9 @@ var WORDS = [
     var h='<div class="dirrow vocerow"><span class="dirlab">La voce &middot; the voice</span>';
     h+='<button class="dirchip" data-action="vauto" aria-pressed="'+(state.voceAuto?"true":"false")+'">Legge da sola <span class="sub">auto</span></button>';
     h+='<button class="dirchip" data-action="vpiano" aria-pressed="'+(state.vocePiano?"true":"false")+'">Piano piano <span class="sub">slow</span></button>';
+    if(VOCE.voci().length > 1){
+      h+='<button class="dirchip" data-action="vvoce" title="cambia voce">'+esc(VOCE.quale())+' <span class="sub">cambia</span></button>';
+    }
     h+='<p class="vocenota">tocca l\'altoparlante per riascoltare &middot; tap the speaker to hear it again</p>';
     h+='</div>';
     return h;
@@ -1028,6 +1089,7 @@ var WORDS = [
     if(a==="say"){ VOCE.di(b.getAttribute("data-say"), state.vocePiano); return; }
     if(a==="vauto"){ state.voceAuto=!state.voceAuto; saveVoce(); b.setAttribute("aria-pressed", state.voceAuto?"true":"false"); return; }
     if(a==="vpiano"){ state.vocePiano=!state.vocePiano; saveVoce(); b.setAttribute("aria-pressed", state.vocePiano?"true":"false"); return; }
+    if(a==="vvoce"){ var nv=VOCE.prossima(); if(nv){ b.innerHTML=esc(nv)+' <span class="sub">cambia</span>'; VOCE.di("ciao"); } return; }
     if(a==="grade"){ gradeAndNext(b.getAttribute("data-g")); }
     if(a==="level"){ startLevel(parseInt(b.getAttribute("data-level"),10)); }
     if(a==="retry"){ if(state.mode==="carte") startStudy(state.theme); else startLevel(state.level.num); }
