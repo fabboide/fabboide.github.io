@@ -319,6 +319,26 @@ p{ margin:0; } button{ font-family:inherit; } a{ color:inherit; }
   font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
   color:var(--ink-soft); margin:0 0 8px;
 }
+/* ---------- la voce ---------- */
+.voce{
+  display:inline-grid; place-items:center; width:40px; height:40px; flex:0 0 auto;
+  border:2px solid var(--rule); border-radius:50%; background:var(--paper-2);
+  color:var(--ink); cursor:pointer; padding:0; vertical-align:middle; margin-left:12px;
+  transition:transform .08s ease, border-color .15s ease;
+}
+.voce:hover{ border-color:var(--ink); }
+.voce:active{ transform:scale(.93); }
+.voce svg{ width:19px; height:19px; }
+.voce.pic{ width:30px; height:30px; margin-left:8px; }
+.voce.pic svg{ width:14px; height:14px; }
+.voce.sta{ border-color:var(--verde); color:var(--verde); }
+.sayline{ display:flex; align-items:center; gap:0; flex-wrap:wrap; justify-content:inherit; }
+body.senza-voce .voce{ display:none !important; }
+body.senza-voce .vocerow{ display:none !important; }
+.vocenota{
+  width:100%; margin:4px 0 0; font-family:var(--mono); font-size:.68rem;
+  letter-spacing:.06em; color:var(--ink-soft); opacity:.8;
+}
 </style>
 </head>
 <body>
@@ -637,6 +657,73 @@ var WORDS = [
   function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
   function shuffle(a){ var x=a.slice(),i,j,t; for(i=x.length-1;i>0;i--){ j=Math.floor(Math.random()*(i+1)); t=x[i];x[i]=x[j];x[j]=t; } return x; }
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  /* ================= la voce =================
+     Legge l'italiano con la voce del browser. Se il computer non ha una
+     voce italiana installata, body prende la classe "senza-voce" e tutti
+     i pulsanti spariscono da soli: la pagina resta esattamente com'era.
+     Nessun file audio da mantenere. */
+  var VOCE = (function(){
+    var voci = [], pronta = false;
+
+    function carica(){
+      var tutte = [];
+      try{ tutte = window.speechSynthesis.getVoices() || []; }catch(e){ tutte = []; }
+      voci = tutte.filter(function(v){ return /^it/i.test(v.lang || ""); });
+      /* una voce installata sul computer suona meglio e non passa dalla rete */
+      voci.sort(function(a, b){ return (b.localService ? 1 : 0) - (a.localService ? 1 : 0); });
+      pronta = voci.length > 0;
+      if(document.body) document.body.classList.toggle("senza-voce", !pronta);
+    }
+
+    if(window.speechSynthesis && typeof window.SpeechSynthesisUtterance === "function"){
+      carica();
+      /* su molti browser l'elenco delle voci arriva dopo: si riprova */
+      try{ window.speechSynthesis.onvoiceschanged = carica; }catch(e){}
+      setTimeout(carica, 400);
+      setTimeout(carica, 1500);
+    } else if(document.body){
+      document.body.classList.add("senza-voce");
+    }
+
+    function di(testo, lento){
+      if(!pronta || !testo) return;
+      try{
+        window.speechSynthesis.cancel();
+        var u = new window.SpeechSynthesisUtterance(String(testo));
+        u.voice = voci[0];
+        u.lang = "it-IT";
+        u.rate = lento ? 0.6 : 0.95;
+        window.speechSynthesis.speak(u);
+      }catch(e){}
+    }
+
+    return { di: di, pronta: function(){ return pronta; } };
+  })();
+
+  var ICONA_VOCE =
+    '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none">' +
+    '<path d="M4 9.5v5a1 1 0 0 0 1 1h3l4.2 3.4V5.1L8 8.5H5a1 1 0 0 0-1 1Z" fill="currentColor"/>' +
+    '<path d="M16 8.6a4.6 4.6 0 0 1 0 6.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
+    '<path d="M18.7 5.6a8.4 8.4 0 0 1 0 12.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
+    "</svg>";
+
+  function escAttr(s){
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  /* il bottoncino con l'altoparlante: sta dentro la carta, e siccome il
+     gestore dei click prende il [data-action] piu' interno, premerlo non
+     gira la carta */
+  function bottoneVoce(testo, piccolo){
+    if(!testo) return "";
+    var t = escAttr(testo);
+    return '<button class="voce' + (piccolo ? " pic" : "") + '" type="button"' +
+      ' data-action="say" data-say="' + t + '"' +
+      ' aria-label="Ascolta: ' + t + '" title="ascolta &middot; listen">' + ICONA_VOCE + "</button>";
+  }
+
   function norm(s){
     return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")
       .replace(/[’`]/g,"'").replace(/[!?.,]/g,"").replace(/\s+/g," ").trim();
@@ -679,6 +766,23 @@ var WORDS = [
     try{ var d=localStorage.getItem(DIRSTORE); return DIRS[d] ? d : "it"; }catch(e){ return "it"; }
   }
   function saveDir(){ try{ localStorage.setItem(DIRSTORE, state.dir); }catch(e){} }
+  var VOCESTORE = STORE + "_voce";
+  function loadVoce(){
+    try{ var o=JSON.parse(localStorage.getItem(VOCESTORE)||"null");
+         return (o && typeof o==="object") ? o : {auto:true, piano:false}; }
+    catch(e){ return {auto:true, piano:false}; }
+  }
+  function saveVoce(){
+    try{ localStorage.setItem(VOCESTORE, JSON.stringify({auto:state.voceAuto, piano:state.vocePiano})); }catch(e){}
+  }
+  function voceChips(){
+    var h='<div class="dirrow vocerow"><span class="dirlab">La voce &middot; the voice</span>';
+    h+='<button class="dirchip" data-action="vauto" aria-pressed="'+(state.voceAuto?"true":"false")+'">Legge da sola <span class="sub">auto</span></button>';
+    h+='<button class="dirchip" data-action="vpiano" aria-pressed="'+(state.vocePiano?"true":"false")+'">Piano piano <span class="sub">slow</span></button>';
+    h+='<p class="vocenota">tocca l\'altoparlante per riascoltare &middot; tap the speaker to hear it again</p>';
+    h+='</div>';
+    return h;
+  }
   function dirsFor(){ return state.dir==="mix" ? ["it","en"] : [state.dir]; }
   function oneDir(){ return state.dir==="mix" ? (Math.random()<0.5?"it":"en") : state.dir; }
   function dirChips(note){
@@ -754,6 +858,9 @@ var WORDS = [
                 level:null, items:[], score:0, total:0, answered:false, missed:[],
                 timeLeft:60, timerId:null, active:false, item:null };
   state.dir = loadDir();
+  var vPref = loadVoce();
+  state.voceAuto = vPref.auto !== false;
+  state.vocePiano = vPref.piano === true;
 
   /* Su telefono il cassetto e fisso in fondo. Gli lascio sotto lo spazio
      che occupa solo se davvero coprirebbe qualcosa: se la schermata e
@@ -787,6 +894,9 @@ var WORDS = [
     if(a==="deck"){ startStudy(b.getAttribute("data-theme")); }
     if(a==="decks"){ stopTimer(); openMode("carte"); }
     if(a==="flip"){ flip(); }
+    if(a==="say"){ VOCE.di(b.getAttribute("data-say"), state.vocePiano); return; }
+    if(a==="vauto"){ state.voceAuto=!state.voceAuto; saveVoce(); b.setAttribute("aria-pressed", state.voceAuto?"true":"false"); return; }
+    if(a==="vpiano"){ state.vocePiano=!state.vocePiano; saveVoce(); b.setAttribute("aria-pressed", state.vocePiano?"true":"false"); return; }
     if(a==="grade"){ gradeAndNext(b.getAttribute("data-g")); }
     if(a==="level"){ startLevel(parseInt(b.getAttribute("data-level"),10)); }
     if(a==="retry"){ if(state.mode==="carte") startStudy(state.theme); else startLevel(state.level.num); }
@@ -830,6 +940,7 @@ var WORDS = [
     var h='<div class="back-row"><button class="back-btn" data-action="hub">&larr; Le tre modalità</button></div>';
     h+='<div class="head-row" style="--mode:'+m.color+'"><span class="swatch"></span><h2>Che cosa ripassi?</h2></div>';
     h+=dirChips(null);
+    h+=voceChips();
     h+='<p class="head-sub">Scegli tutto il mazzo, oppure un tema solo se hai poco tempo. In arancione le carte che oggi ti aspettano.<br><span class="en">Pick the whole deck, or one theme if you are in a hurry. Orange means due today.</span></p>';
     h+='<div class="deck-grid">';
 
@@ -919,7 +1030,7 @@ var WORDS = [
       '<div class="card" data-action="flip">' +
         '<p class="card-dir">'+DIRS[d].lab+'</p>' +
         '<p class="card-pos">'+posLab+'</p>' +
-        '<p class="card-word">'+fronte+'</p>' +
+        '<p class="card-word sayline">'+fronte+(d==="it" ? bottoneVoce(w.w) : "")+'</p>' +
         '<div class="box-dots" title="scatola '+box+' di 5">'+dots+'</div>' +
         '<p class="card-hint">'+hint+'</p>' +
       '</div>';
@@ -927,6 +1038,7 @@ var WORDS = [
     document.getElementById("trayzone").innerHTML =
       '<div class="flip-row"><button class="btn" data-action="flip">Gira la carta <span class="sub">flip</span></button></div>';
 
+    if(state.voceAuto && d==="it") VOCE.di(w.w, state.vocePiano);
     var tray=document.getElementById("tray"); if(tray) tray.classList.add("on");
     padForTray(true);
     updateStudyBar();
@@ -938,10 +1050,10 @@ var WORDS = [
     var item=state.queue[state.idx], w=item.w, d=item.dir;
     document.getElementById("cardzone").innerHTML =
       '<div class="card">' +
-        '<p class="card-pos">'+esc(d==="it" ? w.w : w.en)+'</p>' +
-        '<p class="card-en">'+esc(d==="it" ? w.en : w.w)+'</p>' +
+        '<p class="card-pos sayline">'+esc(d==="it" ? w.w : w.en)+(d==="it" ? bottoneVoce(w.w, true) : "")+'</p>' +
+        '<p class="card-en sayline">'+esc(d==="it" ? w.en : w.w)+(d==="en" ? bottoneVoce(w.w, true) : "")+'</p>' +
         '<div class="card-rule"></div>' +
-        '<p class="card-ex">'+esc(w.ex)+'</p>' +
+        '<p class="card-ex sayline">'+esc(w.ex)+bottoneVoce(w.ex, true)+'</p>' +
         '<p class="card-ex-en en">'+esc(w.exEn)+'</p>' +
       '</div>';
     document.getElementById("trayzone").innerHTML =
@@ -950,6 +1062,7 @@ var WORDS = [
         '<button class="grade mid" data-action="grade" data-g="mid">Quasi<small>almost</small></button>' +
         '<button class="grade ok"  data-action="grade" data-g="ok">La so<small>got it</small></button>' +
       '</div>';
+    if(state.voceAuto && d==="en") VOCE.di(w.w, state.vocePiano);
     padForTray(true);
   }
 
@@ -1233,7 +1346,7 @@ var WORDS = [
     var fb=document.getElementById("feedback");
     fb.className="feedback show "+(ok?"ok":"no");
     fb.innerHTML = (ok ? ("Giusto!"+note) : "Era <b>"+esc(it.correct)+"</b>.") +
-      '<span class="fb-ex"><i>'+esc(w.ex)+'</i><span>'+esc(w.exEn)+'</span></span>';
+      '<span class="fb-ex"><i>'+esc(w.ex)+'</i>'+bottoneVoce(w.ex, true)+'<span>'+esc(w.exEn)+'</span></span>';
     padForTray(true);
 
     if(state.level.timed){
