@@ -625,12 +625,15 @@ body.senza-voce .vocerow{ display:none !important; }
   var VOCE = (function(){
     var voci = [], pronta = false;
 
-    function carica(){
+    function italiane(){
       var tutte = [];
       try{ tutte = window.speechSynthesis.getVoices() || []; }catch(e){ tutte = []; }
-      voci = tutte.filter(function(v){ return /^it/i.test(v.lang || ""); });
-      /* una voce installata sul computer suona meglio e non passa dalla rete */
-      voci.sort(function(a, b){ return (b.localService ? 1 : 0) - (a.localService ? 1 : 0); });
+      var it = tutte.filter(function(v){ return /^it/i.test(v.lang || ""); });
+      it.sort(function(a, b){ return (b.localService ? 1 : 0) - (a.localService ? 1 : 0); });
+      return it;
+    }
+    function carica(){
+      voci = italiane();
       pronta = voci.length > 0;
       if(document.body) document.body.classList.toggle("senza-voce", !pronta);
     }
@@ -648,12 +651,21 @@ body.senza-voce .vocerow{ display:none !important; }
     function di(testo, lento){
       if(!pronta || !testo) return;
       try{
-        window.speechSynthesis.cancel();
+        /* il cancel() a vuoto su alcuni browser lascia il motore in pausa e
+           la frase dopo non esce: si chiama solo se sta davvero parlando */
+        if(window.speechSynthesis.speaking || window.speechSynthesis.pending){
+          window.speechSynthesis.cancel();
+        }
         var u = new window.SpeechSynthesisUtterance(String(testo));
-        u.voice = voci[0];
         u.lang = "it-IT";
+        /* le voci si rileggono adesso: un oggetto voce preso al caricamento
+           puo' essere scaduto, e allora speak() resta muto senza dire niente */
+        var ora = italiane();
+        if(ora.length) u.voice = ora[0];
         u.rate = lento ? 0.6 : 0.95;
         window.speechSynthesis.speak(u);
+        /* se il motore era rimasto in pausa, questo lo sblocca */
+        setTimeout(function(){ try{ window.speechSynthesis.resume(); }catch(e){} }, 60);
       }catch(e){}
     }
 

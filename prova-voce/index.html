@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Prova della voce · Talk with Fabio</title>
+<style>
+:root{
+  --ink:#16233F; --ink-soft:#4A5670; --paper:#F7F4EC; --paper-2:#FFFDF8;
+  --rule:#DFD8C7; --saffron:#E8A33D; --rosso:#C4312B; --verde:#2E5E4E;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font:17px/1.55 Georgia,"Times New Roman",serif; padding:0 0 70px;
+}
+.w{max-width:680px; margin:0 auto; padding:0 20px}
+header{padding:26px 0 8px}
+h1{font:800 clamp(26px,6vw,36px)/1.1 "Helvetica Neue",Arial,sans-serif; margin:0 0 6px; letter-spacing:-.02em}
+.sub{color:var(--ink-soft); margin:0 0 4px}
+.nastro{height:6px; background:linear-gradient(90deg,var(--verde) 0 20%,var(--saffron) 20% 40%,var(--rosso) 40% 60%,#D9BC8C 60% 80%,var(--verde) 80% 100%)}
+h2{font:700 13px/1 "Helvetica Neue",Arial,sans-serif; letter-spacing:.1em; text-transform:uppercase;
+   color:var(--ink-soft); margin:28px 0 10px; border-top:1px solid var(--rule); padding-top:14px}
+.riquadro{background:var(--paper-2); border:1px solid var(--rule); border-radius:14px; padding:16px; margin:12px 0}
+.prova{display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-top:1px dashed var(--rule)}
+.prova:first-of-type{border-top:0}
+.prova .num{
+  flex:0 0 auto; width:30px; height:30px; border-radius:50%; background:var(--ink); color:#fff;
+  display:grid; place-items:center; font:700 14px "Helvetica Neue",Arial,sans-serif; margin-top:2px;
+}
+.prova .corpo{flex:1 1 auto; min-width:0}
+.prova h3{margin:0 0 2px; font:700 17px "Helvetica Neue",Arial,sans-serif}
+.prova p{margin:0 0 9px; color:var(--ink-soft); font-size:15px}
+button{font:inherit; cursor:pointer}
+.b{
+  font:600 15px "Helvetica Neue",Arial,sans-serif; border:2px solid var(--ink);
+  background:var(--ink); color:var(--paper-2); border-radius:999px; padding:9px 18px;
+}
+.b.chiaro{background:var(--paper-2); color:var(--ink)}
+.b:active{transform:scale(.97)}
+.esito{
+  font:600 13px "Helvetica Neue",Arial,sans-serif; margin-left:10px; white-space:nowrap;
+}
+.esito.si{color:var(--verde)} .esito.no{color:var(--rosso)} .esito.att{color:var(--ink-soft)}
+select{font:inherit; padding:7px 9px; border:1px solid var(--rule); border-radius:9px; background:var(--paper-2); max-width:100%}
+.log{
+  font:13px/1.5 ui-monospace,Menlo,Consolas,monospace; background:var(--ink); color:#E6E9F0;
+  border-radius:12px; padding:13px 15px; margin-top:10px; white-space:pre-wrap; word-break:break-word;
+  max-height:260px; overflow:auto;
+}
+.grande{
+  display:block; width:100%; text-align:center; font:700 18px "Helvetica Neue",Arial,sans-serif;
+  background:var(--rosso); color:#fff; border:0; border-radius:14px; padding:16px; margin-top:12px;
+}
+.avviso{background:#FBEDEC; border:1px solid var(--rosso); border-radius:12px; padding:13px 15px; margin:14px 0}
+.ok{background:#EAF2EE; border:1px solid var(--verde); border-radius:12px; padding:13px 15px; margin:14px 0}
+code{background:rgba(22,35,63,.07); padding:1px 5px; border-radius:5px; font-size:.9em}
+.riga{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="nastro"></div>
+<div class="w">
+
+<header>
+  <h1>Prova della voce</h1>
+  <p class="sub">Cinque modi diversi di chiedere al browser di parlare italiano. Premili uno per uno
+  e guarda quale <b>senti davvero</b>, con le orecchie, non quello che dice lo schermo.</p>
+</header>
+
+<div class="riquadro" id="sistema"></div>
+
+<h2>Le cinque prove</h2>
+<div class="riquadro" id="prove"></div>
+
+<h2>Una voce precisa</h2>
+<div class="riquadro">
+  <p class="sub" style="margin-bottom:10px">Se nessuna delle cinque si sente, prova a scegliere
+  una voce a mano: a volte è solo quella predefinita a essere muta.</p>
+  <div class="riga">
+    <select id="scelta"></select>
+    <button class="b" id="bScelta">Fai parlare questa</button>
+    <span class="esito att" id="esitoScelta"></span>
+  </div>
+</div>
+
+<h2>Il controllo che conta</h2>
+<button class="grande" id="bNiente">Non ho sentito NIENTE, in nessuna prova</button>
+<div id="verdetto"></div>
+
+<h2>Il registro</h2>
+<p class="sub">Copialo e mandamelo: qui c'è tutto quello che mi serve.</p>
+<div class="log" id="log">in attesa...</div>
+<div class="riga" style="margin-top:10px">
+  <button class="b chiaro" id="bCopia">Copia il registro</button>
+  <button class="b chiaro" id="bPulisci">Pulisci</button>
+</div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+  var righe = [];
+
+  function nota(t){
+    righe.push(new Date().toLocaleTimeString() + "  " + t);
+    $("log").textContent = righe.join("\n");
+    $("log").scrollTop = $("log").scrollHeight;
+  }
+
+  var SS = window.speechSynthesis;
+  var UT = window.SpeechSynthesisUtterance;
+
+  /* ---------- che cosa dice il sistema ---------- */
+  function vociIT(){
+    try{ return (SS.getVoices() || []).filter(function(v){ return /^it/i.test(v.lang || ""); }); }
+    catch(e){ return []; }
+  }
+
+  function disegnaSistema(){
+    var tutte = [];
+    try{ tutte = SS ? (SS.getVoices() || []) : []; }catch(e){}
+    var it = vociIT();
+    var h = "<b>Il tuo browser</b><br>" +
+      "speechSynthesis: " + (SS ? "c'è" : "<b style='color:#C4312B'>non c'è</b>") + "<br>" +
+      "voci in tutto: " + tutte.length + " · voci italiane: <b>" + it.length + "</b><br>" +
+      "pagina servita da: <code>" + location.protocol + "</code><br>" +
+      "<span style='color:#4A5670;font-size:14px'>" + navigator.userAgent + "</span>";
+    if(it.length){
+      h += "<br><br><b>Le voci italiane</b><br>" + it.map(function(v){
+        return "· " + v.name + " (" + v.lang + ")" + (v.localService ? " installata" : " di rete") +
+               (v["default"] ? " · predefinita" : "");
+      }).join("<br>");
+    }
+    $("sistema").innerHTML = h;
+
+    var sel = $("scelta");
+    sel.innerHTML = it.map(function(v, i){
+      return "<option value='" + i + "'>" + v.name + " — " + v.lang + "</option>";
+    }).join("") || "<option>nessuna voce italiana</option>";
+  }
+
+  if(SS){
+    disegnaSistema();
+    try{ SS.onvoiceschanged = function(){ nota("il browser ha caricato l'elenco delle voci"); disegnaSistema(); }; }catch(e){}
+    setTimeout(disegnaSistema, 500);
+    setTimeout(disegnaSistema, 1500);
+  } else {
+    disegnaSistema();
+    nota("questo browser non ha speechSynthesis: la voce non può funzionare qui");
+  }
+
+  /* ---------- le cinque strategie ---------- */
+  var PROVE = [
+    { t:"Nuda e cruda",
+      d:"Nessuna impostazione: solo il testo. Se si sente questa, il problema è una delle impostazioni che metto io.",
+      f:function(u){ /* niente */ } },
+
+    { t:"Solo la lingua",
+      d:"Imposto <code>lang = it-IT</code> ma non scelgo la voce: la sceglie il browser.",
+      f:function(u){ u.lang = "it-IT"; } },
+
+    { t:"Lingua e voce, con lo stop prima",
+      d:"È esattamente quello che fa il sito adesso: <code>cancel()</code> e poi <code>speak()</code>.",
+      f:function(u){ u.lang = "it-IT"; u.voice = vociIT()[0] || null; u.rate = 0.95; },
+      stop:true },
+
+    { t:"Lingua e voce, senza lo stop",
+      d:"Uguale alla 3 ma senza <code>cancel()</code> prima. Su alcuni Mac è il <code>cancel()</code> che ammutolisce tutto.",
+      f:function(u){ u.lang = "it-IT"; u.voice = vociIT()[0] || null; u.rate = 0.95; } },
+
+    { t:"Con la spinta",
+      d:"Come la 4, ma subito dopo chiamo <code>resume()</code>: serve quando il motore resta in pausa.",
+      f:function(u){ u.lang = "it-IT"; u.voice = vociIT()[0] || null; u.rate = 0.95; },
+      spinta:true }
+  ];
+
+  function parla(cfg, etichettaEl, nome){
+    if(!SS || !UT){ nota(nome + ": impossibile, manca speechSynthesis"); return; }
+    etichettaEl.className = "esito att";
+    etichettaEl.textContent = "provo...";
+
+    var sentito = { start:false, end:false, err:null };
+    try{
+      if(cfg.stop) SS.cancel();
+      var u = new UT("Buongiorno, io sono la voce del sito.");
+      cfg.f(u);
+      u.onstart = function(){ sentito.start = true; nota(nome + ": il browser dice che HA COMINCIATO a parlare"); };
+      u.onend   = function(){ sentito.end = true; };
+      u.onerror = function(e){ sentito.err = (e && e.error) || "errore"; nota(nome + ": ERRORE -> " + sentito.err); };
+      SS.speak(u);
+      if(cfg.spinta){ setTimeout(function(){ try{ SS.resume(); }catch(e){} }, 60); }
+      nota(nome + ": inviata. voce = " + (u.voice ? u.voice.name : "quella del browser") +
+           " · lang = " + (u.lang || "non impostata") + " · rate = " + u.rate);
+    }catch(e){
+      nota(nome + ": eccezione -> " + e.message);
+      etichettaEl.className = "esito no";
+      etichettaEl.textContent = "è andata in errore";
+      return;
+    }
+
+    setTimeout(function(){
+      if(sentito.err){
+        etichettaEl.className = "esito no";
+        etichettaEl.textContent = "errore: " + sentito.err;
+      } else if(sentito.start){
+        etichettaEl.className = "esito si";
+        etichettaEl.textContent = "partita — l'hai sentita?";
+      } else {
+        etichettaEl.className = "esito no";
+        etichettaEl.textContent = "non è nemmeno partita";
+        nota(nome + ": nessun evento in 2,5 secondi. Il browser non ha nemmeno provato.");
+      }
+    }, 2500);
+  }
+
+  $("prove").innerHTML = PROVE.map(function(p, i){
+    return "<div class='prova'><div class='num'>" + (i+1) + "</div><div class='corpo'>" +
+      "<h3>" + p.t + "</h3><p>" + p.d + "</p>" +
+      "<div class='riga'><button class='b' data-p='" + i + "'>Fai parlare</button>" +
+      "<span class='esito att' id='e" + i + "'></span></div></div></div>";
+  }).join("");
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-p]"), function(b){
+    b.addEventListener("click", function(){
+      var i = +b.getAttribute("data-p");
+      parla(PROVE[i], $("e" + i), "prova " + (i+1) + " (" + PROVE[i].t + ")");
+    });
+  });
+
+  $("bScelta").addEventListener("click", function(){
+    var it = vociIT(), i = parseInt($("scelta").value, 10);
+    if(!it.length || isNaN(i)){ nota("voce scelta: non ce n'è nessuna da scegliere"); return; }
+    parla({ f:function(u){ u.lang = "it-IT"; u.voice = it[i]; u.rate = 0.95; } },
+          $("esitoScelta"), "voce scelta a mano (" + it[i].name + ")");
+  });
+
+  $("bNiente").addEventListener("click", function(){
+    var tutte = [];
+    try{ tutte = SS ? (SS.getVoices() || []) : []; }catch(e){}
+    nota("FABIO DICE: non ho sentito niente in nessuna prova");
+    var h = "<div class='avviso'><b>Allora non è il sito.</b> Se il browser dice «partita» e tu non " +
+      "senti niente, il suono si ferma prima delle casse. Le tre cose da guardare, in quest'ordine:" +
+      "<ol style='margin:8px 0 0 0; padding-left:20px'>" +
+      "<li>la <b>scheda del browser è muta</b>: tasto destro sulla linguetta, «riattiva audio sito»</li>" +
+      "<li>l'<b>uscita audio del Mac</b>: se è su una cassa Bluetooth spenta, il browser parla nel vuoto</li>" +
+      "<li>il <b>volume di sistema</b> e il mixer per app</li>" +
+      "</ol></div>" +
+      "<div class='riquadro'>Se invece il browser dice «non è nemmeno partita», allora è lui: " +
+      "mandami il registro qui sotto e ci penso io.</div>";
+    $("verdetto").innerHTML = h;
+  });
+
+  $("bCopia").addEventListener("click", function(){
+    var testo = $("sistema").innerText + "\n\n--- registro ---\n" + righe.join("\n");
+    try{
+      navigator.clipboard.writeText(testo);
+      $("bCopia").textContent = "copiato";
+      setTimeout(function(){ $("bCopia").textContent = "Copia il registro"; }, 1500);
+    }catch(e){
+      nota("non riesco a copiare da solo: seleziona il testo a mano");
+    }
+  });
+
+  $("bPulisci").addEventListener("click", function(){ righe = []; $("log").textContent = "pulito."; });
+
+  nota("pagina pronta");
+})();
+</script>
+</body>
+</html>
