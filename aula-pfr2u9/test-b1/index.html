@@ -5,959 +5,1480 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Test B1 · La mia aula</title>
-<link rel="icon" href="../../favicon.svg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%9D%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D; --kraft:#D9BC8C;
   --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
-  --display:"Bricolage Grotesque",system-ui,sans-serif;
-  --serif:"Newsreader",Georgia,serif;
-  --pen:"Caveat",cursive;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{background:var(--stone);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.55}
-.nastro{height:6px;background:linear-gradient(90deg,var(--basil) 0 25%,var(--lemon) 25% 50%,var(--tomato) 50% 75%,var(--kraft) 75% 100%)}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
-  padding:12px 20px;border-bottom:1px solid var(--line);background:var(--paper)}
-.topbar a{color:var(--muted);text-decoration:none;font-family:var(--display);font-size:.9rem}
-.topbar a:hover{color:var(--ink)}
-.topbar .marchio{font-family:var(--display);font-weight:800;letter-spacing:-.01em}
-.wrap{max-width:860px;margin:0 auto;padding:22px 20px 90px}
-h1{font-family:var(--display);font-weight:800;font-size:2rem;letter-spacing:-.02em;margin:10px 0 4px}
-h2{font-family:var(--display);font-weight:700;font-size:1.4rem;margin:26px 0 6px}
-h3{font-family:var(--display);font-size:1.05rem;margin:0 0 6px}
-.sotto{color:var(--muted);margin:0 0 10px}
-.pen{font-family:var(--pen);font-size:1.2rem;color:var(--basil)}
-.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:12px 0}
-.btn{font-family:var(--display);font-weight:700;font-size:.93rem;border:1px solid var(--ink);
-  background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px;cursor:pointer}
-.btn.green{background:var(--basil);border-color:var(--basil)}
-.btn.red{background:var(--tomato);border-color:var(--tomato)}
-.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
-.btn:disabled{opacity:.45;cursor:default}
-.riga{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+html,body{margin:0}
+body{
+  background:var(--stone); color:var(--ink);
+  font-family:"Newsreader",Georgia,serif; font-size:18px; line-height:1.55;
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4,.ui{font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif}
+a{color:var(--basil)}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 80px}
 
-/* schede */
-#fasi{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 14px}
-#fasi button{font-family:var(--display);font-weight:700;font-size:.9rem;border:1px solid var(--line);
-  background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
-#fasi button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-#fasi button .n{color:var(--lemon);margin-right:5px}
-#fasi button.on .n{color:var(--lemon)}
-.sez{display:none}
-.sez.on{display:block}
+/* topbar */
+.topbar{
+  position:sticky; top:0; z-index:40; background:var(--paper);
+  border-bottom:1px solid var(--line);
+}
+.topbar .in{max-width:860px; margin:0 auto; padding:10px 20px; display:flex; gap:12px; align-items:center; justify-content:space-between}
+.topbar a{font-family:"Bricolage Grotesque",sans-serif; font-weight:600; font-size:15px; text-decoration:none}
+.topbar .dx{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
 
-/* consegna */
-.consegna{border-left:5px solid var(--basil);background:var(--paper);border:1px solid var(--line);
-  border-radius:14px;padding:14px 16px;margin:10px 0 16px}
-.consegna .eti{font-family:var(--display);font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;
-  color:var(--basil);display:block;margin-bottom:4px}
-.consegna p{margin:0}
-.consegna .tempo{color:var(--muted);font-size:.9rem;margin-top:6px;display:block}
+/* nastro */
+.nastro{height:6px; background:linear-gradient(90deg,var(--basil) 0 20%,var(--lemon) 20% 40%,var(--tomato) 40% 60%,var(--kraft) 60% 80%,var(--basil) 80% 100%)}
 
-/* lettura */
-.testo{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
-.testo h3{font-family:var(--display);font-size:1.3rem;margin-bottom:10px}
-.testo p{margin:0 0 12px;text-align:justify;hyphens:auto}
-.testo p:last-child{margin-bottom:0}
+header.testa{padding:28px 0 10px}
+header.testa h1{margin:0 0 4px; font-size:clamp(28px,6vw,42px); font-weight:800; letter-spacing:-.02em}
+header.testa .sub{color:var(--muted); font-size:17px; margin:0}
+.note{font-family:"Caveat",cursive; font-size:21px; color:var(--tomato); margin:10px 0 0}
 
-.item{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:13px 16px;margin:10px 0}
-.item .dom{font-weight:600;margin-bottom:8px}
-.item .num{font-family:var(--display);color:var(--muted);font-size:.78rem;letter-spacing:.08em;
-  text-transform:uppercase;display:block;margin-bottom:3px}
-.opz{display:flex;flex-direction:column;gap:7px}
-.opz button{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);
-  background:var(--stone);color:var(--ink);border-radius:11px;padding:9px 13px;cursor:pointer}
-.opz button:hover{border-color:var(--ink)}
-.opz button.scelta{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.opz.fila{flex-direction:row;flex-wrap:wrap}
-.opz.fila button{min-width:54px;text-align:center;font-family:var(--display);font-weight:700}
+/* bottoni */
+button{font:inherit; cursor:pointer}
+.b{
+  font-family:"Bricolage Grotesque",sans-serif; font-weight:600; font-size:15px;
+  border:1px solid var(--ink); background:var(--paper); color:var(--ink);
+  border-radius:999px; padding:8px 16px;
+}
+.b:hover{background:#fff}
+.b.pri{background:var(--basil); border-color:var(--basil); color:#fff}
+.b.rosso{background:var(--tomato); border-color:var(--tomato); color:#fff}
+.b.pic{padding:5px 11px; font-size:13px}
+.b[disabled]{opacity:.45; cursor:default}
 
-/* uso della lingua */
-.uso .fr{font-size:1.06rem;margin-bottom:8px}
-.uso .vuoto{display:inline-block;min-width:76px;border-bottom:2px solid var(--tomato);margin:0 3px}
-.uso .vuoto.pieno{border-bottom-color:var(--basil);font-weight:600}
+/* linguette */
+nav.fasi{display:flex; gap:6px; overflow-x:auto; padding:14px 0 4px; scrollbar-width:none}
+nav.fasi::-webkit-scrollbar{display:none}
+nav.fasi button{
+  flex:0 0 auto; display:flex; align-items:center; gap:7px;
+  font-family:"Bricolage Grotesque",sans-serif; font-weight:600; font-size:14px;
+  border:1px solid var(--line); background:var(--paper); color:var(--muted);
+  border-radius:999px; padding:7px 14px;
+}
+nav.fasi button .n{
+  display:inline-grid; place-items:center; width:20px; height:20px; border-radius:50%;
+  background:var(--line); color:var(--ink); font-size:11px
+}
+nav.fasi button.on{background:var(--ink); border-color:var(--ink); color:#fff}
+nav.fasi button.on .n{background:rgba(255,255,255,.22); color:#fff}
+nav.fasi button.fatta .n{background:var(--basil); color:#fff}
 
-/* annunci */
-.annunci{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0 18px}
-.ann{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
-.ann b{font-family:var(--display);color:var(--tomato);font-size:1.1rem;margin-right:6px}
+section.parte{display:none}
+section.parte.on{display:block}
 
-/* scrittura */
-textarea{font-family:var(--serif);font-size:1rem;width:100%;min-height:200px;padding:12px 14px;
-  border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);resize:vertical}
-.conta{font-family:var(--display);font-size:.86rem;color:var(--muted);margin-top:6px}
-.conta b{color:var(--ink)}
-.conta.giusto b{color:var(--basil)}
-.conta.corto b,.conta.lungo b{color:var(--tomato)}
+.riga{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin:14px 0}
+.riga.sp{justify-content:space-between}
 
 /* cronometro */
-.crono{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.02em;
-  font-variant-numeric:tabular-nums;min-width:86px;display:inline-block}
-.crono.poco{color:var(--tomato)}
+.crono{
+  font-family:"Bricolage Grotesque",sans-serif; font-weight:800; font-size:22px;
+  padding:4px 12px; border:1px solid var(--line); border-radius:999px; background:var(--paper);
+  font-variant-numeric:tabular-nums;
+}
+.crono.poco{color:var(--tomato); border-color:var(--tomato)}
 
-/* avanzamento */
-.avanz{font-family:var(--display);font-size:.84rem;color:var(--muted);margin:10px 0}
-.avanz b{color:var(--ink)}
+/* prove */
+.prova{background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:18px; margin:16px 0}
+.prova > h3{margin:0 0 4px; font-size:19px}
+.prova .istr{margin:0 0 14px; color:var(--muted); font-size:16px}
+
+.testo{background:var(--stone); border-left:3px solid var(--kraft); padding:14px 16px; border-radius:0 10px 10px 0; margin:0 0 16px}
+.testo h4{margin:0 0 8px; font-size:17px}
+.testo p{margin:0 0 10px}
+.testo p:last-child{margin:0}
+
+ol.dom{list-style:none; margin:0; padding:0; counter-reset:d}
+ol.dom > li{counter-increment:d; padding:12px 0; border-top:1px dashed var(--line)}
+ol.dom > li:first-child{border-top:0; padding-top:0}
+ol.dom > li .q{display:flex; gap:10px; font-weight:600}
+ol.dom > li .q::before{
+  content:counter(d); flex:0 0 auto; display:inline-grid; place-items:center;
+  width:24px; height:24px; border-radius:50%; background:var(--ink); color:#fff;
+  font-family:"Bricolage Grotesque",sans-serif; font-size:12px; font-weight:700; margin-top:3px
+}
+.opz{display:flex; flex-direction:column; gap:6px; margin:10px 0 0 34px}
+.opz button{
+  text-align:left; border:1px solid var(--line); background:var(--stone); color:var(--ink);
+  border-radius:10px; padding:9px 12px; font-size:17px; font-family:"Newsreader",serif;
+}
+.opz button:hover{border-color:var(--ink)}
+.opz button.sel{border-color:var(--ink); background:#fff; box-shadow:inset 0 0 0 1px var(--ink)}
+.opz button.ok{border-color:var(--basil); background:#EAF2EE}
+.opz button.no{border-color:var(--tomato); background:#FBEDEC}
+.esito{margin:8px 0 0 34px; font-size:15px; font-family:"Bricolage Grotesque",sans-serif}
+.esito.si{color:var(--basil)}
+.esito.no{color:var(--tomato)}
+
+/* input */
+input[type=text]{
+  font-family:"Newsreader",serif; font-size:17px; color:var(--ink);
+  border:0; border-bottom:2px solid var(--kraft); background:transparent;
+  padding:2px 4px; min-width:90px;
+}
+input[type=text]:focus{outline:none; border-bottom-color:var(--ink); background:#fff}
+input.ok{border-bottom-color:var(--basil); background:#EAF2EE}
+input.no{border-bottom-color:var(--tomato); background:#FBEDEC}
+select{
+  font-family:"Newsreader",serif; font-size:17px; color:var(--ink);
+  border:1px solid var(--line); border-radius:8px; background:var(--paper); padding:3px 6px;
+}
+select.ok{border-color:var(--basil); background:#EAF2EE}
+select.no{border-color:var(--tomato); background:#FBEDEC}
+
+.cloze{white-space:pre-wrap; line-height:2.2}
+.inf{font-family:"Bricolage Grotesque",sans-serif; font-size:12px; color:var(--muted); display:block}
+.gruppo-verbo{display:inline-block; text-align:center; margin:0 2px}
+.corretta{font-family:"Bricolage Grotesque",sans-serif; font-size:13px; color:var(--basil); display:block}
+
+table.scheda{width:100%; border-collapse:collapse; table-layout:fixed}
+table.scheda td{padding:9px 6px; border-bottom:1px dashed var(--line); vertical-align:middle; overflow-wrap:anywhere}
+table.scheda td:first-child{color:var(--muted); font-size:16px; width:48%}
+table.scheda input[type=text]{width:100%; min-width:0}
+table.scheda .esito{margin:2px 0 0; display:block}
+
+.annunci{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:10px; margin:0 0 16px}
+.ann{background:var(--stone); border:1px solid var(--line); border-radius:12px; padding:11px 13px}
+.ann .k{
+  font-family:"Bricolage Grotesque",sans-serif; font-weight:800; font-size:13px;
+  background:var(--ink); color:#fff; border-radius:6px; padding:1px 7px; margin-right:6px
+}
+.ann h4{display:inline; font-size:16px; margin:0}
+.ann p{margin:7px 0 0; font-size:16px; color:var(--muted)}
+
+.pers{border-top:1px dashed var(--line); padding:12px 0}
+.pers:first-of-type{border-top:0}
+.pers .nome{font-weight:600}
+.pers .cit{font-style:italic; color:var(--muted); margin:4px 0 8px}
+
+.buco{
+  display:inline-grid; place-items:center; min-width:34px; height:30px; padding:0 8px;
+  border:2px dashed var(--kraft); border-radius:8px; background:var(--stone);
+  font-family:"Bricolage Grotesque",sans-serif; font-weight:700; font-size:14px; vertical-align:middle
+}
+
+/* criteri */
+.crit{border-top:1px dashed var(--line); padding:11px 0}
+.crit:first-of-type{border-top:0}
+.crit .t{font-weight:600}
+.crit .d{color:var(--muted); font-size:15px; margin:2px 0 7px}
+.voti{display:flex; gap:4px; flex-wrap:wrap}
+.voti button{
+  width:34px; height:30px; border:1px solid var(--line); background:var(--stone);
+  border-radius:8px; font-family:"Bricolage Grotesque",sans-serif; font-size:14px; font-weight:600
+}
+.voti button.on{background:var(--ink); border-color:var(--ink); color:#fff}
+
+textarea{
+  width:100%; min-height:150px; font-family:"Newsreader",serif; font-size:17px; line-height:1.6;
+  color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:12px;
+}
+textarea:focus{outline:none; border-color:var(--ink)}
+.conta{font-family:"Bricolage Grotesque",sans-serif; font-size:14px; color:var(--muted)}
+.conta b{color:var(--ink)}
+.conta.corto b{color:var(--tomato)}
+.conta.giusto b{color:var(--basil)}
+
+.scaletta{margin:0 0 12px; padding:0 0 0 20px; color:var(--muted)}
+.scaletta li{margin:2px 0}
 
 /* risultato */
-.verdetto{background:var(--paper);border:2px solid var(--ink);border-radius:18px;padding:20px 22px;margin:14px 0}
-.verdetto .liv{font-family:var(--display);font-weight:800;font-size:2.1rem;letter-spacing:-.02em;margin:0 0 4px}
-.verdetto .perc{font-family:var(--display);font-weight:700;color:var(--muted)}
-.barre{margin:16px 0}
-.barra{margin:10px 0}
-.barra .cap{display:flex;justify-content:space-between;font-family:var(--display);font-size:.88rem;margin-bottom:4px}
-.barra .vas{height:11px;border-radius:99px;background:var(--line);overflow:hidden}
-.barra .vas i{display:block;height:100%;background:var(--basil)}
-.barra.bassa .vas i{background:var(--tomato)}
-.ripassa{margin:6px 0 0;padding-left:20px}
-.ripassa li{margin:5px 0}
-.ripassa a{color:var(--basil)}
-.sbagliate{margin:6px 0 0;padding-left:20px;color:var(--muted);font-size:.94rem}
-.sbagliate b{color:var(--ink)}
-.sbagliate .sua{color:var(--tomato)}
+.tabella{width:100%; border-collapse:collapse; background:var(--paper); border:1px solid var(--line); border-radius:14px; overflow:hidden}
+.tabella th,.tabella td{padding:11px 13px; text-align:left; border-bottom:1px solid var(--line)}
+.tabella th{font-family:"Bricolage Grotesque",sans-serif; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted)}
+.tabella tr:last-child td{border-bottom:0}
+.tabella td.num{font-family:"Bricolage Grotesque",sans-serif; font-weight:700; font-variant-numeric:tabular-nums}
+.pass{font-family:"Bricolage Grotesque",sans-serif; font-size:12px; font-weight:700; border-radius:999px; padding:2px 9px}
+.pass.si{background:#EAF2EE; color:var(--basil)}
+.pass.no{background:#FBEDEC; color:var(--tomato)}
+.pass.vuoto{background:var(--line); color:var(--muted)}
 
-/* griglie */
-.grid5{display:flex;gap:6px;flex-wrap:wrap}
-.grid5 button{width:40px;height:38px;font-family:var(--display);font-weight:700;border:1px solid var(--line);
-  background:var(--stone);border-radius:10px;cursor:pointer;color:var(--ink)}
-.grid5 button.on{background:var(--basil);color:var(--paper);border-color:var(--basil)}
-.crit{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
-  padding:10px 0;border-bottom:1px solid var(--line)}
-.crit:last-child{border-bottom:none}
-.crit .che{font-family:var(--display);font-weight:700}
-.crit .aiuto{display:block;color:var(--muted);font-size:.86rem;font-family:var(--serif);font-weight:400}
+.fascia{background:var(--paper); border:2px solid var(--ink); border-radius:16px; padding:18px; margin:16px 0}
+.fascia .big{font-family:"Bricolage Grotesque",sans-serif; font-size:40px; font-weight:800; line-height:1}
+.fascia h3{margin:8px 0 4px; font-size:22px}
+.fascia p{margin:0; color:var(--muted)}
 
-.avviso{border:1px solid var(--lemon);background:rgba(232,163,61,.14);border-radius:14px;padding:12px 15px;margin:12px 0;font-size:.95rem}
-.avviso b{font-family:var(--display)}
-.appunti{margin-top:26px}
-footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
-@media (max-width:620px){
-  .wrap{padding:18px 16px 70px}
-  h1{font-size:1.6rem}
-  .annunci{grid-template-columns:1fr}
+.avviso{background:#FBEDEC; border:1px solid var(--tomato); border-radius:12px; padding:12px 14px; margin:14px 0; font-size:16px}
+.avviso b{font-family:"Bricolage Grotesque",sans-serif}
+.ok-box{background:#EAF2EE; border:1px solid var(--basil); border-radius:12px; padding:12px 14px; margin:14px 0; font-size:16px}
+
+.rimandi{display:flex; gap:7px; flex-wrap:wrap; margin:8px 0 0}
+.rimandi a{
+  font-family:"Bricolage Grotesque",sans-serif; font-size:13px; font-weight:600; text-decoration:none;
+  border:1px solid var(--line); border-radius:999px; padding:4px 11px; background:var(--stone); color:var(--ink)
+}
+
+/* appunti */
+.appunti{margin:34px 0 0; padding:18px 0 0; border-top:1px solid var(--line)}
+.appunti h3{margin:0 0 8px; font-size:17px}
+
+/* dialog */
+dialog{
+  border:0; border-radius:18px; padding:0; max-width:640px; width:calc(100% - 32px);
+  background:var(--paper); color:var(--ink);
+}
+dialog::backdrop{background:rgba(22,35,63,.5)}
+dialog .d-in{padding:22px}
+dialog h3{margin:0 0 10px}
+dialog h4{margin:16px 0 4px; font-size:15px; color:var(--basil)}
+dialog ul{margin:4px 0; padding-left:20px}
+dialog li{margin:3px 0}
+
+.sw{display:inline-flex; gap:7px; align-items:center; font-family:"Bricolage Grotesque",sans-serif; font-size:14px; color:var(--muted)}
+.sw input{accent-color:var(--basil); width:17px; height:17px}
+
+.tast{font-family:"Bricolage Grotesque",sans-serif; font-size:12px; color:var(--muted); margin:14px 0 0}
+@media(max-width:620px){ .tast{display:none} body{font-size:17px} }
+@media print{
+  .topbar,nav.fasi,.appunti,.b,.nastro{display:none!important}
+  section.parte{display:none!important} section#ris{display:block!important}
+  body{background:#fff}
 }
 </style>
 </head>
 <body>
+
+<div class="topbar"><div class="in">
+  <a href="../">&larr; La mia aula</a>
+  <div class="dx">
+    <button class="b pic" id="bFin" type="button">Finestra insegnante</button>
+    <button class="b pic" id="bGuida" type="button">Come si conduce</button>
+  </div>
+</div></div>
 <div class="nastro"></div>
-<div class="topbar">
-  <a href="../">← La mia aula</a>
-  <span class="marchio">Test B1</span>
-</div>
 
 <div class="wrap">
-  <h1>Test di livello B1</h1>
-  <p class="sotto">Quattro prove, senza ascolto. Lettura e uso della lingua si correggono da sole alla fine,
-    scrittura e parlato le valuti tu.</p>
-  <p class="pen">Durante la prova la pagina non dice mai se una risposta è giusta: si scopre tutto solo alla fine.</p>
 
-  <div class="riga" style="margin:14px 0">
-    <button class="btn green" id="apriGobbo" type="button">Apri la finestra dell'insegnante</button>
-    <span class="sotto" style="margin:0">Le soluzioni e le tue domande stanno lì, non qui.</span>
+<header class="testa">
+  <h1>Test B1</h1>
+  <p class="sub">Cinque parti come all'esame. Ogni parte vale 20 punti e si supera con 11; il totale è 100 e la soglia è 55.</p>
+  <p class="note">L'ascolto lo leggi tu: i copioni stanno nella finestra insegnante, non qui.</p>
+</header>
+
+<nav class="fasi" id="fasi"></nav>
+
+<div class="riga sp">
+  <div class="riga" style="margin:0">
+    <span class="crono" id="crono">--:--</span>
+    <button class="b pic" id="bCrono" type="button">Avvia</button>
+    <button class="b pic" id="bZeroCrono" type="button">Azzera</button>
   </div>
-
-  <div id="fasi"></div>
-
-  <!-- ============ 1 · LETTURA ============ -->
-  <section class="sez" id="s1">
-    <div class="consegna">
-      <span class="eti">Prova 1 · lettura</span>
-      <p><b>Parte A.</b> Leggi il testo e rispondi alle sei domande. <b>Parte B.</b> Leggi i quattro annunci
-        e dì quale va bene per ognuna delle quattro persone.</p>
-      <span class="tempo">Tempo consigliato: 20 minuti. Il testo resta sempre visibile.</span>
-    </div>
-
-    <div class="riga" style="margin-bottom:10px">
-      <button class="btn ghost" id="via1" type="button">Fai partire i 20 minuti</button>
-      <span class="crono" id="crono1">20:00</span>
-    </div>
-
-    <div class="testo" id="testo"></div>
-
-    <h2>Parte A · le domande</h2>
-    <div id="domande"></div>
-
-    <h2>Parte B · a chi serve cosa</h2>
-    <div class="annunci" id="annunci"></div>
-    <div id="persone"></div>
-    <p class="avanz" id="avanz1"></p>
-  </section>
-
-  <!-- ============ 2 · USO DELLA LINGUA ============ -->
-  <section class="sez" id="s2">
-    <div class="consegna">
-      <span class="eti">Prova 2 · uso della lingua</span>
-      <p>Venti frasi. Per ognuna scegli la forma giusta. Se non sei sicura scegli lo stesso: non si toglie niente per una risposta sbagliata.</p>
-      <span class="tempo">Tempo consigliato: 15 minuti.</span>
-    </div>
-    <div class="riga" style="margin-bottom:10px">
-      <button class="btn ghost" id="via2" type="button">Fai partire i 15 minuti</button>
-      <span class="crono" id="crono2">15:00</span>
-    </div>
-    <div id="uso"></div>
-    <p class="avanz" id="avanz2"></p>
-  </section>
-
-  <!-- ============ 3 · SCRITTURA ============ -->
-  <section class="sez" id="s3">
-    <div class="consegna">
-      <span class="eti">Prova 3 · scrittura</span>
-      <p>Due testi da scrivere. Puoi scrivere qui sotto oppure a mano: come preferisci.
-        Il contatore delle parole serve solo a tenerti dentro la lunghezza chiesta.</p>
-    </div>
-    <div id="scrittura"></div>
-  </section>
-
-  <!-- ============ 4 · PARLATO ============ -->
-  <section class="sez" id="s4">
-    <div class="consegna">
-      <span class="eti">Prova 4 · parlato</span>
-      <p>Tre prove a voce. Qui vedi solo la consegna: quello che l'insegnante deve chiederti
-        sta nella sua finestra.</p>
-    </div>
-    <div id="parlato"></div>
-  </section>
-
-  <!-- ============ 5 · RISULTATO ============ -->
-  <section class="sez" id="s5">
-    <div class="consegna">
-      <span class="eti">Risultato</span>
-      <p>Prima di chiudere la prova, metti i voti di scrittura e parlato: senza quelli il livello finale
-        verrebbe fuori sbagliato.</p>
-    </div>
-
-    <div class="panel">
-      <h3>I voti che metti tu</h3>
-      <p class="sotto" style="margin-bottom:0">Da 0 a 5. La griglia distesa, con cosa guardare, è nella finestra dell'insegnante.</p>
-      <div id="griglie"></div>
-    </div>
-
-    <div class="riga">
-      <button class="btn red" id="chiudi" type="button">Chiudi la prova e mostra il risultato</button>
-      <button class="btn ghost" id="riapri" type="button" hidden>Torna indietro</button>
-    </div>
-
-    <div id="esito"></div>
-  </section>
-
-  <!-- appunti -->
-  <div class="panel appunti">
-    <h3>Appunti della prova</h3>
-    <p class="sotto">Gli errori che senti mentre parla, le parole che le mancano, cosa riprendere alla fine.</p>
-    <textarea id="note" style="min-height:120px" placeholder="…"></textarea>
-    <div class="riga" style="margin-top:10px;justify-content:space-between">
-      <span class="sotto" style="margin:0">Si salva da solo su questo computer.</span>
-      <button class="btn ghost" id="azzera" type="button">Nuovo test (azzera tutto)</button>
-    </div>
-  </div>
-
-  <footer>Pagina privata, non indicizzata. Il punteggio e gli appunti restano in questo browser.</footer>
+  <label class="sw"><input type="checkbox" id="swSubito"> correggi subito ogni risposta</label>
 </div>
 
+<!-- ================= 1 · ASCOLTO ================= -->
+<section class="parte" id="p1">
+  <div class="ok-box">
+    <b>Come funziona.</b> Ogni testo si sente <b>due volte</b>. Tu leggi dalla finestra insegnante,
+    lei non vede niente. Fra le due letture lascia qualche secondo di silenzio e non spiegare le parole.
+  </div>
+  <div id="asc-box"></div>
+</section>
+
+<!-- ================= 2 · LETTURA ================= -->
+<section class="parte" id="p2"><div id="let-box"></div></section>
+
+<!-- ================= 3 · STRUTTURE ================= -->
+<section class="parte" id="p3"><div id="str-box"></div></section>
+
+<!-- ================= 4 · SCRITTURA ================= -->
+<section class="parte" id="p4">
+  <div class="ok-box">
+    <b>Attenzione alle parole.</b> All'esame un testo sotto il minimo viene annullato, non corretto.
+    Il contatore qui sotto diventa verde quando il testo è nella misura giusta.
+  </div>
+  <div id="scr-box"></div>
+</section>
+
+<!-- ================= 5 · PARLATO ================= -->
+<section class="parte" id="p5">
+  <div class="ok-box">
+    <b>Niente correzioni mentre parla.</b> Gli errori vanno negli appunti in fondo alla pagina e si
+    riprendono dopo. Il voto per criterio lo metti tu alla fine di ogni prova.
+  </div>
+  <div id="par-box"></div>
+</section>
+
+<!-- ================= RISULTATO ================= -->
+<section class="parte" id="ris">
+  <div id="ris-box"></div>
+</section>
+
+<div class="appunti">
+  <h3>Appunti della lezione</h3>
+  <textarea id="appunti" placeholder="Gli errori che senti mentre parla, le parole che le mancano, le cose da riprendere."></textarea>
+  <div class="riga">
+    <button class="b" id="bStampa" type="button">Stampa il risultato</button>
+    <button class="b rosso" id="bZero" type="button">Nuovo test (azzera tutto)</button>
+  </div>
+  <p class="tast">Tastiera: <b>f</b> apre la guida su come condurre, <b>&rarr;</b> e <b>&larr;</b> cambiano parte.</p>
+</div>
+
+</div>
+
+<dialog id="guida"><div class="d-in">
+  <h3>Come si conduce questo test</h3>
+  <h4>Prima di cominciare</h4>
+  <ul>
+    <li>Apri la <b>finestra insegnante</b> e condividi <b>solo questa scheda</b> del browser, non lo schermo intero. I copioni dell'ascolto e le soluzioni stanno là.</li>
+    <li>Dille subito come è fatto l'esame: cinque parti, ognuna si supera da sola. Serve a togliere l'idea che basti la media.</li>
+  </ul>
+  <h4>I cronometri</h4>
+  <ul>
+    <li>Sono le durate vere del CILS B1: ascolto 30 minuti, lettura 50, strutture 60, scrittura 70, orale 10.</li>
+    <li>In lezione puoi lasciarli spenti. Se li accendi, non fermarli: il tempo è metà della difficoltà.</li>
+  </ul>
+  <h4>La correzione</h4>
+  <ul>
+    <li>Di default si corregge <b>una prova alla volta</b>, alla fine, come all'esame. L'interruttore in alto passa alla correzione immediata, che serve per studiare, non per misurare.</li>
+    <li>Dopo la correzione ogni domanda mostra una riga su <b>dove stava la risposta</b>: è lì che si impara.</li>
+  </ul>
+  <h4>Scrittura e parlato</h4>
+  <ul>
+    <li>Quattro criteri per lo scritto, cinque per il parlato, da 1 a 10 ciascuno. Non mediare a occhio: metti i voti, il punteggio si calcola da solo.</li>
+    <li>Nel dialogo la parte che conta è la <b>novità</b> che tiri fuori a metà: all'esame si valuta come si adatta, non le domande che si è preparata.</li>
+  </ul>
+</div></dialog>
+
 <script>
-/* =====================================================================
-   TEST B1 · le prove
+/* ===========================================================
+   Test B1 · dati
+   Struttura modellata su CILS UNO-B1 (cinque parti, 20 punti
+   ciascuna, 11/20 per superare la singola parte, 55/100 in totale),
+   con le tipologie di esercizio di PLIDA B1 e CELI 2.
+   L'ascolto e' sostituito da "lo leggo io": i copioni stanno
+   nella finestra dell'insegnante, non nella pagina condivisa.
+   =========================================================== */
 
-   Quattro parti, niente ascolto. Le soluzioni non stanno mai nella
-   pagina condivisa: si vedono solo nel riepilogo finale e nella
-   finestra separata dell'insegnante.
-   ===================================================================== */
+/* ---------- 1 - ASCOLTO (lo leggo io) ---------- */
 
-var TESTO = {
-  titolo: "Una casa a un euro",
-  righe: [
-    "In molti piccoli paesi del sud Italia, da qualche anno, succede una cosa che sembra incredibile: alcune case costano un euro. Non è uno scherzo, ma non è nemmeno un regalo.",
-    "Negli ultimi decenni migliaia di persone hanno lasciato i piccoli centri per cercare lavoro nelle grandi città o all'estero. I centri storici si sono svuotati e molte case vecchie sono rimaste chiuse per anni, senza nessuno che se ne occupasse. Alcuni sindaci allora hanno avuto un'idea: mettere in vendita quelle case a un euro, a una condizione precisa. Chi compra deve ristrutturare entro tre anni e lasciare al comune una somma di garanzia, che viene restituita solo quando i lavori sono finiti.",
-    "La condizione cambia tutto. Rimettere a posto una casa abbandonata costa parecchio, spesso decine di migliaia di euro, e bisogna aggiungere le spese del notaio e dei tecnici. L'euro, insomma, è il prezzo del cartellino, non quello della casa.",
-    "Eppure l'idea ha funzionato. In qualche paese sono arrivate richieste da mezzo mondo, e in centri che stavano morendo hanno riaperto un bar, un negozio, una scuola. Non tutti i nuovi arrivati restano: qualcuno scopre che la burocrazia è lenta e che d'inverno il paese è vuoto davvero. Ma chi resta racconta quasi sempre la stessa cosa: non ha comprato una casa, ha comprato il tempo che in città non riusciva più a trovare."
+var ASC1 = {
+  tipo: "mc",
+  titolo: "Prova 1 · Cinque messaggi brevi",
+  istruzioni: "Ascolta i cinque messaggi e scegli la risposta giusta. Ogni messaggio si sente due volte.",
+  perFabio: "Leggi un messaggio per volta, due volte, a velocità normale. Fra la prima e la seconda lettura aspetta qualche secondo. Non spiegare le parole: se non capisce, è un dato.",
+  item: [
+    { copione: "Buongiorno signora Rossi, la chiamo dallo studio dentistico Bianchi. Purtroppo domani mattina il dottore non c'è, quindi dobbiamo spostare il suo appuntamento. Le va bene giovedì alla stessa ora? Se non riesce, ci richiami in mattinata. Grazie, arrivederci.",
+      d: "Perché chiamano dallo studio dentistico?",
+      o: ["Per confermare l'appuntamento di domani", "Per spostare l'appuntamento a un altro giorno", "Per dire che il dottore è in ritardo"],
+      g: 1, mira: "spostare" },
+    { copione: "Attenzione. Il treno regionale 2145 per Torino Porta Nuova, in partenza alle ore quattordici e venti, partirà dal binario sette e non dal binario tre. Ripetiamo: il treno delle quattordici e venti per Torino parte dal binario sette.",
+      d: "Dove deve andare chi aspetta questo treno?",
+      o: ["Al binario tre", "Al binario sette", "Alla biglietteria"],
+      g: 1, mira: "il numero in mezzo a due numeri" },
+    { copione: "Ciao, allora senti, per stasera: al ristorante ci sono, però non riesco ad arrivare per le otto, ho una riunione che finisce tardi. Se volete possiamo spostare alle nove, oppure ordinate voi e io arrivo dopo. Fammi sapere, ciao!",
+      d: "Che cosa propone l'amica?",
+      o: ["Di cambiare ristorante", "Di annullare la cena", "Di cenare più tardi o di cominciare senza di lei"],
+      g: 2, mira: "due possibilità, non una" },
+    { copione: "Gentili clienti, vi ricordiamo che il reparto pescheria chiude alle diciannove. Inoltre abbiamo trovato un mazzo di chiavi con un portachiavi rosso: chi le ha perse può ritirarle alla cassa numero uno. Grazie e buona spesa.",
+      d: "Chi deve andare alla cassa numero uno?",
+      o: ["Chi ha perso le chiavi", "Chi vuole comprare il pesce", "Chi ha dimenticato la spesa"],
+      g: 0, mira: "due informazioni diverse nello stesso annuncio" },
+    { copione: "Buongiorno, la chiamo per il pacco. Sono passato stamattina ma non c'era nessuno, così l'ho lasciato al bar sotto casa sua, quello all'angolo. Può ritirarlo entro cinque giorni e deve portare un documento. Buona giornata.",
+      d: "Dov'è il pacco adesso?",
+      o: ["In un bar vicino a casa", "Ancora sul furgone", "All'ufficio postale"],
+      g: 0, mira: "«l'ho lasciato»: il pacco non è più con lui" }
   ]
 };
 
-var DOMANDE = [
-  { d: "Secondo l'articolo, le case a un euro sono",
-    o: ["un regalo che il comune fa a chi arriva",
-        "un'offerta vera, ma con una condizione precisa",
-        "una notizia inventata dai giornali"], g: 1 },
+var ASC2 = {
+  tipo: "scheda",
+  titolo: "Prova 2 · Alla piscina comunale",
+  istruzioni: "Ascolta il dialogo e completa la scheda. Scrivi poche parole, non una frase.",
+  perFabio: "Due voci: tu fai tutti e due, cambiando un po' il tono. Leggi due volte, la seconda un filo più lenta. Le risposte sono brevi: se scrive una frase intera va bene uguale, conta l'informazione.",
+  copione: [
+    "— Buongiorno, volevo informazioni sul corso di nuoto per adulti.",
+    "— Certo. Ne abbiamo due: uno il lunedì e il mercoledì alle sette di sera, e uno il sabato mattina alle dieci.",
+    "— Il sabato mattina sarebbe perfetto. Quanto costa?",
+    "— Il corso dura tre mesi e costa centottanta euro. Se però è già iscritta alla palestra, paga centocinquanta.",
+    "— No, non sono iscritta. E cosa devo portare la prima volta?",
+    "— La cuffia, le ciabatte e il certificato medico. Senza certificato non possiamo farla entrare in acqua.",
+    "— Il certificato lo devo fare qui?",
+    "— No, lo fa il suo medico. Lo porti entro la prima lezione.",
+    "— Va bene. E quando comincia il corso?",
+    "— Il primo sabato di ottobre. Le consiglio di iscriversi presto, perché i posti sono quindici e si riempiono subito."
+  ],
+  item: [
+    { d: "Giorno del corso che sceglie la signora", ok: ["sabato"], sol: "il sabato (mattina, alle dieci)" },
+    { d: "Quanto paga", ok: ["180", "centottanta"], sol: "180 euro (150 solo per gli iscritti alla palestra)" },
+    { d: "Il documento che deve portare", ok: ["certificato"], sol: "il certificato medico" },
+    { d: "Quando comincia il corso", ok: ["ottobre"], sol: "il primo sabato di ottobre" },
+    { d: "Quanti posti ci sono", ok: ["15", "quindici"], sol: "quindici" }
+  ]
+};
 
-  { d: "Perché i centri storici si sono svuotati?",
-    o: ["Perché le case erano troppo vecchie per viverci",
-        "Perché i comuni hanno deciso di venderle tutte",
-        "Perché la gente è andata a lavorare altrove"], g: 2 },
+var ASC3 = {
+  tipo: "mc",
+  titolo: "Prova 3 · La mia prima settimana a Bologna",
+  istruzioni: "Ascolta il racconto e scegli la risposta giusta. Lo senti due volte.",
+  perFabio: "Qui il testo è lungo: leggilo tutto di fila, senza fermarti sulle domande. Poi fai leggere le domande e leggi la seconda volta. È il pezzo più vicino a un ascolto d'esame.",
+  copione: [
+    "Vi racconto com'è andata la mia prima settimana a Bologna.",
+    "Avevo trovato una stanza su internet, in un appartamento con altri tre ragazzi. Quando sono arrivato con le valigie ho scoperto che il mio nome non c'era sul contratto: il proprietario aveva affittato la stessa stanza anche a un'altra persona. Per tre giorni ho dormito sul divano di un amico di un amico, che non avevo mai visto prima e che alla fine è diventato il mio migliore amico qui.",
+    "Il quarto giorno ho trovato un'altra stanza, più piccola e più cara, ma con una finestra che guarda i tetti.",
+    "La cosa più difficile però non è stata trovare casa: è stato capire la gente al mercato. Parlavano velocissimo e usavano parole che a scuola non avevo mai sentito. La prima volta che ho chiesto mezzo chilo di pomodori mi hanno risposto una frase che non ho capito, e io ho detto sì. Sono tornato a casa con due chili di pomodori.",
+    "Adesso, dopo sei mesi, al mercato mi conoscono, mi chiamano per nome e mi mettono da parte la frutta migliore. E io capisco quasi tutto, tranne quando parlano fra loro in dialetto."
+  ],
+  item: [
+    { d: "Perché non ha potuto prendere la stanza che aveva trovato?",
+      o: ["Perché costava troppo", "Perché il proprietario l'aveva data anche a un altro", "Perché gli altri ragazzi non lo volevano", "Perché il contratto non era pronto"],
+      g: 1, mira: "«anche a un'altra persona»" },
+    { d: "Dove ha dormito i primi tre giorni?",
+      o: ["In albergo", "In stazione", "Sul divano di una persona che non conosceva", "A casa del proprietario"],
+      g: 2, mira: "«che non avevo mai visto prima»" },
+    { d: "Com'è la stanza dove vive adesso?",
+      o: ["Più grande e più economica", "Più piccola e più cara", "Uguale alla prima", "Senza finestre"],
+      g: 1, mira: "due comparativi di fila" },
+    { d: "Qual è stata la sua difficoltà più grande?",
+      o: ["Trovare casa", "Trovare lavoro", "Capire come parlava la gente al mercato", "Imparare la grammatica"],
+      g: 2, mira: "«non è stata... è stato»: la frase si corregge da sola" },
+    { d: "Che cosa non capisce ancora?",
+      o: ["I prezzi del mercato", "Il dialetto quando i venditori parlano fra loro", "Il suo migliore amico", "Niente, capisce tutto"],
+      g: 1, mira: "«tranne quando»" }
+  ]
+};
 
-  { d: "A che cosa serve la somma di garanzia?",
-    o: ["A pagare il notaio e i tecnici",
-        "Ad assicurarsi che i lavori vengano fatti davvero",
-        "A comprare una seconda casa nello stesso paese"], g: 1 },
+/* ---------- 2 - COMPRENSIONE DELLA LETTURA ---------- */
 
-  { d: "Quando il testo dice che l'euro è il prezzo del cartellino e non quello della casa, vuol dire che",
-    o: ["la spesa vera è molto più alta di un euro",
-        "il cartellino si paga a parte",
-        "la casa in realtà non si può comprare"], g: 0 },
+var LET1 = {
+  tipo: "mc",
+  titolo: "Prova 1 · Ho lasciato Milano per un paese di ottocento abitanti",
+  istruzioni: "Leggi il testo e scegli la risposta giusta.",
+  perFabio: "Lasciale il tempo di leggere due volte prima di guardare le domande. Se risponde subito senza rileggere, quasi sempre sbaglia la 3 e la 6.",
+  testo: [
+    "Due anni fa lavoravo in un ufficio a Milano, al settimo piano di un palazzo di vetro. Guadagnavo bene, ma passavo quasi due ore al giorno sui mezzi e la sera arrivavo a casa troppo stanco perfino per cucinare. Quando l'azienda ha deciso che potevamo lavorare da casa tre giorni su cinque, ho fatto un conto semplice: se devo andare in ufficio solo due volte a settimana, non ho bisogno di abitare in città.",
+    "Così ho cercato una casa in montagna, nel paese dove andavo in vacanza da bambino. Ottocento abitanti, un bar, una scuola elementare, il treno che passa sei volte al giorno. Ho trovato un appartamento con il doppio dei metri quadri e la metà dell'affitto.",
+    "Non voglio raccontarvi che è stato tutto facile. Il primo inverno è stato duro: la connessione cadeva proprio durante le riunioni, e per fare la spesa grande bisognava prendere la macchina e scendere di venti chilometri. In paese, poi, all'inizio mi guardavano come un turista che non se ne va più.",
+    "Le cose sono cambiate quando ho iniziato a dare una mano in biblioteca il sabato. Da lì ho conosciuto quasi tutti, e adesso se mi serve qualcosa so a chi chiedere. Mia madre continua a dirmi che prima o poi mi annoierò, e forse ha ragione, forse tra qualche anno tornerò in città. Però intanto la sera ho il tempo di cucinare, e questo due anni fa non ce l'avevo."
+  ],
+  item: [
+    { d: "Perché ha deciso di lasciare Milano?",
+      o: ["Perché aveva perso il lavoro", "Perché poteva lavorare da casa quasi tutta la settimana", "Perché l'affitto era aumentato", "Perché voleva cambiare mestiere"],
+      g: 1, mira: "il conto che fa nel primo paragrafo" },
+    { d: "Che cosa dice della casa nuova?",
+      o: ["È più piccola e costa meno", "È più grande e costa meno", "È più grande e costa di più", "È uguale a quella di Milano"],
+      g: 1, mira: "«il doppio dei metri quadri e la metà dell'affitto»" },
+    { d: "Qual è stato il problema del primo inverno?",
+      o: ["Il freddo dentro casa", "Internet che cadeva durante il lavoro", "Il treno che non passava", "La scuola troppo lontana"],
+      g: 1, mira: "distrattore facile: la montagna fa pensare al freddo, ma il testo non lo dice" },
+    { d: "Come lo hanno trattato in paese all'inizio?",
+      o: ["Come uno del posto", "Come un turista", "Male, con fastidio aperto", "Il testo non lo dice"],
+      g: 1, mira: "«come un turista che non se ne va più»" },
+    { d: "Che cosa è servito a farsi conoscere?",
+      o: ["Il lavoro in ufficio", "Il bar del paese", "L'aiuto in biblioteca il sabato", "I consigli di sua madre"],
+      g: 2, mira: "«Da lì ho conosciuto quasi tutti»" },
+    { d: "Che cosa pensa del futuro?",
+      o: ["È sicuro che resterà per sempre", "È sicuro che l'anno prossimo torna in città", "Non esclude di tornare in città", "Vuole andare all'estero"],
+      g: 2, mira: "«forse ha ragione, forse tra qualche anno»: il forse va letto" }
+  ]
+};
 
-  { d: "Perché qualcuno se ne va dopo essere arrivato?",
-    o: ["Perché non trova case libere",
-        "Perché la burocrazia è lenta e d'inverno il paese è vuoto",
-        "Perché i lavori costano meno del previsto"], g: 1 },
+var LET2 = {
+  tipo: "abbina",
+  titolo: "Prova 2 · Le attività del comune",
+  istruzioni: "Leggi che cosa cercano queste quattro persone e scegli l'attività giusta per ognuna. Due attività non servono a nessuno.",
+  perFabio: "Qui non serve capire tutto: serve trovare la parola che decide. Se si blocca, chiedile «qual è la parola che esclude le altre?».",
+  annunci: [
+    { k: "A", t: "Cucina di casa", c: "Corso serale, il mercoledì dalle 19 alle 21. Si impara a fare la pasta fresca e i dolci della tradizione. Massimo dodici persone, non serve esperienza." },
+    { k: "B", t: "Italiano per stranieri · livello avanzato", c: "Martedì e giovedì dalle 18 alle 20. Si leggono i giornali e si discute di attualità. Richiesto un livello intermedio." },
+    { k: "C", t: "Ginnastica dolce over 60", c: "Lunedì e venerdì mattina, dalle 9.30 alle 10.30. In palestra, con un insegnante di fisioterapia." },
+    { k: "D", t: "Teatro per ragazzi", c: "Sabato pomeriggio, dai 10 ai 14 anni. Spettacolo finale a maggio nel cortile della scuola." },
+    { k: "E", t: "Coro del paese", c: "Giovedì sera alle 21, nella sala sotto la chiesa. Aperto a tutti, non serve saper leggere la musica." },
+    { k: "F", t: "Orto condiviso", c: "Si lavora la domenica mattina. Ogni famiglia ha il suo pezzo di terra e porta a casa quello che coltiva." }
+  ],
+  item: [
+    { p: "Rita, 68 anni", c: "«Il medico mi ha detto di muovermi di più, ma non voglio andare in una palestra piena di ragazzi che sollevano pesi. Di mattina sono libera.»", g: "C" },
+    { p: "Karim, 34 anni", c: "«Parlo italiano abbastanza bene, ma quando leggo il giornale mi perdo. Vorrei parlare di cose serie, non fare esercizi.»", g: "B" },
+    { p: "Giulia, 41 anni", c: "«Mi piace cantare, lo faccio sempre in macchina. Non ho mai studiato musica, e dopo le nove i bambini dormono, quindi posso uscire.»", g: "E" },
+    { p: "Marco, 29 anni", c: "«Ho un balcone minuscolo e il sogno di mangiare pomodori miei. La domenica non lavoro.»", g: "F" }
+  ]
+};
 
-  { d: "Che cosa dice quasi sempre chi decide di restare?",
-    o: ["Di aver trovato un lavoro migliore",
-        "Di aver comprato una casa molto grande",
-        "Di aver guadagnato tempo"], g: 2 }
-];
+var LET3 = {
+  tipo: "ricostruisci",
+  titolo: "Prova 3 · La festa del paese",
+  istruzioni: "Nel testo mancano cinque frasi. Scegli quella giusta per ogni buco. Due frasi non vanno in nessun buco.",
+  perFabio: "È la prova che misura se tiene insieme il testo e non solo la frase. La chiave sono i legami: «però», «negli ultimi anni», «a me invece».",
+  parti: [
+    { pre: "Ogni anno, l'ultima settimana di agosto, il mio paese cambia faccia.", post: "Per tre giorni la piazza diventa una cucina all'aperto e la strada principale si chiude alle macchine." },
+    { pre: "I preparativi però cominciano molto prima.", post: "C'è chi si occupa dei tavoli, chi dei permessi, chi va a convincere i negozianti a mettere qualche euro." },
+    { pre: "La sera più importante è il sabato.", post: "Il concerto finisce tardi e nessuno si lamenta del rumore, perché quella è l'unica notte dell'anno in cui si può." },
+    { pre: "Negli ultimi anni la festa è cambiata.", post: "Qualcuno dice che così si è perso il senso di prima, quando venivano solo le famiglie del posto." },
+    { pre: "A me invece sembra che vada bene.", post: "Finché c'è qualcuno che ha voglia di montare i tavoli il giovedì, la festa esiste." }
+  ],
+  frasi: [
+    { k: "A", t: "Già a giugno un gruppo di volontari si trova la domenica per dividersi il lavoro." },
+    { k: "B", t: "Arrivano pullman di turisti, e per entrare al concerto bisogna prenotare." },
+    { k: "C", t: "Un paese che si vede per tre giorni all'anno è comunque meglio di un paese che non si vede mai." },
+    { k: "D", t: "Si mangia tutti insieme ai tavoli lunghi e poi suona una band." },
+    { k: "E", t: "Le strade si riempiono di luci, bandierine e tavoli di legno." },
+    { k: "F", t: "Il sindaco ha deciso di spostare la festa a settembre." },
+    { k: "G", t: "D'inverno il bar chiude alle sette e non c'è più niente da fare." }
+  ],
+  g: ["E", "A", "D", "B", "C"]
+};
 
-var ANNUNCI = [
-  { lettera: "A", testo: "Cercasi persona per aiuto compiti, due pomeriggi a settimana, bambini della scuola elementare. Zona centro." },
-  { lettera: "B", testo: "Affitto monolocale arredato vicino alla stazione, solo per studenti o lavoratori fuori sede. Niente animali." },
-  { lettera: "C", testo: "Corso di cucina del sabato mattina, otto incontri, per chi parte da zero. Posti limitati." },
-  { lettera: "D", testo: "Si cerca volontario per accompagnare in macchina persone anziane alle visite mediche. Patente e tempo libero la mattina." }
-];
+/* ---------- 3 - ANALISI DELLE STRUTTURE ---------- */
 
-var PERSONE = [
-  { chi: "Marta",  testo: "Si è appena laureata, ha le mattine libere e vorrebbe fare qualcosa di utile per gli altri. Guida da dieci anni.", g: "D" },
-  { chi: "Luca",   testo: "Si trasferisce in città per lavoro dal mese prossimo e cerca un posto piccolo dove non debba comprare i mobili.", g: "B" },
-  { chi: "Sara",   testo: "Lavora tutti i pomeriggi ma è libera nel fine settimana, e non sa cuocere nemmeno un uovo.", g: "C" },
-  { chi: "Giulio", testo: "Studia all'università e cerca un piccolo lavoro per qualche pomeriggio. Gli piace stare con i bambini.", g: "A" }
-];
+var STR1 = {
+  tipo: "cloze-mc",
+  titolo: "Prova 1 · Completa la mail",
+  istruzioni: "Scegli la parola giusta per ogni buco.",
+  perFabio: "Dieci scelte, una per riga. Il 4 (congiuntivo dopo «spero che») e il 7 (il pronome indiretto «le») sono i due che decidono il livello.",
+  pezzi: [
+    "Cara Lucia,\nscusa se ti scrivo solo adesso, ma in questo periodo ", null,
+    " moltissimo e la sera non ho più la forza di accendere il computer.\n\nTi volevo dire che alla fine ho deciso: ", null,
+    " a trovarti a Natale. Ho guardato i treni e ", null,
+    " costano troppo, quindi forse prendo l'aereo.\n\nMi ha fatto piacere sapere che hai cambiato lavoro. Spero che il nuovo capo ", null,
+    " più gentile dell'altro: quando ci vediamo ", null,
+    " racconti tutto per bene.\n\nSenti, ", null,
+    " chiederti un favore. Una mia amica la settimana prossima viene nella tua città per un colloquio e non conosce nessuno. ", null,
+    " puoi dare qualche informazione sui quartieri? Cerca una stanza in affitto vicino al centro, ma di quella zona non ", null,
+    " sa niente.\n\nSe ", null,
+    " tempo, portala a bere un caffè: ", null,
+    " piacerà, è una persona molto simpatica.\n\nA presto, un abbraccio\nFabio"
+  ],
+  item: [
+    { o: ["lavoro", "ho lavorato", "lavorerò"], g: 0, n: "«in questo periodo» vuole il presente" },
+    { o: ["vengo", "venivo", "venissi"], g: 0, n: "in italiano il futuro vicino si dice col presente" },
+    { o: ["tutte", "tutti", "tutto"], g: 1, n: "si riferisce a «i treni»" },
+    { o: ["è", "sia", "era"], g: 1, n: "«spero che» + congiuntivo" },
+    { o: ["me", "mi", "ti"], g: 1, n: "«mi racconti»: davanti al verbo si usa mi, non me" },
+    { o: ["vorrei", "volessi", "vorrei che"], g: 0, n: "condizionale di cortesia" },
+    { o: ["Le", "La", "Gli"], g: 0, n: "dare qualcosa *a lei*: pronome indiretto femminile" },
+    { o: ["ci", "ne", "le"], g: 1, n: "«non ne sa niente» = di quella zona" },
+    { o: ["hai", "avessi", "avrai"], g: 0, n: "se + presente, per una condizione possibile" },
+    { o: ["ti", "te", "tu"], g: 0, n: "«ti piacerà»" }
+  ]
+};
 
-/* tema = come finisce nel riepilogo finale, raggruppato */
-var USO = [
-  { f: ["Ieri sera, mentre ", ", è arrivata una telefonata."], o: ["ho cenato", "cenavo", "cenerò"], g: 1, tema: "passato" },
-  { f: ["Da bambina ", " sempre al mare con i nonni."], o: ["sono andata", "andavo", "vado"], g: 1, tema: "passato" },
+var STR2 = {
+  tipo: "verbi",
+  titolo: "Prova 2 · Metti il verbo al tempo giusto",
+  istruzioni: "Scrivi il verbo fra parentesi nella forma giusta. Attenzione al soggetto.",
+  perFabio: "Il 3 e il 5 sono imperfetti dentro un racconto al passato prossimo: è l'errore tipico, mette tutto al passato prossimo. Il 7 è un condizionale, il 9 e il 10 sono imperativi del tu.",
+  pezzi: [
+    "Domenica scorsa ", null, " di andare al mare con due amici. Quando ", null,
+    " di casa alle sette del mattino ", null, " ancora, ma noi ", null,
+    " sicuri che il tempo sarebbe cambiato. In effetti, mentre ", null,
+    " verso la costa, il cielo si è aperto. ", null,
+    " che erano le nove e la spiaggia era già piena: ", null,
+    " meglio partire mezz'ora prima. Alla fine ", null,
+    " vicino agli scogli e ci siamo fatti il primo bagno dell'anno.\n\nUn consiglio per chi va al mare in agosto: ", null,
+    " la domenica, e se puoi ", null, " prima dell'alba."
+  ],
+  item: [
+    { inf: "decidere · noi", ok: ["abbiamo deciso"], n: "passato prossimo" },
+    { inf: "uscire · noi", ok: ["siamo usciti", "siamo uscite"], n: "uscire vuole essere" },
+    { inf: "piovere", ok: ["pioveva"], n: "imperfetto: situazione, non azione" },
+    { inf: "essere · noi", ok: ["eravamo"], n: "imperfetto di stato" },
+    { inf: "guidare · noi", ok: ["guidavamo"], n: "«mentre» vuole sempre l'imperfetto" },
+    { inf: "arrivare · noi", ok: ["siamo arrivati", "siamo arrivate"], n: "passato prossimo, azione conclusa" },
+    { inf: "essere", ok: ["sarebbe stato", "sarebbe"], n: "condizionale: un rimpianto" },
+    { inf: "stendersi · noi", ok: ["ci siamo stesi", "ci siamo stese"], n: "riflessivo al passato: essere + accordo" },
+    { inf: "non andare · tu", ok: ["non andare"], n: "imperativo negativo del tu = non + infinito" },
+    { inf: "partire · tu", ok: ["parti"], n: "imperativo del tu" }
+  ]
+};
 
-  { f: ["Hai visto le mie chiavi? Sì, ", " ho messe sul tavolo."], o: ["le", "li", "gli"], g: 0, tema: "pronomi" },
-  { f: ["Quante mele hai comprato? ", " ho comprate tre."], o: ["Le", "Ne", "Ci"], g: 1, tema: "pronomi" },
-  { f: ["Sei mai stata a Napoli? Sì, ", " sono stata l'anno scorso."], o: ["ci", "ne", "lo"], g: 0, tema: "pronomi" },
-  { f: ["Ho telefonato a Giulia e ", " ho detto tutto."], o: ["la", "le", "gli"], g: 1, tema: "pronomi" },
+var STR3 = {
+  tipo: "preposizioni",
+  titolo: "Prova 3 · Le preposizioni",
+  istruzioni: "Scrivi la preposizione giusta. Una parola per buco (anche articolata).",
+  perFabio: "Le preposizioni non si capiscono, si sanno. Se sbaglia più di tre, il lavoro è /esercizi/preposizioni/, non una spiegazione a voce.",
+  pezzi: [
+    "Sono arrivata ", null, " Italia tre anni fa, ", null,
+    " settembre. Il primo mese ho dormito ", null,
+    " casa di una cugina di mia madre, poi ho trovato una stanza ", null,
+    " affitto vicino ", null, " stazione. Adesso lavoro ", null,
+    " un'agenzia di viaggi, studio italiano due volte ", null,
+    " settimana e ", null, " un anno non torno nel mio paese."
+  ],
+  item: [
+    { ok: ["in"], n: "in + nome di paese" },
+    { ok: ["a", "in"], n: "a settembre (anche «in settembre»)" },
+    { ok: ["a"], n: "a casa di qualcuno" },
+    { ok: ["in"], n: "in affitto: espressione fissa" },
+    { ok: ["alla"], n: "vicino a + articolo" },
+    { ok: ["in", "per"], n: "lavorare in un posto" },
+    { ok: ["a", "alla"], n: "due volte a settimana" },
+    { ok: ["da"], n: "da + quanto tempo dura" }
+  ]
+};
 
-  { f: ["Ho deciso ", " cambiare lavoro."], o: ["di", "a", "da"], g: 0, tema: "preposizioni" },
-  { f: ["Domani vado ", " dentista."], o: ["al", "dal", "nel"], g: 1, tema: "preposizioni" },
-  { f: ["Ho ancora tanto lavoro ", " fare."], o: ["da", "di", "a"], g: 0, tema: "preposizioni" },
+var STR4 = {
+  tipo: "mc",
+  titolo: "Prova 4 · Pronomi e connettivi",
+  istruzioni: "Scegli la parola giusta.",
+  perFabio: "Sei frasi secche. Se cadono la 1, 2 e 3 il buco è nei pronomi: /esercizi/pronomi/ e /esercizi/pronomi-combinati/.",
+  item: [
+    { d: "«Hai visto Marta?» «Sì, ___ ho incontrata ieri.»", o: ["le", "l'", "gli"], g: 1, mira: "diretto femminile davanti a vocale" },
+    { d: "Ho telefonato a Giorgio e ___ ho detto tutto.", o: ["lo", "gli", "l'"], g: 1, mira: "telefonare *a* qualcuno: indiretto" },
+    { d: "Di questo film ___ hanno parlato tutti.", o: ["ci", "ne", "lo"], g: 1, mira: "parlare *di*: ne" },
+    { d: "Non sono andato alla festa ___ ero stanco.", o: ["perché", "perciò", "benché"], g: 0, mira: "la causa" },
+    { d: "Mi piacerebbe venire, ___ domani lavoro.", o: ["però", "quindi", "siccome"], g: 0, mira: "l'opposizione" },
+    { d: "___ ho tempo, ti passo a prendere io.", o: ["Benché", "Se", "Perché"], g: 1, mira: "la condizione" }
+  ]
+};
 
-  { f: ["Penso che Luca ", " ragione."], o: ["ha", "abbia", "avrà"], g: 1, tema: "congiuntivo" },
-  { f: ["Benché ", " stanca, è uscita lo stesso."], o: ["era", "fosse", "sarà"], g: 1, tema: "congiuntivo" },
-  { f: ["Anche se ", " tardi, ti aspetto."], o: ["sia", "è", "fosse"], g: 1, tema: "congiuntivo" },
-
-  { f: ["Se avessi tempo, ", " volentieri con voi."], o: ["verrei", "verrò", "venivo"], g: 0, tema: "periodo ipotetico" },
-  { f: ["Se ", " tempo, ti aiuterei volentieri."], o: ["ho", "avessi", "avrò"], g: 1, tema: "periodo ipotetico" },
-
-  { f: ["Non so dove sia Luca: ", " a casa."], o: ["sarà", "era", "fosse"], g: 0, tema: "futuro" },
-
-  { f: ["Marco, ", " quando arrivi!"], o: ["chiamami", "mi chiama", "chiamarmi"], g: 0, tema: "imperativo" },
-
-  { f: ["La ragazza ", " ti ho parlato arriva domani."], o: ["che", "di cui", "cui"], g: 1, tema: "relativi" },
-
-  { f: ["In Italia ", " cena verso le otto."], o: ["si", "ci", "ne"], g: 0, tema: "impersonale" },
-
-  { f: ["Pensavo di uscire, ", " ha cominciato a piovere."], o: ["quindi", "però", "perché"], g: 1, tema: "connettivi" },
-
-  { f: ["Sto ", " un libro molto bello."], o: ["leggere", "leggendo", "letto"], g: 1, tema: "gerundio" }
-];
+/* ---------- 4 - PRODUZIONE SCRITTA ---------- */
 
 var SCRITTURA = [
-  { titolo: "Prova 1 · il messaggio",
-    minuti: 15, min: 80, max: 100,
-    consegna: "Un amico italiano ti ha invitato a passare da lui un fine settimana, ma tu proprio quel fine settimana non puoi. Scrivigli un messaggio: ringrazialo, spiega perché non puoi venire e proponi tu un'altra data o un'altra idea.",
-    cosaGuardo: "Deve fare tutte e tre le cose, non due. Guarda i tempi del passato nella spiegazione, il condizionale nella proposta, e se sa chiudere un messaggio senza tradurre dall'inglese." },
-
-  { titolo: "Prova 2 · l'opinione",
-    minuti: 20, min: 130, max: 150,
-    consegna: "Hai letto l'articolo sulle case a un euro. Secondo te è meglio vivere in una grande città o in un paese piccolo? Scrivi cosa pensi e dai almeno due motivi. Racconta anche una cosa che hai vissuto tu.",
-    cosaGuardo: "Qui si vede il B1 vero: i connettivi che legano i due motivi, il congiuntivo d'opinione (penso che sia), e il passaggio dall'opinione al racconto personale senza che la lingua si sfaldi." }
-];
-
-var PARLATO = [
-  { titolo: "Prova 1 · racconta",
-    minuti: 3,
-    consegna: "Racconta un viaggio o una giornata che non hai più dimenticato: dov'eri, cos'è successo, com'è finita.",
-    insegnante: [
-      "Lasciala parlare da sola per almeno due minuti prima di intervenire.",
-      "Qui guardi una cosa sola: passato prossimo contro imperfetto. La cornice all'imperfetto (era, c'era, faceva caldo), i fatti al passato prossimo.",
-      "Se resta sempre al presente, chiedi: « e prima, cos'era successo? »",
-      "Rilancio finale: « e se potessi tornarci, cosa faresti di diverso? » Ti serve per sentire il condizionale."
-    ] },
-
-  { titolo: "Prova 2 · risolvi",
-    minuti: 4,
-    consegna: "Hai prenotato un appartamento per tre notti. Quando arrivi, la casa è sporca e il riscaldamento non funziona. Parla con il proprietario e trova una soluzione.",
-    insegnante: [
-      "Il proprietario sei tu, e dai del lei. Il primo no è obbligatorio: « guardi, oggi non posso mandare nessuno ».",
-      "Poi offri una soluzione peggiore (domani pomeriggio, forse). Deve insistere, non accontentarsi: è lì che si vede se regge una trattativa.",
-      "Cedi solo al secondo o al terzo tentativo.",
-      "Guarda: il lei, le formule che ammorbidiscono (sarebbe possibile, le dispiacerebbe), e se sa protestare senza diventare sgarbata."
-    ] },
-
-  { titolo: "Prova 3 · dai un'opinione",
-    minuti: 3,
-    consegna: "Alcuni comuni vendono le case a un euro per far tornare la gente nei paesi. Secondo te funziona? Che cosa serve davvero perché un paese torni a vivere?",
-    insegnante: [
-      "Non accettare la prima risposta corta: chiedi « perché? » una volta in più di quanto ti venga naturale.",
-      "Rilanci pronti: « tu ci andresti? », « a che condizioni? », « e tra vent'anni? »",
-      "Guarda il congiuntivo d'opinione (penso che sia, non penso che è) e i connettivi del ragionamento (però, invece, anche se, quindi).",
-      "Se te la cava bene, alza il tiro: « e se il tuo paese svendesse le case, saresti d'accordo? »"
-    ] }
+  { titolo: "Prova 1 · Racconta",
+    min: 100, max: 120,
+    traccia: "Racconta una giornata in cui qualcosa è andato storto: un viaggio, una festa, un primo giorno di lavoro o di scuola.",
+    scaletta: ["dove eri e con chi", "che cosa è andato storto", "come hai risolto (o non hai risolto)", "che cosa pensi adesso di quella giornata"],
+    cosaGuardo: "Il racconto al passato è il cuore del B1: guarda se alterna passato prossimo e imperfetto o se mette tutto allo stesso tempo. Guarda anche se lega le frasi (poi, allora, così, alla fine) o se le mette una dopo l'altra come una lista. Sotto le cento parole, all'esame la prova si annulla: diglielo prima, non dopo." },
+  { titolo: "Prova 2 · Scrivi un messaggio",
+    min: 50, max: 80,
+    traccia: "Un amico italiano ti ha prestato la sua casa per un fine settimana. Scrivigli un messaggio.",
+    scaletta: ["ringrazialo", "dì una cosa che ti è piaciuta della casa o del posto", "chiedigli se potete tornarci a maggio"],
+    cosaGuardo: "Qui conta il registro: deve essere informale ma non tradotto dall'inglese. Guarda l'apertura e la chiusura (niente «Caro amico», niente «Cordiali saluti» a un amico), il condizionale della richiesta («potremmo», «ti andrebbe»), e se fa tutte e tre le cose o solo due." }
 ];
 
 var CRIT_SCRITTURA = [
-  { k: "contenuto",      eti: "Contenuto",      aiuto: "ha fatto tutto quello che chiedeva la consegna?" },
-  { k: "organizzazione", eti: "Organizzazione", aiuto: "si legge di fila, o sono frasi staccate?" },
-  { k: "lessico",        eti: "Lessico",        aiuto: "parole giuste e varie, o sempre le stesse tre?" },
-  { k: "correttezza",    eti: "Correttezza",    aiuto: "gli errori disturbano la comprensione?" }
+  { k: "cont", t: "Contenuto e compito", d: "Ha fatto tutto quello che la traccia chiedeva?" },
+  { k: "coer", t: "Coerenza e coesione", d: "Le frasi stanno insieme, o sono una lista?" },
+  { k: "less", t: "Lessico", d: "Parole giuste e abbastanza varie per il livello?" },
+  { k: "gram", t: "Grammatica e ortografia", d: "Gli errori disturbano la comprensione?" }
+];
+
+/* ---------- 5 - PRODUZIONE ORALE ---------- */
+
+var PARLATO = [
+  { titolo: "Prova 1 · Dialogo con l'esaminatore",
+    minuti: 3,
+    compito: "Vuoi iscriverti a un corso di cucina italiana. Parla con la segreteria: chiedi le informazioni che ti servono e iscriviti.",
+    spunti: ["quando e quanto dura", "quanto costa e come si paga", "che cosa serve portare", "se si può recuperare una lezione persa"],
+    insegnante: "Tu sei la segreteria. Rispondi normalmente per il primo minuto, poi tira fuori UNA novità dalla lista qui sotto e vedi se si adatta: all'esame questa è la parte che si valuta davvero, non le domande preparate.",
+    novita: ["Il corso che vuole è pieno: c'è solo quello della domenica mattina.",
+             "Il prezzo è aumentato di trenta euro da questo mese.",
+             "Serve un certificato di buona salute che non ha.",
+             "Il corso è in un'altra sede, fuori città, e non c'è il treno la domenica."],
+    cosaGuardo: "Non quante domande fa, ma cosa fa quando arriva la novità: chiede un'alternativa, propone qualcosa, protesta? O si ferma e aspetta che risolva tu?" },
+  { titolo: "Prova 2 · Monologo",
+    minuti: 2,
+    compito: "Scegli uno spunto e parla da sola per circa due minuti. Hai tre minuti per prepararti: puoi prendere appunti, non scrivere il discorso.",
+    spunti: ["Com'è una domenica tipica nel tuo paese, e in cosa è diversa da una domenica italiana",
+             "Una cosa che hai imparato da adulta: com'è andata",
+             "Meglio vivere in una grande città o in un paese piccolo: cosa ne pensi",
+             "Un oggetto che non butteresti via per niente al mondo"],
+    insegnante: "Fai partire il cronometro e non interrompere, nemmeno se sbaglia. Alla fine fai una domanda sola, che la costringa a motivare: «e perché?», «e tu l'avresti fatto?».",
+    cosaGuardo: "Se tiene i due minuti senza fermarsi, se motiva («perché», «secondo me», «dipende da») o se elenca, e se usa il passato per raccontare invece di restare al presente." }
 ];
 
 var CRIT_PARLATO = [
-  { k: "fluenza",     eti: "Scorrevolezza", aiuto: "va avanti, o si ferma a ogni parola?" },
-  { k: "correttezza", eti: "Correttezza",   aiuto: "tempi e accordi tengono quando il discorso si allunga?" },
-  { k: "lessico",     eti: "Lessico",       aiuto: "trova le parole o gira sempre intorno?" },
-  { k: "pronuncia",   eti: "Pronuncia",     aiuto: "si capisce senza sforzo? accento e doppie" },
-  { k: "interazione", eti: "Interazione",   aiuto: "risponde e rilancia, o aspetta solo la domanda dopo?" }
+  { k: "eff", t: "Efficacia comunicativa", d: "Ottiene quello che vuole? Si capisce?" },
+  { k: "int", t: "Interazione", d: "Risponde all'altro, rilancia, si adatta alle novità?", soloDialogo: true },
+  { k: "less", t: "Lessico", d: "Parole adeguate, o gira sempre intorno alle stesse?" },
+  { k: "gram", t: "Grammatica", d: "Controllo delle forme mentre parla, non da ferma." },
+  { k: "pron", t: "Pronuncia", d: "Accenti e vocali: si capisce senza sforzo?" }
 ];
 
-/* dove mandarla dopo, tema per tema */
-var RIMANDI = {
-  "passato":           { testo: "Racconta il passato, in aula",   href: "../passato/" },
-  "pronomi":           { testo: "Ne, ci e i pronomi",             href: "../../esercizi/pronomi/" },
-  "preposizioni":      { testo: "Di, da, a o niente",             href: "../../esercizi/aggettivo-infinito/" },
-  "congiuntivo":       { testo: "Le costruzioni del congiuntivo", href: "../congiuntivo/" },
-  "periodo ipotetico": { testo: "Le costruzioni del congiuntivo", href: "../congiuntivo/" },
-  "connettivi":        { testo: "Che mi racconti?",               href: "../chiacchiere/" }
-};
+/* ---------- punteggi, soglie, rimandi ---------- */
+
+var PARTI = [
+  { id: "p1", n: "Ascolto", sotto: "lo leggo io", minuti: 30, prove: ["ASC1", "ASC2", "ASC3"] },
+  { id: "p2", n: "Lettura", sotto: "comprensione", minuti: 50, prove: ["LET1", "LET2", "LET3"] },
+  { id: "p3", n: "Strutture", sotto: "analisi della lingua", minuti: 60, prove: ["STR1", "STR2", "STR3", "STR4"] },
+  { id: "p4", n: "Scrittura", sotto: "due prove", minuti: 70, prove: [] },
+  { id: "p5", n: "Parlato", sotto: "due prove", minuti: 10, prove: [] }
+];
+
+var SOGLIA_PARTE = 11;   /* su 20, come CILS: si deve passare ogni parte */
+var SOGLIA_TOT = 55;     /* su 100 */
 
 var FASCE = [
-  { min: 80, liv: "B1 solido, guarda verso il B2",
-    dillo: "Il B1 ce l'ha. Da qui conviene lavorare sulla lingua lunga: testi più articolati, opinioni da difendere, non più forme isolate." },
-  { min: 65, liv: "B1",
-    dillo: "È dentro il B1. Regge le prove e inciampa quando il discorso si allunga: è lì che va spinta adesso." },
-  { min: 50, liv: "B1 in costruzione",
-    dillo: "Ci siamo quasi. Capisce e si fa capire, ma le forme non tengono sotto pressione. Due o tre temi mirati e ci arriva." },
-  { min: 0,  liv: "ancora A2",
-    dillo: "Oggi il B1 non c'è ancora, ed è utile saperlo: meglio consolidare l'A2 che dare per buono un livello e lasciarla scoperta a un esame." }
+  { min: 90, t: "Molto oltre il B1", d: "Qui non c'è più niente da verificare: il livello è un altro.",
+    dillo: "Dille che è oltre il B1 e proponi di mirare al B2: la differenza non è più la grammatica, è la precisione e la lunghezza." },
+  { min: 75, t: "B1 pieno", d: "Il livello c'è, con margine.",
+    dillo: "Mostrale le due parti più basse: a questo punto il lavoro è di rifinitura, non di recupero." },
+  { min: 55, t: "B1 raggiunto", d: "Passa, ma controlla che nessuna parte sia sotto 11.",
+    dillo: "Il totale va, ma se una parte è sotto soglia all'esame non passerebbe. È lì che va messo il lavoro." },
+  { min: 40, t: "Vicino al B1", d: "Non ancora, ma manca poco.",
+    dillo: "Scegli una parte sola su cui lavorare, quella più bassa. Due mesi su una cosa valgono più di due settimane su tutto." },
+  { min: 0, t: "A2 consolidato", d: "Il B1 è un passo più avanti.",
+    dillo: "Non parlare di esame. Parla di cosa sa già fare e della distanza, in settimane di lavoro." }
 ];
+
+var RIMANDI = {
+  p1: [{ t: "Scusi, può ripetere?", h: "../capire/" }, { t: "Dove cade l'accento?", h: "../accento/" }],
+  p2: [{ t: "Parole A2", h: "/esercizi/parole-a2/" }, { t: "Palestra di grammatica", h: "/esercizi/palestra-grammatica/" }],
+  p3: [{ t: "Le costruzioni del congiuntivo", h: "../congiuntivo/" }, { t: "Preposizioni", h: "/esercizi/preposizioni/" },
+       { t: "Pronomi", h: "/esercizi/pronomi/" }, { t: "Pronomi combinati", h: "/esercizi/pronomi-combinati/" },
+       { t: "Passato prossimo", h: "/esercizi/passato-prossimo/" }],
+  p4: [{ t: "Racconta il passato", h: "../passato/" }, { t: "Il congiuntivo vivo", h: "../congiuntivo-vivo/" }],
+  p5: [{ t: "Che mi racconti?", h: "../chiacchiere/" }, { t: "Il colloquio", h: "../colloquio/" }, { t: "Fluenza", h: "../fluenza/" }]
+};
 
 
 (function(){
   "use strict";
-  var CHIAVE = "icf_testb1_v1";
-  var $ = function(id){ return document.getElementById(id); };
-  function esc(s){
-    return String(s == null ? "" : s)
-      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+
+  var CHIAVE = "icf_testb1_v2";
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+  /* ---------- registro delle prove ---------- */
+  var PROVE = {
+    ASC1:ASC1, ASC2:ASC2, ASC3:ASC3,
+    LET1:LET1, LET2:LET2, LET3:LET3,
+    STR1:STR1, STR2:STR2, STR3:STR3, STR4:STR4
+  };
+  Object.keys(PROVE).forEach(function(k){ PROVE[k].id = k; });
+
+  function nItem(p){
+    if(p.tipo === "ricostruisci") return p.g.length;
+    return p.item.length;
   }
 
-  var stato = {
-    lettura: {}, abbinamenti: {}, uso: {},
-    testi: ["", ""],
-    voti: { scr0:{}, scr1:{}, par:{} },
-    note: "",
-    chiuso: false
+  /* quante risposte giuste in una prova */
+  function giusteDi(p){
+    var r = S.risp[p.id] || [], n = 0;
+    for(var i = 0; i < nItem(p); i++){ if(corretto(p, i, r[i])) n++; }
+    return n;
+  }
+
+  function norm(s){
+    return String(s == null ? "" : s).toLowerCase()
+      .replace(/[àá]/g,"a").replace(/[èé]/g,"e").replace(/[ìí]/g,"i")
+      .replace(/[òó]/g,"o").replace(/[ùú]/g,"u")
+      .replace(/[.,;:!?]/g," ").replace(/\s+/g," ").trim();
+  }
+
+  function corretto(p, i, val){
+    if(val === undefined || val === null || val === "") return false;
+    switch(p.tipo){
+      case "mc": case "cloze-mc":
+        return val === p.item[i].g;
+      case "abbina":
+        return val === p.item[i].g;
+      case "ricostruisci":
+        return val === p.g[i];
+      case "scheda":
+        var t = norm(val);
+        return p.item[i].ok.some(function(k){ return t.indexOf(norm(k)) >= 0; });
+      case "verbi": case "preposizioni":
+        var v = norm(val);
+        return p.item[i].ok.some(function(k){ return norm(k) === v; });
+    }
+    return false;
+  }
+
+  /* ---------- stato ---------- */
+  var vuoto = {
+    risp:{}, corretta:{}, voti:{}, testi:{}, appunti:"", subito:false,
+    parte:"p1", letture:{}, cronoRest:{}
   };
+  var S = JSON.parse(JSON.stringify(vuoto));
 
   function salva(){
-    try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){}
+    try{ localStorage.setItem(CHIAVE, JSON.stringify(S)); }catch(e){}
   }
   function carica(){
     try{
       var g = localStorage.getItem(CHIAVE);
       if(g){
-        var d = JSON.parse(g);
-        if(d && d.voti) stato = d;
+        var o = JSON.parse(g);
+        Object.keys(vuoto).forEach(function(k){ if(o[k] !== undefined) S[k] = o[k]; });
       }
     }catch(e){}
   }
 
-  /* ---------------- schede ---------------- */
+  function setRisp(id, i, val){
+    if(!S.risp[id]) S.risp[id] = [];
+    S.risp[id][i] = val;
+    salva();
+  }
 
-  var SEZIONI = [
-    { id:"s1", eti:"Lettura" }, { id:"s2", eti:"Uso della lingua" },
-    { id:"s3", eti:"Scrittura" }, { id:"s4", eti:"Parlato" }, { id:"s5", eti:"Risultato" }
-  ];
+  /* ---------- linguette ---------- */
+  var ETI = PARTI.concat([{ id:"ris", n:"Risultato", sotto:"", minuti:0, prove:[] }]);
 
   function disegnaFasi(){
-    $("fasi").innerHTML = SEZIONI.map(function(s, i){
-      return "<button type='button' data-s='" + s.id + "'><span class='n'>" + (i+1) + "</span>" + s.eti + "</button>";
+    $("fasi").innerHTML = ETI.map(function(p, i){
+      return "<button type='button' data-p='" + p.id + "'><span class='n'>" +
+        (p.id === "ris" ? "&#9733;" : (i + 1)) + "</span>" + esc(p.n) + "</button>";
     }).join("");
-  }
-  function vai(id){
-    SEZIONI.forEach(function(s){
-      $(s.id).classList.toggle("on", s.id === id);
-    });
     Array.prototype.forEach.call($("fasi").children, function(b){
-      b.classList.toggle("on", b.getAttribute("data-s") === id);
+      b.addEventListener("click", function(){ vai(b.getAttribute("data-p")); });
     });
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  /* ---------------- 1 · lettura ---------------- */
-
-  function disegnaLettura(){
-    $("testo").innerHTML = "<h3>" + esc(TESTO.titolo) + "</h3>" +
-      TESTO.righe.map(function(r){ return "<p>" + esc(r) + "</p>"; }).join("");
-
-    $("domande").innerHTML = DOMANDE.map(function(q, i){
-      return "<div class='item'>" +
-        "<span class='num'>Domanda " + (i+1) + "</span>" +
-        "<div class='dom'>" + esc(q.d) + "</div>" +
-        "<div class='opz' data-tipo='let' data-i='" + i + "'>" +
-          q.o.map(function(o, j){
-            return "<button type='button' data-j='" + j + "'>" + esc(o) + "</button>";
-          }).join("") +
-        "</div></div>";
-    }).join("");
-
-    $("annunci").innerHTML = ANNUNCI.map(function(a){
-      return "<div class='ann'><b>" + esc(a.lettera) + "</b>" + esc(a.testo) + "</div>";
-    }).join("");
-
-    $("persone").innerHTML = PERSONE.map(function(p, i){
-      return "<div class='item'>" +
-        "<span class='num'>Persona " + (i+1) + "</span>" +
-        "<div class='dom'>" + esc(p.chi) + "</div>" +
-        "<div>" + esc(p.testo) + "</div>" +
-        "<div class='opz fila' data-tipo='abb' data-i='" + i + "' style='margin-top:9px'>" +
-          ANNUNCI.map(function(a){
-            return "<button type='button' data-j='" + esc(a.lettera) + "'>" + esc(a.lettera) + "</button>";
-          }).join("") +
-        "</div></div>";
-    }).join("");
+  function vai(id){
+    S.parte = id; salva();
+    ETI.forEach(function(p){ $(p.id).classList.toggle("on", p.id === id); });
+    Array.prototype.forEach.call($("fasi").children, function(b){
+      b.classList.toggle("on", b.getAttribute("data-p") === id);
+    });
+    fermaCrono();
+    mostraCrono();
+    if(id === "ris") disegnaRisultato();
+    segnaFatte();
+    window.scrollTo({ top:0, behavior:"smooth" });
   }
 
-  /* ---------------- 2 · uso della lingua ---------------- */
-
-  function disegnaUso(){
-    $("uso").innerHTML = USO.map(function(u, i){
-      return "<div class='item uso'>" +
-        "<span class='num'>Frase " + (i+1) + "</span>" +
-        "<div class='fr'>" + esc(u.f[0]) + "<span class='vuoto' id='v" + i + "'>&nbsp;</span>" + esc(u.f[1]) + "</div>" +
-        "<div class='opz fila' data-tipo='uso' data-i='" + i + "'>" +
-          u.o.map(function(o, j){
-            return "<button type='button' data-j='" + j + "'>" + esc(o) + "</button>";
-          }).join("") +
-        "</div></div>";
-    }).join("");
+  function segnaFatte(){
+    Array.prototype.forEach.call($("fasi").children, function(b){
+      var id = b.getAttribute("data-p");
+      var p = PARTI.filter(function(x){ return x.id === id; })[0];
+      var fatta = false;
+      if(p && p.prove.length){
+        fatta = p.prove.every(function(k){ return S.corretta[k]; });
+      } else if(id === "p4"){
+        fatta = SCRITTURA.every(function(_, i){ return votiMessi("s" + i, CRIT_SCRITTURA); });
+      } else if(id === "p5"){
+        fatta = PARLATO.every(function(_, i){ return votiMessi("o" + i, critPar(i)); });
+      }
+      b.classList.toggle("fatta", !!fatta);
+    });
   }
 
-  /* ---------------- 3 · scrittura ---------------- */
+  /* ---------- cronometro ---------- */
+  var cronoVia = null, cronoSec = 0, cronoId = null;
 
-  function parole(t){
-    var p = String(t || "").trim();
-    return p ? p.split(/\s+/).length : 0;
+  function minutiParte(){
+    var p = PARTI.filter(function(x){ return x.id === S.parte; })[0];
+    return p ? p.minuti : 0;
+  }
+  function mostraCrono(){
+    var m = minutiParte();
+    if(!m){ $("crono").textContent = "--:--"; $("bCrono").disabled = true; $("bZeroCrono").disabled = true; return; }
+    $("bCrono").disabled = false; $("bZeroCrono").disabled = false;
+    if(S.cronoRest[S.parte] === undefined) S.cronoRest[S.parte] = m * 60;
+    cronoSec = S.cronoRest[S.parte];
+    dipingiCrono();
+  }
+  function dipingiCrono(){
+    var mm = Math.floor(Math.max(0, cronoSec) / 60), ss = Math.max(0, cronoSec) % 60;
+    $("crono").textContent = (mm < 10 ? "0" : "") + mm + ":" + (ss < 10 ? "0" : "") + ss;
+    $("crono").classList.toggle("poco", cronoSec <= 120);
+  }
+  function fermaCrono(){
+    if(cronoId){ clearInterval(cronoId); cronoId = null; }
+    $("bCrono").textContent = "Avvia";
+  }
+  $("bCrono").addEventListener("click", function(){
+    if(cronoId){ fermaCrono(); S.cronoRest[S.parte] = cronoSec; salva(); return; }
+    $("bCrono").textContent = "Pausa";
+    cronoId = setInterval(function(){
+      cronoSec--; S.cronoRest[S.parte] = cronoSec;
+      dipingiCrono();
+      if(cronoSec <= 0){ fermaCrono(); salva(); }
+    }, 1000);
+  });
+  $("bZeroCrono").addEventListener("click", function(){
+    fermaCrono(); S.cronoRest[S.parte] = minutiParte() * 60; salva(); mostraCrono();
+  });
+
+  /* ================================================================
+     disegno delle prove
+     ================================================================ */
+
+  function intestazione(p){
+    return "<h3>" + esc(p.titolo) + "</h3><p class='istr'>" + esc(p.istruzioni) + "</p>";
+  }
+  function piede(p){
+    var fatta = S.corretta[p.id];
+    var tot = nItem(p);
+    return "<div class='riga'>" +
+      (fatta
+        ? "<span class='esito si'>Corretta: " + giusteDi(p) + " su " + tot + "</span>"
+        : "<button class='b pri' data-corr='" + p.id + "' type='button'>Correggi questa prova</button>" +
+          "<span class='conta' id='fatte-" + p.id + "'></span>") +
+      "</div>";
+  }
+  function contaFatte(p){
+    var el = $("fatte-" + p.id);
+    if(!el) return;
+    var r = S.risp[p.id] || [], n = 0;
+    for(var i = 0; i < nItem(p); i++){ if(r[i] !== undefined && r[i] !== null && r[i] !== "") n++; }
+    el.textContent = n + " su " + nItem(p) + " fatte";
+  }
+
+  /* --- scelta multipla --- */
+  function dMc(p){
+    var h = intestazione(p);
+    if(p.testo){
+      h += "<div class='testo'>" + (p.titolo ? "" : "") +
+        p.testo.map(function(t){ return "<p>" + esc(t) + "</p>"; }).join("") + "</div>";
+    }
+    h += "<ol class='dom'>" + p.item.map(function(q, i){
+      return "<li><div class='q'><span>" + esc(q.d) + "</span></div>" +
+        "<div class='opz' data-i='" + i + "'>" + q.o.map(function(o, j){
+          return "<button type='button' data-j='" + j + "'>" + esc(o) + "</button>";
+        }).join("") + "</div><div class='esito' data-es='" + i + "'></div></li>";
+    }).join("") + "</ol>";
+    return h + piede(p);
+  }
+
+  /* --- scheda da completare --- */
+  function dScheda(p){
+    var h = intestazione(p);
+    h += "<table class='scheda'>" + p.item.map(function(q, i){
+      return "<tr><td>" + esc(q.d) + "</td><td><input type='text' data-i='" + i +
+        "' autocomplete='off' spellcheck='false'><span class='esito' data-es='" + i + "'></span></td></tr>";
+    }).join("") + "</table>";
+    return h + piede(p);
+  }
+
+  /* --- abbinamento --- */
+  function dAbbina(p){
+    var h = intestazione(p);
+    h += "<div class='annunci'>" + p.annunci.map(function(a){
+      return "<div class='ann'><span class='k'>" + a.k + "</span><h4>" + esc(a.t) + "</h4>" +
+        "<p>" + esc(a.c) + "</p></div>";
+    }).join("") + "</div>";
+    var opz = "<option value=''>-</option>" + p.annunci.map(function(a){
+      return "<option value='" + a.k + "'>" + a.k + "</option>";
+    }).join("");
+    h += p.item.map(function(q, i){
+      return "<div class='pers'><div class='nome'>" + esc(q.p) + "</div>" +
+        "<div class='cit'>" + esc(q.c) + "</div>" +
+        "<label class='sw'>Attività: <select data-i='" + i + "'>" + opz + "</select></label> " +
+        "<span class='esito' data-es='" + i + "'></span></div>";
+    }).join("");
+    return h + piede(p);
+  }
+
+  /* --- ricostruzione del testo --- */
+  function dRic(p){
+    var h = intestazione(p);
+    h += "<div class='annunci'>" + p.frasi.map(function(f){
+      return "<div class='ann'><span class='k'>" + f.k + "</span><p style='margin-top:6px'>" + esc(f.t) + "</p></div>";
+    }).join("") + "</div>";
+    var opz = "<option value=''>-</option>" + p.frasi.map(function(f){
+      return "<option value='" + f.k + "'>" + f.k + "</option>";
+    }).join("");
+    h += "<div class='testo'>" + p.parti.map(function(b, i){
+      return "<p>" + esc(b.pre) + " <select data-i='" + i + "'>" + opz + "</select> " +
+        "<span class='esito' data-es='" + i + "' style='margin:0'></span> " + esc(b.post) + "</p>";
+    }).join("") + "</div>";
+    return h + piede(p);
+  }
+
+  /* --- cloze a scelta multipla --- */
+  function dClozeMc(p){
+    var h = intestazione(p), k = 0;
+    h += "<div class='testo cloze'>";
+    p.pezzi.forEach(function(z){
+      if(z === null){
+        var i = k++;
+        h += "<select data-i='" + i + "'><option value=''>-</option>" +
+          p.item[i].o.map(function(o, j){ return "<option value='" + j + "'>" + esc(o) + "</option>"; }).join("") +
+          "</select><span class='esito' data-es='" + i + "' style='margin:0'></span>";
+      } else {
+        h += esc(z);
+      }
+    });
+    h += "</div>";
+    return h + piede(p);
+  }
+
+  /* --- verbi e preposizioni (input dentro il testo) --- */
+  function dInput(p){
+    var h = intestazione(p), k = 0, lar = (p.tipo === "verbi" ? "150px" : "80px");
+    h += "<div class='testo cloze'>";
+    p.pezzi.forEach(function(z){
+      if(z === null){
+        var i = k++;
+        h += "<span class='gruppo-verbo'>" +
+          "<input type='text' data-i='" + i + "' style='width:" + lar + "' autocomplete='off' spellcheck='false'>" +
+          (p.item[i].inf ? "<span class='inf'>(" + esc(p.item[i].inf) + ")</span>" : "") +
+          "<span class='corretta' data-sol='" + i + "'></span></span>" +
+          "<span class='esito' data-es='" + i + "' style='margin:0'></span>";
+      } else {
+        h += esc(z);
+      }
+    });
+    h += "</div>";
+    return h + piede(p);
+  }
+
+  function disegnaProva(p){
+    switch(p.tipo){
+      case "mc": return dMc(p);
+      case "scheda": return dScheda(p);
+      case "abbina": return dAbbina(p);
+      case "ricostruisci": return dRic(p);
+      case "cloze-mc": return dClozeMc(p);
+      case "verbi": case "preposizioni": return dInput(p);
+    }
+    return "";
+  }
+
+  /* ---------- attacca gli ascoltatori a una prova ---------- */
+  function attacca(box, p){
+    /* bottoni a scelta multipla */
+    Array.prototype.forEach.call(box.querySelectorAll(".opz"), function(g){
+      var i = +g.getAttribute("data-i");
+      Array.prototype.forEach.call(g.children, function(b){
+        b.addEventListener("click", function(){
+          if(S.corretta[p.id]) return;
+          var j = +b.getAttribute("data-j");
+          setRisp(p.id, i, j);
+          Array.prototype.forEach.call(g.children, function(x){ x.classList.remove("sel"); });
+          b.classList.add("sel");
+          contaFatte(p);
+          if(S.subito) correggiItem(box, p, i);
+        });
+      });
+    });
+    /* select */
+    Array.prototype.forEach.call(box.querySelectorAll("select[data-i]"), function(s){
+      var i = +s.getAttribute("data-i");
+      s.addEventListener("change", function(){
+        if(S.corretta[p.id]) return;
+        var v = s.value === "" ? "" : (p.tipo === "cloze-mc" ? +s.value : s.value);
+        setRisp(p.id, i, v);
+        contaFatte(p);
+        if(S.subito) correggiItem(box, p, i);
+      });
+    });
+    /* input */
+    Array.prototype.forEach.call(box.querySelectorAll("input[type=text][data-i]"), function(n){
+      var i = +n.getAttribute("data-i");
+      n.addEventListener("input", function(){
+        if(S.corretta[p.id]) return;
+        setRisp(p.id, i, n.value);
+        contaFatte(p);
+      });
+      n.addEventListener("blur", function(){ if(S.subito && !S.corretta[p.id]) correggiItem(box, p, i); });
+    });
+    /* correggi */
+    var bc = box.querySelector("[data-corr]");
+    if(bc) bc.addEventListener("click", function(){
+      S.corretta[p.id] = true; salva();
+      ridisegnaParte(S.parte);
+      segnaFatte();
+    });
+    /* ripristina le risposte date */
+    ripristina(box, p);
+    contaFatte(p);
+    if(S.corretta[p.id]) for(var i = 0; i < nItem(p); i++) correggiItem(box, p, i, true);
+  }
+
+  function ripristina(box, p){
+    var r = S.risp[p.id] || [];
+    for(var i = 0; i < nItem(p); i++){
+      var v = r[i];
+      if(v === undefined || v === null || v === "") continue;
+      var g = box.querySelector(".opz[data-i='" + i + "']");
+      if(g && g.children[v]) g.children[v].classList.add("sel");
+      var s = box.querySelector("select[data-i='" + i + "']");
+      if(s) s.value = v;
+      var n = box.querySelector("input[type=text][data-i='" + i + "']");
+      if(n) n.value = v;
+    }
+  }
+
+  function correggiItem(box, p, i, mostraSol){
+    var r = (S.risp[p.id] || [])[i];
+    var ok = corretto(p, i, r);
+    var es = box.querySelector("[data-es='" + i + "']");
+    var g = box.querySelector(".opz[data-i='" + i + "']");
+    if(g){
+      Array.prototype.forEach.call(g.children, function(b, j){
+        b.classList.remove("ok", "no");
+        if(j === p.item[i].g) b.classList.add("ok");
+        else if(j === r) b.classList.add("no");
+      });
+    }
+    var s = box.querySelector("select[data-i='" + i + "']");
+    if(s){ s.classList.toggle("ok", ok); s.classList.toggle("no", !ok); if(mostraSol) s.disabled = true; }
+    var n = box.querySelector("input[type=text][data-i='" + i + "']");
+    if(n){ n.classList.toggle("ok", ok); n.classList.toggle("no", !ok); if(mostraSol) n.readOnly = true; }
+
+    if(es){
+      es.className = "esito " + (ok ? "si" : "no");
+      es.textContent = ok ? "✓" : "✗";
+      var extra = solDi(p, i);
+      if(!ok && extra) es.textContent += " " + extra;
+      else if(ok && p.tipo === "mc" && p.item[i].mira) es.textContent += " " + p.item[i].mira;
+    }
+    var sol = box.querySelector("[data-sol='" + i + "']");
+    if(sol && !ok) sol.textContent = p.item[i].ok[0];
+  }
+
+  /* la riga che compare dopo la correzione: dove stava la risposta */
+  function solDi(p, i){
+    switch(p.tipo){
+      case "mc": return p.item[i].mira || "";
+      case "cloze-mc": return p.item[i].o[p.item[i].g] + " · " + p.item[i].n;
+      case "scheda": return p.item[i].sol;
+      case "abbina": return p.item[i].g;
+      case "ricostruisci": return p.g[i];
+      case "verbi": case "preposizioni": return p.item[i].n;
+    }
+    return "";
+  }
+
+  /* ---------- disegno delle parti ---------- */
+  function ridisegnaParte(id){
+    if(id === "p1") disegnaGruppo("asc-box", ["ASC1", "ASC2", "ASC3"]);
+    if(id === "p2") disegnaGruppo("let-box", ["LET1", "LET2", "LET3"]);
+    if(id === "p3") disegnaGruppo("str-box", ["STR1", "STR2", "STR3", "STR4"]);
+    if(id === "p4") disegnaScrittura();
+    if(id === "p5") disegnaParlato();
+    if(id === "ris") disegnaRisultato();
+  }
+
+  function disegnaGruppo(boxId, chiavi){
+    var cont = $(boxId);
+    cont.innerHTML = chiavi.map(function(k){
+      return "<div class='prova' data-prova='" + k + "'></div>";
+    }).join("");
+    chiavi.forEach(function(k){
+      var p = PROVE[k];
+      var box = cont.querySelector("[data-prova='" + k + "']");
+      box.innerHTML = disegnaProva(p);
+      attacca(box, p);
+    });
+  }
+
+  /* ---------- scrittura ---------- */
+  function votiMessi(pref, crit){
+    return crit.every(function(c){ return S.voti[pref + "-" + c.k] !== undefined; });
+  }
+  function sommaVoti(pref, crit){
+    return crit.reduce(function(a, c){ return a + (S.voti[pref + "-" + c.k] || 0); }, 0);
+  }
+
+  function bloccoCriteri(pref, crit){
+    return "<div style='margin-top:14px'>" + crit.map(function(c){
+      return "<div class='crit'><div class='t'>" + esc(c.t) + "</div><div class='d'>" + esc(c.d) + "</div>" +
+        "<div class='voti' data-voti='" + pref + "-" + c.k + "'>" +
+        [1,2,3,4,5,6,7,8,9,10].map(function(v){
+          var on = S.voti[pref + "-" + c.k] === v ? " on" : "";
+          return "<button type='button' class='" + on.trim() + "' data-v='" + v + "'>" + v + "</button>";
+        }).join("") + "</div></div>";
+    }).join("") + "</div>";
+  }
+
+  function attaccaVoti(box){
+    Array.prototype.forEach.call(box.querySelectorAll("[data-voti]"), function(g){
+      var k = g.getAttribute("data-voti");
+      Array.prototype.forEach.call(g.children, function(b){
+        b.addEventListener("click", function(){
+          S.voti[k] = +b.getAttribute("data-v"); salva();
+          Array.prototype.forEach.call(g.children, function(x){ x.classList.remove("on"); });
+          b.classList.add("on");
+          segnaFatte();
+        });
+      });
+    });
   }
 
   function disegnaScrittura(){
-    $("scrittura").innerHTML = SCRITTURA.map(function(s, i){
-      return "<div class='panel'>" +
-        "<h3>" + esc(s.titolo) + "</h3>" +
-        "<div class='consegna' style='margin-top:8px'>" +
-          "<p>" + esc(s.consegna) + "</p>" +
-          "<span class='tempo'>Da " + s.min + " a " + s.max + " parole · " + s.minuti + " minuti</span>" +
-        "</div>" +
-        "<textarea data-t='" + i + "' placeholder='Scrivi qui…'></textarea>" +
-        "<div class='conta' id='conta" + i + "'></div>" +
-      "</div>";
+    var cont = $("scr-box");
+    cont.innerHTML = SCRITTURA.map(function(s, i){
+      return "<div class='prova'><h3>" + esc(s.titolo) + "</h3>" +
+        "<p class='istr'>" + esc(s.traccia) + "</p>" +
+        "<ul class='scaletta'>" + s.scaletta.map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" +
+        "<textarea data-t='" + i + "' placeholder='Da " + s.min + " a " + s.max + " parole.'></textarea>" +
+        "<div class='conta' id='conta-" + i + "'></div>" +
+        bloccoCriteri("s" + i, CRIT_SCRITTURA) + "</div>";
     }).join("");
 
     SCRITTURA.forEach(function(s, i){
-      var ta = document.querySelector("[data-t='" + i + "']");
-      ta.value = stato.testi[i] || "";
-      ta.addEventListener("input", function(){
-        stato.testi[i] = ta.value; contaParole(i); salva();
-      });
-      contaParole(i);
+      var ta = cont.querySelector("textarea[data-t='" + i + "']");
+      ta.value = S.testi["s" + i] || "";
+      function conta(){
+        var w = ta.value.trim() ? ta.value.trim().split(/\s+/).length : 0;
+        var el = $("conta-" + i);
+        var cls = "conta" + (w === 0 ? "" : (w < s.min ? " corto" : (w <= s.max ? " giusto" : "")));
+        el.className = cls;
+        el.innerHTML = "<b>" + w + "</b> parole · servono da " + s.min + " a " + s.max +
+          (w === 0 ? "" : (w < s.min ? " · ancora " + (s.min - w) : (w > s.max ? " · " + (w - s.max) + " di troppo" : " · ci siamo")));
+      }
+      ta.addEventListener("input", function(){ S.testi["s" + i] = ta.value; salva(); conta(); });
+      conta();
     });
+    attaccaVoti(cont);
   }
 
-  function contaParole(i){
-    var s = SCRITTURA[i], n = parole(stato.testi[i]), c = $("conta" + i);
-    var cl = "conta";
-    if(n === 0) cl = "conta";
-    else if(n < s.min) cl = "conta corto";
-    else if(n > s.max) cl = "conta lungo";
-    else cl = "conta giusto";
-    c.className = cl;
-    c.innerHTML = "<b>" + n + "</b> parole" +
-      (n === 0 ? "" : n < s.min ? " · ne mancano " + (s.min - n) :
-       n > s.max ? " · " + (n - s.max) + " di troppo" : " · lunghezza giusta");
+  /* ---------- parlato ---------- */
+  function critPar(i){
+    return CRIT_PARLATO.filter(function(c){ return !c.soloDialogo || i === 0; });
   }
-
-  /* ---------------- 4 · parlato ---------------- */
 
   function disegnaParlato(){
-    $("parlato").innerHTML = PARLATO.map(function(p, i){
-      return "<div class='panel'>" +
-        "<h3>" + esc(p.titolo) + "</h3>" +
-        "<div class='consegna' style='margin-top:8px'>" +
-          "<p>" + esc(p.consegna) + "</p>" +
-          "<span class='tempo'>Circa " + p.minuti + " minuti</span>" +
-        "</div>" +
-        "<div class='riga'>" +
-          "<button class='btn ghost' data-crono='" + i + "'>Parti</button>" +
-          "<span class='crono' id='cronoP" + i + "'>" + due(p.minuti) + ":00</span>" +
-        "</div>" +
-      "</div>";
+    var cont = $("par-box");
+    cont.innerHTML = PARLATO.map(function(p, i){
+      return "<div class='prova'><h3>" + esc(p.titolo) + "</h3>" +
+        "<p class='istr'>" + esc(p.compito) + "</p>" +
+        "<ul class='scaletta'>" + p.spunti.map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" +
+        "<div class='riga'><span class='crono' id='cp" + i + "'>0" + p.minuti + ":00</span>" +
+        "<button class='b pic' data-cp='" + i + "' type='button'>Avvia</button>" +
+        "<span class='conta'>circa " + p.minuti + " minuti</span></div>" +
+        bloccoCriteri("o" + i, critPar(i)) + "</div>";
     }).join("");
-  }
 
-  /* ---------------- cronometri ---------------- */
-
-  function due(n){ return (n < 10 ? "0" : "") + n; }
-  function mmss(sec){ return due(Math.floor(sec / 60)) + ":" + due(sec % 60); }
-
-  function cronometro(elId, minuti, btn){
-    var sec = minuti * 60, t = null, el = $(elId);
-    return function(){
-      if(t){ clearInterval(t); t = null; if(btn) btn.textContent = "Riprendi"; return; }
-      if(btn) btn.textContent = "Ferma";
-      t = setInterval(function(){
-        sec--;
-        el.textContent = mmss(Math.max(0, sec));
-        el.classList.toggle("poco", sec <= 60);
-        if(sec <= 0){ clearInterval(t); t = null; if(btn) btn.textContent = "Tempo finito"; }
-      }, 1000);
-    };
-  }
-
-  /* ---------------- 5 · griglie e risultato ---------------- */
-
-  function disegnaGriglie(){
-    function blocco(titolo, crit, chiave){
-      return "<h3 style='margin-top:16px'>" + esc(titolo) + "</h3>" +
-        crit.map(function(c){
-          return "<div class='crit'>" +
-            "<span class='che'>" + esc(c.eti) + "<span class='aiuto'>" + esc(c.aiuto) + "</span></span>" +
-            "<span class='grid5' data-voto='" + chiave + "' data-k='" + c.k + "'>" +
-              [0,1,2,3,4,5].map(function(v){
-                return "<button type='button' data-v='" + v + "'>" + v + "</button>";
-              }).join("") +
-            "</span></div>";
-        }).join("");
-    }
-    $("griglie").innerHTML =
-      blocco("Scrittura · " + SCRITTURA[0].titolo, CRIT_SCRITTURA, "scr0") +
-      blocco("Scrittura · " + SCRITTURA[1].titolo, CRIT_SCRITTURA, "scr1") +
-      blocco("Parlato · tutte e tre le prove", CRIT_PARLATO, "par");
-    rinfrescaVoti();
-  }
-
-  function rinfrescaVoti(){
-    Array.prototype.forEach.call(document.querySelectorAll("[data-voto]"), function(g){
-      var ch = g.getAttribute("data-voto"), k = g.getAttribute("data-k");
-      var v = stato.voti[ch] ? stato.voti[ch][k] : undefined;
-      Array.prototype.forEach.call(g.children, function(b){
-        b.classList.toggle("on", String(v) === b.getAttribute("data-v"));
+    PARLATO.forEach(function(p, i){
+      var sec = p.minuti * 60, via = null;
+      var b = cont.querySelector("[data-cp='" + i + "']"), sp = $("cp" + i);
+      function dip(){
+        var mm = Math.floor(Math.max(0, sec) / 60), ss = Math.max(0, sec) % 60;
+        sp.textContent = (mm < 10 ? "0" : "") + mm + ":" + (ss < 10 ? "0" : "") + ss;
+        sp.classList.toggle("poco", sec <= 20);
+      }
+      b.addEventListener("click", function(){
+        if(via){ clearInterval(via); via = null; b.textContent = "Riprendi"; return; }
+        b.textContent = "Pausa";
+        via = setInterval(function(){ sec--; dip(); if(sec <= 0){ clearInterval(via); via = null; b.textContent = "Avvia"; } }, 1000);
       });
+      dip();
     });
+    attaccaVoti(cont);
   }
 
-  function somma(ch, crit){
-    var t = 0;
-    crit.forEach(function(c){
-      var v = stato.voti[ch] ? stato.voti[ch][c.k] : undefined;
-      t += (typeof v === "number" ? v : 0);
-    });
-    return t;
-  }
-  function votiMessi(ch, crit){
-    return crit.every(function(c){ return typeof (stato.voti[ch] || {})[c.k] === "number"; });
-  }
-
-  function punteggi(){
-    var let1 = DOMANDE.reduce(function(t, q, i){ return t + (stato.lettura[i] === q.g ? 1 : 0); }, 0);
-    var let2 = PERSONE.reduce(function(t, p, i){ return t + (stato.abbinamenti[i] === p.g ? 1 : 0); }, 0);
-    var uso  = USO.reduce(function(t, u, i){ return t + (stato.uso[i] === u.g ? 1 : 0); }, 0);
-
-    var sMax = CRIT_SCRITTURA.length * 5 * 2;
-    var scr = somma("scr0", CRIT_SCRITTURA) + somma("scr1", CRIT_SCRITTURA);
-    var pMax = CRIT_PARLATO.length * 5;
-    var par = somma("par", CRIT_PARLATO);
-
-    var parti = [
-      { eti:"Lettura",          p: let1 + let2, max: DOMANDE.length + PERSONE.length, peso: 10 },
-      { eti:"Uso della lingua", p: uso,         max: USO.length,                      peso: 20 },
-      { eti:"Scrittura",        p: scr,         max: sMax,                            peso: 20 },
-      { eti:"Parlato",          p: par,         max: pMax,                            peso: 20 }
-    ];
-    var ottenuto = parti.reduce(function(t, x){ return t + (x.p / x.max) * x.peso; }, 0);
-    var totale = parti.reduce(function(t, x){ return t + x.peso; }, 0);
-    return { parti: parti, perc: Math.round((ottenuto / totale) * 100) };
-  }
-
-  function temiDeboli(){
-    var per = {};
-    USO.forEach(function(u, i){
-      if(!per[u.tema]) per[u.tema] = { giuste:0, tot:0 };
-      per[u.tema].tot++;
-      if(stato.uso[i] === u.g) per[u.tema].giuste++;
-    });
-    return Object.keys(per).filter(function(t){
-      return per[t].giuste < per[t].tot;
-    }).map(function(t){
-      return { tema: t, giuste: per[t].giuste, tot: per[t].tot };
-    }).sort(function(a, b){
-      return (a.giuste / a.tot) - (b.giuste / b.tot);
-    });
-  }
-
-  function disegnaEsito(){
-    var r = punteggi();
-    var fascia = FASCE.filter(function(f){ return r.perc >= f.min; })[0];
-
-    var mancano = [];
-    if(!votiMessi("scr0", CRIT_SCRITTURA) || !votiMessi("scr1", CRIT_SCRITTURA)) mancano.push("scrittura");
-    if(!votiMessi("par", CRIT_PARLATO)) mancano.push("parlato");
-
-    var h = "";
-    if(mancano.length){
-      h += "<div class='avviso'><b>Occhio.</b> Mancano i voti di " + mancano.join(" e ") +
-           ": il livello qui sotto conta quelle parti come zero, quindi è più basso del vero.</div>";
+  /* ---------- risultato ---------- */
+  function puntiParte(id){
+    if(id === "p4"){
+      var mx = SCRITTURA.length * CRIT_SCRITTURA.length * 10, so = 0, pieno = true;
+      SCRITTURA.forEach(function(_, i){
+        if(!votiMessi("s" + i, CRIT_SCRITTURA)) pieno = false;
+        so += sommaVoti("s" + i, CRIT_SCRITTURA);
+      });
+      return { pieno:pieno, p:mx ? so / mx * 20 : 0, det:so + " su " + mx };
     }
+    if(id === "p5"){
+      var mx2 = 0, so2 = 0, pieno2 = true;
+      PARLATO.forEach(function(_, i){
+        var c = critPar(i);
+        mx2 += c.length * 10;
+        if(!votiMessi("o" + i, c)) pieno2 = false;
+        so2 += sommaVoti("o" + i, c);
+      });
+      return { pieno:pieno2, p:mx2 ? so2 / mx2 * 20 : 0, det:so2 + " su " + mx2 };
+    }
+    var pa = PARTI.filter(function(x){ return x.id === id; })[0];
+    var tot = 0, gi = 0, pieno3 = true;
+    pa.prove.forEach(function(k){
+      var p = PROVE[k];
+      tot += nItem(p); gi += giusteDi(p);
+      if(!S.corretta[k]) pieno3 = false;
+    });
+    return { pieno:pieno3, p:tot ? gi / tot * 20 : 0, det:gi + " su " + tot + " item" };
+  }
 
-    h += "<div class='verdetto'>" +
-      "<p class='liv'>" + esc(fascia.liv) + "</p>" +
-      "<p class='perc'>" + r.perc + " su 100</p>" +
-      "<p style='margin:10px 0 0'>" + esc(fascia.dillo) + "</p>" +
-      "<div class='barre'>" +
-        r.parti.map(function(x){
-          var q = Math.round((x.p / x.max) * 100);
-          return "<div class='barra" + (q < 60 ? " bassa" : "") + "'>" +
-            "<div class='cap'><span>" + esc(x.eti) + "</span><span>" + x.p + " / " + x.max + "</span></div>" +
-            "<div class='vas'><i style='width:" + q + "%'></i></div></div>";
-        }).join("") +
-      "</div></div>";
+  function disegnaRisultato(){
+    var righe = "", tot = 0, tuttePiene = true, sotto = [];
+    PARTI.forEach(function(pa){
+      var r = puntiParte(pa.id);
+      tot += r.p;
+      if(!r.pieno) tuttePiene = false;
+      var passa = r.p >= SOGLIA_PARTE;
+      if(r.pieno && !passa) sotto.push(pa.n);
+      righe += "<tr><td><b>" + esc(pa.n) + "</b><br><span class='conta'>" + esc(r.det) + "</span></td>" +
+        "<td class='num'>" + (r.pieno ? r.p.toFixed(1) : "–") + " / 20</td>" +
+        "<td><span class='pass " + (!r.pieno ? "vuoto" : (passa ? "si" : "no")) + "'>" +
+        (!r.pieno ? "da finire" : (passa ? "superata" : "sotto 11")) + "</span></td></tr>";
+    });
 
-    var deboli = temiDeboli();
-    h += "<div class='panel'><h3>Da riprendere</h3>";
-    if(!deboli.length){
-      h += "<p class='sotto' style='margin:0'>Nessun tema scoperto nell'uso della lingua: le venti frasi sono tutte giuste.</p>";
+    var h = "<h3 style='margin:18px 0 10px'>Il risultato, parte per parte</h3>" +
+      "<table class='tabella'><tr><th>Parte</th><th>Punti</th><th>Soglia 11/20</th></tr>" + righe +
+      "<tr><td><b>Totale</b></td><td class='num'>" + tot.toFixed(1) + " / 100</td>" +
+      "<td><span class='pass " + (tuttePiene ? (tot >= SOGLIA_TOT ? "si" : "no") : "vuoto") + "'>soglia " + SOGLIA_TOT + "</span></td></tr></table>";
+
+    if(!tuttePiene){
+      h += "<div class='avviso'><b>Il test non è finito.</b> Le parti senza punteggio non sono state " +
+        "corrette o non hanno tutti i voti. Il totale qui sopra conta zero per quelle parti, quindi " +
+        "non è ancora un risultato.</div>";
     } else {
-      h += "<ul class='ripassa'>" + deboli.map(function(d){
-        var r2 = RIMANDI[d.tema];
-        return "<li><b>" + esc(d.tema) + "</b> · " + d.giuste + " su " + d.tot +
-          (r2 ? " · <a href='" + esc(r2.href) + "'>" + esc(r2.testo) + "</a>" : "") + "</li>";
-      }).join("") + "</ul>";
+      var f = FASCE.filter(function(x){ return tot >= x.min; })[0];
+      h += "<div class='fascia'><div class='big'>" + tot.toFixed(0) + "<span style='font-size:20px'>/100</span></div>" +
+        "<h3>" + esc(f.t) + "</h3><p>" + esc(f.d) + "</p></div>";
+      if(sotto.length){
+        h += "<div class='avviso'><b>Attenzione.</b> " +
+          (sotto.length === 1 ? "La parte <b>" + esc(sotto[0]) + "</b> è" : "Le parti <b>" + sotto.map(esc).join("</b>, <b>") + "</b> sono") +
+          " sotto 11 su 20. All'esame questo basta a non superare, anche con un totale alto.</div>";
+      } else {
+        h += "<div class='ok-box'><b>Nessuna parte sotto soglia.</b> Il profilo è regolare, non c'è un buco isolato.</div>";
+      }
     }
-    h += "</div>";
 
-    /* le risposte sbagliate, una per una */
-    var righe = [];
-    DOMANDE.forEach(function(q, i){
-      if(stato.lettura[i] !== q.g){
-        righe.push("<li>Lettura, domanda " + (i+1) + " · <b>" + esc(q.o[q.g]) + "</b>" +
-          (typeof stato.lettura[i] === "number" ? " <span class='sua'>(ha detto: " + esc(q.o[stato.lettura[i]]) + ")</span>" : " <span class='sua'>(senza risposta)</span>") + "</li>");
-      }
+    h += "<h3 style='margin:22px 0 8px'>Dove lavorare</h3>";
+    PARTI.forEach(function(pa){
+      var r = puntiParte(pa.id);
+      if(r.pieno && r.p >= 14) return;
+      var lk = RIMANDI[pa.id] || [];
+      h += "<div class='prova' style='padding:14px'><b>" + esc(pa.n) + "</b> " +
+        "<span class='conta'>" + (r.pieno ? r.p.toFixed(1) + "/20" : "da finire") + "</span>" +
+        "<div class='rimandi'>" + lk.map(function(x){
+          return "<a href='" + x.h + "'>" + esc(x.t) + "</a>";
+        }).join("") + "</div></div>";
     });
-    PERSONE.forEach(function(p, i){
-      if(stato.abbinamenti[i] !== p.g){
-        righe.push("<li>Lettura, " + esc(p.chi) + " · <b>" + esc(p.g) + "</b>" +
-          (stato.abbinamenti[i] ? " <span class='sua'>(ha detto: " + esc(stato.abbinamenti[i]) + ")</span>" : " <span class='sua'>(senza risposta)</span>") + "</li>");
-      }
-    });
-    USO.forEach(function(u, i){
-      if(stato.uso[i] !== u.g){
-        righe.push("<li>Frase " + (i+1) + " · " + esc(u.f[0]) + "<b>" + esc(u.o[u.g]) + "</b>" + esc(u.f[1]) +
-          (typeof stato.uso[i] === "number" ? " <span class='sua'>(ha detto: " + esc(u.o[stato.uso[i]]) + ")</span>" : " <span class='sua'>(senza risposta)</span>") + "</li>");
-      }
-    });
-    h += "<div class='panel'><h3>Le risposte sbagliate</h3>" +
-      (righe.length ? "<ul class='sbagliate'>" + righe.join("") + "</ul>"
-                    : "<p class='sotto' style='margin:0'>Nessuna. Tutte giuste.</p>") + "</div>";
 
-    $("esito").innerHTML = h;
+    if(S.appunti && S.appunti.trim()){
+      h += "<h3 style='margin:22px 0 8px'>Gli appunti della lezione</h3>" +
+        "<div class='prova' style='white-space:pre-wrap'>" + esc(S.appunti) + "</div>";
+    }
+
+    $("ris-box").innerHTML = h;
   }
 
-  /* ---------------- la finestra dell'insegnante ---------------- */
+  /* ================================================================
+     finestra insegnante
+     ================================================================ */
+  var fin = null;
 
-  var gobbo = null;
-
-  function scriviGobbo(corpo){
-    if(!gobbo || gobbo.closed) return;
-    gobbo.document.open();
-    gobbo.document.write(
-      "<!doctype html><html lang='it'><head><meta charset='utf-8'>" +
+  function htmlFinestra(){
+    var h = "<!doctype html><html lang='it'><head><meta charset='utf-8'>" +
       "<meta name='viewport' content='width=device-width, initial-scale=1'>" +
       "<title>Test B1 · insegnante</title><style>" +
-      "body{margin:0;padding:22px;background:#16233F;color:#F7F4EC;" +
-      "font-family:Georgia,serif;font-size:17px;line-height:1.55}" +
-      "h1{font-family:system-ui,sans-serif;font-size:1.3rem;margin:0 0 4px;letter-spacing:-.01em}" +
-      "h2{font-family:system-ui,sans-serif;font-size:1.05rem;margin:22px 0 6px;color:#E8A33D}" +
-      ".av{color:#D9BC8C;font-size:.9rem;margin:0 0 16px}" +
-      "ul{padding-left:20px;margin:6px 0}li{margin:6px 0}" +
-      ".sol{background:rgba(255,255,255,.07);border-radius:12px;padding:12px 14px;margin:8px 0}" +
-      ".sol b{color:#E8A33D}" +
-      "table{border-collapse:collapse;width:100%;margin:6px 0}" +
-      "td,th{text-align:left;padding:5px 8px;border-bottom:1px solid rgba(255,255,255,.15);font-size:.95rem}" +
-      "th{font-family:system-ui,sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#D9BC8C}" +
-      "</style></head><body>" + corpo + "</body></html>"
-    );
-    gobbo.document.close();
-  }
+      "body{margin:0;background:#16233F;color:#F7F4EC;font:16px/1.55 Georgia,serif}" +
+      ".w{max-width:720px;margin:0 auto;padding:22px 18px 70px}" +
+      "h1{font:800 24px Helvetica,Arial,sans-serif;margin:0 0 4px}" +
+      "h2{font:700 15px Helvetica,Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#E8A33D;margin:26px 0 8px;border-top:1px solid rgba(247,244,236,.2);padding-top:14px}" +
+      "h3{font:700 17px Helvetica,Arial,sans-serif;margin:16px 0 6px}" +
+      ".sub{color:#D9BC8C;margin:0 0 6px}" +
+      ".box{background:rgba(247,244,236,.07);border-radius:12px;padding:13px 15px;margin:10px 0}" +
+      ".cop{font-size:19px;line-height:1.7}" +
+      ".cop p{margin:0 0 9px}" +
+      ".sol{color:#9FD3B8;font:600 15px Helvetica,Arial,sans-serif}" +
+      ".att{color:#F0A6A2;font:italic 15px Georgia,serif;margin:6px 0 0}" +
+      "ol{padding-left:22px} li{margin:7px 0}" +
+      "b{color:#E8A33D}" +
+      "button{font:600 13px Helvetica,Arial,sans-serif;background:#E8A33D;color:#16233F;border:0;border-radius:999px;padding:6px 13px;cursor:pointer;margin:4px 6px 0 0}" +
+      "button.off{background:rgba(247,244,236,.2);color:#F7F4EC}" +
+      ".tag{font:700 11px Helvetica,Arial,sans-serif;background:#C4312B;border-radius:5px;padding:2px 7px;margin-left:6px}" +
+      "</style></head><body><div class='w'>" +
+      "<h1>Test B1 · solo per te</h1>" +
+      "<p class='sub'>Tienila su un altro schermo o su un'altra finestra. Non condividere questa.</p>";
 
-  function corpoGobbo(){
-    var h = "<h1>Finestra dell'insegnante</h1>" +
-      "<p class='av'>Questa finestra non va condivisa. Se condividi lo schermo intero, chiudila.</p>";
+    /* ascolto */
+    h += "<h2>1 · Ascolto · i copioni</h2>";
 
-    h += "<h2>Parlato · cosa chiedere</h2>";
-    PARLATO.forEach(function(p){
-      h += "<div class='sol'><b>" + esc(p.titolo) + "</b><ul>" +
-        p.insegnante.map(function(r){ return "<li>" + esc(r) + "</li>"; }).join("") + "</ul></div>";
+    h += "<h3>" + ASC1.titolo + "</h3><p class='att'>" + ASC1.perFabio + "</p>";
+    ASC1.item.forEach(function(q, i){
+      h += "<div class='box'><b>Messaggio " + (i + 1) + "</b>" +
+        "<button data-let='a1-" + i + "' class='off'>letto 0/2</button>" +
+        "<div class='cop'><p>" + q.copione + "</p></div>" +
+        "<div class='sol'>Risposta: " + q.o[q.g] + "</div>" +
+        "<p class='att'>Mira: " + q.mira + "</p></div>";
     });
 
-    h += "<h2>Scrittura · cosa guardare</h2>";
-    SCRITTURA.forEach(function(s){
-      h += "<div class='sol'><b>" + esc(s.titolo) + "</b><br>" + esc(s.cosaGuardo) + "</div>";
-    });
+    h += "<h3>" + ASC2.titolo + "</h3><p class='att'>" + ASC2.perFabio + "</p>" +
+      "<div class='box'><button data-let='a2' class='off'>letto 0/2</button>" +
+      "<div class='cop'>" + ASC2.copione.map(function(r){ return "<p>" + r + "</p>"; }).join("") + "</div>" +
+      "<div class='sol'>" + ASC2.item.map(function(q, i){
+        return (i + 1) + ". " + q.sol;
+      }).join("<br>") + "</div></div>";
 
-    h += "<h2>Griglie</h2><div class='sol'>" +
-      "<b>Scrittura</b><ul>" + CRIT_SCRITTURA.map(function(c){
-        return "<li>" + esc(c.eti) + " · " + esc(c.aiuto) + "</li>"; }).join("") + "</ul>" +
-      "<b>Parlato</b><ul>" + CRIT_PARLATO.map(function(c){
-        return "<li>" + esc(c.eti) + " · " + esc(c.aiuto) + "</li>"; }).join("") + "</ul>" +
-      "<br>0 = non ci siamo · 3 = da B1 · 5 = oltre il B1</div>";
+    h += "<h3>" + ASC3.titolo + "</h3><p class='att'>" + ASC3.perFabio + "</p>" +
+      "<div class='box'><button data-let='a3' class='off'>letto 0/2</button>" +
+      "<div class='cop'>" + ASC3.copione.map(function(r){ return "<p>" + r + "</p>"; }).join("") + "</div>" +
+      "<div class='sol'>" + ASC3.item.map(function(q, i){
+        return (i + 1) + ". " + q.o[q.g];
+      }).join("<br>") + "</div></div>";
 
-    h += "<h2>Soluzioni · lettura</h2><table><tr><th>Domanda</th><th>Giusta</th></tr>" +
-      DOMANDE.map(function(q, i){
-        return "<tr><td>" + (i+1) + "</td><td>" + esc(q.o[q.g]) + "</td></tr>"; }).join("") +
-      PERSONE.map(function(p){
-        return "<tr><td>" + esc(p.chi) + "</td><td>" + esc(p.g) + "</td></tr>"; }).join("") +
-      "</table>";
-
-    h += "<h2>Soluzioni · uso della lingua</h2><table><tr><th>#</th><th>Frase</th><th>Tema</th></tr>" +
-      USO.map(function(u, i){
-        return "<tr><td>" + (i+1) + "</td><td>" + esc(u.f[0]) + "<b>" + esc(u.o[u.g]) + "</b>" + esc(u.f[1]) +
-               "</td><td>" + esc(u.tema) + "</td></tr>"; }).join("") + "</table>";
-
-    return h;
-  }
-
-  /* ---------------- avanzamento ---------------- */
-
-  function rinfrescaAvanz(){
-    var l = Object.keys(stato.lettura).length + Object.keys(stato.abbinamenti).length;
-    $("avanz1").innerHTML = "Risposte date: <b>" + l + "</b> su " + (DOMANDE.length + PERSONE.length);
-    var u = Object.keys(stato.uso).length;
-    $("avanz2").innerHTML = "Risposte date: <b>" + u + "</b> su " + USO.length;
-  }
-
-  function rinfrescaScelte(){
-    Array.prototype.forEach.call(document.querySelectorAll(".opz"), function(g){
-      var tipo = g.getAttribute("data-tipo"), i = Number(g.getAttribute("data-i"));
-      var v = tipo === "let" ? stato.lettura[i] : tipo === "abb" ? stato.abbinamenti[i] : stato.uso[i];
-      Array.prototype.forEach.call(g.children, function(b){
-        var j = b.getAttribute("data-j");
-        b.classList.toggle("scelta", String(v) === j);
-      });
-      if(tipo === "uso"){
-        var box = $("v" + i);
-        if(box){
-          var pieno = typeof v === "number";
-          box.textContent = pieno ? USO[i].o[v] : " ";
-          box.classList.toggle("pieno", pieno);
-        }
+    /* soluzioni */
+    h += "<h2>2 e 3 · le soluzioni</h2>";
+    [LET1, LET2, LET3, STR1, STR2, STR3, STR4].forEach(function(p){
+      h += "<h3>" + p.titolo + "</h3><p class='att'>" + p.perFabio + "</p><div class='box'><ol>";
+      var n = nItem(p);
+      for(var i = 0; i < n; i++){
+        var s = "";
+        if(p.tipo === "mc") s = p.item[i].o[p.item[i].g] + " <i>(" + (p.item[i].mira || "") + ")</i>";
+        else if(p.tipo === "abbina") s = p.item[i].g + " · " + p.item[i].p;
+        else if(p.tipo === "ricostruisci") s = p.g[i];
+        else if(p.tipo === "cloze-mc") s = p.item[i].o[p.item[i].g] + " <i>(" + p.item[i].n + ")</i>";
+        else s = p.item[i].ok.join(" / ") + " <i>(" + p.item[i].n + ")</i>";
+        h += "<li>" + s + "</li>";
       }
+      h += "</ol></div>";
     });
+
+    /* scrittura */
+    h += "<h2>4 · Scrittura · cosa guardo</h2>";
+    SCRITTURA.forEach(function(s){
+      h += "<h3>" + s.titolo + "</h3><div class='box'>" + s.cosaGuardo + "</div>";
+    });
+    h += "<div class='box'><b>I quattro criteri</b><ol>" + CRIT_SCRITTURA.map(function(c){
+      return "<li><b>" + c.t + "</b> — " + c.d + "</li>";
+    }).join("") + "</ol></div>";
+
+    /* parlato */
+    h += "<h2>5 · Parlato · il tuo ruolo</h2>";
+    PARLATO.forEach(function(p){
+      h += "<h3>" + p.titolo + "</h3><div class='box'>" + p.insegnante +
+        (p.novita ? "<ol>" + p.novita.map(function(n){ return "<li>" + n + "</li>"; }).join("") + "</ol>" : "") +
+        "<p class='att'>Cosa guardo: " + p.cosaGuardo + "</p></div>";
+    });
+    h += "<div class='box'><b>I criteri del parlato</b><ol>" + CRIT_PARLATO.map(function(c){
+      return "<li><b>" + c.t + "</b> — " + c.d + (c.soloDialogo ? "<span class='tag'>solo dialogo</span>" : "") + "</li>";
+    }).join("") + "</ol></div>";
+
+    /* fasce */
+    h += "<h2>Alla fine, come glielo dici</h2>";
+    FASCE.forEach(function(f){
+      h += "<div class='box'><b>" + f.min + " e oltre · " + f.t + "</b><br>" + f.dillo + "</div>";
+    });
+
+    h += "<script>(function(){var c={};document.addEventListener('click',function(e){" +
+      "var b=e.target.closest('[data-let]');if(!b)return;var k=b.getAttribute('data-let');" +
+      "c[k]=((c[k]||0)+1)%3;b.textContent='letto '+c[k]+'/2';" +
+      "b.className=c[k]>=2?'':'off';});})();<\/script>";
+
+    return h + "</div></body></html>";
   }
 
-  /* ---------------- i collegamenti ---------------- */
-
-  document.addEventListener("click", function(ev){
-    var t = ev.target;
-    if(!t.closest) return;
-
-    var fase = t.closest("#fasi button");
-    if(fase){ vai(fase.getAttribute("data-s")); return; }
-
-    var opz = t.closest(".opz button");
-    if(opz){
-      var g = opz.parentNode;
-      var tipo = g.getAttribute("data-tipo"), i = Number(g.getAttribute("data-i"));
-      var j = opz.getAttribute("data-j");
-      if(tipo === "let") stato.lettura[i] = Number(j);
-      else if(tipo === "abb") stato.abbinamenti[i] = j;
-      else stato.uso[i] = Number(j);
-      rinfrescaScelte(); rinfrescaAvanz(); salva();
+  $("bFin").addEventListener("click", function(){
+    if(fin && !fin.closed){ fin.focus(); return; }
+    fin = window.open("", "testb1ins", "width=760,height=900");
+    if(!fin){
+      alert("Il browser ha bloccato la finestra. Permetti i pop-up per questa pagina: i copioni dell'ascolto stanno là.");
       return;
     }
-
-    var voto = t.closest(".grid5 button");
-    if(voto){
-      var gg = voto.parentNode;
-      var ch = gg.getAttribute("data-voto"), k = gg.getAttribute("data-k");
-      if(!stato.voti[ch]) stato.voti[ch] = {};
-      stato.voti[ch][k] = Number(voto.getAttribute("data-v"));
-      rinfrescaVoti(); salva();
-      return;
-    }
-
-    var cr = t.closest("[data-crono]");
-    if(cr && !cr.__via){
-      var idx = Number(cr.getAttribute("data-crono"));
-      cr.__via = cronometro("cronoP" + idx, PARLATO[idx].minuti, cr);
-      cr.__via();
-      return;
-    }
+    fin.document.open();
+    fin.document.write(htmlFinestra());
+    fin.document.close();
   });
 
-  $("apriGobbo").addEventListener("click", function(){
-    gobbo = window.open("", "testb1_insegnante", "width=620,height=820");
-    if(!gobbo){
-      alert("Il browser ha bloccato la finestra. Permetti le finestre pop-up per questo sito e riprova.");
-      return;
-    }
-    scriviGobbo(corpoGobbo());
-    gobbo.focus();
-  });
+  $("bGuida").addEventListener("click", function(){ $("guida").showModal(); });
+  $("guida").addEventListener("click", function(e){ if(e.target === $("guida")) $("guida").close(); });
 
-  $("chiudi").addEventListener("click", function(){
-    stato.chiuso = true;
-    disegnaEsito();
-    $("riapri").hidden = false;
-    salva();
-    $("esito").scrollIntoView({ behavior: "smooth" });
-  });
-  $("riapri").addEventListener("click", function(){
-    stato.chiuso = false;
-    $("esito").innerHTML = "";
-    $("riapri").hidden = true;
-    salva();
-  });
-
-  $("note").addEventListener("input", function(){ stato.note = $("note").value; salva(); });
-
-  $("azzera").addEventListener("click", function(){
-    if(!confirm("Azzero risposte, voti e appunti?")) return;
-    stato = { lettura:{}, abbinamenti:{}, uso:{}, testi:["",""], voti:{ scr0:{}, scr1:{}, par:{} }, note:"", chiuso:false };
+  /* ---------- appunti, stampa, azzera ---------- */
+  $("appunti").addEventListener("input", function(){ S.appunti = $("appunti").value; salva(); });
+  $("bStampa").addEventListener("click", function(){ vai("ris"); setTimeout(function(){ window.print(); }, 120); });
+  $("bZero").addEventListener("click", function(){
+    if(!confirm("Azzero tutto: risposte, voti, testi scritti e appunti. Procedo?")) return;
+    S = JSON.parse(JSON.stringify(vuoto));
     try{ localStorage.removeItem(CHIAVE); }catch(e){}
-    $("esito").innerHTML = "";
-    $("riapri").hidden = true;
-    $("note").value = "";
-    SCRITTURA.forEach(function(s, i){
-      document.querySelector("[data-t='" + i + "']").value = "";
-      contaParole(i);
-    });
-    rinfrescaScelte(); rinfrescaVoti(); rinfrescaAvanz();
+    $("appunti").value = "";
+    $("swSubito").checked = false;
+    ["p1", "p2", "p3", "p4", "p5"].forEach(ridisegnaParte);
+    vai("p1");
   });
 
-  /* ---------------- via ---------------- */
+  $("swSubito").addEventListener("change", function(){
+    S.subito = $("swSubito").checked; salva();
+  });
 
+  /* ---------- tastiera ---------- */
+  document.addEventListener("keydown", function(e){
+    if(/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+    if(e.key === "f"){ e.preventDefault(); $("guida").showModal(); return; }
+    var i = ETI.map(function(p){ return p.id; }).indexOf(S.parte);
+    if(e.key === "ArrowRight" && i < ETI.length - 1){ e.preventDefault(); vai(ETI[i + 1].id); }
+    if(e.key === "ArrowLeft" && i > 0){ e.preventDefault(); vai(ETI[i - 1].id); }
+  });
+
+  /* ---------- avvio ---------- */
   carica();
   disegnaFasi();
-  disegnaLettura();
-  disegnaUso();
-  disegnaScrittura();
-  disegnaParlato();
-  disegnaGriglie();
-  $("note").value = stato.note || "";
-  rinfrescaScelte();
-  rinfrescaAvanz();
-  vai("s1");
-
-  $("via1").addEventListener("click", cronometro("crono1", 20, $("via1")));
-  $("via2").addEventListener("click", cronometro("crono2", 15, $("via2")));
-
-  if(stato.chiuso) disegnaEsito();
+  $("appunti").value = S.appunti || "";
+  $("swSubito").checked = !!S.subito;
+  ["p1", "p2", "p3", "p4", "p5"].forEach(ridisegnaParte);
+  vai(S.parte && $(S.parte) ? S.parte : "p1");
 })();
 </script>
 </body>
