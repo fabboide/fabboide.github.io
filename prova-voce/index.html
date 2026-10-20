@@ -11,73 +11,79 @@
   --rule:#DFD8C7; --saffron:#E8A33D; --rosso:#C4312B; --verde:#2E5E4E;
 }
 *{box-sizing:border-box}
-body{
-  margin:0; background:var(--paper); color:var(--ink);
-  font:17px/1.55 Georgia,"Times New Roman",serif; padding:0 0 70px;
-}
-.w{max-width:680px; margin:0 auto; padding:0 20px}
-header{padding:26px 0 8px}
+body{margin:0; background:var(--paper); color:var(--ink); font:17px/1.55 Georgia,serif; padding:0 0 70px}
+.w{max-width:700px; margin:0 auto; padding:0 20px}
+.nastro{height:6px; background:linear-gradient(90deg,var(--verde) 0 20%,var(--saffron) 20% 40%,var(--rosso) 40% 60%,#D9BC8C 60% 80%,var(--verde) 80% 100%)}
+header{padding:24px 0 6px}
 h1{font:800 clamp(26px,6vw,36px)/1.1 "Helvetica Neue",Arial,sans-serif; margin:0 0 6px; letter-spacing:-.02em}
 .sub{color:var(--ink-soft); margin:0 0 4px}
-.nastro{height:6px; background:linear-gradient(90deg,var(--verde) 0 20%,var(--saffron) 20% 40%,var(--rosso) 40% 60%,#D9BC8C 60% 80%,var(--verde) 80% 100%)}
 h2{font:700 13px/1 "Helvetica Neue",Arial,sans-serif; letter-spacing:.1em; text-transform:uppercase;
-   color:var(--ink-soft); margin:28px 0 10px; border-top:1px solid var(--rule); padding-top:14px}
+   color:var(--ink-soft); margin:26px 0 10px; border-top:1px solid var(--rule); padding-top:14px}
 .riquadro{background:var(--paper-2); border:1px solid var(--rule); border-radius:14px; padding:16px; margin:12px 0}
-.prova{display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-top:1px dashed var(--rule)}
-.prova:first-of-type{border-top:0}
-.prova .num{
-  flex:0 0 auto; width:30px; height:30px; border-radius:50%; background:var(--ink); color:#fff;
-  display:grid; place-items:center; font:700 14px "Helvetica Neue",Arial,sans-serif; margin-top:2px;
+
+/* stato del motore, sempre in vista */
+.stato{
+  position:sticky; top:0; z-index:5; background:var(--ink); color:#fff;
+  border-radius:0 0 14px 14px; padding:11px 16px; margin:0 0 6px;
+  font:600 14px/1.4 "Helvetica Neue",Arial,sans-serif; display:flex; gap:16px; flex-wrap:wrap;
 }
-.prova .corpo{flex:1 1 auto; min-width:0}
-.prova h3{margin:0 0 2px; font:700 17px "Helvetica Neue",Arial,sans-serif}
-.prova p{margin:0 0 9px; color:var(--ink-soft); font-size:15px}
+.stato b{font-weight:800}
+.stato .sp{color:#9FD3B8} .stato .male{color:#F0A6A2}
+
 button{font:inherit; cursor:pointer}
-.b{
-  font:600 15px "Helvetica Neue",Arial,sans-serif; border:2px solid var(--ink);
-  background:var(--ink); color:var(--paper-2); border-radius:999px; padding:9px 18px;
-}
+.b{font:600 15px "Helvetica Neue",Arial,sans-serif; border:2px solid var(--ink);
+   background:var(--ink); color:var(--paper-2); border-radius:999px; padding:9px 18px}
 .b.chiaro{background:var(--paper-2); color:var(--ink)}
 .b:active{transform:scale(.97)}
-.esito{
-  font:600 13px "Helvetica Neue",Arial,sans-serif; margin-left:10px; white-space:nowrap;
-}
+.sblocca{display:block; width:100%; background:var(--saffron); color:var(--ink); border:0;
+  border-radius:14px; padding:15px; font:800 17px "Helvetica Neue",Arial,sans-serif; margin:6px 0 2px}
+.grande{display:block; width:100%; text-align:center; font:700 17px "Helvetica Neue",Arial,sans-serif;
+  background:var(--rosso); color:#fff; border:0; border-radius:14px; padding:15px; margin-top:12px}
+
+.prova{display:flex; gap:13px; align-items:flex-start; padding:13px 0; border-top:1px dashed var(--rule)}
+.prova:first-of-type{border-top:0}
+.prova .num{flex:0 0 auto; width:28px; height:28px; border-radius:50%; background:var(--ink); color:#fff;
+  display:grid; place-items:center; font:700 13px "Helvetica Neue",Arial,sans-serif; margin-top:2px}
+.prova .corpo{flex:1 1 auto; min-width:0}
+.prova h3{margin:0 0 2px; font:700 16px "Helvetica Neue",Arial,sans-serif}
+.prova p{margin:0 0 8px; color:var(--ink-soft); font-size:14.5px}
+.esito{font:600 13px "Helvetica Neue",Arial,sans-serif}
 .esito.si{color:var(--verde)} .esito.no{color:var(--rosso)} .esito.att{color:var(--ink-soft)}
-select{font:inherit; padding:7px 9px; border:1px solid var(--rule); border-radius:9px; background:var(--paper-2); max-width:100%}
-.log{
-  font:13px/1.5 ui-monospace,Menlo,Consolas,monospace; background:var(--ink); color:#E6E9F0;
-  border-radius:12px; padding:13px 15px; margin-top:10px; white-space:pre-wrap; word-break:break-word;
-  max-height:260px; overflow:auto;
-}
-.grande{
-  display:block; width:100%; text-align:center; font:700 18px "Helvetica Neue",Arial,sans-serif;
-  background:var(--rosso); color:#fff; border:0; border-radius:14px; padding:16px; margin-top:12px;
-}
-.avviso{background:#FBEDEC; border:1px solid var(--rosso); border-radius:12px; padding:13px 15px; margin:14px 0}
-.ok{background:#EAF2EE; border:1px solid var(--verde); border-radius:12px; padding:13px 15px; margin:14px 0}
-code{background:rgba(22,35,63,.07); padding:1px 5px; border-radius:5px; font-size:.9em}
 .riga{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+select{font:inherit; padding:7px 9px; border:1px solid var(--rule); border-radius:9px; background:var(--paper-2); max-width:100%}
+.log{font:12.5px/1.5 ui-monospace,Menlo,Consolas,monospace; background:var(--ink); color:#E6E9F0;
+  border-radius:12px; padding:13px 15px; margin-top:10px; white-space:pre-wrap; word-break:break-word;
+  max-height:300px; overflow:auto}
+.ua{font:12px/1.4 ui-monospace,Menlo,monospace; color:var(--ink-soft); word-break:break-all}
+.avviso{background:#FBEDEC; border:1px solid var(--rosso); border-radius:12px; padding:13px 15px; margin:12px 0}
+.ok{background:#EAF2EE; border:1px solid var(--verde); border-radius:12px; padding:13px 15px; margin:12px 0}
+code{background:rgba(22,35,63,.07); padding:1px 5px; border-radius:5px; font-size:.9em}
 </style>
 </head>
 <body>
 <div class="nastro"></div>
-<div class="w">
 
+<div class="stato" id="stato">motore: …</div>
+
+<div class="w">
 <header>
   <h1>Prova della voce</h1>
-  <p class="sub">Cinque modi diversi di chiedere al browser di parlare italiano. Premili uno per uno
-  e guarda quale <b>senti davvero</b>, con le orecchie, non quello che dice lo schermo.</p>
+  <p class="sub">La striscia scura qui sopra dice che cosa sta facendo il motore vocale, in tempo reale.
+  Guarda quella mentre premi i pulsanti: se <b>in coda</b> sale e <b>parla</b> resta su no, il browser
+  accetta le frasi e non ne fa partire nessuna.</p>
 </header>
+
+<button class="sblocca" id="bSblocca">Sblocca il motore e prova subito</button>
+<p class="sub" style="font-size:14.5px;margin-top:6px">Svuota la coda, chiama <code>resume()</code> e
+dice una parola sola. È il rimedio che funziona più spesso: provalo per primo.</p>
 
 <div class="riquadro" id="sistema"></div>
 
-<h2>Le cinque prove</h2>
+<h2>Le prove, dalla più semplice alla più testarda</h2>
 <div class="riquadro" id="prove"></div>
 
 <h2>Una voce precisa</h2>
 <div class="riquadro">
-  <p class="sub" style="margin-bottom:10px">Se nessuna delle cinque si sente, prova a scegliere
-  una voce a mano: a volte è solo quella predefinita a essere muta.</p>
   <div class="riga">
     <select id="scelta"></select>
     <button class="b" id="bScelta">Fai parlare questa</button>
@@ -90,13 +96,13 @@ code{background:rgba(22,35,63,.07); padding:1px 5px; border-radius:5px; font-siz
 <div id="verdetto"></div>
 
 <h2>Il registro</h2>
-<p class="sub">Copialo e mandamelo: qui c'è tutto quello che mi serve.</p>
+<p class="sub">Premi «copia tutto» e mandamelo: dentro c'è anche il browser che stai usando, che è la
+cosa che mi manca.</p>
 <div class="log" id="log">in attesa...</div>
 <div class="riga" style="margin-top:10px">
-  <button class="b chiaro" id="bCopia">Copia il registro</button>
+  <button class="b" id="bCopia">Copia tutto</button>
   <button class="b chiaro" id="bPulisci">Pulisci</button>
 </div>
-
 </div>
 
 <script>
@@ -104,6 +110,13 @@ code{background:rgba(22,35,63,.07); padding:1px 5px; border-radius:5px; font-siz
   "use strict";
   var $ = function(id){ return document.getElementById(id); };
   var righe = [];
+  var SS = window.speechSynthesis;
+  var UT = window.SpeechSynthesisUtterance;
+
+  /* il garbage collector di alcuni browser si porta via l'utterance prima che
+     parli: tenerne un riferimento qui dentro e' uno dei rimedi noti */
+  var TENUTE = [];
+  var ERRORI = [];
 
   function nota(t){
     righe.push(new Date().toLocaleTimeString() + "  " + t);
@@ -111,163 +124,222 @@ code{background:rgba(22,35,63,.07); padding:1px 5px; border-radius:5px; font-siz
     $("log").scrollTop = $("log").scrollHeight;
   }
 
-  var SS = window.speechSynthesis;
-  var UT = window.SpeechSynthesisUtterance;
+  function stato(){
+    if(!SS) return { p:false, q:false, s:false, testo:"speechSynthesis non c'e'" };
+    var o = { p: !!SS.paused, q: !!SS.pending, s: !!SS.speaking };
+    o.testo = "in pausa: " + (o.p ? "SI" : "no") + " · in coda: " + (o.q ? "SI" : "no") +
+              " · parla: " + (o.s ? "SI" : "no");
+    return o;
+  }
 
-  /* ---------- che cosa dice il sistema ---------- */
+  function dipingiStato(){
+    var o = stato();
+    $("stato").innerHTML =
+      "<span>motore vocale</span>" +
+      "<span>in pausa <b class='" + (o.p ? "male" : "sp") + "'>" + (o.p ? "SI" : "no") + "</b></span>" +
+      "<span>in coda <b class='" + (o.q ? "male" : "sp") + "'>" + (o.q ? "SI" : "no") + "</b></span>" +
+      "<span>parla <b class='" + (o.s ? "sp" : "male") + "'>" + (o.s ? "SI" : "no") + "</b></span>";
+  }
+  setInterval(dipingiStato, 400); dipingiStato();
+
+  /* guardiano: se resta appeso in coda senza parlare, prova a risvegliarlo */
+  var appeso = 0;
+  setInterval(function(){
+    if(!SS) return;
+    if(SS.pending && !SS.speaking){
+      appeso++;
+      if(appeso % 8 === 0){
+        try{ SS.resume(); nota("guardiano: era fermo in coda da " + (appeso/2) + "s, ho chiamato resume()"); }catch(e){}
+      }
+    } else { appeso = 0; }
+  }, 500);
+
   function vociIT(){
-    try{ return (SS.getVoices() || []).filter(function(v){ return /^it/i.test(v.lang || ""); }); }
-    catch(e){ return []; }
+    try{
+      var t = (SS.getVoices() || []).filter(function(v){ return /^it/i.test(v.lang || ""); });
+      t.sort(function(a,b){ return (b.localService?1:0)-(a.localService?1:0); });
+      return t;
+    }catch(e){ return []; }
   }
 
   function disegnaSistema(){
     var tutte = [];
     try{ tutte = SS ? (SS.getVoices() || []) : []; }catch(e){}
     var it = vociIT();
-    var h = "<b>Il tuo browser</b><br>" +
-      "speechSynthesis: " + (SS ? "c'è" : "<b style='color:#C4312B'>non c'è</b>") + "<br>" +
-      "voci in tutto: " + tutte.length + " · voci italiane: <b>" + it.length + "</b><br>" +
-      "pagina servita da: <code>" + location.protocol + "</code><br>" +
-      "<span style='color:#4A5670;font-size:14px'>" + navigator.userAgent + "</span>";
+    var h = "<b>Il browser che stai usando</b><div class='ua'>" + navigator.userAgent + "</div>" +
+      "<div style='margin-top:9px'>speechSynthesis: " + (SS ? "c'e'" : "<b style='color:#C4312B'>non c'e'</b>") +
+      " · voci in tutto: " + tutte.length + " · italiane: <b>" + it.length + "</b>" +
+      " · pagina da <code>" + location.protocol + "</code></div>";
     if(it.length){
-      h += "<br><br><b>Le voci italiane</b><br>" + it.map(function(v){
-        return "· " + v.name + " (" + v.lang + ")" + (v.localService ? " installata" : " di rete") +
-               (v["default"] ? " · predefinita" : "");
-      }).join("<br>");
+      h += "<div style='margin-top:9px'><b>Voci italiane</b><br>" + it.map(function(v){
+        return "· " + v.name + (v.localService ? " (installata)" : " (di rete)") + (v["default"] ? " · predefinita" : "");
+      }).join("<br>") + "</div>";
     }
     $("sistema").innerHTML = h;
-
     var sel = $("scelta");
-    sel.innerHTML = it.map(function(v, i){
-      return "<option value='" + i + "'>" + v.name + " — " + v.lang + "</option>";
-    }).join("") || "<option>nessuna voce italiana</option>";
+    sel.innerHTML = it.map(function(v,i){ return "<option value='"+i+"'>"+v.name+"</option>"; }).join("")
+                    || "<option>nessuna voce italiana</option>";
   }
 
   if(SS){
     disegnaSistema();
     try{ SS.onvoiceschanged = function(){ nota("il browser ha caricato l'elenco delle voci"); disegnaSistema(); }; }catch(e){}
-    setTimeout(disegnaSistema, 500);
-    setTimeout(disegnaSistema, 1500);
-  } else {
-    disegnaSistema();
-    nota("questo browser non ha speechSynthesis: la voce non può funzionare qui");
-  }
+    setTimeout(disegnaSistema, 500); setTimeout(disegnaSistema, 1500);
+  } else { disegnaSistema(); nota("questo browser non ha speechSynthesis"); }
 
-  /* ---------- le cinque strategie ---------- */
+  /* ---------- le strategie ---------- */
+  var FRASE = "Buongiorno, io sono la voce del sito.";
+
   var PROVE = [
-    { t:"Nuda e cruda",
-      d:"Nessuna impostazione: solo il testo. Se si sente questa, il problema è una delle impostazioni che metto io.",
-      f:function(u){ /* niente */ } },
+    { t:"Nuda e cruda", d:"Solo il testo, nessuna impostazione.",
+      fai:function(){ var u=new UT(FRASE); return u; } },
 
-    { t:"Solo la lingua",
-      d:"Imposto <code>lang = it-IT</code> ma non scelgo la voce: la sceglie il browser.",
-      f:function(u){ u.lang = "it-IT"; } },
+    { t:"Solo la lingua", d:"<code>lang = it-IT</code>, la voce la sceglie il browser.",
+      fai:function(){ var u=new UT(FRASE); u.lang="it-IT"; return u; } },
 
-    { t:"Lingua e voce, con lo stop prima",
-      d:"È esattamente quello che fa il sito adesso: <code>cancel()</code> e poi <code>speak()</code>.",
-      f:function(u){ u.lang = "it-IT"; u.voice = vociIT()[0] || null; u.rate = 0.95; },
-      stop:true },
+    { t:"Lingua e voce", d:"Come faceva il sito: lingua, voce italiana, velocita' 0,95.",
+      fai:function(){ var u=new UT(FRASE); u.lang="it-IT"; u.voice=vociIT()[0]||null; u.rate=0.95; return u; } },
 
-    { t:"Lingua e voce, senza lo stop",
-      d:"Uguale alla 3 ma senza <code>cancel()</code> prima. Su alcuni Mac è il <code>cancel()</code> che ammutolisce tutto.",
-      f:function(u){ u.lang = "it-IT"; u.voice = vociIT()[0] || null; u.rate = 0.95; } },
+    { t:"Sveglia prima, poi parla",
+      d:"Chiamo <code>resume()</code> <b>prima</b> di <code>speak()</code>. Se il motore era in pausa, e' questo che lo sblocca.",
+      prima:function(){ try{ SS.resume(); }catch(e){} },
+      fai:function(){ var u=new UT(FRASE); u.lang="it-IT"; u.voice=vociIT()[0]||null; return u; } },
 
-    { t:"Con la spinta",
-      d:"Come la 4, ma subito dopo chiamo <code>resume()</code>: serve quando il motore resta in pausa.",
-      f:function(u){ u.lang = "it-IT"; u.voice = vociIT()[0] || null; u.rate = 0.95; },
-      spinta:true }
+    { t:"Svuota la coda e riparti",
+      d:"<code>cancel()</code>, mezzo secondo di pausa, poi parla. Serve quando la coda e' rimasta intasata.",
+      prima:function(){ try{ SS.cancel(); }catch(e){} },
+      ritardo:500,
+      fai:function(){ var u=new UT(FRASE); u.lang="it-IT"; u.voice=vociIT()[0]||null; return u; } },
+
+    { t:"Con il riferimento tenuto",
+      d:"Tengo l'oggetto in una variabile che non sparisce: su alcuni browser e' il garbage collector che se lo porta via prima che parli.",
+      tieni:true,
+      fai:function(){ var u=new UT(FRASE); u.lang="it-IT"; u.voice=vociIT()[0]||null; return u; } },
+
+    { t:"Con il riscaldamento",
+      d:"Prima faccio dire una sillaba cortissima, poi la frase vera. A volte la prima si perde e la seconda parte.",
+      prima:function(){ try{ var w=new UT("a"); w.lang="it-IT"; TENUTE.push(w); SS.speak(w); }catch(e){} },
+      ritardo:400, tieni:true,
+      fai:function(){ var u=new UT(FRASE); u.lang="it-IT"; u.voice=vociIT()[0]||null; return u; } },
+
+    { t:"Una parola sola",
+      d:"Solo <i>ciao</i>. Le frasi lunghe hanno piu' modi di incepparsi.",
+      tieni:true,
+      fai:function(){ var u=new UT("ciao"); u.lang="it-IT"; u.voice=vociIT()[0]||null; return u; } }
   ];
 
-  function parla(cfg, etichettaEl, nome){
+  function lancia(cfg, el, nome){
     if(!SS || !UT){ nota(nome + ": impossibile, manca speechSynthesis"); return; }
-    etichettaEl.className = "esito att";
-    etichettaEl.textContent = "provo...";
-
-    var sentito = { start:false, end:false, err:null };
-    try{
-      if(cfg.stop) SS.cancel();
-      var u = new UT("Buongiorno, io sono la voce del sito.");
-      cfg.f(u);
-      u.onstart = function(){ sentito.start = true; nota(nome + ": il browser dice che HA COMINCIATO a parlare"); };
-      u.onend   = function(){ sentito.end = true; };
-      u.onerror = function(e){ sentito.err = (e && e.error) || "errore"; nota(nome + ": ERRORE -> " + sentito.err); };
-      SS.speak(u);
-      if(cfg.spinta){ setTimeout(function(){ try{ SS.resume(); }catch(e){} }, 60); }
-      nota(nome + ": inviata. voce = " + (u.voice ? u.voice.name : "quella del browser") +
-           " · lang = " + (u.lang || "non impostata") + " · rate = " + u.rate);
-    }catch(e){
-      nota(nome + ": eccezione -> " + e.message);
-      etichettaEl.className = "esito no";
-      etichettaEl.textContent = "è andata in errore";
-      return;
-    }
+    el.className = "esito att"; el.textContent = "provo...";
+    try{ if(cfg.prima) cfg.prima(); }catch(e){ nota(nome + ": il passo preparatorio e' fallito -> " + e.message); }
 
     setTimeout(function(){
-      if(sentito.err){
-        etichettaEl.className = "esito no";
-        etichettaEl.textContent = "errore: " + sentito.err;
-      } else if(sentito.start){
-        etichettaEl.className = "esito si";
-        etichettaEl.textContent = "partita — l'hai sentita?";
-      } else {
-        etichettaEl.className = "esito no";
-        etichettaEl.textContent = "non è nemmeno partita";
-        nota(nome + ": nessun evento in 2,5 secondi. Il browser non ha nemmeno provato.");
+      var ev = { start:false, end:false, err:null };
+      var u;
+      try{
+        u = cfg.fai();
+        u.onstart = function(){ ev.start = true; nota(nome + ": HA COMINCIATO a parlare"); };
+        u.onend   = function(){ ev.end = true; nota(nome + ": ha finito"); };
+        u.onerror = function(e){ ev.err = (e && e.error) || "errore"; ERRORI.push(nome + " -> " + ev.err); nota(nome + ": ERRORE -> " + ev.err); };
+        if(cfg.tieni) TENUTE.push(u);
+        SS.speak(u);
+        nota(nome + ": inviata · voce " + (u.voice ? u.voice.name : "del browser") +
+             " · stato subito dopo -> " + stato().testo);
+      }catch(e){
+        nota(nome + ": eccezione -> " + e.message);
+        el.className = "esito no"; el.textContent = "errore"; return;
       }
-    }, 2500);
+
+      setTimeout(function(){
+        var s = stato();
+        if(ev.err){ el.className="esito no"; el.textContent = "errore: " + ev.err; }
+        else if(ev.start){ el.className="esito si"; el.textContent = "È PARTITA — l'hai sentita?"; }
+        else if(s.q){ el.className="esito no"; el.textContent = "ferma in coda, non parte"; nota(nome + ": dopo 3s e' ancora IN CODA. " + s.testo); }
+        else { el.className="esito no"; el.textContent = "sparita senza dire niente"; nota(nome + ": dopo 3s nessun evento e la coda e' vuota. " + s.testo); }
+      }, 3000);
+    }, cfg.ritardo || 0);
   }
 
-  $("prove").innerHTML = PROVE.map(function(p, i){
-    return "<div class='prova'><div class='num'>" + (i+1) + "</div><div class='corpo'>" +
-      "<h3>" + p.t + "</h3><p>" + p.d + "</p>" +
-      "<div class='riga'><button class='b' data-p='" + i + "'>Fai parlare</button>" +
-      "<span class='esito att' id='e" + i + "'></span></div></div></div>";
+  $("prove").innerHTML = PROVE.map(function(p,i){
+    return "<div class='prova'><div class='num'>"+(i+1)+"</div><div class='corpo'>" +
+      "<h3>"+p.t+"</h3><p>"+p.d+"</p>" +
+      "<div class='riga'><button class='b' data-p='"+i+"'>Fai parlare</button>" +
+      "<span class='esito att' id='e"+i+"'></span></div></div></div>";
   }).join("");
 
   Array.prototype.forEach.call(document.querySelectorAll("[data-p]"), function(b){
     b.addEventListener("click", function(){
       var i = +b.getAttribute("data-p");
-      parla(PROVE[i], $("e" + i), "prova " + (i+1) + " (" + PROVE[i].t + ")");
+      lancia(PROVE[i], $("e"+i), "prova " + (i+1) + " (" + PROVE[i].t + ")");
     });
   });
 
+  $("bSblocca").addEventListener("click", function(){
+    nota("--- sblocco: stato prima -> " + stato().testo);
+    try{ SS.cancel(); }catch(e){}
+    try{ SS.resume(); }catch(e){}
+    setTimeout(function(){
+      lancia({ tieni:true, fai:function(){ var u=new UT("ciao"); u.lang="it-IT"; var v=vociIT()[0]; if(v) u.voice=v; return u; } },
+             $("e0"), "sblocco");
+    }, 350);
+  });
+
   $("bScelta").addEventListener("click", function(){
-    var it = vociIT(), i = parseInt($("scelta").value, 10);
-    if(!it.length || isNaN(i)){ nota("voce scelta: non ce n'è nessuna da scegliere"); return; }
-    parla({ f:function(u){ u.lang = "it-IT"; u.voice = it[i]; u.rate = 0.95; } },
-          $("esitoScelta"), "voce scelta a mano (" + it[i].name + ")");
+    var it = vociIT(), i = parseInt($("scelta").value,10);
+    if(!it.length || isNaN(i)){ nota("nessuna voce da scegliere"); return; }
+    lancia({ tieni:true, fai:function(){ var u=new UT(FRASE); u.lang="it-IT"; u.voice=it[i]; return u; } },
+           $("esitoScelta"), "voce a mano (" + it[i].name + ")");
   });
 
   $("bNiente").addEventListener("click", function(){
-    var tutte = [];
-    try{ tutte = SS ? (SS.getVoices() || []) : []; }catch(e){}
-    nota("FABIO DICE: non ho sentito niente in nessuna prova");
-    var h = "<div class='avviso'><b>Allora non è il sito.</b> Se il browser dice «partita» e tu non " +
-      "senti niente, il suono si ferma prima delle casse. Le tre cose da guardare, in quest'ordine:" +
-      "<ol style='margin:8px 0 0 0; padding-left:20px'>" +
-      "<li>la <b>scheda del browser è muta</b>: tasto destro sulla linguetta, «riattiva audio sito»</li>" +
-      "<li>l'<b>uscita audio del Mac</b>: se è su una cassa Bluetooth spenta, il browser parla nel vuoto</li>" +
-      "<li>il <b>volume di sistema</b> e il mixer per app</li>" +
-      "</ol></div>" +
-      "<div class='riquadro'>Se invece il browser dice «non è nemmeno partita», allora è lui: " +
-      "mandami il registro qui sotto e ci penso io.</div>";
+    var s = stato();
+    nota("FABIO DICE: non ho sentito niente. Stato in questo momento -> " + s.testo);
+    var h;
+    if(ERRORI.length){
+      h = "<div class='avviso'><b>Il browser ha risposto con un errore, " + ERRORI.length + " volte.</b> " +
+          "Il piu' frequente e' <code>synthesis-failed</code>, e vuol dire che il motore vocale del " +
+          "sistema non ha potuto produrre l'audio: non e' il sito, e' lo strato sotto." +
+          "<ol style='margin:8px 0 0;padding-left:20px'>" +
+          "<li><b>chiudi il browser del tutto</b> con cmd+Q e riaprilo</li>" +
+          "<li>Impostazioni di sistema &rarr; Accessibilita' &rarr; <b>Contenuto parlato</b>: metti la " +
+          "voce su italiano e premi ascolta. Se non parla nemmeno li', il browser non c'entra</li>" +
+          "<li>se la voce italiana risulta <b>da scaricare</b>, scaricala: finche' manca il file, il " +
+          "browser la elenca ma non puo' usarla</li>" +
+          "</ol></div>" +
+          "<div class='riquadro'>Gli errori esatti:<br>" + ERRORI.join("<br>") + "</div>";
+    } else if(s.q){
+      h = "<div class='avviso'><b>Il motore e' bloccato, non e' muto.</b> Le frasi entrano in coda e " +
+          "non partono mai. In ordine di fatica:<ol style='margin:8px 0 0;padding-left:20px'>" +
+          "<li><b>chiudi il browser del tutto</b> con cmd+Q e riaprilo</li>" +
+          "<li>prova <b>un altro browser</b>: se li' parla, e' lo stato di quello di prima</li>" +
+          "<li>Impostazioni di sistema &rarr; Accessibilita' &rarr; <b>Contenuto parlato</b>: fai dire " +
+          "qualcosa al Mac da li'. Se non parla nemmeno il sistema, il problema e' sotto al browser</li>" +
+          "</ol></div>";
+    } else {
+      h = "<div class='avviso'><b>Allora il suono si ferma dopo il browser.</b> " +
+          "Le frasi partono e finiscono regolarmente, quindi il browser sta parlando: non lo senti tu." +
+          "<ol style='margin:8px 0 0;padding-left:20px'>" +
+          "<li>la <b>scheda e' muta</b>: tasto destro sulla linguetta, riattiva l'audio</li>" +
+          "<li>l'<b>uscita audio</b> del Mac e' su una cassa spenta o su un altro dispositivo</li>" +
+          "<li>il <b>volume</b>, e il mixer per singola app</li>" +
+          "</ol></div>";
+    }
     $("verdetto").innerHTML = h;
   });
 
   $("bCopia").addEventListener("click", function(){
-    var testo = $("sistema").innerText + "\n\n--- registro ---\n" + righe.join("\n");
+    var testo = "=== sistema ===\n" + $("sistema").innerText +
+                "\n\n=== stato adesso ===\n" + stato().testo +
+                "\n\n=== registro ===\n" + righe.join("\n");
     try{
       navigator.clipboard.writeText(testo);
       $("bCopia").textContent = "copiato";
-      setTimeout(function(){ $("bCopia").textContent = "Copia il registro"; }, 1500);
-    }catch(e){
-      nota("non riesco a copiare da solo: seleziona il testo a mano");
-    }
+      setTimeout(function(){ $("bCopia").textContent = "Copia tutto"; }, 1500);
+    }catch(e){ nota("non riesco a copiare: seleziona a mano"); }
   });
 
-  $("bPulisci").addEventListener("click", function(){ righe = []; $("log").textContent = "pulito."; });
-
-  nota("pagina pronta");
+  $("bPulisci").addEventListener("click", function(){ righe=[]; $("log").textContent="pulito."; });
+  nota("pagina pronta · " + stato().testo);
 })();
 </script>
 </body>
