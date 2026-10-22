@@ -60,12 +60,12 @@ var SALDI = {
 
   "luis-q4m": {
     nome: "Luis",
-    pacchetto: 4,
+    pacchetto: 8,
     inizio: "2026-09-28",
     fatte_prima: 0,
     fatte: 3,
     prenotate: 1,
-    rimaste: 0,
+    rimaste: 4,
     passate: [
       "2026-10-09T17:00:00+02:00",
       "2026-10-12T16:30:00+02:00",
