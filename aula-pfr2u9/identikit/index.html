@@ -79,6 +79,7 @@ h1 em{ font-style:normal; color:var(--accent); }
 .chip[aria-pressed="true"]{ background:var(--ink); color:var(--paper-2); border-color:var(--ink); }
 .chip[disabled]{ opacity:.55; cursor:not-allowed; }
 .chip .n{ font-family:var(--mono); font-size:.72em; opacity:.6; margin-left:6px; }
+.chip .sub2{ display:block; font-family:var(--mono); font-size:.62em; opacity:.62; letter-spacing:.04em; margin-top:1px; }
 .chip.mode[aria-pressed="true"]{ background:var(--accent); border-color:var(--accent); }
 .warn{ font-family:var(--body); font-size:.9rem; color:var(--rosso); margin:8px 0 0; }
 
@@ -107,7 +108,7 @@ h1 em{ font-style:normal; color:var(--accent); }
 .actionrow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:22px 0 0; }
 
 /* ---------- Tavolo ---------- */
-.gioco{ display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:22px; margin:26px 0 0; align-items:start; }
+.gioco{ display:grid; grid-template-columns:minmax(0,1fr) var(--latocol,340px); gap:22px; margin:26px 0 0; align-items:start; }
 @media(max-width:940px){ .gioco{ grid-template-columns:1fr; } }
 
 .board{ display:grid; gap:10px; grid-template-columns:repeat(6,1fr); }
@@ -157,14 +158,37 @@ h1 em{ font-style:normal; color:var(--accent); }
 .stat .v{ font-family:var(--display); font-weight:800; font-size:1.5rem; line-height:1.2; }
 .stat.ok .v{ color:var(--verde); }
 
-.domande{ border:2px solid var(--rule); border-radius:20px; background:var(--paper-2); padding:12px 14px 14px; max-height:52vh; overflow:auto; }
+.domande{ border:2px solid var(--rule); border-radius:20px; background:var(--paper-2); padding:12px 14px 14px; max-height:var(--dmax,52vh); overflow:auto; }
 @media(max-width:940px){ .domande{ max-height:none; } }
-.dgruppo{ font-family:var(--mono); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin:12px 0 6px; }
+.dgruppo{ font-family:var(--mono); font-size:var(--dgfs,.6rem); letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin:12px 0 6px; }
 .dgruppo:first-child{ margin-top:2px; }
 .dlista{ display:flex; flex-wrap:wrap; gap:6px; }
 .dom-btn{
-  font-family:var(--body); font-size:.95rem; background:var(--paper); color:var(--ink);
-  border:1.5px solid var(--rule); border-radius:999px; padding:5px 12px; cursor:pointer; line-height:1.3;
+  font-family:var(--body); font-size:var(--dfs,.95rem); background:var(--paper); color:var(--ink);
+  border:1.5px solid var(--rule); border-radius:999px; padding:var(--dpad,5px 12px); cursor:pointer; line-height:1.3;
+}
+
+/* --- modo "temi": si vedono i gruppi, non le formule --- */
+.temaRiga{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  border:1.5px dashed var(--rule); border-radius:14px; padding:8px 10px 8px 12px; margin:0 0 8px;
+}
+.temaRiga .tn{ font-family:var(--mono); font-size:var(--dgfs,.6rem); letter-spacing:.14em; text-transform:uppercase; color:var(--ink); }
+.temaRiga .tq{ font-family:var(--body); font-size:.8rem; color:var(--ink-soft); }
+.scopriBtn{
+  font-family:var(--display); font-weight:600; font-size:.78rem; background:var(--paper);
+  border:1.5px solid var(--rule); border-radius:999px; padding:4px 11px; cursor:pointer; white-space:nowrap;
+}
+.scopriBtn:hover{ border-color:var(--ink); }
+.temaAperto{ margin:-4px 0 10px; }
+.dnota{
+  font-family:var(--body); font-style:italic; color:var(--ink-soft); font-size:.95rem;
+  margin:4px 0 0; line-height:1.45;
+}
+.dnota b{ font-style:normal; }
+.finBtn{
+  font-family:var(--display); font-weight:600; font-size:.9rem; background:var(--ink); color:var(--paper-2);
+  border:0; border-radius:999px; padding:7px 15px; cursor:pointer; margin:10px 0 0;
 }
 .dom-btn:hover{ border-color:var(--ink); }
 .dom-btn.fatta{ opacity:.4; text-decoration:line-through; }
@@ -259,6 +283,12 @@ h1 em{ font-style:normal; color:var(--accent); }
 
     <p class="setlab">Chi spegne le facce</p>
     <div class="chips" id="autoChips"></div>
+
+    <p class="setlab">Le domande <span class="note">che cosa vede lo studente</span></p>
+    <div class="chips" id="domChips"></div>
+
+    <p class="setlab">Quanto grandi</p>
+    <div class="chips" id="misChips"></div>
   </div>
 
   <div class="actionrow">
@@ -562,7 +592,23 @@ var MODI = [
    ============================================================ */
 
 var STORE = "icf_identikit_v1";
-var st = { modo:"lei", size:24, voc:{viso:true, accessori:true, corpo:true, vestiti:true}, auto:true };
+var st = { modo:"lei", size:24, voc:{viso:true, accessori:true, corpo:true, vestiti:true}, auto:true,
+           dom:"aperte", mis:2 };
+
+/* come si vedono le domande sulla pagina condivisa */
+var MODI_DOM = [
+  { k: "aperte",   n: "Aperte",      d: "si leggono tutte, \u00e8 l'impalcatura" },
+  { k: "temi",     n: "Solo i temi", d: "vede i gruppi, non le frasi" },
+  { k: "nascoste", n: "Nascoste",    d: "stanno solo nella tua finestra" }
+];
+
+/* quattro misure: la quarta si legge da lontano */
+var MISURE = [
+  { k: 1, n: "Piccole", dfs: ".95rem", dpad: "5px 12px",  dgfs: ".6rem",  lato: "340px", dmax: "52vh" },
+  { k: 2, n: "Medie",   dfs: "1.12rem", dpad: "7px 14px", dgfs: ".66rem", lato: "392px", dmax: "60vh" },
+  { k: 3, n: "Grandi",  dfs: "1.34rem", dpad: "9px 17px", dgfs: ".72rem", lato: "470px", dmax: "none" },
+  { k: 4, n: "Enormi",  dfs: "1.62rem", dpad: "12px 20px", dgfs: ".8rem", lato: "548px", dmax: "none" }
+];
 
 function load(){
   try{
@@ -571,6 +617,8 @@ function load(){
     if(o.modo) st.modo = o.modo;
     if(o.size) st.size = o.size;
     if(typeof o.auto === "boolean") st.auto = o.auto;
+    if(o.dom && MODI_DOM.filter(function(x){ return x.k === o.dom; }).length) st.dom = o.dom;
+    if(o.mis && MISURE.filter(function(x){ return x.k === o.mis; }).length) st.mis = o.mis;
     if(o.voc) GRUPPI.forEach(function(g){ if(typeof o.voc[g.k] === "boolean") st.voc[g.k] = o.voc[g.k]; });
     st.voc.viso = true;
   }catch(e){}
@@ -831,6 +879,43 @@ function renderChips(){
   a.appendChild(chip("Le spegne lei, cliccando", !st.auto, function(){
     st.auto = false; save(); renderChips();
   }));
+
+  /* questi due non chiudono la partita: si cambiano mentre si gioca */
+  var dc = $("domChips"); dc.innerHTML = "";
+  MODI_DOM.forEach(function(x){
+    dc.appendChild(chip(x.n + ' <span class="sub2">' + x.d + "</span>", st.dom === x.k, function(){
+      st.dom = x.k; save(); renderChips(); applicaDomande();
+    }));
+  });
+
+  var mc = $("misChips"); mc.innerHTML = "";
+  MISURE.forEach(function(x){
+    mc.appendChild(chip(x.n, st.mis === x.k, function(){
+      st.mis = x.k; save(); renderChips(); applicaMisura();
+    }));
+  });
+}
+
+function misuraOra(){
+  return MISURE.filter(function(x){ return x.k === st.mis; })[0] || MISURE[1];
+}
+
+/* la misura e' tutta in quattro variabili CSS sul contenitore del gioco */
+function applicaMisura(){
+  var g = $("gioco"), m = misuraOra();
+  g.style.setProperty("--dfs", m.dfs);
+  g.style.setProperty("--dpad", m.dpad);
+  g.style.setProperty("--dgfs", m.dgfs);
+  g.style.setProperty("--latocol", m.lato);
+  g.style.setProperty("--dmax", m.dmax);
+}
+
+/* cambia il modo delle domande mentre si gioca */
+function applicaDomande(){
+  if(!gioco) return;
+  renderDomande();
+  if(st.dom === "nascoste") apriFinestraDomande();
+  else aggiornaFinestraDomande();
 }
 
 /* --- Partita --- */
@@ -876,7 +961,9 @@ function nuovaPartita(){
   ["rispDom","rispSn","rispMod"].forEach(function(i){ $(i).classList.add("hidden"); });
   $("risp").className = "risp";
   disegnaBoard();
+  applicaMisura();
   renderDomande();
+  if(st.dom === "nascoste") apriFinestraDomande();
   aggiornaConta();
 }
 
@@ -910,33 +997,168 @@ function cliccaPersona(i){
   aggiornaConta();
 }
 
+function gruppiDomande(){
+  var gruppi = [];
+  gioco.domande.forEach(function(d, i){
+    var g = gruppi.filter(function(x){ return x.n === d.g; })[0];
+    if(!g){ g = { n: d.g, items: [] }; gruppi.push(g); }
+    g.items.push(i);
+  });
+  return gruppi;
+}
+
+function pillola(i){
+  var d = gioco.domande[i];
+  var b = document.createElement("button");
+  b.type = "button";
+  b.className = "dom-btn" + (gioco.fatte[i] ? " fatta" : "");
+  gioco.bottoni[i] = b;
+  b.textContent = testoDomanda(d);
+  b.addEventListener("click", function(){ chiedi(i); });
+  return b;
+}
+
+var temaApertoT = null;
+
 function renderDomande(){
   var box = $("domande");
   box.innerHTML = "";
-  var gruppi = [];
   gioco.bottoni = {};
-  gioco.domande.forEach(function(d, i){
-    var g = gruppi.filter(function(x){ return x.n === d.g; })[0];
-    if(!g){ g = { n:d.g, items:[] }; gruppi.push(g); }
-    g.items.push(i);
-  });
+  var gruppi = gruppiDomande();
+
+  if(st.dom === "nascoste"){
+    var p = document.createElement("p");
+    p.className = "dnota";
+    p.innerHTML = "<b>Le domande sono nella tua finestra.</b> Qui non si vedono, quindi deve " +
+      "costruirle da sola. Se la finestra si chiude, riaprila qui sotto.";
+    box.appendChild(p);
+    var fb = document.createElement("button");
+    fb.type = "button"; fb.className = "finBtn";
+    fb.textContent = "Riapri la finestra delle domande";
+    fb.addEventListener("click", apriFinestraDomande);
+    box.appendChild(fb);
+    return;
+  }
+
+  if(st.dom === "temi"){
+    var nota = document.createElement("p");
+    nota.className = "dnota";
+    nota.innerHTML = "Sa di che cosa pu\u00f2 chiedere, non come si dice. " +
+      "<b>Scopri</b> apre un gruppo per otto secondi, quando si blocca.";
+    box.appendChild(nota);
+    gruppi.forEach(function(g){
+      var riga = document.createElement("div");
+      riga.className = "temaRiga";
+      var sx = document.createElement("div");
+      sx.innerHTML = '<span class="tn">' + g.n + '</span><br>' +
+        '<span class="tq">' + g.items.length +
+        (g.items.length === 1 ? " domanda" : " domande") + "</span>";
+      var sb = document.createElement("button");
+      sb.type = "button"; sb.className = "scopriBtn"; sb.textContent = "Scopri";
+      var lista = document.createElement("div");
+      lista.className = "dlista temaAperto";
+      lista.style.display = "none";
+      sb.addEventListener("click", function(){
+        var aperto = lista.style.display !== "none";
+        clearTimeout(temaApertoT);
+        if(aperto){ lista.style.display = "none"; sb.textContent = "Scopri"; return; }
+        lista.style.display = "flex";
+        sb.textContent = "Nascondi";
+        temaApertoT = setTimeout(function(){
+          lista.style.display = "none"; sb.textContent = "Scopri";
+        }, 8000);
+      });
+      riga.appendChild(sx); riga.appendChild(sb);
+      box.appendChild(riga);
+      g.items.forEach(function(i){ lista.appendChild(pillola(i)); });
+      box.appendChild(lista);
+    });
+    return;
+  }
+
+  /* aperte */
   gruppi.forEach(function(g){
     var h = document.createElement("p");
     h.className = "dgruppo"; h.textContent = g.n;
     box.appendChild(h);
     var lista = document.createElement("div");
     lista.className = "dlista";
-    g.items.forEach(function(i){
-      var d = gioco.domande[i];
-      var b = document.createElement("button");
-      b.type = "button";
-      b.className = "dom-btn";
-      gioco.bottoni[i] = b;
-      b.textContent = testoDomanda(d);
-      b.addEventListener("click", function(){ chiedi(i); });
-      lista.appendChild(b);
-    });
+    g.items.forEach(function(i){ lista.appendChild(pillola(i)); });
     box.appendChild(lista);
+  });
+}
+
+/* ============================================================
+   La finestra delle domande, solo per l'insegnante.
+   Stessa idea de "Il caso" e di "Scusi, puo' ripetere?": quello che
+   lo studente non deve vedere non sta nella pagina condivisa, sta in
+   una finestra separata che Fabio non condivide.
+   ============================================================ */
+var finDom = null;
+
+function apriFinestraDomande(){
+  if(finDom && !finDom.closed){ finDom.focus(); aggiornaFinestraDomande(); return; }
+  finDom = window.open("", "identikitDomande", "width=440,height=820");
+  if(!finDom){
+    toast("Il browser ha bloccato la finestra: permetti i pop-up");
+    /* senza finestra si torna alle domande a vista, se no il gioco si blocca */
+    st.dom = "temi"; save(); renderChips(); renderDomande();
+    return;
+  }
+  finDom.document.open();
+  finDom.document.write(
+    '<!doctype html><html lang="it"><head><meta charset="utf-8">' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+    "<title>Identikit \u00b7 le domande</title><style>" +
+    "body{margin:0;background:#16233F;color:#F7F4EC;font:16px/1.5 Georgia,serif}" +
+    ".w{padding:16px 16px 40px}" +
+    "h1{font:800 18px Helvetica,Arial,sans-serif;margin:0 0 2px}" +
+    "p.sub{color:#D9BC8C;margin:0 0 12px;font-size:13px}" +
+    ".conta{display:flex;gap:8px;margin:0 0 14px}" +
+    ".conta div{flex:1;background:rgba(247,244,236,.08);border-radius:10px;padding:7px 10px}" +
+    ".conta .k{font:700 9px Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#D9BC8C}" +
+    ".conta .v{font:800 20px Helvetica,Arial,sans-serif}" +
+    "h2{font:700 10px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#E8A33D;margin:14px 0 6px}" +
+    ".lista{display:flex;flex-wrap:wrap;gap:6px}" +
+    "button.d{font:15px Georgia,serif;background:#F7F4EC;color:#16233F;border:0;border-radius:999px;padding:7px 13px;cursor:pointer;text-align:left}" +
+    "button.d:hover{background:#fff}" +
+    "button.d.fatta{opacity:.38;text-decoration:line-through}" +
+    ".vuoto{color:#D9BC8C;font-style:italic}" +
+    "</style></head><body><div class='w'>" +
+    "<h1>Le domande</h1><p class='sub'>Non condividere questa finestra. " +
+    "Clicca quella che ha detto a voce.</p>" +
+    "<div id='c'></div><div id='l'></div></div></body></html>");
+  finDom.document.close();
+  aggiornaFinestraDomande();
+}
+
+function aggiornaFinestraDomande(){
+  if(!finDom || finDom.closed || !gioco) return;
+  var doc = finDom.document;
+  var c = doc.getElementById("c"), l = doc.getElementById("l");
+  if(!c || !l) return;
+
+  var vive = gioco.fuori.filter(function(x){ return !x; }).length;
+  c.innerHTML = "<div class='conta'>" +
+    "<div><span class='k'>Domande</span><br><span class='v'>" + gioco.n + "</span></div>" +
+    "<div><span class='k'>In piedi</span><br><span class='v'>" + vive + "</span></div></div>";
+
+  l.innerHTML = "";
+  gruppiDomande().forEach(function(g){
+    var h = doc.createElement("h2");
+    h.textContent = g.n;
+    l.appendChild(h);
+    var box = doc.createElement("div");
+    box.className = "lista";
+    g.items.forEach(function(i){
+      var b = doc.createElement("button");
+      b.type = "button";
+      b.className = "d" + (gioco.fatte[i] ? " fatta" : "");
+      b.textContent = testoDomanda(gioco.domande[i]);
+      b.addEventListener("click", function(){ chiedi(i); });
+      box.appendChild(b);
+    });
+    l.appendChild(box);
   });
 }
 
@@ -947,6 +1169,7 @@ function chiedi(i){
     gioco.n++; gioco.fatte[i] = true;
     if(gioco.bottoni[i]) gioco.bottoni[i].classList.add("fatta");
   }
+  aggiornaFinestraDomande();
 
   $("rispVuoto").classList.add("hidden");
   $("rispDom").classList.remove("hidden");
@@ -1067,6 +1290,18 @@ document.addEventListener("keydown", function(e){
 
 load();
 renderChips();
+applicaMisura();
+
+document.addEventListener("keydown", function(e){
+  if(/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+  if(e.key !== "d") return;
+  e.preventDefault();
+  var i = 0;
+  MODI_DOM.forEach(function(x, k){ if(x.k === st.dom) i = k; });
+  st.dom = MODI_DOM[(i + 1) % MODI_DOM.length].k;
+  save(); renderChips(); applicaDomande();
+  toast("Domande: " + MODI_DOM.filter(function(x){ return x.k === st.dom; })[0].n.toLowerCase());
+});
 
 window.__IDENTIKIT = {
   genera: generaTabellone, domande: tutteLeDomande, firma: firma,
