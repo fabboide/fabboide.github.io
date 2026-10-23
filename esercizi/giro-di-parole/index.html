@@ -590,7 +590,7 @@ body.senza-voce .vocerow{ display:none !important; }
   var ORECCHIO = (function(){
     var Classe = window.SpeechRecognition || window.webkitSpeechRecognition || null;
     var r = null, vivo = false, chiuso = false;
-    var suTesto = null, suStop = null, suErrore = null;
+    var suTesto = null, suStop = null, suErrore = null, suAvvio = null;
     var fermo = "";               /* le parti definitive, accumulate */
 
     function supportato(){ return !!Classe; }
@@ -601,6 +601,10 @@ body.senza-voce .vocerow{ display:none !important; }
       r.continuous = true;
       r.interimResults = true;
       r.maxAlternatives = 1;
+
+      /* parte solo dopo che il permesso e' stato dato: e' qui che
+         comincia il minuto, non quando si preme il bottone */
+      r.onstart = function(){ if(suAvvio) suAvvio(); };
 
       r.onresult = function(ev){
         var provvisorio = "";
@@ -637,6 +641,7 @@ body.senza-voce .vocerow{ display:none !important; }
       accendi: function(opz){
         if(!Classe) return false;
         suTesto = opz.onTesto; suStop = opz.onStop; suErrore = opz.onErrore;
+        suAvvio = opz.onAvvio;
         fermo = ""; chiuso = false;
         try{
           if(!r) crea();
@@ -1255,7 +1260,14 @@ body.senza-voce .vocerow{ display:none !important; }
     var b = document.getElementById("mic");
     var tr = document.getElementById("trascritto");
     var ok = ORECCHIO.accendi({
+      /* il browser puo' metterci qualche secondo a chiedere il permesso
+         la prima volta: far partire il minuto al click vorrebbe dire
+         regalargliene cinque. Scatta quando il microfono e' davvero
+         aperto, e la seconda volta (Chrome riapre da solo sul silenzio)
+         non riparte. */
+      onAvvio: function(){ if(!S.tid && !S.chiuso) parteTempo(); },
       onTesto: function(fermo, provvisorio){
+        if(!S.tid && !S.chiuso) parteTempo();
         S.testo = fermo;
         aggiorna(fermo, provvisorio);
       },
@@ -1288,7 +1300,6 @@ body.senza-voce .vocerow{ display:none !important; }
     S.ascolto = true;
     if(b){ b.classList.add("on"); b.innerHTML = ICONA_MIC + "Ho finito"; b.setAttribute("data-action", "stop"); }
     if(tr){ tr.classList.add("viva"); tr.innerHTML = '<span class="attesa">ti ascolto&hellip;</span>'; }
-    parteTempo();
   }
 
   /* la trascrizione sullo schermo, con le vietate accese e gli
