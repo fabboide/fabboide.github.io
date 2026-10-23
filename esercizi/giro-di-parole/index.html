@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Say it without the word &middot; Talk with Fabio</title>
+<meta name="description" content="A C1 speaking game. One Italian word, four forbidden words, sixty seconds. Explain it out loud: the microphone listens and checks that you never touched the words you were not allowed to say.">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="canonical" href="https://talkwithfabio.com/esercizi/giro-di-parole/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Talk with Fabio">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Say it without the word">
+<meta property="og:description" content="One Italian word, four forbidden words, sixty seconds. Explain it out loud: the microphone listens and checks.">
+<meta property="og:url" content="https://talkwithfabio.com/esercizi/giro-di-parole/">
+<meta property="og:image" content="https://talkwithfabio.com/img/og-giro-di-parole.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Talk with Fabio &middot; Say it without the word">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Say it without the word">
+<meta name="twitter:description" content="One Italian word, four forbidden words, sixty seconds. Explain it out loud: the microphone listens and checks.">
+<meta name="twitter:image" content="https://talkwithfabio.com/img/og-giro-di-parole.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+/* ============================================================
+   Stessi token del sito.
+   ============================================================ */
+:root{
+  --ink:#16233F;
+  --ink-soft:#4A5670;
+  --paper:#F7F4EC;
+  --paper-2:#FFFDF8;
+  --rule:#DFD8C7;
+  --saffron:#E8A33D;
+  --rosso:#C4312B;
+  --verde:#2E5E4E;
+  --viola:#7A5A8F;
+
+  --ok:#2E5E4E;
+  --ok-bg:rgba(46,94,78,.12);
+  --no:#C4312B;
+  --no-bg:rgba(196,49,43,.10);
+
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --pen:"Caveat","Segoe Script",cursive;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+
+  --wrap:920px;
+  --mode:var(--viola);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0; min-height:100vh; min-height:100dvh;
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:1.0625rem; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    linear-gradient(to right, transparent 0 62px, color-mix(in srgb, var(--mode) 30%, transparent) 62px 64px, transparent 64px),
+    repeating-linear-gradient(to bottom, transparent 0 33px, color-mix(in srgb, var(--ink) 7%, transparent) 33px 34px);
+  background-size:100% 100%, 100% 34px;
+  background-repeat:no-repeat, repeat;
+}
+@media (max-width:720px){
+  body{ background-image:repeating-linear-gradient(to bottom, transparent 0 33px, color-mix(in srgb, var(--ink) 7%, transparent) 33px 34px); }
+}
+
+h1,h2,h3{ font-family:var(--display); font-weight:800; line-height:1.03; letter-spacing:-0.03em; text-wrap:balance; margin:0; }
+p{ margin:0; }
+button{ font-family:inherit; }
+a{ color:inherit; }
+:focus-visible{ outline:3px solid var(--mode); outline-offset:3px; border-radius:6px; }
+
+.eyebrow{ font-family:var(--mono); font-size:.72rem; font-weight:500; letter-spacing:.17em; text-transform:uppercase; color:var(--mode); }
+.en{ font-family:var(--body); font-style:italic; color:var(--ink-soft); }
+
+/* ---------- Barra in alto ---------- */
+.topbar{
+  position:sticky; top:0; z-index:20;
+  background:color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter:blur(8px); border-bottom:1px solid var(--rule);
+}
+.topbar-in{ max-width:var(--wrap); margin:0 auto; padding:0 20px; height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.logo{ font-family:var(--display); font-weight:800; font-size:1.05rem; letter-spacing:-0.035em; text-decoration:none; display:flex; align-items:center; gap:.5em; }
+.logo-mark{ width:22px; height:22px; border-radius:50%; flex:none; background:conic-gradient(from 180deg, var(--verde) 0 25%, var(--saffron) 0 50%, var(--rosso) 0 75%, var(--ink) 0); }
+.back-link{ font-family:var(--display); font-weight:500; font-size:.94rem; text-decoration:none; color:var(--ink-soft); }
+.back-link:hover{ color:var(--mode); }
+
+#app{ max-width:var(--wrap); margin:0 auto; padding:34px 20px 90px; }
+.screen{ display:none; }
+.screen.active{ display:block; animation:fade .32s ease; }
+@keyframes fade{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:none;} }
+
+/* ---------- Bottoni ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:.5em;
+  font-family:var(--display); font-weight:700; font-size:1rem;
+  letter-spacing:-0.015em; text-decoration:none;
+  padding:.85em 1.45em; border-radius:999px;
+  border:2px solid var(--ink); background:var(--ink); color:var(--paper-2);
+  cursor:pointer; transition:transform .15s ease, background-color .15s ease, border-color .15s ease;
+}
+.btn:hover{ transform:translateY(-2px); background:var(--mode); border-color:var(--mode); }
+.btn .sub{ font-family:var(--mono); font-size:.66rem; font-weight:500; letter-spacing:.08em; opacity:.8; }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--ink); }
+.btn-ghost:hover{ background:var(--saffron); border-color:var(--saffron); color:var(--ink); }
+.btn[disabled]{ opacity:.4; cursor:default; transform:none; }
+
+/* ---------- Schermata iniziale ---------- */
+.intro{ max-width:680px; margin-bottom:30px; }
+.intro h1{ font-size:clamp(2.2rem,5.2vw,3.4rem); margin:12px 0 16px; }
+.intro .lede{ font-size:1.12rem; }
+.intro .lede-en{ margin-top:10px; font-size:.97rem; }
+
+/* la dimostrazione in alto: la carta vera, in piccolo */
+.demo{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:20px;
+  padding:22px 24px; margin:0 0 30px; max-width:520px;
+  box-shadow:8px 8px 0 color-mix(in srgb, var(--mode) 18%, transparent);
+}
+.demo-key{ font-family:var(--mono); font-size:.64rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+.demo-word{ font-family:var(--display); font-weight:800; font-size:2rem; letter-spacing:-0.035em; margin:4px 0 12px; }
+.demo-no{ display:flex; flex-wrap:wrap; gap:7px; }
+.demo p.demo-say{ font-family:var(--pen); font-size:1.32rem; color:var(--mode); line-height:1.32; margin-top:14px; }
+
+.howto{
+  background:var(--paper-2); border:1px solid var(--rule);
+  border-left:5px solid var(--mode); border-radius:16px;
+  padding:18px 22px; margin:0 0 26px; max-width:680px;
+}
+.howto p + p{ margin-top:8px; }
+.howto .lab{
+  font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft); display:block; margin-bottom:6px;
+}
+.howto .mini{ font-size:.9rem; color:var(--ink-soft); }
+
+.cat-label{ font-family:var(--mono); font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:12px; }
+.cat-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(252px,1fr)); gap:16px; }
+.cat-card{
+  background:var(--paper-2); border:1px solid var(--rule); border-radius:20px;
+  padding:22px; display:flex; flex-direction:column; gap:9px; text-align:left;
+  cursor:pointer; color:var(--ink);
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.cat-card:hover{ transform:translateY(-4px); border-color:var(--ink); box-shadow:0 16px 32px color-mix(in srgb, var(--ink) 14%, transparent); }
+.cat-card.wide{ grid-column:1/-1; border-color:var(--ink); border-width:2px; }
+.cat-card h3{ font-size:1.22rem; }
+.cat-en{ font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--mode); }
+.cat-desc{ font-size:.93rem; color:var(--ink-soft); }
+.cat-ex{ font-family:var(--pen); font-size:1.18rem; color:var(--ink-soft); line-height:1.3; }
+.cat-foot{ display:flex; align-items:center; gap:10px; margin-top:4px; }
+.cat-n{ font-family:var(--mono); font-size:.7rem; color:var(--ink-soft); }
+.record{
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.05em;
+  color:var(--saffron); border:1px solid var(--saffron);
+  background:color-mix(in srgb, var(--saffron) 12%, transparent);
+  padding:3px 10px; border-radius:999px;
+}
+
+/* ---------- Partita ---------- */
+.back-row{ margin-bottom:16px; }
+.back-btn{ background:none; border:none; padding:0; cursor:pointer; font-family:var(--display); font-weight:500; font-size:.95rem; color:var(--ink-soft); }
+.back-btn:hover{ color:var(--mode); }
+
+.topline{ display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:18px; flex-wrap:wrap; }
+.dots{ display:flex; gap:6px; }
+.dot{ width:9px; height:9px; border-radius:50%; background:var(--rule); }
+.dot.done{ background:var(--mode); }
+.dot.sporco{ background:var(--no); }
+.dot.current{ background:var(--mode); box-shadow:0 0 0 3px color-mix(in srgb, var(--mode) 25%, transparent); }
+.timer{ font-family:var(--mono); font-size:1.3rem; font-weight:600; font-variant-numeric:tabular-nums; background:var(--paper-2); border:1.5px solid var(--rule); border-radius:999px; padding:5px 15px; }
+.timer.low{ color:var(--rosso); border-color:var(--rosso); }
+.timer.off{ opacity:.45; }
+
+/* la carta con la parola */
+.carta{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:22px;
+  padding:clamp(24px,4vw,34px); margin-bottom:18px;
+  box-shadow:8px 8px 0 color-mix(in srgb, var(--mode) 16%, transparent);
+}
+.carta-key{ font-family:var(--mono); font-size:.64rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+.carta-word{
+  font-family:var(--display); font-weight:800;
+  font-size:clamp(1.9rem,5.6vw,3.1rem); letter-spacing:-0.04em; line-height:1.06;
+  margin:6px 0 4px;
+}
+.carta-word.lunga{ font-size:clamp(1.35rem,3.9vw,2.1rem); letter-spacing:-0.03em; line-height:1.18; }
+.carta-en{ font-style:italic; color:var(--ink-soft); font-size:.97rem; }
+.carta-sep{ height:1px; background:var(--rule); margin:18px 0 14px; }
+.no-label{ font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--no); margin-bottom:9px; }
+.no-list{ display:flex; flex-wrap:wrap; gap:8px; }
+.vietata{
+  font-family:var(--display); font-weight:700; font-size:1rem;
+  border:2px solid var(--no); color:var(--no); border-radius:10px;
+  padding:6px 12px; background:var(--no-bg);
+  display:inline-flex; align-items:center; gap:.45em;
+}
+.vietata.presa{ background:var(--no); color:var(--paper-2); }
+.vietata .x{ font-family:var(--mono); font-size:.8em; opacity:.6; }
+.vietata.presa .x{ opacity:1; }
+.demo-no .vietata{ font-size:.88rem; padding:4px 9px; }
+
+/* il microfono */
+.mic-row{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:16px; }
+.mic{
+  display:inline-flex; align-items:center; gap:.6em;
+  font-family:var(--display); font-weight:700; font-size:1.05rem;
+  padding:.9em 1.6em; border-radius:999px; cursor:pointer;
+  border:2px solid var(--mode); background:var(--mode); color:var(--paper-2);
+  transition:transform .15s ease, background-color .15s ease;
+}
+.mic:hover{ transform:translateY(-2px); }
+.mic svg{ width:20px; height:20px; }
+.mic.on{ background:var(--no); border-color:var(--no); animation:batte 1.5s ease-in-out infinite; }
+@keyframes batte{ 0%,100%{ box-shadow:0 0 0 0 color-mix(in srgb, var(--no) 45%, transparent); } 50%{ box-shadow:0 0 0 11px transparent; } }
+.mic[disabled]{ opacity:.4; cursor:default; transform:none; animation:none; }
+.mic-nota{ font-family:var(--mono); font-size:.68rem; letter-spacing:.05em; color:var(--ink-soft); flex:1 1 220px; }
+
+/* quello che dice */
+.trascritto{
+  min-height:118px; max-height:240px; overflow-y:auto;
+  border:2px dashed var(--rule); border-radius:16px;
+  background:var(--paper-2); padding:16px 18px; margin-bottom:16px;
+  font-size:1.06rem; line-height:1.55;
+}
+.trascritto.viva{ border-style:solid; border-color:var(--mode); }
+.trascritto .attesa{ font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
+.trascritto .inarrivo{ color:var(--ink-soft); }
+.trascritto .beccata{
+  background:var(--no); color:var(--paper-2); border-radius:4px;
+  padding:0 4px; font-weight:500;
+}
+.trascritto .attrezzo{
+  background:color-mix(in srgb, var(--verde) 18%, transparent);
+  border-bottom:2px solid var(--verde); border-radius:3px; padding:0 2px;
+}
+
+.contatori{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px; }
+.cont{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.04em;
+  border:1px solid var(--rule); border-radius:999px; padding:5px 13px;
+  background:var(--paper-2); color:var(--ink-soft);
+}
+.cont b{ color:var(--ink); font-size:1.05em; }
+.cont.buona{ border-color:var(--verde); color:var(--verde); }
+.cont.cattiva{ border-color:var(--no); color:var(--no); }
+
+.azioni{ display:flex; gap:10px; flex-wrap:wrap; }
+.azioni .btn{ flex:0 1 auto; }
+
+/* onore: senza microfono */
+.onore{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+.onore .dom{ font-size:1rem; margin-right:4px; }
+
+/* ---------- Riscontro ---------- */
+.tray{ }
+.esito{
+  border-radius:18px; padding:20px 22px; margin-bottom:0;
+  border:2px solid var(--ok); background:var(--ok-bg);
+}
+.esito.no{ border-color:var(--no); background:var(--no-bg); }
+.esito-parola{
+  font-family:var(--mono); font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft); margin-bottom:8px;
+}
+.esito-cima{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:4px; }
+.esito-t{ font-family:var(--display); font-weight:800; font-size:1.3rem; color:var(--ok); letter-spacing:-0.03em; }
+.esito.no .esito-t{ color:var(--no); }
+.esito-sub{ font-size:.95rem; color:var(--ink-soft); }
+.esito-sub b{ color:var(--ink); }
+
+.modello{
+  background:var(--paper-2); border:1px solid var(--rule); border-radius:14px;
+  padding:16px 18px; margin-top:16px;
+}
+.modello .lab{
+  font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft); display:block; margin-bottom:8px;
+}
+.modello-it{ font-size:1.08rem; line-height:1.55; }
+.modello .nota{
+  display:block; margin-top:12px; padding-top:12px; border-top:1px solid var(--rule);
+  font-size:.93rem; color:var(--ink-soft);
+}
+.modello .nota b{ color:var(--ink); font-weight:500; }
+.sayline{ display:flex; align-items:center; gap:0; flex-wrap:wrap; }
+
+.attr-box{ margin-top:16px; }
+.attr-box .lab{
+  font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft); display:block; margin-bottom:9px;
+}
+.attr-list{ display:flex; flex-direction:column; gap:7px; }
+.attr{
+  display:flex; align-items:baseline; gap:11px; flex-wrap:wrap;
+  font-size:.95rem; padding:7px 11px; border-radius:10px;
+  border:1px solid var(--rule); background:var(--paper-2); color:var(--ink-soft);
+}
+.attr.usato{ border-color:var(--verde); background:var(--ok-bg); color:var(--verde); }
+.attr .segno{ font-family:var(--mono); font-size:.9em; flex:none; width:1.1em; }
+.attr .nome{ font-family:var(--display); font-weight:700; color:var(--ink); flex:none; }
+.attr.usato .nome{ color:var(--verde); }
+.attr .ex{ font-family:var(--pen); font-size:1.12rem; }
+
+/* ---------- Risultati ---------- */
+.ris{
+  background:var(--paper-2); border:2px solid var(--ink); border-radius:24px;
+  padding:clamp(30px,5vw,46px); text-align:center;
+  box-shadow:10px 10px 0 color-mix(in srgb, var(--mode) 20%, transparent);
+}
+.ris-num{ font-family:var(--display); font-weight:800; font-size:clamp(3rem,10vw,4.6rem); line-height:1; color:var(--mode); letter-spacing:-0.045em; }
+.ris-sub{ color:var(--ink-soft); margin-top:6px; font-size:.98rem; }
+.ris-due{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:20px; }
+.ris-box{ border:1px solid var(--rule); border-radius:16px; padding:14px 22px; min-width:140px; }
+.ris-box .n{ font-family:var(--display); font-weight:800; font-size:1.9rem; letter-spacing:-0.03em; }
+.ris-box .k{ font-family:var(--mono); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft); margin-top:2px; }
+.ris-badge{
+  display:inline-flex; align-items:center; gap:8px; margin-top:20px;
+  font-family:var(--mono); font-size:.78rem; letter-spacing:.06em;
+  padding:7px 16px; border-radius:999px;
+  background:color-mix(in srgb, var(--saffron) 16%, transparent);
+  color:var(--saffron); border:1px solid var(--saffron);
+}
+.ris-badge.quiet{ background:transparent; color:var(--ink-soft); border-color:var(--rule); }
+.ris-msg{ margin-top:20px; font-size:1.05rem; }
+.ris-lista{ margin-top:26px; text-align:left; border-top:1px solid var(--rule); padding-top:20px; }
+.ris-lista h3{ font-size:1.05rem; margin-bottom:12px; }
+.riga{ display:flex; gap:12px; align-items:baseline; padding:8px 0; border-bottom:1px solid var(--rule); }
+.riga:last-child{ border-bottom:none; }
+.riga .w{ font-weight:500; }
+.riga .w.ko{ color:var(--no); }
+.riga .q{ color:var(--ink-soft); font-style:italic; font-size:.93rem; margin-left:auto; text-align:right; }
+.ris-azioni{ margin-top:26px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+.countdown{ position:fixed; inset:0; z-index:60; background:color-mix(in srgb, var(--paper) 82%, transparent); backdrop-filter:blur(5px); display:flex; align-items:center; justify-content:center; }
+.count-num{ font-family:var(--display); font-weight:800; font-size:6rem; color:var(--mode); animation:pop .45s ease; }
+@keyframes pop{ from{ transform:scale(.55); opacity:0;} to{ transform:scale(1); opacity:1;} }
+
+/* ---------- la voce ---------- */
+.voce{
+  display:inline-grid; place-items:center; width:40px; height:40px; flex:0 0 auto;
+  border:2px solid var(--rule); border-radius:50%; background:var(--paper-2);
+  color:var(--ink); cursor:pointer; padding:0; vertical-align:middle; margin-left:12px;
+  transition:transform .08s ease, border-color .15s ease;
+}
+.voce:hover{ border-color:var(--ink); }
+.voce:active{ transform:scale(.93); }
+.voce svg{ width:19px; height:19px; }
+.voce.pic{ width:30px; height:30px; margin-left:8px; }
+.voce.pic svg{ width:14px; height:14px; }
+body.senza-voce .voce{ display:none !important; }
+body.senza-voce .vocerow{ display:none !important; }
+
+/* ---------- Telefono ---------- */
+@media (max-width:720px){
+  .topbar-in{ height:54px; }
+  #app{ padding:16px 16px 28px; }
+  .carta{ padding:20px 18px; margin-bottom:14px; box-shadow:5px 5px 0 color-mix(in srgb, var(--mode) 16%, transparent); }
+  .vietata{ font-size:.92rem; padding:5px 10px; }
+  .trascritto{ min-height:96px; padding:13px 14px; font-size:1.02rem; }
+  .mic{ width:100%; justify-content:center; }
+  .mic-nota{ flex:1 1 100%; }
+  .azioni .btn{ flex:1; justify-content:center; }
+
+  .tray.on{
+    position:fixed; left:0; right:0; bottom:0; z-index:40;
+    background:var(--paper);
+    border-top:1px solid var(--rule);
+    border-radius:18px 18px 0 0;
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+    box-shadow:0 -10px 28px color-mix(in srgb, var(--ink) 16%, transparent);
+    max-height:72vh; overflow-y:auto;
+  }
+  .tray.on .esito{ padding:16px 15px; }
+  .tray.on .azioni{ margin-top:12px; }
+  .tray.on .azioni .btn{ width:100%; justify-content:center; padding:1em 1.4em; }
+  .ris-box{ padding:12px 18px; min-width:118px; }
+}
+
+@media (prefers-reduced-motion:reduce){ *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="../../">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Talk with Fabio
+    </a>
+    <a class="back-link" href="../">&larr; All exercises</a>
+  </div>
+</header>
+
+<main id="app">
+
+  <section id="screen-hub" class="screen active">
+    <div class="intro">
+      <p class="eyebrow">C1 &rarr; C2 &middot; speaking &middot; out loud</p>
+      <h1>Say it without the word.</h1>
+      <p class="lede">
+        At this level fluency is not knowing more words. It is never getting stuck
+        when the word you want does not arrive. Native speakers do not stop: they
+        go around. That reflex is a skill, and it can be trained.
+      </p>
+      <p class="lede en">
+        One Italian word, four forbidden words, sixty seconds. You explain it out
+        loud and the microphone checks that you never touched the words you were
+        not allowed to say.
+      </p>
+    </div>
+
+    <div class="demo">
+      <p class="demo-key">the word</p>
+      <p class="demo-word">lo spiffero</p>
+      <p class="demo-key" style="color:#C4312B">you may not say</p>
+      <div class="demo-no" id="demo-no"></div>
+      <p class="demo-say">&ldquo;È quel filo sottile che entra da una fessura quando pensavi che fosse tutto chiuso, e lo sentisci sul collo.&rdquo;</p>
+    </div>
+
+    <div class="howto">
+      <p><span class="lab">how it works</span>
+        Press the microphone and start talking, in Italian. What you say appears on
+        the screen as you speak. A forbidden word lights up red the moment it comes
+        out. Keep going anyway: stopping is the only real mistake.</p>
+      <p>The page also counts your <b>tools</b>, the ready-made ways of going round
+        a word: <i>è quella cosa che&hellip;, serve per&hellip;, una specie di&hellip;,
+        nel senso che&hellip;</i> One point for each different tool you use. Ten rounds.</p>
+      <p class="mini">The microphone works in Chrome, Edge and Safari, not in Firefox.
+        Your voice is transcribed by the browser's own speech service, so it leaves
+        your computer the same way a web search does. Nothing is stored here: the
+        transcript lives in this page and disappears when you close it. No microphone,
+        or you would rather not: there is a stopwatch and your word of honour.</p>
+    </div>
+
+    <p class="cat-label">choose your words</p>
+    <div class="cat-grid" id="cat-grid"></div>
+  </section>
+
+  <section id="screen-game" class="screen"></section>
+  <section id="screen-results" class="screen"></section>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     LA VOCE
+     Blocco uguale sulle altre pagine esercizi. Vedi claude/la-voce.md
+     ============================================================ */
+  var VOCE = (function(){
+    var pronta = false, scelta = null, ultimo = 0;
+    var TENUTE = [];
+
+    try{ scelta = localStorage.getItem("icf_voce_scelta") || null; }catch(e){}
+
+    function punteggio(v){
+      var n = (v.name || "").toLowerCase();
+      if(n.indexOf("google") >= 0) return 3;
+      if(n.indexOf("alice") >= 0) return 0;
+      return 2;
+    }
+
+    function italiane(){
+      var tutte = [];
+      try{ tutte = window.speechSynthesis.getVoices() || []; }catch(e){ tutte = []; }
+      var it = tutte.filter(function(v){ return /^it/i.test(v.lang || ""); });
+      it.sort(function(a, b){ return punteggio(b) - punteggio(a); });
+      if(scelta){
+        for(var i = 0; i < it.length; i++){
+          if(it[i].name === scelta){ it.unshift(it.splice(i, 1)[0]); break; }
+        }
+      }
+      return it;
+    }
+
+    function carica(){
+      pronta = italiane().length > 0;
+      if(document.body) document.body.classList.toggle("senza-voce", !pronta);
+    }
+
+    if(window.speechSynthesis && typeof window.SpeechSynthesisUtterance === "function"){
+      carica();
+      try{ window.speechSynthesis.onvoiceschanged = carica; }catch(e){}
+      setTimeout(carica, 400);
+      setTimeout(carica, 1500);
+    } else if(document.body){
+      document.body.classList.add("senza-voce");
+    }
+
+    function dillo(testo, lento, n, tok){
+      if(tok !== ultimo) return;
+      var voci = italiane();
+      if(!voci.length) return;
+      var ss = window.speechSynthesis;
+      var v = voci[Math.min(n, voci.length - 1)];
+      var partita = false;
+
+      function riprova(){
+        if(n >= 1 || tok !== ultimo) return;
+        try{ ss.cancel(); ss.resume(); }catch(e){}
+        setTimeout(function(){ dillo(testo, lento, n + 1, tok); }, 250);
+      }
+
+      try{
+        if(ss.speaking || ss.pending) ss.cancel();
+        var u = new window.SpeechSynthesisUtterance(String(testo));
+        u.lang = "it-IT";
+        u.voice = v;
+        u.rate = lento ? 0.6 : 0.95;
+        u.onstart = function(){ partita = true; };
+        u.onerror = function(e){
+          var err = (e && e.error) || "";
+          if(err === "canceled" || err === "interrupted") return;
+          riprova();
+        };
+        TENUTE.push(u);
+        if(TENUTE.length > 8) TENUTE.shift();
+        ss.speak(u);
+        setTimeout(function(){ try{ ss.resume(); }catch(e){} }, 60);
+        setTimeout(function(){ if(!partita && !ss.speaking) riprova(); }, 1500);
+      }catch(e){}
+    }
+
+    return {
+      di: function(testo, lento){
+        if(!pronta || !testo) return;
+        ultimo++;
+        dillo(testo, lento, 0, ultimo);
+      },
+      pronta: function(){ return pronta; }
+    };
+  })();
+
+  var ICONA_VOCE =
+    '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none">' +
+    '<path d="M4 9.5v5a1 1 0 0 0 1 1h3l4.2 3.4V5.1L8 8.5H5a1 1 0 0 0-1 1Z" fill="currentColor"/>' +
+    '<path d="M16 8.6a4.6 4.6 0 0 1 0 6.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
+    '<path d="M18.7 5.6a8.4 8.4 0 0 1 0 12.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
+    "</svg>";
+
+  var ICONA_MIC =
+    '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none">' +
+    '<rect x="9" y="2.6" width="6" height="11" rx="3" fill="currentColor"/>' +
+    '<path d="M5.6 11.2a6.4 6.4 0 0 0 12.8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
+    '<path d="M12 17.6V21.4M8.6 21.4h6.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
+    "</svg>";
+
+  function esc(s){
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  function escAttr(s){
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+  function bottoneVoce(testo, piccolo){
+    if(!testo) return "";
+    var t = escAttr(testo);
+    return '<button class="voce' + (piccolo ? " pic" : "") + '" type="button"' +
+      ' data-action="say" data-say="' + t + '"' +
+      ' aria-label="Ascolta: ' + t + '" title="ascolta &middot; listen">' + ICONA_VOCE + "</button>";
+  }
+
+  /* ============================================================
+     L'ORECCHIO
+     Involucro sottile intorno a SpeechRecognition. Tre cose che il
+     resto della pagina non deve sapere:
+       1. il nome del coso cambia da browser a browser;
+       2. Chrome chiude il riconoscimento da solo dopo qualche secondo
+          di silenzio, anche con continuous=true: va riaperto finche'
+          il giro e' vivo;
+       3. il permesso si chiede alla prima accensione, non al
+          caricamento della pagina.
+     ============================================================ */
+  var ORECCHIO = (function(){
+    var Classe = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+    var r = null, vivo = false, chiuso = false;
+    var suTesto = null, suStop = null, suErrore = null;
+    var fermo = "";               /* le parti definitive, accumulate */
+
+    function supportato(){ return !!Classe; }
+
+    function crea(){
+      r = new Classe();
+      r.lang = "it-IT";
+      r.continuous = true;
+      r.interimResults = true;
+      r.maxAlternatives = 1;
+
+      r.onresult = function(ev){
+        var provvisorio = "";
+        for(var i = ev.resultIndex; i < ev.results.length; i++){
+          var pezzo = ev.results[i][0].transcript;
+          if(ev.results[i].isFinal) fermo += pezzo + " ";
+          else provvisorio += pezzo;
+        }
+        if(suTesto) suTesto(fermo, provvisorio);
+      };
+
+      r.onerror = function(ev){
+        var e = (ev && ev.error) || "";
+        /* "no-speech" e "aborted" sono normali: non sono guasti */
+        if(e === "no-speech" || e === "aborted") return;
+        chiuso = true;
+        if(suErrore) suErrore(e);
+      };
+
+      r.onend = function(){
+        if(vivo && !chiuso){
+          /* riaperto: Chrome si chiude da solo sul silenzio */
+          try{ r.start(); }catch(e){}
+          return;
+        }
+        vivo = false;
+        if(suStop) suStop(fermo);
+      };
+    }
+
+    return {
+      supportato: supportato,
+      vivo: function(){ return vivo; },
+      accendi: function(opz){
+        if(!Classe) return false;
+        suTesto = opz.onTesto; suStop = opz.onStop; suErrore = opz.onErrore;
+        fermo = ""; chiuso = false;
+        try{
+          if(!r) crea();
+          vivo = true;
+          r.start();
+          return true;
+        }catch(e){
+          /* start() su un riconoscimento gia' avviato lancia: va bene */
+          vivo = true;
+          return true;
+        }
+      },
+      spegni: function(){
+        if(!r){ if(suStop) suStop(fermo); return; }
+        vivo = false;
+        try{ r.stop(); }catch(e){ if(suStop) suStop(fermo); }
+      }
+    };
+  })();
+
+  /* ============================================================
+     GLI ATTREZZI
+     Gli otto modi di girare intorno a una parola. Sono il vero
+     contenuto di questo esercizio: la pagina li cerca nella
+     trascrizione e li conta.
+     Le espressioni si cercano sul testo ripulito dagli accenti,
+     quindi qui si scrive "cioe" e non "cioè".
+     ============================================================ */
+  var ATTREZZI = [
+    { k:"cat", nome:"La categoria",
+      ex:"è quella cosa che..., è quel momento in cui...",
+      re:/\b(e (quel|quella|quello)|sono (quelle|quei|quegli)|e (un|uno|una) [a-z]{4,}|quella cosa|la parte|quel gesto|quel momento|quel modo di)/ },
+    { k:"fun", nome:"La funzione",
+      ex:"serve per..., si usa quando...",
+      re:/\b(serve (per|a|quando)|servono (per|a)|si usa (per|quando|se)|lo usi (per|quando)|la usi (per|quando)|con cui|che usi|si fa (per|quando)|per non)/ },
+    { k:"sit", nome:"La situazione",
+      ex:"è quando..., succede che...",
+      re:/\b(e quando|succede (che|quando)|capita (che|quando)|nel momento in cui|appena |dopo che|prima che|quando (ti|uno|una|qualcuno|vuoi|hai|sei|stai|non|c'e|arriva|entri|esci|parli|scendi|gli|le|la|lo))/ },
+    { k:"app", nome:"L'approssimazione",
+      ex:"una specie di..., tipo un...",
+      re:/\b(una specie di|un tipo di|una sorta di|tipo (un|una|quando)|piu o meno|qualcosa (di|che)|assomiglia a|come (un |una |se ))/ },
+    { k:"esc", nome:"Per esclusione",
+      ex:"è il contrario di..., non è...",
+      re:/\b(il contrario di|l'opposto di|non e |invece di|al posto di|non c'entra|niente a che|non vuol dire|non si tratta)/ },
+    { k:"ese", nome:"L'esempio",
+      ex:"per esempio..., immagina che...",
+      re:/\b(per esempio|ad esempio|tipicamente|per dirti|mettiamo (che|caso)|facciamo (un esempio|che)|immagina|pensa a)/ },
+    { k:"rif", nome:"La riformulazione",
+      ex:"nel senso che..., in pratica...",
+      re:/\b(nel senso che|cioe|vale a dire|in pratica|praticamente|insomma|diciamo|come dire|per intenderci|in fondo)/ },
+    { k:"chi", nome:"Chi lo fa",
+      ex:"si dice di chi..., lo fa chi...",
+      re:/\b(si dice (di|a)|di chi |chi lo |chi la |chi ci |una persona che|uno che|quello che fa)/ }
+  ];
+
+  /* ============================================================
+     LE PAROLE
+     C(parola, inglese, categoria, [vietate], modello, nota)
+     Nelle vietate la barra verticale separa le forme da cercare:
+     si mostra solo la prima.
+     ============================================================ */
+  var CAT = [
+    { k:"cose", t:"Things with no name", en:"oggetti", d:"The objects you point at because you never learned the word. Half of them have no English equivalent either.", ex:"la tapparella, lo spiffero, la mollica" },
+    { k:"idee", t:"Ideas with no borders", en:"idee", d:"Abstract nouns that cover a whole attitude. Translating them takes a sentence, which is exactly the exercise.", ex:"la scaramanzia, il campanilismo, il pudore" },
+    { k:"azioni", t:"Things people do", en:"azioni", d:"Verbs for behaviour. Harder than objects: you cannot describe a shape, you have to describe a situation.", ex:"arrangiarsi, sbollire, incartarsi" },
+    { k:"intra", t:"Untranslatable", en:"intraducibili", d:"The words Italians are proudest of. If you can explain these without the obvious word, you are past C1.", ex:"l'abbiocco, magari, la scarpetta" },
+    { k:"dire", t:"Whole expressions", en:"modi di dire", d:"Not a word but a sentence, and you may not use the words inside it. The hardest set on the page.", ex:"cadere dalle nuvole, essere al verde" }
+  ];
+
+  var P = [];
+  function C(it, en, cat, no, mod, nota){
+    P.push({ it:it, en:en, cat:cat, no:no, mod:mod, nota:nota || "" });
+  }
+
+  /* ---------------- oggetti ---------------- */
+  C("la tapparella", "roller shutter", "cose",
+    ["finestra|finestr", "sole|soleggi", "alzare|alzo|alzi|abbass", "avvolgibile"],
+    "È quella cosa di plastica o di legno che sta davanti al vetro, fuori, e che tiri giù con una corda o un bottone quando vuoi il buio in camera.",
+    "Al nord si dice anche <b>avvolgibile</b>. La <b>serranda</b> invece è quella del negozio.");
+  C("la mollica", "the soft inside of bread", "cose",
+    ["pane|panino", "crosta", "briciola|briciole", "morbid|molle"],
+    "È la parte bianca e cedevole che sta dentro, quella che ti resta in mano quando togli il guscio duro intorno.",
+    "Va sempre in coppia con la <b>crosta</b>. Al plurale, <b>molliche</b>, sono le briciole sul tavolo.");
+  C("lo spiffero", "draught", "cose",
+    ["aria", "freddo|fredda", "finestra|finestr", "corrente"],
+    "È quel filo sottile che entra da una fessura quando pensavi che fosse tutto chiuso, e lo sentisci sul collo mentre sei seduto.",
+    "Parola molto parlata e molto bella. Il sinonimo neutro è <b>corrente d'aria</b>.");
+  C("la grondaia", "gutter", "cose",
+    ["acqua", "pioggia|piove", "tetto", "canale|tubo"],
+    "È quel condotto aperto che corre lungo il bordo in alto della casa e porta via quello che cade dal cielo, così non ti finisce tutto sulla testa quando esci dalla porta.",
+    "Da qui <b>il gatto sulla grondaia</b> e, per le persone, <b>stare in bilico</b>.");
+  C("lo scontrino", "till receipt", "cose",
+    ["negozio|negoz", "pagare|pagato|paghi", "cassa", "prova|dimostr"],
+    "È quel pezzo di carta lungo e stretto che ti mettono in mano dopo, con scritto cosa hai preso e quanto hai speso. Serve se poi vuoi cambiare qualcosa.",
+    "<b>Ricevuta</b> e <b>fattura</b> sono più formali. Lo scontrino è quello del supermercato.");
+  C("lo zerbino", "doormat", "cose",
+    ["porta", "piedi|piede", "pulire|pulisci|pulito", "entrare|entri|entrata"],
+    "Sta per terra, appena fuori o appena dentro, ed è ruvido: ci passi sopra prima di andare avanti, e il fango della strada resta fuori.",
+    "Per una persona è un insulto preciso: <b>essere lo zerbino di qualcuno</b> vuol dire farsi trattare male senza mai reagire.");
+  C("la moka", "stovetop coffee pot", "cose",
+    ["caffe|caffettiera", "fuoco|fornello", "bere|bevi|bevuto", "mattina|mattino"],
+    "È quell'oggetto di metallo a due pezzi che avviti insieme, metti sul gas, e dopo un po' fa un rumore e sale su quella roba nera e amara senza cui non riesci a parlare con nessuno.",
+    "Si dice <b>mettere su la moka</b>. La parte di sotto si chiama <b>caldaia</b>, quella sopra <b>raccoglitore</b>.");
+  C("la ringhiera", "handrail, railing", "cose",
+    ["scale|scala|gradini", "mano|mani", "balcone", "tenersi|tieni|reggere"],
+    "È quella barra che corre a fianco di una rampa e a cui ti attacchi quando scendi di corsa, o quando sei molto stanco, o quando hai bevuto.",
+    "Quella del balcone si chiama <b>parapetto</b> se è piena, <b>ringhiera</b> se è a sbarre.");
+  C("la prolunga", "extension lead", "cose",
+    ["corrente|elettric", "cavo|filo", "presa|spina", "lungo|lunga|allung"],
+    "È quella cosa che compri quando il muro è troppo lontano: da una parte la infili nel buco e dall'altra te ne ritrovi tre o quattro liberi, più vicini a dove sei tu.",
+    "La versione con tanti buchi e un interruttore si chiama <b>ciabatta</b>, come le scarpe.");
+  C("la borraccia", "reusable water bottle", "cose",
+    ["acqua", "bere|bevi|bevuta", "bottiglia|bottigliett", "plastica|metallo"],
+    "È quella cosa che riempi a casa la mattina e ti porti dietro tutto il giorno, così non devi comprarne una nuova ogni volta che hai sete.",
+    "<b>Bottiglietta</b> è quella usa e getta. <b>Borraccia</b> è quella che ti porti dietro per anni.");
+  C("il davanzale", "windowsill", "cose",
+    ["finestra|finestr", "vaso|vasi", "appoggiare|appoggi", "mensola|ripiano"],
+    "È quella lastra di pietra o di marmo sotto al vetro, dove finiscono le piante che nessuno innaffia e i gomiti di chi fuma.",
+    "Quello interno e quello esterno hanno lo stesso nome. <b>Davanzale</b> è la parola giusta, non ce ne sono altre.");
+  C("il cavatappi", "corkscrew", "cose",
+    ["vino", "bottiglia", "aprire|apri|aperta", "tappo|sughero"],
+    "È quell'attrezzo con la spirale di metallo che prima giri e poi tiri. Senza quello, in una casa al mare, la serata non comincia.",
+    "Quello dei camerieri si chiama <b>cavatappi a leva</b>. Per le birre serve invece <b>l'apribottiglie</b>.");
+
+  /* ---------------- idee ---------------- */
+  C("la scaramanzia", "warding off bad luck", "idee",
+    ["sfortuna|fortuna|sfortunat", "gatto", "superstizione|superstizios", "corna|ferro"],
+    "È quel gesto che fai per non attirarti addosso le cose brutte: tocchi qualcosa, ne eviti un'altra, non dici certe frasi ad alta voce. Non è che ci credi davvero: è che non vuoi rischiare.",
+    "Si usa <b>per scaramanzia</b> e <b>fare scaramanzia</b>. Dirlo è mezzo scherzo e mezzo serio.");
+  C("il menefreghismo", "studied indifference", "idee",
+    ["fregare|frega|fregat", "importare|importa|interess", "indifferenza|indifferent", "egoismo|egoist"],
+    "È l'atteggiamento di chi alza le spalle davanti a tutto: non si schiera, non si arrabbia, lascia che le cose vadano come vanno, perché in fondo ha deciso che non lo riguardano.",
+    "Viene dal verbo <b>me ne frego</b>. È sempre una critica, mai un complimento.");
+  C("il campanilismo", "fierce local pride", "idee",
+    ["paese|paesino", "citta|cittadin", "orgoglio|orgogliosi", "rivalita|rivale|vicini"],
+    "È quando uno è convinto che nel posto dove è nato si mangi meglio, si parli meglio e si viva meglio che a venti chilometri di distanza, e lo difende anche davanti all'evidenza.",
+    "Viene dal campanile: il mio è più alto del tuo. Nel calcio diventa <b>derby</b>.");
+  C("il pudore", "modesty, reticence", "idee",
+    ["vergogna|vergogn", "nudo|nuda|corpo", "imbarazzo|imbarazz", "intimo|privato"],
+    "È quel freno che ti fa abbassare la voce o cambiare discorso quando stai per mostrare o raccontare una cosa troppo tua, anche se non c'è niente di male.",
+    "Non è la vergogna: la vergogna arriva dopo uno sbaglio, questo arriva prima e ti protegge.");
+  C("il rimpianto", "regret for what you did not do", "idee",
+    ["passato", "pentirsi|pentito|pentita", "rimorso", "tornare|torni|indietro"],
+    "È quel peso che ti resta per una cosa che non hai fatto e che ora non puoi più fare. Non hai sbagliato niente: semplicemente quel momento adesso è lontano e nessuno te lo ridà.",
+    "Coppia importante: il <b>rimorso</b> è per il male che hai fatto, il <b>rimpianto</b> per il bene che non hai fatto.");
+  C("l'omertà", "code of silence", "idee",
+    ["silenzio|zitti|zitto", "mafia|mafios", "parlare|parla|parlato", "tacere|taci|tace"],
+    "È quando in un posto tutti sanno benissimo chi ha fatto una certa cosa, e davanti a chi fa le domande nessuno apre la bocca. Non solo per paura: anche per codice.",
+    "Parola pesante, da cronaca. Fuori da quel contesto si usa <b>fare muro</b>.");
+  C("la furbizia", "cunning", "idee",
+    ["furbo|furba|furbett", "intelligen", "astuzia|astuto", "imbrogliare|imbroglio|ingann"],
+    "È quella capacità di vedere la scorciatoia che gli altri non vedono, spesso passando un po' a fianco delle regole. In Italia è mezzo complimento e mezza accusa: dipende da chi lo dice.",
+    "<b>Essere furbo</b> dipende dal tono. <b>Fare il furbo</b> è sempre negativo e non si perdona.");
+  C("il buonsenso", "common sense", "idee",
+    ["senso|sensato", "logica|logico", "ragione|ragionevole", "comune|normale"],
+    "È quella cosa che non si impara a scuola e che ti fa capire da solo che il cappotto bagnato non si mette nell'armadio. Chi non ce l'ha non sa di non averlo.",
+    "Si scrive attaccato o staccato, <b>buon senso</b>, e vale lo stesso.");
+  C("l'accanimento", "refusing to let go", "idee",
+    ["insistere|insiste|insistenza", "ostinazione|ostinato", "troppo|eccessiv", "continuare|continua|molla"],
+    "È quando uno va avanti su una cosa molto oltre il punto in cui sarebbe stato saggio fermarsi, e più gli va male più ci si attacca.",
+    "In medicina esiste <b>l'accanimento terapeutico</b>: la stessa idea, in un posto molto serio.");
+  C("la spavalderia", "swagger", "idee",
+    ["coraggio|coraggios", "sicuro|sicurezza", "sfrontato|sfacciat", "paura"],
+    "È il modo di fare di chi entra in un posto nuovo come se fosse suo, senza abbassare lo sguardo e senza chiedere permesso a nessuno. A volte è bello da vedere, a volte è insopportabile.",
+    "L'aggettivo è <b>spavaldo</b>. Di un ragazzo giovane si dice anche <b>sbruffone</b>, ma è più cattivo.");
+  C("la riservatezza", "discretion", "idee",
+    ["privato|privacy", "segreto|segreti", "timido|timidezza", "chiuso|chiusa"],
+    "È la qualità di chi non racconta di sé più del necessario e non chiede agli altri più del necessario. Non è freddezza: è una forma di rispetto.",
+    "L'aggettivo <b>riservato</b> è un complimento. Attenzione: <b>riservato</b> vuol dire anche prenotato.");
+  C("la rassegnazione", "giving up without a fight", "idee",
+    ["arrendersi|arreso|arrende", "accettare|accetta|accettato", "speranza|sperare", "destino|fato"],
+    "È il punto in cui uno smette di combattere, non perché ha perso, ma perché ha deciso che tanto le cose non cambieranno. Si sente dalla voce prima che dalle parole.",
+    "Il verbo è <b>rassegnarsi</b>. <b>Rassegnati!</b> detto a qualcuno è quasi un insulto.");
+
+  /* ---------------- azioni ---------------- */
+  C("arrangiarsi", "to make do, to sort yourself out", "azioni",
+    ["aiuto|aiutare|aiuta", "cavarsela|cavar|cava", "solo|sola|soli", "arrangi"],
+    "È quello che fai quando non hai il pezzo giusto, i soldi giusti o il tempo giusto, e tiri fuori comunque qualcosa che sta in piedi, tenuto insieme con lo spago.",
+    "<b>Arrangiati!</b> detto a qualcuno è duro: vuol dire che il problema da adesso è suo.");
+  C("rimandare", "to put off", "azioni",
+    ["dopo", "domani", "tempo", "procrastin|rimand"],
+    "È prendere una cosa che devi fare oggi e spostarla un po' più avanti. E poi spostarla ancora, fino a quando la scadenza non ti arriva addosso tutta insieme.",
+    "Attenzione: <b>essere rimandato</b> a scuola è un'altra cosa, vuol dire ripetere l'esame a settembre.");
+  C("sbollire", "to cool off (anger)", "azioni",
+    ["calmarsi|calma|calmo", "rabbia|arrabbiat", "aspettare|aspetta|attend", "bollire|bolle"],
+    "È quello che deve succedere dentro a una persona prima che tu possa riparlarle: la lasci mezz'ora da sola e torni quando la temperatura è scesa.",
+    "Si usa quasi solo così: <b>lascialo sbollire</b>. Immagine da pentola sul fuoco.");
+  C("intrufolarsi", "to slip in uninvited", "azioni",
+    ["entrare|entra|entrato", "nascosto|nascond", "invito|invitat|permesso", "notare|nota|visto"],
+    "È quando ti infili dentro un posto passando in mezzo alla gente, in silenzio, e alla fine sei dentro anche se nessuno ti aveva chiamato.",
+    "Fratelli minori: <b>intrufolarsi</b> in una festa, <b>imbucarsi</b> a un matrimonio.");
+  C("fare una figuraccia", "to make a fool of yourself", "azioni",
+    ["vergogna|vergogn", "brutto|brutta", "imbarazzo|imbarazz", "sbagliare|sbaglio|errore"],
+    "È quando davanti a tutti ti esce una frase che non doveva uscire, e per i tre giorni dopo ci ripensi la notte quando dovresti dormire.",
+    "L'opposto, <b>fare bella figura</b>, è un'ossessione nazionale: spiega mezza Italia.");
+  C("svignarsela", "to sneak off", "azioni",
+    ["andare|andato|vado", "scappare|scappa|fugg", "via", "nascosto|nascond"],
+    "È uscire da una situazione prima che qualcuno si accorga del posto vuoto. Tipicamente prima del conto, o prima dei discorsi lunghi.",
+    "Sinonimi parlati: <b>filarsela</b>, <b>darsela a gambe</b>, <b>tagliare la corda</b>.");
+  C("prendersela", "to take it badly", "azioni",
+    ["offendersi|offeso|offesa", "arrabbiarsi|arrabbiat", "male", "rabbia|dispiac"],
+    "È quando uno scherzo o una frase ti resta attaccata addosso e tu smetti di sorridere, anche se continui a dire che non è niente.",
+    "<b>Non te la prendere</b> è una delle frasi più dette in italiano. Da non confondere con <b>prendersela con qualcuno</b>, che vuol dire scaricargli addosso la colpa.");
+  C("rinfacciare", "to throw back in someone's face", "azioni",
+    ["ricordare|ricorda|ricord", "colpa|colpe", "passato", "accusare|accusa|rimprover"],
+    "È tirare fuori in mezzo a una discussione una cosa che l'altro ti ha fatto tre anni fa, e farla pesare adesso come se fosse appena successa.",
+    "Molto usato dentro le coppie e dentro le famiglie. Non si rinfaccia mai una cosa bella.");
+  C("origliare", "to eavesdrop", "azioni",
+    ["ascoltare|ascolta|ascolt", "sentire|senti|sentito", "nascosto|nascond", "orecchio|orecchie|porta"],
+    "È quando stai immobile dietro una parete, o troppo vicino a un tavolo che non è il tuo, per capire una conversazione che non ti riguarda.",
+    "Da <b>orecchio</b>. Il parente stretto è <b>spiare</b>, che però si fa con gli occhi.");
+  C("incartarsi", "to get tangled up in your own words", "azioni",
+    ["confondersi|confus|confond", "sbagliare|sbaglio|errore", "bloccarsi|blocca|blocc", "parole|frase|discorso"],
+    "È quello che ti succede a metà di una cosa complicata che stavi dicendo: hai cominciato male, non sai come venirne fuori, e più vai avanti più peggiora.",
+    "La parola di questo esercizio: <b>mi sono incartato</b>. Dirla è il modo elegante di uscirne.");
+  C("tirare a campare", "to scrape by", "azioni",
+    ["vivere|vive|vita", "sopravvivere|sopravviv", "poco|pochi", "soldi|denaro"],
+    "È andare avanti un giorno per volta senza progetti e senza disastri, arrivando in fondo al mese e non un centimetro più lontano.",
+    "<b>Campare</b> da solo vuol dire vivere, ma al minimo. <b>Si campa</b> è la risposta italiana a come stai.");
+  C("farsi in quattro", "to bend over backwards", "azioni",
+    ["aiutare|aiuta|aiuto", "fatica|faticos", "molto|tanto", "impegnarsi|impegno|sforz"],
+    "È quando uno si mette a correre da tutte le parti per te, rinuncia al suo tempo e alle sue cose, e alla fine ti dice che non ha fatto niente.",
+    "Si dice <b>farsi in quattro per qualcuno</b>. Immagine da persona divisa in pezzi.");
+
+  /* ---------------- intraducibili ---------------- */
+  C("l'abbiocco", "the post-lunch collapse", "intra",
+    ["sonno|sonnol|dormi", "mangiare|mangiato|pranzo", "stanco|stanchezza", "pomeriggio"],
+    "È quella pesantezza che ti cade addosso fra l'una e le tre, quando il corpo ha deciso da solo che per oggi la giornata può aspettare.",
+    "<b>Mi è venuto l'abbiocco</b>, subito dopo tavola. Il verbo esiste: <b>abbioccarsi</b>.");
+  C("magari", "if only / maybe / even", "intra",
+    ["forse", "speriamo|spero|speranza", "desiderio|vorrei|voglia", "probabil|possibil"],
+    "È una parola sola che fa tre lavori: da sola, con il punto esclamativo, è il sì più carico che esista; dentro la frase è un dubbio; all'inizio è un'ipotesi buttata lì.",
+    "<b>Magari!</b> da solo è il più bel sì incerto che ha questa lingua. Con il congiuntivo: <b>magari fosse vero</b>.");
+  C("boh", "no idea, and I am not going further", "intra",
+    ["sapere|saprei|sapessi|sapevo", "risposta|rispondere|rispond", "idea|ignor", "spalle|spallucce"],
+    "È un suono, non una parola, e sostituisce una frase intera. Chi lo dice chiude il discorso e ti fa capire che non ha nessuna intenzione di approfondire.",
+    "I tre fratelli: <b>boh</b> non so, <b>mah</b> ho dei dubbi, <b>beh</b> allora dimmi.");
+  C("mica", "not at all (spoken)", "intra",
+    ["negazione|negativ|negare", "affatto", "per niente|niente", "rinforzo|rafforz"],
+    "È quel pezzetto che infili in mezzo alla frase, e il no diventa più convinto, più parlato, quasi un po' offeso.",
+    "<b>Non sono mica scemo</b>. Solo parlato: in un documento non si scrive mai.");
+  C("l'apericena", "aperitivo that becomes dinner", "intra",
+    ["aperitivo", "cena|cenare|cenato", "mangiare|mangiato|buffet", "bere|bevut|bicchier"],
+    "È quella cosa nata al nord in cui paghi una cosa sola e poi ti alzi sei volte dal tavolo per riempirti il piatto, e alle dieci ti accorgi che non hai più fame.",
+    "Parola recente, snobbata da molti, usata da tutti. Prima esisteva solo <b>l'aperitivo</b>.");
+  C("lo struggimento", "sweet consuming ache", "intra",
+    ["dolore|dolor", "amore|amar", "soffrire|soffre|soffer", "desiderio|desider"],
+    "È un male dolce che non vuoi smettere di sentire: ti consuma lentamente da dentro e in qualche modo ti piace starci.",
+    "Letterario ma vivo. Il verbo è <b>struggersi</b>, e si strugge sempre per qualcuno.");
+  C("l'ammazzacaffè", "the digestif after the coffee", "intra",
+    ["caffe", "liquore|grappa|digestiv", "bere|bevut|bicchier", "pranzo|pasto"],
+    "È quella cosa piccola e fortissima che arriva alla fine, subito dopo quella nera e corta, e che ufficialmente serve a farla scendere.",
+    "Parola composta e feroce: ammazza il caffè. Si ordina al plurale, mai da soli.");
+  C("la pennichella", "the afternoon nap", "intra",
+    ["dormire|dormi|dormit", "sonno|sonnell", "pomeriggio", "siesta|riposo|letto"],
+    "È quella mezz'ora a occhi chiusi sul divano, non in camera, che non conta come notte e che ti rimette in piedi per la seconda metà della giornata.",
+    "Sinonimi: <b>il sonnellino</b>, più neutro, e <b>la siesta</b>, che è spagnola e più lunga.");
+  C("la scarpetta", "wiping the plate with bread", "intra",
+    ["pane|panino", "piatto", "sugo|salsa", "pulire|pulisci|raccogl"],
+    "È quel gesto finale, mezzo proibito e fatto da tutti, con cui recuperi quello che è rimasto in fondo prima che venga portato via.",
+    "<b>Fare la scarpetta</b>. In teoria maleducazione, in pratica un dovere verso chi ha cucinato.");
+  C("il tormentone", "the thing everyone repeats for three months", "intra",
+    ["ripetere|ripete|ripet", "canzone|canzoni", "estate|estiv", "sempre|continuamente"],
+    "È quella frase o quel motivo che a un certo punto esce dalla bocca di tutti e non smette più, fino a quando non lo odi.",
+    "Da <b>tormento</b>. Esiste il <b>tormentone dell'estate</b>, che è una categoria musicale vera.");
+  C("la pacchia", "a sweet deal", "intra",
+    ["facile|facil", "bello|bella", "comodo|comoda", "fortuna|fortunat"],
+    "È una situazione in cui prendi molto e fatichi poco, e lo sai benissimo. Chi la guarda da fuori lo dice sempre con un po' di invidia.",
+    "<b>Che pacchia!</b> Esiste anche <b>la pacchia è finita</b>, che si dice ai figli a settembre.");
+  C("lo sfizio", "a small indulgence", "intra",
+    ["voglia|voglie", "desiderio|desider", "piccolo|piccola", "capriccio|lusso"],
+    "È quella cosa minima che ti concedi perché ti va: non ti serve, non ti cambia la giornata, ma te la togli e stai meglio.",
+    "<b>Levarsi uno sfizio</b>. A Napoli <b>sfiziarsi</b> vuol dire proprio divertirsi.");
+
+  /* ---------------- modi di dire ---------------- */
+  C("avere la botte piena e la moglie ubriaca", "to want it both ways", "dire",
+    ["tutto|tutte", "vantaggio|vantagg", "scegliere|scelta|scelt", "entrambi|due cose|insieme"],
+    "Si dice di chi pretende una cosa e il suo contrario: vuole il risultato senza pagarne il prezzo, e si offende se provi a spiegargli che non è possibile.",
+    "La botte si svuota se il vino lo bevi. Immagine contadina, usatissima in politica.");
+  C("non avere peli sulla lingua", "to speak with no filter", "dire",
+    ["sincero|sincer", "diretto|dirett", "verita|franc", "filtro|peli"],
+    "Si dice di una persona che quando pensa una cosa la tira fuori così com'è, senza girarci intorno e senza preoccuparsi troppo di chi ha davanti.",
+    "Quasi sempre un complimento. La versione negativa è <b>essere pesante</b>.");
+  C("cadere dalle nuvole", "to act as if you had no idea", "dire",
+    ["sorpresa|sorpres", "sapere|sapeva|sapevo|saputo", "stupito|stupir", "scoprire|scopr"],
+    "È la faccia di chi davanti a una notizia ti fa capire che per lui è la prima volta che la sente. A volte è sincero, molto spesso è una convenienza.",
+    "Si usa sempre al momento giusto: <b>è caduto dalle nuvole</b>, con un sopracciglio alzato.");
+  C("fare orecchie da mercante", "to turn a deaf ear", "dire",
+    ["sentire|sente|sentito", "ignorare|ignora|ignor", "finta|finge|fingere", "ascoltare|ascolta"],
+    "Si dice di chi, quando gli dici una cosa che non gli conviene, continua tranquillamente per la sua strada come se tu non avessi mai aperto la bocca.",
+    "Il mercante è sordo quando il prezzo non gli piace. Si usa anche al singolare, <b>orecchio da mercante</b>.");
+  C("mettere il carro davanti ai buoi", "to put the cart before the horse", "dire",
+    ["ordine|ordin", "prima", "dopo", "sbagliare|sbagli|invert"],
+    "Si dice a chi comincia dalla fine: organizza la festa quando non ha ancora chiesto se la sala è libera, e poi si stupisce che non funzioni.",
+    "Da noi sono i buoi, non il cavallo. Si dice soprattutto ai giovani e ai capi.");
+  C("prendere due piccioni con una fava", "to kill two birds with one stone", "dire",
+    ["due", "insieme|contemporane", "risolvere|risolv", "uccello|pietra|sasso"],
+    "È quando con un unico movimento sistemi un paio di questioni che pensavi di dover affrontare in momenti diversi, e torni a casa contento.",
+    "La fava è l'esca. Nessuno uccide niente, nella versione italiana: li prende.");
+  C("avere le mani bucate", "to be unable to hold on to money", "dire",
+    ["soldi|denaro|euro", "spendere|spende|spes", "risparmiare|risparmi", "povero|povert"],
+    "Si dice di chi non riesce a tenere niente da parte: quello che gli entra la mattina esce la sera, e se gli chiedi dove è andato non te lo sa dire.",
+    "Il buco è nella mano, non nella tasca. Per la tasca c'è <b>restare in bolletta</b>.");
+  C("essere al verde", "to be skint", "dire",
+    ["soldi|denaro|euro", "povero|povert", "finito|finire|finisc", "niente|zero"],
+    "È la condizione di chi il venti del mese guarda il telefono, fa due conti e decide che la cena fuori si farà il mese prossimo.",
+    "Viene dalle candele delle aste, verdi alla base: quando arrivava là, era finita.");
+  C("fare il passo più lungo della gamba", "to overreach", "dire",
+    ["troppo|eccessiv", "possibilita|permett|potere", "rischiare|rischio|rischi", "grande|grosso"],
+    "È quando ti impegni in una cosa che sta oltre quello che puoi realmente sostenere, e te ne accorgi quando sei già in mezzo e non si torna indietro.",
+    "Si dice soprattutto di soldi e di case. Il consiglio è sempre al negativo: <b>non fare il passo&hellip;</b>");
+  C("tagliare la testa al toro", "to settle it once and for all", "dire",
+    ["decidere|decis|decid", "chiudere|chiud|chiuso", "litigio|litig|discussione|discut", "soluzione|risolv"],
+    "È quando in mezzo a un botta e risposta che non finisce mai uno tira fuori la frase giusta, e tutti stanno zitti perché non c'è più niente da aggiungere.",
+    "Si usa anche come annuncio: <b>allora tagliamo la testa al toro</b>, e poi si decide.");
+  C("piove sul bagnato", "it never rains but it pours", "dire",
+    ["fortuna|fortunat|sfortun", "ricco|ricch|povero|pover", "pioggia|piove|piover", "ancora|aggiung"],
+    "Si dice quando a chi ha molto arriva un altro regalo, o quando a chi sta male arriva un altro colpo. Quale delle due dipende solo dal tono con cui lo dici.",
+    "Una delle poche espressioni che funzionano in entrambe le direzioni. Di solito è invidia.");
+  C("avere un diavolo per capello", "to be in a filthy mood", "dire",
+    ["arrabbiato|arrabbiat", "nervoso|nervos", "rabbia|furia", "furioso|furibond"],
+    "Si dice di una persona che quella mattina è meglio non avvicinare: le parli e ti risponde male, le chiedi una cosa semplice e sbuffa.",
+    "Immagine precisa: un piccolo diavolo per ogni capello. Si usa anche <b>avere il diavolo in corpo</b>, che però è energia, non rabbia.");
+
+  /* ============================================================
+     ATTREZZI DEL MESTIERE
+     ============================================================ */
+  var GIRI = 10;
+  var SECONDI = 60;
+  var STORE = "icf_giro_records";
+  var CHIAVE_ONORE = "icf_giro_onore";
+
+  /* Appiattire senza cambiare la lunghezza del testo: serve a segnare
+     i pezzi dentro la trascrizione, dove gli indici devono combaciare
+     carattere per carattere. Per questo niente normalize("NFD"), che
+     allunga, e niente spazi accorpati. */
+  var MAPPA = { "à":"a", "á":"a", "â":"a", "ä":"a",
+                "è":"e", "é":"e", "ê":"e", "ë":"e",
+                "ì":"i", "í":"i", "î":"i", "ï":"i",
+                "ò":"o", "ó":"o", "ô":"o", "ö":"o",
+                "ù":"u", "ú":"u", "û":"u", "ü":"u",
+                "ç":"c", "ñ":"n",
+                "’":"'", "´":"'", "`":"'" };
+  function piatta(s){
+    var t = String(s).toLowerCase(), out = "";
+    for(var k = 0; k < t.length; k++){
+      var c = t.charAt(k);
+      out += MAPPA[c] || c;
+    }
+    return out;
+  }
+  /* per il riconoscimento, dove la lunghezza non conta, gli spazi
+     doppi si accorpano: le espressioni di piu' parole devono passare */
+  function senzaAccenti(s){ return piatta(s).replace(/\s+/g, " "); }
+
+  /* la radice di una parola vietata: si taglia la coda perche' in
+     italiano cambia (entrare, entrato, entri). Per le parole corte
+     non si taglia niente, se no "non" prende anche "nonna". */
+  function radice(w){
+    var p = senzaAccenti(w).replace(/[^a-z' ]/g, "").trim();
+    if(p.indexOf(" ") >= 0) return p;        /* espressioni: intere */
+    if(p.length >= 7) return p.slice(0, p.length - 2);
+    if(p.length >= 6) return p.slice(0, p.length - 2);
+    if(p.length === 5) return p.slice(0, 4);
+    return p;
+  }
+
+  /* un blocco di vietate puo' contenere piu' forme separate da | :
+     si mostra la prima, si cercano tutte */
+  function mostrata(blocco){ return String(blocco).split("|")[0]; }
+  function forme(blocco){ return String(blocco).split("|"); }
+
+  function cercaVietate(testo, item){
+    var t = senzaAccenti(testo);
+    var prese = [];
+    for(var i = 0; i < item.no.length; i++){
+      var trovata = false;
+      var fs = forme(item.no[i]);
+      for(var j = 0; j < fs.length && !trovata; j++){
+        var r = radice(fs[j]);
+        if(!r) continue;
+        /* confine di parola a sinistra, coda libera a destra */
+        var re = new RegExp("(^|[^a-z'])" + r.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+        if(re.test(t)) trovata = true;
+      }
+      if(trovata) prese.push(i);
+    }
+    return prese;
+  }
+
+  function cercaAttrezzi(testo){
+    var t = senzaAccenti(testo);
+    var fuori = [];
+    for(var i = 0; i < ATTREZZI.length; i++){
+      if(ATTREZZI[i].re.test(t)) fuori.push(ATTREZZI[i].k);
+    }
+    return fuori;
+  }
+
+  function conta(testo){
+    var t = senzaAccenti(testo).trim();
+    if(!t) return 0;
+    return t.split(/\s+/).filter(function(w){ return /[a-z]/.test(w); }).length;
+  }
+
+  function mescola(a){
+    var b = a.slice();
+    for(var i = b.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = b[i]; b[i] = b[j]; b[j] = t;
+    }
+    return b;
+  }
+
+  function perCat(k){
+    if(k === "tutte") return P.slice();
+    return P.filter(function(p){ return p.cat === k; });
+  }
+
+  /* ---------------- record ---------------- */
+  function getRecords(){ try{ var r = localStorage.getItem(STORE); return r ? JSON.parse(r) : {}; }catch(e){ return {}; } }
+  function getRecord(k){ var r = getRecords(); return (r[k] && r[k].best) || 0; }
+  function setRecord(k, v){
+    try{
+      var r = getRecords(); var p = (r[k] && r[k].best) || 0;
+      if(v > p){ r[k] = { best:v }; localStorage.setItem(STORE, JSON.stringify(r)); return true; }
+    }catch(e){}
+    return false;
+  }
+  function onoreSalvato(){ try{ return localStorage.getItem(CHIAVE_ONORE) === "1"; }catch(e){ return false; } }
+  function salvaOnore(){ try{ localStorage.setItem(CHIAVE_ONORE, "1"); }catch(e){} }
+
+  /* ============================================================
+     STATO
+     ============================================================ */
+  var schermi = {
+    hub: document.getElementById("screen-hub"),
+    game: document.getElementById("screen-game"),
+    results: document.getElementById("screen-results")
+  };
+
+  var S = {
+    cat:null, items:[], idx:0,
+    item:null, chiuso:false, scarta:false, tempo:SECONDI, tid:null,
+    testo:"", prese:[], attrezzi:[], parole:0,
+    onore:false, ascolto:false,
+    esiti:[]
+  };
+
+  function mostra(n){
+    Object.keys(schermi).forEach(function(k){ schermi[k].classList.toggle("active", k === n); });
+    window.scrollTo(0, 0);
+  }
+
+  /* ============================================================
+     SCHERMATA INIZIALE
+     ============================================================ */
+  function dipingiDemo(){
+    var box = document.getElementById("demo-no");
+    var d = ["aria", "freddo", "finestra", "corrente"];
+    box.innerHTML = d.map(function(w){
+      return '<span class="vietata"><span class="x">&times;</span>' + esc(w) + "</span>";
+    }).join("");
+  }
+
+  function dipingiCat(){
+    var g = document.getElementById("cat-grid");
+    var h = "";
+    h += '<button class="cat-card wide" type="button" data-cat="tutte">' +
+      '<span class="cat-en">everything &middot; ' + P.length + " words</span>" +
+      "<h3>All of them, shuffled</h3>" +
+      '<p class="cat-desc">Objects, ideas, actions, the untranslatable ones and the expressions, in one bag. The hardest version, because you never know what is coming.</p>' +
+      '<span class="cat-foot">' + record("tutte") + "</span>" +
+      "</button>";
+
+    CAT.forEach(function(c){
+      var n = perCat(c.k).length;
+      h += '<button class="cat-card" type="button" data-cat="' + c.k + '">' +
+        '<span class="cat-en">' + esc(c.en) + "</span>" +
+        "<h3>" + esc(c.t) + "</h3>" +
+        '<p class="cat-desc">' + esc(c.d) + "</p>" +
+        '<p class="cat-ex">' + esc(c.ex) + "</p>" +
+        '<span class="cat-foot"><span class="cat-n">' + n + " words</span>" + record(c.k) + "</span>" +
+        "</button>";
+    });
+    g.innerHTML = h;
+  }
+  function record(k){
+    var r = getRecord(k);
+    return r ? '<span class="record">best ' + r + "/" + GIRI + "</span>" : "";
+  }
+
+  /* ============================================================
+     LA PARTITA
+     ============================================================ */
+  function via(cat){
+    S.cat = cat;
+    var pool = mescola(perCat(cat));
+    S.items = pool.slice(0, Math.min(GIRI, pool.length));
+    S.idx = 0;
+    S.esiti = [];
+    S.onore = !ORECCHIO.supportato() || onoreSalvato();
+    mostra("game");
+    giro();
+  }
+
+  function giro(){
+    S.item = S.items[S.idx];
+    S.chiuso = false;
+    S.tempo = SECONDI;
+    S.testo = "";
+    S.prese = [];
+    S.attrezzi = [];
+    S.parole = 0;
+    S.ascolto = false;
+    dipingiGiro();
+  }
+
+  function pallini(){
+    var h = "";
+    for(var i = 0; i < S.items.length; i++){
+      var c = "dot";
+      if(i < S.idx) c += S.esiti[i] && S.esiti[i].pulito ? " done" : " sporco";
+      else if(i === S.idx) c += " current";
+      h += '<span class="' + c + '"></span>';
+    }
+    return h;
+  }
+
+  function dipingiGiro(){
+    var it = S.item;
+    var lunga = it.it.length > 26 ? " lunga" : "";
+    var h = "";
+
+    h += '<div class="back-row"><button class="back-btn" type="button" data-action="hub">&larr; altre parole</button></div>';
+
+    h += '<div class="topline">' +
+      '<div class="dots">' + pallini() + "</div>" +
+      '<div class="timer off" id="timer">' + fmt(SECONDI) + "</div>" +
+      "</div>";
+
+    h += '<div class="carta">' +
+      '<p class="carta-key">giro ' + (S.idx + 1) + " di " + S.items.length + "</p>" +
+      '<h2 class="carta-word' + lunga + '">' + it.it + "</h2>" +
+      '<p class="carta-en">' + esc(it.en) + "</p>" +
+      '<div class="carta-sep"></div>' +
+      '<p class="no-label">non puoi dire</p>' +
+      '<div class="no-list" id="no-list">' + listaNo([]) + "</div>" +
+      "</div>";
+
+    if(S.onore){
+      h += '<div class="mic-row">' +
+        '<button class="mic" type="button" data-action="onore-via" id="mic">' + ICONA_MIC +
+        "Parti col cronometro</button>" +
+        '<p class="mic-nota">Qui il microfono non c\'è, quindi questo giro va sulla parola. Parla comunque ad alta voce: pensarlo non conta.</p>' +
+        "</div>";
+      h += '<div class="trascritto" id="trascritto"><span class="attesa">parla ad alta voce, poi dimmi com\'è andata</span></div>';
+    } else {
+      h += '<div class="mic-row">' +
+        '<button class="mic" type="button" data-action="mic" id="mic">' + ICONA_MIC +
+        "Premi e parla</button>" +
+        '<p class="mic-nota">In italiano, fino a sessanta secondi. La prima volta il browser ti chiede il microfono.</p>' +
+        "</div>";
+      h += '<div class="trascritto" id="trascritto"><span class="attesa">quello che dici compare qui</span></div>';
+    }
+
+    if(!S.onore) h += '<div class="contatori" id="contatori">' + contatori() + "</div>";
+    h += '<div class="azioni" id="azioni"></div>';
+    h += '<div class="tray" id="tray"></div>';
+
+    schermi.game.innerHTML = h;
+  }
+
+  function listaNo(prese){
+    return S.item.no.map(function(blocco, i){
+      var p = prese.indexOf(i) >= 0;
+      return '<span class="vietata' + (p ? " presa" : "") + '">' +
+        '<span class="x">&times;</span>' + esc(mostrata(blocco)) + "</span>";
+    }).join("");
+  }
+
+  function contatori(){
+    var h = "";
+    h += '<span class="cont"><b>' + S.parole + "</b> parole</span>";
+    h += '<span class="cont' + (S.attrezzi.length ? " buona" : "") + '"><b>' +
+      S.attrezzi.length + "</b> / " + ATTREZZI.length + " attrezzi</span>";
+    h += '<span class="cont' + (S.prese.length ? " cattiva" : " buona") + '"><b>' +
+      S.prese.length + "</b> vietate</span>";
+    return h;
+  }
+
+  function fmt(s){
+    var m = Math.floor(s / 60), r = s % 60;
+    return m + ":" + (r < 10 ? "0" : "") + r;
+  }
+
+  /* ---------------- il cronometro ---------------- */
+  function parteTempo(){
+    fermaTempo();
+    var t = document.getElementById("timer");
+    if(t) t.classList.remove("off");
+    S.tid = setInterval(function(){
+      S.tempo--;
+      var el = document.getElementById("timer");
+      if(el){
+        el.textContent = fmt(Math.max(0, S.tempo));
+        el.classList.toggle("low", S.tempo <= 10);
+      }
+      if(S.tempo <= 0) chiudi();
+    }, 1000);
+  }
+  function fermaTempo(){ if(S.tid){ clearInterval(S.tid); S.tid = null; } }
+
+  /* ---------------- il microfono ---------------- */
+  function accendi(){
+    var b = document.getElementById("mic");
+    var tr = document.getElementById("trascritto");
+    var ok = ORECCHIO.accendi({
+      onTesto: function(fermo, provvisorio){
+        S.testo = fermo;
+        aggiorna(fermo, provvisorio);
+      },
+      onStop: function(fermo){
+        /* arriva anche dopo un errore: in quel caso il giro e' stato
+           ridisegnato e questo risultato non vale piu' niente */
+        if(S.scarta){ S.scarta = false; return; }
+        S.testo = fermo || S.testo;
+        if(!S.chiuso) chiudi();
+      },
+      onErrore: function(e){
+        /* permesso negato o microfono assente: si passa all'onore,
+           una volta per sempre, senza drammi */
+        S.ascolto = false;
+        if(e === "not-allowed" || e === "service-not-allowed" || e === "audio-capture"){
+          salvaOnore();
+          S.onore = true;
+          S.scarta = true;
+          fermaTempo();
+          dipingiGiro();
+          var t2 = document.getElementById("trascritto");
+          if(t2) t2.innerHTML = '<span class="attesa">microfono non disponibile, si passa al cronometro</span>';
+          return;
+        }
+        if(!S.chiuso) chiudi();
+      }
+    });
+    if(!ok){ salvaOnore(); S.onore = true; dipingiGiro(); return; }
+
+    S.ascolto = true;
+    if(b){ b.classList.add("on"); b.innerHTML = ICONA_MIC + "Ho finito"; b.setAttribute("data-action", "stop"); }
+    if(tr){ tr.classList.add("viva"); tr.innerHTML = '<span class="attesa">ti ascolto&hellip;</span>'; }
+    parteTempo();
+  }
+
+  /* la trascrizione sullo schermo, con le vietate accese e gli
+     attrezzi sottolineati */
+  function aggiorna(fermo, provvisorio){
+    var tutto = (fermo || "") + (provvisorio || "");
+    S.parole = conta(tutto);
+    S.prese = cercaVietate(tutto, S.item);
+    S.attrezzi = cercaAttrezzi(tutto);
+
+    var tr = document.getElementById("trascritto");
+    if(tr){
+      var corpo = esc(fermo || "");
+      corpo = segna(corpo);
+      if(provvisorio) corpo += '<span class="inarrivo">' + esc(provvisorio) + "</span>";
+      tr.innerHTML = corpo || '<span class="attesa">ti ascolto&hellip;</span>';
+      tr.scrollTop = tr.scrollHeight;
+    }
+    var nl = document.getElementById("no-list");
+    if(nl) nl.innerHTML = listaNo(S.prese);
+    var ct = document.getElementById("contatori");
+    if(ct) ct.innerHTML = contatori();
+  }
+
+  /* evidenzia nel testo le vietate trovate e le espressioni degli
+     attrezzi. Si lavora sul testo gia' ripulito per l'HTML, e si
+     cerca senza accenti su una copia della stessa lunghezza, cosi'
+     gli indici combaciano. */
+  function segna(html){
+    if(!html) return "";
+    var piatto = piatta(html);
+    var marche = [];
+
+    for(var i = 0; i < S.item.no.length; i++){
+      var fs = forme(S.item.no[i]);
+      for(var j = 0; j < fs.length; j++){
+        var r = radice(fs[j]);
+        if(!r) continue;
+        var re = new RegExp("(^|[^a-z'])(" + r.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "[a-z']*)", "g");
+        var m;
+        while((m = re.exec(piatto)) !== null){
+          marche.push({ a:m.index + m[1].length, b:m.index + m[1].length + m[2].length, c:"beccata" });
+          if(re.lastIndex === m.index) re.lastIndex++;
+        }
+      }
+    }
+    for(var k = 0; k < ATTREZZI.length; k++){
+      var rg = new RegExp(ATTREZZI[k].re.source, "g");
+      var n;
+      while((n = rg.exec(piatto)) !== null){
+        marche.push({ a:n.index, b:n.index + n[0].length, c:"attrezzo" });
+        if(rg.lastIndex === n.index) rg.lastIndex++;
+      }
+    }
+
+    if(!marche.length) return html;
+    /* le vietate vincono sugli attrezzi, e niente si sovrappone */
+    marche.sort(function(x, y){ return x.a - y.a || (x.c === "beccata" ? -1 : 1); });
+    var pulite = [], fine = -1;
+    for(var z = 0; z < marche.length; z++){
+      if(marche[z].a >= fine){ pulite.push(marche[z]); fine = marche[z].b; }
+    }
+    var out = "", p = 0;
+    for(var q = 0; q < pulite.length; q++){
+      out += html.slice(p, pulite[q].a) +
+        '<span class="' + pulite[q].c + '">' + html.slice(pulite[q].a, pulite[q].b) + "</span>";
+      p = pulite[q].b;
+    }
+    return out + html.slice(p);
+  }
+
+  /* ---------------- chiusura del giro ---------------- */
+  function chiudi(){
+    if(S.chiuso) return;
+    S.chiuso = true;
+    fermaTempo();
+    if(S.ascolto){ S.ascolto = false; ORECCHIO.spegni(); }
+
+    var b = document.getElementById("mic");
+    if(b){ b.classList.remove("on"); b.setAttribute("disabled", "disabled"); }
+    var tr = document.getElementById("trascritto");
+    if(tr) tr.classList.remove("viva");
+    var tm = document.getElementById("timer");
+    if(tm){ tm.classList.add("off"); tm.classList.remove("low"); }
+
+    S.prese = cercaVietate(S.testo, S.item);
+    S.attrezzi = cercaAttrezzi(S.testo);
+    S.parole = conta(S.testo);
+
+    var nl = document.getElementById("no-list");
+    if(nl) nl.innerHTML = listaNo(S.prese);
+    var ct = document.getElementById("contatori");
+    if(ct) ct.innerHTML = contatori();
+
+    /* il giro vale se non hai toccato niente e hai davvero parlato:
+       sotto le dodici parole non e' una spiegazione, e' un'etichetta */
+    var abbastanza = S.parole >= 12;
+    var pulito = S.prese.length === 0 && abbastanza;
+    registra(pulito, abbastanza);
+    riscontro(pulito, abbastanza);
+  }
+
+  /* senza microfono: lo dice lei */
+  function chiudiOnore(pulito){
+    if(S.chiuso) return;
+    S.chiuso = true;
+    fermaTempo();
+    var tm = document.getElementById("timer");
+    if(tm){ tm.classList.add("off"); tm.classList.remove("low"); }
+    var b = document.getElementById("mic");
+    if(b){ b.classList.remove("on"); b.setAttribute("disabled", "disabled"); }
+    registra(pulito, true);
+    riscontro(pulito, true, true);
+  }
+
+  function registra(pulito, abbastanza){
+    S.esiti[S.idx] = {
+      it:S.item.it, en:S.item.en,
+      pulito:pulito, abbastanza:abbastanza,
+      prese:S.prese.slice(), attrezzi:S.attrezzi.slice(), parole:S.parole
+    };
+  }
+
+  function riscontro(pulito, abbastanza, onore){
+    var h = "";
+    var t, sub;
+
+    if(onore){
+      /* senza microfono non c'e' niente da misurare: lo dice lei */
+      t = pulito ? "Ci hai girato intorno." : "Te n'è scappata una.";
+      sub = pulito
+        ? "Pulito, a parola tua. Guarda sotto come ci gira intorno un italiano."
+        : "Succede, ed è il momento più utile del giro. Guarda sotto da dove sarebbe partito un italiano.";
+    } else if(pulito){
+      t = "Ci hai girato intorno.";
+      sub = "<b>" + S.parole + "</b> parole, e nessuna delle quattro. " +
+        (S.attrezzi.length ? "<b>" + S.attrezzi.length + "</b> attrezzi diversi." : "Nessun attrezzo riconosciuto, però: la prossima volta parti dalla categoria.");
+    } else if(!abbastanza){
+      t = "Troppo poco.";
+      sub = "<b>" + S.parole + "</b> parole. Una definizione ne vuole almeno una dozzina: il punto è andare avanti, non trovare l'uscita più corta.";
+    } else {
+      var nomi = S.prese.map(function(i){ return "<b>" + esc(mostrata(S.item.no[i])) + "</b>"; }).join(", ");
+      t = S.prese.length === 1 ? "Una ti è scappata." : "Te ne sono scappate " + S.prese.length + ".";
+      sub = nomi + ". " + (S.attrezzi.length ? "Il resto regge: <b>" + S.attrezzi.length + "</b> attrezzi usati." : "");
+    }
+
+    h += '<div class="esito' + (pulito ? "" : " no") + '">' +
+      '<p class="esito-parola">' + S.item.it + "</p>" +
+      '<div class="esito-cima"><span class="esito-t">' + t + "</span></div>" +
+      '<p class="esito-sub">' + sub + "</p>" +
+
+      '<div class="modello">' +
+      '<span class="lab">come ci gira intorno un italiano</span>' +
+      '<div class="sayline"><span class="modello-it">' + S.item.mod + "</span>" +
+      bottoneVoce(sentiPulito(S.item.mod)) + "</div>" +
+      (S.item.nota ? '<span class="nota">' + S.item.nota + "</span>" : "") +
+      "</div>";
+
+    h += '<div class="attr-box"><span class="lab">' +
+      (onore ? "gli otto attrezzi, da tenere a mente" : "i tuoi attrezzi, giro " + (S.idx + 1)) + "</span>" +
+      '<div class="attr-list">' +
+      ATTREZZI.map(function(a){
+        var u = S.attrezzi.indexOf(a.k) >= 0;
+        return '<span class="attr' + (u ? " usato" : "") + '">' +
+          '<span class="segno">' + (u ? "&#10003;" : "&middot;") + "</span>" +
+          '<span class="nome">' + esc(a.nome) + "</span>" +
+          '<span class="ex">' + esc(a.ex) + "</span></span>";
+      }).join("") +
+      "</div></div>";
+
+    h += "</div>";
+
+    var ultimo = S.idx >= S.items.length - 1;
+    h += '<div class="azioni" style="margin-top:16px">' +
+      '<button class="btn" type="button" data-action="avanti">' +
+      (ultimo ? "Vediamo com\'è andata" : "Prossima parola") + "</button>" +
+      "</div>";
+
+    var tray = document.getElementById("tray");
+    if(tray){ tray.innerHTML = h; tray.classList.add("on"); }
+    var az = document.getElementById("azioni");
+    if(az) az.innerHTML = "";
+  }
+
+  /* la voce legge il modello: si tolgono i tag e le entita' */
+  function sentiPulito(s){
+    var d = document.createElement("div");
+    d.innerHTML = String(s);
+    return (d.textContent || d.innerText || "").replace(/\s+/g, " ").trim();
+  }
+
+  /* ============================================================
+     RISULTATI
+     ============================================================ */
+  function finale(){
+    var puliti = S.esiti.filter(function(e){ return e && e.pulito; }).length;
+    var attrezzi = {};
+    S.esiti.forEach(function(e){ if(e) e.attrezzi.forEach(function(k){ attrezzi[k] = (attrezzi[k] || 0) + 1; }); });
+    var diversi = Object.keys(attrezzi).length;
+    var parole = S.esiti.reduce(function(a, e){ return a + (e ? e.parole : 0); }, 0);
+    var nuovo = setRecord(S.cat, puliti);
+
+    var msg;
+    if(puliti === S.items.length) msg = "Dieci su dieci. A questo punto il problema non è più la fluidità: è trovare qualcuno che parli alla tua velocità.";
+    else if(puliti >= 7) msg = "Questo è il livello in cui ti fermi a pensare mezzo secondo e poi riparti. Esattamente quello che serve per il C2.";
+    else if(puliti >= 4) msg = "Metà e metà. Guarda sotto quali parole ti hanno fregato: quasi sempre è la stessa famiglia di vietate, e si sistema in due partite.";
+    else msg = "Difficile, lo so. Il trucco non è cercare un sinonimo: è cominciare dalla categoria. <i>È quella cosa che&hellip;</i> e il resto arriva da solo.";
+
+    var mancati = ATTREZZI.filter(function(a){ return !attrezzi[a.k]; });
+
+    var h = '<div class="ris">' +
+      '<p class="eyebrow">' + esc(nomeCat(S.cat)) + "</p>" +
+      '<p class="ris-num">' + puliti + "/" + S.items.length + "</p>" +
+      '<p class="ris-sub">parole girate senza toccare le vietate</p>' +
+      '<div class="ris-due">' +
+      '<div class="ris-box"><p class="n">' + diversi + "/" + ATTREZZI.length + '</p><p class="k">attrezzi diversi</p></div>' +
+      '<div class="ris-box"><p class="n">' + parole + '</p><p class="k">parole dette</p></div>' +
+      "</div>" +
+      (nuovo
+        ? '<p class="ris-badge">&#9733; nuovo record</p>'
+        : '<p class="ris-badge quiet">record ' + getRecord(S.cat) + "/" + GIRI + "</p>") +
+      '<p class="ris-msg">' + msg + "</p>";
+
+    var caduti = S.esiti.filter(function(e){ return e && !e.pulito; });
+    if(caduti.length){
+      h += '<div class="ris-lista"><h3>Le parole che ti hanno fermato</h3>' +
+        caduti.map(function(e){
+          var q = e.abbastanza
+            ? e.prese.map(function(i){ return "detta: " + mostrata(trova(e.it).no[i]); }).join(", ")
+            : "solo " + e.parole + " parole";
+          return '<div class="riga"><span class="w ko">' + e.it + "</span>" +
+            '<span class="q">' + esc(q) + "</span></div>";
+        }).join("") + "</div>";
+    }
+
+    if(mancati.length){
+      h += '<div class="ris-lista"><h3>Attrezzi che non hai toccato</h3>' +
+        mancati.map(function(a){
+          return '<div class="riga"><span class="w">' + esc(a.nome) + "</span>" +
+            '<span class="q">' + esc(a.ex) + "</span></div>";
+        }).join("") + "</div>";
+    }
+
+    h += '<div class="ris-azioni">' +
+      '<button class="btn" type="button" data-action="ancora">Ancora</button>' +
+      '<button class="btn btn-ghost" type="button" data-action="hub">Altre parole</button>' +
+      "</div></div>";
+
+    schermi.results.innerHTML = h;
+    mostra("results");
+  }
+
+  function trova(it){
+    for(var i = 0; i < P.length; i++){ if(P[i].it === it) return P[i]; }
+    return { no:[] };
+  }
+  function nomeCat(k){
+    if(k === "tutte") return "all of them";
+    for(var i = 0; i < CAT.length; i++){ if(CAT[i].k === k) return CAT[i].en; }
+    return "";
+  }
+
+  /* ============================================================
+     I CLICK
+     ============================================================ */
+  document.getElementById("app").addEventListener("click", function(e){
+    var b = e.target.closest ? e.target.closest("[data-action],[data-cat]") : null;
+    if(!b) return;
+
+    var cat = b.getAttribute("data-cat");
+    if(cat){ via(cat); return; }
+
+    var a = b.getAttribute("data-action");
+
+    if(a === "say"){ VOCE.di(b.getAttribute("data-say")); return; }
+
+    if(a === "mic"){ accendi(); return; }
+    if(a === "stop"){ chiudi(); return; }
+
+    if(a === "onore-via"){
+      parteTempo();
+      b.classList.add("on");
+      b.innerHTML = ICONA_MIC + "Fatto";
+      b.setAttribute("data-action", "onore-fine");
+      var tr = document.getElementById("trascritto");
+      if(tr){
+        tr.classList.add("viva");
+        tr.innerHTML = '<span class="attesa">parla&hellip; le quattro parole sono lì sopra, non toccarle</span>';
+      }
+      return;
+    }
+    if(a === "onore-fine"){
+      fermaTempo();
+      b.classList.remove("on");
+      b.setAttribute("disabled", "disabled");
+      var az = document.getElementById("azioni");
+      if(az){
+        az.innerHTML = '<span class="onore"><span class="dom">Ce l\'hai fatta senza dire le quattro parole?</span>' +
+          '<button class="btn" type="button" data-action="onore-si">Sì, pulito</button>' +
+          '<button class="btn btn-ghost" type="button" data-action="onore-no">No, una mi è scappata</button></span>';
+      }
+      return;
+    }
+    if(a === "onore-si"){ chiudiOnore(true); return; }
+    if(a === "onore-no"){ chiudiOnore(false); return; }
+
+    if(a === "avanti"){
+      if(S.idx >= S.items.length - 1){ finale(); return; }
+      S.idx++;
+      giro();
+      return;
+    }
+    if(a === "ancora"){ via(S.cat); return; }
+    if(a === "hub"){
+      fermaTempo();
+      if(S.ascolto){ S.ascolto = false; ORECCHIO.spegni(); }
+      S.chiuso = true;
+      dipingiCat();
+      mostra("hub");
+      return;
+    }
+  });
+
+  /* se si cambia pagina a microfono aperto, si chiude */
+  window.addEventListener("pagehide", function(){
+    if(S.ascolto){ S.ascolto = false; try{ ORECCHIO.spegni(); }catch(e){} }
+  });
+
+  dipingiDemo();
+  dipingiCat();
+
+  /* una mano per le prove automatiche */
+  window.__GIRO = { P:P, CAT:CAT, ATTREZZI:ATTREZZI, S:S, via:via,
+                    forza:function(nomi){
+                      S.cat = "tutte"; S.esiti = []; S.idx = 0;
+                      S.items = nomi.map(function(n){
+                        return P.filter(function(p){ return p.it.indexOf(n) >= 0; })[0];
+                      });
+                      mostra("game"); giro();
+                    },
+                    cercaVietate:cercaVietate, cercaAttrezzi:cercaAttrezzi,
+                    radice:radice, conta:conta, segna:segna, aggiorna:aggiorna,
+                    chiudi:chiudi, mostrata:mostrata, forme:forme, perCat:perCat };
+})();
+</script>
+
+<!-- =====================================================================
+     RITOCCHI PER IL TELEFONO
+     Blocco autonomo, uguale su tutte le pagine esercizi.
+     ===================================================================== -->
+<style>
+@media (pointer: coarse) and (max-height: 820px) {
+  body.in-gioco > header { display: none; }
+}
+@media (pointer: coarse) {
+  .drawer, .tray { max-height: 60dvh; overflow-y: auto; }
+}
+</style>
+<script>
+(function () {
+  var gioco = document.getElementById("screen-game");
+
+  if (gioco) {
+    var inCoda = false;
+    function guarda() {
+      inCoda = false;
+      document.body.classList.toggle("in-gioco", gioco.offsetParent !== null);
+    }
+    function chiedi() {
+      if (!inCoda) { inCoda = true; setTimeout(guarda, 0); }
+    }
+    new MutationObserver(chiedi).observe(document.body, {
+      attributes: true, subtree: true,
+      attributeFilter: ["class", "style", "hidden"]
+    });
+    guarda();
+  }
+})();
+</script>
+
+</body>
+</html>
