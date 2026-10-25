@@ -9,9 +9,51 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "25 ottobre 2026, 18:37";
+var PIANO_AGGIORNATO = "26 ottobre 2026, 00:12";
 
 var PIANO = {
+
+  "bianca-hco": {
+    "nome": "Bianca",
+    "aggiornato": "25 ottobre 2026",
+    "ultima": {
+      "quando": "2026-10-20T14:00:00+02:00",
+      "fatto": [
+        "Verb review",
+        "The first 190 words, to build your vocabulary",
+        "How often: sempre, spesso, di solito, mai",
+        "We started Guess Who?"
+      ]
+    },
+    "prossima": {
+      "quando": "2026-10-26T14:00:00+01:00",
+      "obiettivo": "Describe people and ask the right questions to find them, and use verbs in everyday sentences.",
+      "attivita": [
+        {
+          "titolo": "Verbs and your routine: how often?",
+          "href": "",
+          "nota": "We play it together"
+        },
+        {
+          "titolo": "Guess Who?, round two",
+          "href": "",
+          "nota": "You ask the questions, then you describe the person"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "Chi è? Guess who, on your own",
+        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
+        "nota": "The same game: try level 1, then level 2"
+      },
+      {
+        "titolo": "The first 190 words",
+        "href": "https://talkwithfabio.com/esercizi/parole-a1/",
+        "nota": "10 minutes a day"
+      }
+    ]
+  },
 
   "ellie-3mw": {
     "nome": "Ellie",
@@ -19,31 +61,42 @@ var PIANO = {
     "ultima": {
       "quando": "2026-10-22T14:00:00+02:00",
       "fatto": [
-        "We kept working on verbs",
-        "Free conversation, to speak more spontaneously"
+        "Verb review",
+        "Question words: come, cosa, chi, quando, quanto",
+        "Numbers from 1 to 20"
       ]
     },
     "prossima": {
       "quando": "2026-10-26T13:00:00+01:00",
-      "obiettivo": "Tell me about your holiday, and keep the conversation going: how to start a sentence and how to ask questions back.",
+      "obiettivo": "Describe a person (hair, eyes, height, face) and ask the right questions to guess who it is.",
       "attivita": [
         {
-          "titolo": "Tell me about your holiday",
+          "titolo": "Words to describe people",
           "href": "",
-          "nota": "We start with this: think about what you did, where you went, what you ate"
+          "nota": "New adjectives: long, short, tall, blue eyes..."
         },
         {
-          "titolo": "Attacca e rilancia",
+          "titolo": "Guess who?",
           "href": "",
-          "nota": "A conversation game we play together"
+          "nota": "A game we play together: you ask the questions"
+        },
+        {
+          "titolo": "Describe someone you know",
+          "href": "",
+          "nota": "A friend, someone in your family or a famous person"
         }
       ]
     },
     "compiti": [
       {
-        "titolo": "Passato prossimo 1: essere or avere?",
-        "href": "https://talkwithfabio.com/esercizi/passato-prossimo/?mode=aux",
-        "nota": "10 minutes before the lesson"
+        "titolo": "Describing people",
+        "href": "https://talkwithfabio.com/esercizi/descrivere/",
+        "nota": "Before the lesson: the words we will use"
+      },
+      {
+        "titolo": "The words that open a question",
+        "href": "https://talkwithfabio.com/esercizi/parole-domanda/",
+        "nota": "Review: chi, cosa, come, quando, quanto"
       }
     ]
   }
