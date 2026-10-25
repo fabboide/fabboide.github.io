@@ -140,6 +140,7 @@ input[type=text]:focus{ outline:none; border-color:var(--ink); background:#fff; 
 .correzione.forma .k{ color:var(--verde); }
 .correzione.fuori .k{ color:var(--rosso); }
 .correzione b{ font-family:var(--display); }
+.correzione .en{ display:block; margin-top:3px; font-size:.88rem; }
 
 .domande{ border:2px solid var(--rule); border-radius:20px; background:var(--paper-2); padding:12px 14px 14px; max-height:46vh; overflow:auto; }
 @media(max-width:940px){ .domande{ max-height:none; } }
@@ -218,7 +219,7 @@ textarea:focus{ outline:none; border-color:var(--ink); }
     <div class="gioco">
       <div><div class="board" id="board"></div>
         <div class="riga">
-          <button class="btn" id="guessBtn">Ho capito chi &egrave;</button>
+          <button class="btn" id="guessBtn">Ho capito chi &egrave; <span class="sub">I know</span></button>
           <button class="btn btn-soft hidden" id="annullaBtn">Annulla</button>
           <button class="btn btn-ghost" id="newBtn">Un'altra <span class="kbd">n</span></button>
         </div>
@@ -226,7 +227,7 @@ textarea:focus{ outline:none; border-color:var(--ink); }
 
       <div class="lato">
         <div class="risp" id="risp">
-          <p class="lab">La risposta</p>
+          <p class="lab">La risposta &middot; the answer</p>
           <p class="vuoto" id="rispVuoto"></p>
           <p class="dom hidden" id="rispDom"></p>
           <p class="sn hidden" id="rispSn"></p>
@@ -234,10 +235,10 @@ textarea:focus{ outline:none; border-color:var(--ink); }
         </div>
 
         <div class="scrivi hidden" id="scriviBox">
-          <p class="lab">Fai la tua domanda</p>
+          <p class="lab">Fai la tua domanda &middot; ask your question</p>
           <div class="fila">
             <input type="text" id="campo" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Ha i capelli lunghi?">
-            <button class="btn" id="chiediBtn">Chiedi</button>
+            <button class="btn" id="chiediBtn">Chiedi <span class="sub">ask</span></button>
           </div>
           <div id="correzione"></div>
           <p class="aiuto" id="aiuto"></p>
@@ -262,10 +263,11 @@ textarea:focus{ outline:none; border-color:var(--ink); }
     <div class="compito">
       <span class="k">Adesso tocca a te</span>
       <h3 id="cTit">Descrivila tu, in tre frasi.</h3>
+      <p class="en" style="margin:-4px 0 6px">Now you describe them, in three sentences.</p>
       <p class="lede" id="cSpiega"></p>
       <textarea id="cTesto" placeholder="&Egrave; una donna giovane. Ha i capelli..."></textarea>
       <div class="riga">
-        <button class="btn" id="cBtn">Controlla</button>
+        <button class="btn" id="cBtn">Controlla <span class="sub">check</span></button>
         <button class="btn btn-ghost" id="newBtn2">Un'altra partita <span class="kbd">n</span></button>
         <button class="btn btn-soft" id="backBtn2">I livelli</button>
       </div>
@@ -795,13 +797,16 @@ function riconosciDomanda(testo, domande, testoDi){
   /* ---------- i tre livelli ---------- */
   var LIVELLI = [
     { n:1, t:"Clicca la domanda", en:"pick the question",
-      p:"Le domande sono gi&agrave; scritte: tu scegli. Serve a imparare le formule, che sono poche e tornano sempre.",
+      p:"Le domande sono gi&agrave; scritte: tu scegli. Serve a imparare le formule, che sono poche e tornano sempre. Qui si chiede solo dei capelli e del viso.",
+      pEn:"The questions are written for you: just pick one. This is where you learn the handful of formulas you will keep using. Hair and face only.",
       facce:12, come:"click", voc:{viso:true, accessori:false, corpo:false, vestiti:false} },
     { n:2, t:"Scrivi la domanda", en:"write it yourself",
       p:"Niente elenco: la domanda la scrivi tu. Se si capisce ma non si dice cos&igrave;, ti rispondo lo stesso e ti dico come si dice.",
-      facce:12, come:"scrivi", voc:{viso:true, accessori:true, corpo:true, vestiti:false} },
+      pEn:"No list. You type the question yourself. If I understand it but you said it the wrong way, I still answer and then show you the right form.",
+      facce:12, come:"scrivi", voc:{viso:true, accessori:true, corpo:true, vestiti:true} },
     { n:3, t:"A memoria", en:"from memory",
       p:"Ventiquattro facce, tutte le domande, e nessun aiuto. Il minimo possibile &egrave; cinque domande: prova ad avvicinarti.",
+      pEn:"Twenty-four faces, every question, no help at all. Five questions is the theoretical minimum: see how close you get.",
       facce:24, come:"memoria", voc:{viso:true, accessori:true, corpo:true, vestiti:true} }
   ];
 
@@ -820,7 +825,7 @@ function riconosciDomanda(testo, domande, testoDi){
     $("livelli").innerHTML = LIVELLI.map(function(L){
       var r = record["l" + L.n];
       return "<div class='liv'><span class='n'>Livello " + L.n + " &middot; " + L.en + "</span>" +
-        "<h3>" + L.t + "</h3><p>" + L.p + "</p>" +
+        "<h3>" + L.t + "</h3><p>" + L.p + "<br><span class='en'>" + L.pEn + "</span></p>" +
         "<p class='rec'>" + L.facce + " facce" +
         (r ? " &middot; il tuo record: " + r + (r === 1 ? " domanda" : " domande") : "") + "</p>" +
         "<div class='riga'><button class='btn' data-liv='" + L.n + "'>Gioca <span class='sub'>play</span></button></div></div>";
@@ -848,6 +853,15 @@ function riconosciDomanda(testo, domande, testoDi){
   function nuovaPartita(){
     var gente = generaTabellone(liv.facce);
     if(!gente){ toast("Non riesco a fare il tabellone, riprova"); return; }
+
+    /* Al livello 1 i vestiti non si chiedono, e il motore in quel caso
+       mette a tutti la stessa maglietta. Un tabellone di dodici magliette
+       identiche sembra un difetto, quindi il colore lo rimetto io: e'
+       solo decorativo, le facce restano distinguibili con le domande
+       che ci sono (la firma non ha mai contato i vestiti). */
+    if(!liv.voc.vestiti){
+      gente.forEach(function(p){ p.maglia = MAGLIE[Math.floor(Math.random() * MAGLIE.length)]; });
+    }
     gioco = {
       gente: gente,
       fuori: gente.map(function(){ return false; }),
@@ -866,9 +880,11 @@ function riconosciDomanda(testo, domande, testoDi){
     $("risp").className = "risp";
     ["rispDom", "rispSn", "rispMod"].forEach(function(i){ $(i).classList.add("hidden"); });
     $("rispVuoto").classList.remove("hidden");
-    $("rispVuoto").textContent = liv.come === "click"
-      ? "Scegli una domanda qui sotto. Dilla anche a voce: è lì che serve."
-      : "Scrivi la tua domanda qui sotto. Dilla anche a voce, prima di scriverla.";
+    $("rispVuoto").innerHTML = liv.come === "click"
+      ? "Scegli una domanda qui sotto. Dilla anche a voce: \u00e8 l\u00ec che serve." +
+        "<br><span class='en'>Pick a question below. Say it out loud too: that is the part that counts.</span>"
+      : "Scrivi la tua domanda qui sotto. Dilla a voce prima di scriverla." +
+        "<br><span class='en'>Type your question below. Say it out loud before you type it.</span>";
     $("correzione").innerHTML = "";
     $("campo").value = "";
 
@@ -876,8 +892,10 @@ function riconosciDomanda(testo, domande, testoDi){
     $("scriviBox").classList.toggle("hidden", liv.come === "click");
     if(liv.come !== "click"){
       $("aiuto").innerHTML = liv.come === "scrivi"
-        ? "Puoi chiedere di: <b>capelli, viso, occhiali, cappello, et&agrave;, corporatura</b>."
-        : "Tutto quello che si vede. Nessun elenco, nessun aiuto.";
+        ? "Puoi chiedere di: <b>capelli, viso, occhiali, cappello, et&agrave;, corporatura, vestiti</b>." +
+          "<br>You can ask about hair, face, glasses, hat, age, build and clothes."
+        : "Tutto quello che si vede. Nessun elenco, nessun aiuto." +
+          "<br>Everything you can see. No list, no help.";
     }
 
     disegnaBoard();
@@ -959,24 +977,26 @@ function riconosciDomanda(testo, domande, testoDi){
     if(r.esito === "vuoto"){ c.innerHTML = ""; return; }
 
     if(r.esito === "fuori"){
-      c.innerHTML = "<div class='correzione fuori'><span class='k'>non posso rispondere</span>" +
-        "Qui si chiede solo quello che <b>si vede in faccia</b>: capelli, viso, occhiali, " +
+      c.innerHTML = "<div class='correzione fuori'><span class='k'>non posso rispondere &middot; I cannot answer that</span>" +
+        "Qui si chiede solo quello che <b>si vede</b>: capelli, viso, occhiali, " +
         "cappello" + (liv.voc.corpo ? ", et&agrave;, corporatura" : "") +
-        (liv.voc.vestiti ? ", vestiti" : "") + ". Riprova.</div>";
+        (liv.voc.vestiti ? ", vestiti" : "") + ". Riprova." +
+        "<span class='en'>Only things you can see in the picture. Try again.</span></div>";
       return;
     }
 
     if(r.esito === "vicina"){
-      c.innerHTML = "<div class='correzione fuori'><span class='k'>una domanda alla volta</span>" +
-        "Forse volevi dire <b>" + r.dire + "</b> Chiedi una cosa sola per volta.</div>";
+      c.innerHTML = "<div class='correzione fuori'><span class='k'>una domanda alla volta &middot; one at a time</span>" +
+        "Forse volevi dire <b>" + r.dire + "</b> Chiedi una cosa sola per volta." +
+        "<span class='en'>Did you mean this one? Ask about one thing at a time.</span></div>";
       return;
     }
 
     if(r.esito === "forma"){
-      c.innerHTML = "<div class='correzione forma'><span class='k'>ti rispondo, ma si dice cos&igrave;</span>" +
+      c.innerHTML = "<div class='correzione forma'><span class='k'>ti rispondo, ma si dice cos&igrave; &middot; here is the right form</span>" +
         "<b>" + r.dire + "</b></div>";
     } else {
-      c.innerHTML = "<div class='correzione forma'><span class='k'>detta bene</span><b>" +
+      c.innerHTML = "<div class='correzione forma'><span class='k'>detta bene &middot; said properly</span><b>" +
         testoDomanda(gioco.domande[r.i]) + "</b></div>";
     }
     $("campo").value = "";
@@ -1036,8 +1056,11 @@ function riconosciDomanda(testo, domande, testoDi){
     if(nuovo && gioco.n > 0){ record["l" + liv.n] = gioco.n; salvaRecord(); }
 
     $("vFace").innerHTML = faccia(p);
-    $("vTit").innerHTML = "&Egrave; " + p.nome + ", in <b>" + gioco.n +
-      (gioco.n === 1 ? " domanda" : " domande") + "</b>." + (nuovo && gioco.n > 0 ? " <span style='color:var(--verde)'>Record!</span>" : "");
+    $("vTit").innerHTML = "&Egrave; " + p.nome + ", " +
+      (gioco.n === 0
+        ? "<b>al primo colpo</b>, senza chiedere niente."
+        : "in <b>" + gioco.n + (gioco.n === 1 ? " domanda" : " domande") + "</b>.") +
+      (nuovo && gioco.n > 0 ? " <span style='color:var(--verde)'>Record!</span>" : "");
     $("vDesc").textContent = descrizione(p);
     $("vSotto").textContent = "This is how you say it with every ending agreeing. Read it out loud once.";
 
@@ -1050,29 +1073,33 @@ function riconosciDomanda(testo, domande, testoDi){
 
   /* ---------- il controllo della descrizione scritta ---------- */
   var ACCORDO = [
-    { r:"magr",    m:"magro",    f:"magra" },
-    { r:"robust",  m:"robusto",  f:"robusta" },
-    { r:"anzian",  m:"anziano",  f:"anziana" },
-    { r:"calv",    m:"calvo",    f:"calva" },
-    { r:"giovan",  m:"giovane",  f:"giovane" }
+    { m:"magro",    f:"magra" },
+    { m:"robusto",  f:"robusta" },
+    { m:"anziano",  f:"anziana" },
+    { m:"calvo",    f:"calva" },
+    { m:"giovane",  f:"giovane" }
   ];
+  ACCORDO.forEach(function(a){ a.r = radice(a.m); });
 
   function trattiDi(p){
     var t = [];
-    t.push({ r:p.uomo ? "uom" : "donn", eti:p.uomo ? "un uomo" : "una donna" });
-    t.push({ r:"capell", eti:"i capelli", salta:p.capelli === "calvo" });
-    if(p.capelli === "calvo") t.push({ r:"calv", eti:"calvo" });
+    /* le radici si CALCOLANO con la stessa funzione che macina il testo
+       dello studente: scriverle a mano vuol dire sbagliarle (uomo e'
+       lungo quattro lettere, quindi radice() non lo accorcia) */
+    t.push({ r:radice(p.uomo ? "uomo" : "donna"), eti:p.uomo ? "un uomo" : "una donna" });
+    t.push({ r:radice("capelli"), eti:"i capelli", salta:p.capelli === "calvo" });
+    if(p.capelli === "calvo") t.push({ r:radice("calvo"), eti:"calvo" });
     else {
       t.push({ r:radice(p.capelli), eti:"capelli " + p.capelli });
       t.push({ r:radice(p.forma), eti:p.forma });
       t.push({ r:radice(p.colore), eti:p.colore });
     }
-    if(p.barba) t.push({ r:"barb", eti:"la barba" });
-    if(p.baffi) t.push({ r:"baff", eti:"i baffi" });
+    if(p.barba) t.push({ r:radice("barba"), eti:"la barba" });
+    if(p.baffi) t.push({ r:radice("baffi"), eti:"i baffi" });
     t.push({ r:radice(p.occhi), eti:"occhi " + p.occhi });
     if(liv.voc.accessori){
-      if(p.occhiali) t.push({ r:"occhial", eti:"gli occhiali" });
-      if(p.cappello) t.push({ r:"cappell", eti:"il cappello" });
+      if(p.occhiali) t.push({ r:radice("occhiali"), eti:"gli occhiali" });
+      if(p.cappello) t.push({ r:radice("cappello"), eti:"il cappello" });
     }
     if(liv.voc.corpo){
       t.push({ r:radice(p.eta), eti:p.eta });
@@ -1080,8 +1107,8 @@ function riconosciDomanda(testo, domande, testoDi){
     }
     if(liv.voc.vestiti){
       t.push({ r:radice(p.maglia), eti:"maglietta " + p.maglia });
-      if(p.sciarpa) t.push({ r:"sciarp", eti:"la sciarpa" });
-      if(p.orecchini) t.push({ r:"orecchin", eti:"gli orecchini" });
+      if(p.sciarpa) t.push({ r:radice("sciarpa"), eti:"la sciarpa" });
+      if(p.orecchini) t.push({ r:radice("orecchini"), eti:"gli orecchini" });
     }
     return t.filter(function(x){ return !x.salta; });
   }
@@ -1103,8 +1130,9 @@ function riconosciDomanda(testo, domande, testoDi){
     var testo = $("cTesto").value;
     var parole = normalizza(testo).split(" ").filter(Boolean);
     if(parole.length < 4){
-      $("cEsito").innerHTML = "<div class='correzione fuori'><span class='k'>troppo corto</span>" +
-        "Scrivi almeno tre frasi: &egrave; l&igrave; che il lessico si fissa.</div>";
+      $("cEsito").innerHTML = "<div class='correzione fuori'><span class='k'>troppo corto &middot; too short</span>" +
+        "Scrivi almeno tre frasi: &egrave; l&igrave; che il lessico si fissa." +
+        "<span class='en'>Write at least three sentences: that is where the words stick.</span></div>";
       return;
     }
     var radici = {};
@@ -1137,28 +1165,30 @@ function riconosciDomanda(testo, domande, testoDi){
     var perc = Math.round(detti.length / tratti.length * 100);
     var h = "<div class='barra'><i style='width:" + perc + "%'></i></div>" +
       "<p style='margin:0'><b>" + detti.length + " cose su " + tratti.length + ".</b> " +
-      (perc >= 70 ? "Buona descrizione." : perc >= 40 ? "Si può dire di più." : "Guardala ancora e aggiungi.") + "</p>";
+      (perc >= 70 ? "Buona descrizione." : perc >= 40 ? "Si può dire di più." : "Guardala ancora e aggiungi.") +
+      "<br><span class='en'>" + detti.length + " of the " + tratti.length + " things you could have said.</span></p>";
 
     if(falsi.length){
-      h += "<div class='correzione fuori' style='margin-top:10px'><span class='k'>non \u00e8 vero</span>" +
+      h += "<div class='correzione fuori' style='margin-top:10px'><span class='k'>non \u00e8 vero &middot; not true</span>" +
         falsi.map(function(f){
           return "hai scritto <i>" + f.scritta + "</i>, ma " + p.nome + " \u00e8 <b>" + f.vero + "</b>";
         }).join("; ") + ".</div>";
     }
 
     if(sbagli.length){
-      h += "<div class='correzione fuori' style='margin-top:10px'><span class='k'>le finali</span>" +
+      h += "<div class='correzione fuori' style='margin-top:10px'><span class='k'>le finali &middot; the endings</span>" +
         p.nome + " è " + (p.uomo ? "un uomo" : "una donna") + ", quindi: " +
         sbagli.map(function(s){ return "<b>" + s.giusta + "</b> (non <i>" + s.scritta + "</i>)"; }).join(", ") + ".</div>";
     } else {
-      h += "<div class='correzione forma' style='margin-top:10px'><span class='k'>le finali</span>" +
-        "Tutte giuste.</div>";
+      h += "<div class='correzione forma' style='margin-top:10px'><span class='k'>le finali &middot; the endings</span>" +
+        "Tutte giuste.<span class='en'>Every ending agrees.</span></div>";
     }
 
     h += "<div class='tratti'>" + tratti.map(function(x){
       return "<span class='tr" + (radici[x.r] ? " detto" : "") + "'>" + x.eti + "</span>";
     }).join("") + "</div>" +
-    "<p class='aiuto' style='margin-top:10px'>In verde quello che hai detto. Il resto è quello che si poteva ancora dire.</p>";
+    "<p class='aiuto' style='margin-top:10px'>In verde quello che hai detto. Il resto è quello che si poteva ancora dire." +
+    "<br>In green what you said. The rest is what you could still have mentioned.</p>";
 
     $("cEsito").innerHTML = h;
   }
