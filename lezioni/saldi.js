@@ -54,7 +54,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "24 ottobre 2026, 10:52";
+var SALDI_AGGIORNATO = "25 ottobre 2026, 10:09";
 
 var SALDI = {
 
@@ -95,8 +95,8 @@ var SALDI = {
     inizio: "2026-08-26",
     fatte_prima: 0,
     fatte: 8,
-    prenotate: 1,
-    rimaste: 1,
+    prenotate: 2,
+    rimaste: 0,
     passate: [
       "2026-08-26T12:00:00+02:00",
       "2026-09-01T12:00:00+02:00",
@@ -108,7 +108,8 @@ var SALDI = {
       "2026-10-23T12:00:00+02:00"
     ],
     prossime: [
-      { quando: "2026-10-29T15:30:00+01:00", fine: "2026-10-29T16:20:00+01:00", gestisci: "https://cal.com/booking/vKRaPgsGjRLKgBjqFdtFcp?changes=true" }
+      { quando: "2026-10-29T15:30:00+01:00", fine: "2026-10-29T16:20:00+01:00", gestisci: "https://cal.com/booking/vKRaPgsGjRLKgBjqFdtFcp?changes=true" },
+      { quando: "2026-11-02T16:00:00+01:00", fine: "2026-11-02T16:50:00+01:00", gestisci: "https://cal.com/booking/o8US4kfBMivoxjwkXL3vza?changes=true" }
     ]
   },
 
