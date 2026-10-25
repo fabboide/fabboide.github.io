@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attacca e rilancia · Talk with Fabio</title>
+<meta name="description" content="Gioco di conversazione: le parole per cominciare una frase e le domande per rilanciare, da allenare in lezione.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+
+/* Fase 1: quale attacco */
+.scambio{display:flex;flex-direction:column;gap:10px}
+.bA{align-self:flex-start;max-width:88%;background:var(--paper);border:1px solid var(--line);border-radius:4px 18px 18px 18px;padding:12px 16px;font-size:1.2rem}
+.bB{align-self:flex-end;max-width:88%;background:var(--bubble);border:1px solid #CBDDD2;border-radius:18px 4px 18px 18px;padding:12px 16px;font-size:1.25rem}
+.bA::before,.bB::before{display:block;font-family:var(--hand);font-size:1.1rem;margin-bottom:2px}
+.bA::before{content:"io";color:var(--tomato)}
+.bB::before{content:"tu";color:var(--basil)}
+.buco{display:inline-block;min-width:4.5em;border-bottom:3px solid var(--tomato);text-align:center;font-family:var(--display);font-weight:700;color:var(--tomato)}
+.opzioni{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+@media (max-width:560px){.opzioni{grid-template-columns:1fr}}
+.opzioni button{font-family:var(--display);font-weight:700;font-size:1.05rem;border:2px solid var(--line);background:var(--paper);border-radius:14px;padding:12px 10px}
+.opzioni button.giusta{border-color:var(--basil);background:#E7F0EA;color:var(--basil)}
+.opzioni button.sbagliata{border-color:var(--tomato);background:#FBF0EE;color:var(--tomato)}
+.confronto{display:none;margin-top:16px;border-top:1px dashed var(--line);padding-top:12px}
+.confronto.show{display:block}
+.confronto ul{list-style:none;margin:0;padding:0}
+.confronto li{padding:8px 0;border-bottom:1px solid var(--line)}
+.confronto li b{font-family:var(--display)}
+.confronto li.ok b{color:var(--basil)}
+.punti{font-family:var(--display);font-weight:800;font-size:2.2rem;color:var(--basil);margin:0;line-height:1}
+
+/* Fase 2: attacca e rilancia */
+.carta{border:2px solid var(--ink);border-radius:20px;background:var(--paper);overflow:hidden}
+.carta .dom{padding:18px 20px;font-size:1.4rem;line-height:1.4;border-bottom:1px solid var(--line)}
+.carta .dom small{display:block;font-family:var(--hand);font-size:1.15rem;color:var(--tomato)}
+.carta .pezzi{display:grid;grid-template-columns:1fr 1fr}
+@media (max-width:560px){.carta .pezzi{grid-template-columns:1fr}}
+.pezzo{padding:14px 18px}
+.pezzo + .pezzo{border-left:1px solid var(--line)}
+@media (max-width:560px){.pezzo + .pezzo{border-left:0;border-top:1px solid var(--line)}}
+.pezzo .lab{font-family:var(--display);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pezzo .val{font-family:var(--display);font-weight:800;font-size:1.45rem;line-height:1.2;margin:4px 0 2px}
+.pezzo.att .val{color:var(--basil)}
+.pezzo.ril .val{color:var(--tomato)}
+.pezzo .gl{font-size:.9rem;color:var(--muted);font-style:italic}
+.check{list-style:none;margin:14px 0 0;padding:0}
+.check li{padding:9px 0 9px 34px;border-bottom:1px solid var(--line);position:relative;cursor:pointer}
+.check li::before{content:"";position:absolute;left:0;top:11px;width:20px;height:20px;border:2px solid var(--line);border-radius:6px;background:var(--paper)}
+.check li.done{color:var(--muted)}
+.check li.done::before{content:"✓";color:var(--paper);background:var(--basil);border-color:var(--basil);display:grid;place-items:center;font-size:.85rem;line-height:1}
+
+/* Fase 3: ping pong */
+.tavolo{text-align:center;padding:22px 16px}
+.tema{font-family:var(--hand);font-size:1.5rem;color:var(--tomato)}
+.mossa{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,6vw,2.6rem);line-height:1.05;margin:6px 0 10px}
+.formule{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.formule span{background:var(--bubble);border:1px solid #CBDDD2;border-radius:999px;padding:5px 12px;font-size:1.02rem}
+.barra{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin:18px auto 0;max-width:420px}
+.barra i{display:block;height:100%;width:100%;background:var(--basil);transition:width .25s linear}
+.barra.poco i{background:var(--tomato)}
+.serie{display:flex;justify-content:center;gap:28px;margin-top:16px;font-family:var(--display)}
+.serie div{text-align:center}
+.serie b{display:block;font-size:2rem;line-height:1}
+.serie span{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.rotto{display:none;margin-top:14px;padding:12px 14px;border:1px dashed var(--tomato);border-radius:12px;background:#FBF0EE}
+.rotto.show{display:block}
+#f3Sec{margin-left:auto}
+@media (max-width:560px){#f3Sec{margin-left:0;width:100%}}
+
+/* Comuni presi da Che mi racconti? */
+.nota-gram{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin-top:10px}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.vuoto{color:var(--muted);text-align:center;padding:26px 10px}
+/* Appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.appunti .riga{justify-content:space-between}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+/* Frasi utili */
+dialog{border:0;border-radius:16px;padding:0;max-width:660px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.5rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:54%}
+.dlg-body h3{margin:18px 0 4px;color:var(--basil);font-size:1.12rem}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Attacca e rilancia</h1>
+    <p>Le parole per cominciare a parlare senza bloccarsi, e le domande per non far morire la conversazione. Si comincia riconoscendole, poi si usano su carte pescate a caso, alla fine si gioca a ping pong contro il tempo. <span class="en">How to start a sentence, and how to bounce the conversation back.</span></p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Fasi dell'attività">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>Quale attacco?</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>Attacca e rilancia</button>
+    <button role="tab" aria-selected="false" data-phase="p3"><span class="n">3</span>Ping pong</button>
+    <button class="side" id="openKit" type="button">Il kit</button>
+  </nav>
+
+  <!-- FASE 1 -->
+  <section class="phase active" id="p1">
+    <h2>Quale attacco?</h2>
+    <p class="lead">Leggi lo scambio e scegli la parola che va nel buco. Tutte e tre ci stanno, ma ognuna dice una cosa diversa: dopo la risposta le vedi tutte e tre al lavoro. <span class="en">All three fit the gap. Only one says what you mean.</span></p>
+    <div class="grid2">
+      <div class="panel">
+        <div class="scambio">
+          <div class="bA" id="f1A"></div>
+          <div class="bB" id="f1B"></div>
+        </div>
+        <div class="opzioni" id="f1Opz"></div>
+        <div class="confronto" id="f1Conf">
+          <h3>Le tre parole al lavoro</h3>
+          <ul id="f1List"></ul>
+          <div class="nota-gram" id="f1Nota"></div>
+        </div>
+        <div class="riga">
+          <button class="btn ghost" id="f1Next" type="button">Prossimo scambio</button>
+          <span class="count" id="f1Pos"></span>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Punti</h3>
+        <p class="punti" id="f1Punti">0</p>
+        <p class="en" id="f1Sub" style="margin:0 0 12px">Su 0 scambi.</p>
+        <h3>Prima di cliccare</h3>
+        <p style="margin:0">Leggi la frase a voce alta con la parola che hai scelto. Se suona strana a voce, è sbagliata anche sullo schermo.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 2 -->
+  <section class="phase" id="p2">
+    <h2>Attacca e rilancia</h2>
+    <p class="lead">Io faccio la domanda. Tu rispondi cominciando con <b>l'attacco</b> della carta, dici almeno tre frasi e chiudi con <b>il rilancio</b>: una domanda a me. Poi tocca a me rispondere. <span class="en">Start with the green words, end with the red question.</span></p>
+    <div class="chips" id="f2Chips" style="margin-bottom:12px"></div>
+    <div class="toolbar">
+      <button class="btn red" id="f2Draw" type="button">Pesca una carta</button>
+      <button class="btn ghost" id="f2Swap" type="button" disabled>Cambia attacco</button>
+      <div class="timer" id="f2Timer">
+        <output id="f2Out">1:00</output>
+        <button class="btn ghost" id="f2TBtn" type="button">Avvia</button>
+      </div>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="panel vuoto" id="f2Vuoto">Scegli un tempo qui sopra, poi premi <b>Pesca una carta</b>.</div>
+        <div class="carta" id="f2Carta" hidden>
+          <div class="dom"><small id="f2Tempo"></small><span id="f2Dom"></span></div>
+          <div class="pezzi">
+            <div class="pezzo att"><div class="lab">Comincia con</div><div class="val" id="f2Att"></div><div class="gl" id="f2AttGl"></div></div>
+            <div class="pezzo ril"><div class="lab">Chiudi con</div><div class="val" id="f2Ril"></div><div class="gl" id="f2RilGl"></div></div>
+          </div>
+        </div>
+        <ul class="check" id="f2Check" hidden>
+          <li data-k="a">Ha cominciato con l'attacco, senza pause prima</li>
+          <li data-k="v">I verbi erano giusti (il tempo della domanda)</li>
+          <li data-k="t">Almeno tre frasi</li>
+          <li data-k="r">Ha chiuso con il rilancio, e la domanda era giusta</li>
+        </ul>
+      </div>
+      <aside class="panel">
+        <h3>Punti</h3>
+        <p class="punti" id="f2Punti">0</p>
+        <p class="en" id="f2Sub" style="margin:0 0 12px">Un punto per ogni casella spuntata.</p>
+        <h3>Sali di livello</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>infila un secondo attacco a metà: «poi», «a un certo punto», «alla fine»</li>
+          <li>quando rispondo io, reagisci prima di fare la domanda dopo</li>
+          <li>accendi il cronometro: un minuto per tutto</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 3 -->
+  <section class="phase" id="p3">
+    <h2>Ping pong</h2>
+    <p class="lead">Si chiacchiera di un tema. Ogni volta che tocca a te, lo schermo ti dice <b>che mossa fare</b>: reagire, chiedere un dettaglio, cambiare argomento. Hai pochi secondi per cominciare. Se ti blocchi, la serie si rompe. <span class="en">Each turn, a new move. Keep the rally going.</span></p>
+    <div class="toolbar">
+      <button class="btn red" id="f3Start" type="button">Nuovo tema</button>
+      <button class="btn green" id="f3Ok" type="button" disabled>Presa! Tocca a me</button>
+      <button class="btn ghost" id="f3Ko" type="button" disabled>Bloccata</button>
+      <div class="chips" id="f3Sec"></div>
+    </div>
+    <div class="grid2">
+      <div class="panel tavolo">
+        <div class="vuoto" id="f3Vuoto">Premi <b>Nuovo tema</b>. Comincio io a parlare, poi tocca a te.</div>
+        <div id="f3In" hidden>
+          <div class="tema" id="f3Tema"></div>
+          <div class="mossa" id="f3Mossa"></div>
+          <div class="formule" id="f3Form"></div>
+          <div class="barra" id="f3Barra"><i id="f3Bar"></i></div>
+        </div>
+        <div class="serie">
+          <div><b id="f3Serie">0</b><span>scambi di fila</span></div>
+          <div><b id="f3Rec">0</b><span>record</span></div>
+        </div>
+        <div class="rotto" id="f3Rotto"></div>
+      </div>
+      <aside class="panel">
+        <h3>Come si gioca</h3>
+        <p style="margin:0 0 10px">Io dico una cosa sul tema, poi premo <b>Presa!</b> quando hai cominciato bene con la mossa giusta. Esce la mossa successiva, io rispondo, tocca di nuovo a te.</p>
+        <h3>Le regole</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>il tempo conta solo per <b>cominciare</b>: poi parli quanto vuoi</li>
+          <li>«ehm» non vale come attacco, «allora...» sì</li>
+          <li>gli errori non si correggono adesso: finiscono negli appunti</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- APPUNTI -->
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Gli errori da riprendere alla fine, gli attacchi che le vengono naturali, quelli che non usa mai.</p>
+    <textarea id="note" placeholder="Es. «quando ero 10 anni» → quando avevo 10 anni · usa sempre «allora», mai «comunque»"></textarea>
+    <div class="riga">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<dialog id="kitDlg" aria-labelledby="kitTitle">
+  <div class="dlg-head"><h2 id="kitTitle">Il kit</h2><button class="btn ghost" id="closeKit" type="button">Chiudi</button></div>
+  <div class="dlg-body" id="kitBody"></div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ IL KIT ============
+     famiglia, a cosa serve, [formula, inglese, esempio] */
+  var KIT = [
+    {f:"Prendere tempo", c:"Ti serve un secondo per pensare, ma non vuoi stare zitta.", v:[
+      ["Allora...","so... / well...","Allora... sabato sono andata al mare."],
+      ["Beh...","well...","Beh, non è stata una bella settimana."],
+      ["Vediamo...","let me see...","Vediamo... ieri sera ho cucinato."],
+      ["Mah...","hmm, I'm not sure","Mah, forse venti euro."],
+      ["Ah, bella domanda!","oh, good question!","Ah, bella domanda! Forse la pizza."],
+      ["Aspetta, fammi pensare...","wait, let me think...","Aspetta, fammi pensare... a giugno."]
+    ]},
+    {f:"Cominciare a raccontare", c:"Apri una storia e fai venire voglia di ascoltarla.", v:[
+      ["Allora, ti racconto...","so, let me tell you...","Allora, ti racconto: è stata una settimana pazzesca."],
+      ["Sai che...?","you know what...?","Sai che ho trovato un ristorante italiano vicino a casa?"],
+      ["Indovina un po'...","guess what...","Indovina un po' chi ho incontrato!"],
+      ["Pensa che...","believe it or not...","Pensa che ho dormito dieci ore."]
+    ]},
+    {f:"Andare avanti nel racconto", c:"Tieni insieme i pezzi della storia.", v:[
+      ["All'inizio...","at first...","All'inizio era tutto perfetto."],
+      ["Poi... / Dopo...","then... / after...","Poi siamo andate a cena."],
+      ["A un certo punto...","at some point, suddenly...","A un certo punto è andata via la luce."],
+      ["Mentre...","while...","Mentre ero in spiaggia, ha cominciato a piovere."],
+      ["Alla fine...","in the end...","Alla fine è stata una bella giornata."]
+    ]},
+    {f:"Dire la tua", c:"Dai un'opinione senza sembrare brusca.", v:[
+      ["Secondo me...","in my opinion...","Secondo me Roma è più bella di Milano."],
+      ["Per me...","for me...","Per me il mare è meglio."],
+      ["Sinceramente...","to be honest...","Sinceramente il film non mi è piaciuto."],
+      ["Diciamo che...","let's say that...","Diciamo che non è il mio piatto preferito."],
+      ["Dipende...","it depends...","Dipende: d'estate sì, d'inverno no."]
+    ]},
+    {f:"Reagire", c:"Fai vedere che stai ascoltando, prima di rispondere.", v:[
+      ["Ma dai!","no way!","Ma dai! Non ci credo."],
+      ["Davvero?","really?","Davvero? E poi?"],
+      ["Che bello!","how nice!","Che bello! Ci voglio andare anch'io."],
+      ["Che peccato!","what a shame!","Che peccato! E adesso?"],
+      ["Mamma mia!","wow! / oh my!","Mamma mia, che caldo!"],
+      ["Meno male!","thank goodness!","Meno male che c'era un taxi!"]
+    ]},
+    {f:"Cambiare argomento", c:"Porti la conversazione da un'altra parte, con gentilezza.", v:[
+      ["A proposito...","by the way...","A proposito di cibo: hai mai provato la burrata?"],
+      ["Senti...","listen...","Senti, ti va un caffè?"],
+      ["Comunque...","anyway...","Comunque, tornando al viaggio..."],
+      ["Invece...","on the other hand, instead...","Io invece preferisco la montagna."]
+    ]},
+    {f:"Rilanciare", c:"Una domanda alla fine, così l'altro deve rispondere.", v:[
+      ["E tu?","and you?","Io sono stata a casa. E tu?"],
+      ["Come mai?","how come?","Come mai sei tornato prima?"],
+      ["Cioè?","meaning?","Cioè? Non ho capito."],
+      ["E poi?","and then?","E poi cosa è successo?"],
+      ["Com'era?","what was it like?","Sei stato a Napoli? Com'era?"],
+      ["Ti è piaciuto?","did you like it?","Hai visto il film? Ti è piaciuto?"]
+    ]},
+    {f:"Riassumere", c:"Chiudi il discorso in una riga.", v:[
+      ["Insomma...","so, basically...","Insomma, una vacanza perfetta."],
+      ["Quindi...","so...","Quindi domani non lavori?"]
+    ]}
+  ];
+
+  /* ============ FASE 1 ============
+     a: io, b: tu con il buco, g: [giusta, senso], alt: [[parola, senso]], n: nota */
+  var SCAMBI = [
+    {a:"Com'è andata la vacanza?", b:"___, ti racconto tutto: è stata bellissima!",
+      g:["allora","apri il racconto e ti prendi un secondo"],
+      alt:[["insomma","riassumi, come se avessi già raccontato tutto"],["comunque","torni a un discorso di prima, ma il discorso è appena cominciato"]],
+      n:"«Allora» è l'attacco più comodo che c'è: apre quasi tutto."},
+    {a:"Ieri ho perso il treno e ho aspettato due ore.", b:"___! E poi cosa hai fatto?",
+      g:["che peccato","ti dispiace per lui"],
+      alt:[["che bello","sei contenta della sua sfortuna"],["che fortuna","sembra una presa in giro"]],
+      n:"Prima la reazione, poi la domanda: così la conversazione non si ferma."},
+    {a:"Domani parto per Roma.", b:"___? Non lo sapevo! Per quanti giorni?",
+      g:["davvero","sei sorpresa, è una notizia"],
+      alt:[["cioè","chiedi di spiegare una cosa che non hai capito"],["insomma","fai il riassunto di una frase sola"]]},
+    {a:"Ti piace il cibo inglese?", b:"___ non è male, ma la pasta italiana è un'altra cosa.",
+      g:["secondo me","dai la tua opinione"],
+      alt:[["pensa che","annunci una cosa sorprendente"],["a proposito","cambi argomento, ma stai rispondendo"]]},
+    {a:"Cosa hai fatto ieri sera?", b:"___... ah sì! Sono andata al cinema.",
+      g:["vediamo","ti serve un secondo per ricordare"],
+      alt:[["ma dai","sei sorpresa, ma la domanda non ha niente di strano"],["invece","fai un contrasto con qualcosa che non c'è"]]},
+    {a:"E com'era l'albergo?", b:"___ tutto andava bene, poi abbiamo visto che la camera era sporca!",
+      g:["all'inizio","metti il primo pezzo della storia"],
+      alt:[["alla fine","chiudi la storia, ma poi la continui"],["insomma","riassumi prima di raccontare"]],
+      n:"All'inizio + imperfetto (andava), poi + passato prossimo (abbiamo visto): la scena e l'azione."},
+    {a:"Sono stato a Firenze per il weekend.", b:"Che bello! ___ anche io ci sono stata l'anno scorso?",
+      g:["sai che","gli dai una notizia che lo sorprenderà"],
+      alt:[["secondo me","dai un'opinione, ma è un fatto"],["dipende","metti una condizione che non c'è"]]},
+    {a:"La cena era cattiva e il cameriere era antipatico.", b:"___! E avete pagato tutto?",
+      g:["mamma mia","sei colpita, che disastro"],
+      alt:[["che bello","sei contenta del disastro"],["meno male","sei sollevata, come se fosse una buona notizia"]],
+      n:"Ricorda: il cibo è buono o cattivo, non bene o male."},
+    {a:"Sono stanchissimo, ho lavorato fino alle nove.", b:"___, perché non ti riposi stasera?",
+      g:["senti","attiri la sua attenzione per proporre una cosa"],
+      alt:[["insomma","fai il riassunto di una cosa che ha detto lui"],["pensa che","annunci una sorpresa"]]},
+    {a:"Abbiamo visto un film italiano bellissimo.", b:"___ di film: hai visto quello nuovo con Favino?",
+      g:["a proposito","prendi la parola «film» e vai su un'altra cosa"],
+      alt:[["comunque","torni al discorso di prima, come se il film non c'entrasse"],["invece","fai un contrasto"]]},
+    {a:"Ho mangiato una pizza, un gelato e un tiramisù.", b:"___, hai mangiato tantissimo!",
+      g:["insomma","riassumi tutto in una frase"],
+      alt:[["all'inizio","cominci una storia"],["senti","attiri l'attenzione per proporre"]]},
+    {a:"Io la domenica dormo fino a mezzogiorno.", b:"Io ___ mi sveglio sempre alle sette, anche la domenica.",
+      g:["invece","fai il contrasto con lui"],
+      alt:[["anche","dici che fai come lui, ma poi dici il contrario"],["insomma","riassumi, ma non c'è niente da riassumere"]],
+      n:"«Io invece...» è il modo più naturale di dire che per te è diverso."},
+    {a:"Ti è piaciuto il concerto?", b:"___ che mi è piaciuto, ma c'era troppa gente.",
+      g:["diciamo","sì, ma non del tutto"],
+      alt:[["pensa","è una sorpresa che ti sia piaciuto"],["sai","gli dai una notizia, con un punto di domanda alla fine"]]},
+    {a:"Quanto costa il biglietto?", b:"___... credo venti euro, ma non sono sicura.",
+      g:["mah","non sei sicura"],
+      alt:[["ma dai","sei sorpresa"],["che bello","sei contenta"]]},
+    {a:"Che cosa hai fatto il weekend?", b:"Niente di speciale, sono rimasta a casa. ___ hai fatto qualcosa di bello?",
+      g:["e tu","giri la domanda a lui"],
+      alt:[["cioè","gli chiedi di spiegare, ma lui non ha detto niente"],["invece","fai un contrasto prima di sapere cosa ha fatto"]],
+      n:"Il rilancio più facile del mondo: «E tu?». Usalo sempre."}
+  ];
+
+  /* ============ FASE 2 ============ */
+  var DOMANDE = [
+    {d:"Com'è andata la vacanza?", t:"passato", r:["E tu, dove sei andato quest'estate?","Tu ci sei mai stato?"]},
+    {d:"Cosa hai fatto il weekend scorso?", t:"passato", r:["E tu cosa hai fatto?","E il tuo weekend com'è andato?"]},
+    {d:"Qual è il posto più bello che hai visto quest'anno?", t:"passato", r:["E per te qual è?","Tu ci sei mai stato?"]},
+    {d:"Com'era la tua città quando eri piccola?", t:"passato", r:["E la tua com'era?","Tu dove sei cresciuto?"]},
+    {d:"Raccontami una cena al ristorante andata male.", t:"passato", r:["A te è mai successo?","Tu cosa fai quando il cibo è cattivo?"]},
+    {d:"Cosa facevi d'estate quando eri bambina?", t:"passato", r:["E tu cosa facevi?","Tu andavi al mare?"]},
+    {d:"Hai mai perso un aereo o un treno?", t:"passato", r:["E a te è mai successo?","Tu arrivi sempre in anticipo?"]},
+    {d:"Com'è andata la settimana al lavoro?", t:"passato", r:["E la tua com'è andata?","Tu hai lavorato tanto?"]},
+    {d:"Hai visto un bel film o una bella serie di recente?", t:"passato", r:["E tu cosa hai visto?","Tu che serie mi consigli?"]},
+    {d:"Ti sei mai persa in una città?", t:"passato", r:["E a te è mai successo?","Tu usi sempre il navigatore?"]},
+    {d:"Cosa hai fatto ieri sera?", t:"passato", r:["E tu cosa hai fatto?","Tu sei uscito?"]},
+    {d:"Qual è l'ultimo regalo che hai fatto?", t:"passato", r:["E tu cosa hai regalato?","Tu sei bravo a fare regali?"]},
+    {d:"Com'era il tuo primo lavoro?", t:"passato", r:["E il tuo primo lavoro com'era?","Tu cosa facevi a vent'anni?"]},
+    {d:"Hai fatto qualcosa di nuovo questo mese?", t:"passato", r:["E tu?","Tu hai provato qualcosa di nuovo?"]},
+    {d:"Qual è stato il viaggio più bello della tua vita?", t:"passato", r:["E il tuo qual è stato?","Tu dove vuoi andare?"]},
+    {d:"Com'è andato il tuo ultimo compleanno?", t:"passato", r:["E tu come hai festeggiato l'ultimo?","Tu fai sempre una festa?"]},
+    {d:"Cosa fai di solito la domenica?", t:"presente", r:["E tu cosa fai?","Anche tu dormi fino a tardi?"]},
+    {d:"Che programmi hai per il fine settimana?", t:"presente", r:["E tu cosa fai?","Tu hai già dei programmi?"]},
+    {d:"Com'è il tuo quartiere?", t:"presente", r:["E il tuo com'è?","Tu vivi in centro?"]},
+    {d:"Qual è il tuo piatto preferito?", t:"presente", r:["E il tuo qual è?","Tu sai cucinare?"]},
+    {d:"Cosa ti piace fare quando hai un giorno libero?", t:"presente", r:["E a te cosa piace fare?","Tu come ti rilassi?"]},
+    {d:"Dove vuoi andare in vacanza l'anno prossimo?", t:"presente", r:["E tu dove vai?","Tu ci sei mai stato?"]},
+    {d:"Preferisci il mare o la montagna? Perché?", t:"presente", r:["E tu cosa preferisci?","Tu vai spesso in montagna?"]},
+    {d:"Com'è una tua giornata tipo?", t:"presente", r:["E la tua com'è?","Tu a che ora ti svegli?"]}
+  ];
+  var ATTACCHI = {
+    tutti:[["Allora...","so... / well..."],["Beh...","well..."],["Mah...","hmm, I'm not sure..."],["Vediamo...","let me see..."],
+           ["Sinceramente...","to be honest..."],["Diciamo che...","let's say that..."],["Secondo me...","in my opinion..."],["Ah, bella domanda!","oh, good question!"]],
+    passato:[["Allora, ti racconto...","so, let me tell you..."],["All'inizio...","at first..."],["Pensa che...","believe it or not..."],
+             ["Indovina un po'...","guess what..."],["Sai che...?","you know what...?"],["Non mi ricordo bene, ma...","I don't remember well, but..."]],
+    presente:[["Di solito...","usually..."],["Dipende...","it depends..."],["Per me...","for me..."],["Non lo so ancora, ma...","I don't know yet, but..."]]
+  };
+  var TEMPI = {passato:"si risponde al passato", presente:"si risponde al presente"};
+
+  /* ============ FASE 3 ============ */
+  var MOSSE = [
+    {m:"Reagisci", f:["Ma dai!","Davvero?","Che bello!","Che peccato!","Mamma mia!"]},
+    {m:"Chiedi un dettaglio", f:["Con chi?","Quando?","Com'era?","E poi?","Come mai?"]},
+    {m:"Racconta una cosa tua", f:["Anche io...","Sai che io...?","Io invece...","Pensa che una volta..."]},
+    {m:"Di' cosa ne pensi", f:["Secondo me...","Per me...","Sinceramente...","Diciamo che..."]},
+    {m:"Cambia argomento", f:["A proposito...","Senti...","Comunque..."]},
+    {m:"Riassumi e rilancia", f:["Insomma...","Quindi...","E tu?"]},
+    {m:"Prendi tempo e rispondi", f:["Allora...","Beh...","Vediamo...","Mah..."]}
+  ];
+  var TEMI = ["le vacanze","il cibo","il lavoro","il weekend","i viaggi","la città dove vivi","la famiglia","lo sport",
+              "i film e le serie","la casa","gli amici","la musica","l'Italia","le feste"];
+
+  /* ============ ATTREZZI ============ */
+  function $(id){ return document.getElementById(id); }
+  function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+  function pesca(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+  var CHIAVE = "icf-attacca-rilancia";
+  var stato = { p1:0, n1:0, p2:0, rec:0, note:"", tempo:"tutti", sec:15 };
+  try{
+    var s0 = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(s0 && typeof s0 === "object"){ for(var k in stato){ if(s0[k] !== undefined) stato[k] = s0[k]; } }
+  }catch(e){}
+  var salvaT = null;
+  function salva(){
+    clearTimeout(salvaT);
+    salvaT = setTimeout(function(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){} }, 250);
+  }
+
+  /* Linguette */
+  var tabs = document.querySelectorAll("nav.steps button[data-phase]");
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){
+      Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(s){
+        s.classList.toggle("active", s.id === t.getAttribute("data-phase"));
+      });
+      if(t.getAttribute("data-phase") !== "p3") fermaTurno();
+    });
+  });
+
+  /* Kit */
+  var kitDlg = $("kitDlg");
+  $("kitBody").innerHTML = KIT.map(function(g){
+    return "<h3>" + esc(g.f) + "</h3><p class=\"en\" style=\"margin:0 0 4px\">" + esc(g.c) + "</p><table>" +
+      g.v.map(function(v){ return "<tr><td>" + esc(v[0]) + "<br><span style=\"font-weight:400\">" + esc(v[2]) + "</span></td><td class=\"en\">" + esc(v[1]) + "</td></tr>"; }).join("") +
+      "</table>";
+  }).join("");
+  $("openKit").addEventListener("click", function(){ if(kitDlg.showModal) kitDlg.showModal(); else kitDlg.setAttribute("open",""); });
+  $("closeKit").addEventListener("click", function(){ if(kitDlg.close) kitDlg.close(); else kitDlg.removeAttribute("open"); });
+
+  /* ============ FASE 1 ============ */
+  var mazzo1 = shuffle(SCAMBI.slice()), i1 = 0, risposto1 = false;
+  function riempi(b, parola){
+    var w = b.indexOf("___") === 0 ? cap(parola) : parola;
+    return esc(b).replace("___", "<span class=\"buco\">" + esc(w) + "</span>");
+  }
+  function conta1(){
+    $("f1Punti").textContent = stato.p1;
+    $("f1Sub").textContent = stato.n1 ? "Su " + stato.n1 + (stato.n1 === 1 ? " scambio." : " scambi.") : "Ancora nessuno scambio.";
+  }
+  function mostra1(){
+    if(i1 >= mazzo1.length){ mazzo1 = shuffle(SCAMBI.slice()); i1 = 0; }
+    var c = mazzo1[i1]; risposto1 = false;
+    $("f1A").textContent = c.a;
+    $("f1B").innerHTML = esc(c.b).replace("___", "<span class=\"buco\">&nbsp;</span>");
+    $("f1Conf").classList.remove("show");
+    var opz = shuffle([c.g].concat(c.alt));
+    var box = $("f1Opz"); box.innerHTML = "";
+    opz.forEach(function(o){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.textContent = c.b.indexOf("___") === 0 ? cap(o[0]) : o[0];
+      b.addEventListener("click", function(){ rispondi1(c, o, b); });
+      box.appendChild(b);
+    });
+    $("f1Pos").textContent = "scambio " + (i1 + 1) + " di " + mazzo1.length;
+  }
+  function rispondi1(c, o, btn){
+    if(risposto1) return;
+    risposto1 = true;
+    var giusto = o[0] === c.g[0];
+    stato.n1++; if(giusto) stato.p1++;
+    Array.prototype.forEach.call($("f1Opz").children, function(b){
+      if(b.textContent.toLowerCase() === c.g[0].toLowerCase()) b.classList.add("giusta");
+      else if(b === btn) b.classList.add("sbagliata");
+      b.disabled = true;
+    });
+    $("f1B").innerHTML = riempi(c.b, c.g[0]);
+    var righe = [c.g].concat(c.alt).map(function(x, k){
+      return "<li class=\"" + (k === 0 ? "ok" : "") + "\"><b>" + esc(cap(x[0])) + "</b> → " + esc(x[1]) + "</li>";
+    });
+    $("f1List").innerHTML = righe.join("");
+    $("f1Nota").textContent = c.n || "";
+    $("f1Conf").classList.add("show");
+    conta1(); salva();
+  }
+  $("f1Next").addEventListener("click", function(){ i1++; mostra1(); });
+  mostra1(); conta1();
+
+  /* ============ FASE 2 ============ */
+  var f2Chips = $("f2Chips");
+  [{k:"tutti", l:"Tutti"},{k:"passato", l:"Al passato"},{k:"presente", l:"Presente e programmi"}].forEach(function(f){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = f.l;
+    b.setAttribute("aria-pressed", stato.tempo === f.k ? "true" : "false");
+    b.addEventListener("click", function(){
+      stato.tempo = f.k; salva();
+      Array.prototype.forEach.call(f2Chips.children, function(c){ c.setAttribute("aria-pressed", c === b ? "true" : "false"); });
+    });
+    f2Chips.appendChild(b);
+  });
+  var usate2 = [], carta2 = null, att2 = null;
+  function pescaAttacco(t, escluso){
+    var pool = ATTACCHI.tutti.concat(ATTACCHI[t] || []).filter(function(a){ return !escluso || a[0] !== escluso[0]; });
+    return pesca(pool);
+  }
+  function disegnaAttacco(){
+    $("f2Att").textContent = att2[0];
+    $("f2AttGl").textContent = att2[1];
+  }
+  function conta2(){ $("f2Punti").textContent = stato.p2; }
+  $("f2Draw").addEventListener("click", function(){
+    var pool = DOMANDE.filter(function(d){ return stato.tempo === "tutti" || d.t === stato.tempo; });
+    var freschi = pool.filter(function(d){ return usate2.indexOf(d) < 0; });
+    if(!freschi.length){ usate2 = []; freschi = pool; }
+    carta2 = pesca(freschi.filter(function(d){ return d !== carta2; }).length ? freschi.filter(function(d){ return d !== carta2; }) : freschi);
+    usate2.push(carta2);
+    att2 = pescaAttacco(carta2.t, null);
+    $("f2Vuoto").hidden = true; $("f2Carta").hidden = false; $("f2Check").hidden = false;
+    $("f2Tempo").textContent = TEMPI[carta2.t];
+    $("f2Dom").textContent = carta2.d;
+    disegnaAttacco();
+    var r = pesca(carta2.r);
+    $("f2Ril").textContent = r;
+    $("f2RilGl").textContent = "una domanda a me, alla fine";
+    Array.prototype.forEach.call($("f2Check").children, function(li){ li.classList.remove("done"); });
+    $("f2Swap").disabled = false;
+    this.textContent = "Un'altra carta";
+    resetTimer2();
+  });
+  $("f2Swap").addEventListener("click", function(){
+    if(!carta2) return;
+    att2 = pescaAttacco(carta2.t, att2);
+    disegnaAttacco();
+  });
+  Array.prototype.forEach.call($("f2Check").children, function(li){
+    li.addEventListener("click", function(){
+      var on = li.classList.toggle("done");
+      stato.p2 += on ? 1 : -1; if(stato.p2 < 0) stato.p2 = 0;
+      conta2(); salva();
+    });
+  });
+  conta2();
+
+  var DUR2 = 60, left2 = DUR2, t2 = null;
+  function disegna2(){
+    var m = Math.floor(left2 / 60), s = left2 % 60;
+    $("f2Out").textContent = m + ":" + (s < 10 ? "0" : "") + s;
+    $("f2Timer").classList.toggle("zero", left2 === 0);
+  }
+  function ferma2(){ if(t2){ clearInterval(t2); t2 = null; } }
+  function resetTimer2(){ ferma2(); left2 = DUR2; disegna2(); $("f2TBtn").textContent = "Avvia"; }
+  $("f2TBtn").addEventListener("click", function(){
+    if(t2){ ferma2(); this.textContent = "Riprendi"; return; }
+    if(left2 === 0){ left2 = DUR2; }
+    this.textContent = "Pausa";
+    var me = this;
+    t2 = setInterval(function(){
+      left2--; disegna2();
+      if(left2 <= 0){ left2 = 0; disegna2(); ferma2(); me.textContent = "Ancora"; }
+    }, 1000);
+  });
+  disegna2();
+
+  /* ============ FASE 3 ============ */
+  var secBox = $("f3Sec");
+  [10, 15, 20].forEach(function(n){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = n + " secondi";
+    b.setAttribute("aria-pressed", stato.sec === n ? "true" : "false");
+    b.addEventListener("click", function(){
+      stato.sec = n; salva();
+      Array.prototype.forEach.call(secBox.children, function(c){ c.setAttribute("aria-pressed", c === b ? "true" : "false"); });
+    });
+    secBox.appendChild(b);
+  });
+  var serie = 0, mossa = null, tema = null, t3 = null, scade = 0, inGioco = false;
+  function conta3(){ $("f3Serie").textContent = serie; $("f3Rec").textContent = stato.rec; }
+  function fermaTurno(){ if(t3){ clearInterval(t3); t3 = null; } }
+  function nuovaMossa(){
+    var pool = MOSSE.filter(function(x){ return x !== mossa; });
+    if(serie === 0) pool = pool.filter(function(x){ return x.m !== "Cambia argomento" && x.m !== "Riassumi e rilancia"; });
+    mossa = pesca(pool);
+    $("f3Mossa").textContent = mossa.m;
+    $("f3Form").innerHTML = shuffle(mossa.f.slice()).slice(0, 3).map(function(f){ return "<span>" + esc(f) + "</span>"; }).join("");
+    avviaTurno();
+  }
+  function avviaTurno(){
+    fermaTurno();
+    var tot = stato.sec * 1000;
+    scade = Date.now() + tot;
+    $("f3Barra").classList.remove("poco");
+    $("f3Bar").style.width = "100%";
+    t3 = setInterval(function(){
+      var resto = scade - Date.now();
+      var p = Math.max(0, resto / tot);
+      $("f3Bar").style.width = (p * 100) + "%";
+      $("f3Barra").classList.toggle("poco", p < 0.3);
+      if(resto <= 0){ rompi("Tempo scaduto."); }
+    }, 200);
+  }
+  function rompi(perche){
+    fermaTurno();
+    if(!inGioco) return;
+    inGioco = false;
+    var msg = perche + " Serie finita a " + serie + (serie === 1 ? " scambio." : " scambi.");
+    if(serie > 0 && serie >= stato.rec){ stato.rec = serie; msg += " Nuovo record!"; salva(); }
+    $("f3Rotto").textContent = msg;
+    $("f3Rotto").classList.add("show");
+    $("f3Ok").disabled = true; $("f3Ko").disabled = true;
+    $("f3Start").textContent = "Riparti";
+    conta3();
+  }
+  $("f3Start").addEventListener("click", function(){
+    tema = pesca(TEMI.filter(function(x){ return x !== tema; }));
+    serie = 0; mossa = null; inGioco = true;
+    $("f3Vuoto").hidden = true; $("f3In").hidden = false;
+    $("f3Rotto").classList.remove("show");
+    $("f3Tema").textContent = "Il tema: " + tema;
+    $("f3Ok").disabled = false; $("f3Ko").disabled = false;
+    this.textContent = "Cambia tema";
+    conta3();
+    nuovaMossa();
+  });
+  $("f3Ok").addEventListener("click", function(){
+    if(!inGioco) return;
+    serie++;
+    if(serie > stato.rec){ stato.rec = serie; salva(); }
+    conta3();
+    nuovaMossa();
+  });
+  $("f3Ko").addEventListener("click", function(){ rompi("Bloccata."); });
+  conta3();
+
+  /* ============ APPUNTI ============ */
+  var note = $("note");
+  note.value = stato.note || "";
+  note.addEventListener("input", function(){
+    stato.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("reset").addEventListener("click", function(){
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+})();
+</script>
+</body>
+</html>
