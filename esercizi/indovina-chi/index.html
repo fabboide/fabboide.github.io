@@ -1088,7 +1088,7 @@ function riconosciDomanda(testo, domande, testoDi){
        lungo quattro lettere, quindi radice() non lo accorcia) */
     t.push({ r:radice(p.uomo ? "uomo" : "donna"), eti:p.uomo ? "un uomo" : "una donna" });
     t.push({ r:radice("capelli"), eti:"i capelli", salta:p.capelli === "calvo" });
-    if(p.capelli === "calvo") t.push({ r:radice("calvo"), eti:"calvo" });
+    if(p.capelli === "calvo") t.push({ r:radice("calvo"), eti:accorda("calvo", p.uomo) });
     else {
       t.push({ r:radice(p.capelli), eti:"capelli " + p.capelli });
       t.push({ r:radice(p.forma), eti:p.forma });
@@ -1102,8 +1102,8 @@ function riconosciDomanda(testo, domande, testoDi){
       if(p.cappello) t.push({ r:radice("cappello"), eti:"il cappello" });
     }
     if(liv.voc.corpo){
-      t.push({ r:radice(p.eta), eti:p.eta });
-      t.push({ r:radice(p.corpo), eti:p.corpo });
+      t.push({ r:radice(p.eta), eti:accorda(p.eta, p.uomo) });
+      t.push({ r:radice(p.corpo), eti:accorda(p.corpo, p.uomo) });
     }
     if(liv.voc.vestiti){
       t.push({ r:radice(p.maglia), eti:"maglietta " + p.maglia });
@@ -1117,12 +1117,31 @@ function riconosciDomanda(testo, domande, testoDi){
      forma. Niente colori: la radice di "rossi" (capelli) e "rossa"
      (maglietta) e' la stessa, e segnalerebbe errori che non ci sono. */
   var CONTRARI = [
-    { campo:"eta",     valori:["giovane", "anziano"] },
-    { campo:"corpo",   valori:["magro", "robusto"] },
-    { campo:"capelli", valori:["lunghi", "corti", "calvo"] },
-    { campo:"forma",   valori:["ricci", "lisci"] },
-    { campo:"occhi",   valori:["chiari", "scuri"] }
+    { campo:"eta",     valori:["giovane", "anziano"],          frase:"e" },
+    { campo:"corpo",   valori:["magro", "robusto"],            frase:"e" },
+    { campo:"capelli", valori:["lunghi", "corti", "calvo"],    frase:"capelli" },
+    { campo:"forma",   valori:["ricci", "lisci"],              frase:"capelli" },
+    { campo:"occhi",   valori:["chiari", "scuri"],             frase:"occhi" }
   ];
+
+  /* l'aggettivo si accorda con la persona: Teresa non e' "robusto" */
+  function accorda(parola, uomo){
+    if(uomo) return parola;
+    var a = ACCORDO.filter(function(x){ return x.m === parola; })[0];
+    return a ? a.f : parola;
+  }
+
+  /* Ogni famiglia vuole la sua frase. Con uno stampo solo veniva fuori
+     "Teresa e' lunghi", che non vuol dire niente: lunghi sono i capelli,
+     non Teresa. */
+  function frasePerCosaE(p, f){
+    if(f.frase === "occhi")   return p.nome + " ha gli occhi <b>" + f.vero + "</b>";
+    if(f.frase === "capelli"){
+      if(f.vero === "calvo")  return p.nome + " \u00e8 <b>" + accorda("calvo", p.uomo) + "</b>";
+      return p.nome + " ha i capelli <b>" + f.vero + "</b>";
+    }
+    return p.nome + " \u00e8 <b>" + accorda(f.vero, p.uomo) + "</b>";
+  }
 
   function controllaDescrizione(){
     var p = gioco.descrizione;
@@ -1158,7 +1177,7 @@ function riconosciDomanda(testo, domande, testoDi){
       c.valori.forEach(function(x){
         if(x === suo) return;
         var scritta = radici[radice(x)];
-        if(scritta) falsi.push({ scritta:scritta, vero:suo });
+        if(scritta) falsi.push({ scritta:scritta, vero:suo, frase:c.frase });
       });
     });
 
@@ -1171,7 +1190,7 @@ function riconosciDomanda(testo, domande, testoDi){
     if(falsi.length){
       h += "<div class='correzione fuori' style='margin-top:10px'><span class='k'>non \u00e8 vero &middot; not true</span>" +
         falsi.map(function(f){
-          return "hai scritto <i>" + f.scritta + "</i>, ma " + p.nome + " \u00e8 <b>" + f.vero + "</b>";
+          return "hai scritto <i>" + f.scritta + "</i>, ma " + frasePerCosaE(p, f);
         }).join("; ") + ".</div>";
     }
 
