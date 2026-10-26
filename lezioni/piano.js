@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "26 ottobre 2026, 16:08";
+var PIANO_AGGIORNATO = "26 ottobre 2026, 21:44";
 
 var PIANO = {
 
@@ -100,6 +100,47 @@ var PIANO = {
         "titolo": "Describing people",
         "href": "https://talkwithfabio.com/esercizi/descrivere/",
         "nota": "Look at the clothes and colours"
+      }
+    ]
+  },
+
+  "luana-zqy": {
+    "nome": "Luana",
+    "aggiornato": "26 ottobre 2026",
+    "ultima": {
+      "quando": "2026-10-26T20:00:00+01:00",
+      "fatto": [
+        "Verbs: very good!",
+        "Guess who?",
+        "You described a friend"
+      ]
+    },
+    "prossima": {
+      "quando": "2026-11-09T20:30:00+01:00",
+      "obiettivo": "Describe people with confidence, then lots of conversation.",
+      "attivita": [
+        {
+          "titolo": "Guess who?, two games: 12 and 24 faces",
+          "href": "",
+          "nota": "We play it together"
+        },
+        {
+          "titolo": "Your turn: describe someone and I guess",
+          "href": "",
+          "nota": "A friend or a famous person"
+        },
+        {
+          "titolo": "Conversation",
+          "href": "",
+          "nota": "The main part of the lesson"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "Chi è? Guess who, on your own",
+        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
+        "nota": "Try level 2: you write the questions"
       }
     ]
   },
