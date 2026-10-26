@@ -264,9 +264,13 @@ h1 em{ font-style:normal; color:var(--accent); }
     <p class="setlab">Tempo verbale</p>
     <div class="chips" id="tempoChips"></div>
 
-    <p class="setlab">Famiglie di verbi <span class="note">clicca e aggiungi tutte quelle che vuoi allenare</span></p>
+    <p class="setlab">Di che cosa parla <span class="note">accendi i temi che vuoi allenare</span></p>
     <div class="chips" id="famChips"></div>
-    <p class="warn hidden" id="famWarn">Tieni almeno una famiglia accesa.</p>
+    <p class="warn hidden" id="famWarn">Tieni almeno un tema acceso.</p>
+
+    <p class="setlab">Che verbi <span class="note">spegnili per toglierli davvero dal mazzo</span></p>
+    <div class="chips" id="propChips"></div>
+    <p class="warn hidden" id="propWarn">Cos&igrave; non resterebbe nessun verbo.</p>
 
     <p class="setlab">Concordanze</p>
     <div class="chips" id="genChips"></div>
@@ -499,15 +503,15 @@ V("andare al mare","irregolari libero","E","vado|vai|va|andiamo|andate|vanno","a
   "es we do ve","","fam ami sor","Dove, di preciso?");
 V("venire","irregolari bar","E","vengo|vieni|viene|veniamo|venite|vengono","venuto","a cena",
   "we ve se sm do","ris","ami fam sor","Chi viene di solito?");
-V("stare bene","irregolari","E","sto|stai|sta|stiamo|state|stanno","stato","bene",
+V("stare bene","irregolari giornata","E","sto|stai|sta|stiamo|state|stanno","stato","bene",
   "ma se we og sm","cas mar","fam ami sol","Quando stai meglio?");
-V("essere in ritardo","irregolari","E","sono|sei|è|siamo|siete|sono","stato","in ritardo",
+V("essere in ritardo","irregolari giornata","E","sono|sei|è|siamo|siete|sono","stato","in ritardo",
   "ma sm og du we","","","Ti capita spesso?");
-V("avere fame","irregolari","A","ho|hai|ha|abbiamo|avete|hanno","avuto","fame",
+V("avere fame","irregolari bar","A","ho|hai|ha|abbiamo|avete|hanno","avuto","fame",
   "ma se po sm og pc","","","Cosa mangi quando succede?");
-V("dire la verità","irregolari","A","dico|dici|dice|diciamo|dite|dicono","detto","la verità",
+V("dire la verità","irregolari libero","A","dico|dici|dice|diciamo|dite|dicono","detto","la verità",
   "sm og we du","","","Ti è mai costato caro?");
-V("scegliere","irregolari","A","scelgo|scegli|sceglie|scegliamo|scegliete|scelgono","scelto","il ristorante",
+V("scegliere","irregolari bar","A","scelgo|scegli|sceglie|scegliamo|scegliete|scelgono","scelto","il ristorante",
   "sm we ve du og","","ami fam sor","Chi sceglie di solito?");
 V("partire","irregolari libero","E","parto|parti|parte|partiamo|partite|partono","partito","",
   "pr ma we es ve","","fam ami sor sol","Per dove?");
@@ -515,24 +519,76 @@ V("rimanere","irregolari casa","E","rimango|rimani|rimane|rimaniamo|rimanete|rim
   "do we se sm po","","fam can sol","Cosa fai quando resti dentro?");
 V("volere","irregolari bar","A","voglio|vuoi|vuole|vogliamo|volete|vogliono","voluto","un caffè",
   "ma po sm dl og","bar uff","col ami","Lungo o macchiato?");
-V("arrabbiarsi","irregolari riflessivi","R","arrabbio|arrabbi|arrabbia|arrabbiamo|arrabbiate|arrabbiano","arrabbiato","",
+V("arrabbiarsi","irregolari giornata riflessivi","R","arrabbio|arrabbi|arrabbia|arrabbiamo|arrabbiate|arrabbiano","arrabbiato","",
   "sm og we","uff cas","col vic fam","Per cosa, di solito?");
-V("mettersi","riflessivi irregolari","R","metto|metti|mette|mettiamo|mettete|mettono","messo","le scarpe",
+V("mettersi","riflessivi irregolari giornata","R","metto|metti|mette|mettiamo|mettete|mettono","messo","le scarpe",
   "ma pr og sm","cas","","Quali sono le tue preferite?");
-V("sentirsi bene","riflessivi","R","sento|senti|sente|sentiamo|sentite|sentono","sentito","bene",
+V("sentirsi bene","riflessivi giornata","R","sento|senti|sente|sentiamo|sentite|sentono","sentito","bene",
   "ma se we og dl","mar par","","Quando ti senti così?");
 V("lavarsi","riflessivi giornata","R","lavo|lavi|lava|laviamo|lavate|lavano","lavato","le mani",
   "sm og ma pc","cuc cas","","Prima di mangiare?");
 
+
+/* --- Dal mazzo delle prime 190 parole (26 ottobre 2026) --- */
+V("potere","irregolari giornata","A","posso|puoi|pu\u00f2|possiamo|potete|possono","potuto","venire",
+  "we ve se og sm","","ami fam col sor","E se invece piove?");
+V("dovere","irregolari giornata","A","devo|devi|deve|dobbiamo|dovete|devono","dovuto","andare al lavoro",
+  "ma pr og sm du","","","Anche il sabato?");
+V("conoscere","libero bar","A","conosco|conosci|conosce|conosciamo|conoscete|conoscono","conosciuto","una ragazza simpatica",
+  "","bar ris par cen","","Dove l\u2019hai conosciuta?");
+V("vedere","libero irregolari","A","vedo|vedi|vede|vediamo|vedete|vedono","visto","un film",
+  "se we ve do du","cas","fam ami sor sol","L\u2019ultimo che ti \u00e8 piaciuto?");
+V("sentire","libero","A","sento|senti|sente|sentiamo|sentite|sentono","sentito","la musica",
+  "ma se og sm po","cas uff par","sol","Che genere, di preciso?");
+V("parlare","libero bar","A","parlo|parli|parla|parliamo|parlate|parlano","parlato","",
+  "og sm se po dl","bar uff par cen","ami col sor vic fam","Di cosa parlate di solito?");
+V("capire","libero","A","capisco|capisci|capisce|capiamo|capite|capiscono","capito","tutto",
+  "","sc cas","","Che cosa ti resta pi\u00f9 difficile?");
+V("dormire","giornata","A","dormo|dormi|dorme|dormiamo|dormite|dormono","dormito","",
+  "ta pr se og sm we","cas let","sol","Quante ore ti bastano?");
+V("studiare","giornata libero","A","studio|studi|studia|studiamo|studiate|studiano","studiato","italiano",
+  "se po og sm du dl","cas sc","sol ami","Da quanto tempo?");
+V("abitare","casa","A","abito|abiti|abita|abitiamo|abitate|abitano","abitato","",
+  "","cen","fam sol","Da quanti anni?");
+V("aprire","casa irregolari","A","apro|apri|apre|apriamo|aprite|aprono","aperto","la finestra",
+  "ma og sm se","cuc cas","","Anche d\u2019inverno?");
+V("chiudere","casa irregolari","A","chiudo|chiudi|chiude|chiudiamo|chiudete|chiudono","chiuso","la porta",
+  "se ta og sm","cas uff","","Ti ricordi sempre?");
+V("scrivere","giornata irregolari","A","scrivo|scrivi|scrive|scriviamo|scrivete|scrivono","scritto","un messaggio",
+  "ma se og sm dl","uff cas","ami col sor fam","A chi, di solito?");
+V("aspettare","giornata","A","aspetto|aspetti|aspetta|aspettiamo|aspettate|aspettano","aspettato","l\u2019autobus",
+  "ma pr og sm dl","cen sc","ami col","Quanto ci metti di solito?");
+V("chiamare","giornata","A","chiamo|chiami|chiama|chiamiamo|chiamate|chiamano","chiamato","un amico",
+  "se do og sm dl","cas uff","","Lo chiami o gli scrivi?");
+V("cercare","casa giornata","A","cerco|cerchi|cerca|cerchiamo|cercate|cercano","cercato","le chiavi",
+  "ma og sm pr","cas","","Dove le trovi di solito?");
+V("trovare","casa giornata","A","trovo|trovi|trova|troviamo|trovate|trovano","trovato","un posto",
+  "we ve se og","ris bar cen","ami fam col","Prenoti o ci provi e basta?");
+V("usare","casa libero","A","uso|usi|usa|usiamo|usate|usano","usato","il telefono",
+  "og sm se ta","cas let uff","","Troppo, secondo te?");
+V("preparare","casa","A","preparo|prepari|prepara|prepariamo|preparate|preparano","preparato","la cena",
+  "se og du we ma","cuc cas","fam ami sor","Cosa ti viene meglio?");
+V("ridere","libero irregolari","A","rido|ridi|ride|ridiamo|ridete|ridono","riso","",
+  "we se sm og ve","bar cas ris","ami col sor fam","Chi ti fa ridere di pi\u00f9?");
+
 /* Famiglie */
-var FAM = [
+var TEMI = [
   {k:"giornata",  n:"La giornata"},
   {k:"bar",       n:"Bar e ristorante"},
   {k:"libero",    n:"Tempo libero"},
-  {k:"casa",      n:"Casa e spesa"},
-  {k:"riflessivi",n:"Riflessivi"},
-  {k:"irregolari",n:"Irregolari"}
+  {k:"casa",      n:"Casa e spesa"}
 ];
+
+/* Queste due non sono temi, sono com'e' fatto il verbo. Se le tratti
+   come famiglie e sommi tutto, spegnere "Riflessivi" non toglie
+   svegliarsi, perche' lo tiene dentro "La giornata". Qui invece
+   escludono: spente, quei verbi spariscono davvero. */
+var PROP = [
+  {k:"riflessivi", n:"Riflessivi", no:"niente riflessivi"},
+  {k:"irregolari", n:"Irregolari", no:"niente irregolari"}
+];
+
+var FAM = TEMI.concat(PROP);
 
 /* La catena racconta azioni in fila: i verbi di stato non ci stanno. */
 var FUORI_CATENA = {"essere in ritardo":1,"stare bene":1,"sentirsi bene":1,"avere fame":1,"annoiarsi":1,"dire la verit\u00e0":1,"volere":1};
@@ -685,14 +741,38 @@ function modelloIoNeg(tiro, senzaPunto){
    4. Sorteggio
    ============================================================ */
 
-function pool(){
+function poolDi(fams){
   return VERBI.filter(function(v){
-    for(var i = 0; i < v.fams.length; i++){ if(st.fams[v.fams[i]]) return true; }
-    return false;
+    /* almeno un tema acceso */
+    var tema = false;
+    for(var i = 0; i < TEMI.length; i++){
+      if(fams[TEMI[i].k] && v.fams.indexOf(TEMI[i].k) >= 0){ tema = true; break; }
+    }
+    if(!tema) return false;
+    /* una proprieta' spenta esclude i verbi che ce l'hanno */
+    for(var j = 0; j < PROP.length; j++){
+      if(!fams[PROP[j].k] && v.fams.indexOf(PROP[j].k) >= 0) return false;
+    }
+    return true;
   });
 }
 
+function pool(){ return poolDi(st.fams); }
+
+/* prova a spegnere o accendere una casella e dice quanti verbi restano */
+function restanoCon(k){
+  var prova = {};
+  for(var x in st.fams) prova[x] = st.fams[x];
+  prova[k] = !prova[k];
+  return poolDi(prova).length;
+}
+
 function chiaveDebole(i, v, tempo){ return i + "|" + v.inf + "|" + tempo; }
+
+function avviso(id){
+  $(id).classList.remove("hidden");
+  setTimeout(function(){ $(id).classList.add("hidden"); }, 2200);
+}
 
 function pesoSogg(i){
   if(!st.hard) return 1;
@@ -812,15 +892,25 @@ function renderChips(){
   });
 
   var f = $("famChips"); f.innerHTML = "";
-  FAM.forEach(function(x){
+  TEMI.forEach(function(x){
     var n = VERBI.filter(function(v){ return v.fams.indexOf(x.k) >= 0; }).length;
     f.appendChild(chip(x.n + '<span class="n">' + n + "</span>", !!st.fams[x.k], function(){
-      var accese = FAM.filter(function(y){ return st.fams[y.k]; });
-      if(st.fams[x.k] && accese.length === 1){
-        $("famWarn").classList.remove("hidden");
-        setTimeout(function(){ $("famWarn").classList.add("hidden"); }, 2200);
+      var accesi = TEMI.filter(function(y){ return st.fams[y.k]; });
+      if(st.fams[x.k] && accesi.length === 1){
+        avviso("famWarn");
         return;
       }
+      if(restanoCon(x.k) === 0){ avviso("famWarn"); return; }
+      st.fams[x.k] = !st.fams[x.k]; save(); renderChips();
+    }));
+  });
+
+  var pr = $("propChips"); pr.innerHTML = "";
+  PROP.forEach(function(x){
+    var n = VERBI.filter(function(v){ return v.fams.indexOf(x.k) >= 0; }).length;
+    var acceso = !!st.fams[x.k];
+    pr.appendChild(chip((acceso ? x.n : x.no) + '<span class="n">' + n + "</span>", acceso, function(){
+      if(restanoCon(x.k) === 0){ avviso("propWarn"); return; }
       st.fams[x.k] = !st.fams[x.k]; save(); renderChips();
     }));
   });
@@ -1149,7 +1239,7 @@ resetTavolo();
 
 /* Esposto solo per i controlli automatici. */
 window.__ROULETTE = {
-  VERBI:VERBI, SOGG:SOGG, T:T, L:L, C:C,
+  VERBI:VERBI, SOGG:SOGG, T:T, L:L, C:C, TEMI:TEMI, PROP:PROP, pool:pool, poolDi:poolDi,
   gruppo:gruppo, frase:fraseTesto, modelloIo:modelloIo, modelloIoNeg:modelloIoNeg,
   st:st, contestoTesto:contestoTesto, etichettaSogg:etichettaSogg,
   FRAMES_VF:FRAMES_VF, pescaContesto:pescaContesto, fraseVF:fraseVF
