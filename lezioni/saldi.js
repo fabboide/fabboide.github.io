@@ -151,12 +151,12 @@ var SALDI = {
 
   "robmarie-7vc": {
     nome: "Rob & Marie",
-    pacchetto: 1,
+    pacchetto: 2,
     inizio: "2026-10-12",
     fatte_prima: 0,
     fatte: 0,
     prenotate: 1,
-    rimaste: 0,
+    rimaste: 1,
     passate: [],
     prossime: [
       { quando: "2026-10-28T12:00:00+01:00", fine: "2026-10-28T12:50:00+01:00", gestisci: "https://cal.com/booking/vryStFmozu1xUG8nyzCUdg?changes=true" }
