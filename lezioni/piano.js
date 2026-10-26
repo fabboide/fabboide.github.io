@@ -9,35 +9,38 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "26 ottobre 2026, 00:12";
+var PIANO_AGGIORNATO = "26 ottobre 2026, 16:08";
 
 var PIANO = {
 
   "bianca-hco": {
     "nome": "Bianca",
-    "aggiornato": "25 ottobre 2026",
+    "aggiornato": "26 ottobre 2026",
     "ultima": {
-      "quando": "2026-10-20T14:00:00+02:00",
+      "quando": "2026-10-26T14:00:00+01:00",
       "fatto": [
-        "Verb review",
-        "The first 190 words, to build your vocabulary",
-        "How often: sempre, spesso, di solito, mai",
-        "We started Guess Who?"
+        "Describing people: hair, eyes, height, face",
+        "Guess who?"
       ]
     },
     "prossima": {
-      "quando": "2026-10-26T14:00:00+01:00",
-      "obiettivo": "Describe people and ask the right questions to find them, and use verbs in everyday sentences.",
+      "quando": "2026-11-09T13:30:00+01:00",
+      "obiettivo": "Describe what people are wearing: clothes, colours, stripes and checks.",
       "attivita": [
         {
-          "titolo": "Verbs and your routine: how often?",
+          "titolo": "Quick review: describe a person",
           "href": "",
-          "nota": "We play it together"
+          "nota": "What we did this time"
         },
         {
-          "titolo": "Guess Who?, round two",
+          "titolo": "Verbs for clothes: portare, mettersi, vestirsi",
           "href": "",
-          "nota": "You ask the questions, then you describe the person"
+          "nota": "Mi metto, ti metti, si mette..."
+        },
+        {
+          "titolo": "Il guardaroba",
+          "href": "",
+          "nota": "A game with clothes we play together"
         }
       ]
     },
@@ -45,58 +48,103 @@ var PIANO = {
       {
         "titolo": "Chi è? Guess who, on your own",
         "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
-        "nota": "The same game: try level 1, then level 2"
+        "nota": "Try level 2: you write the questions"
       },
       {
         "titolo": "The first 190 words",
         "href": "https://talkwithfabio.com/esercizi/parole-a1/",
-        "nota": "10 minutes a day"
+        "nota": "A few minutes a day"
       }
     ]
   },
 
   "ellie-3mw": {
     "nome": "Ellie",
-    "aggiornato": "25 ottobre 2026",
+    "aggiornato": "26 ottobre 2026",
     "ultima": {
-      "quando": "2026-10-22T14:00:00+02:00",
+      "quando": "2026-10-26T13:00:00+01:00",
       "fatto": [
-        "Verb review",
-        "Question words: come, cosa, chi, quando, quanto",
-        "Numbers from 1 to 20"
+        "Describing people: hair, eyes, height, face",
+        "Guess who?",
+        "You described yourself and people you know: very good!"
       ]
     },
     "prossima": {
-      "quando": "2026-10-26T13:00:00+01:00",
-      "obiettivo": "Describe a person (hair, eyes, height, face) and ask the right questions to guess who it is.",
+      "quando": "",
+      "obiettivo": "Describe what people are wearing: clothes, colours, stripes and checks.",
       "attivita": [
         {
-          "titolo": "Words to describe people",
+          "titolo": "Quick review: describe a person",
           "href": "",
-          "nota": "New adjectives: long, short, tall, blue eyes..."
+          "nota": "What we did this time, in ten minutes"
         },
         {
-          "titolo": "Guess who?",
+          "titolo": "Verbs for clothes: portare, mettersi, vestirsi",
           "href": "",
-          "nota": "A game we play together: you ask the questions"
+          "nota": "Mi metto, ti metti, si mette..."
         },
         {
-          "titolo": "Describe someone you know",
+          "titolo": "Il guardaroba",
           "href": "",
-          "nota": "A friend, someone in your family or a famous person"
+          "nota": "A game with clothes we play together"
         }
       ]
     },
     "compiti": [
       {
-        "titolo": "Describing people",
-        "href": "https://talkwithfabio.com/esercizi/descrivere/",
-        "nota": "Before the lesson: the words we will use"
+        "titolo": "Chi è? Guess who, on your own",
+        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
+        "nota": "The same game: level 1, then level 2"
       },
       {
-        "titolo": "The words that open a question",
-        "href": "https://talkwithfabio.com/esercizi/parole-domanda/",
-        "nota": "Review: chi, cosa, come, quando, quanto"
+        "titolo": "Describing people",
+        "href": "https://talkwithfabio.com/esercizi/descrivere/",
+        "nota": "Look at the clothes and colours"
+      }
+    ]
+  },
+
+  "rafaela-yrd": {
+    "nome": "Rafaela",
+    "aggiornato": "26 ottobre 2026",
+    "ultima": {
+      "quando": "2026-10-26T09:00:00+01:00",
+      "fatto": [
+        "Passato prossimo",
+        "Free conversation"
+      ]
+    },
+    "prossima": {
+      "quando": "2026-10-27T09:00:00+01:00",
+      "obiettivo": "Tell what happened and ask about it: passato prossimo and the words that open a question.",
+      "attivita": [
+        {
+          "titolo": "Passato prossimo: the verb roulette",
+          "href": "",
+          "nota": "We play it together"
+        },
+        {
+          "titolo": "What was the question?",
+          "href": "",
+          "nota": "You read the answer and say the question: come, dove, quando, che cosa"
+        },
+        {
+          "titolo": "Words for your dog",
+          "href": "",
+          "nota": "The commands you asked me for"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "Passato prossimo 1: essere or avere?",
+        "href": "https://talkwithfabio.com/esercizi/passato-prossimo/?mode=aux",
+        "nota": "10 minutes"
+      },
+      {
+        "titolo": "The first 190 words",
+        "href": "https://talkwithfabio.com/esercizi/parole-a1/",
+        "nota": "A few minutes a day, for general vocabulary"
       }
     ]
   }

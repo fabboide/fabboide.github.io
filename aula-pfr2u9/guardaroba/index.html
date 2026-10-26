@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il guardaroba · Talk with Fabio</title>
+<meta name="description" content="Gioco di conversazione: descrivere le persone dai vestiti, con i colori accordati.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+
+/* Figure */
+.fig svg{display:block;width:100%;height:auto}
+.tabellone{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media (max-width:860px){.tabellone{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:420px){.tabellone{grid-template-columns:repeat(2,1fr)}}
+.carta-fig{position:relative;background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:6px 6px 2px;cursor:pointer;transition:opacity .2s,filter .2s,transform .15s}
+.carta-fig:hover{transform:translateY(-2px)}
+.carta-fig .num{position:absolute;top:6px;left:9px;font-family:var(--display);font-weight:800;font-size:.85rem;color:var(--muted)}
+.carta-fig.giu{opacity:.28;filter:grayscale(1)}
+.carta-fig.giu::after{content:"✕";position:absolute;inset:0;display:grid;place-items:center;font-size:3rem;color:var(--tomato);font-family:var(--display)}
+
+/* Domande */
+.gruppo{margin-bottom:12px}
+.gruppo h4{font-family:var(--display);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--basil);margin:0 0 6px;display:flex;align-items:center;gap:8px}
+.gruppo h4 button{font-family:var(--display);font-size:.75rem;font-weight:700;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:2px 9px;text-transform:none;letter-spacing:0}
+.formule{display:flex;flex-wrap:wrap;gap:6px}
+.formule span{background:var(--bubble);border:1px solid #CBDDD2;border-radius:999px;padding:3px 10px;font-size:.95rem}
+.formule.chiuse{display:none}
+.contatore{display:flex;align-items:center;gap:10px;margin:0 0 12px}
+.contatore b{font-family:var(--display);font-size:2rem;line-height:1;color:var(--basil)}
+
+/* Testimone */
+.scena{display:grid;grid-template-columns:260px 1fr;gap:18px;align-items:start}
+@media (max-width:640px){.scena{grid-template-columns:1fr}}
+.sospetto{position:relative;background:var(--paper);border:2px solid var(--ink);border-radius:18px;padding:10px;min-height:300px;display:grid;place-items:center}
+.sospetto .velo{position:absolute;inset:0;border-radius:16px;background:repeating-linear-gradient(135deg,#E9E3D3 0 12px,#F3EEE2 12px 24px);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:4rem;color:var(--kraft)}
+.conto{position:absolute;top:10px;right:14px;font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--tomato)}
+.lista-t{list-style:none;margin:0;padding:0}
+.lista-t li{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
+.lista-t li .cosa{flex:1 1 160px;font-size:1.05rem}
+.lista-t li.nascosto .cosa{color:transparent;text-shadow:0 0 8px rgba(22,35,63,.45);user-select:none}
+.tick{font-family:var(--display);font-size:.82rem;font-weight:700;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:4px 10px}
+.tick[aria-pressed="true"]{background:var(--basil);border-color:var(--basil);color:var(--paper)}
+.frase{margin-top:12px;padding:12px 14px;background:var(--bubble);border:1px solid #CBDDD2;border-radius:12px;font-size:1.12rem;display:none}
+.frase.show{display:block}
+
+/* Vestilo tu */
+.atelier{display:grid;grid-template-columns:240px 1fr;gap:18px;align-items:start}
+@media (max-width:640px){.atelier{grid-template-columns:1fr}.atelier .fig{max-width:220px;margin:0 auto}}
+.riga-scelta{margin-bottom:12px}
+.riga-scelta .lab{font-family:var(--display);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.colori{display:flex;flex-wrap:wrap;gap:6px}
+.colori button{width:28px;height:28px;border-radius:50%;border:2px solid var(--line);padding:0}
+.colori button[aria-pressed="true"]{outline:3px solid var(--ink);outline-offset:2px}
+.colori button span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* Comuni presi da Che mi racconti? */
+.nota-gram{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin-top:10px}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.vuoto{color:var(--muted);text-align:center;padding:26px 10px}
+/* Appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.appunti .riga{justify-content:space-between}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+/* Frasi utili */
+dialog{border:0;border-radius:16px;padding:0;max-width:660px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.5rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:54%}
+.dlg-body h3{margin:18px 0 4px;color:var(--basil);font-size:1.12rem}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Il guardaroba</h1>
+    <p>Descrivere una persona dai vestiti: che cosa porta, di che colore, a righe o a quadri. Prima si indovina chi è, poi si fa il testimone, alla fine si veste qualcuno sotto dettatura. <span class="en">Describing what people wear, from hat to shoes.</span></p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Fasi dell'attività">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>Chi è?</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>Il testimone</button>
+    <button role="tab" aria-selected="false" data-phase="p3"><span class="n">3</span>Vestilo tu</button>
+    <button class="side" id="openKit" type="button">Il kit</button>
+  </nav>
+
+  <!-- FASE 1 -->
+  <section class="phase active" id="p1">
+    <h2>Chi è?</h2>
+    <p class="lead">Uno dei due sceglie una persona in segreto. L'altro fa domande da sì o no sui vestiti e tocca le persone che non possono essere. <span class="en">One of us picks someone. The other asks yes/no questions about clothes.</span></p>
+    <div class="toolbar">
+      <button class="btn red" id="f1Nuovo" type="button">Nuovo tabellone</button>
+      <div class="chips" id="f1Num"></div>
+      <div class="chips" id="f1Modo" style="margin-left:auto"></div>
+    </div>
+    <div class="grid2">
+      <div class="tabellone" id="f1Tab"></div>
+      <aside class="panel">
+        <div class="contatore"><b id="f1Dom">0</b><span>domande fatte<br><span class="en" id="f1Rest">12 persone in piedi</span></span></div>
+        <div class="riga" style="margin:0 0 14px">
+          <button class="btn ghost" id="f1Piu" type="button">+1 domanda</button>
+          <button class="btn ghost" id="f1Meno" type="button">−1</button>
+        </div>
+        <h3>Le domande</h3>
+        <div id="f1Formule"></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 2 -->
+  <section class="phase" id="p2">
+    <h2>Il testimone</h2>
+    <p class="lead">Hai visto il ladro per pochi secondi. Ora la polizia ti chiede: com'era vestito? Descrivilo a memoria, con il colore di ogni cosa. Io spunto quello che dici. <span class="en">You saw the thief for a few seconds. Describe the clothes from memory.</span></p>
+    <div class="toolbar">
+      <button class="btn red" id="f2Guarda" type="button">Guarda il sospetto</button>
+      <button class="btn ghost" id="f2Rivedi" type="button" disabled>Rivedi e controlla</button>
+      <div class="chips" id="f2Sec" style="margin-left:auto"></div>
+    </div>
+    <div class="scena">
+      <div class="sospetto" id="f2Box">
+        <div class="fig" id="f2Fig" style="width:100%;max-width:220px"></div>
+        <div class="velo" id="f2Velo">?</div>
+        <div class="conto" id="f2Conto"></div>
+      </div>
+      <div class="panel">
+        <h3>Che cosa ha detto <span class="en">(io spunto: il capo e il colore)</span></h3>
+        <ul class="lista-t" id="f2Lista"><li><span class="cosa en">Premi «Guarda il sospetto».</span></li></ul>
+        <div class="riga"><span class="count" id="f2Punti"></span><span class="count" id="f2Rec" style="margin-left:auto"></span></div>
+        <div class="frase" id="f2Frase"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FASE 3 -->
+  <section class="phase" id="p3">
+    <h2>Vestilo tu</h2>
+    <p class="lead">Uno detta, l'altro veste la persona. Poi si scopre la descrizione e si confronta. Anche al contrario: vesti tu qualcuno e descrivilo tu. <span class="en">One dictates, the other dresses the person. Then compare.</span></p>
+    <div class="toolbar">
+      <button class="btn red" id="f3Caso" type="button">Vestito a caso</button>
+      <button class="btn ghost" id="f3Leggi" type="button">Leggi la descrizione</button>
+    </div>
+    <div class="atelier">
+      <div class="panel"><div class="fig" id="f3Fig"></div></div>
+      <div class="panel" id="f3Scelte"></div>
+    </div>
+    <div class="frase" id="f3Frase"></div>
+  </section>
+
+  <!-- APPUNTI -->
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Gli accordi sbagliati, le parole che non sapeva, le domande venute male.</p>
+    <textarea id="note" placeholder="Es. «la maglietta rosso» → rossa · «i pantaloni blus» → blu (non cambia)"></textarea>
+    <div class="riga">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<dialog id="kitDlg" aria-labelledby="kitTitle">
+  <div class="dlg-head"><h2 id="kitTitle">Il kit</h2><button class="btn ghost" id="closeKit" type="button">Chiudi</button></div>
+  <div class="dlg-body" id="kitBody"></div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ I DATI ============ */
+  /* forme: maschile singolare, femminile singolare, maschile plurale, femminile plurale */
+  var COLORI = [
+    {k:"rosso",     hex:"#C8372D", f:["rosso","rossa","rossi","rosse"]},
+    {k:"arancione", hex:"#E8873A", f:["arancione","arancione","arancioni","arancioni"]},
+    {k:"giallo",    hex:"#EBC03F", f:["giallo","gialla","gialli","gialle"]},
+    {k:"verde",     hex:"#3F8A5A", f:["verde","verde","verdi","verdi"]},
+    {k:"blu",       hex:"#2F4F8F", f:["blu","blu","blu","blu"]},
+    {k:"viola",     hex:"#7A4B9A", f:["viola","viola","viola","viola"]},
+    {k:"rosa",      hex:"#E99AB4", f:["rosa","rosa","rosa","rosa"]},
+    {k:"marrone",   hex:"#7A5236", f:["marrone","marrone","marroni","marroni"]},
+    {k:"grigio",    hex:"#8D9097", f:["grigio","grigia","grigi","grigie"]},
+    {k:"nero",      hex:"#26272B", f:["nero","nera","neri","nere"]},
+    {k:"bianco",    hex:"#F4F1EA", f:["bianco","bianca","bianchi","bianche"]}
+  ];
+  var CHIARI = ["bianco","giallo","rosa","grigio","arancione"];
+  function col(k){ for(var i=0;i<COLORI.length;i++){ if(COLORI[i].k === k) return COLORI[i]; } return COLORI[0]; }
+
+  var CAPI = {
+    maglietta:   {g:"f", n:"s", ind:"una maglietta", det:"la maglietta", en:"T-shirt", gruppo:"sopra", maniche:"corte"},
+    camicia:     {g:"f", n:"s", ind:"una camicia", det:"la camicia", en:"shirt", gruppo:"sopra", maniche:"lunghe"},
+    maglione:    {g:"m", n:"s", ind:"un maglione", det:"il maglione", en:"jumper", gruppo:"sopra", maniche:"lunghe"},
+    felpa:       {g:"f", n:"s", ind:"una felpa", det:"la felpa", en:"hoodie", gruppo:"sopra", maniche:"lunghe"},
+    vestito:     {g:"m", n:"s", ind:"un vestito", det:"il vestito", en:"dress", gruppo:"sopra", maniche:"corte", donna:true},
+    giacca:      {g:"f", n:"s", ind:"una giacca", det:"la giacca", en:"jacket", gruppo:"giacca"},
+    pantaloni:   {g:"m", n:"p", ind:"i pantaloni", det:"i pantaloni", en:"trousers", gruppo:"sotto"},
+    jeans:       {g:"m", n:"p", ind:"i jeans", det:"i jeans", en:"jeans", gruppo:"sotto", fisso:"#3E5F8E"},
+    pantaloncini:{g:"m", n:"p", ind:"i pantaloncini", det:"i pantaloncini", en:"shorts", gruppo:"sotto"},
+    gonna:       {g:"f", n:"s", ind:"una gonna", det:"la gonna", en:"skirt", gruppo:"sotto", donna:true},
+    ginnastica:  {g:"f", n:"p", ind:"le scarpe da ginnastica", det:"le scarpe da ginnastica", en:"trainers", gruppo:"scarpe", colori:["bianco","nero","rosso","blu"]},
+    stivali:     {g:"m", n:"p", ind:"gli stivali", det:"gli stivali", en:"boots", gruppo:"scarpe", colori:["nero","marrone"]},
+    sandali:     {g:"m", n:"p", ind:"i sandali", det:"i sandali", en:"sandals", gruppo:"scarpe", colori:["marrone","nero"]},
+    cappello:    {g:"m", n:"s", ind:"un cappello", det:"il cappello", en:"hat", gruppo:"extra"},
+    sciarpa:     {g:"f", n:"s", ind:"una sciarpa", det:"la sciarpa", en:"scarf", gruppo:"extra"},
+    occhiali:    {g:"m", n:"p", ind:"gli occhiali", det:"gli occhiali", en:"glasses", gruppo:"extra", fisso:"#26272B"},
+    borsa:       {g:"f", n:"s", ind:"una borsa", det:"la borsa", en:"bag", gruppo:"extra"}
+  };
+  var SOPRA = ["maglietta","camicia","maglione","felpa","vestito"];
+  var SOTTO = ["pantaloni","jeans","pantaloncini","gonna"];
+  var SCARPE = ["ginnastica","stivali","sandali"];
+  var EXTRA = ["cappello","sciarpa","occhiali","borsa"];
+  var FANTASIE = [{k:"", l:"tinta unita"},{k:"righe", l:"a righe"},{k:"quadri", l:"a quadri"},{k:"pois", l:"a pois"}];
+  var PELLI = ["#F2D3B8","#E2B48E","#C68E62","#8D5A3B","#5E3B26"];
+  var CAPELLI = ["#E3C16F","#6B4A2E","#2A2420","#B5532C","#A9A9A9"];
+
+  /* ============ ATTREZZI ============ */
+  function $(id){ return document.getElementById(id); }
+  function pesca(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  /* l'aggettivo di colore accordato con il capo */
+  function agg(colore, capo){
+    var i = (capo.n === "p" ? 2 : 0) + (capo.g === "f" ? 1 : 0);
+    return col(colore).f[i];
+  }
+  function fantasiaLabel(k){ for(var i=0;i<FANTASIE.length;i++){ if(FANTASIE[i].k === k) return FANTASIE[i].l; } return ""; }
+  /* «una maglietta rossa a righe», «i pantaloni neri», «gli occhiali» */
+  function np(k, colore, fa, modo){
+    var capo = CAPI[k], s = capo[modo || "ind"];
+    if(colore && !capo.fisso) s += " " + agg(colore, capo);
+    if(fa) s += " " + fantasiaLabel(fa);
+    return s;
+  }
+  function elenco(a){ return a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " e " + a[a.length - 1]; }
+
+  function descrivi(o){
+    var porta = [np(o.sopra.k, o.sopra.c, o.sopra.fa, "ind")];
+    if(o.giacca) porta.push(np("giacca", o.giacca.c, "", "ind"));
+    if(o.sotto) porta.push(np(o.sotto.k, o.sotto.c, "", CAPI[o.sotto.k].n === "p" ? "det" : "ind"));
+    porta.push(np(o.scarpe.k, o.scarpe.c, "", "det"));
+    var ha = [];
+    EXTRA.forEach(function(k){ if(o.extra[k]) ha.push(np(k, o.extra[k] === true ? "" : o.extra[k], "", CAPI[k].n === "p" ? "det" : "ind")); });
+    var t = (o.sesso === "f" ? "Lei" : "Lui") + " porta " + elenco(porta) + ".";
+    if(ha.length) t += " Ha anche " + elenco(ha) + ".";
+    return t;
+  }
+
+  /* ============ UNA PERSONA A CASO ============ */
+  function colDiverso(evita, lista){
+    var pool = (lista || COLORI.map(function(c){ return c.k; })).filter(function(k){ return evita.indexOf(k) < 0; });
+    return pesca(pool.length ? pool : (lista || ["nero"]));
+  }
+  function aCaso(){
+    var sesso = Math.random() < 0.5 ? "f" : "m";
+    var sopraPool = SOPRA.filter(function(k){ return sesso === "f" || !CAPI[k].donna; });
+    var sk = pesca(sesso === "f" && Math.random() < 0.15 ? ["vestito"] : sopraPool.filter(function(k){ return k !== "vestito"; }));
+    var sc = colDiverso([]);
+    var fa = "";
+    if(sk !== "maglione" && Math.random() < 0.4) fa = pesca(["righe","quadri","pois"]);
+    if(sk === "maglione" && Math.random() < 0.25) fa = "righe";
+    var o = {
+      sesso: sesso, pelle: pesca(PELLI), capelli: {c: pesca(CAPELLI), lunghi: sesso === "f" ? Math.random() < 0.75 : Math.random() < 0.15},
+      sopra: {k: sk, c: sc, fa: fa}, giacca: null, sotto: null, scarpe: null,
+      extra: {cappello: null, sciarpa: null, occhiali: false, borsa: null}
+    };
+    if(sk !== "vestito"){
+      var sottoPool = SOTTO.filter(function(k){ return sesso === "f" || !CAPI[k].donna; });
+      var bk = pesca(sottoPool);
+      o.sotto = {k: bk, c: CAPI[bk].fisso ? "" : colDiverso([sc])};
+    }
+    if(Math.random() < 0.25) o.giacca = {c: colDiverso([sc, o.sotto ? o.sotto.c : ""])};
+    var shk = pesca(SCARPE);
+    o.scarpe = {k: shk, c: pesca(CAPI[shk].colori)};
+    var quanti = 0;
+    shuffle(EXTRA.slice()).forEach(function(k){
+      if(quanti >= 2 || Math.random() > 0.3) return;
+      quanti++;
+      o.extra[k] = k === "occhiali" ? true : colDiverso([]);
+    });
+    return o;
+  }
+
+  /* ============ IL DISEGNO ============ */
+  var idPat = 0;
+  function pattern(id, base, fa, chiaro){
+    var ink = chiaro ? "rgba(38,39,43,.55)" : "rgba(255,255,255,.75)";
+    var d = '<pattern id="'+id+'" patternUnits="userSpaceOnUse" width="8" height="8"><rect width="8" height="8" fill="'+base+'"/>';
+    if(fa === "righe") d += '<rect y="5" width="8" height="3" fill="'+ink+'"/>';
+    if(fa === "quadri") d += '<rect x="0" y="0" width="3.5" height="8" fill="'+ink+'" opacity=".6"/><rect x="0" y="0" width="8" height="3.5" fill="'+ink+'" opacity=".6"/>';
+    if(fa === "pois") d += '<circle cx="2" cy="2" r="1.4" fill="'+ink+'"/><circle cx="6" cy="6" r="1.4" fill="'+ink+'"/>';
+    return d + "</pattern>";
+  }
+  var LINEA = ' stroke="rgba(22,35,63,.28)" stroke-width=".8"';
+  function figura(o){
+    var pid = "pt" + (++idPat);
+    var sopraHex = col(o.sopra.c).hex;
+    var fill = o.sopra.fa ? "url(#"+pid+")" : sopraHex;
+    var s = '<svg viewBox="0 0 120 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+esc(descrivi(o))+'"><defs>';
+    if(o.sopra.fa) s += pattern(pid, sopraHex, o.sopra.fa, CHIARI.indexOf(o.sopra.c) >= 0);
+    s += "</defs>";
+    var pelle = o.pelle, cap = o.capelli.c;
+    /* capelli lunghi, dietro */
+    if(o.capelli.lunghi) s += '<path d="M42 30 Q42 15 60 15 Q78 15 78 30 L81 78 Q60 84 39 78 Z" fill="'+cap+'"/>';
+    /* gambe e braccia */
+    s += '<rect x="45" y="136" width="13" height="94" rx="5" fill="'+pelle+'"/><rect x="62" y="136" width="13" height="94" rx="5" fill="'+pelle+'"/>';
+    s += '<rect x="25" y="66" width="12" height="70" rx="6" fill="'+pelle+'"/><rect x="83" y="66" width="12" height="70" rx="6" fill="'+pelle+'"/>';
+    s += '<circle cx="31" cy="140" r="6" fill="'+pelle+'"/><circle cx="89" cy="140" r="6" fill="'+pelle+'"/>';
+    /* sotto */
+    if(o.sotto){
+      var sk = o.sotto.k, sh = CAPI[sk].fisso || col(o.sotto.c).hex;
+      if(sk === "gonna") s += '<path d="M40 132 L80 132 L89 186 L31 186 Z" fill="'+sh+'"'+LINEA+'/>';
+      else {
+        var h = sk === "pantaloncini" ? 38 : 90;
+        s += '<rect x="40" y="130" width="40" height="14" fill="'+sh+'"'+LINEA+'/>';
+        s += '<rect x="43" y="138" width="17" height="'+h+'" rx="3" fill="'+sh+'"'+LINEA+'/><rect x="60" y="138" width="17" height="'+h+'" rx="3" fill="'+sh+'"'+LINEA+'/>';
+        if(sk === "jeans") s += '<line x1="51.5" y1="146" x2="51.5" y2="226" stroke="rgba(255,255,255,.35)" stroke-dasharray="2 2"/><line x1="68.5" y1="146" x2="68.5" y2="226" stroke="rgba(255,255,255,.35)" stroke-dasharray="2 2"/>';
+      }
+    }
+    /* scarpe */
+    var zk = o.scarpe.k, zh = col(o.scarpe.c).hex;
+    [41, 61].forEach(function(x){
+      if(zk === "ginnastica"){
+        s += '<rect x="'+x+'" y="223" width="19" height="11" rx="5" fill="'+zh+'"'+LINEA+'/>';
+        s += '<rect x="'+x+'" y="231" width="20" height="4" rx="2" fill="'+(o.scarpe.c === "bianco" ? "#C9C6BE" : "#FFFFFF")+'"'+LINEA+'/>';
+      } else if(zk === "stivali"){
+        s += '<rect x="'+(x+3)+'" y="192" width="15" height="40" rx="3" fill="'+zh+'"'+LINEA+'/>';
+        s += '<rect x="'+x+'" y="225" width="19" height="9" rx="4" fill="'+zh+'"'+LINEA+'/><rect x="'+x+'" y="232" width="19" height="3" rx="1.5" fill="#1A1A1A"/>';
+      } else {
+        s += '<ellipse cx="'+(x+9.5)+'" cy="230" rx="10" ry="4.5" fill="'+pelle+'"/>';
+        s += '<rect x="'+x+'" y="233" width="19" height="2.5" rx="1" fill="'+zh+'"/><rect x="'+(x+3)+'" y="226" width="13" height="3" rx="1.5" fill="'+zh+'"/><rect x="'+(x+3)+'" y="230" width="13" height="2.5" rx="1.2" fill="'+zh+'"/>';
+      }
+    });
+    /* cappuccio dietro */
+    if(o.sopra.k === "felpa") s += '<ellipse cx="60" cy="60" rx="17" ry="8" fill="'+sopraHex+'"'+LINEA+'/>';
+    /* sopra */
+    s += '<path d="M40 62 Q60 57 80 62 L84 140 L36 140 Z" fill="'+fill+'"'+LINEA+'/>';
+    if(o.sopra.k === "vestito") s += '<path d="M37 132 L83 132 L91 192 L29 192 Z" fill="'+fill+'"'+LINEA+'/>';
+    var lunghe = CAPI[o.sopra.k].maniche === "lunghe";
+    [24, 82].forEach(function(x){
+      s += '<rect x="'+x+'" y="63" width="14" height="'+(lunghe ? 71 : 24)+'" rx="6" fill="'+fill+'"'+LINEA+'/>';
+    });
+    if(o.sopra.k === "camicia"){
+      s += '<path d="M52 60 L60 70 L68 60 L64 57 L60 64 L56 57 Z" fill="#FFFFFF" opacity=".9"'+LINEA+'/>';
+      [80, 95, 110, 125].forEach(function(y){ s += '<circle cx="60" cy="'+y+'" r="1.3" fill="rgba(22,35,63,.45)"/>'; });
+    }
+    if(o.sopra.k === "maglione"){
+      s += '<rect x="36.5" y="132" width="47" height="8" fill="rgba(0,0,0,.16)"/>';
+      s += '<rect x="24" y="126" width="14" height="8" rx="3" fill="rgba(0,0,0,.16)"/><rect x="82" y="126" width="14" height="8" rx="3" fill="rgba(0,0,0,.16)"/>';
+    }
+    if(o.sopra.k === "felpa"){
+      s += '<rect x="46" y="108" width="28" height="17" rx="5" fill="rgba(0,0,0,.13)"/>';
+      s += '<line x1="56" y1="64" x2="55" y2="82" stroke="#FFFFFF" stroke-width="1.4"/><line x1="64" y1="64" x2="65" y2="82" stroke="#FFFFFF" stroke-width="1.4"/>';
+    }
+    if(o.sopra.k === "maglietta" || o.sopra.k === "vestito") s += '<path d="M52 60 Q60 68 68 60" fill="none" stroke="rgba(22,35,63,.35)" stroke-width="1.2"/>';
+    /* giacca */
+    if(o.giacca){
+      var gh = col(o.giacca.c).hex;
+      s += '<path d="M40 61 L56 61 L58 143 L35 143 Z" fill="'+gh+'"'+LINEA+'/><path d="M80 61 L64 61 L62 143 L85 143 Z" fill="'+gh+'"'+LINEA+'/>';
+      s += '<rect x="23" y="62" width="16" height="73" rx="7" fill="'+gh+'"'+LINEA+'/><rect x="81" y="62" width="16" height="73" rx="7" fill="'+gh+'"'+LINEA+'/>';
+      s += '<path d="M56 61 L50 80 L57 86" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="1.2"/><path d="M64 61 L70 80 L63 86" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="1.2"/>';
+    }
+    /* collo e testa */
+    s += '<rect x="55" y="48" width="10" height="14" fill="'+pelle+'"/>';
+    s += '<circle cx="60" cy="36" r="17" fill="'+pelle+'"/>';
+    s += '<path d="M43 34 Q43 16 60 16 Q77 16 77 34 Q71 24 60 25 Q49 24 43 34 Z" fill="'+cap+'"/>';
+    s += '<circle cx="54" cy="38" r="1.8" fill="#16233F"/><circle cx="66" cy="38" r="1.8" fill="#16233F"/>';
+    s += '<path d="M55 45 Q60 49 65 45" fill="none" stroke="#16233F" stroke-width="1.3" stroke-linecap="round"/>';
+    /* accessori */
+    if(o.extra.sciarpa){
+      var sch = col(o.extra.sciarpa).hex;
+      s += '<rect x="45" y="51" width="30" height="10" rx="5" fill="'+sch+'"'+LINEA+'/><rect x="63" y="56" width="8" height="32" rx="3" fill="'+sch+'"'+LINEA+'/>';
+    }
+    if(o.extra.occhiali) s += '<circle cx="54" cy="38" r="4.6" fill="none" stroke="#26272B" stroke-width="1.6"/><circle cx="66" cy="38" r="4.6" fill="none" stroke="#26272B" stroke-width="1.6"/><line x1="58.6" y1="38" x2="61.4" y2="38" stroke="#26272B" stroke-width="1.6"/>';
+    if(o.extra.cappello){
+      var ch = col(o.extra.cappello).hex;
+      s += '<rect x="45" y="5" width="30" height="17" rx="5" fill="'+ch+'"'+LINEA+'/><rect x="36" y="19" width="48" height="5" rx="2.5" fill="'+ch+'"'+LINEA+'/>';
+    }
+    if(o.extra.borsa){
+      var bh = col(o.extra.borsa).hex;
+      s += '<path d="M79 63 L93 120" fill="none" stroke="'+bh+'" stroke-width="2.4"/>';
+      s += '<rect x="86" y="117" width="21" height="18" rx="4" fill="'+bh+'"'+LINEA+'/>';
+    }
+    return s + "</svg>";
+  }
+
+  /* ============ STATO ============ */
+  var CHIAVE = "icf-guardaroba";
+  var stato = { n1:12, modo:"temi", sec:10, rec:0, note:"" };
+  try{
+    var s0 = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(s0 && typeof s0 === "object"){ for(var k in stato){ if(s0[k] !== undefined) stato[k] = s0[k]; } }
+  }catch(e){}
+  var salvaT = null;
+  function salva(){
+    clearTimeout(salvaT);
+    salvaT = setTimeout(function(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){} }, 250);
+  }
+  function chips(box, voci, attivo, cb){
+    box.innerHTML = "";
+    voci.forEach(function(v){
+      var b = document.createElement("button");
+      b.type = "button"; b.textContent = v.l;
+      b.setAttribute("aria-pressed", String(v.k === attivo));
+      b.addEventListener("click", function(){
+        Array.prototype.forEach.call(box.children, function(c){ c.setAttribute("aria-pressed", String(c === b)); });
+        cb(v.k);
+      });
+      box.appendChild(b);
+    });
+  }
+
+  /* Linguette */
+  var tabs = document.querySelectorAll("nav.steps button[data-phase]");
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){
+      Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(sec){
+        sec.classList.toggle("active", sec.id === t.getAttribute("data-phase"));
+      });
+    });
+  });
+
+  /* ============ IL KIT ============ */
+  var KIT = '<h3>Sopra</h3><table>' +
+    ["maglietta","camicia","maglione","felpa","vestito","giacca"].map(function(k){ return "<tr><td>"+esc(CAPI[k].det)+"</td><td class=\"en\">"+esc(CAPI[k].en)+"</td></tr>"; }).join("") +
+    '</table><h3>Sotto e ai piedi</h3><table>' +
+    SOTTO.concat(SCARPE).map(function(k){ return "<tr><td>"+esc(CAPI[k].det)+"</td><td class=\"en\">"+esc(CAPI[k].en)+"</td></tr>"; }).join("") +
+    '</table><h3>Accessori</h3><table>' +
+    EXTRA.map(function(k){ return "<tr><td>"+esc(CAPI[k].det)+"</td><td class=\"en\">"+esc(CAPI[k].en)+"</td></tr>"; }).join("") +
+    '</table><h3>I colori si accordano</h3><table>' +
+    '<tr><td>rosso, giallo, nero, bianco, grigio<br><span style="font-weight:400">la maglietta ross<b>a</b>, i pantaloni ner<b>i</b>, le scarpe bianch<b>e</b></span></td><td class="en">four endings: -o -a -i -e</td></tr>' +
+    '<tr><td>verde, marrone, arancione<br><span style="font-weight:400">la gonna verd<b>e</b>, gli stivali marron<b>i</b></span></td><td class="en">two endings: -e -i</td></tr>' +
+    '<tr><td>blu, rosa, viola<br><span style="font-weight:400">i pantaloni blu, la borsa rosa</span></td><td class="en">never change</td></tr>' +
+    '</table><h3>Fantasie</h3><table>' +
+    '<tr><td>a righe · a quadri · a pois · tinta unita</td><td class="en">striped · checked · polka dot · plain</td></tr>' +
+    '</table><h3>I verbi</h3><table>' +
+    '<tr><td>Porta una gonna. / Indossa una giacca.</td><td class="en">she\'s wearing</td></tr>' +
+    '<tr><td>Ha addosso un maglione.</td><td class="en">he has a jumper on</td></tr>' +
+    '<tr><td>Mi metto la sciarpa. / Ieri mi sono messa la gonna.</td><td class="en">I put on (mettersi)</td></tr>' +
+    '<tr><td>Mi vesto in cinque minuti.</td><td class="en">I get dressed (vestirsi)</td></tr>' +
+    '<tr><td>Mi tolgo le scarpe.</td><td class="en">I take off (togliersi)</td></tr>' +
+    '<tr><td>È vestita di nero.</td><td class="en">she\'s dressed in black</td></tr>' +
+    '</table>';
+  $("kitBody").innerHTML = KIT;
+  var kitDlg = $("kitDlg");
+  $("openKit").addEventListener("click", function(){ if(kitDlg.showModal) kitDlg.showModal(); else kitDlg.setAttribute("open",""); });
+  $("closeKit").addEventListener("click", function(){ if(kitDlg.close) kitDlg.close(); else kitDlg.removeAttribute("open"); });
+
+  /* ============ FASE 1 · CHI È? ============ */
+  var FORMULE = [
+    {t:"Sopra", f:["Porta la maglietta?","Porta la camicia?","Porta il maglione?","Porta la felpa?","Porta il vestito?","Ha la giacca?"]},
+    {t:"Sotto", f:["Porta i pantaloni?","Porta i jeans?","Porta i pantaloncini?","Porta la gonna?"]},
+    {t:"Ai piedi", f:["Porta le scarpe da ginnastica?","Porta gli stivali?","Porta i sandali?"]},
+    {t:"Accessori", f:["Ha il cappello?","Ha la sciarpa?","Porta gli occhiali?","Ha la borsa?"]},
+    {t:"Colori", f:["Porta qualcosa di rosso?","La maglietta è blu?","I pantaloni sono neri?","Le scarpe sono bianche?","La gonna è verde?"]},
+    {t:"Fantasie", f:["La maglietta è a righe?","La camicia è a quadri?","Il vestito è a pois?","È tinta unita?"]},
+    {t:"Alla fine", f:["È il numero 7?","È la donna con la gonna gialla?","È l'uomo con il cappello?"]}
+  ];
+  var aperti = {};
+  function disegnaFormule(){
+    var box = $("f1Formule");
+    if(stato.modo === "nascoste"){ box.innerHTML = '<p class="en" style="margin:0">Nascoste: le domande le costruisce lei. Il kit le ha tutte.</p>'; return; }
+    box.innerHTML = FORMULE.map(function(g, i){
+      var chiuse = stato.modo === "temi" && !aperti[i];
+      return '<div class="gruppo"><h4>' + esc(g.t) + " · " + g.f.length +
+        (stato.modo === "temi" ? ' <button type="button" data-g="'+i+'">' + (aperti[i] ? "aperto" : "Scopri") + "</button>" : "") +
+        '</h4><div class="formule' + (chiuse ? " chiuse" : "") + '">' +
+        g.f.map(function(x){ return "<span>" + esc(x) + "</span>"; }).join("") + "</div></div>";
+    }).join("");
+    Array.prototype.forEach.call(box.querySelectorAll("button[data-g]"), function(b){
+      b.addEventListener("click", function(){
+        var i = b.getAttribute("data-g");
+        aperti[i] = true; disegnaFormule();
+        setTimeout(function(){ aperti[i] = false; disegnaFormule(); }, 8000);
+      });
+    });
+  }
+  chips($("f1Modo"), [{k:"aperte", l:"Domande aperte"},{k:"temi", l:"Solo i temi"},{k:"nascoste", l:"Nascoste"}], stato.modo, function(k){ stato.modo = k; salva(); disegnaFormule(); });
+  chips($("f1Num"), [{k:8, l:"8 persone"},{k:12, l:"12 persone"}], stato.n1, function(k){ stato.n1 = k; salva(); nuovoTabellone(); });
+
+  var domande = 0;
+  function conta1(){
+    $("f1Dom").textContent = domande;
+    var su = $("f1Tab").querySelectorAll(".carta-fig:not(.giu)").length;
+    $("f1Rest").textContent = su + (su === 1 ? " persona in piedi" : " persone in piedi");
+  }
+  function nuovoTabellone(){
+    var visti = {}, gente = [];
+    var giri = 0;
+    while(gente.length < stato.n1 && giri < 500){
+      giri++;
+      var o = aCaso(), d = descrivi(o).replace(/^(Lei|Lui) /, "");
+      if(visti[d]) continue;
+      visti[d] = true; gente.push(o);
+    }
+    var tab = $("f1Tab"); tab.innerHTML = "";
+    gente.forEach(function(o, i){
+      var c = document.createElement("div");
+      c.className = "carta-fig fig";
+      c.setAttribute("role", "button");
+      c.setAttribute("tabindex", "0");
+      c.innerHTML = '<span class="num">' + (i + 1) + "</span>" + figura(o);
+      function gira(){ c.classList.toggle("giu"); conta1(); }
+      c.addEventListener("click", gira);
+      c.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); gira(); } });
+      tab.appendChild(c);
+    });
+    domande = 0; conta1();
+  }
+  $("f1Nuovo").addEventListener("click", nuovoTabellone);
+  $("f1Piu").addEventListener("click", function(){ domande++; conta1(); });
+  $("f1Meno").addEventListener("click", function(){ if(domande > 0) domande--; conta1(); });
+  disegnaFormule(); nuovoTabellone();
+
+  /* ============ FASE 2 · IL TESTIMONE ============ */
+  chips($("f2Sec"), [{k:5, l:"5 s"},{k:10, l:"10 s"},{k:15, l:"15 s"}], stato.sec, function(k){ stato.sec = k; salva(); });
+  var sospetto = null, tConto = null, voci2 = [];
+  function voci(o){
+    var v = [];
+    v.push({lab:"Sopra", k:o.sopra.k, testo:np(o.sopra.k, o.sopra.c, o.sopra.fa, "det"), colore:true, fa:!!o.sopra.fa});
+    if(o.giacca) v.push({lab:"Giacca", k:"giacca", testo:np("giacca", o.giacca.c, "", "det"), colore:true});
+    if(o.sotto) v.push({lab:"Sotto", k:o.sotto.k, testo:np(o.sotto.k, o.sotto.c, "", "det"), colore:!CAPI[o.sotto.k].fisso});
+    v.push({lab:"Ai piedi", k:o.scarpe.k, testo:np(o.scarpe.k, o.scarpe.c, "", "det"), colore:true});
+    EXTRA.forEach(function(k){
+      if(o.extra[k]) v.push({lab:"Accessorio", k:k, testo:np(k, o.extra[k] === true ? "" : o.extra[k], "", "det"), colore:!CAPI[k].fisso});
+    });
+    return v;
+  }
+  function punti2(){
+    var fatti = 0, tot = 0;
+    voci2.forEach(function(v){ tot += v.ticks; fatti += v.presi; });
+    return {fatti: fatti, tot: tot};
+  }
+  function disegnaLista(rivelata){
+    var ul = $("f2Lista"); ul.innerHTML = "";
+    voci2.forEach(function(v){
+      var li = document.createElement("li");
+      if(!rivelata) li.className = "nascosto";
+      li.innerHTML = '<span class="cosa"><b>' + esc(v.lab) + ":</b> " + esc(rivelata ? v.testo : "il capo e il colore") + "</span>";
+      var nomi = ["capo"]; if(v.colore) nomi.push("colore"); if(v.fa) nomi.push("fantasia");
+      v.ticks = nomi.length;
+      nomi.forEach(function(n){
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "tick"; b.textContent = n;
+        b.setAttribute("aria-pressed", "false");
+        b.disabled = !rivelata;
+        b.addEventListener("click", function(){
+          var on = b.getAttribute("aria-pressed") !== "true";
+          b.setAttribute("aria-pressed", String(on));
+          v.presi += on ? 1 : -1;
+          aggiornaPunti();
+        });
+        li.appendChild(b);
+      });
+      ul.appendChild(li);
+    });
+    aggiornaPunti();
+  }
+  function aggiornaPunti(){
+    var p = punti2();
+    if(!sospetto){ $("f2Punti").textContent = ""; return; }
+    $("f2Punti").textContent = p.fatti + " dettagli su " + p.tot;
+    var perc = p.tot ? Math.round(100 * p.fatti / p.tot) : 0;
+    if(perc > stato.rec){ stato.rec = perc; salva(); }
+    $("f2Rec").textContent = stato.rec ? "record: " + stato.rec + "%" : "";
+  }
+  $("f2Guarda").addEventListener("click", function(){
+    clearInterval(tConto);
+    sospetto = aCaso();
+    voci2 = voci(sospetto).map(function(v){ v.presi = 0; return v; });
+    $("f2Fig").innerHTML = figura(sospetto);
+    $("f2Frase").classList.remove("show");
+    $("f2Velo").style.display = "none";
+    $("f2Rivedi").disabled = true;
+    disegnaLista(false);
+    var resto = stato.sec;
+    $("f2Conto").textContent = resto;
+    var me = this;
+    me.disabled = true;
+    tConto = setInterval(function(){
+      resto--;
+      $("f2Conto").textContent = resto > 0 ? resto : "";
+      if(resto <= 0){
+        clearInterval(tConto);
+        $("f2Velo").style.display = "";
+        $("f2Rivedi").disabled = false;
+        me.disabled = false;
+        me.textContent = "Un altro sospetto";
+      }
+    }, 1000);
+  });
+  $("f2Rivedi").addEventListener("click", function(){
+    if(!sospetto) return;
+    $("f2Velo").style.display = "none";
+    disegnaLista(true);
+    $("f2Frase").textContent = descrivi(sospetto);
+    $("f2Frase").classList.add("show");
+    this.disabled = true;
+  });
+  $("f2Rec").textContent = stato.rec ? "record: " + stato.rec + "%" : "";
+
+  /* ============ FASE 3 · VESTILO TU ============ */
+  var mod = aCaso();
+  function disegna3(){
+    $("f3Fig").innerHTML = figura(mod);
+    $("f3Frase").classList.remove("show");
+    costruisciScelte();
+  }
+  function rigaChips(lab, voci, attivo, cb){
+    var d = document.createElement("div"); d.className = "riga-scelta";
+    d.innerHTML = '<div class="lab">' + esc(lab) + "</div>";
+    var c = document.createElement("div"); c.className = "chips";
+    chips(c, voci, attivo, cb);
+    d.appendChild(c); return d;
+  }
+  function rigaColori(lab, lista, attivo, cb, conNo){
+    var d = document.createElement("div"); d.className = "riga-scelta";
+    d.innerHTML = '<div class="lab">' + esc(lab) + "</div>";
+    var c = document.createElement("div"); c.className = "colori";
+    var voci = (conNo ? [{k:"", hex:"transparent"}] : []).concat(lista.map(function(k){ return {k:k, hex:col(k).hex}; }));
+    voci.forEach(function(v){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.title = v.k || "niente";
+      b.style.background = v.k ? v.hex : "repeating-linear-gradient(45deg,#fff 0 4px,#E2DCCB 4px 8px)";
+      b.style.position = "relative";
+      b.innerHTML = "<span>" + esc(v.k || "niente") + "</span>";
+      b.setAttribute("aria-pressed", String((attivo || "") === v.k));
+      b.addEventListener("click", function(){ cb(v.k); disegna3(); });
+      c.appendChild(b);
+    });
+    d.appendChild(c); return d;
+  }
+  var TUTTI = COLORI.map(function(c){ return c.k; });
+  function costruisciScelte(){
+    var box = $("f3Scelte"); box.innerHTML = "";
+    box.appendChild(rigaChips("Chi", [{k:"f", l:"una donna"},{k:"m", l:"un uomo"}], mod.sesso, function(k){
+      mod.sesso = k;
+      if(k === "m"){
+        if(mod.sopra.k === "vestito"){ mod.sopra.k = "maglietta"; mod.sotto = {k:"pantaloni", c:"nero"}; }
+        if(mod.sotto && mod.sotto.k === "gonna") mod.sotto.k = "pantaloni";
+      }
+      disegna3();
+    }));
+    var sopraVoci = SOPRA.filter(function(k){ return mod.sesso === "f" || !CAPI[k].donna; }).map(function(k){ return {k:k, l:CAPI[k].det}; });
+    box.appendChild(rigaChips("Sopra", sopraVoci, mod.sopra.k, function(k){
+      mod.sopra.k = k;
+      if(k === "vestito") mod.sotto = null;
+      else if(!mod.sotto) mod.sotto = {k:"pantaloni", c:"nero"};
+      disegna3();
+    }));
+    box.appendChild(rigaColori("Colore di sopra", TUTTI, mod.sopra.c, function(k){ mod.sopra.c = k; }));
+    box.appendChild(rigaChips("Fantasia", FANTASIE.map(function(f){ return {k:f.k, l:f.l}; }), mod.sopra.fa, function(k){ mod.sopra.fa = k; disegna3(); }));
+    box.appendChild(rigaColori("La giacca (o niente)", TUTTI, mod.giacca ? mod.giacca.c : "", function(k){ mod.giacca = k ? {c:k} : null; }, true));
+    if(mod.sotto){
+      var sottoVoci = SOTTO.filter(function(k){ return mod.sesso === "f" || !CAPI[k].donna; }).map(function(k){ return {k:k, l:CAPI[k].det}; });
+      box.appendChild(rigaChips("Sotto", sottoVoci, mod.sotto.k, function(k){
+        mod.sotto.k = k;
+        if(CAPI[k].fisso) mod.sotto.c = ""; else if(!mod.sotto.c) mod.sotto.c = "nero";
+        disegna3();
+      }));
+      if(!CAPI[mod.sotto.k].fisso) box.appendChild(rigaColori("Colore di sotto", TUTTI, mod.sotto.c, function(k){ mod.sotto.c = k; }));
+    }
+    box.appendChild(rigaChips("Ai piedi", SCARPE.map(function(k){ return {k:k, l:CAPI[k].det}; }), mod.scarpe.k, function(k){
+      mod.scarpe.k = k;
+      if(CAPI[k].colori.indexOf(mod.scarpe.c) < 0) mod.scarpe.c = CAPI[k].colori[0];
+      disegna3();
+    }));
+    box.appendChild(rigaColori("Colore delle scarpe", CAPI[mod.scarpe.k].colori, mod.scarpe.c, function(k){ mod.scarpe.c = k; }));
+    ["cappello","sciarpa","borsa"].forEach(function(k){
+      box.appendChild(rigaColori(cap(CAPI[k].det) + " (o niente)", TUTTI, mod.extra[k] || "", function(c){ mod.extra[k] = c || null; }, true));
+    });
+    box.appendChild(rigaChips("Gli occhiali", [{k:"no", l:"no"},{k:"si", l:"sì"}], mod.extra.occhiali ? "si" : "no", function(k){ mod.extra.occhiali = k === "si"; disegna3(); }));
+  }
+  $("f3Caso").addEventListener("click", function(){ mod = aCaso(); disegna3(); });
+  $("f3Leggi").addEventListener("click", function(){
+    $("f3Frase").textContent = descrivi(mod);
+    $("f3Frase").classList.toggle("show");
+  });
+  disegna3();
+
+  /* ============ APPUNTI ============ */
+  var note = $("note");
+  note.value = stato.note || "";
+  note.addEventListener("input", function(){
+    stato.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("reset").addEventListener("click", function(){
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+
+  /* per i collaudi */
+  window.__guardaroba = { aCaso: aCaso, descrivi: descrivi, np: np, agg: agg, CAPI: CAPI };
+})();
+</script>
+</body>
+</html>
