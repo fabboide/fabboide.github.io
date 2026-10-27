@@ -26,9 +26,7 @@
 <meta name="twitter:description" content="Italian exercises by level, from A1 to C1. Some are free for everyone, some are for my students.">
 <meta name="twitter:image" content="https://talkwithfabio.com/img/og-esercizi.jpg">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+<link rel="stylesheet" href="/fonts/fonts.css">
 
 <style>
 /* ============================================================
@@ -337,6 +335,8 @@ a.ex.is-free:hover{
 .footer-links{ display:flex; flex-wrap:wrap; gap:20px; font-family:var(--display); font-weight:500; }
 .footer-links a{ text-decoration:none; }
 .footer-links a:hover{ color:var(--rosso); }
+.footer-legal{ flex-basis:100%; font-size:0.82rem; color:var(--ink-soft); font-family:var(--mono); letter-spacing:0.01em; }
+.footer-legal a{ color:inherit; }
 
 @media (prefers-reduced-motion:reduce){
   html{ scroll-behavior:auto; }
@@ -436,7 +436,9 @@ a.ex.is-free:hover{
       <a href="./">Exercises</a>
       <a href="../#plans">Lessons</a>
       <a href="../prenota/">Book a lesson</a>
+      <a href="../privacy/">Privacy</a>
     </nav>
+    <p class="footer-legal">© 2026 Fabio Boccuzzi · P.IVA 13510320016 · <a href="../privacy/">Privacy policy</a></p>
   </div>
 </footer>
 

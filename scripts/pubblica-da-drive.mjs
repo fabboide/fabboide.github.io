@@ -168,6 +168,16 @@ function leggiPiani() {
 }
 
 /* I link che un piano puo contenere: solo il sito e le sue pagine. */
+/* I font stanno sul sito (/fonts/), non su Google: niente dati dei visitatori a Google e
+   privacy policy piu' semplice. Se una pagina arriva da Drive con il link a Google Fonts,
+   qui viene girato sul file locale, cosi' nessuno deve ricordarsene. */
+function fontLocali(html) {
+  return html
+    .replace(/[ \t]*<link[^>]*rel="preconnect"[^>]*fonts\.(googleapis|gstatic)\.com[^>]*>\r?\n?/gi, "")
+    .replace(/<link[^>]*href="https:\/\/fonts\.googleapis\.com\/css2?[^"]*"[^>]*>/gi,
+             '<link rel="stylesheet" href="/fonts/fonts.css">');
+}
+
 function linkBuono(h) {
   const s = String(h || "");
   return s === "" ||
@@ -278,15 +288,17 @@ async function main() {
         pianiCambiati = true;
         resoconto.push((p === null ? "TOLTO piano " : "PIANO ") + d.codice);
       } else {
+        let uscita = dati;
         if (/\.(html|js|css|json|svg)$/i.test(d.percorso)) {
           const testo = dati.toString("utf8");
           if (/\.html$/i.test(d.percorso) && !/<\/html>/i.test(testo)) {
             throw new Error("HTML senza </html>: sembra tagliato a meta");
           }
+          if (/\.html$/i.test(d.percorso)) uscita = Buffer.from(fontLocali(testo), "utf8");
         }
         if (!DRY) {
           mkdirSync(dirname(d.percorso), { recursive: true });
-          writeFileSync(d.percorso, dati);
+          writeFileSync(d.percorso, uscita);
         }
         scritti++;
         resoconto.push("FILE " + d.percorso);
