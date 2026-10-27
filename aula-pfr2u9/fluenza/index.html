@@ -114,6 +114,9 @@ header.sign{padding:26px 0 2px;display:flex;flex-wrap:wrap;gap:12px;align-items:
 .riepilogo .numeroni b{font-family:var(--display);font-size:2.6rem;line-height:1.1}
 .riepilogo .frase{font-family:var(--hand);font-size:1.4rem;color:var(--lemon);margin-top:6px}
 
+.scelte{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}
+.scelte button{font-family:var(--display);font-weight:700;font-size:.9rem;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 14px}
+.scelte button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .nota-piede{margin-top:22px;color:var(--muted);font-size:.92rem}
 kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 7px;background:var(--paper)}
 </style>
@@ -149,17 +152,17 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
         <span class="num">2</span>
         <span class="tit">Raffica</span>
         <span class="ob">Abbattere il tempo di reazione, cioè la traduzione mentale.</span>
-        <span class="come">Trenta micro-domande, cinque secondi l'una, una frase completa. Va avanti da sola: non c'è tempo per tradurre.</span>
+        <span class="come">Trenta micro-domande pescate da quasi trecento, sette secondi l'una, una frase completa. Va avanti da sola: non c'è tempo per tradurre.</span>
       </button>
       <button class="modo-card tre" type="button" data-modo="sBomba">
         <span class="num">3</span>
         <span class="tit">Parole Bomba</span>
         <span class="ob">Non fermarsi quando arriva l'imprevisto.</span>
-        <span class="come">Parla di un tema e ogni quindici secondi esplode una parola che non c'entra niente: dieci secondi per infilarla nel discorso.</span>
+        <span class="come">Parla di un tema e ogni quindici secondi esplode una parola legata al tema, o una parola jolly: dieci secondi per infilarla nel discorso.</span>
       </button>
     </div>
     <div class="regole-comuni">
-      <p style="margin:0 0 8px"><b>Le regole, uguali per tutte e tre.</b> Non si corregge mentre parla. Non si contano gli errori. L'unica cosa che si misura è che <b>non si è fermata</b>.</p>
+      <p style="margin:0 0 8px"><b>Le regole, uguali per tutte e tre.</b> Non si corregge mentre parla. Non si contano gli errori. L'unica cosa che si misura è che <b>il discorso non si è fermato</b>.</p>
       <p style="margin:0" class="en">Gli errori li scrivo a parte e li riprendo dopo, a motore spento.</p>
     </div>
   </section>
@@ -185,7 +188,7 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
     <div class="toolbar">
       <button class="btn" id="cPesca" type="button">Pesca un tema</button>
       <button class="btn green grande" id="cVai" type="button" disabled>Via</button>
-      <button class="btn giallo grande" id="cBlocco" type="button" disabled>Si è bloccata +1</button>
+      <button class="btn giallo grande" id="cBlocco" type="button" disabled>Blocco +1</button>
       <button class="btn ghost" id="cChiudi" type="button" disabled>Chiudi il giro</button>
       <button class="btn ghost" id="cAzzera" type="button">Ricomincia</button>
     </div>
@@ -205,7 +208,7 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
     </div>
     <div class="palco">
       <div class="etichetta" id="rEtichetta">domanda 0 di 30</div>
-      <div class="domanda" id="rDomanda">Pronta? Una frase intera, sempre.</div>
+      <div class="domanda" id="rDomanda">Pronti? Una frase intera, sempre.</div>
       <div class="barra" id="rBarra"><i id="rRiempi"></i></div>
       <div class="contatorini">
         <div><span>risposte in tempo</span><b id="rRisposte">0</b></div>
@@ -218,7 +221,8 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
       <button class="btn ghost" id="rStop" type="button" disabled>Ferma</button>
       <button class="btn ghost" id="rSuono" type="button" aria-pressed="true">Suono: acceso</button>
     </div>
-    <p class="nota-piede"><kbd>spazio</kbd> = ha risposto, e si passa subito alla prossima. Se scadono i cinque secondi si va avanti lo stesso: <b>non si torna indietro</b>.</p>
+    <div class="scelte" id="rSecondi" aria-label="Secondi per domanda"></div>
+    <p class="nota-piede"><kbd>spazio</kbd> = ha risposto, e si passa subito alla prossima. Se scade il tempo si va avanti lo stesso: <b>non si torna indietro</b>. Le domande non si ripetono finché non sono passate tutte, anche fra una raffica e l'altra.</p>
     <div class="riepilogo" id="rFine" hidden>
       <h2>Raffica finita</h2>
       <div class="numeroni" id="rNumeroni"></div>
@@ -249,7 +253,8 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
       <button class="btn green grande" id="bPiazzata" type="button" disabled>Piazzata!</button>
       <button class="btn ghost" id="bStop" type="button" disabled>Fine</button>
     </div>
-    <p class="nota-piede"><kbd>spazio</kbd> = l'ha piazzata. Le parole non c'entrano niente col tema, ed è il punto: serve una giravolta, non un collegamento sensato.</p>
+    <div class="scelte" id="bModo" aria-label="Che parole"></div>
+    <p class="nota-piede"><kbd>spazio</kbd> = l'ha piazzata. <b>Parole del tema</b>: cose che c'entrano col discorso, più qualche parola jolly (per fortuna, all'improvviso, il problema è che). <b>Parole folli</b>: oggetti a caso, per chi vuole la giravolta.</p>
     <div class="riepilogo" id="bFine" hidden>
       <h2>Fine del campo minato</h2>
       <div class="numeroni" id="bNumeroni"></div>
@@ -264,7 +269,7 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
 
   var TEMI = [
     "La tua giornata di ieri, dall'inizio alla fine",
-    "Il posto più bello dove sei stata",
+    "Il posto più bello che hai visto",
     "Una persona che ti ha cambiato qualcosa",
     "Com'è cambiato il tuo lavoro negli anni",
     "Il tuo rapporto con la tecnologia",
@@ -283,79 +288,307 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
     "La tua famiglia: chi c'è e come vi vedete",
     "Le domeniche",
     "Un cambiamento che stai facendo adesso",
-    "La città dove vivi e quella dove sei cresciuta",
+    "La città dove vivi e quella della tua infanzia",
     "Un hobby che vorresti iniziare",
-    "Come ti tieni informata",
+    "Come ti informi",
     "Il tuo rapporto con lo sport",
     "Cosa ti stressa e come lo gestisci",
     "La tua routine della mattina",
-    "Un oggetto a cui sei affezionata",
+    "Un oggetto che non butteresti mai",
     "Come festeggiate le feste in famiglia",
     "Il tuo italiano: cos'è cambiato in un anno",
     "Una decisione difficile che hai preso"
   ];
 
   var DOMANDE = [
-    "Cosa hai mangiato ieri sera?",
+    "Cosa bevi la mattina?",
+    "A che ora ti svegli di solito?",
+    "Cosa mangi a colazione?",
+    "Come vai al lavoro?",
+    "Quanto tempo ci metti per andare al lavoro?",
+    "Cosa fai appena torni a casa?",
+    "Chi cucina di solito a casa tua?",
+    "Qual è il tuo piatto preferito?",
+    "Cosa non manca mai nel tuo frigo?",
+    "Preferisci il caffè o il tè?",
+    "Fai colazione a casa o al bar?",
+    "Quante ore dormi di solito?",
+    "A che ora vai a letto?",
+    "Cosa fai prima di dormire?",
+    "Ascolti la musica quando lavori?",
+    "Che lavoro fai?",
+    "Ti piace il tuo lavoro?",
+    "Lavori meglio la mattina o la sera?",
+    "Quante volte al giorno guardi il telefono?",
+    "Qual è la prima app che apri la mattina?",
+    "Cosa fai durante la pausa pranzo?",
+    "Mangi spesso fuori?",
+    "Fai sport? Quale?",
+    "Quante volte alla settimana esci con gli amici?",
+    "Dove fai la spesa?",
+    "Cosa compri sempre al supermercato?",
+    "Hai animali in casa?",
+    "Ti piace cucinare?",
+    "Cosa cucini quando hai ospiti?",
+    "Bevi molta acqua?",
+    "Che cosa leggi in questo periodo?",
+    "Guardi la TV la sera?",
+    "Che serie stai guardando?",
+    "Usi più il telefono o il computer?",
+    "Ti piace il tuo quartiere?",
+    "Abiti in una casa o in un appartamento?",
+    "Qual è la tua stanza preferita?",
+    "Hai un giardino o un balcone?",
+    "Che cosa vedi dalla tua finestra?",
+    "Ti piace la tua città?",
+    "Cosa c'è di bello vicino a casa tua?",
+    "Con chi abiti?",
+    "Hai fratelli o sorelle?",
+    "Vedi spesso i tuoi genitori?",
+    "Chi è la persona più divertente della tua famiglia?",
+    "Parli altre lingue?",
+    "Da quanto tempo studi italiano?",
+    "Perché studi italiano?",
+    "Qual è la cosa più difficile dell'italiano?",
+    "Qual è la tua parola italiana preferita?",
+    "Che città italiana vorresti vedere?",
+    "Qual è il tuo cibo italiano preferito?",
+    "Conosci una canzone italiana?",
+    "Come ti senti oggi?",
     "Che tempo fa oggi da te?",
-    "Qual è l'ultima cosa che hai comprato?",
-    "Dove vorresti essere adesso?",
-    "Chi hai sentito per ultimo al telefono?",
-    "Cosa fai di solito la domenica mattina?",
-    "Qual è il tuo posto preferito in casa?",
-    "Cosa ti fa arrabbiare nel traffico?",
-    "Che film consiglieresti a un'amica?",
+    "Ti piace la pioggia?",
+    "Preferisci il caldo o il freddo?",
+    "Qual è la tua stagione preferita?",
+    "Preferisci il mare o la montagna?",
+    "Preferisci la città o la campagna?",
+    "Preferisci i cani o i gatti?",
+    "Preferisci un libro o un film?",
+    "Preferisci il treno o l'aereo?",
+    "Preferisci il dolce o il salato?",
+    "Preferisci chiamare o scrivere un messaggio?",
+    "Il sabato sera preferisci uscire o restare a casa?",
+    "Preferisci la pizza o la pasta?",
+    "Preferisci lavorare in gruppo o per conto tuo?",
+    "Cosa hai fatto ieri sera?",
+    "Cosa hai mangiato a pranzo?",
+    "Cosa hai fatto lo scorso fine settimana?",
+    "Chi hai visto ieri?",
+    "Qual è l'ultimo film che hai visto?",
+    "Qual è l'ultima canzone che hai ascoltato?",
+    "A chi hai scritto l'ultimo messaggio?",
+    "Cosa hai comprato questa settimana?",
+    "Cosa hai cucinato ieri?",
+    "Quanto hai dormito stanotte?",
+    "Cosa hai fatto lo scorso Natale?",
+    "Dove hai passato l'estate?",
+    "Che cosa hai imparato questa settimana?",
+    "Qual è l'ultimo viaggio che hai fatto?",
+    "Cosa hai fatto per il tuo ultimo compleanno?",
+    "Quando hai preso l'ultimo aereo?",
+    "Qual è l'ultimo libro che hai finito?",
+    "Cosa hai sognato stanotte?",
+    "Hai mai mangiato qualcosa di strano?",
+    "Hai mai perso un treno?",
+    "Hai mai cantato al karaoke?",
+    "Hai mai dormito in tenda?",
+    "Hai mai cucinato per tante persone?",
+    "Hai mai cambiato casa?",
+    "Hai mai incontrato una persona famosa?",
+    "Hai mai rotto qualcosa di importante?",
+    "Hai mai fatto un lavoro strano?",
+    "Che lavoro facevi prima?",
+    "Cosa facevi d'estate quando avevi dieci anni?",
+    "Che cartoni animati guardavi quando avevi otto anni?",
+    "Qual era il tuo gioco preferito a dieci anni?",
+    "Che lavoro volevi fare da grande?",
+    "Com'era la tua scuola elementare?",
+    "Che musica ascoltavi a quindici anni?",
+    "Che cosa collezionavi alle elementari?",
+    "Cosa faresti con mille euro?",
+    "Dove vivresti se potessi scegliere?",
+    "Che superpotere vorresti avere?",
+    "Che lingua vorresti imparare?",
+    "Che animale vorresti essere?",
+    "Cosa cambieresti della tua città?",
+    "Con chi vorresti cenare stasera?",
+    "In che epoca vorresti vivere?",
+    "Che lavoro ti piacerebbe provare per un giorno?",
+    "Che regalo faresti a un amico italiano?",
+    "Cosa porteresti su un'isola deserta?",
+    "Che lavoro non faresti mai?",
+    "Dove andresti domani con cento euro?",
+    "Cosa faresti con un giorno libero improvviso?",
+    "Dove ti piacerebbe vivere per un anno?",
+    "Qual è il momento più bello della giornata?",
+    "Qual è il giorno più bello della settimana?",
+    "Cosa rende una casa accogliente?",
+    "Cosa ti piace di più del tuo lavoro?",
+    "Qual è la qualità più importante in un amico?",
+    "Che cosa ti dà fastidio nelle persone?",
+    "Cosa ti mette di buon umore?",
+    "Cosa ti fa perdere la pazienza?",
+    "Qual è la cosa più importante in vacanza?",
+    "Meglio una vacanza corta o lunga?",
+    "Qual è il posto più bello del tuo paese?",
+    "Cosa consiglieresti di visitare a un turista nel tuo paese?",
+    "Qual è il piatto tipico del tuo paese?",
+    "Cosa ti piace dell'Italia?",
+    "Cosa non capisci degli italiani?",
+    "Qual è la festa più importante nel tuo paese?",
+    "Come si festeggia il Capodanno da voi?",
+    "Di che colore è la tua giacca?",
+    "Cosa c'è sul tuo tavolo adesso?",
+    "Quanti anni ha il tuo telefono?",
+    "Che giorno è oggi?",
+    "Cosa farai stasera?",
+    "Cosa farai questo fine settimana?",
+    "Dove andrai in vacanza la prossima volta?",
+    "Cosa devi fare domani?",
+    "Cosa vuoi imparare quest'anno?",
+    "Cosa fai quando sei in ritardo?",
+    "Cosa fai quando ti annoi?",
+    "Cosa fai quando hai fame di notte?",
+    "Cosa fai se perdi le chiavi?",
+    "Cosa fai se il treno è in ritardo?",
+    "Cosa dici quando rispondi al telefono?",
+    "Come saluti un amico che non vedi da tanto?",
+    "Come ti rilassi la domenica?",
+    "Come passi il venerdì sera?",
+    "Come scegli un ristorante?",
+    "Come impari le parole nuove?",
+    "Come ti prepari per un viaggio?",
+    "Come festeggi una buona notizia?",
+    "Quanto costa un caffè da te?",
+    "Quanto costa una pizza nella tua città?",
+    "Quanti caffè bevi al giorno?",
+    "Quanti libri leggi in un anno?",
+    "Quanti paesi hai visitato?",
+    "Quante ore lavori al giorno?",
+    "Quanti messaggi ricevi al giorno?",
+    "Dove compri i vestiti?",
+    "Dove leggi di solito?",
+    "Dove studi l'italiano?",
+    "Dove vai quando vuoi stare in pace?",
+    "Dove hai conosciuto il tuo migliore amico?",
+    "Dove ti piacerebbe andare a cena stasera?",
+    "Chi ti chiama più spesso?",
+    "Chi ti ha insegnato a cucinare?",
+    "Chi è il tuo cantante preferito?",
+    "Chi ti fa ridere di più?",
+    "Chi ammiri e perché?",
+    "Perché ti piace la tua città?",
+    "Perché secondo te il lunedì è difficile?",
+    "Perché la gente ama i social?",
+    "Quale sport ti piace guardare?",
+    "Quale frutta mangi più spesso?",
+    "Quale verdura non sopporti?",
+    "Quale colore non metteresti mai?",
+    "Quale canzone ti mette allegria?",
+    "Quale app cancelleresti subito?",
+    "Quale oggetto usi di più in cucina?",
+    "Quale città ti ha deluso?",
+    "Che cosa ti piace fare il sabato mattina?",
+    "Che cosa fai per non annoiarti in fila?",
+    "Che cosa ti porti sempre dietro?",
+    "Che cosa regali di solito?",
+    "Che cosa c'è sul tuo comodino?",
+    "Che cosa hai sempre in valigia?",
+    "Che cosa ti ricorda l'estate?",
+    "Che cosa ti ricorda il Natale?",
+    "Che cosa mangi quando hai l'influenza?",
+    "Che dolce sai fare?",
+    "Che sport facevi a scuola?",
+    "Che cosa sai cucinare bene?",
+    "Che cosa non sai fare?",
+    "Che cosa vorresti saper fare?",
+    "Che cosa ti piace del tuo carattere?",
+    "Hai una canzone che ti mette sempre di buon umore?",
+    "Hai un posto segreto nella tua città?",
+    "Hai un piatto che cucini sempre?",
+    "Hai paura del buio?",
+    "Ti piace ballare?",
+    "Ti piace cantare sotto la doccia?",
+    "Ti piacciono le sorprese?",
+    "Ti piacciono i film dell'orrore?",
+    "Ti piace fare la spesa?",
+    "Ti piace guidare?",
+    "Ti piace andare in bicicletta?",
+    "Ti piace il tuo nome?",
+    "Ti piace svegliarti presto?",
+    "Ti piace organizzare i viaggi?",
+    "Sai nuotare?",
+    "Sai suonare uno strumento?",
+    "Riesci a dormire in treno?",
+    "Riesci a lavorare con la musica?",
+    "Ricordi il tuo primo giorno di lavoro?",
+    "Ricordi il tuo primo telefono?",
+    "Ricordi la tua prima vacanza?",
+    "Vai spesso al cinema?",
+    "Vai spesso al ristorante?",
+    "Esci più spesso a pranzo o a cena?",
+    "Fai un pisolino il fine settimana?",
+    "Fai tante foto quando viaggi?",
+    "Fai una lista prima della spesa?",
+    "Usi la bicicletta in città?",
+    "Scrivi ancora qualcosa a mano?",
+    "Mandi messaggi vocali?",
+    "Rispondi subito ai messaggi?",
+    "Guardi i film in lingua originale?",
+    "Leggi le notizie la mattina?",
+    "Compri più online o nei negozi?",
+    "Ti informi più sui social o sui giornali?",
+    "Ti fidi delle notizie sui social?",
+    "Quanto tempo passi sui social al giorno?",
+    "Qual è l'ultima notizia che hai letto?",
+    "Come scopri le nuove canzoni?",
+    "Dove trovi le ricette?",
+    "Cosa fai la domenica pomeriggio?",
+    "Le tue domeniche sono tutte uguali?",
+    "Ti alzi tardi la domenica?",
+    "Con chi passi la domenica?",
+    "Cosa mangi la domenica a pranzo?",
+    "Ti annoi mai la domenica?",
+    "Che tempo fa oggi?",
     "Cosa hai in tasca adesso?",
-    "Cosa ti manca di quando eri bambina?",
+    "Cosa ti manca della tua infanzia?",
     "Che cosa non compreresti mai?",
-    "Come ti svegli la mattina?",
     "Qual è il tuo rumore preferito?",
     "Cosa fai quando non riesci a dormire?",
     "Che regalo vorresti ricevere?",
-    "Qual è il piatto della domenica da voi?",
     "Cosa ti spaventa un po'?",
-    "Dove andresti domani con cento euro?",
-    "Cosa hai imparato questo mese?",
     "Qual è la tua scusa preferita?",
-    "Cosa c'è nel tuo frigo adesso?",
     "Che musica metti in macchina?",
     "Chi vorresti incontrare per caso?",
-    "Cosa fai quando sei nervosa?",
-    "Qual è la cosa più bella della tua città?",
+    "Cosa fai quando sei di cattivo umore?",
     "Che cosa rimandi sempre?",
-    "Come festeggi il tuo compleanno?",
-    "Cosa diresti a te stessa di dieci anni fa?",
+    "Che consiglio daresti a te di dieci anni fa?",
     "Cosa mangi quando hai fretta?",
     "Che cosa ti fa ridere sempre?",
     "Dove hai messo le chiavi stamattina?",
     "Qual è il tuo mezzo di trasporto preferito?",
-    "Cosa porteresti su un'isola deserta?",
-    "Che lavoro non faresti mai?",
     "Qual è l'ultimo libro che hai lasciato a metà?",
-    "Cosa fai la sera prima di dormire?",
     "Che cosa cambieresti di casa tua?",
     "Qual è il tuo dolce preferito?",
     "Cosa ti ha sorpreso di recente?",
     "Con chi parli di più durante la settimana?",
-    "Che stagione preferisci?",
-    "Cosa hai fatto di bello il weekend scorso?",
     "Qual è la tua abitudine peggiore?",
-    "Cosa faresti con un giorno libero improvviso?",
-    "Che cosa collezionavi da piccola?",
     "Qual è la tua app più usata?",
     "Cosa non mangi per niente al mondo?",
     "Che cosa ti rilassa dopo il lavoro?",
-    "Dove ti piacerebbe vivere per un anno?",
     "Qual è il complimento più bello che hai ricevuto?",
     "Cosa fai quando piove tutto il giorno?",
     "Che cosa ti fa sentire a casa?",
     "Qual è l'ultima foto che hai fatto?",
     "Cosa metteresti in valigia per tre giorni?",
     "Che consiglio daresti a chi impara l'italiano?",
-    "Qual è la tua parola italiana preferita?",
-    "Cosa farai domani alle otto di sera?",
-    "Chi cucina a casa tua?",
-    "Qual è stata l'ultima cosa che ti ha fatto arrabbiare?"
+    "Chi ti ha fatto l'ultimo regalo?",
+    "Qual è stata l'ultima cosa che ti ha fatto arrabbiare?",
+    "Cosa ti fa arrabbiare nel traffico?",
+    "Che film consiglieresti a un amico?",
+    "Cosa c'è nel tuo frigo adesso?",
+    "Qual è la cosa più bella della tua città?",
+    "Come festeggi il tuo compleanno?",
+    "Cosa fai la sera prima di dormire?"
   ];
 
   var PAROLE = [
@@ -372,6 +605,42 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
     "carrello","moka","piumino","scatolone","fungo","grattacielo","pesce rosso","medusa",
     "bullone","tegola","seme di girasole","carriola"
   ];
+
+  /* Le parole bomba del tema: c'entrano col discorso, ma vanno tirate dentro al momento giusto.
+     Le PAROLE qui sopra restano per il modo «folli», quello degli oggetti a caso. */
+  var BOMBE = {
+    "La tua giornata di ieri, dall'inizio alla fine": ["la sveglia", "il traffico", "la pausa pranzo", "una telefonata", "la spesa", "la stanchezza", "il divano", "un ritardo"],
+    "Il posto più bello che hai visto": ["il tramonto", "la spiaggia", "il silenzio", "una foto", "il treno", "i colori", "la gente del posto", "tornarci"],
+    "Una persona che ti ha cambiato qualcosa": ["un consiglio", "la pazienza", "un insegnante", "il coraggio", "una discussione", "la fiducia", "l'esempio", "ringraziare"],
+    "Com'è cambiato il tuo lavoro negli anni": ["il computer", "i colleghi", "lo stipendio", "le riunioni", "lavorare da casa", "una promozione", "lo stress", "il capo"],
+    "Il tuo rapporto con la tecnologia": ["il telefono", "le notifiche", "una password", "l'intelligenza artificiale", "staccare", "i social", "la batteria", "un'app"],
+    "Una cosa che hai imparato a fare da grande": ["un corso", "gli errori", "la pazienza", "un video su internet", "la paura", "la soddisfazione", "ricominciare", "l'età"],
+    "Il tuo quartiere: com'è e cosa gli manca": ["i vicini", "un parco", "il parcheggio", "il rumore", "un bar", "i negozi", "l'autobus", "la sera"],
+    "Un viaggio andato storto": ["la valigia", "il ritardo", "il passaporto", "la pioggia", "l'albergo", "perdersi", "il navigatore", "ridere"],
+    "Come sarebbe la tua giornata perfetta": ["la colazione", "il sole", "nessuna sveglia", "gli amici", "il mare", "un libro", "la cena", "il telefono spento"],
+    "La cucina di casa tua": ["la ricetta", "la nonna", "il forno", "le spezie", "il profumo", "un piatto bruciato", "la domenica", "gli avanzi"],
+    "Un litigio finito bene": ["le scuse", "un malinteso", "alzare la voce", "il silenzio", "un messaggio", "fare pace", "un abbraccio", "la gelosia"],
+    "Cosa fai per stare bene": ["dormire", "la palestra", "una passeggiata", "la musica", "gli amici", "la natura", "il caffè", "dire di no"],
+    "La scuola che hai fatto": ["un professore", "i compiti", "l'esame", "la gita", "i compagni", "la matematica", "la campanella", "le vacanze"],
+    "Il tuo rapporto con i soldi": ["risparmiare", "un acquisto inutile", "i saldi", "l'affitto", "la carta di credito", "il conto in banca", "un regalo", "spendere"],
+    "Un film o una serie che ti ha lasciato qualcosa": ["il finale", "un attore", "piangere", "la colonna sonora", "la trama", "i sottotitoli", "una scena", "consigliarlo"],
+    "Il tuo primo lavoro": ["il primo stipendio", "il colloquio", "un errore", "il capo", "la divisa", "gli orari", "imparare", "licenziarsi"],
+    "Come scegliete le vacanze": ["il budget", "il volo", "una mappa", "le recensioni", "il mare o la montagna", "prenotare", "l'ultimo minuto", "la valigia"],
+    "La tua famiglia: chi c'è e come vi vedete": ["i cugini", "il pranzo della domenica", "una videochiamata", "la distanza", "i ricordi", "le feste", "il gruppo WhatsApp", "litigare"],
+    "Le domeniche": ["dormire fino a tardi", "la colazione", "una passeggiata", "il pranzo", "la noia", "la partita", "preparare la settimana", "incontrarsi con gli amici"],
+    "Un cambiamento che stai facendo adesso": ["un'abitudine", "la paura", "il primo passo", "la motivazione", "un obiettivo", "la costanza", "chiedere aiuto", "i risultati"],
+    "La città dove vivi e quella della tua infanzia": ["i ricordi", "il traffico", "i prezzi", "il centro", "gli amici d'infanzia", "la nostalgia", "il clima", "cambiare"],
+    "Un hobby che vorresti iniziare": ["il tempo libero", "uno strumento", "un corso", "il costo", "la costanza", "un video", "gli amici", "provarci"],
+    "Come ti informi": ["il telegiornale", "i social", "le notizie false", "il giornale", "un podcast", "troppe informazioni", "fidarsi", "scrollare"],
+    "Il tuo rapporto con lo sport": ["la squadra", "la fatica", "un infortunio", "la partita", "allenarsi", "il divano", "la motivazione", "vincere"],
+    "Cosa ti stressa e come lo gestisci": ["le scadenze", "il traffico", "respirare", "il lavoro", "dormire male", "una pausa", "parlarne", "la lista delle cose da fare"],
+    "La tua routine della mattina": ["la sveglia", "il caffè", "la doccia", "il telefono", "la fretta", "la colazione", "i vestiti", "il traffico"],
+    "Un oggetto che non butteresti mai": ["un regalo", "i ricordi", "una foto", "perderlo", "la nonna", "un viaggio", "rotto", "conservare"],
+    "Come festeggiate le feste in famiglia": ["i regali", "il pranzo", "i parenti", "le tradizioni", "i dolci", "la tombola", "il brindisi", "la stanchezza"],
+    "Il tuo italiano: cos'è cambiato in un anno": ["gli errori", "la pronuncia", "la paura di parlare", "un film", "i verbi", "capire", "un viaggio", "la grammatica"],
+    "Una decisione difficile che hai preso": ["il dubbio", "un consiglio", "il rischio", "cambiare città", "la famiglia", "dormirci sopra", "il coraggio", "pentirsi"]
+  };
+  var JOLLY = ["all'improvviso", "per fortuna", "purtroppo", "di solito", "una volta", "la verità è che", "per esempio", "il problema è che", "tutto sommato", "non me l'aspettavo", "da quel giorno", "il bello è che"];
 
   var RACCORDI = ["a proposito","comunque","tipo","insomma","adesso che ci penso","per dire","tra l'altro","guarda caso"];
 
@@ -489,7 +758,7 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
     var chi = nome() ? nome() + ", " : "";
     var frase;
     if(primo > ultimo) frase = chi + "da " + primo + " blocchi a " + ultimo + ": meno tempo e meno pause. È esattamente quello che doveva succedere.";
-    else if(primo === ultimo) frase = chi + "stesso numero di blocchi in meno tempo: vuol dire che sei andata più veloce a parità di inciampi.";
+    else if(primo === ultimo) frase = chi + "stesso numero di blocchi in meno tempo: vuol dire che hai parlato più veloce a parità di inciampi.";
     else frase = chi + "il terzo giro è il più duro: il tempo si stringe. Riprova domani sullo stesso tema e guarda i numeri.";
     $("cFrase").textContent = frase;
     $("cFine").hidden = false;
@@ -510,7 +779,38 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
   cAzzera();
 
   /* ============ 2 · RAFFICA ============ */
-  var SECONDI = 5, QUANTE = 30;
+  var SECONDI = 7, QUANTE = 30;
+  var CHIAVE_R = "icf-fluenza-raffica";
+  var memR = { secondi: 7, viste: [] };
+  try{
+    var m0 = JSON.parse(localStorage.getItem(CHIAVE_R) || "null");
+    if(m0 && typeof m0 === "object"){
+      if([5,7,10].indexOf(m0.secondi) >= 0) memR.secondi = m0.secondi;
+      if(Array.isArray(m0.viste)) memR.viste = m0.viste.filter(function(q){ return DOMANDE.indexOf(q) >= 0; });
+    }
+  }catch(e){}
+  SECONDI = memR.secondi;
+  function rSalva(){ try{ localStorage.setItem(CHIAVE_R, JSON.stringify(memR)); }catch(e){} }
+  /* le trenta della raffica escono da quelle non ancora viste; quando ne restano meno di trenta si ricomincia il giro */
+  function rMazzo(){
+    var nuove = DOMANDE.filter(function(q){ return memR.viste.indexOf(q) < 0; });
+    if(nuove.length < QUANTE){ memR.viste = []; nuove = DOMANDE.slice(); }
+    var mazzo = mescola(nuove).slice(0, QUANTE);
+    memR.viste = memR.viste.concat(mazzo);
+    rSalva();
+    return mazzo;
+  }
+  [5, 7, 10].forEach(function(n){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = n + " secondi";
+    b.setAttribute("aria-pressed", String(n === SECONDI));
+    b.addEventListener("click", function(){
+      if(raff.inCorso) return;
+      SECONDI = n; memR.secondi = n; rSalva();
+      Array.prototype.forEach.call($("rSecondi").children, function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+    });
+    $("rSecondi").appendChild(b);
+  });
   var raff = { mazzo:[], i:0, prese:0, perse:0, resta:0, id:null, inCorso:false };
 
   function rDisegnaBarra(frazione){
@@ -526,7 +826,7 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
     bip(true);
   }
   function rVia(){
-    raff.mazzo = mescola(DOMANDE).slice(0, QUANTE);
+    raff.mazzo = rMazzo();
     raff.i = 0; raff.prese = 0; raff.perse = 0; raff.inCorso = true;
     $("rRisposte").textContent = "0"; $("rPerse").textContent = "0";
     $("rFine").hidden = true;
@@ -564,7 +864,7 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
     var chi = nome() ? nome() + ", " : "";
     var frase;
     if(fatte >= 26) frase = chi + "non stai più traducendo: stai parlando. Questa è la soglia.";
-    else if(fatte >= 18) frase = chi + "buon ritmo. Le domande perse sono quelle dove sei tornata in inglese per un attimo.";
+    else if(fatte >= 18) frase = chi + "buon ritmo. Le domande perse sono quelle dove per un attimo hai pensato in un'altra lingua.";
     else if(fatte >= 10) frase = chi + "metà: normalissimo all'inizio. Il trucco è rispondere una cosa qualsiasi, subito, anche banale.";
     else frase = chi + "poche, ma la prima volta conta pochissimo. Rifalla domani: si sale in fretta.";
     $("rFrase").textContent = frase;
@@ -582,7 +882,26 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
 
   /* ============ 3 · PAROLE BOMBA ============ */
   var OGNI = 15, FINESTRA = 10;
-  var bomba = { tema:null, stato:"fermo", resta:0, parola:null, piazzate:[], perse:0, id:null, usate:[] };
+  var bomba = { tema:null, stato:"fermo", resta:0, parola:null, piazzate:[], perse:0, id:null, usate:[], modo:"tema" };
+  [{k:"tema", l:"Parole del tema"}, {k:"folli", l:"Parole folli"}].forEach(function(m){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = m.l;
+    b.setAttribute("aria-pressed", String(m.k === bomba.modo));
+    b.addEventListener("click", function(){
+      bomba.modo = m.k; bomba.usate = [];
+      Array.prototype.forEach.call($("bModo").children, function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+    });
+    $("bModo").appendChild(b);
+  });
+  /* nel modo tema: tre parole su quattro vengono dal tema, una dai jolly */
+  function bLista(){
+    if(bomba.modo === "folli" || !bomba.tema || !BOMBE[bomba.tema]) return PAROLE;
+    var delTema = BOMBE[bomba.tema].filter(function(p){ return bomba.usate.indexOf(p) < 0; });
+    var jolly = JOLLY.filter(function(p){ return bomba.usate.indexOf(p) < 0; });
+    if(!delTema.length) return jolly.length ? jolly : JOLLY;
+    if(jolly.length && Math.random() < 0.25) return jolly;
+    return delTema;
+  }
 
   RACCORDI.forEach(function(r){
     var s = document.createElement("span"); s.textContent = r; $("bRaccordi").appendChild(s);
@@ -605,8 +924,9 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
   }
   function bNuovaParola(){
     /* non ripeto una parola finché non sono finite tutte */
-    var disponibili = PAROLE.filter(function(p){ return bomba.usate.indexOf(p) < 0; });
-    if(!disponibili.length){ bomba.usate = []; disponibili = PAROLE; }
+    var lista = bLista();
+    var disponibili = lista.filter(function(p){ return bomba.usate.indexOf(p) < 0; });
+    if(!disponibili.length){ bomba.usate = []; disponibili = lista; }
     bomba.parola = pescaDiverso(disponibili, bomba.parola);
     bomba.usate.push(bomba.parola);
     bomba.stato = "parola"; bomba.resta = FINESTRA;
@@ -658,8 +978,8 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
     var frase;
     if(tot === 0) frase = "Nessuna bomba: il giro è stato troppo corto.";
     else if(ok === tot) frase = chi + "tutte piazzate senza fermarti. È la cosa che in Italia ti servirà più della grammatica.";
-    else if(ok >= tot / 2) frase = chi + "più della metà agganciate al volo. Quelle saltate erano le più assurde, ed è normale.";
-    else frase = chi + "le parole ti hanno spiazzata: la prossima volta prova a partire sempre da «a proposito…», ti dà due secondi.";
+    else if(ok >= tot / 2) frase = chi + "più della metà agganciate al volo. Quelle saltate erano le più lontane dal discorso, ed è normale.";
+    else frase = chi + "le parole ti hanno messo in difficoltà: la prossima volta prova a partire sempre da «a proposito…», ti dà due secondi.";
     $("bFrase").textContent = frase;
     $("bAttesa").textContent = "";
     $("bFine").hidden = false;

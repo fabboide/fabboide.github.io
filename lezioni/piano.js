@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "27 ottobre 2026, 11:58";
+var PIANO_AGGIORNATO = "27 ottobre 2026, 17:32";
 
 var PIANO = {
 
@@ -100,6 +100,52 @@ var PIANO = {
         "titolo": "Describing people",
         "href": "https://talkwithfabio.com/esercizi/descrivere/",
         "nota": "Look at the clothes and colours"
+      }
+    ]
+  },
+
+  "igor-nch": {
+    "nome": "Igor",
+    "aggiornato": "27 ottobre 2026",
+    "ultima": {
+      "quando": "2026-10-27T10:30:00+01:00",
+      "fatto": [
+        "Allenamento di fluency: parlare senza fermarsi",
+        "Le domeniche e come ci informiamo",
+        "Gli errori più frequenti: accordo, articolo, verbi riflessivi"
+      ]
+    },
+    "prossima": {
+      "quando": "",
+      "obiettivo": "Continuare con la fluency: parlare a lungo senza bloccarsi, rispondere in fretta, usare parole nuove al volo.",
+      "attivita": [
+        {
+          "titolo": "Ripasso veloce degli errori di oggi",
+          "href": "",
+          "nota": "Sono tutte differenti, mi incontro con gli amici, un buon posto"
+        },
+        {
+          "titolo": "Raffica",
+          "href": "",
+          "nota": "Domande sempre nuove, una risposta in pochi secondi"
+        },
+        {
+          "titolo": "Il Compressore e Parole Bomba",
+          "href": "",
+          "nota": "Lo stesso racconto in sempre meno tempo, e una parola nuova da infilare nel discorso"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "Agreement: the gym",
+        "href": "https://talkwithfabio.com/esercizi/palestra-grammatica/?mode=accordo",
+        "nota": "Per l'accordo: tutte differenti, tutte simili"
+      },
+      {
+        "titolo": "Molto: when it changes, when it doesn't",
+        "href": "https://talkwithfabio.com/esercizi/palestra-grammatica/?mode=molto",
+        "nota": "Troppe informazioni, molte domeniche"
       }
     ]
   },
