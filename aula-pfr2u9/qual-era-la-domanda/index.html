@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qual era la domanda? · Talk with Fabio</title>
+<meta name="description" content="Leggi la risposta, trova la domanda: le parole delle domande, la domanda intera e il bingo.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+
+/* Risposta */
+.risposta{background:var(--bubble);border:1px solid #CBDDD2;border-radius:18px 18px 18px 4px;padding:18px 20px;font-size:1.45rem;line-height:1.4;margin:0}
+.risposta::before{content:"la risposta";display:block;font-family:var(--hand);font-size:1.15rem;color:var(--basil);margin-bottom:2px}
+.parole{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.parole button{font-family:var(--display);font-weight:700;font-size:1rem;border:2px solid var(--line);background:var(--paper);border-radius:12px;padding:9px 13px}
+.parole button.giusta{border-color:var(--basil);background:#E7F0EA;color:var(--basil)}
+.parole button.sbagliata{border-color:var(--tomato);background:#FBF0EE;color:var(--tomato)}
+.esito{margin-top:14px;font-family:var(--hand);font-size:1.35rem;min-height:1.6em}
+.esito.ok{color:var(--basil)}
+.esito.no{color:var(--tomato)}
+.soluzione{display:none;margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+.soluzione.show{display:block}
+.soluzione ul{margin:6px 0 0;padding-left:20px}
+.soluzione li{margin-bottom:4px;font-size:1.15rem}
+.soluzione li b{color:var(--tomato)}
+.aiuto{display:none;margin-top:12px;padding:10px 14px;border:1px dashed var(--lemon);border-radius:12px;background:#FDF6E8;font-size:1.1rem}
+.aiuto.show{display:block}
+.aiuto b{font-family:var(--display)}
+.aux{display:none;margin-top:12px;padding:12px 14px;border-left:4px solid var(--tomato);background:#FBF0EE;border-radius:0 12px 12px 0}
+.aux.show{display:block}
+.aux .q{font-family:var(--display);font-weight:700;margin-bottom:8px}
+.aux .bt{display:flex;gap:8px;flex-wrap:wrap}
+.aux button{font-family:var(--display);font-weight:700;border:2px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 16px}
+.aux button.giusta{border-color:var(--basil);background:#E7F0EA;color:var(--basil)}
+.aux button.sbagliata{border-color:var(--tomato);color:var(--tomato)}
+.aux .perche{margin-top:8px;font-size:1rem}
+.punti{font-family:var(--display);font-weight:800;font-size:2.2rem;color:var(--basil);margin:0;line-height:1}
+
+/* Bingo */
+.tema-card{font-family:var(--display);font-weight:800;font-size:1.5rem;padding:14px 18px;border:2px solid var(--ink);border-radius:16px;background:var(--paper);margin-bottom:14px}
+.tema-card small{display:block;font-family:var(--hand);font-weight:400;font-size:1.15rem;color:var(--tomato)}
+.cartella{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:460px}
+#p3 .grid2>*{min-width:0}
+.cartella button{aspect-ratio:1.35;font-family:var(--display);font-weight:800;font-size:1.05rem;border:2px solid var(--ink);background:var(--paper);border-radius:14px;padding:6px;overflow-wrap:anywhere}
+.cartella button[aria-pressed="true"]{background:var(--basil);border-color:var(--basil);color:var(--paper)}
+.cartella button.linea{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+.bingo{display:none;margin-top:14px;font-family:var(--display);font-weight:800;font-size:2rem;color:var(--tomato)}
+.bingo.show{display:block}
+
+/* Comuni presi da Che mi racconti? */
+.nota-gram{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin-top:10px}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.vuoto{color:var(--muted);text-align:center;padding:26px 10px}
+/* Appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.appunti .riga{justify-content:space-between}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+/* Frasi utili */
+dialog{border:0;border-radius:16px;padding:0;max-width:660px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.5rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:54%}
+.dlg-body h3{margin:18px 0 4px;color:var(--basil);font-size:1.12rem}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Qual era la domanda?</h1>
+    <p>Leggi la risposta e trova la domanda. Prima solo la parola che apre la domanda, poi la domanda intera, anche al passato prossimo. Alla fine il bingo: fai domande vere e riempi la cartella. <span class="en">Read the answer, find the question.</span></p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Fasi dell'attività">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>La parola giusta</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>La domanda intera</button>
+    <button role="tab" aria-selected="false" data-phase="p3"><span class="n">3</span>Bingo</button>
+  </nav>
+
+  <!-- FASE 1 -->
+  <section class="phase active" id="p1">
+    <h2>La parola giusta</h2>
+    <p class="lead">Leggi la risposta. Con quale parola comincia la domanda? Scegli, poi di' la domanda intera a voce. <span class="en">Pick the question word, then say the whole question out loud.</span></p>
+    <div class="grid2">
+      <div class="panel">
+        <p class="risposta" id="f1R"></p>
+        <div class="parole" id="f1Parole"></div>
+        <div class="esito" id="f1Esito"></div>
+        <div class="soluzione" id="f1Sol">
+          <h3>La domanda</h3>
+          <ul id="f1Lista"></ul>
+        </div>
+        <div class="riga">
+          <button class="btn red" id="f1Scopri" type="button">Scopri la domanda</button>
+          <button class="btn ghost" id="f1Next" type="button">Un'altra risposta</button>
+          <span class="count" id="f1Pos"></span>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Punti</h3>
+        <p class="punti" id="f1Punti">0</p>
+        <p class="en" id="f1Sub" style="margin:0 0 12px">Ancora niente.</p>
+        <h3>Come si gioca</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>la parola giusta vale un punto</li>
+          <li>poi la domanda intera, a voce, prima di scoprirla</li>
+          <li>se la sua domanda funziona, vale anche se è diversa</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 2 -->
+  <section class="phase" id="p2">
+    <h2>La domanda intera</h2>
+    <p class="lead">Leggi la risposta e di' la domanda intera. Se ti blocchi, chiedi l'aiutino: la parola e il verbo. Al passato prossimo c'è anche la sfida: essere o avere? <span class="en">Say the whole question. Stuck? Ask for a hint.</span></p>
+    <div class="chips" id="f2Tempo" style="margin-bottom:12px"></div>
+    <div class="grid2">
+      <div class="panel">
+        <p class="risposta" id="f2R"></p>
+        <div class="aux" id="f2Aux">
+          <div class="q">Nella domanda: essere o avere?</div>
+          <div class="bt"><button type="button" data-a="essere">essere</button><button type="button" data-a="avere">avere</button></div>
+          <div class="perche" id="f2Perche"></div>
+        </div>
+        <div class="aiuto" id="f2Aiuto"></div>
+        <div class="soluzione" id="f2Sol">
+          <h3>Potevi chiedere</h3>
+          <ul id="f2Lista"></ul>
+        </div>
+        <div class="riga">
+          <button class="btn ghost" id="f2Aiutino" type="button">Aiutino</button>
+          <button class="btn red" id="f2Scopri" type="button">Scopri</button>
+          <button class="btn ghost" id="f2Next" type="button">Un'altra risposta</button>
+          <span class="count" id="f2Pos"></span>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Essere o avere?</h3>
+        <p class="punti" id="f2Punti">0</p>
+        <p class="en" id="f2Sub" style="margin:0 0 12px">Ancora niente.</p>
+        <h3>La regola corta</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li><b>essere</b>: andare, venire, arrivare, partire, uscire, tornare, stare, restare, nascere, e i verbi con <b>si</b> (svegliarsi)</li>
+          <li><b>avere</b>: quasi tutti gli altri</li>
+          <li>con essere la fine cambia: <b>sei andata</b>, <b>sei andato</b></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 3 -->
+  <section class="phase" id="p3">
+    <h2>Bingo delle domande</h2>
+    <p class="lead">Io parlo di un tema, tu mi intervisti. Ogni volta che fai una domanda giusta con una parola della cartella, la tocco. Tre in fila: bingo! <span class="en">Interview me. Each good question fills a box. Three in a row wins.</span></p>
+    <div class="toolbar">
+      <button class="btn red" id="f3Nuova" type="button">Nuova cartella</button>
+      <button class="btn ghost" id="f3Tema" type="button">Cambia tema</button>
+      <span class="count" id="f3Conta"></span>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="tema-card" id="f3Card"></div>
+        <div class="cartella" id="f3Cartella"></div>
+        <div class="bingo" id="f3Bingo">Bingo!</div>
+      </div>
+      <aside class="panel">
+        <h3>Le regole</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>la casella si riempie solo se la domanda è giusta e ha senso sul tema</li>
+          <li>io rispondo davvero: ascolta la risposta e fai la domanda dopo partendo da lì</li>
+          <li>sfida: cartella piena, tutte e nove</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- APPUNTI -->
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Le domande venute male, essere o avere sbagliato, le parole nuove.</p>
+    <textarea id="note" placeholder="Es. «dove hai andata?» → dove sei andata? · «quanto anni» → quanti anni"></textarea>
+    <div class="riga">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ LE PAROLE DELLE DOMANDE ============ */
+  var PAROLE = [
+    {k:"chi", l:"Chi"}, {k:"conchi", l:"Con chi"}, {k:"cosa", l:"Che cosa"}, {k:"dove", l:"Dove"},
+    {k:"didove", l:"Di dove"}, {k:"quando", l:"Quando"}, {k:"ora", l:"A che ora"}, {k:"come", l:"Come"},
+    {k:"quanto", l:"Quanto / Quanti"}, {k:"perche", l:"Perché"}, {k:"quale", l:"Quale"}
+  ];
+  function etichetta(k){ for(var i=0;i<PAROLE.length;i++){ if(PAROLE[i].k === k) return PAROLE[i].l; } return k; }
+
+  /* ============ FASE 1: risposte corte ============
+     r: risposta, k: parola (o parole) giuste, q: domande modello, la parola tra [ ] */
+  var CORTE = [
+    {r:"Mi chiamo Sara.", k:["come"], q:["[Come] ti chiami?"]},
+    {r:"Abito a Berlino.", k:["dove"], q:["[Dove] abiti?"]},
+    {r:"Sono di Madrid.", k:["didove"], q:["[Di dove] sei?"]},
+    {r:"Ho trentadue anni.", k:["quanto"], q:["[Quanti] anni hai?"], n:"Anni è maschile plurale: quanti anni."},
+    {r:"Alle otto.", k:["ora"], q:["[A che ora] ti svegli?","[A che ora] comincia la lezione?"]},
+    {r:"Domani.", k:["quando"], q:["[Quando] parti?","[Quando] ci vediamo?"]},
+    {r:"Con mia sorella.", k:["conchi"], q:["[Con chi] vai al cinema?","[Con chi] abiti?"]},
+    {r:"Un caffè, grazie.", k:["cosa"], q:["[Che cosa] prendi?","[Cosa] bevi?"]},
+    {r:"Perché sono stanca.", k:["perche"], q:["[Perché] non esci stasera?"]},
+    {r:"Bene, grazie! E tu?", k:["come"], q:["[Come] stai?","[Come] va?"]},
+    {r:"Dieci euro.", k:["quanto"], q:["[Quanto] costa?"]},
+    {r:"Due fratelli e una sorella.", k:["quanto"], q:["[Quanti] fratelli hai?"]},
+    {r:"È mia madre.", k:["chi"], q:["[Chi] è al telefono?","[Chi] è questa signora?"]},
+    {r:"La pizza margherita.", k:["quale","cosa"], q:["[Qual] è il tuo piatto preferito?","[Che cosa] mangi stasera?"], n:"Davanti a «è» si scrive qual è, senza apostrofo."},
+    {r:"In treno.", k:["come"], q:["[Come] vai al lavoro?"]},
+    {r:"Il sabato mattina.", k:["quando"], q:["[Quando] fai la spesa?"]},
+    {r:"Al parco, vicino a casa.", k:["dove"], q:["[Dove] porti il cane?","[Dove] corri?"]},
+    {r:"Si chiama Toby.", k:["come"], q:["[Come] si chiama il tuo cane?"]},
+    {r:"Faccio l'infermiera.", k:["cosa"], q:["[Che] lavoro fai?","[Cosa] fai nella vita?"]},
+    {r:"Il blu.", k:["quale"], q:["[Qual] è il tuo colore preferito?"]},
+    {r:"Alle sette e mezza.", k:["ora"], q:["[A che ora] ceni?"]},
+    {r:"Perché mi piace il mare.", k:["perche"], q:["[Perché] vai in Spagna?"]},
+    {r:"Il mio amico Luca.", k:["chi"], q:["[Chi] è quel ragazzo?"]},
+    {r:"Vicino alla stazione.", k:["dove"], q:["[Dov'è] la farmacia?","[Dove] abiti?"]},
+    {r:"Così così.", k:["come"], q:["[Come] va?","[Come] stai oggi?"]},
+    {r:"Con il mio ragazzo.", k:["conchi"], q:["[Con chi] vai in vacanza?"]},
+    {r:"Lunedì e giovedì.", k:["quando"], q:["[Quando] hai lezione?"]},
+    {r:"Tre chili di mele.", k:["quanto"], q:["[Quante] mele vuole?","[Quanto] ne vuole?"]},
+    {r:"Sono di Lisbona, in Portogallo.", k:["didove"], q:["[Di dove] sei?"]},
+    {r:"Un libro e una maglietta.", k:["cosa"], q:["[Che cosa] hai comprato?"]}
+  ];
+
+  /* ============ FASE 2: risposte intere ============
+     t: "p" presente, "pp" passato prossimo; h: aiutino; a: ausiliare; v: verbo */
+  var LUNGHE = [
+    {t:"p", r:"Lavoro in un ospedale.", h:"Dove + lavorare", q:["[Dove] lavori?"]},
+    {t:"p", r:"Mi sveglio alle sette.", h:"A che ora + svegliarsi", q:["[A che ora] ti svegli?"]},
+    {t:"p", r:"Vado in palestra due volte alla settimana.", h:"Quante volte + andare", q:["[Quante] volte vai in palestra?","Vai spesso in palestra?"]},
+    {t:"p", r:"Preferisco il mare.", h:"una domanda con «o»: il mare o la montagna?", q:["Preferisci il mare [o] la montagna?"]},
+    {t:"p", r:"Vivo qui da due anni.", h:"Da quanto tempo + vivere", q:["[Da quanto tempo] vivi qui?"]},
+    {t:"p", r:"Sì, ho un cane.", h:"domanda da sì o no: avere un animale", q:["Hai un animale?","Hai un cane?"], n:"La domanda da sì o no è uguale alla frase: cambia solo la voce, che sale alla fine."},
+    {t:"p", r:"Studio italiano perché mi piace la lingua.", h:"Perché + studiare", q:["[Perché] studi italiano?"]},
+    {t:"p", r:"Di solito cucino io.", h:"Chi + cucinare", q:["[Chi] cucina a casa tua?"]},
+    {t:"p", r:"Prendo un cappuccino, grazie.", h:"Che cosa + prendere", q:["[Che cosa] prendi?","[Cosa] prende?"]},
+    {t:"p", r:"Costa quindici euro.", h:"Quanto + costare", q:["[Quanto] costa?"]},
+    {t:"p", r:"Il fine settimana vado in montagna.", h:"Cosa + fare + il fine settimana", q:["[Cosa] fai il fine settimana?","[Dove] vai il fine settimana?"]},
+    {t:"p", r:"Il mio cane ha cinque anni.", h:"Quanti anni + avere", q:["[Quanti] anni ha il tuo cane?"]},
+    {t:"pp", r:"Sono andata al cinema con un'amica.", h:"Dove + andare (ieri sera)", q:["[Dove] sei andata ieri sera?","[Cosa] hai fatto ieri sera?"], a:"essere", v:"andare"},
+    {t:"pp", r:"Ho mangiato una pizza.", h:"Che cosa + mangiare", q:["[Che cosa] hai mangiato?"], a:"avere", v:"mangiare"},
+    {t:"pp", r:"Sono arrivata alle nove.", h:"A che ora + arrivare", q:["[A che ora] sei arrivata?"], a:"essere", v:"arrivare"},
+    {t:"pp", r:"Ho dormito otto ore.", h:"Quanto + dormire", q:["[Quanto] hai dormito?","[Quante] ore hai dormito?"], a:"avere", v:"dormire"},
+    {t:"pp", r:"Sono stata a Roma per tre giorni.", h:"Dove + stare (in vacanza)", q:["[Dove] sei stata in vacanza?"], a:"essere", v:"stare"},
+    {t:"pp", r:"Ho visto un film italiano.", h:"Che cosa + vedere", q:["[Che cosa] hai visto?","[Che] film hai visto?"], a:"avere", v:"vedere"},
+    {t:"pp", r:"Sono uscita con il cane.", h:"Con chi + uscire", q:["[Con chi] sei uscita?"], a:"essere", v:"uscire"},
+    {t:"pp", r:"Ho comprato delle scarpe nuove.", h:"Che cosa + comprare", q:["[Che cosa] hai comprato?"], a:"avere", v:"comprare"},
+    {t:"pp", r:"Sono tornata a casa a mezzanotte.", h:"Quando / A che ora + tornare", q:["[A che ora] sei tornata a casa?","[Quando] sei tornata?"], a:"essere", v:"tornare"},
+    {t:"pp", r:"Ho lavorato tutto il giorno.", h:"Che cosa + fare (oggi)", q:["[Che cosa] hai fatto oggi?"], a:"avere", v:"fare"},
+    {t:"pp", r:"Mi sono svegliata tardi.", h:"A che ora + svegliarsi", q:["[A che ora] ti sei svegliata?"], a:"essere", v:"svegliarsi"},
+    {t:"pp", r:"Ho parlato con mia madre.", h:"Con chi + parlare", q:["[Con chi] hai parlato?"], a:"avere", v:"parlare"},
+    {t:"pp", r:"Sono nata a Valencia.", h:"Dove + nascere", q:["[Dove] sei nata?"], a:"essere", v:"nascere"},
+    {t:"pp", r:"Ho studiato italiano per un'ora.", h:"Quanto tempo + studiare", q:["[Quanto tempo] hai studiato?"], a:"avere", v:"studiare"}
+  ];
+  var PERCHE_AUX = {
+    essere: function(v){ return "<b>" + v + "</b> vuole <b>essere</b>" + (v.slice(-2) === "si" ? " (ha il si: tutti i riflessivi vogliono essere)" : " (è uno dei verbi di movimento, di cambiamento o di stato, come andare, nascere, stare)") + ". E la fine si accorda: andat<b>a</b> per una donna, andat<b>o</b> per un uomo."; },
+    avere: function(v){ return "<b>" + v + "</b> vuole <b>avere</b>, come quasi tutti i verbi. La fine non cambia: ho mangiat<b>o</b>, anche per una donna."; }
+  };
+
+  /* ============ FASE 3: bingo ============ */
+  var TEMI = [
+    {t:"Il mio cane", s:"Come si chiama, quanti anni ha, dove lo porti..."},
+    {t:"Il mio weekend", s:"Cosa ho fatto, dove sono andato, con chi..."},
+    {t:"Il mio lavoro", s:"Dove lavoro, a che ora comincio, perché mi piace..."},
+    {t:"La mia città", s:"Dov'è, com'è, quanta gente ci vive..."},
+    {t:"Le mie ultime vacanze", s:"Dove, quando, con chi, quanto tempo..."},
+    {t:"La mia famiglia", s:"Chi sono, quanti siamo, dove abitano..."},
+    {t:"Il cibo che mi piace", s:"Cosa mangio, qual è il mio piatto preferito..."},
+    {t:"La mia giornata di ieri", s:"A che ora mi sono svegliato, cosa ho fatto..."},
+    {t:"Lo sport", s:"Quale sport faccio, quando, con chi..."},
+    {t:"La mia casa", s:"Dove si trova, com'è, quante stanze ha..."},
+    {t:"Il mio ultimo compleanno", s:"Quando, dove, con chi ho festeggiato..."},
+    {t:"Un viaggio che ricordo", s:"Dove sono andato, perché, come..."}
+  ];
+  var LINEE = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+
+  /* ============ ATTREZZI ============ */
+  function $(id){ return document.getElementById(id); }
+  function pesca(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function evidenzia(q){ return esc(q).replace(/\[([^\]]+)\]/g, "<b>$1</b>"); }
+
+  var CHIAVE = "icf-qual-era-la-domanda";
+  var stato = { p1:0, n1:0, p2:0, n2:0, tempo:"tutte", note:"" };
+  try{
+    var s0 = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(s0 && typeof s0 === "object"){ for(var k in stato){ if(s0[k] !== undefined) stato[k] = s0[k]; } }
+  }catch(e){}
+  var salvaT = null;
+  function salva(){
+    clearTimeout(salvaT);
+    salvaT = setTimeout(function(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){} }, 250);
+  }
+
+  /* Linguette */
+  var tabs = document.querySelectorAll("nav.steps button[data-phase]");
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){
+      Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(s){
+        s.classList.toggle("active", s.id === t.getAttribute("data-phase"));
+      });
+    });
+  });
+
+  /* ============ FASE 1 ============ */
+  var mazzo1 = shuffle(CORTE.slice()), i1 = 0, fatto1 = false;
+  function conta1(){
+    $("f1Punti").textContent = stato.p1;
+    $("f1Sub").textContent = stato.n1 ? stato.p1 + " giuste su " + stato.n1 + "." : "Ancora niente.";
+  }
+  function mostra1(){
+    if(i1 >= mazzo1.length){ mazzo1 = shuffle(CORTE.slice()); i1 = 0; }
+    var c = mazzo1[i1]; fatto1 = false;
+    $("f1R").textContent = c.r;
+    $("f1Esito").textContent = ""; $("f1Esito").className = "esito";
+    $("f1Sol").classList.remove("show");
+    $("f1Lista").innerHTML = c.q.map(function(q){ return "<li>" + evidenzia(q) + "</li>"; }).join("") +
+      (c.n ? '<li style="list-style:none;margin-left:-20px" class="en">' + esc(c.n) + "</li>" : "");
+    var box = $("f1Parole"); box.innerHTML = "";
+    PAROLE.forEach(function(p){
+      var b = document.createElement("button");
+      b.type = "button"; b.textContent = p.l;
+      b.addEventListener("click", function(){
+        if(fatto1) return;
+        fatto1 = true;
+        var giusta = c.k.indexOf(p.k) >= 0;
+        stato.n1++; if(giusta) stato.p1++;
+        Array.prototype.forEach.call(box.children, function(x, j){
+          if(c.k.indexOf(PAROLE[j].k) >= 0) x.classList.add("giusta");
+        });
+        if(!giusta) b.classList.add("sbagliata");
+        var e = $("f1Esito");
+        e.className = "esito " + (giusta ? "ok" : "no");
+        e.textContent = giusta ? "Sì! Adesso di' tutta la domanda." : "Era: " + c.k.map(etichetta).join(" o ") + ". Prova a dire la domanda.";
+        conta1(); salva();
+      });
+      box.appendChild(b);
+    });
+    $("f1Pos").textContent = (i1 + 1) + " di " + mazzo1.length;
+  }
+  $("f1Scopri").addEventListener("click", function(){ $("f1Sol").classList.add("show"); });
+  $("f1Next").addEventListener("click", function(){ i1++; mostra1(); });
+  mostra1(); conta1();
+
+  /* ============ FASE 2 ============ */
+  var tempoBox = $("f2Tempo");
+  [{k:"tutte", l:"Tutte"},{k:"p", l:"Presente"},{k:"pp", l:"Passato prossimo"}].forEach(function(f){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = f.l;
+    b.setAttribute("aria-pressed", String(stato.tempo === f.k));
+    b.addEventListener("click", function(){
+      stato.tempo = f.k; salva();
+      Array.prototype.forEach.call(tempoBox.children, function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+      nuovoMazzo2(); mostra2();
+    });
+    tempoBox.appendChild(b);
+  });
+  var mazzo2 = [], i2 = 0, fattoAux = false;
+  function nuovoMazzo2(){
+    mazzo2 = shuffle(LUNGHE.filter(function(x){ return stato.tempo === "tutte" || x.t === stato.tempo; }));
+    i2 = 0;
+  }
+  function conta2(){
+    $("f2Punti").textContent = stato.p2;
+    $("f2Sub").textContent = stato.n2 ? stato.p2 + " giuste su " + stato.n2 + "." : "Ancora niente.";
+  }
+  function mostra2(){
+    if(i2 >= mazzo2.length) nuovoMazzo2();
+    var c = mazzo2[i2]; fattoAux = false;
+    $("f2R").textContent = c.r;
+    $("f2Aiuto").innerHTML = "<b>Aiutino:</b> " + esc(c.h);
+    $("f2Aiuto").classList.remove("show");
+    $("f2Sol").classList.remove("show");
+    $("f2Lista").innerHTML = c.q.map(function(q){ return "<li>" + evidenzia(q) + "</li>"; }).join("") +
+      (c.n ? '<li style="list-style:none;margin-left:-20px" class="en">' + esc(c.n) + "</li>" : "");
+    var aux = $("f2Aux");
+    aux.classList.toggle("show", c.t === "pp");
+    $("f2Perche").innerHTML = "";
+    Array.prototype.forEach.call(aux.querySelectorAll("button"), function(b){ b.className = ""; b.disabled = false; });
+    $("f2Pos").textContent = (i2 + 1) + " di " + mazzo2.length;
+  }
+  Array.prototype.forEach.call($("f2Aux").querySelectorAll("button"), function(b){
+    b.addEventListener("click", function(){
+      if(fattoAux) return;
+      fattoAux = true;
+      var c = mazzo2[i2], giusto = b.getAttribute("data-a") === c.a;
+      stato.n2++; if(giusto) stato.p2++;
+      Array.prototype.forEach.call($("f2Aux").querySelectorAll("button"), function(x){
+        if(x.getAttribute("data-a") === c.a) x.className = "giusta";
+        else if(x === b) x.className = "sbagliata";
+      });
+      $("f2Perche").innerHTML = PERCHE_AUX[c.a](c.v);
+      conta2(); salva();
+    });
+  });
+  $("f2Aiutino").addEventListener("click", function(){ $("f2Aiuto").classList.add("show"); });
+  $("f2Scopri").addEventListener("click", function(){ $("f2Sol").classList.add("show"); });
+  $("f2Next").addEventListener("click", function(){ i2++; mostra2(); });
+  nuovoMazzo2(); mostra2(); conta2();
+
+  /* ============ FASE 3 ============ */
+  var tema = null, bingoFatti = 0;
+  function nuovoTema(){
+    tema = pesca(TEMI.filter(function(x){ return x !== tema; }));
+    $("f3Card").innerHTML = "<small>Intervistami su</small>" + esc(tema.t) + '<span class="en" style="display:block;font-family:var(--text);font-weight:400;font-size:.95rem;margin-top:4px">' + esc(tema.s) + "</span>";
+  }
+  function controlla(){
+    var celle = $("f3Cartella").children, prese = [];
+    Array.prototype.forEach.call(celle, function(c, i){ c.classList.remove("linea"); if(c.getAttribute("aria-pressed") === "true") prese.push(i); });
+    var linee = LINEE.filter(function(l){ return l.every(function(i){ return prese.indexOf(i) >= 0; }); });
+    linee.forEach(function(l){ l.forEach(function(i){ celle[i].classList.add("linea"); }); });
+    var b = $("f3Bingo");
+    if(prese.length === 9) b.textContent = "Cartella piena!";
+    else if(linee.length) b.textContent = linee.length > 1 ? "Bingo! (" + linee.length + " linee)" : "Bingo!";
+    b.classList.toggle("show", linee.length > 0);
+    $("f3Conta").textContent = prese.length + " domande su 9";
+  }
+  function nuovaCartella(){
+    var scelte = shuffle(PAROLE.slice()).slice(0, 9);
+    var box = $("f3Cartella"); box.innerHTML = "";
+    scelte.forEach(function(p){
+      var b = document.createElement("button");
+      b.type = "button"; b.textContent = p.l;
+      b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function(){
+        b.setAttribute("aria-pressed", String(b.getAttribute("aria-pressed") !== "true"));
+        controlla();
+      });
+      box.appendChild(b);
+    });
+    controlla();
+  }
+  $("f3Nuova").addEventListener("click", function(){ nuovaCartella(); nuovoTema(); });
+  $("f3Tema").addEventListener("click", nuovoTema);
+  nuovaCartella(); nuovoTema();
+
+  /* ============ APPUNTI ============ */
+  var note = $("note");
+  note.value = stato.note || "";
+  note.addEventListener("input", function(){
+    stato.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("reset").addEventListener("click", function(){
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+})();
+</script>
+</body>
+</html>

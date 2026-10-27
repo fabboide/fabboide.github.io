@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "26 ottobre 2026, 21:44";
+var PIANO_AGGIORNATO = "27 ottobre 2026, 11:58";
 
 var PIANO = {
 
@@ -104,6 +104,88 @@ var PIANO = {
     ]
   },
 
+  "igork-t7n": {
+    "nome": "Igor",
+    "aggiornato": "27 ottobre 2026",
+    "ultima": {
+      "quando": "2026-10-21T10:30:00+02:00",
+      "fatto": [
+        "Verbs review",
+        "Free conversation: Italian music and your kitchen",
+        "Harry Potter",
+        "First fluency exercise"
+      ]
+    },
+    "prossima": {
+      "quando": "2026-10-27T10:30:00+01:00",
+      "obiettivo": "A whole lesson on fluency. Keep talking without stopping: communication first, perfect grammar second.",
+      "attivita": [
+        {
+          "titolo": "Fluency: the three workouts",
+          "href": "",
+          "nota": "We do this one together"
+        },
+        {
+          "titolo": "Fewer pauses, longer turns",
+          "href": "",
+          "nota": "Short rounds, you speak, I keep the time"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "Ready-made phrases, out loud",
+        "href": "https://talkwithfabio.com/esercizi/prime-frasi/",
+        "nota": "The fastest way to stop pausing: have the phrase ready before you need it"
+      }
+    ]
+  },
+
+  "igorm-v8q": {
+    "nome": "Igor",
+    "aggiornato": "27 ottobre 2026",
+    "ultima": {
+      "quando": "2026-10-15T13:00:00+02:00",
+      "fatto": [
+        "Exploring New York on Street View",
+        "Describing a city and finding your way around it"
+      ]
+    },
+    "prossima": {
+      "quando": "",
+      "obiettivo": "Be the guide and be the tourist: show me a city, then ask me about mine, and keep going without switching to English.",
+      "attivita": [
+        {
+          "titolo": "Back to 75 Fulton Street",
+          "href": "",
+          "nota": "We start again exactly where we stopped"
+        },
+        {
+          "titolo": "You guide me through New York",
+          "href": "",
+          "nota": "Describe what we see, I ask the questions"
+        },
+        {
+          "titolo": "Then I guide you through Pinerolo",
+          "href": "",
+          "nota": "This time the questions are yours"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "Prepositions: a, in, da, and al, alla, nella",
+        "href": "https://talkwithfabio.com/esercizi/preposizioni/",
+        "nota": "The group Le articolate. Ten minutes, the sentences are always new"
+      },
+      {
+        "titolo": "Ready-made phrases, out loud",
+        "href": "https://talkwithfabio.com/esercizi/prime-frasi/",
+        "nota": "The same idea as our chunks. Say them out loud, do not just read them"
+      }
+    ]
+  },
+
   "luana-zqy": {
     "nome": "Luana",
     "aggiornato": "26 ottobre 2026",
@@ -147,32 +229,33 @@ var PIANO = {
 
   "rafaela-yrd": {
     "nome": "Rafaela",
-    "aggiornato": "26 ottobre 2026",
+    "aggiornato": "27 ottobre 2026",
     "ultima": {
-      "quando": "2026-10-26T09:00:00+01:00",
+      "quando": "2026-10-27T09:00:00+01:00",
       "fatto": [
         "Passato prossimo",
-        "Free conversation"
+        "What was the question?",
+        "Guess who?: you guessed the person"
       ]
     },
     "prossima": {
-      "quando": "2026-10-27T09:00:00+01:00",
-      "obiettivo": "Tell what happened and ask about it: passato prossimo and the words that open a question.",
+      "quando": "2026-10-28T09:00:00+01:00",
+      "obiettivo": "Passato prossimo with the right helper verb, essere or avere, and asking good questions.",
       "attivita": [
         {
-          "titolo": "Passato prossimo: the verb roulette",
+          "titolo": "Essere or avere? Every day, five minutes",
           "href": "",
-          "nota": "We play it together"
+          "nota": "Sono andata, ho mangiato..."
         },
         {
-          "titolo": "What was the question?",
+          "titolo": "What was the question? The easy version",
           "href": "",
-          "nota": "You read the answer and say the question: come, dove, quando, che cosa"
+          "nota": "You read the answer and find the question"
         },
         {
-          "titolo": "Words for your dog",
+          "titolo": "Guess who?",
           "href": "",
-          "nota": "The commands you asked me for"
+          "nota": "Describing people"
         }
       ]
     },
@@ -180,12 +263,12 @@ var PIANO = {
       {
         "titolo": "Passato prossimo 1: essere or avere?",
         "href": "https://talkwithfabio.com/esercizi/passato-prossimo/?mode=aux",
-        "nota": "10 minutes"
+        "nota": "A few minutes every day"
       },
       {
-        "titolo": "The first 190 words",
-        "href": "https://talkwithfabio.com/esercizi/parole-a1/",
-        "nota": "A few minutes a day, for general vocabulary"
+        "titolo": "Chi è? Guess who, on your own",
+        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
+        "nota": "Level 1, then level 2"
       }
     ]
   }
