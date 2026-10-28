@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "27 ottobre 2026, 17:32";
+var PIANO_AGGIORNATO = "28 ottobre 2026, 14:30";
 
 var PIANO = {
 
@@ -275,28 +275,27 @@ var PIANO = {
 
   "rafaela-yrd": {
     "nome": "Rafaela",
-    "aggiornato": "27 ottobre 2026",
+    "aggiornato": "28 ottobre 2026",
     "ultima": {
-      "quando": "2026-10-27T09:00:00+01:00",
+      "quando": "2026-10-28T09:00:00+01:00",
       "fatto": [
-        "Passato prossimo",
-        "What was the question?",
-        "Guess who?: you guessed the person"
+        "Conversation, with the emphatic questions you prepared",
+        "Practice with questions"
       ]
     },
     "prossima": {
-      "quando": "2026-10-28T09:00:00+01:00",
-      "obiettivo": "Passato prossimo with the right helper verb, essere or avere, and asking good questions.",
+      "quando": "2026-10-29T09:30:00+01:00",
+      "obiettivo": "Questions again, and passato prossimo with the right helper verb: essere or avere.",
       "attivita": [
         {
-          "titolo": "Essere or avere? Every day, five minutes",
+          "titolo": "Essere or avere? Five minutes",
           "href": "",
           "nota": "Sono andata, ho mangiato..."
         },
         {
-          "titolo": "What was the question? The easy version",
+          "titolo": "What was the question?",
           "href": "",
-          "nota": "You read the answer and find the question"
+          "nota": "Find the word, then the whole question, then the bingo"
         },
         {
           "titolo": "Guess who?",
