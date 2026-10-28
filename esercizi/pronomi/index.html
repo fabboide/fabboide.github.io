@@ -191,6 +191,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
   display:inline-block; font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase;
   border:1px solid var(--c,var(--ink)); color:var(--c,var(--ink)); border-radius:999px; padding:.3em .8em; margin-bottom:12px;
 }
+.qcat.nascosta{ visibility:hidden; }
 .qcard{
   background:var(--paper-2); border:2px solid var(--ink); border-radius:22px; padding:26px;
   box-shadow:5px 5px 0 rgba(22,35,63,.08);
@@ -582,10 +583,10 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"Venire <b>al</b> mare: ci vengo volentieri.",
      tr:"Are you coming to the seaside with us? Yes, I'd love to come."},
 
-    {cat:"ci_luogo", type:"blank", q:"– Sei uscito dall'ufficio?<br>– Sì, <span class=\"blank\">___</span> sono uscito alle sei.",
-     opts:["ci", "ne", "lo", "gli"], correct:1, accept:["ne"],
-     note:"Attenzione: quando si viene <b>da</b> un posto si usa <b>ne</b>, non «ci». Ci vado, ma ne esco.",
-     tr:"Did you leave the office? Yes, I left (there) at six."},
+    {cat:"ci_luogo", type:"blank", q:"– Sei mai salito sulla torre di Pisa?<br>– No, non <span class=\"blank\">___</span> sono mai salito.",
+     opts:["ne", "ci", "lo", "gli"], correct:1, accept:["ci"],
+     note:"Salire <b>su</b> un posto: non ci sono mai salito.",
+     tr:"Have you ever been up the Leaning Tower of Pisa? No, I've never been up there."},
 
     {cat:"ci_luogo", type:"blank", q:"– Come si arriva in centro?<br>– <span class=\"blank\">___</span> si arriva a piedi in dieci minuti.",
      opts:["Ne", "Lo", "Ci", "Li"], correct:2, accept:["Ci"],
@@ -762,7 +763,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"A loro → <b>gli</b> ho detto. La forma «ho detto loro» esiste ma è da scritto formale.",
      tr:"What did you tell Luca and Sara? I told them to wait."},
 
-    {cat:"indiretti", type:"full", q:"Quale frase è giusta? <span class=\"qtag\">gli indiretti</span>",
+    {cat:"indiretti", type:"full", q:"Quale frase è giusta?",
      opts:["Telefono a Marta → la telefono", "Telefono a Marta → le telefono", "Telefono a Marta → ne telefono", "Telefono a Marta → ci telefono"], correct:1, accept:["Telefono a Marta → le telefono"],
      note:"«Telefonare» vuole la preposizione <b>a</b>, quindi pronome indiretto: le telefono. In inglese è il contrario di quello che sembra.",
      tr:"«Telefonare a» takes an indirect pronoun: le telefono."},
@@ -812,7 +813,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"«Chiamare» è diretto: li ho chiamat<b>i</b>, con l'accordo.",
      tr:"Did you call your parents? Yes, I called them this morning."},
 
-    {cat:"accordo", type:"full", q:"Quale frase è giusta? <span class=\"qtag\">l'accordo</span>",
+    {cat:"accordo", type:"full", q:"Quale frase è giusta?",
      opts:["Le ho scritte una mail.", "Le ho scritto una mail.", "L'ho scritta una mail.", "Ne ho scritte una mail."], correct:1, accept:["Le ho scritto una mail."],
      note:"«Le» è indiretto (a lei) e con l'indiretto il participio resta invariato: le ho scritto una mail.",
      tr:"With an indirect pronoun the participle never agrees."},
@@ -999,7 +1000,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
 
     {cat:"ci_luogo", type:"blank", q:"– Passi dal panettiere?<br>– Sì, <span class=\"blank\">___</span> passo tornando a casa.",
      opts:["ne", "ci", "lo", "gli"], correct:1, accept:["ci"],
-     note:"«Passare da» un posto: ci passo. Attenzione, qui «da» non porta «ne»: si tratta comunque di un luogo dove si va.",
+     note:"«Passare da» un posto: ci passo. Il posto dove vai torna sempre con <b>ci</b>, anche con «da».",
      tr:"Are you stopping at the baker's? Yes, I'll stop by on my way home."},
 
     {cat:"ci_luogo", type:"blank", q:"– Andate spesso in montagna?<br>– <span class=\"blank\">___</span> andiamo ogni inverno.",
@@ -1027,17 +1028,17 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"Arrivare <b>a</b> un posto: ci siamo arrivati alle nove.",
      tr:"Did you get to the hotel? Yes, we got there at nine."},
 
-    {cat:"ci_luogo", type:"blank", q:"– A che ora esci dal lavoro?<br>– <span class=\"blank\">___</span> esco alle sei.",
-     opts:["Ci", "Ne", "Lo", "Gli"], correct:1, accept:["Ne"],
-     note:"Attenzione al verso: si va <b>ci</b>, ma si esce <b>ne</b>. «Ne esco alle sei» = esco da lì.",
-     tr:"What time do you leave work? I leave at six."},
+    {cat:"ci_luogo", type:"blank", q:"– Quanto resti in palestra?<br>– <span class=\"blank\">___</span> resto un'ora.",
+     opts:["Ne", "Ci", "Lo", "Gli"], correct:1, accept:["Ci"],
+     note:"Restare <b>in</b> un posto: ci resto un'ora.",
+     tr:"How long do you stay at the gym? I stay there for an hour."},
 
     {cat:"ci_luogo", type:"blank", q:"– Ci vediamo davanti al cinema?<br>– Va bene, <span class=\"blank\">___</span> arrivo alle otto.",
      opts:["ne", "ci", "lo", "gli"], correct:1, accept:["ci"],
      note:"Arrivare in un posto: ci arrivo alle otto.",
      tr:"Shall we meet in front of the cinema? Fine, I'll be there at eight."},
 
-    {cat:"ci_luogo", type:"full", q:"Quale frase è giusta? <span class=\"qtag\">i luoghi</span>",
+    {cat:"ci_luogo", type:"full", q:"Quale frase è giusta?",
      opts:["Vado a Roma, ne vado sabato.", "Vado a Roma, ci vado sabato.", "Vado a Roma, la vado sabato.", "Vado a Roma, lo vado sabato."], correct:1, accept:["Vado a Roma, ci vado sabato."],
      note:"Il luogo torna sempre con <b>ci</b>: ci vado sabato.",
      tr:"A place always comes back as «ci»."},
@@ -1207,7 +1208,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"«Preferire qualcosa» è diretto: lo preferisco bianco.",
      tr:"Do you prefer red or white wine? I prefer it white."},
 
-    {cat:"diretti", type:"full", q:"Quale frase è giusta? <span class=\"qtag\">i diretti</span>",
+    {cat:"diretti", type:"full", q:"Quale frase è giusta?",
      opts:["Li ho visti ieri.", "Gli ho visti ieri.", "Ne ho visti ieri.", "Ci ho visti ieri."], correct:0, accept:["Li ho visti ieri."],
      note:"«Vedere» è diretto: <b>li</b> ho visti. «Gli ho visti» è l'errore più comune: «gli» è indiretto.",
      tr:"«Vedere» takes a direct object: li ho visti."},
@@ -1297,7 +1298,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"«Scrivere <b>a</b> qualcuno» è indiretto: gli scrivo.",
      tr:"«Scrivere a» takes an indirect pronoun: gli scrivo."},
 
-    {cat:"indiretti", type:"full", q:"Quale frase è giusta? <span class=\"qtag\">gli indiretti</span>",
+    {cat:"indiretti", type:"full", q:"Quale frase è giusta?",
      opts:["Ho telefonato a Marta: l'ho telefonata.", "Ho telefonato a Marta: le ho telefonato.", "Ho telefonato a Marta: ne ho telefonato.", "Ho telefonato a Marta: la ho telefonata."], correct:1, accept:["Ho telefonato a Marta: le ho telefonato."],
      note:"«Telefonare <b>a</b>» è indiretto, quindi «le», e il participio non si accorda.",
      tr:"«Telefonare a» is indirect: le ho telefonato."},
@@ -1372,12 +1373,12 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"Un maschile e un femminile insieme fanno il maschile plurale: li ho visti.",
      tr:"Did you see Marco and Anna? Yes, I saw them together."},
 
-    {cat:"accordo", type:"full", q:"Quale frase è giusta? <span class=\"qtag\">l'accordo</span>",
+    {cat:"accordo", type:"full", q:"Quale frase è giusta?",
      opts:["Le ho viste al cinema.", "Le ho visto al cinema.", "Le ho visti al cinema.", "Le ho vista al cinema."], correct:0, accept:["Le ho viste al cinema."],
      note:"«Le» diretto femminile plurale chiede il participio in <b>-e</b>: le ho viste.",
      tr:"A feminine plural direct pronoun needs -e on the participle."},
 
-    {cat:"accordo", type:"full", q:"Quale frase è giusta? <span class=\"qtag\">l'accordo</span>",
+    {cat:"accordo", type:"full", q:"Quale frase è giusta?",
      opts:["Gli ho telefonate.", "Gli ho telefonato.", "Gli ho telefonati.", "Gli ho telefonata."], correct:1, accept:["Gli ho telefonato."],
      note:"Con il pronome indiretto il participio non cambia <b>mai</b>: gli ho telefonato.",
      tr:"With an indirect pronoun the participle never changes."}
@@ -1635,6 +1636,8 @@ h1 em{ font-style:normal; color:var(--rosso); }
     var catEl = $("#qcat");
     catEl.textContent = cat.label;
     catEl.style.setProperty("--c", cat.color);
+    /* l'etichetta del gruppo darebbe la risposta: si vede solo dopo */
+    catEl.classList.add("nascosta");
 
     $("#qtext").innerHTML = q.q;
 
@@ -1688,6 +1691,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
 
   function feedback(ok, q, extra){
     var fb = $("#feedback");
+    $("#qcat").classList.remove("nascosta");
     fb.className = "feedback " + (ok ? "ok" : "bad");
     var verdict = ok ? "Giusto!" : (extra || ("Quasi &middot; era «" + q.opts[q.correct] + "»."));
     fb.innerHTML = '<span class="verdict">' + verdict + '</span> ' + q.note +

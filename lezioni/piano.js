@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "28 ottobre 2026, 14:30";
+var PIANO_AGGIORNATO = "28 ottobre 2026, 20:05";
 
 var PIANO = {
 
@@ -314,6 +314,57 @@ var PIANO = {
         "titolo": "Chi è? Guess who, on your own",
         "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
         "nota": "Level 1, then level 2"
+      }
+    ]
+  },
+
+  "robmarie-7vc": {
+    "nome": "Rob & Marie",
+    "aggiornato": "28 ottobre 2026",
+    "ultima": {
+      "quando": "2026-10-28T12:00:00+01:00",
+      "fatto": [
+        "Verb roulette",
+        "Describing people: hair",
+        "Guess who?"
+      ]
+    },
+    "prossima": {
+      "quando": "2026-11-02T10:00:00+01:00",
+      "obiettivo": "Describe a whole person: eyes, height, age, beard and glasses. Then, if there is time, clothes.",
+      "attivita": [
+        {
+          "titolo": "Verb roulette",
+          "href": "",
+          "nota": "Ten minutes of verbs, every lesson"
+        },
+        {
+          "titolo": "Describing people: everything after hair",
+          "href": "",
+          "nota": "Ha gli occhi azzurri, è alta"
+        },
+        {
+          "titolo": "Guess who?",
+          "href": "",
+          "nota": "With all the new words"
+        },
+        {
+          "titolo": "Il guardaroba",
+          "href": "",
+          "nota": "Clothes and colours, if there is time"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "Guess who, on your own",
+        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
+        "nota": "Level 1, then level 2"
+      },
+      {
+        "titolo": "Describing people",
+        "href": "https://talkwithfabio.com/esercizi/descrivere/",
+        "nota": "Hair, eyes, height and clothes"
       }
     ]
   }

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Senza ripetere · Talk with Fabio</title>
+<meta name="description" content="Ne, ci e i pronomi parlando: rispondi senza ripetere, sistema un racconto, rispondi all'amica curiosa.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+
+
+/* Fase 1: la domanda */
+.domanda{background:var(--bubble);border:1px solid #CBDDD2;border-radius:18px 18px 18px 4px;padding:18px 20px;font-size:1.45rem;line-height:1.4;margin:0}
+.domanda::before{content:"la domanda";display:block;font-family:var(--hand);font-size:1.15rem;color:var(--basil);margin-bottom:2px}
+.barra{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:14px 0 0}
+.barra i{display:block;height:100%;width:100%;background:var(--basil);transition:width .25s linear}
+.barra.poco i{background:var(--lemon)}
+.barra.zero i{background:var(--tomato)}
+.tempo-msg{font-family:var(--hand);font-size:1.3rem;color:var(--tomato);min-height:1.5em;margin-top:4px}
+.soluzione{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}
+.soluzione.show{display:block}
+.soluzione ul{margin:6px 0 0;padding-left:20px}
+.soluzione li{margin-bottom:4px;font-size:1.15rem}
+.soluzione b{color:var(--tomato)}
+.gruppo{display:inline-block;font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--basil);color:var(--basil);border-radius:999px;padding:2px 10px;margin-bottom:6px}
+.punti{font-family:var(--display);font-weight:800;font-size:2.2rem;color:var(--basil);margin:0;line-height:1}
+.mini{font-size:.95rem;color:var(--muted);margin:4px 0 0}
+
+/* Fase 2: il testo */
+.testo{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 20px;font-size:1.25rem;line-height:1.75}
+.testo h3{font-size:1.25rem;margin-bottom:6px}
+.rip{border:0;background:none;padding:0 1px;font:inherit;color:inherit;text-align:inherit;border-radius:4px}
+.segnate .rip{background:#FDF0D8;box-shadow:inset 0 -2px 0 var(--lemon)}
+.rip.fatta{background:#E7F0EA;box-shadow:inset 0 -2px 0 var(--basil);color:var(--basil);font-weight:600}
+.rip.fatta b{color:var(--tomato)}
+.stato-testo{font-family:var(--hand);font-size:1.3rem;color:var(--basil)}
+
+/* Fase 3: il ficcanaso */
+.tema-card{font-family:var(--display);font-weight:800;font-size:1.5rem;padding:14px 18px;border:2px solid var(--ink);border-radius:16px;background:var(--paper);margin-bottom:12px}
+.tema-card small{display:block;font-family:var(--hand);font-weight:400;font-size:1.15rem;color:var(--tomato)}
+.curiosa{margin:0;padding-left:22px}
+.curiosa li{margin-bottom:6px;font-size:1.12rem}
+.curiosa li.chiesta{color:var(--muted);text-decoration:line-through}
+.curiosa li button{border:0;background:none;padding:0;text-align:left;font:inherit;color:inherit}
+.famiglie{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.famiglie button{border:2px solid var(--line);background:var(--paper);border-radius:14px;padding:10px 12px;text-align:left;font-family:var(--display)}
+.famiglie button b{display:block;font-size:1.15rem}
+.famiglie button span{font-size:.85rem;color:var(--muted)}
+.famiglie button output{float:right;font-weight:800;font-size:1.3rem;color:var(--muted)}
+.famiglie button.presa{border-color:var(--basil);background:#E7F0EA}
+.famiglie button.presa output{color:var(--basil)}
+.vittoria{display:none;margin-top:12px;font-family:var(--display);font-weight:800;font-size:1.7rem;color:var(--tomato)}
+.vittoria.show{display:block}
+#p1 .grid2>*,#p2 .grid2>*,#p3 .grid2>*{min-width:0}
+/* Comuni presi da Che mi racconti? */
+.nota-gram{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin-top:10px}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.vuoto{color:var(--muted);text-align:center;padding:26px 10px}
+/* Appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.appunti .riga{justify-content:space-between}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+/* Frasi utili */
+dialog{border:0;border-radius:16px;padding:0;max-width:660px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.5rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:54%}
+.dlg-body h3{margin:18px 0 4px;color:var(--basil);font-size:1.12rem}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Senza ripetere</h1>
+    <p>Ne, ci e i pronomi, ma parlando. Prima rispondi veloce senza ripetere la parola, poi sistemi un racconto pieno di ripetizioni, alla fine rispondi a un'amica molto curiosa. <span class="en">Ne, ci and pronouns, out loud: no repeating the word.</span></p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Fasi dell'attività">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>Rispondi al volo</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>Il racconto</button>
+    <button role="tab" aria-selected="false" data-phase="p3"><span class="n">3</span>L'amica curiosa</button>
+    <button class="side" id="apriPromemoria" type="button">Promemoria</button>
+  </nav>
+
+  <!-- FASE 1 -->
+  <section class="phase active" id="p1">
+    <h2>Rispondi al volo</h2>
+    <p class="lead">Ti faccio una domanda. Rispondi con una frase intera, ma senza ripetere la cosa di cui parliamo: al suo posto ci va ne, ci o un pronome. Non ti dico quale. <span class="en">Answer in a full sentence without repeating the word. Which little word? That's up to you.</span></p>
+    <div class="toolbar">
+      <div class="chips" id="f1Secondi" aria-label="Secondi per rispondere"></div>
+      <span class="count" id="f1Pos"></span>
+    </div>
+    <div class="grid2">
+      <div class="panel">
+        <p class="domanda" id="f1Q"></p>
+        <div class="barra" id="f1Barra"><i></i></div>
+        <div class="tempo-msg" id="f1Tempo"></div>
+        <div class="soluzione" id="f1Sol">
+          <span class="gruppo" id="f1Gruppo"></span>
+          <ul id="f1Lista"></ul>
+          <p class="nota-gram" id="f1Nota"></p>
+        </div>
+        <div class="riga">
+          <button class="btn ghost" id="f1Scopri" type="button">Scopri</button>
+          <button class="btn green" id="f1Bene" type="button">Detta bene</button>
+          <button class="btn red" id="f1Rifare" type="button">Da rifare</button>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Dette bene</h3>
+        <p class="punti" id="f1Punti">0</p>
+        <p class="en" id="f1Sub" style="margin:0 0 12px">Ancora niente.</p>
+        <h3>Come si gioca</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>la risposta è a voce, con il verbo</li>
+          <li>se ripeti la parola, la frase va rifatta</li>
+          <li>quelle da rifare tornano fra qualche carta</li>
+        </ul>
+        <h3 style="margin-top:14px">Che cosa c'è nel mazzo</h3>
+        <div class="chips" id="f1Gruppi"></div>
+        <p class="mini">Con tutti accesi è più difficile, ed è il bello.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 2 -->
+  <section class="phase" id="p2">
+    <h2>Il racconto</h2>
+    <p class="lead">Questo racconto ripete sempre le stesse parole. Leggilo ad alta voce e sistemalo mentre leggi, con ne, ci e i pronomi. Poi tocca i pezzi e controlla. <span class="en">Read it aloud and fix the repetitions as you go. Then tap to check.</span></p>
+    <div class="toolbar">
+      <div class="chips" id="f2Modo"></div>
+      <button class="btn ghost" id="f2Tutto" type="button">Mostra tutto</button>
+      <button class="btn" id="f2Next" type="button">Un altro racconto</button>
+      <span class="count" id="f2Pos"></span>
+    </div>
+    <div class="grid2">
+      <div class="testo" id="f2Testo"></div>
+      <aside class="panel">
+        <h3>Come si gioca</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li><b>Segnate</b>: le ripetizioni sono colorate, tu trovi la parolina giusta</li>
+          <li><b>Trovale tu</b>: niente colori, le ripetizioni le senti tu mentre leggi</li>
+          <li>poi raccontalo di nuovo senza guardare, con parole tue</li>
+        </ul>
+        <p class="stato-testo" id="f2Stato"></p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 3 -->
+  <section class="phase" id="p3">
+    <h2>L'amica curiosa</h2>
+    <p class="lead">Io sono un'amica italiana che vuole sapere tutto. Tu rispondi e racconti, senza ripetere le parole. Ogni volta che usi bene una parolina tocco la sua casella: le vuoi tutte e cinque prima che finisca il tempo. <span class="en">I'm a very nosy friend. Use all five kinds of little words before time runs out.</span></p>
+    <div class="toolbar">
+      <button class="btn red" id="f3Via" type="button">Via! 3 minuti</button>
+      <button class="btn ghost" id="f3Tema" type="button">Cambia tema</button>
+      <div class="timer" id="f3Timer"><output id="f3Clock">3:00</output></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="tema-card" id="f3Card"></div>
+        <div class="panel">
+          <h3>Le domande dell'amica</h3>
+          <ol class="curiosa" id="f3Domande"></ol>
+          <p class="mini">Le leggo io, non per forza in ordine, e ne aggiungo altre partendo da quello che racconti.</p>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Le cinque famiglie</h3>
+        <div class="famiglie" id="f3Famiglie"></div>
+        <div class="vittoria" id="f3Vinto">Tutte e cinque!</div>
+        <div class="riga"><button class="btn ghost" id="f3Azzera" type="button">Azzera le caselle</button></div>
+        <p class="mini">Se ripeti la parola dico «senza ripetere!» e rifai la frase.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- APPUNTI -->
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Le frasi da rifare, la parolina sbagliata, l'accordo al passato.</p>
+    <textarea id="note" placeholder="Es. «ci ho due» → ne ho due · «la telefono» → le telefono · «le ho comprato» → le ho comprate"></textarea>
+    <div class="riga">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<dialog id="promemoria" aria-labelledby="promTitolo">
+  <div class="dlg-head"><h2 id="promTitolo">Promemoria</h2><button class="btn ghost" id="chiudiPromemoria" type="button">Chiudi</button></div>
+  <div class="dlg-body">
+    <table>
+      <tr><td>una quantità, un numero, un po'</td><td><b>ne</b> · ne ho due, non ne ho più</td></tr>
+      <tr><td>i verbi con <b>di</b> (parlare di, avere voglia di)</td><td><b>ne</b> · ne parliamo, ne ho voglia</td></tr>
+      <tr><td>un posto già nominato</td><td><b>ci</b> · ci vado domani</td></tr>
+      <tr><td>i verbi con <b>a</b> o <b>su</b> per le cose (pensare a, credere a)</td><td><b>ci</b> · ci penso io, non ci credo</td></tr>
+      <tr><td>chi? che cosa? (senza preposizione)</td><td><b>lo, la, li, le</b> · la chiamo</td></tr>
+      <tr><td>a chi? (a lui, a lei, a loro)</td><td><b>gli, le</b> · le scrivo, gli telefono</td></tr>
+      <tr><td>al passato con lo, la, li, le, ne</td><td>il participio si accorda · l'ho vista, ne ho comprate tre</td></tr>
+      <tr><td>al passato con gli, le (a qualcuno)</td><td>niente accordo · le ho scritto</td></tr>
+    </table>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ I GRUPPI ============ */
+  var GRUPPI = [
+    {k:"neq", l:"NE · la quantità"},
+    {k:"ned", l:"NE · di qualcosa"},
+    {k:"cil", l:"CI · i posti"},
+    {k:"civ", l:"CI · con i verbi"},
+    {k:"dir", l:"lo, la, li, le"},
+    {k:"ind", l:"gli, le (a qualcuno)"},
+    {k:"acc", l:"Al passato · l'accordo"}
+  ];
+  function nomeGruppo(k){ for(var i=0;i<GRUPPI.length;i++){ if(GRUPPI[i].k === k) return GRUPPI[i].l; } return k; }
+
+  /* ============ FASE 1: domande ============
+     g: gruppo, q: domanda, a: risposte modello con la parolina tra [ ], n: nota */
+  var DOMANDE = [
+    {g:"neq", q:"Quanti caffè bevi al giorno?", a:["[Ne] bevo due.","Non [ne] bevo nessuno."]},
+    {g:"neq", q:"Quanti fratelli hai?", a:["[Ne] ho uno.","Non [ne] ho."]},
+    {g:"neq", q:"Hai ancora del latte in frigo?", a:["Sì, [ne] ho ancora un po'.","No, non [ne] ho più."]},
+    {g:"neq", q:"Quante lingue parli?", a:["[Ne] parlo tre."], n:"Con un numero la cosa torna sempre con ne."},
+    {g:"neq", q:"Hai amici italiani?", a:["Sì, [ne] ho tanti.","[Ne] ho tre o quattro."]},
+    {g:"neq", q:"Quante ore dormi di solito?", a:["[Ne] dormo sette, più o meno."]},
+    {g:"neq", q:"Vuoi un po' di torta?", a:["Sì, grazie, [ne] prendo una fetta.","Solo un pezzetto: [ne] ho già mangiata tanta."]},
+    {g:"neq", q:"Quanti messaggi ricevi al giorno?", a:["[Ne] ricevo tantissimi."]},
+    {g:"neq", q:"Compri tanta frutta?", a:["Sì, [ne] compro tanta.","No, [ne] compro poca."]},
+    {g:"neq", q:"Quante app hai sul telefono?", a:["[Ne] ho troppe!","[Ne] ho una cinquantina."]},
+
+    {g:"ned", q:"Hai voglia di un gelato?", a:["Sì, [ne] ho proprio voglia.","No, adesso non [ne] ho voglia."]},
+    {g:"ned", q:"Hai bisogno di aiuto?", a:["No, grazie, non [ne] ho bisogno.","Sì, [ne] ho bisogno!"]},
+    {g:"ned", q:"Parli spesso di lavoro con le tue amiche?", a:["No, non [ne] parliamo quasi mai.","Sì, [ne] parliamo sempre."]},
+    {g:"ned", q:"Sai qualcosa della festa di sabato?", a:["No, non [ne] so niente."]},
+    {g:"ned", q:"Hai paura dei ragni?", a:["Sì, [ne] ho paura!","No, non [ne] ho paura."]},
+    {g:"ned", q:"Cosa pensi di Instagram?", a:["[Ne] penso bene, mi piace.","Sinceramente [ne] penso male."], n:"Pensare di = avere un'opinione: ne penso bene. Pensare a = avere in mente: ci penso."},
+    {g:"ned", q:"Sei sicura di questa cosa?", a:["Sì, [ne] sono sicura.","No, non [ne] sono sicura."]},
+    {g:"ned", q:"Hai sentito parlare del nuovo ristorante in piazza?", a:["Sì, [ne] ho sentito parlare.","No, non [ne] so niente."]},
+
+    {g:"cil", q:"Vai spesso al mare?", a:["Sì, [ci] vado ogni estate.","No, non [ci] vado quasi mai."]},
+    {g:"cil", q:"Sei mai stata a Venezia?", a:["Sì, [ci] sono stata due volte.","No, non [ci] sono mai stata."]},
+    {g:"cil", q:"Quanto tempo resti in Italia?", a:["[Ci] resto due settimane."]},
+    {g:"cil", q:"Come vai al lavoro?", a:["[Ci] vado in macchina.","[Ci] vado a piedi."]},
+    {g:"cil", q:"Con chi vai in palestra?", a:["[Ci] vado da sola.","[Ci] vado con un'amica."]},
+    {g:"cil", q:"Abiti ancora in quella casa?", a:["Sì, [ci] abito da cinque anni."]},
+    {g:"cil", q:"Torni in quel ristorante?", a:["Sì, [ci] torno sicuramente.","No, non [ci] torno più!"]},
+    {g:"cil", q:"Quando vai dal dentista?", a:["[Ci] vado giovedì."]},
+    {g:"cil", q:"Sei mai salita sulla torre di Pisa?", a:["No, non [ci] sono mai salita.","Sì, [ci] sono salita da piccola."]},
+
+    {g:"civ", q:"Hai pensato al regalo per Giulia?", a:["Sì, [ci] ho pensato.","No, [ci] penso domani.","[Ci] penso io!"]},
+    {g:"civ", q:"Credi agli oroscopi?", a:["No, non [ci] credo.","Un po' [ci] credo."]},
+    {g:"civ", q:"Riesci a capire l'italiano al telefono?", a:["Sì, [ci] riesco.","Non [ci] riesco ancora."]},
+    {g:"civ", q:"Quanto tempo ci vuole per arrivare a casa tua?", a:["[Ci] vogliono venti minuti.","[Ci] vuole mezz'ora."], n:"Volerci: ci vuole un'ora, ci vogliono due ore. Il soggetto è il tempo."},
+    {g:"civ", q:"Quanto ci metti a prepararti la mattina?", a:["[Ci] metto mezz'ora."], n:"Metterci: il soggetto sei tu. Ci metto, ci metti, ci mette."},
+    {g:"civ", q:"Tieni molto a questa amicizia?", a:["Sì, [ci] tengo tanto."]},
+    {g:"civ", q:"Hai provato a fare la carbonara?", a:["Sì, [ci] ho provato, ma era un disastro.","No, non [ci] ho mai provato."]},
+    {g:"civ", q:"Sei abituata al freddo?", a:["Sì, [ci] sono abituata.","No, non [ci] sono abituata per niente."]},
+
+    {g:"dir", q:"Chi prepara il caffè a casa tua?", a:["[Lo] preparo io."]},
+    {g:"dir", q:"Bevi il caffè con lo zucchero?", a:["No, [lo] bevo amaro.","Sì, [lo] bevo con un cucchiaino."]},
+    {g:"dir", q:"Dove compri la frutta?", a:["[La] compro al mercato."]},
+    {g:"dir", q:"Quando vedi le tue amiche?", a:["[Le] vedo il sabato."]},
+    {g:"dir", q:"Chiami spesso i tuoi genitori?", a:["Sì, [li] chiamo ogni domenica."]},
+    {g:"dir", q:"Guardi la tv la sera?", a:["No, non [la] guardo quasi mai."]},
+    {g:"dir", q:"Conosci Marco, il fratello di Giulia?", a:["Sì, [lo] conosco bene.","No, non [lo] conosco."]},
+    {g:"dir", q:"Mi accompagni alla stazione?", a:["Sì, [ti] accompagno io."]},
+    {g:"dir", q:"Leggi i giornali italiani?", a:["Sì, [li] leggo online.","No, non [li] leggo ancora."]},
+
+    {g:"ind", q:"Cosa regali a tuo padre per il compleanno?", a:["[Gli] regalo un libro."]},
+    {g:"ind", q:"Telefoni spesso a tua madre?", a:["Sì, [le] telefono tutti i giorni."], n:"Telefonare a qualcuno: le telefono, non «la telefono»."},
+    {g:"ind", q:"Ti piace il caffè italiano?", a:["Sì, [mi] piace tantissimo."]},
+    {g:"ind", q:"Cosa dici ai tuoi amici quando arrivi tardi?", a:["[Gli] dico «scusate!»."], n:"Nel parlato «gli» vale anche per «a loro»."},
+    {g:"ind", q:"Cosa prepari ai tuoi ospiti?", a:["[Gli] preparo la pasta."]},
+    {g:"ind", q:"Chiedi aiuto alla tua collega?", a:["Sì, [le] chiedo sempre una mano."]},
+    {g:"ind", q:"Scrivi spesso a Giulia?", a:["Sì, [le] scrivo quasi ogni giorno."]},
+    {g:"ind", q:"Cosa consigli a un amico che va a Roma?", a:["[Gli] consiglio di andare a Trastevere."]},
+
+    {g:"acc", q:"Hai visto l'ultimo film di Sorrentino?", a:["Sì, [l']ho vist[o].","No, non [l']ho ancora vist[o]."]},
+    {g:"acc", q:"Hai già comprato i biglietti?", a:["Sì, [li] ho comprat[i] ieri."]},
+    {g:"acc", q:"Hai chiamato Sara?", a:["Sì, [l']ho chiamat[a] stamattina."], n:"L'ho chiamata: la fine del participio è quella di Sara."},
+    {g:"acc", q:"Hai assaggiato le lasagne della nonna?", a:["Sì, [le] ho assaggiat[e]: buonissime!"]},
+    {g:"acc", q:"Quante foto hai fatto in vacanza?", a:["[Ne] ho fatt[e] tantissime."], n:"Anche con ne il participio si accorda: ne ho fatte tante."},
+    {g:"acc", q:"Dove hai messo le chiavi?", a:["[Le] ho mess[e] sul tavolo."]},
+    {g:"acc", q:"Hai letto i messaggi di Chiara?", a:["Sì, [li] ho lett[i], ma non [le] ho ancora rispost[o]."], n:"Rispondere a Chiara: le ho risposto, senza accordo."},
+    {g:"acc", q:"Hai scritto a tua sorella?", a:["Sì, [le] ho scritt[o] ieri sera."], n:"Scrivere a qualcuno: con gli e le il participio non cambia mai."},
+    {g:"acc", q:"Hai invitato le tue colleghe alla festa?", a:["Sì, [le] ho invitat[e] tutte."]}
+  ];
+
+  /* ============ FASE 2: racconti ============
+     {originale|pulito}: nel pulito la parolina va tra [ ] */
+  var RACCONTI = [
+    {t:"Il sabato al mercato", x:"Il sabato mattina vado al mercato. {Vado al mercato|[Ci] vado} a piedi, perché è vicino a casa mia. Compro sempre la frutta e la verdura, e {compro la frutta e la verdura|[le] compro} dalla stessa signora. La signora è molto simpatica: {alla signora chiedo|[le] chiedo} sempre che cosa è buono oggi. Questa settimana aveva delle pesche bellissime e {ho comprato due chili di pesche|[ne] ho comprati due chili}. A casa ho fatto una torta con le pesche, e {ho mangiato metà della torta|[ne] ho mangiata metà} da sola!"},
+    {t:"La mia amica Giulia", x:"Giulia è la mia migliore amica italiana. {Ho conosciuto Giulia|[L']ho conosciuta} tre anni fa a un corso di cucina. Adesso {vedo Giulia|[la] vedo} quasi ogni settimana. Quando non possiamo vederci, {telefono a Giulia|[le] telefono} o {scrivo un messaggio a Giulia|[le] scrivo un messaggio}. Giulia ha due gatti. Anch'io vorrei un gatto, ma per ora non {ho gatti|[ne] ho}. Il mese prossimo andiamo insieme a Napoli: Giulia è già stata a Napoli, io non {sono mai stata a Napoli|[ci] sono mai stata}."},
+    {t:"Un weekend al lago", x:"Lo scorso weekend sono andata al lago di Como con degli amici. {Siamo andati al lago di Como|[Ci] siamo andati} in treno. Marco aveva prenotato una casetta sul lago e {Marco aveva trovato la casetta|[l']aveva trovata} su internet. Sabato abbiamo fatto un giro in barca e {abbiamo fatto tante foto|[ne] abbiamo fatte tante}. La sera abbiamo cenato in un ristorante sul porto, e {nel ristorante abbiamo mangiato|[ci] abbiamo mangiato} un risotto buonissimo. Ho mandato le foto a mia madre e {ho mandato le foto anche a mio fratello|[le] ho mandate anche a mio fratello}. Il lago mi è piaciuto tantissimo: {tornerò al lago|[ci] tornerò} sicuramente."},
+    {t:"In ufficio", x:"Nel mio ufficio lavorano otto persone. Vado d'accordo con i colleghi e {vedo i colleghi|[li] vedo} anche fuori dal lavoro. La mia responsabile si chiama Laura. Ogni venerdì {mando a Laura|[le] mando} un report e {Laura legge il report|lei [lo] legge} sempre con attenzione. Quando ho un problema, {parlo del problema con Laura|[ne] parlo con lei}. Ieri c'era una riunione importante, ma non {sono andata alla riunione|[ci] sono andata}: ero dal medico. Laura non era contenta, e {ho pensato alla riunione|[ci] ho pensato} tutta la sera."},
+    {t:"La cena di sabato", x:"Sabato ho invitato a cena tre amiche. {Ho invitato le amiche|[Le] ho invitate} a casa mia per il compleanno di Chiara. Ho fatto le lasagne e {ho preparato le lasagne|[le] ho preparate} la mattina. Chiara adora il tiramisù, quindi {a Chiara ho fatto|[le] ho fatto} anche un tiramisù. Purtroppo il vino era finito e non {avevo più vino|[ne] avevo più}. Per fortuna Marta {ha portato due bottiglie di vino|[ne] ha portate due}. Alla fine abbiamo parlato tutta la sera del viaggio in Sicilia: {parliamo del viaggio in Sicilia|[ne] parliamo} da mesi!"},
+    {t:"Il telefono nuovo", x:"La settimana scorsa ho comprato un telefono nuovo. {Ho comprato il telefono|[L']ho comprato} in un negozio in centro. Il commesso era gentile e {al commesso ho chiesto|[gli] ho chiesto} di aiutarmi con le app. Sul telefono vecchio avevo tantissime foto, e {ho spostato tutte le foto|[le] ho spostate tutte} sul telefono nuovo. Il telefono vecchio non lo uso più: {tengo il telefono vecchio|[lo] tengo} in un cassetto e non {penso più al telefono vecchio|[ci] penso più}. Le app? Prima avevo cento app, adesso {ho dieci app|[ne] ho dieci}."}
+  ];
+
+  /* ============ FASE 3: temi ============ */
+  var FAMIGLIE = [
+    {k:"ci", b:"ci", s:"ci vado, ci penso"},
+    {k:"ne", b:"ne", s:"ne ho due, ne parlo"},
+    {k:"dir", b:"lo, la, li, le", s:"la chiamo, li vedo"},
+    {k:"ind", b:"gli, le", s:"le scrivo, gli dico"},
+    {k:"acc", b:"al passato", s:"l'ho vista, ne ho fatte tre"}
+  ];
+  var TEMI = [
+    {t:"Il tuo weekend", d:["Sei uscita sabato sera? Dove sei andata?","Ci vai spesso? Con chi?","Hai visto le tue amiche?","Hai bevuto qualcosa? Quanti bicchieri?","Hai fatto delle foto? Le hai mandate a qualcuno?","Hai raccontato tutto a tua madre?"]},
+    {t:"La tua casa", d:["Da quanto tempo abiti nella tua casa?","Quante stanze ci sono?","Chi pulisce il bagno?","Hai delle piante? Quante?","Inviti spesso gli amici? Cosa gli prepari?","Hai mai pensato di cambiare casa?"]},
+    {t:"Il cibo", d:["Mangi la pasta tutti i giorni?","Quanti caffè bevi?","Dove compri il pane?","Sai fare il tiramisù? Chi te l'ha insegnato?","Hai mai cucinato per degli amici italiani? Cosa gli hai fatto?","Vai spesso al ristorante? Qual è il tuo preferito?"]},
+    {t:"I viaggi", d:["Sei mai stata in Sicilia?","Quante volte sei stata in Italia?","Con chi ci sei andata?","Hai comprato dei souvenir? Quanti?","Hai mandato le foto alla tua famiglia?","Ci torneresti? Quando?"]},
+    {t:"Le amiche italiane", d:["Come hai conosciuto la tua amica italiana?","La vedi spesso?","Le scrivi in italiano o in inglese?","Di che cosa parlate?","Cosa le hai regalato per il compleanno?","Ti corregge quando sbagli?"]},
+    {t:"Il telefono", d:["Quante app hai?","Usi Instagram? Quanto tempo ci passi?","Rispondi subito ai messaggi?","Hai mai perso il telefono? Dove l'hai ritrovato?","Quante foto ci sono nel tuo telefono?","Chiami tua madre o le scrivi?"]},
+    {t:"Il lavoro", d:["Dove lavori? Come ci vai?","Quanto ci metti ad arrivare?","Vedi i colleghi anche fuori?","Hai una capa o un capo? Gli parli spesso?","Quante riunioni hai alla settimana?","Pensi al lavoro anche nel weekend?"]}
+  ];
+
+  /* ============ ATTREZZI ============ */
+  function $(id){ return document.getElementById(id); }
+  function pesca(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function evidenzia(q){ return esc(q).replace(/\[([^\]]+)\]/g, "<b>$1</b>"); }
+
+  var CHIAVE = "icf-senza-ripetere";
+  var stato = { bene:0, viste:0, secondi:10, gruppi:GRUPPI.map(function(g){ return g.k; }), modo:"segnate", note:"" };
+  try{
+    var s0 = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(s0 && typeof s0 === "object"){ for(var k in stato){ if(s0[k] !== undefined) stato[k] = s0[k]; } }
+  }catch(e){}
+  if(!Array.isArray(stato.gruppi) || !stato.gruppi.length) stato.gruppi = GRUPPI.map(function(g){ return g.k; });
+  var salvaT = null;
+  function salva(){
+    clearTimeout(salvaT);
+    salvaT = setTimeout(function(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){} }, 250);
+  }
+
+  /* Linguette */
+  var tabs = document.querySelectorAll("nav.steps button[data-phase]");
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){
+      Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(s){
+        s.classList.toggle("active", s.id === t.getAttribute("data-phase"));
+      });
+      if(t.getAttribute("data-phase") !== "p1") ferma1();
+    });
+  });
+
+  /* Promemoria */
+  var dlg = $("promemoria");
+  $("apriPromemoria").addEventListener("click", function(){ if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", ""); });
+  $("chiudiPromemoria").addEventListener("click", function(){ if(dlg.close) dlg.close(); else dlg.removeAttribute("open"); });
+
+  /* ============ FASE 1 ============
+     Il gruppo NON si vede prima della risposta: darebbe la soluzione. */
+  var mazzo1 = [], i1 = 0, timer1 = null, resta1 = 0;
+  function nuovoMazzo1(){
+    mazzo1 = shuffle(DOMANDE.filter(function(d){ return stato.gruppi.indexOf(d.g) >= 0; }));
+    i1 = 0;
+  }
+  function conta1(){
+    $("f1Punti").textContent = stato.bene;
+    $("f1Sub").textContent = stato.viste ? stato.bene + " su " + stato.viste + "." : "Ancora niente.";
+  }
+  function ferma1(){ clearInterval(timer1); timer1 = null; }
+  function parti1(){
+    ferma1();
+    var barra = $("f1Barra"), msg = $("f1Tempo");
+    barra.className = "barra"; msg.textContent = "";
+    if(!stato.secondi){ barra.style.display = "none"; return; }
+    barra.style.display = "";
+    var tot = stato.secondi * 4; resta1 = tot;
+    barra.firstChild.style.width = "100%";
+    timer1 = setInterval(function(){
+      resta1--;
+      barra.firstChild.style.width = Math.max(0, resta1 / tot * 100) + "%";
+      if(resta1 <= tot / 3) barra.className = "barra poco";
+      if(resta1 <= 0){ barra.className = "barra zero"; msg.textContent = "Tempo!"; ferma1(); }
+    }, 250);
+  }
+  function mostra1(){
+    if(!mazzo1.length){ $("f1Q").textContent = "Accendi almeno un gruppo."; return; }
+    if(i1 >= mazzo1.length) nuovoMazzo1();
+    var c = mazzo1[i1];
+    $("f1Q").textContent = c.q;
+    $("f1Sol").classList.remove("show");
+    $("f1Gruppo").textContent = nomeGruppo(c.g);
+    $("f1Lista").innerHTML = c.a.map(function(a){ return "<li>" + evidenzia(a) + "</li>"; }).join("");
+    $("f1Nota").textContent = c.n || "";
+    $("f1Pos").textContent = (i1 + 1) + " di " + mazzo1.length;
+    parti1();
+  }
+  function scopri1(){ ferma1(); $("f1Sol").classList.add("show"); }
+  $("f1Scopri").addEventListener("click", scopri1);
+  $("f1Bene").addEventListener("click", function(){
+    if(!mazzo1.length) return;
+    stato.viste++; stato.bene++; conta1(); salva();
+    i1++; mostra1();
+  });
+  $("f1Rifare").addEventListener("click", function(){
+    if(!mazzo1.length) return;
+    if(!$("f1Sol").classList.contains("show")){ scopri1(); return; }
+    stato.viste++; conta1(); salva();
+    var c = mazzo1[i1];
+    var dove = Math.min(mazzo1.length, i1 + 4 + Math.floor(Math.random()*3));
+    mazzo1.splice(dove, 0, c);
+    i1++; mostra1();
+  });
+  [{s:6, l:"6 secondi"},{s:10, l:"10 secondi"},{s:0, l:"Senza tempo"}].forEach(function(o){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = o.l;
+    b.setAttribute("aria-pressed", String(stato.secondi === o.s));
+    b.addEventListener("click", function(){
+      stato.secondi = o.s; salva();
+      Array.prototype.forEach.call($("f1Secondi").children, function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+      parti1();
+    });
+    $("f1Secondi").appendChild(b);
+  });
+  GRUPPI.forEach(function(g){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = g.l;
+    b.setAttribute("aria-pressed", String(stato.gruppi.indexOf(g.k) >= 0));
+    b.addEventListener("click", function(){
+      var i = stato.gruppi.indexOf(g.k);
+      if(i >= 0){ if(stato.gruppi.length === 1) return; stato.gruppi.splice(i, 1); }
+      else stato.gruppi.push(g.k);
+      b.setAttribute("aria-pressed", String(stato.gruppi.indexOf(g.k) >= 0));
+      salva(); nuovoMazzo1(); mostra1();
+    });
+    $("f1Gruppi").appendChild(b);
+  });
+  nuovoMazzo1(); conta1(); mostra1();
+
+  /* ============ FASE 2 ============ */
+  var ordine2 = shuffle(RACCONTI.map(function(_, i){ return i; })), i2 = 0, pezzi = [];
+  function disegna2(){
+    var r = RACCONTI[ordine2[i2]];
+    var box = $("f2Testo");
+    box.className = "testo" + (stato.modo === "segnate" ? " segnate" : "");
+    var html = "<h3>" + esc(r.t) + "</h3><p style=\"margin:0\">";
+    pezzi = [];
+    var re = /\{([^|}]+)\|([^}]+)\}/g, ultimo = 0, m;
+    while((m = re.exec(r.x))){
+      html += esc(r.x.slice(ultimo, m.index));
+      html += '<button type="button" class="rip" data-i="' + pezzi.length + '">' + esc(m[1]) + "</button>";
+      pezzi.push({o:m[1], p:m[2]});
+      ultimo = re.lastIndex;
+    }
+    html += esc(r.x.slice(ultimo)) + "</p>";
+    box.innerHTML = html;
+    Array.prototype.forEach.call(box.querySelectorAll(".rip"), function(b){
+      b.addEventListener("click", function(){ gira(b); });
+    });
+    $("f2Pos").textContent = (i2 + 1) + " di " + RACCONTI.length;
+    aggiorna2();
+  }
+  function gira(b){
+    var p = pezzi[+b.getAttribute("data-i")];
+    var fatta = b.classList.toggle("fatta");
+    b.innerHTML = fatta ? evidenzia(p.p) : esc(p.o);
+    aggiorna2();
+  }
+  function aggiorna2(){
+    var tutte = $("f2Testo").querySelectorAll(".rip"), fatte = $("f2Testo").querySelectorAll(".rip.fatta");
+    $("f2Stato").textContent = fatte.length === tutte.length
+      ? "Tutte sistemate! Adesso raccontalo senza guardare."
+      : fatte.length + " sistemate su " + tutte.length + ".";
+  }
+  $("f2Tutto").addEventListener("click", function(){
+    Array.prototype.forEach.call($("f2Testo").querySelectorAll(".rip:not(.fatta)"), gira);
+  });
+  $("f2Next").addEventListener("click", function(){
+    i2++; if(i2 >= ordine2.length){ ordine2 = shuffle(ordine2); i2 = 0; }
+    disegna2();
+  });
+  [{k:"segnate", l:"Segnate"},{k:"nascoste", l:"Trovale tu"}].forEach(function(o){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = o.l;
+    b.setAttribute("aria-pressed", String(stato.modo === o.k));
+    b.addEventListener("click", function(){
+      stato.modo = o.k; salva();
+      Array.prototype.forEach.call($("f2Modo").children, function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+      $("f2Testo").classList.toggle("segnate", o.k === "segnate");
+    });
+    $("f2Modo").appendChild(b);
+  });
+  disegna2();
+
+  /* ============ FASE 3 ============ */
+  var tema = null, conti = {}, timer3 = null, resta3 = 180;
+  function nuovoTema(){
+    tema = pesca(TEMI.filter(function(x){ return x !== tema; }));
+    $("f3Card").innerHTML = "<small>L'amica vuole sapere tutto su</small>" + esc(tema.t);
+    var ol = $("f3Domande"); ol.innerHTML = "";
+    tema.d.forEach(function(d){
+      var li = document.createElement("li"), b = document.createElement("button");
+      b.type = "button"; b.textContent = d;
+      b.addEventListener("click", function(){ li.classList.toggle("chiesta"); });
+      li.appendChild(b); ol.appendChild(li);
+    });
+  }
+  function disegnaFamiglie(){
+    var box = $("f3Famiglie"); box.innerHTML = "";
+    FAMIGLIE.forEach(function(f){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.innerHTML = "<output>" + (conti[f.k] || 0) + "</output><b>" + esc(f.b) + "</b><span>" + esc(f.s) + "</span>";
+      if(conti[f.k]) b.classList.add("presa");
+      b.addEventListener("click", function(){ conti[f.k] = (conti[f.k] || 0) + 1; disegnaFamiglie(); });
+      box.appendChild(b);
+    });
+    var tutte = FAMIGLIE.every(function(f){ return conti[f.k]; });
+    $("f3Vinto").classList.toggle("show", tutte);
+    if(tutte && timer3){ clearInterval(timer3); timer3 = null; $("f3Vinto").textContent = "Tutte e cinque, con " + orologio(resta3) + " di anticipo!"; }
+    else if(tutte) $("f3Vinto").textContent = "Tutte e cinque!";
+  }
+  function orologio(s){ return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
+  $("f3Via").addEventListener("click", function(){
+    clearInterval(timer3); resta3 = 180; conti = {}; disegnaFamiglie();
+    $("f3Timer").classList.remove("zero"); $("f3Clock").textContent = orologio(resta3);
+    timer3 = setInterval(function(){
+      resta3--; $("f3Clock").textContent = orologio(Math.max(0, resta3));
+      if(resta3 <= 0){ clearInterval(timer3); timer3 = null; $("f3Timer").classList.add("zero"); }
+    }, 1000);
+  });
+  $("f3Tema").addEventListener("click", nuovoTema);
+  $("f3Azzera").addEventListener("click", function(){ conti = {}; disegnaFamiglie(); });
+  nuovoTema(); disegnaFamiglie();
+
+  /* ============ APPUNTI ============ */
+  var note = $("note");
+  note.value = stato.note || "";
+  note.addEventListener("input", function(){
+    stato.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("reset").addEventListener("click", function(){
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+})();
+</script>
+</body>
+</html>
