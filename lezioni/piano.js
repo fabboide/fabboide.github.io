@@ -9,9 +9,44 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "28 ottobre 2026, 20:05";
+var PIANO_AGGIORNATO = "29 ottobre 2026, 00:13";
 
 var PIANO = {
+
+  "ari-p49": {
+    "nome": "Ari",
+    "aggiornato": "28 ottobre 2026",
+    "ultima": {
+      "quando": "2026-10-28T17:00:00+01:00",
+      "fatto": [
+        "Ne, ci e i pronomi: esercizi",
+        "Rispondere ai messaggi delle amiche"
+      ]
+    },
+    "prossima": {
+      "quando": "2026-11-02T22:00:00+01:00",
+      "obiettivo": "Usare ne, ci e i pronomi parlando, non solo riconoscerli.",
+      "attivita": [
+        {
+          "titolo": "Ne, ci e i pronomi: la sfida da 60 secondi",
+          "href": "https://talkwithfabio.com/esercizi/pronomi/",
+          "nota": "Riscaldamento, 5 minuti"
+        },
+        {
+          "titolo": "Senza ripetere",
+          "href": "",
+          "nota": "Lo facciamo insieme: rispondi al volo, il racconto, l'amica curiosa"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "Ne, ci e i pronomi",
+        "href": "https://talkwithfabio.com/esercizi/pronomi/",
+        "nota": "Facoltativo: prova la sfida e alza il record"
+      }
+    ]
+  },
 
   "bianca-hco": {
     "nome": "Bianca",
