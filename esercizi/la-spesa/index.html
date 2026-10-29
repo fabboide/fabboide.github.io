@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Do the shopping, in Italian — Talk with Fabio</title>
+<meta name="description" content="A recipe, a budget and a shop with seven aisles. The prices are not on the shelf: you have to ask for them and understand the answer. A speaking task for A2.">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="canonical" href="https://talkwithfabio.com/esercizi/la-spesa/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Talk with Fabio">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Do the shopping, in Italian">
+<meta property="og:description" content="A recipe, a budget and a shop with seven aisles. The prices are not on the shelf: you have to ask for them and understand the answer.">
+<meta property="og:url" content="https://talkwithfabio.com/esercizi/la-spesa/">
+<meta property="og:image" content="https://talkwithfabio.com/img/og-la-spesa.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Talk with Fabio — do the shopping in Italian">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Do the shopping, in Italian">
+<meta name="twitter:description" content="A recipe, a budget and a shop with seven aisles. The prices are not on the shelf: you have to ask.">
+<meta name="twitter:image" content="https://talkwithfabio.com/img/og-la-spesa.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@600;700&display=swap">
+
+<style>
+:root{
+  --ink:#16233F; --ink-soft:#4A5670; --paper:#F7F4EC; --paper-2:#FFFDF8;
+  --rule:#DFD8C7; --saffron:#E8A33D; --rosso:#C4312B; --verde:#2E5E4E;
+  --azzurro:#3D6E8F; --arancio:#C4682B; --viola:#7A5A8F; --terra:#8A6A3B;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --pen:"Caveat","Segoe Script",cursive;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+  --wrap:1060px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{ background:var(--paper); color:var(--ink); font-family:var(--body); font-size:17.5px; line-height:1.6; -webkit-text-size-adjust:100%; }
+h1,h2,h3,.ui{font-family:var(--display)}
+a{color:var(--rosso)}
+.hidden{display:none !important}
+
+.topbar{ position:sticky; top:0; z-index:30; background:color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule); }
+.topbar-in{ max-width:var(--wrap); margin:0 auto; padding:0 20px; height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.logo{ font-family:var(--display); font-weight:800; font-size:1.05rem; letter-spacing:-0.035em; text-decoration:none; color:var(--ink); display:flex; align-items:center; gap:.5em; }
+.logo-mark{ width:22px; height:22px; border-radius:50%; flex:none; background:conic-gradient(from 180deg, var(--verde) 0 25%, var(--saffron) 0 50%, var(--rosso) 0 75%, var(--ink) 0); }
+.back-link{ font-family:var(--display); font-weight:500; font-size:.94rem; text-decoration:none; color:var(--ink-soft); }
+.back-link:hover{ color:var(--rosso); }
+
+#app{ max-width:var(--wrap); margin:0 auto; padding:30px 20px 110px; }
+.screen{display:none}
+.screen.active{display:block}
+
+.eyebrow{ font-family:var(--mono); font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 10px; }
+h1{ font-size:clamp(2rem,6vw,3.1rem); font-weight:800; letter-spacing:-.035em; line-height:1.02; margin:0 0 12px; }
+h1 .gi{ color:var(--verde); }
+.lede{ font-size:1.08rem; max-width:42em; margin:0 0 4px; }
+.en{ color:var(--ink-soft); font-style:italic; }
+.pen{ font-family:var(--pen); font-size:1.22rem; color:var(--rosso); }
+
+.btn{ font-family:var(--display); font-weight:600; font-size:1rem; background:var(--ink); color:var(--paper-2); border:2px solid var(--ink); border-radius:999px; padding:10px 20px; cursor:pointer; }
+.btn:hover{ background:#223457 }
+.btn:disabled{ opacity:.4; cursor:default }
+.btn-ghost{ background:var(--paper-2); color:var(--ink) }
+.btn-ghost:hover{ background:#F2EEE2 }
+.btn-sm{ font-size:.88rem; padding:7px 15px }
+.btn .sub{ font-family:var(--mono); font-size:.72em; opacity:.75; margin-left:7px }
+
+/* ---------- schermata iniziale ---------- */
+.blocco{ background:var(--paper-2); border:2px solid var(--rule); border-radius:20px; padding:20px 22px; margin:22px 0 0; }
+.blocco h2{ margin:0 0 4px; font-size:1.18rem; letter-spacing:-.02em }
+.blocco .sotto{ margin:0 0 14px; font-size:.97rem; color:var(--ink-soft) }
+
+.modi{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px }
+.modo{ text-align:left; background:var(--paper); border:2px solid var(--rule); border-radius:16px; padding:15px 17px; cursor:pointer; font-family:inherit; font-size:inherit; color:inherit }
+.modo:hover{ border-color:var(--ink-soft) }
+.modo[aria-pressed="true"]{ border-color:var(--verde); background:rgba(46,94,78,.08) }
+.modo b{ font-family:var(--display); display:block; font-size:1.05rem; margin-bottom:3px }
+.modo span{ font-size:.93rem; color:var(--ink-soft) }
+
+.ricette{ display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px }
+.ric{ text-align:left; background:var(--paper); border:2px solid var(--rule); border-radius:16px; padding:13px 15px; cursor:pointer; font-family:inherit; color:inherit }
+.ric:hover{ border-color:var(--ink-soft) }
+.ric[aria-pressed="true"]{ border-color:var(--verde); background:rgba(46,94,78,.08) }
+.ric b{ font-family:var(--display); display:block; font-size:1.02rem; letter-spacing:-.01em }
+.ric .ren{ font-size:.85rem; color:var(--ink-soft); font-style:italic }
+.ric .rb{ font-family:var(--mono); font-size:.72rem; color:var(--verde); margin-top:5px; display:block }
+
+/* ---------- negozio ---------- */
+.negtop{ display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:4px }
+.negtop h2{ margin:0; font-size:clamp(1.4rem,4vw,2rem); letter-spacing:-.03em }
+.negtop .bud{ font-family:var(--mono); font-size:.8rem; color:var(--ink-soft) }
+.negtop .bud b{ color:var(--verde); font-size:1.05rem }
+
+.col2{ display:grid; grid-template-columns:1fr 300px; gap:22px; align-items:start; margin-top:18px }
+@media (max-width:840px){ .col2{ grid-template-columns:1fr } }
+
+.chips{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 16px }
+.chip{ font-family:var(--display); font-weight:500; font-size:.9rem; background:var(--paper-2); color:var(--ink); border:2px solid var(--rule); border-radius:999px; padding:6px 14px; cursor:pointer }
+.chip:hover{ border-color:var(--ink-soft) }
+.chip[aria-pressed="true"]{ background:var(--ink); color:var(--paper-2); border-color:var(--ink) }
+
+.scaffale{ background:var(--paper-2); border:2px solid var(--rule); border-radius:20px; padding:16px; }
+.ripiano{ display:grid; grid-template-columns:repeat(auto-fill,minmax(112px,1fr)); gap:10px }
+.prod{ background:var(--paper); border:2px solid var(--rule); border-radius:14px; padding:9px 8px 10px; cursor:pointer; text-align:center; font-family:inherit; color:inherit; display:flex; flex-direction:column; align-items:center; gap:4px; position:relative }
+.prod:hover{ border-color:var(--ink-soft) }
+.prod[aria-pressed="true"]{ border-color:var(--verde); background:rgba(46,94,78,.08) }
+.prod.serve{ border-color:var(--saffron); box-shadow:0 0 0 3px rgba(232,163,61,.18) }
+.prod.preso{ opacity:.45 }
+.prod.finito{ opacity:.35; cursor:not-allowed }
+.prod.finito::after{ content:"finito"; position:absolute; top:6px; right:6px; font-family:var(--mono); font-size:.58rem; text-transform:uppercase; letter-spacing:.1em; color:var(--rosso) }
+.pdis{ width:60px; height:60px; display:block }
+.pnome{ font-family:var(--display); font-weight:500; font-size:.82rem; line-height:1.2 }
+.punita{ font-family:var(--mono); font-size:.6rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.08em }
+
+/* pannello della richiesta */
+.richiesta{ margin-top:14px; border:2px dashed var(--verde); border-radius:16px; padding:15px 17px; background:rgba(46,94,78,.05) }
+.richiesta .cosa{ font-family:var(--mono); font-size:.66rem; letter-spacing:.16em; text-transform:uppercase; color:var(--verde); margin:0 0 8px }
+.modello{ font-size:1.22rem; margin:0 0 4px; line-height:1.45 }
+.modello b{ background:rgba(232,163,61,.32); padding:0 .18em; border-radius:4px }
+.modello .vuoto{ color:var(--ink-soft); font-style:italic }
+.chiedip{ font-size:1.05rem; margin:0 0 12px; color:var(--ink-soft) }
+.azioni{ display:flex; flex-wrap:wrap; gap:9px; align-items:center }
+
+/* lista e carrello */
+.lato{ position:sticky; top:84px; display:flex; flex-direction:column; gap:14px }
+.card{ background:var(--paper-2); border:2px solid var(--rule); border-radius:18px; padding:15px 17px }
+.card h3{ margin:0 0 9px; font-size:1rem; letter-spacing:-.01em; display:flex; justify-content:space-between; align-items:baseline; gap:8px }
+.card h3 .n{ font-family:var(--mono); font-size:.72rem; color:var(--ink-soft); font-weight:400 }
+.lista{ list-style:none; margin:0; padding:0 }
+.lista li{ display:flex; align-items:center; gap:8px; padding:3px 0; font-size:.98rem }
+.lista li .bx{ width:17px; height:17px; border:2px solid var(--rule); border-radius:5px; flex:none }
+.lista li.ok{ color:var(--ink-soft) }
+.lista li.ok .bx{ background:var(--verde); border-color:var(--verde); position:relative }
+.lista li.ok .bx::after{ content:""; position:absolute; left:4px; top:1px; width:4px; height:8px; border:solid var(--paper-2); border-width:0 2px 2px 0; transform:rotate(45deg) }
+.lista li.ok .tx{ text-decoration:line-through }
+.carr{ list-style:none; margin:0; padding:0; font-size:.95rem }
+.carr li{ display:flex; justify-content:space-between; gap:8px; padding:3px 0; border-bottom:1px dotted var(--rule) }
+.carr li:last-child{ border-bottom:0 }
+.carr .tog{ background:none; border:0; color:var(--rosso); cursor:pointer; font-size:1rem; line-height:1; padding:0 2px; font-family:inherit }
+.vuotino{ font-size:.93rem; color:var(--ink-soft); font-style:italic; margin:0 }
+
+.avviso{ background:rgba(196,49,43,.08); border:2px solid var(--rosso); border-radius:14px; padding:11px 14px; margin:14px 0 0; font-size:.97rem }
+
+/* ---------- cassa ---------- */
+.scontrino{ background:var(--paper-2); border:2px solid var(--rule); border-radius:18px; padding:20px 22px; max-width:480px; font-family:var(--mono); font-size:.92rem }
+.scontrino h3{ font-family:var(--display); margin:0 0 12px; font-size:1.1rem }
+.srow{ display:flex; justify-content:space-between; gap:10px; padding:3px 0 }
+.srow.tot{ border-top:2px solid var(--ink); margin-top:10px; padding-top:9px; font-size:1.12rem; font-weight:700 }
+.verdetto{ margin:18px 0 0; padding:15px 17px; border-radius:16px; border:2px solid var(--rule); background:var(--paper-2) }
+.verdetto.bene{ border-color:var(--verde); background:rgba(46,94,78,.08) }
+.verdetto.male{ border-color:var(--rosso); background:rgba(196,49,43,.07) }
+.verdetto h3{ margin:0 0 6px; font-size:1.1rem }
+
+/* ---------- cassetto ---------- */
+dialog{ border:2px solid var(--ink); border-radius:20px; padding:0; max-width:620px; width:calc(100% - 36px); background:var(--paper-2); color:var(--ink) }
+dialog::backdrop{ background:rgba(22,35,63,.45) }
+.dlg-in{ padding:22px 24px 26px }
+.dlg-in h2{ margin:0 0 14px; font-size:1.3rem; letter-spacing:-.02em }
+.grp{ margin:0 0 14px }
+.grp h4{ font-family:var(--display); font-size:.98rem; margin:0 0 4px }
+.grp .ge{ font-size:.83rem; color:var(--ink-soft); font-style:italic; margin:0 0 5px }
+.grp ul{ margin:0; padding-left:18px }
+.grp li{ font-size:1rem; padding:1px 0 }
+
+footer{ border-top:1px solid var(--rule); margin-top:60px; padding:22px 20px 40px; text-align:center; font-size:.9rem; color:var(--ink-soft) }
+footer a{ color:var(--ink-soft) }
+
+body.senza-voce .solovoce{ display:none !important }
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-in">
+  <a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark"></span> Talk with Fabio</a>
+  <a class="back-link" href="https://talkwithfabio.com/esercizi/">&larr; All exercises</a>
+</div></div>
+
+<div id="app">
+<!-- ===================== INIZIO ===================== -->
+<section class="screen active" id="s-start">
+  <p class="eyebrow">Speaking task &middot; A2 &middot; free</p>
+  <h1>Fai la <span class="gi">spesa</span></h1>
+  <p class="lede">Hai una ricetta da fare, dei soldi contati e un negozio con sette reparti.
+  <span class="en">You have a recipe to cook, a tight budget and a shop with seven aisles.</span></p>
+  <p class="lede"><b>I prezzi non sono sullo scaffale.</b> Li sa solo il commesso: per sapere quanto spendi
+  devi chiederglielo e capire il numero che ti dice.
+  <span class="en">The prices are not on the shelf. Only the shopkeeper knows them, so you have to ask &mdash; and understand the answer.</span></p>
+
+  <div class="blocco">
+    <h2>Chi fa il commesso?</h2>
+    <p class="sotto">Who plays the shopkeeper?</p>
+    <div class="modi" id="modi"></div>
+  </div>
+
+  <div class="blocco">
+    <h2>Cosa devi cucinare?</h2>
+    <p class="sotto">What are you cooking? The budget is tight on purpose.</p>
+    <div class="ricette" id="ricette"></div>
+  </div>
+
+  <p style="margin-top:22px">
+    <button class="btn" id="vai">Al negozio <span class="sub">entra</span></button>
+    <button class="btn btn-ghost btn-sm" id="formule1" style="margin-left:8px">Le formule</button>
+  </p>
+</section>
+
+<!-- ===================== NEGOZIO ===================== -->
+<section class="screen" id="s-negozio">
+  <div class="negtop">
+    <div>
+      <p class="eyebrow" id="negmodo">&nbsp;</p>
+      <h2 id="negtitolo">&nbsp;</h2>
+    </div>
+    <div class="bud">budget <b id="negbudget">&nbsp;</b></div>
+  </div>
+  <p class="pen" id="negpen">&nbsp;</p>
+
+  <div class="col2">
+    <div>
+      <div class="chips" id="reparti"></div>
+      <div class="scaffale">
+        <div class="ripiano" id="ripiano"></div>
+      </div>
+      <div class="richiesta hidden" id="richiesta">
+        <p class="cosa">Dillo a voce, poi mettilo nel carrello</p>
+        <p class="modello" id="modello">&nbsp;</p>
+        <p class="chiedip" id="chiedip">&nbsp;</p>
+        <div class="chips" id="quantita"></div>
+        <div class="azioni" id="azioni"></div>
+      </div>
+      <div class="avviso hidden" id="avviso"></div>
+    </div>
+
+    <aside class="lato">
+      <div class="card">
+        <h3>La lista <span class="n" id="listan">&nbsp;</span></h3>
+        <ul class="lista" id="listaric"></ul>
+      </div>
+      <div class="card">
+        <h3>Il carrello <span class="n" id="carrn">&nbsp;</span></h3>
+        <ul class="carr" id="carrello"></ul>
+        <p class="vuotino" id="carrvuoto">Ancora niente.</p>
+        <p style="margin:12px 0 0">
+          <button class="btn btn-sm" id="allacassa">Alla cassa</button>
+        </p>
+      </div>
+      <p style="margin:0">
+        <button class="btn btn-ghost btn-sm" id="formule2">Le formule</button>
+        <button class="btn btn-ghost btn-sm" id="ricomincia">Ricomincia</button>
+      </p>
+    </aside>
+  </div>
+</section>
+
+<!-- ===================== CASSA ===================== -->
+<section class="screen" id="s-cassa">
+  <p class="eyebrow">Alla cassa</p>
+  <h1>Lo <span class="gi">scontrino</span></h1>
+  <p class="lede">Adesso i prezzi si vedono. Prima di leggerli, prova a dire quanto pensi di aver speso.
+  <span class="en">Now you can see the prices. Before you read them, say out loud what you think you spent.</span></p>
+
+  <div class="scontrino" id="scontrino"></div>
+  <div class="verdetto" id="verdetto"></div>
+
+  <div class="blocco">
+    <h2>Adesso raccontala</h2>
+    <p class="sotto">Now tell the story of your shopping trip, out loud, at the past tense.</p>
+    <p id="racconta" style="margin:0 0 10px"></p>
+    <ul class="grp" id="raccontaspunti" style="margin:0; padding-left:18px"></ul>
+  </div>
+
+  <p style="margin-top:22px">
+    <button class="btn" id="dinuovo">Un'altra ricetta</button>
+    <button class="btn btn-ghost btn-sm" id="formule3" style="margin-left:8px">Le formule</button>
+  </p>
+
+  <div class="blocco" style="border-style:dashed">
+    <h2>Se il problema erano i numeri</h2>
+    <p class="sotto" style="margin-bottom:10px">Capire un prezzo detto in fretta &egrave; un allenamento a parte, e
+    si fa meglio senza la spesa intorno. <span class="en">Understanding a price said quickly is its own skill.</span></p>
+    <p style="margin:0"><a class="btn btn-ghost btn-sm" href="https://talkwithfabio.com/esercizi/numeri/"
+      style="text-decoration:none; display:inline-block">I numeri da 1 a 1000</a></p>
+  </div>
+</section>
+
+</div><!-- /#app -->
+
+<dialog id="dlgFormule"><div class="dlg-in">
+  <h2>Le formule del negozio</h2>
+  <div id="formuleCorpo"></div>
+  <p style="margin:18px 0 0"><button class="btn btn-ghost btn-sm" id="chiudiFormule">Chiudi</button></p>
+</div></dialog>
+
+<footer>
+  <p>Vuoi provarlo con una persona vera? <a href="https://talkwithfabio.com/prenota/">Prenota una lezione</a>
+  &middot; <a href="https://talkwithfabio.com/esercizi/">Tutti gli esercizi</a></p>
+</footer>
+<script>
+/* ============================================================
+   I DATI DEL NEGOZIO
+   Un prodotto e' una riga sola. I campi, in ordine:
+     id, reparto, etichetta sullo scaffale, unita', prezzo,
+     come si dice dopo una quantita' ("due etti DI PROSCIUTTO"),
+     come si dice da solo ("UNA MOZZARELLA", solo per i pezzi),
+     disegno, colore principale, colore secondario
+   Il disegno e' una chiave: le forme stanno in disegni.js e sono
+   poche famiglie riusate, come le facce di Identikit. Cosi' il
+   prodotto e il suo disegno non possono mai litigare.
+   ============================================================ */
+
+var REPARTI = [
+  { k:"orto",  n:"Frutta e verdura", en:"Fruit and veg" },
+  { k:"carne", n:"Carne e salumi",   en:"Meat and cold cuts" },
+  { k:"pesce", n:"Pescheria",        en:"Fishmonger" },
+  { k:"latte", n:"Latticini e uova", en:"Dairy and eggs" },
+  { k:"pane",  n:"Pane e pasta",     en:"Bread and pasta" },
+  { k:"disp",  n:"Dispensa",         en:"Store cupboard" },
+  { k:"bev",   n:"Bevande",          en:"Drinks" }
+];
+
+/* unita': kg = al chilo, et = all'etto, pz = al pezzo,
+           cf = a confezione, bt = a bottiglia, mz = a mazzetto */
+
+var PRODOTTI_RAW = [
+  /* --- frutta e verdura --- */
+  ["pomodori","orto","Pomodori","kg",2.90,"di pomodori","","tondo","#C9342C","#2E5E4E"],
+  ["pomodorini","orto","Pomodorini","kg",3.60,"di pomodorini","","grappolo","#D9452C","#2E5E4E"],
+  ["basilico","orto","Basilico","mz",1.50,"di basilico","un mazzetto di basilico","foglie","#2E5E4E","#4F8A68"],
+  ["cipolle","orto","Cipolle","kg",1.80,"di cipolle","","cipolla","#E0C089","#B08A4A"],
+  ["carote","orto","Carote","kg",1.60,"di carote","","lungo","#C4682B","#2E5E4E"],
+  ["sedano","orto","Sedano","pz",1.20,"di sedano","un sedano","sedano","#9CBE72","#4F8A68"],
+  ["patate","orto","Patate","kg",1.40,"di patate","","patata","#C9A569","#7A5A2B"],
+  ["zucchine","orto","Zucchine","kg",2.40,"di zucchine","","lungo","#4F8A68","#2E5E4E"],
+  ["insalata","orto","Insalata","pz",1.30,"di insalata","un'insalata","cespo","#6FA05A","#2E5E4E"],
+  ["limoni","orto","Limoni","kg",2.20,"di limoni","","limone","#EFCF4A","#4F8A68"],
+  ["mele","orto","Mele","kg",2.10,"di mele","","mela","#C4312B","#4F8A68"],
+  ["arance","orto","Arance","kg",1.90,"di arance","","tondo","#E08A2B","#2E5E4E"],
+  ["aglio","orto","Aglio","pz",0.80,"di aglio","una testa d'aglio","aglio","#F4EFE2","#C9B99A"],
+
+  /* --- carne e salumi --- */
+  ["macinata","carne","Carne macinata","kg",9.80,"di carne macinata","","vassoio","#C4584F","#A33B33"],
+  ["guanciale","carne","Guanciale","et",2.60,"di guanciale","","slab","#E8B0A4","#C4312B"],
+  ["crudo","carne","Prosciutto crudo","et",3.40,"di prosciutto crudo","","fetta","#E8A89C","#C4312B"],
+  ["cotto","carne","Prosciutto cotto","et",1.90,"di prosciutto cotto","","fetta","#F2C3BC","#D98A80"],
+  ["mortadella","carne","Mortadella","et",1.60,"di mortadella","","salume","#F0B9B2","#C4584F"],
+  ["salsiccia","carne","Salsiccia","kg",7.50,"di salsiccia","","salsiccia","#C4584F","#A33B33"],
+  ["pollo","carne","Petto di pollo","kg",6.90,"di petto di pollo","","vassoio","#F0D9B8","#C9A569"],
+
+  /* --- pescheria --- */
+  ["orata","pesce","Orata","kg",12.50,"di orata","un'orata","pesce","#9FB6C4","#4A5670"],
+  ["gamberi","pesce","Gamberi","kg",14.00,"di gamberi","","gambero","#E08A6B","#C4312B"],
+  ["vongole","pesce","Vongole","kg",9.50,"di vongole","","conchiglia","#C9B99A","#8A6A3B"],
+  ["salmone","pesce","Salmone","et",3.20,"di salmone","","fetta","#E89070","#C4584F"],
+
+  /* --- latticini e uova --- */
+  ["mozzarella","latte","Mozzarella","pz",1.20,"di mozzarella","una mozzarella","palla","#FFFDF8","#DFD8C7"],
+  ["bufala","latte","Mozzarella di bufala","pz",2.80,"di mozzarella di bufala","una mozzarella di bufala","sacchetto","#FFFDF8","#4F8A68"],
+  ["parmigiano","latte","Parmigiano","et",2.40,"di parmigiano","","spicchio","#E8C98A","#C9A569"],
+  ["pecorino","latte","Pecorino","et",2.20,"di pecorino","","ruota","#F0DCA8","#8A6A3B"],
+  ["mascarpone","latte","Mascarpone","cf",2.60,"di mascarpone","una vaschetta di mascarpone","vasetto","#FFFDF8","#D9BE6A"],
+  ["ricotta","latte","Ricotta","cf",2.40,"di ricotta","una vaschetta di ricotta","vasetto","#F7F4EC","#7FA05A"],
+  ["burro","latte","Burro","cf",2.10,"di burro","un panetto di burro","panetto","#F2DC9A","#D9BE6A"],
+  ["latte","latte","Latte","bt",1.35,"di latte","una bottiglia di latte","bottiglia","#FFFDF8","#9FB6C4"],
+  ["uova","latte","Uova","cf",3.20,"di uova","una confezione di uova","uova","#F0E0C2","#C9A569"],
+  ["panna","latte","Panna","cf",1.40,"di panna","una confezione di panna","brik","#FFFDF8","#3D6E8F"],
+
+  /* --- pane e pasta --- */
+  ["spaghetti","pane","Spaghetti","cf",1.10,"di spaghetti","un pacco di spaghetti","pacco","#2F5FA0","#E8C98A"],
+  ["penne","pane","Penne","cf",1.10,"di penne","un pacco di penne","pacco","#2E5E4E","#E8C98A"],
+  ["farina","pane","Farina","cf",0.95,"di farina","un pacco di farina","sacco","#FFFDF8","#DFD8C7"],
+  ["pane","pane","Pane","kg",3.50,"di pane","","filone","#C9A569","#8A6A3B"],
+  ["grissini","pane","Grissini","cf",1.60,"di grissini","un pacco di grissini","pacco","#D98F3B","#7A4A1B"],
+  ["riso","pane","Riso","cf",2.20,"di riso","un pacco di riso","pacco","#EFE7D4","#8A6A3B"],
+  ["savoiardi","pane","Savoiardi","cf",2.40,"di savoiardi","un pacco di savoiardi","pacco","#E8C98A","#C9A569"],
+  ["lievito","pane","Lievito","cf",0.60,"di lievito","una bustina di lievito","bustina","#D9BE6A","#8A6A3B"],
+
+  /* --- dispensa --- */
+  ["pelati","disp","Pomodori pelati","cf",1.20,"di pomodori pelati","un barattolo di pelati","barattolo","#C9342C","#9FB6C4"],
+  ["olio","disp","Olio d'oliva","bt",7.90,"d'olio d'oliva","una bottiglia d'olio","bottiglia","#7FA05A","#2E5E4E"],
+  ["sale","disp","Sale","cf",0.45,"di sale","un pacco di sale","sacco","#FFFDF8","#9FB6C4"],
+  ["zucchero","disp","Zucchero","cf",1.10,"di zucchero","un pacco di zucchero","sacco","#F2E3C0","#B08A4A"],
+  ["caffe","disp","Caffè","cf",4.20,"di caffè","un pacco di caffè","pacco","#6B4A2B","#C9A569"],
+  ["cacao","disp","Cacao","cf",2.80,"di cacao","una scatola di cacao","barattolo","#6B4A2B","#C9A569"],
+  ["olive","disp","Olive","cf",2.90,"di olive","un barattolo di olive","barattolo","#5A6B3B","#2E5E4E"],
+  ["fagioli","disp","Fagioli","cf",1.30,"di fagioli","un barattolo di fagioli","barattolo","#A3603B","#8A6A3B"],
+  ["tonno","disp","Tonno in scatola","cf",2.30,"di tonno","una scatola di tonno","barattolo","#9FB6C4","#4A5670"],
+  ["pepe","disp","Pepe","cf",1.80,"di pepe","una confezione di pepe","bustina","#4A5670","#16233F"],
+  ["marmellata","disp","Marmellata","cf",2.60,"di marmellata","un vasetto di marmellata","vasetto","#C4312B","#8A3B33"],
+  ["biscotti","disp","Biscotti","cf",2.20,"di biscotti","un pacco di biscotti","pacco","#A3603B","#F0E0C2"],
+  ["patatine","disp","Patatine","cf",1.80,"di patatine","un pacco di patatine","pacco","#E8C13D","#C4682B"],
+
+  /* --- bevande --- */
+  ["acqua","bev","Acqua","bt",0.45,"d'acqua","una bottiglia d'acqua","bottiglia","#BFD6E0","#4A5670"],
+  ["vinorosso","bev","Vino rosso","bt",6.50,"di vino rosso","una bottiglia di vino rosso","bottiglia","#7A2A33","#4A1F26"],
+  ["vinobianco","bev","Vino bianco","bt",6.90,"di vino bianco","una bottiglia di vino bianco","bottiglia","#E8D9A8","#C9A569"],
+  ["birra","bev","Birra","bt",1.40,"di birra","una birra","bottiglia","#C9872B","#8A5A1B"]
+];
+
+/* Le quantita' che si possono chiedere, unita' per unita'.
+   Il testo e' quello che lo studente deve DIRE, il numero e'
+   quanto moltiplica il prezzo. */
+var QUANTITA = {
+  kg: [["mezzo chilo",0.5],["un chilo",1],["due chili",2]],
+  et: [["un etto",1],["due etti",2],["tre etti",3],["mezzo chilo",5]],
+  pz: [["uno",1],["due",2],["tre",3]],
+  cf: [["uno",1],["due",2],["tre",3]],
+  bt: [["una",1],["due",2],["tre",3]],
+  mz: [["uno",1],["due",2]]
+};
+
+/* come si legge l'unita' quando il commesso dice il prezzo */
+var AL_UNITA = { kg:"al chilo", et:"all'etto", pz:"l'uno", cf:"la confezione", bt:"la bottiglia", mz:"il mazzetto" };
+
+/* ============================================================
+   LE RICETTE
+   Ogni riga della lista e' [id prodotto, quante unita' servono].
+   Il budget e' stretto apposta: deve costringere a chiedere i
+   prezzi prima di prendere, non dopo.
+   ============================================================ */
+var RICETTE = [
+  { k:"caprese", n:"Insalata caprese", per:"per due persone", budget:17,
+    en:"Tomato and mozzarella salad",
+    lista:[["pomodori",1],["mozzarella",2],["basilico",1],["olio",1]],
+    racconta:"una cena leggera d'estate" },
+
+  { k:"margherita", n:"Pizza margherita", per:"per quattro", budget:18,
+    en:"Margherita pizza",
+    lista:[["farina",2],["mozzarella",2],["pelati",1],["olio",1],["basilico",1],["lievito",1]],
+    racconta:"una pizza fatta in casa il sabato sera" },
+
+  { k:"carbonara", n:"Pasta alla carbonara", per:"per quattro", budget:19,
+    en:"Spaghetti carbonara",
+    lista:[["spaghetti",1],["guanciale",2],["uova",1],["pecorino",2],["pepe",1]],
+    racconta:"il pranzo della domenica" },
+
+  { k:"ragu", n:"Ragù alla bolognese", per:"per sei", budget:29,
+    en:"Bolognese sauce",
+    lista:[["macinata",1],["pelati",2],["cipolle",1],["carote",1],["sedano",1],["vinorosso",1],["penne",1]],
+    racconta:"un rag&ugrave; che cuoce tutto il pomeriggio" },
+
+  { k:"minestrone", n:"Minestrone", per:"per quattro", budget:12,
+    en:"Vegetable soup",
+    lista:[["patate",1],["carote",1],["zucchine",1],["cipolle",1],["sedano",1],["fagioli",1]],
+    racconta:"una minestra per una sera di pioggia" },
+
+  { k:"tiramisu", n:"Tiramisù", per:"per sei", budget:22,
+    en:"Tiramisu",
+    lista:[["savoiardi",1],["mascarpone",2],["uova",1],["caffe",1],["zucchero",1],["cacao",1]],
+    racconta:"il dolce per il compleanno di un amico" },
+
+  { k:"aperitivo", n:"Aperitivo per quattro", per:"per quattro", budget:30,
+    en:"Aperitivo for four",
+    lista:[["crudo",2],["olive",1],["grissini",1],["bufala",2],["vinobianco",1],["patatine",1]],
+    racconta:"un aperitivo a casa con gli amici" },
+
+  { k:"colazione", n:"Colazione all'italiana", per:"per la settimana", budget:20,
+    en:"Italian breakfast",
+    lista:[["caffe",1],["latte",2],["biscotti",1],["marmellata",1],["pane",1],["burro",1]],
+    racconta:"la colazione di tutti i giorni" }
+];
+
+/* ============================================================
+   LE CARTE DEL COMMESSO
+   Sono gli imprevisti: servono a rompere la formula imparata a
+   memoria e a costringere a negoziare. Ognuna dice cosa fa il
+   commesso e cosa deve fare lo studente.
+   tipo "finito" chiude davvero il prodotto sullo scaffale.
+   ============================================================ */
+var IMPREVISTI = [
+  { t:"finito", d:"&Egrave; finito",
+    dice:"Mi dispiace, oggi è finito.",
+    tocca:"Deve cambiare prodotto o chiederle un consiglio: <em>e cosa mi consiglia?</em>" },
+  { t:"caro", d:"C'&egrave; solo quello pi&ugrave; caro",
+    dice:"Di quello normale non ne ho più. Ho solo quello buono, però costa il doppio.",
+    tocca:"Deve decidere e dirlo: <em>va bene lo stesso</em> oppure <em>no, grazie, allora prendo altro</em>." },
+  { t:"quanto", d:"Quanto ne vuole?",
+    dice:"Quanto ne vuole? Un etto? Mezzo chilo?",
+    tocca:"Deve dire una quantit&agrave; precisa, non &laquo;un po'&raquo;." },
+  { t:"dipiu", d:"&Egrave; un po' di pi&ugrave;",
+    dice:"Sono due etti e mezzo, va bene lo stesso?",
+    tocca:"<em>S&igrave;, va bene</em> oppure <em>no, me ne tolga un po'</em>." },
+  { t:"offerta", d:"Offerta: due al prezzo di uno",
+    dice:"Guardi che oggi, se ne prende due, paga come se ne prendesse uno.",
+    tocca:"Deve capire l'offerta e rispondere, non annuire e basta." },
+  { t:"altro", d:"Altro?",
+    dice:"Altro? Qualcos'altro? Basta così?",
+    tocca:"<em>Basta cos&igrave;, grazie</em> oppure continua la lista." },
+  { t:"ripeti", d:"Non ho capito",
+    dice:"Come, scusi? Non ho capito.",
+    tocca:"Deve ridirlo in un altro modo, non alzare la voce." },
+  { t:"resto", d:"Non ho il resto",
+    dice:"Ha qualcosa di più piccolo? Non ho il resto di cinquanta euro.",
+    tocca:"Deve proporre un'alternativa: <em>posso pagare con la carta?</em>" },
+  { t:"consiglio", d:"Le consiglio altro",
+    dice:"Se posso permettermi: per quello che deve fare, io prenderei quest'altro.",
+    tocca:"Deve chiedere perch&eacute;: <em>e perch&eacute;? che differenza c'&egrave;?</em>" },
+  { t:"chiude", d:"Stiamo chiudendo",
+    dice:"Guardi che tra cinque minuti chiudiamo, eh.",
+    tocca:"Deve sbrigarsi e dire tutto il resto in una volta sola." }
+];
+
+/* Le formule: il cassetto che si apre quando si blocca. */
+var FORMULE = [
+  { t:"Chiedere una cosa", en:"Asking for something", r:[
+    "Vorrei due etti di prosciutto crudo.",
+    "Mi d&agrave; un chilo di pomodori, per favore?",
+    "Posso avere una mozzarella?",
+    "Prendo anche un pacco di spaghetti."
+  ]},
+  { t:"Dire quanto", en:"Saying how much", r:[
+    "Un etto, due etti, tre etti &middot; mezzo chilo, un chilo, due chili",
+    "Un pacco, una confezione, un barattolo, una bottiglia, un vasetto",
+    "Un mazzetto di basilico &middot; tre fette di prosciutto",
+    "Un po' di pi&ugrave;, per favore. &middot; Un po' di meno, grazie."
+  ]},
+  { t:"Chiedere il prezzo", en:"Asking the price", r:[
+    "Quanto costa? &middot; Quanto costano?",
+    "Quanto viene? &middot; Quant'&egrave;?",
+    "Quanto le devo? &middot; Quanto fa in tutto?",
+    "&Egrave; al chilo o all'etto?"
+  ]},
+  { t:"Quando non capisci", en:"When you don't understand", r:[
+    "Scusi, pu&ograve; ripetere? &middot; Pu&ograve; parlare un po' pi&ugrave; piano?",
+    "Scusi, quanto ha detto? &middot; Come, scusi?",
+    "Quindi sono dodici euro e cinquanta, giusto?"
+  ]},
+  { t:"Chiudere", en:"Closing", r:[
+    "Basta cos&igrave;, grazie. &middot; Nient'altro, grazie.",
+    "Posso pagare con la carta?",
+    "Ecco a lei. &middot; Grazie, arrivederci."
+  ]},
+  { t:"Quello che dice il commesso", en:"What the shopkeeper says", r:[
+    "Mi dica. &middot; Desidera? &middot; Prego?",
+    "Quanto ne vuole? &middot; Va bene cos&igrave;?",
+    "Altro? &middot; Qualcos'altro? &middot; Basta cos&igrave;?",
+    "Sono dodici e cinquanta. &middot; Ecco a lei. &middot; Arrivederci!"
+  ]}
+];
+/* ============================================================
+   I DISEGNI
+   Nessun file immagine: ogni prodotto e' un SVG costruito qui,
+   come le facce di Identikit. Cosi' pesano zero, restano nello
+   stile del sito e non possono mai essere in disaccordo con il
+   prodotto che dicono di essere.
+   Venti forme riusate con due colori ciascuna coprono tutto lo
+   scaffale: aggiungere un prodotto non vuol dire disegnarlo da
+   capo, vuol dire scegliere la famiglia giusta.
+   ============================================================ */
+
+var INK = "#16233F";
+
+function dis(forma, a, b){
+  var s = '<g stroke="' + INK + '" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">';
+  switch(forma){
+
+    case "tondo":
+      s += '<circle cx="50" cy="56" r="29" fill="' + a + '"/>'
+         + '<path d="M50 27 q-2 -12 -12 -15" fill="none" stroke="' + b + '" stroke-width="4"/>'
+         + '<path d="M50 27 q10 -9 20 -4 q-7 10 -20 4z" fill="' + b + '"/>';
+      break;
+
+    case "grappolo":
+      s += '<circle cx="36" cy="62" r="16" fill="' + a + '"/>'
+         + '<circle cx="64" cy="62" r="16" fill="' + a + '"/>'
+         + '<circle cx="50" cy="40" r="15" fill="' + a + '"/>'
+         + '<path d="M50 25 q-10 -8 -18 -6 M50 25 q10 -8 18 -6" fill="none" stroke="' + b + '" stroke-width="4"/>';
+      break;
+
+    case "foglie":
+      s += '<path d="M50 84 L50 44" fill="none" stroke="' + b + '" stroke-width="5"/>'
+         + '<path d="M50 50 q-26 -6 -30 -26 q26 -4 30 26z" fill="' + a + '"/>'
+         + '<path d="M50 44 q26 -8 30 -28 q-26 -2 -30 28z" fill="' + a + '"/>'
+         + '<path d="M50 30 q-12 -12 -4 -24 q14 8 4 24z" fill="' + a + '"/>';
+      break;
+
+    case "lungo":
+      s += '<path d="M38 20 q24 0 26 22 q2 24 -10 42 q-8 12 -16 0 q-12 -18 -10 -42 q2 -22 10 -22z" fill="' + a + '"/>'
+         + '<path d="M44 20 q-8 -12 -16 -12 M44 20 q8 -12 16 -12" fill="none" stroke="' + b + '" stroke-width="4"/>';
+      break;
+
+    case "vassoio":
+      s += '<rect x="16" y="36" width="68" height="40" rx="7" fill="#FFFDF8"/>'
+         + '<path d="M24 50 q10 -10 22 -4 q14 -8 26 4 q6 14 -4 20 q-22 6 -40 0 q-10 -6 -4 -20z" fill="' + a + '"/>'
+         + '<circle cx="42" cy="58" r="3.5" fill="' + b + '" stroke="none"/>'
+         + '<circle cx="58" cy="64" r="3.5" fill="' + b + '" stroke="none"/>';
+      break;
+
+    case "fetta":
+      s += '<path d="M20 60 q6 -24 30 -26 q24 -2 30 20 q4 20 -16 24 q-26 6 -40 -4 q-6 -4 -4 -14z" fill="' + a + '"/>'
+         + '<path d="M32 52 q14 -8 30 -2 M30 64 q18 -6 36 0" fill="none" stroke="' + b + '" stroke-width="4"/>';
+      break;
+
+    case "salsiccia":
+      s += '<path d="M24 34 q22 -8 34 6 q12 14 6 30 q-6 16 -24 12 q-16 -4 -18 -22 q-2 -18 2 -26z" fill="' + a + '"/>'
+         + '<path d="M26 48 q24 -4 36 6 M24 62 q24 -2 36 8" fill="none" stroke="' + b + '" stroke-width="3"/>';
+      break;
+
+    case "pesce":
+      s += '<path d="M16 56 q18 -24 42 -22 q22 2 26 22 q-4 20 -26 22 q-24 2 -42 -22z" fill="' + a + '"/>'
+         + '<path d="M84 56 q10 -14 16 -14 q-2 14 0 28 q-6 0 -16 -14z" fill="' + b + '"/>'
+         + '<circle cx="36" cy="48" r="4" fill="#FFFDF8"/>'
+         + '<circle cx="36" cy="48" r="1.8" fill="' + INK + '" stroke="none"/>'
+         + '<path d="M54 40 q8 16 0 32" fill="none" stroke="' + b + '" stroke-width="3"/>';
+      break;
+
+    case "gambero":
+      s += '<path d="M28 38 q26 -6 40 12 q10 18 -4 30 q-14 10 -24 -4 q-8 -12 -4 -20 q4 -10 16 -8" fill="' + a + '"/>'
+         + '<path d="M28 38 q-10 -6 -14 -16 M34 34 q-4 -12 -2 -22" fill="none" stroke="' + b + '" stroke-width="4"/>'
+         + '<circle cx="30" cy="42" r="3" fill="' + INK + '" stroke="none"/>';
+      break;
+
+    case "conchiglia":
+      s += '<path d="M50 78 q-30 -4 -32 -26 q-2 -20 32 -22 q34 2 32 22 q-2 22 -32 26z" fill="' + a + '"/>'
+         + '<path d="M50 30 L38 76 M50 30 L50 78 M50 30 L62 76" fill="none" stroke="' + b + '" stroke-width="3"/>';
+      break;
+
+    case "palla":
+      s += '<circle cx="50" cy="56" r="28" fill="' + a + '"/>'
+         + '<path d="M38 44 q8 -6 16 -2" fill="none" stroke="' + b + '" stroke-width="4"/>'
+         + '<path d="M50 28 q-4 -8 2 -12 q6 6 2 12" fill="' + b + '"/>';
+      break;
+
+    case "spicchio":
+      s += '<path d="M20 76 L70 22 q16 10 12 32 q-4 20 -24 24 q-22 4 -38 -2z" fill="' + a + '"/>'
+         + '<circle cx="54" cy="52" r="4" fill="' + b + '" stroke="none"/>'
+         + '<circle cx="40" cy="64" r="3" fill="' + b + '" stroke="none"/>'
+         + '<circle cx="62" cy="66" r="3" fill="' + b + '" stroke="none"/>';
+      break;
+
+    case "vasetto":
+      s += '<rect x="26" y="34" width="48" height="46" rx="6" fill="' + a + '"/>'
+         + '<rect x="22" y="22" width="56" height="14" rx="5" fill="' + b + '"/>'
+         + '<rect x="34" y="48" width="32" height="18" rx="3" fill="#FFFDF8"/>';
+      break;
+
+    case "panetto":
+      s += '<path d="M22 44 L62 28 L82 40 L42 56z" fill="' + b + '"/>'
+         + '<path d="M22 44 L42 56 L42 80 L22 68z" fill="' + a + '"/>'
+         + '<path d="M42 56 L82 40 L82 64 L42 80z" fill="' + a + '"/>';
+      break;
+
+    case "bottiglia":
+      s += '<path d="M42 18 L58 18 L58 34 q14 10 14 26 L72 78 q0 6 -6 6 L34 84 q-6 0 -6 -6 L28 60 q0 -16 14 -26z" fill="' + a + '"/>'
+         + '<rect x="40" y="12" width="20" height="10" rx="3" fill="' + b + '"/>'
+         + '<rect x="30" y="54" width="40" height="18" rx="3" fill="#FFFDF8"/>';
+      break;
+
+    case "uova":
+      s += '<rect x="14" y="40" width="72" height="36" rx="7" fill="' + b + '"/>'
+         + '<ellipse cx="34" cy="40" rx="13" ry="16" fill="' + a + '"/>'
+         + '<ellipse cx="66" cy="40" rx="13" ry="16" fill="' + a + '"/>'
+         + '<path d="M14 58 L86 58" fill="none" stroke="' + INK + '" stroke-width="3"/>';
+      break;
+
+    case "pacco":
+      s += '<path d="M28 20 L72 20 L72 84 L28 84z" fill="' + a + '"/>'
+         + '<rect x="28" y="44" width="44" height="22" fill="#FFFDF8"/>'
+         + '<path d="M36 52 L64 52 M36 60 L56 60" fill="none" stroke="' + b + '" stroke-width="3"/>';
+      break;
+
+    case "sacco":
+      s += '<path d="M30 30 q20 -8 40 0 L76 78 q0 8 -8 8 L32 86 q-8 0 -8 -8z" fill="' + a + '"/>'
+         + '<path d="M30 30 q20 8 40 0" fill="none" stroke="' + INK + '" stroke-width="3"/>'
+         + '<rect x="34" y="48" width="32" height="20" rx="3" fill="' + b + '"/>';
+      break;
+
+    case "filone":
+      s += '<path d="M14 62 q6 -24 36 -26 q30 -2 36 26 q0 16 -36 16 q-36 0 -36 -16z" fill="' + a + '"/>'
+         + '<path d="M34 44 q4 8 -2 14 M50 40 q4 10 -2 16 M66 44 q4 8 -2 14" fill="none" stroke="' + b + '" stroke-width="3"/>';
+      break;
+
+    case "bustina":
+      s += '<path d="M32 28 L68 28 L72 80 L28 80z" fill="' + a + '"/>'
+         + '<path d="M32 28 L68 28" fill="none" stroke="' + INK + '" stroke-width="5"/>'
+         + '<circle cx="50" cy="56" r="10" fill="' + b + '"/>';
+      break;
+
+    case "barattolo":
+      s += '<rect x="28" y="28" width="44" height="52" rx="5" fill="' + a + '"/>'
+         + '<rect x="24" y="20" width="52" height="12" rx="4" fill="' + b + '"/>'
+         + '<rect x="28" y="46" width="44" height="20" fill="#FFFDF8"/>'
+         + '<path d="M36 56 L64 56" fill="none" stroke="' + a + '" stroke-width="4"/>';
+      break;
+
+    case "limone":
+      s += '<ellipse cx="50" cy="56" rx="22" ry="29" fill="' + a + '"/>'
+         + '<path d="M50 27 q-3 -9 0 -12 q3 3 0 12z M50 85 q-3 9 0 12 q3 -3 0 -12z" fill="' + a + '"/>'
+         + '<path d="M50 27 q10 -8 18 -4 q-6 10 -18 4z" fill="' + b + '"/>';
+      break;
+
+    case "ruota":
+      s += '<circle cx="50" cy="56" r="29" fill="' + b + '"/>'
+         + '<circle cx="50" cy="56" r="22" fill="' + a + '"/>'
+         + '<path d="M50 34 L50 78 M28 56 L72 56" fill="none" stroke="' + b + '" stroke-width="3"/>';
+      break;
+
+    case "mela":
+      s += '<path d="M50 32 q-14 -8 -24 2 q-10 12 -2 30 q8 18 26 20 q18 -2 26 -20 q8 -18 -2 -30 q-10 -10 -24 -2z" fill="' + a + '"/>'
+         + '<path d="M50 32 L50 18" fill="none" stroke="' + b + '" stroke-width="4"/>'
+         + '<path d="M50 22 q12 -10 22 -6 q-6 12 -22 6z" fill="' + b + '"/>';
+      break;
+
+    case "cipolla":
+      s += '<path d="M50 28 q22 10 22 30 q0 26 -22 26 q-22 0 -22 -26 q0 -20 22 -30z" fill="' + a + '"/>'
+         + '<path d="M50 32 L50 82 M38 38 q-4 22 2 42 M62 38 q4 22 -2 42" fill="none" stroke="' + b + '" stroke-width="2.5"/>'
+         + '<path d="M50 28 q-4 -14 -12 -18 M50 28 q4 -14 12 -18" fill="none" stroke="#4F8A68" stroke-width="4"/>';
+      break;
+
+    case "patata":
+      s += '<path d="M24 56 q2 -22 24 -24 q26 -2 30 18 q4 20 -14 28 q-22 8 -34 -4 q-8 -8 -6 -18z" fill="' + a + '"/>'
+         + '<circle cx="42" cy="52" r="3" fill="' + b + '" stroke="none"/>'
+         + '<circle cx="60" cy="48" r="2.5" fill="' + b + '" stroke="none"/>'
+         + '<circle cx="56" cy="68" r="2.5" fill="' + b + '" stroke="none"/>';
+      break;
+
+    case "aglio":
+      s += '<path d="M50 26 q20 14 20 32 q0 24 -20 24 q-20 0 -20 -24 q0 -18 20 -32z" fill="' + a + '"/>'
+         + '<path d="M50 30 q-10 24 -8 50 M50 30 q10 24 8 50" fill="none" stroke="' + b + '" stroke-width="3"/>'
+         + '<path d="M50 26 q-3 -10 0 -14 q3 4 0 14z" fill="' + b + '"/>';
+      break;
+
+    case "sedano":
+      s += '<path d="M34 86 q-6 -34 2 -54 q6 -4 10 0 q4 22 0 54z" fill="' + a + '"/>'
+         + '<path d="M46 86 q-4 -38 2 -58 q6 -4 10 0 q2 24 -2 58z" fill="' + a + '"/>'
+         + '<path d="M58 86 q4 -34 10 -52 q6 -2 8 4 q-2 20 -10 48z" fill="' + a + '"/>'
+         + '<path d="M40 30 q-8 -14 -2 -20 q8 6 2 20z M54 26 q-2 -16 6 -18 q2 12 -6 18z" fill="' + b + '"/>';
+      break;
+
+    case "cespo":
+      s += '<circle cx="50" cy="56" r="30" fill="' + a + '"/>'
+         + '<path d="M50 26 q-16 12 -14 30 q2 16 14 24 q12 -8 14 -24 q2 -18 -14 -30z" fill="none" stroke="' + b + '" stroke-width="3"/>'
+         + '<path d="M24 46 q14 10 10 32 M76 46 q-14 10 -10 32" fill="none" stroke="' + b + '" stroke-width="3"/>';
+      break;
+
+    case "salume":
+      s += '<circle cx="50" cy="56" r="29" fill="' + a + '"/>'
+         + '<circle cx="40" cy="48" r="4" fill="' + b + '" stroke="none"/>'
+         + '<circle cx="60" cy="52" r="3.5" fill="' + b + '" stroke="none"/>'
+         + '<circle cx="46" cy="66" r="3.5" fill="' + b + '" stroke="none"/>'
+         + '<circle cx="62" cy="68" r="3" fill="' + b + '" stroke="none"/>';
+      break;
+
+    case "slab":
+      s += '<path d="M20 38 L70 28 L82 44 L32 56z" fill="' + b + '"/>'
+         + '<path d="M20 38 L32 56 L32 80 L20 62z" fill="' + a + '"/>'
+         + '<path d="M32 56 L82 44 L82 68 L32 80z" fill="' + a + '"/>'
+         + '<path d="M36 62 L78 52 M36 70 L78 60" fill="none" stroke="#FFFDF8" stroke-width="3"/>';
+      break;
+
+    case "brik":
+      s += '<path d="M32 34 L68 34 L68 82 L32 82z" fill="' + a + '"/>'
+         + '<path d="M32 34 L50 18 L68 34z" fill="' + b + '"/>'
+         + '<rect x="32" y="52" width="36" height="18" fill="#FFFDF8"/>';
+      break;
+
+    case "sacchetto":
+      s += '<path d="M26 40 q24 -10 48 0 L74 78 q0 8 -8 8 L34 86 q-8 0 -8 -8z" fill="#EDF3F5"/>'
+         + '<circle cx="50" cy="60" r="18" fill="' + a + '"/>'
+         + '<path d="M26 40 q24 10 48 0" fill="none" stroke="' + INK + '" stroke-width="3"/>'
+         + '<path d="M44 26 q6 -8 12 0" fill="none" stroke="' + b + '" stroke-width="4"/>';
+      break;
+
+    default:
+      s += '<rect x="28" y="28" width="44" height="52" rx="6" fill="' + a + '"/>';
+  }
+  return s + '</g>';
+}
+
+function svgProdotto(p, cls){
+  return '<svg class="' + (cls || "pdis") + '" viewBox="0 0 100 100" aria-hidden="true" focusable="false">'
+       + dis(p.forma, p.c1, p.c2) + '</svg>';
+}
+/* ============================================================
+   IL MOTORE
+   ============================================================ */
+function $(id){ return document.getElementById(id); }
+
+/* --- i prodotti, dalla tabella grezza --- */
+var PLURALI = ["pomodori","pomodorini","cipolle","carote","patate","zucchine","limoni","mele",
+  "arance","gamberi","vongole","uova","spaghetti","penne","grissini","savoiardi","pelati",
+  "olive","fagioli","biscotti","patatine"];
+
+var PRODOTTI = PRODOTTI_RAW.map(function(r){
+  return { id:r[0], rep:r[1], nome:r[2], misura:r[3], prezzo:r[4],
+           conQ:r[5], unPezzo:r[6], forma:r[7], c1:r[8], c2:r[9],
+           pl:PLURALI.indexOf(r[0]) >= 0 };
+});
+
+/* Come si dice il prezzo: "al chilo", "all'etto", "il pacco", "l'una".
+   Non e' scritto nei dati, si ricava dalla frase del pezzo, cosi'
+   l'etichetta sullo scaffale e la frase che dice lo studente non
+   possono mai dire due cose diverse. */
+var CONTENITORI = { pacco:1, barattolo:1, bottiglia:1, vasetto:1, vaschetta:1,
+                    scatola:1, bustina:1, confezione:1, mazzetto:1, panetto:1, testa:1 };
+
+function etichettaUnita(p){
+  if(p.misura === "kg") return "al chilo";
+  if(p.misura === "et") return "all'etto";
+  var m = (p.unPezzo || "").match(/^(un'|un |uno |una )(\S+)/);
+  if(!m) return "al pezzo";
+  var femm = (m[1] === "una " || m[1] === "un'");
+  var testa = m[2];
+  if(CONTENITORI[testa]) return (femm ? "la " : "il ") + testa;
+  return femm ? "l'una" : "l'uno";
+}
+PRODOTTI.forEach(function(p){ p.al = etichettaUnita(p); });
+
+var PER_ID = {};
+PRODOTTI.forEach(function(p){ PER_ID[p.id] = p; });
+
+/* --- i numeri a parole: il commesso li DICE, non li scrive --- */
+var UNI = ["zero","uno","due","tre","quattro","cinque","sei","sette","otto","nove","dieci",
+  "undici","dodici","tredici","quattordici","quindici","sedici","diciassette","diciotto","diciannove"];
+var DEC = ["","","venti","trenta","quaranta","cinquanta","sessanta","settanta","ottanta","novanta"];
+
+function nLettere(n){
+  n = Math.round(n);
+  if(n < 20) return UNI[n];
+  if(n < 100){
+    var d = Math.floor(n / 10), u = n % 10, base = DEC[d];
+    if(u === 0) return base;
+    if(u === 1 || u === 8) base = base.slice(0, -1);     /* ventuno, ventotto */
+    return base + (u === 3 ? "tr\u00e9" : UNI[u]);        /* ventitr\u00e9 */
+  }
+  if(n < 1000){
+    var c = Math.floor(n / 100), r = n % 100;
+    var testa = (c === 1 ? "cento" : UNI[c] + "cento");
+    return r === 0 ? testa : testa + nLettere(r);
+  }
+  return String(n);
+}
+
+function prezzoParlato(p){
+  var eu = Math.floor(p + 1e-9), ce = Math.round((p - eu) * 100);
+  if(eu === 0) return nLettere(ce) + " centesimi";
+  var t = (eu === 1 ? "un euro" : nLettere(eu) + " euro");
+  return ce === 0 ? t : t + " e " + nLettere(ce);
+}
+function prezzoScritto(p){ return p.toFixed(2).replace(".", ",") + " \u20ac"; }
+
+/* --- il plurale di una quantit\u00e0 a pezzi --- */
+var NUMPAR = { 2:"due", 3:"tre" };
+function plurale(frase, n){
+  var m = frase.match(/^(un'|un |uno |una )(\S+)([\s\S]*)$/);
+  if(!m) return (NUMPAR[n] || n) + " " + frase;
+  var testa = m[2], resto = m[3], p;
+  if(/co$/.test(testa))      p = testa.slice(0, -2) + "chi";
+  else if(/ca$/.test(testa)) p = testa.slice(0, -2) + "che";
+  else if(/go$/.test(testa)) p = testa.slice(0, -2) + "ghi";
+  else if(/a$/.test(testa))  p = testa.slice(0, -1) + "e";
+  else if(/[oe]$/.test(testa)) p = testa.slice(0, -1) + "i";
+  else p = testa;
+  return (NUMPAR[n] || n) + " " + p + resto;
+}
+
+function frasePezzo(p, qTesto, qVal){
+  if(p.misura === "kg" || p.misura === "et") return qTesto + " " + p.conQ;
+  if(qVal === 1) return p.unPezzo;
+  return plurale(p.unPezzo, qVal);
+}
+function domandaPrezzo(p, qVal){
+  var plur = (p.misura === "kg" || p.misura === "et") ? p.pl : (qVal > 1);
+  return plur ? "Quanto costano?" : "Quanto costa?";
+}
+
+/* ============================================================
+   LA VOCE  (stessa convenzione delle altre pagine del sito)
+   ============================================================ */
+var TENUTE = [];
+function punteggio(v){
+  var n = (v.name || "").toLowerCase();
+  if(n.indexOf("google") >= 0) return 3;
+  if(n.indexOf("alice") >= 0) return 0;
+  return 2;
+}
+function italiane(){
+  var tutte = [];
+  try{ tutte = window.speechSynthesis.getVoices() || []; }catch(e){}
+  var it = tutte.filter(function(v){ return /^it/i.test(v.lang || ""); });
+  it.sort(function(a, b){ return punteggio(b) - punteggio(a); });
+  return it;
+}
+/* se nel testo resta un'entita' HTML la voce leggerebbe
+   "caff e grave": qui torna sempre testo vero prima di parlare */
+function pulisci(s){
+  var d = document.createElement("div");
+  d.innerHTML = String(s);
+  return (d.textContent || "").replace(/\s+/g, " ").trim();
+}
+function di(testo, lento, tentativo){
+  if(!("speechSynthesis" in window)) return;
+  testo = pulisci(testo);
+  var voci = italiane();
+  if(!voci.length) return;
+  var i = tentativo || 0;
+  if(i >= voci.length) return;
+  try{
+    if(window.speechSynthesis.speaking || window.speechSynthesis.pending) window.speechSynthesis.cancel();
+  }catch(e){}
+  var u = new SpeechSynthesisUtterance(testo);
+  u.voice = voci[i]; u.lang = voci[i].lang || "it-IT";
+  u.rate = lento ? 0.72 : 0.95;
+  var partito = false;
+  u.onstart = function(){ partito = true; };
+  u.onerror = function(e){
+    if(e && (e.error === "canceled" || e.error === "interrupted")) return;
+  };
+  TENUTE.push(u);
+  if(TENUTE.length > 12) TENUTE.shift();
+  try{ window.speechSynthesis.speak(u); }catch(e){ return; }
+  setTimeout(function(){ try{ window.speechSynthesis.resume(); }catch(e){} }, 60);
+  setTimeout(function(){ if(!partito) di(testo, lento, i + 1); }, 1500);
+}
+function controllaVoce(){
+  document.body.classList.toggle("senza-voce", italiane().length === 0);
+}
+if("speechSynthesis" in window){
+  controllaVoce();
+  window.speechSynthesis.onvoiceschanged = controllaVoce;
+  setTimeout(controllaVoce, 700);
+  setTimeout(controllaVoce, 2000);
+} else {
+  document.body.classList.add("senza-voce");
+}
+
+/* ============================================================
+   LO STATO
+   ============================================================ */
+var CHIAVE = "icf_spesa_v1";
+var st = { modo:"prof", ricetta:"caprese", rep:"orto", carrello:[], finiti:[], sel:null, selQ:0, contaImpr:0 };
+
+function salva(){
+  try{ localStorage.setItem(CHIAVE, JSON.stringify({ modo:st.modo, ricetta:st.ricetta })); }catch(e){}
+}
+function carica(){
+  try{
+    var v = JSON.parse(localStorage.getItem(CHIAVE) || "{}");
+    if(v.modo) st.modo = v.modo;
+    if(v.ricetta && ricettaDi(v.ricetta)) st.ricetta = v.ricetta;
+  }catch(e){}
+}
+function ricettaDi(k){
+  for(var i = 0; i < RICETTE.length; i++){ if(RICETTE[i].k === k) return RICETTE[i]; }
+  return null;
+}
+function ric(){ return ricettaDi(st.ricetta) || RICETTE[0]; }
+
+function quanteNeHo(id){
+  var t = 0;
+  st.carrello.forEach(function(r){ if(r.id === id) t += r.qv; });
+  return t;
+}
+function totale(){
+  var t = 0;
+  st.carrello.forEach(function(r){ t += r.costo; });
+  return Math.round(t * 100) / 100;
+}
+function mancano(){
+  return ric().lista.filter(function(v){ return quanteNeHo(v[0]) < v[1] - 1e-9; });
+}
+
+/* ============================================================
+   SCHERMATE
+   ============================================================ */
+function mostra(id){
+  ["s-start", "s-negozio", "s-cassa"].forEach(function(s){
+    $(s).classList.toggle("active", s === id);
+  });
+  window.scrollTo(0, 0);
+}
+
+var MODI = [
+  { k:"prof", t:"Con l'insegnante (o un amico)", d:"Lui apre una finestra solo sua con i prezzi e le carte del commesso. Tu vedi solo lo scaffale, e per sapere quanto costa una cosa devi chiedergliela." },
+  { k:"solo", t:"Da solo", d:"Il commesso lo fa la pagina: i prezzi te li dice a voce e non li scrive mai. Tocca a te ascoltare il numero e tenere il conto." }
+];
+
+function renderStart(){
+  var m = $("modi"); m.innerHTML = "";
+  MODI.forEach(function(x){
+    var b = document.createElement("button");
+    b.className = "modo"; b.type = "button";
+    b.setAttribute("aria-pressed", st.modo === x.k ? "true" : "false");
+    b.innerHTML = "<b>" + x.t + "</b><span>" + x.d + "</span>";
+    b.onclick = function(){ st.modo = x.k; salva(); renderStart(); };
+    m.appendChild(b);
+  });
+
+  var r = $("ricette"); r.innerHTML = "";
+  RICETTE.forEach(function(x){
+    var b = document.createElement("button");
+    b.className = "ric"; b.type = "button";
+    b.setAttribute("aria-pressed", st.ricetta === x.k ? "true" : "false");
+    b.innerHTML = "<b>" + x.n + "</b><span class=\"ren\">" + x.en + "</span>"
+                + "<span class=\"rb\">" + x.lista.length + " cose &middot; " + x.budget + " \u20ac &middot; " + x.per + "</span>";
+    b.onclick = function(){ st.ricetta = x.k; salva(); renderStart(); };
+    r.appendChild(b);
+  });
+}
+
+/* ---------------- negozio ---------------- */
+function entra(){
+  st.carrello = []; st.finiti = []; st.sel = null; st.selQ = 0; st.contaImpr = 0;
+  st.rep = "orto";
+  mostra("s-negozio");
+  renderNegozio();
+  if(st.modo === "prof") apriCommesso();
+}
+
+function renderNegozio(){
+  var R = ric();
+  $("negmodo").textContent = (st.modo === "prof" ? "Il commesso \u00e8 l'insegnante" : "Il commesso \u00e8 la pagina");
+  $("negtitolo").innerHTML = R.n;
+  $("negbudget").textContent = R.budget + " \u20ac";
+  $("negpen").innerHTML = (st.modo === "prof")
+    ? "Chiedi a voce, poi tocca il prodotto. I prezzi li sa lui."
+    : "Chiedi a voce, poi tocca il prodotto e senti quanto costa.";
+  renderReparti();
+  renderRipiano();
+  renderLista();
+  renderCarrello();
+}
+
+function renderReparti(){
+  var c = $("reparti"); c.innerHTML = "";
+  REPARTI.forEach(function(x){
+    var serve = mancano().some(function(v){ return PER_ID[v[0]].rep === x.k; });
+    var b = document.createElement("button");
+    b.className = "chip"; b.type = "button";
+    b.setAttribute("aria-pressed", st.rep === x.k ? "true" : "false");
+    b.innerHTML = x.n + (serve ? " <span style=\"color:var(--saffron)\">&bull;</span>" : "");
+    b.onclick = function(){ st.rep = x.k; st.sel = null; renderReparti(); renderRipiano(); chiudiRichiesta(); };
+    c.appendChild(b);
+  });
+}
+
+function renderRipiano(){
+  var g = $("ripiano"); g.innerHTML = "";
+  var serve = {};
+  ric().lista.forEach(function(v){ if(quanteNeHo(v[0]) < v[1] - 1e-9) serve[v[0]] = 1; });
+
+  PRODOTTI.filter(function(p){ return p.rep === st.rep; }).forEach(function(p){
+    var b = document.createElement("button");
+    b.className = "prod"; b.type = "button";
+    if(serve[p.id]) b.className += " serve";
+    if(quanteNeHo(p.id) > 0) b.className += " preso";
+    var fin = st.finiti.indexOf(p.id) >= 0;
+    if(fin){ b.className += " finito"; b.disabled = true; }
+    b.setAttribute("aria-pressed", (st.sel === p.id) ? "true" : "false");
+    b.innerHTML = svgProdotto(p)
+      + "<span class=\"pnome\">" + p.nome + "</span>"
+      + "<span class=\"punita\">" + p.al + "</span>";
+    b.onclick = function(){ scegli(p.id); };
+    g.appendChild(b);
+  });
+}
+
+function scegli(id){
+  st.sel = id; st.selQ = 0;
+  renderRipiano();
+  renderRichiesta();
+  $("richiesta").scrollIntoView({ behavior:"smooth", block:"nearest" });
+}
+function chiudiRichiesta(){
+  st.sel = null;
+  $("richiesta").classList.add("hidden");
+}
+
+function renderRichiesta(){
+  var p = PER_ID[st.sel];
+  if(!p){ chiudiRichiesta(); return; }
+  $("richiesta").classList.remove("hidden");
+
+  var qs = QUANTITA[p.misura];
+  var c = $("quantita"); c.innerHTML = "";
+  qs.forEach(function(q, i){
+    var b = document.createElement("button");
+    b.className = "chip"; b.type = "button";
+    b.setAttribute("aria-pressed", st.selQ === i ? "true" : "false");
+    b.textContent = (p.misura === "pz" || p.misura === "cf" || p.misura === "bt" || p.misura === "mz")
+      ? frasePezzo(p, q[0], q[1]) : q[0];
+    b.onclick = function(){ st.selQ = i; renderRichiesta(); };
+    c.appendChild(b);
+  });
+
+  var q = qs[st.selQ];
+  var frase = frasePezzo(p, q[0], q[1]);
+  $("modello").innerHTML = "Vorrei <b>" + frase + "</b>, per favore.";
+  $("chiedip").innerHTML = domandaPrezzo(p, q[1])
+    + " <span class=\"en\">&middot; " + (st.modo === "prof" ? "chiedilo a lui" : "chiedilo e ascolta") + "</span>";
+
+  var a = $("azioni"); a.innerHTML = "";
+  if(st.modo === "solo"){
+    var bp = document.createElement("button");
+    bp.className = "btn btn-ghost btn-sm solovoce"; bp.type = "button";
+    bp.innerHTML = "Senti il prezzo";
+    bp.onclick = function(){ di(p.nome + ", " + prezzoParlato(p.prezzo) + " " + p.al + "."); };
+    a.appendChild(bp);
+
+    var br = document.createElement("button");
+    br.className = "btn btn-ghost btn-sm solovoce"; br.type = "button";
+    br.innerHTML = "Pi&ugrave; piano";
+    br.onclick = function(){ di(prezzoParlato(p.prezzo) + " " + p.al + ".", true); };
+    a.appendChild(br);
+  }
+
+  var ok = document.createElement("button");
+  ok.className = "btn btn-sm"; ok.type = "button";
+  ok.innerHTML = "L'ho chiesto: nel carrello";
+  ok.onclick = function(){ metti(p, q); };
+  a.appendChild(ok);
+
+  var no = document.createElement("button");
+  no.className = "btn btn-ghost btn-sm"; no.type = "button";
+  no.textContent = "Lascia stare";
+  no.onclick = function(){ chiudiRichiesta(); renderRipiano(); };
+  a.appendChild(no);
+}
+
+function metti(p, q){
+  st.carrello.push({ id:p.id, q:q[0], qv:q[1], testo:frasePezzo(p, q[0], q[1]),
+                     costo:Math.round(p.prezzo * q[1] * 100) / 100 });
+  chiudiRichiesta();
+  renderReparti(); renderRipiano(); renderLista(); renderCarrello();
+  st.contaImpr++;
+  if(st.modo === "solo" && st.contaImpr % 3 === 0) imprevistoACaso();
+}
+
+function togli(i){
+  st.carrello.splice(i, 1);
+  renderReparti(); renderRipiano(); renderLista(); renderCarrello();
+}
+
+function renderLista(){
+  var R = ric(), u = $("listaric"); u.innerHTML = "";
+  var fatti = 0;
+  R.lista.forEach(function(v){
+    var p = PER_ID[v[0]], ho = quanteNeHo(v[0]), ok = ho >= v[1] - 1e-9;
+    if(ok) fatti++;
+    var li = document.createElement("li");
+    if(ok) li.className = "ok";
+    var quanto;
+    if(p.misura === "kg" || p.misura === "et"){
+      quanto = QUANTITA[p.misura].filter(function(x){ return x[1] === v[1]; })
+                                 .map(function(x){ return x[0]; })[0] || "";
+    } else {
+      quanto = frasePezzo(p, "", v[1]);
+    }
+    li.innerHTML = "<span class=\"bx\"></span><span class=\"tx\">" + p.nome
+      + (quanto ? " <span class=\"en\">" + quanto + "</span>" : "") + "</span>";
+    u.appendChild(li);
+  });
+  $("listan").textContent = fatti + "/" + R.lista.length;
+}
+
+function renderCarrello(){
+  var u = $("carrello"); u.innerHTML = "";
+  st.carrello.forEach(function(r, i){
+    var li = document.createElement("li");
+    li.innerHTML = "<span>" + r.testo + "</span>";
+    var b = document.createElement("button");
+    b.className = "tog"; b.type = "button"; b.title = "togli"; b.innerHTML = "&times;";
+    b.onclick = function(){ togli(i); };
+    li.appendChild(b);
+    u.appendChild(li);
+  });
+  $("carrvuoto").classList.toggle("hidden", st.carrello.length > 0);
+  $("carrn").textContent = st.carrello.length ? st.carrello.length + " cose" : "";
+}
+
+/* ---------------- imprevisti ---------------- */
+function imprevisto(t){
+  var c = null;
+  IMPREVISTI.forEach(function(x){ if(x.t === t) c = x; });
+  if(!c) return;
+  var a = $("avviso");
+  a.classList.remove("hidden");
+  a.innerHTML = "<b>Il commesso:</b> &laquo;" + c.dice + "&raquo;<br><span class=\"en\">" + c.tocca + "</span>";
+  if(st.modo === "solo") di(c.dice.replace(/&[a-z]+;/g, ""));
+  clearTimeout(imprevisto._t);
+  imprevisto._t = setTimeout(function(){ a.classList.add("hidden"); }, 14000);
+}
+function imprevistoACaso(){
+  var buoni = IMPREVISTI.filter(function(x){ return x.t !== "finito" && x.t !== "resto"; });
+  imprevisto(buoni[Math.floor(Math.random() * buoni.length)].t);
+}
+function toggleFinito(id){
+  var i = st.finiti.indexOf(id);
+  if(i >= 0) st.finiti.splice(i, 1); else st.finiti.push(id);
+  renderRipiano();
+}
+
+/* ---------------- cassa ---------------- */
+function allaCassa(){
+  var R = ric(), t = totale(), m = mancano();
+  var s = $("scontrino");
+  var h = "<h3>" + R.n + "</h3>";
+  if(!st.carrello.length){
+    h += "<p>Carrello vuoto.</p>";
+  } else {
+    st.carrello.forEach(function(r){
+      h += "<div class=\"srow\"><span>" + r.testo + "</span><span>" + prezzoScritto(r.costo) + "</span></div>";
+    });
+  }
+  h += "<div class=\"srow tot\"><span>Totale</span><span>" + prezzoScritto(t) + "</span></div>";
+  h += "<div class=\"srow\"><span>Budget</span><span>" + prezzoScritto(R.budget) + "</span></div>";
+  s.innerHTML = h;
+
+  var v = $("verdetto"), dentro = t <= R.budget + 1e-9, completo = m.length === 0;
+  v.className = "verdetto " + (dentro && completo ? "bene" : (completo || dentro ? "" : "male"));
+  var righe = "";
+  righe += completo
+    ? "<p style=\"margin:0 0 4px\">Hai preso tutto quello che serve.</p>"
+    : "<p style=\"margin:0 0 4px\">Ti manca ancora: <b>" + m.map(function(x){ return PER_ID[x[0]].nome; }).join(", ") + "</b>.</p>";
+  righe += dentro
+    ? "<p style=\"margin:0\">Il conto sta dentro il budget: ti avanzano " + prezzoScritto(R.budget - t) + ".</p>"
+    : "<p style=\"margin:0\">Hai sforato di " + prezzoScritto(t - R.budget) + ". Cosa toglieresti?</p>";
+  v.innerHTML = "<h3>" + (dentro && completo ? "Ce l'hai fatta" : "Quasi") + "</h3>" + righe;
+
+  $("racconta").innerHTML = "Racconta la spesa al passato, come se la raccontassi a un amico: era <b>" + R.racconta + "</b>.";
+  var sp = $("raccontaspunti");
+  sp.innerHTML = "<li>Da dove hai cominciato e cosa hai comprato per primo.</li>"
+    + "<li>Una cosa che \u00e8 costata pi\u00f9 di quello che pensavi.</li>"
+    + "<li>Una cosa che non hai preso, e perch\u00e9.</li>"
+    + "<li>Quanto hai speso in tutto, detto a voce: <b>" + prezzoParlato(t) + "</b>.</li>";
+
+  mostra("s-cassa");
+  if(st.modo === "solo") setTimeout(function(){ di("Allora, sono in tutto " + prezzoParlato(t) + "."); }, 400);
+}
+
+/* ---------------- cassetto delle formule ---------------- */
+function renderFormule(){
+  var c = $("formuleCorpo"); c.innerHTML = "";
+  FORMULE.forEach(function(g){
+    var d = document.createElement("div");
+    d.className = "grp";
+    d.innerHTML = "<h4>" + g.t + "</h4><p class=\"ge\">" + g.en + "</p><ul>"
+      + g.r.map(function(x){ return "<li>" + x + "</li>"; }).join("") + "</ul>";
+    c.appendChild(d);
+  });
+}
+function apriFormule(){ renderFormule(); try{ $("dlgFormule").showModal(); }catch(e){ $("dlgFormule").setAttribute("open",""); } }
+
+/* ============================================================
+   LA FINESTRA DEL COMMESSO
+   Sta a parte apposta: sullo schermo condiviso lo studente deve
+   vedere lo scaffale e basta, se no i prezzi li legge invece di
+   chiederli, e la domanda migliore dell'esercizio sparisce.
+   ============================================================ */
+var finCom = null;
+function apriCommesso(){
+  var R = ric();
+  var h = '<!DOCTYPE html><html lang="it"><head><meta charset="utf-8">'
+    + '<meta name="viewport" content="width=device-width, initial-scale=1">'
+    + '<title>Il banco &mdash; solo per il commesso</title><style>'
+    + 'body{margin:0;background:#16233F;color:#F7F4EC;font:16px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;padding:18px}'
+    + 'h1{font:700 1.15rem/1.2 system-ui,sans-serif;margin:0 0 2px}'
+    + '.n{color:#9FB6C4;font-size:.78rem;margin:0 0 14px}'
+    + 'h2{font:600 .78rem/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.14em;color:#E8A33D;margin:18px 0 7px}'
+    + 'table{border-collapse:collapse;width:100%}'
+    + 'td{padding:3px 4px;border-bottom:1px solid #2A3A5E;font-size:.86rem;vertical-align:top}'
+    + 'td.p{text-align:right;color:#E8C98A;white-space:nowrap}'
+    + 'td.b{width:1%;white-space:nowrap}'
+    + 'button{font:inherit;font-size:.74rem;background:#2A3A5E;color:#F7F4EC;border:1px solid #4A5670;border-radius:999px;padding:2px 9px;cursor:pointer}'
+    + 'button:hover{background:#3A4E78}'
+    + 'button.on{background:#C4312B;border-color:#C4312B}'
+    + '.imp{display:flex;flex-wrap:wrap;gap:6px}'
+    + '.imp button{font-size:.8rem;padding:5px 12px}'
+    + '.tot{background:#2E5E4E;border-radius:12px;padding:11px 14px;margin:14px 0 0}'
+    + '.tot b{font-size:1.5rem;display:block;font-family:system-ui,sans-serif}'
+    + '.tot .pp{color:#CFE4D8;font-size:.85rem}'
+    + '.car{font-size:.84rem;color:#CFE4D8;margin:8px 0 0;padding-left:18px}'
+    + '.f{background:#3A2A2A;border:1px solid #C4312B;border-radius:10px;padding:9px 12px;margin:12px 0 0;font-size:.84rem}'
+    + '</style></head><body>'
+    + '<h1>Il banco</h1>'
+    + '<p class="n">Questa finestra &egrave; solo tua: non condividerla. Lo studente vede lo scaffale senza prezzi.</p>'
+    + '<div class="tot"><span class="pp">incasso di adesso</span><b id="t">0,00 &euro;</b>'
+    + '<span class="pp" id="tp">&mdash;</span><span class="pp"> &middot; budget ' + R.budget + ' &euro;</span>'
+    + '<ul class="car" id="car"></ul></div>'
+    + '<h2>Le tue battute</h2><p class="n">Mi dica. &middot; Desidera? &middot; Quanto ne vuole? &middot; Altro? &middot; '
+    + 'Basta cos&igrave;? &middot; Sono dodici e cinquanta. &middot; Ecco a lei. &middot; Arrivederci!</p>'
+    + '<h2>Carte da tirare fuori</h2><div class="imp" id="imp"></div>'
+    + '<div class="f" id="fcard">Tocca una carta: qui sotto ti dico cosa dire.</div>'
+    + '<h2>I prezzi</h2><div id="prezzi"></div>'
+    + '<script>'
+    + 'var O=window.opener;'
+    + 'function esc(s){return s;}'
+    + 'function build(){var S=O.__SPESA;var d=document.getElementById("prezzi");var h="";'
+    + 'S.REPARTI.forEach(function(r){h+="<h2>"+r.n+"</h2><table>";'
+    + 'S.PRODOTTI.filter(function(p){return p.rep===r.k}).forEach(function(p){'
+    + 'h+="<tr><td>"+p.nome+"</td><td class=p>"+S.prezzoScritto(p.prezzo)+" "+p.al'
+    + '+"</td><td class=b><button data-f=\\""+p.id+"\\">finito</button></td></tr>"});h+="</table>"});'
+    + 'd.innerHTML=h;'
+    + 'Array.prototype.forEach.call(d.querySelectorAll("button"),function(b){b.onclick=function(){'
+    + 'O.__SPESA.toggleFinito(b.getAttribute("data-f"));b.classList.toggle("on");}});'
+    + 'var i=document.getElementById("imp");'
+    + 'S.IMPREVISTI.forEach(function(c){var b=document.createElement("button");b.innerHTML=c.d;'
+    + 'b.onclick=function(){O.__SPESA.imprevisto(c.t);document.getElementById("fcard").innerHTML='
+    + '"<b>Dici:</b> \\u00ab"+c.dice+"\\u00bb<br><b>Lui deve:</b> "+c.tocca;};i.appendChild(b)});}'
+    + 'function tick(){try{var S=O.__SPESA;var s=S.perCommesso();'
+    + 'document.getElementById("t").innerHTML=S.prezzoScritto(s.totale);'
+    + 'document.getElementById("tp").textContent=s.totale>0?S.prezzoParlato(s.totale):"\\u2014";'
+    + 'document.getElementById("car").innerHTML=s.righe.map(function(r){return "<li>"+r.testo+" \\u2014 "+S.prezzoScritto(r.costo)+"</li>"}).join("");'
+    + '}catch(e){}}'
+    + 'build();tick();setInterval(tick,700);'
+    + '<\/script></body></html>';
+
+  try{
+    finCom = window.open("", "bancospesa", "width=440,height=840");
+    if(!finCom){ avvisoPopup(); return; }
+    finCom.document.open(); finCom.document.write(h); finCom.document.close();
+  }catch(e){ avvisoPopup(); }
+}
+function avvisoPopup(){
+  var a = $("avviso");
+  a.classList.remove("hidden");
+  a.innerHTML = "<b>Il browser ha bloccato la finestra del commesso.</b> Permetti le finestre pop-up per questo sito "
+    + "e tocca <em>Riapri il banco</em>, oppure gioca in modo <em>Da solo</em>: i prezzi te li dice la pagina.";
+}
+
+/* ============================================================
+   AVVIO
+   ============================================================ */
+carica();
+renderStart();
+
+$("vai").onclick = entra;
+$("allacassa").onclick = allaCassa;
+$("ricomincia").onclick = function(){ mostra("s-start"); renderStart(); };
+$("dinuovo").onclick = function(){ mostra("s-start"); renderStart(); };
+$("formule1").onclick = apriFormule;
+$("formule2").onclick = apriFormule;
+$("formule3").onclick = apriFormule;
+$("chiudiFormule").onclick = function(){ try{ $("dlgFormule").close(); }catch(e){ $("dlgFormule").removeAttribute("open"); } };
+
+document.addEventListener("keydown", function(e){
+  if(e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+  if(e.key === "f" || e.key === "F"){ apriFormule(); }
+});
+
+/* il gancio per le prove e per la finestra del commesso */
+window.__SPESA = {
+  PRODOTTI:PRODOTTI, REPARTI:REPARTI, RICETTE:RICETTE, IMPREVISTI:IMPREVISTI,
+  QUANTITA:QUANTITA, AL_UNITA:AL_UNITA, PER_ID:PER_ID,
+  st:st, ric:ric, totale:totale, mancano:mancano, quanteNeHo:quanteNeHo,
+  prezzoScritto:prezzoScritto, prezzoParlato:prezzoParlato, nLettere:nLettere,
+  plurale:plurale, frasePezzo:frasePezzo, domandaPrezzo:domandaPrezzo,
+  imprevisto:imprevisto, toggleFinito:toggleFinito, entra:entra, allaCassa:allaCassa,
+  scegli:scegli, metti:metti, renderNegozio:renderNegozio,
+  perCommesso:function(){ return { totale:totale(), righe:st.carrello.slice(), finiti:st.finiti.slice() }; }
+};
+</script>
+</body>
+</html>
