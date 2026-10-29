@@ -54,7 +54,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "28 ottobre 2026, 11:34";
+var SALDI_AGGIORNATO = "29 ottobre 2026, 11:53";
 
 var SALDI = {
 
@@ -110,7 +110,7 @@ var SALDI = {
       "2026-10-23T12:00:00+02:00"
     ],
     prossime: [
-      { quando: "2026-10-29T15:30:00+01:00", fine: "2026-10-29T16:20:00+01:00", gestisci: "https://cal.com/booking/vKRaPgsGjRLKgBjqFdtFcp?changes=true" },
+      { quando: "2026-10-30T10:30:00+01:00", fine: "2026-10-30T11:20:00+01:00", gestisci: "https://cal.com/booking/wKVsQL3hguS6N7WTTEHjy8?changes=true" },
       { quando: "2026-11-02T16:00:00+01:00", fine: "2026-11-02T16:50:00+01:00", gestisci: "https://cal.com/booking/o8US4kfBMivoxjwkXL3vza?changes=true" }
     ]
   },
@@ -156,13 +156,13 @@ var SALDI = {
     pacchetto: 2,
     inizio: "2026-10-12",
     fatte_prima: 0,
-    fatte: 0,
-    prenotate: 1,
+    fatte: 1,
+    prenotate: 0,
     rimaste: 1,
-    passate: [],
-    prossime: [
-      { quando: "2026-10-28T12:00:00+01:00", fine: "2026-10-28T12:50:00+01:00", gestisci: "https://cal.com/booking/vryStFmozu1xUG8nyzCUdg?changes=true" }
-    ]
+    passate: [
+      "2026-10-28T12:00:00+01:00"
+    ],
+    prossime: []
   },
 
   "ellie-3mw": {
