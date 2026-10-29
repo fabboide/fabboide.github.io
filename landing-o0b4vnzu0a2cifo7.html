@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Talk with It</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a tutor's classroom. Big confident type, a live classroom you can play with, highlighter yellow on deep blue. */
+:root {
+  --bg: #F5F6FC;
+  --surface: #FFFFFF;
+  --ink: #141833;
+  --muted: #565C7C;
+  --line: #DCE0EF;
+  --blue: #3450F5;
+  --blue-fg: #FFFFFF;
+  --mark: #FFCB3D;
+  --mark-ink: #141833;
+  --good: #0F8A6A;
+  --good-bg: #DFF4EC;
+  --bad: #C2413A;
+  --bad-bg: #FBE5E3;
+  --band: #1B2150;
+  --band-fg: #F1F2FA;
+  --band-muted: #B6BBDB;
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r: 16px;
+  --ease: cubic-bezier(.2, .75, .2, 1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1229; --surface: #181C3A; --ink: #EEF0FA; --muted: #A5AAC9; --line: #2B3058;
+    --blue: #5B74FF; --blue-fg: #FFFFFF; --mark: #FFCB3D; --mark-ink: #141833;
+    --good: #4FD1A8; --good-bg: #113931; --bad: #FF8A80; --bad-bg: #3D1C24;
+    --band: #090B1D; --band-fg: #F1F2FA; --band-muted: #A5AAC9;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1229; --surface: #181C3A; --ink: #EEF0FA; --muted: #A5AAC9; --line: #2B3058;
+  --blue: #5B74FF; --blue-fg: #FFFFFF; --mark: #FFCB3D; --mark-ink: #141833;
+  --good: #4FD1A8; --good-bg: #113931; --bad: #FF8A80; --bad-bg: #3D1C24;
+  --band: #090B1D; --band-fg: #F1F2FA; --band-muted: #A5AAC9;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; overflow-x: hidden; }
+a { color: inherit; }
+button { font-family: inherit; }
+.wrap { max-width: 1160px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--display); line-height: 1.04; margin: 0; text-wrap: balance; letter-spacing: -0.025em; }
+h2 { font-size: clamp(2rem, 4.6vw, 3.3rem); font-weight: 800; }
+h3 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; }
+p { margin: 0; }
+.eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.btn { display: inline-flex; align-items: center; gap: 10px; font: 600 1rem/1 var(--body); padding: 16px 24px; border-radius: 999px; border: 2px solid var(--ink); text-decoration: none; cursor: pointer; transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 10px 0 -4px var(--mark); }
+.btn .arr { transition: transform .2s var(--ease); }
+.btn:hover .arr { transform: translateX(4px); }
+.btn:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); outline-offset: 3px; }
+.btn-primary { background: var(--ink); color: var(--bg); }
+.btn-ghost { background: transparent; color: var(--ink); }
+section { padding-block: clamp(64px, 9vw, 120px); }
+.flag { display: inline-block; width: 26px; height: 18px; border-radius: 4px; overflow: hidden; box-shadow: 0 0 0 1px rgba(20, 24, 51, .15); flex: none; }
+.flag svg { display: block; width: 100%; height: 100%; }
+
+/* reveal on scroll: resting state is visible, the animation plays once when it enters view */
+@keyframes up { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+@keyframes fromLeft { from { opacity: 0; transform: translateX(-70px) rotate(-2deg); } to { opacity: 1; transform: none; } }
+@keyframes fromRight { from { opacity: 0; transform: translateX(70px) rotate(2deg); } to { opacity: 1; transform: none; } }
+@keyframes pop { 0% { opacity: 0; transform: scale(.7); } 70% { transform: scale(1.06); } 100% { opacity: 1; transform: none; } }
+.reveal.in { animation: up .8s var(--ease) both; animation-delay: var(--d, 0s); }
+.reveal.left.in { animation-name: fromLeft; }
+.reveal.right.in { animation-name: fromRight; }
+.reveal.popin.in { animation-name: pop; animation-duration: .6s; }
+
+/* nav */
+nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .3s; }
+nav.scrolled { border-bottom-color: var(--line); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 16px; }
+.brand { font-family: var(--display); font-weight: 800; font-size: 1.35rem; letter-spacing: -0.02em; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+.brand b { background: var(--mark); color: var(--mark-ink); padding: 0 7px; border-radius: 7px; display: inline-block; transform: rotate(-4deg); transition: transform .3s var(--ease); }
+.brand:hover b { transform: rotate(4deg) scale(1.08); }
+.nav-links { display: flex; gap: 24px; align-items: center; font-weight: 500; font-size: 0.95rem; }
+.nav-links a { text-decoration: none; color: var(--muted); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a.btn-primary, .nav-links a.btn-primary:hover { color: var(--bg); }
+@media (max-width: 760px) { .nav-links a:not(.btn) { display: none; } }
+.nav-links .btn { padding: 11px 16px; font-size: 0.9rem; }
+
+/* hero */
+@keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes sweep { from { background-size: 0% 76%; } to { background-size: 100% 76%; } }
+@keyframes floaty { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-10px) rotate(.5deg); } }
+.hero { padding-block: clamp(28px, 5vw, 64px) clamp(48px, 7vw, 88px); }
+.hero .wrap { display: grid; grid-template-columns: 1.02fr 0.98fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
+@media (max-width: 960px) { .hero .wrap { grid-template-columns: 1fr; } }
+.hero-copy > * { animation: rise .8s var(--ease) both; }
+.hero-copy > :nth-child(2) { animation-delay: .08s; }
+.hero-copy > :nth-child(3) { animation-delay: .16s; }
+.hero-copy > :nth-child(4) { animation-delay: .24s; }
+.hero-copy > :nth-child(5) { animation-delay: .32s; }
+.hero-copy > :nth-child(6) { animation-delay: .4s; }
+.hero h1 { font-size: clamp(2.7rem, 6.4vw, 5.3rem); font-weight: 800; margin-top: 16px; }
+.mark { background-image: linear-gradient(var(--mark), var(--mark)); background-repeat: no-repeat; background-position: 0 60%; background-size: 100% 76%; color: var(--mark-ink); padding: 0 .1em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.hero h1 .mark { animation: sweep .9s .55s var(--ease) both; }
+.hero .lede { font-size: 1.18rem; color: var(--muted); margin-top: 22px; max-width: 34em; }
+.lang-word { display: inline-block; color: var(--ink); font-weight: 700; }
+.lang-word.flip { animation: rise .5s var(--ease); }
+
+.picker { margin-top: 26px; display: grid; gap: 10px; }
+.picker-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.seg-ctl { position: relative; display: inline-flex; gap: 4px; padding: 5px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 8px 24px -16px rgba(20, 24, 51, .4); }
+.seg-ind { position: absolute; top: 5px; bottom: 5px; left: 5px; border-radius: 999px; background: var(--ink); transition: transform .45s var(--ease), width .45s var(--ease); z-index: 0; }
+.seg-btn { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; border: 0; background: transparent; color: var(--ink); font-weight: 600; font-size: 0.98rem; padding: 10px 16px; border-radius: 999px; cursor: pointer; transition: color .3s; }
+.seg-btn[aria-pressed="true"] { color: var(--bg); }
+.avail { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-family: var(--mono); color: var(--muted); }
+.avail i { width: 9px; height: 9px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 4px var(--good-bg); }
+.avail.soon i { background: var(--mark); box-shadow: 0 0 0 4px color-mix(in srgb, var(--mark) 30%, transparent); }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+/* demo */
+.demo-col { min-width: 0; animation: rise .9s .3s var(--ease) both; }
+.demo { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 30px 70px -34px rgba(20, 24, 51, .55); overflow: hidden; animation: floaty 7s 1.4s ease-in-out infinite; }
+.demo:hover { animation-play-state: paused; }
+.demo-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.who { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--mark); color: var(--mark-ink); display: grid; place-items: center; font-weight: 800; font-family: var(--display); flex: none; }
+.who strong { display: block; font-size: 0.95rem; line-height: 1.2; }
+.who small { color: var(--muted); font-size: 0.8rem; }
+@keyframes blink { 50% { opacity: .35; } }
+.live { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--good); background: var(--good-bg); padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+.live::before { content: "●"; margin-right: 5px; animation: blink 1.4s infinite; }
+.tabs { position: relative; display: flex; gap: 2px; padding: 8px 10px 0; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.tab { border: 0; background: none; color: var(--muted); font-weight: 600; font-size: 0.9rem; padding: 10px 12px 12px; cursor: pointer; white-space: nowrap; transition: color .2s; }
+.tab[aria-selected="true"] { color: var(--ink); }
+.tab-ind { position: absolute; bottom: -1px; left: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--blue); transition: transform .4s var(--ease), width .4s var(--ease); }
+@keyframes slideIn { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: none; } }
+.stage { padding: 20px; min-height: 330px; }
+.stage.swap { animation: slideIn .45s var(--ease); }
+.demo-foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; padding: 12px 18px; border-top: 1px solid var(--line); background: var(--bg); font-size: 0.85rem; color: var(--muted); }
+.demo-foot label { display: inline-flex; align-items: center; gap: 8px; }
+.demo-foot select { font: 600 0.88rem var(--body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+.demo-caption { font-size: 0.88rem; color: var(--muted); margin-top: 16px; text-align: center; text-wrap: balance; }
+.demo-caption b { color: var(--ink); }
+
+/* roulette */
+.rou { display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; }
+@media (max-width: 520px) { .rou { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
+.wheel-box { position: relative; width: 190px; height: 190px; flex: none; }
+.wheel { position: absolute; inset: 0; border-radius: 50%; border: 6px solid var(--ink); background: conic-gradient(var(--mark) 0 60deg, var(--blue) 0 120deg, var(--mark) 0 180deg, var(--blue) 0 240deg, var(--mark) 0 300deg, var(--blue) 0 360deg); transition: transform 3.4s cubic-bezier(.12, .85, .18, 1); }
+.wheel .em { position: absolute; left: 50%; top: 50%; font-size: 1.45rem; line-height: 1; width: 30px; height: 30px; margin: -15px 0 0 -15px; display: grid; place-items: center; }
+.pointer { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 22px solid var(--ink); z-index: 2; }
+.hub { position: absolute; left: 50%; top: 50%; width: 68px; height: 68px; margin: -34px 0 0 -34px; border-radius: 50%; border: 4px solid var(--surface); background: var(--ink); color: var(--bg); font-weight: 700; font-size: .85rem; cursor: pointer; z-index: 2; transition: transform .2s var(--ease); }
+.hub:hover { transform: scale(1.08); }
+.hub[disabled] { cursor: default; }
+.task { display: grid; gap: 12px; min-width: 0; }
+.task .t-label { font-family: var(--mono); font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.task .t-topic { font-family: var(--display); font-weight: 800; font-size: 1.5rem; line-height: 1.1; }
+.task .t-topic.wait { color: var(--muted); font-weight: 600; font-size: 1.15rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 520px) { .chips { justify-content: center; } }
+.chip { background: var(--mark); color: var(--mark-ink); font-weight: 700; padding: 6px 12px; border-radius: 10px; animation: pop .5s var(--ease) both; }
+.timer { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: .95rem; }
+.ring { width: 34px; height: 34px; border-radius: 50%; background: conic-gradient(var(--blue) calc(var(--p, 1) * 360deg), var(--line) 0); display: grid; place-items: center; }
+.ring::after { content: ""; width: 24px; height: 24px; border-radius: 50%; background: var(--surface); }
+
+/* memory */
+.mem-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; }
+.mem-head strong { font-family: var(--display); font-size: 1.2rem; }
+.mem-head span { font-family: var(--mono); font-size: .85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.card { perspective: 700px; height: 72px; border: 0; padding: 0; background: none; cursor: pointer; }
+.card .in { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .5s var(--ease); }
+.card.up .in, .card.done .in { transform: rotateY(180deg); }
+.face { position: absolute; inset: 0; border-radius: 12px; display: grid; place-items: center; backface-visibility: hidden; -webkit-backface-visibility: hidden; font-weight: 700; padding: 4px; text-align: center; line-height: 1.15; }
+.face.front { background: var(--blue); color: var(--blue-fg); font-family: var(--display); font-size: 1.4rem; }
+.face.back { background: var(--bg); border: 2px solid var(--line); color: var(--ink); transform: rotateY(180deg); font-size: .92rem; }
+.face.back.emo { font-size: 1.8rem; }
+.card.done .face.back { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+.mem-done { margin-top: 14px; display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 36px; }
+.mem-done p { color: var(--good); font-weight: 700; }
+
+/* word rush */
+.rush-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.rush-head strong { font-family: var(--display); font-size: 1.15rem; }
+.stats { display: flex; gap: 14px; font-family: var(--mono); font-size: .85rem; font-variant-numeric: tabular-nums; color: var(--muted); }
+.stats b { color: var(--ink); }
+.arena { position: relative; height: 250px; border-radius: 14px; background: var(--bg); border: 1px dashed var(--line); overflow: hidden; }
+.w { position: absolute; left: 100%; top: 0; white-space: nowrap; padding: 8px 14px; border-radius: 999px; background: var(--surface); border: 2px solid var(--line); color: var(--ink); font-weight: 700; cursor: pointer; font-size: .95rem; }
+.w.hit { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+.w.miss { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+.overlay { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 12px; text-align: center; background: color-mix(in srgb, var(--bg) 88%, transparent); z-index: 3; padding: 16px; }
+.overlay p { font-weight: 600; }
+.overlay .big-score { font-family: var(--display); font-weight: 800; font-size: 2.6rem; line-height: 1; }
+.play { font: 700 1rem var(--body); background: var(--ink); color: var(--bg); border: 0; border-radius: 999px; padding: 12px 22px; cursor: pointer; transition: transform .2s var(--ease); }
+.play:hover { transform: scale(1.05); }
+.small-btn { font: 600 .85rem var(--body); background: var(--ink); color: var(--bg); border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+
+/* marquee */
+@keyframes scrollX { to { transform: translateX(-50%); } }
+.marquee-wrap { overflow: hidden; padding-block: 12px; position: relative; z-index: 2; }
+.marquee { background: var(--mark); color: var(--mark-ink); overflow: hidden; border-block: 2px solid var(--ink); transform: rotate(-1.2deg); margin-block: 8px; }
+.marquee .track { display: flex; width: max-content; animation: scrollX 32s linear infinite; }
+.marquee span { font-family: var(--display); font-weight: 800; font-size: clamp(1.2rem, 2.4vw, 1.7rem); padding: 14px 22px; white-space: nowrap; }
+.marquee span::after { content: "✦"; margin-left: 44px; font-size: .8em; }
+
+/* contrast band */
+.band { background: var(--band); color: var(--band-fg); }
+.band .eyebrow { color: var(--band-muted); }
+.band h2 { max-width: 16em; margin-top: 14px; }
+.vs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px; }
+@media (max-width: 760px) { .vs { grid-template-columns: 1fr; } }
+.vs > div { border-radius: var(--r); padding: 30px; min-width: 0; }
+.old { border: 1px dashed rgba(241, 242, 250, .3); }
+.new { background: var(--mark); color: var(--mark-ink); }
+.vs h3 { margin-bottom: 18px; }
+.vs ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.vs li { display: grid; grid-template-columns: 24px 1fr; gap: 8px; }
+.old li { color: var(--band-muted); text-decoration: line-through; text-decoration-color: rgba(241, 242, 250, .35); }
+.old li::before { content: "✕"; opacity: .6; text-decoration: none; }
+.new li::before { content: "✓"; font-weight: 800; }
+
+/* heads */
+.head { display: grid; gap: 14px; max-width: 46em; margin-bottom: 48px; }
+.head p { color: var(--muted); font-size: 1.1rem; }
+
+/* how */
+.how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; counter-reset: s; margin: 0; padding: 0; }
+@media (max-width: 820px) { .how { grid-template-columns: 1fr; } }
+.how li { list-style: none; counter-increment: s; display: grid; gap: 10px; align-content: start; border-top: 3px solid var(--ink); padding-top: 22px; position: relative; }
+.how li::before { content: counter(s); position: absolute; top: -22px; right: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--mark); color: var(--mark-ink); font-family: var(--display); font-weight: 800; display: grid; place-items: center; }
+.how p { color: var(--muted); }
+
+/* languages section */
+.combo { display: grid; grid-template-columns: 1fr auto 1fr; gap: clamp(16px, 3vw, 36px); align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: clamp(22px, 4vw, 40px); }
+@media (max-width: 800px) { .combo { grid-template-columns: 1fr; } .combo .x { justify-self: center; } }
+.combo h3 { margin-bottom: 14px; }
+.combo .col { min-width: 0; }
+.lang-list { display: grid; gap: 10px; }
+.lang-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; background: var(--bg); border: 1px solid var(--line); font-weight: 700; font-size: 1.05rem; }
+.lang-item .flag { width: 34px; height: 23px; }
+.x { width: 54px; height: 54px; border-radius: 50%; background: var(--ink); color: var(--bg); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 1.5rem; }
+.ui-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.ui-chip { padding: 10px 16px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); color: var(--ink); font-weight: 700; }
+.ui-chip.alt { background: var(--bg); color: var(--ink); }
+.combo-note { margin-top: 22px; color: var(--muted); max-width: 60ch; }
+.combo-note b { color: var(--ink); }
+
+/* features */
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 920px) { .features { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 580px) { .features { grid-template-columns: 1fr; } }
+.feature { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 28px; display: grid; gap: 10px; align-content: start; transition: transform .3s var(--ease), border-color .3s; }
+.feature:hover { transform: translateY(-6px); border-color: var(--blue); }
+.feature .tag { font-family: var(--mono); font-size: .75rem; color: var(--blue); letter-spacing: .08em; font-weight: 500; }
+.feature p { color: var(--muted); font-size: .98rem; }
+
+/* calculator */
+.calc { display: grid; grid-template-columns: 1fr 1fr; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; }
+@media (max-width: 860px) { .calc { grid-template-columns: 1fr; } }
+.calc-in { padding: clamp(24px, 4vw, 40px); display: grid; gap: 26px; align-content: start; }
+.field { display: grid; gap: 8px; }
+.field label { display: flex; justify-content: space-between; gap: 12px; font-weight: 600; }
+.field output { font-family: var(--mono); font-variant-numeric: tabular-nums; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 2px 10px; font-weight: 500; white-space: nowrap; }
+input[type="range"] { width: 100%; accent-color: var(--blue); }
+.calc-out { background: var(--mark); color: var(--mark-ink); padding: clamp(24px, 4vw, 40px); display: grid; gap: 22px; align-content: center; }
+.big { font-family: var(--display); font-weight: 800; font-size: clamp(2.6rem, 6vw, 4.2rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.calc-out .row { display: grid; gap: 6px; }
+.calc-out .lbl { font-family: var(--mono); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; opacity: .75; }
+
+/* founder */
+.founder { display: grid; grid-template-columns: auto 1fr; gap: clamp(24px, 4vw, 48px); align-items: center; }
+@media (max-width: 700px) { .founder { grid-template-columns: 1fr; } }
+.badge-f { width: 124px; height: 124px; border-radius: 30px; background: var(--blue); color: var(--blue-fg); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 3.2rem; transform: rotate(-5deg); box-shadow: 10px 10px 0 var(--mark); }
+.founder blockquote { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(1.5rem, 3.1vw, 2.2rem); line-height: 1.22; letter-spacing: -0.015em; text-wrap: balance; }
+.founder .by { margin-top: 18px; color: var(--muted); }
+.founder .by strong { color: var(--ink); }
+
+/* pricing */
+.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: stretch; }
+@media (max-width: 920px) { .plans { grid-template-columns: 1fr; max-width: 480px; } }
+.plan { border-radius: 22px; padding: 32px; display: grid; gap: 16px; grid-template-rows: auto auto auto 1fr auto; position: relative; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+.plan:hover { transform: translateY(-6px); box-shadow: 0 26px 50px -30px rgba(20, 24, 51, .5); }
+.plan.p1, .plan.p3 { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+.plan.p2 { background: var(--surface); color: var(--ink); border: 2px solid var(--ink); }
+.pop-tag { position: absolute; top: -15px; left: 28px; background: var(--mark); color: var(--mark-ink); font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; }
+.price { font-family: var(--display); font-weight: 800; font-size: 3.4rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.price small { font-family: var(--body); font-size: 1rem; font-weight: 500; opacity: .75; }
+.seats { font-weight: 700; display: inline-flex; align-items: center; gap: 8px; }
+.seats::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: currentColor; opacity: .5; }
+.plan ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; align-content: start; font-size: .98rem; opacity: .9; }
+.plan li::before { content: "✓"; font-weight: 800; margin-right: 9px; color: var(--blue); }
+.plan .btn { justify-content: center; }
+.p1 .btn, .p3 .btn { background: transparent; color: var(--ink); border-color: var(--ink); }
+.p2 .btn { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.plan .btn:hover { box-shadow: none; }
+
+/* faq */
+.faq { display: grid; border-top: 1px solid var(--line); max-width: 820px; }
+.faq details { border-bottom: 1px solid var(--line); padding-block: 20px; }
+.faq summary { cursor: pointer; font-family: var(--display); font-weight: 700; font-size: 1.2rem; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--mono); color: var(--blue); font-size: 1.3rem; line-height: 1; transition: transform .3s var(--ease); }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { margin-top: 12px; color: var(--muted); max-width: 62ch; animation: rise .4s var(--ease); }
+
+/* final */
+.final .wrap { display: grid; gap: 24px; }
+.final h2 { font-size: clamp(2.6rem, 7vw, 5rem); max-width: 12em; }
+.final p { color: var(--band-muted); font-size: 1.15rem; max-width: 36em; }
+.final .btn-primary { background: var(--mark); color: var(--mark-ink); border-color: var(--mark); }
+.final .btn:hover { box-shadow: 0 10px 0 -4px var(--blue); }
+footer { padding-block: 28px; color: var(--muted); font-size: .88rem; }
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Talk with <b>It</b></a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#languages">Languages</a>
+      <a href="#math">The math</a>
+      <a href="#pricing">Pricing</a>
+      <a class="btn btn-primary" href="#pricing">Get your classroom</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">For online language tutors</p>
+      <h1>Stop preparing lessons. <span class="mark">Start charging more.</span></h1>
+      <p class="lede">Your <span class="lang-word" id="langWord">Spanish</span> classroom, ready to teach: a complete curriculum from A1 to C1, packed with games and speaking activities your students actually enjoy. Built by a Preply Super Tutor who charges $60 an hour and barely prepares a lesson anymore.</p>
+      <div class="picker">
+        <span class="eyebrow">What do you teach?</span>
+        <div class="picker-row">
+          <div class="seg-ctl" id="langCtl" role="group" aria-label="Language you teach">
+            <span class="seg-ind" id="langInd"></span>
+            <button class="seg-btn" data-lang="es" aria-pressed="true"><span class="flag" data-flag="es"></span>Spanish</button>
+            <button class="seg-btn" data-lang="fr" aria-pressed="false"><span class="flag" data-flag="fr"></span>French</button>
+            <button class="seg-btn" data-lang="it" aria-pressed="false"><span class="flag" data-flag="it"></span>Italian</button>
+          </div>
+          <span class="avail" id="avail"><i></i><span>Ready to teach</span></span>
+        </div>
+      </div>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#pricing">Get your classroom <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="#math">See how it pays for itself</a>
+      </div>
+    </div>
+
+    <div class="demo-col">
+      <div class="demo" aria-label="Example of a live lesson in the classroom">
+        <div class="demo-top">
+          <div class="who">
+            <div class="avatar" id="avatar">E</div>
+            <div><strong id="studentName">Emma</strong><small id="studentMeta">Spanish A2 · El fin de semana</small></div>
+          </div>
+          <span class="live" id="liveLbl">Live lesson</span>
+        </div>
+        <div class="tabs" role="tablist" id="tabs">
+          <button class="tab" role="tab" data-tab="roulette" aria-selected="true">Speaking roulette</button>
+          <button class="tab" role="tab" data-tab="memory" aria-selected="false">Memory</button>
+          <button class="tab" role="tab" data-tab="rush" aria-selected="false">Word rush</button>
+          <span class="tab-ind" id="tabInd"></span>
+        </div>
+        <div class="stage" id="stage"></div>
+        <div class="demo-foot">
+          <label for="uiLang">Instructions in
+            <select id="uiLang">
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="it">Italiano</option>
+              <option value="de">Deutsch</option>
+              <option value="pt">Português</option>
+            </select>
+          </label>
+          <span>Try it, it's live</span>
+        </div>
+      </div>
+      <p class="demo-caption">Teaching <b id="capLang">Spanish</b> to a German speaker? Set the instructions to Deutsch. Or keep everything in English.</p>
+    </div>
+  </div>
+</header>
+
+<div class="marquee-wrap"><div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>¡Hola!</span><span>Zero prep</span><span>Bonjour !</span><span>A1 to C1</span><span>Ciao!</span><span>Charge more</span><span>¿Qué tal?</span><span>Students who stay</span><span>Ça va ?</span><span>Come va?</span>
+    <span>¡Hola!</span><span>Zero prep</span><span>Bonjour !</span><span>A1 to C1</span><span>Ciao!</span><span>Charge more</span><span>¿Qué tal?</span><span>Students who stay</span><span>Ça va ?</span><span>Come va?</span>
+  </div>
+</div></div>
+
+<section class="band" style="margin-top:-12px">
+  <div class="wrap">
+    <p class="eyebrow reveal">Still teaching with PDFs?</p>
+    <h2 class="reveal" style="--d:.08s">Your students notice. They're scratching their knees and checking the clock.</h2>
+    <div class="vs">
+      <div class="old reveal left">
+        <h3>The old way</h3>
+        <ul>
+          <li>An hour of prep for every hour you teach</li>
+          <li>PDFs and worksheets that look like 1995</li>
+          <li>Sharing a document and hoping they stay awake</li>
+          <li>Students who drop after five lessons</li>
+          <li>Stuck at the same rate as everyone else</li>
+        </ul>
+      </div>
+      <div class="new reveal right" style="--d:.12s">
+        <h3>Your classroom</h3>
+        <ul>
+          <li>Open today's lesson. It's already done.</li>
+          <li>Games and speaking tasks that react in real time</li>
+          <li>Every student has their own page and their next lesson</li>
+          <li>Lessons that feel premium, so students stay</li>
+          <li>A product that justifies a higher rate</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow reveal">How it works</p>
+      <h2 class="reveal" style="--d:.06s">Three steps. Zero prep.</h2>
+    </div>
+    <ol class="how">
+      <li class="reveal" style="--d:0s"><h3>Add your students</h3><p>Name and email. Each one gets a private page, with no app to install and no password to forget.</p></li>
+      <li class="reveal" style="--d:.12s"><h3>Pick today's lesson</h3><p>Choose the level and the unit. The 50-minute plan and every activity are already there, in order.</p></li>
+      <li class="reveal" style="--d:.24s"><h3>Teach</h3><p>Share the classroom on Preply, Zoom or Meet. Your student plays, speaks and answers. The next lesson is already waiting on their page.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="languages" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow reveal">Languages</p>
+      <h2 class="reveal" style="--d:.06s">Your language. Their language.</h2>
+      <p class="reveal" style="--d:.12s">Pick the language you teach, then pick the language of the instructions. Every activity follows.</p>
+    </div>
+    <div class="combo reveal popin">
+      <div class="col">
+        <h3>You teach</h3>
+        <div class="lang-list">
+          <div class="lang-item"><span class="flag" data-flag="es"></span>Spanish</div>
+          <div class="lang-item"><span class="flag" data-flag="fr"></span>French</div>
+          <div class="lang-item"><span class="flag" data-flag="it"></span>Italian</div>
+        </div>
+      </div>
+      <div class="x" aria-hidden="true">×</div>
+      <div class="col">
+        <h3>Instructions in</h3>
+        <div class="ui-chips">
+          <span class="ui-chip">English</span><span class="ui-chip alt">Español</span><span class="ui-chip">Français</span><span class="ui-chip alt">Italiano</span><span class="ui-chip">Deutsch</span><span class="ui-chip alt">Português</span>
+        </div>
+        <p class="combo-note">Teaching Spanish to a French speaker? Explain in <b>French</b>. Mixed group from everywhere? Use <b>English</b>. Advanced student? Go <b>full immersion</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow reveal">What's inside</p>
+      <h2 class="reveal" style="--d:.06s">Everything you need to teach. Nothing you have to build.</h2>
+    </div>
+    <div class="features">
+      <div class="feature reveal" style="--d:0s"><span class="tag">CURRICULUM</span><h3>A1 to C1, ready to teach</h3><p>A full curriculum split into 50-minute lessons, with a clear plan for warm-up, practice and speaking.</p></div>
+      <div class="feature reveal" style="--d:.08s"><span class="tag">ACTIVITIES</span><h3>Games, not worksheets</h3><p>Speaking roulette, memory, word rush, role plays. Students move, play and talk instead of filling gaps.</p></div>
+      <div class="feature reveal" style="--d:.16s"><span class="tag">STUDENTS</span><h3>A page for every student</h3><p>Their next lesson, their activities and their homework, in one link they can open anywhere.</p></div>
+      <div class="feature reveal" style="--d:0s"><span class="tag">METHOD</span><h3>Task-based by design</h3><p>Built on task-based language teaching by a linguist, so students speak from the very first lesson.</p></div>
+      <div class="feature reveal" style="--d:.08s"><span class="tag">PLATFORMS</span><h3>Works where you work</h3><p>Use it with Preply, italki, Zoom, Meet or your private students. It's your tool, not a new marketplace.</p></div>
+      <div class="feature reveal" style="--d:.16s"><span class="tag">LANGUAGES</span><h3>Spanish, French, Italian</h3><p>Same method, same classroom. Instructions in English, in your student's language, or full immersion.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="math" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow reveal">The math</p>
+      <h2 class="reveal" style="--d:.06s">One lesson pays for the whole month.</h2>
+      <p class="reveal" style="--d:.12s">Move the sliders with your own numbers.</p>
+    </div>
+    <div class="calc reveal popin">
+      <div class="calc-in">
+        <div class="field">
+          <label for="rate">Your hourly rate <output id="rateOut">$40</output></label>
+          <input type="range" id="rate" min="10" max="80" step="1" value="40">
+        </div>
+        <div class="field">
+          <label for="lessons">Lessons per week <output id="lessonsOut">20</output></label>
+          <input type="range" id="lessons" min="2" max="40" step="1" value="20">
+        </div>
+        <div class="field">
+          <label for="prep">Minutes you spend preparing each lesson <output id="prepOut">30 min</output></label>
+          <input type="range" id="prep" min="5" max="60" step="5" value="30">
+        </div>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <div class="row">
+          <span class="lbl">Lessons to cover $40/month</span>
+          <span class="big"><span id="cover">1</span> <span id="coverUnit">lesson</span></span>
+        </div>
+        <div class="row">
+          <span class="lbl">Prep time you get back each month</span>
+          <span class="big"><span id="hours">43</span> hours</span>
+        </div>
+        <p>That's about <strong id="worth">$1,733</strong> of your time, every month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap founder">
+    <div class="badge-f reveal popin" aria-hidden="true">F</div>
+    <div class="reveal right">
+      <blockquote>“I charge $60 an hour and I barely prepare anymore. I built this classroom for myself. Now it's yours.”</blockquote>
+      <p class="by"><strong>Fabio</strong> · Linguist and Preply Super Tutor</p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow reveal">Pricing</p>
+      <h2 class="reveal" style="--d:.06s">Pick the plan that fits your students.</h2>
+      <p class="reveal" style="--d:.12s">Every plan includes the full curriculum and every activity. You only choose how many students get their own page.</p>
+    </div>
+    <div class="plans">
+      <div class="plan p1 reveal" style="--d:0s">
+        <h3>Starter</h3>
+        <div class="price">$40<small> / month</small></div>
+        <div class="seats">Up to 5 students</div>
+        <ul><li>Full curriculum A1 to C1</li><li>All games and activities</li><li>A private page per student</li></ul>
+        <a class="btn" href="#join">Get Starter</a>
+      </div>
+      <div class="plan p2 reveal" style="--d:.1s">
+        <span class="pop-tag">Most tutors</span>
+        <h3>Plus</h3>
+        <div class="price">$55<small> / month</small></div>
+        <div class="seats">Up to 10 students</div>
+        <ul><li>Everything in Starter</li><li>Room for a full weekly schedule</li><li>Homework on each student page</li></ul>
+        <a class="btn" href="#join">Get Plus</a>
+      </div>
+      <div class="plan p3 reveal" style="--d:.2s">
+        <h3>Pro</h3>
+        <div class="price">$70<small> / month</small></div>
+        <div class="seats">Up to 20 students</div>
+        <ul><li>Everything in Plus</li><li>For full-time tutors</li><li>Every new language included</li></ul>
+        <a class="btn" href="#join">Get Pro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><p class="eyebrow reveal">Questions</p><h2 class="reveal" style="--d:.06s">Before you ask.</h2></div>
+    <div class="faq reveal">
+      <details><summary>Does it replace Preply?</summary><p>No. It's a tool for you, not a marketplace. Keep teaching on Preply, italki or with your private students, and open the classroom during the lesson.</p></details>
+      <details><summary>Do I really not need to prepare anything?</summary><p>Every lesson comes with a 50-minute plan and all the activities, in order. Open it, glance at the plan, teach.</p></details>
+      <details><summary>Which languages can I teach?</summary><p>Spanish, French and Italian. Choose yours when you sign up.</p></details>
+      <details><summary>Can the instructions be in my student's language?</summary><p>Yes. Set the instructions in English, Español, Français, Italiano, Deutsch or Português, or go full immersion in the language you teach.</p></details>
+      <details><summary>What do my students need?</summary><p>A browser and the link to their page. No app, no account to set up, no password.</p></details>
+      <details><summary>Can I change plan later?</summary><p>Yes. Move up when you get more students, move down when you need to.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="band final" id="join">
+  <div class="wrap">
+    <p class="eyebrow reveal">Your turn</p>
+    <h2 class="reveal" style="--d:.06s">Charge more. <span class="mark">Prepare nothing.</span></h2>
+    <p class="reveal" style="--d:.12s">Pick your language, open your classroom and teach your next lesson without preparing it.</p>
+    <div class="reveal" style="--d:.18s"><a class="btn btn-primary" href="#pricing">Get your classroom <span class="arr">→</span></a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><span>Talk with It · 2026</span><span>Made by tutors, for tutors.</span></div>
+</footer>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* Flags (SVG, so they render on every system) */
+  var FLAGS = {
+    es: '<svg viewBox="0 0 3 2"><rect width="3" height="2" fill="#AA151B"/><rect y=".5" width="3" height="1" fill="#F1BF00"/></svg>',
+    fr: '<svg viewBox="0 0 3 2"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#FFFFFF"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>',
+    it: '<svg viewBox="0 0 3 2"><rect width="1" height="2" fill="#009246"/><rect x="1" width="1" height="2" fill="#FFFFFF"/><rect x="2" width="1" height="2" fill="#CE2B37"/></svg>'
+  };
+  document.querySelectorAll("[data-flag]").forEach(function (el) { el.innerHTML = FLAGS[el.dataset.flag]; });
+
+  /* Content per language you teach. Set avail to true when a language is ready to sell. */
+  var LANGS = {
+    es: { name: "Spanish", avail: true, student: "Emma", level: "A2", lesson: "El fin de semana",
+      topics: [["🏖️", "Tu último fin de semana"], ["🍝", "Tu comida favorita"], ["✈️", "Un viaje inolvidable"], ["⏰", "Tu rutina de la mañana"], ["🎬", "Tu película favorita"], ["🏙️", "Tu ciudad ideal"]],
+      words: ["ayer", "después", "me encantó", "aunque", "por fin", "de repente"],
+      pairs: [["🐶", "el perro"], ["🍎", "la manzana"], ["🏠", "la casa"], ["☀️", "el sol"], ["📚", "el libro"], ["🚲", "la bici"]],
+      food: ["pan", "queso", "tomate", "arroz", "pollo", "naranja"], other: ["coche", "mesa", "zapato", "lluvia", "verde", "ventana"] },
+    fr: { name: "French", avail: false, student: "Lukas", level: "A2", lesson: "Le week-end",
+      topics: [["🏖️", "Ton dernier week-end"], ["🍝", "Ton plat préféré"], ["✈️", "Un voyage inoubliable"], ["⏰", "Ta routine du matin"], ["🎬", "Ton film préféré"], ["🏙️", "Ta ville idéale"]],
+      words: ["hier", "ensuite", "j'ai adoré", "même si", "enfin", "tout à coup"],
+      pairs: [["🐶", "le chien"], ["🍎", "la pomme"], ["🏠", "la maison"], ["☀️", "le soleil"], ["📚", "le livre"], ["🚲", "le vélo"]],
+      food: ["pain", "fromage", "tomate", "riz", "poulet", "orange"], other: ["voiture", "table", "chaussure", "pluie", "vert", "fenêtre"] },
+    it: { name: "Italian", avail: false, student: "Sarah", level: "A2", lesson: "Il weekend",
+      topics: [["🏖️", "Il tuo ultimo weekend"], ["🍝", "Il tuo piatto preferito"], ["✈️", "Un viaggio indimenticabile"], ["⏰", "La tua routine del mattino"], ["🎬", "Il tuo film preferito"], ["🏙️", "La tua città ideale"]],
+      words: ["ieri", "poi", "mi è piaciuto", "anche se", "finalmente", "all'improvviso"],
+      pairs: [["🐶", "il cane"], ["🍎", "la mela"], ["🏠", "la casa"], ["☀️", "il sole"], ["📚", "il libro"], ["🚲", "la bici"]],
+      food: ["pane", "formaggio", "pomodoro", "riso", "pollo", "arancia"], other: ["macchina", "tavolo", "scarpa", "pioggia", "verde", "finestra"] }
+  };
+
+  /* Instruction language strings */
+  var UI = {
+    en: { tabs: ["Speaking roulette", "Memory", "Word rush"], spin: "Spin", wait: "Spin the wheel to get a topic", speak: "Talk for 60 seconds about", use: "Use these words", up: "Time's up! Great job.", mem: "Find the pairs", pairs: "Pairs", again: "Play again", memDone: "All pairs found!", rush: "Tap only the food words", start: "Start", score: "Score", time: "Time", final: "Final score", live: "Live lesson" },
+    es: { tabs: ["Ruleta para hablar", "Memoria", "Carrera de palabras"], spin: "Girar", wait: "Gira la ruleta para tener un tema", speak: "Habla 60 segundos sobre", use: "Usa estas palabras", up: "¡Se acabó el tiempo! Muy bien.", mem: "Encuentra las parejas", pairs: "Parejas", again: "Jugar otra vez", memDone: "¡Todas las parejas!", rush: "Toca solo las palabras de comida", start: "Empezar", score: "Puntos", time: "Tiempo", final: "Puntuación final", live: "Clase en directo" },
+    fr: { tabs: ["Roulette de conversation", "Memory", "Course aux mots"], spin: "Tourner", wait: "Fais tourner la roue pour avoir un sujet", speak: "Parle 60 secondes de", use: "Utilise ces mots", up: "Temps écoulé ! Bravo.", mem: "Trouve les paires", pairs: "Paires", again: "Rejouer", memDone: "Toutes les paires trouvées !", rush: "Touche seulement les mots de nourriture", start: "Commencer", score: "Score", time: "Temps", final: "Score final", live: "Cours en direct" },
+    it: { tabs: ["Roulette per parlare", "Memory", "Corsa di parole"], spin: "Gira", wait: "Gira la ruota per avere un argomento", speak: "Parla 60 secondi di", use: "Usa queste parole", up: "Tempo scaduto! Bravissimo.", mem: "Trova le coppie", pairs: "Coppie", again: "Gioca ancora", memDone: "Tutte le coppie trovate!", rush: "Tocca solo le parole di cibo", start: "Inizia", score: "Punti", time: "Tempo", final: "Punteggio finale", live: "Lezione dal vivo" },
+    de: { tabs: ["Sprech-Roulette", "Memory", "Wortrennen"], spin: "Drehen", wait: "Dreh das Rad für ein Thema", speak: "Sprich 60 Sekunden über", use: "Benutze diese Wörter", up: "Die Zeit ist um! Super.", mem: "Finde die Paare", pairs: "Paare", again: "Nochmal spielen", memDone: "Alle Paare gefunden!", rush: "Tippe nur auf Wörter für Essen", start: "Start", score: "Punkte", time: "Zeit", final: "Endstand", live: "Live-Unterricht" },
+    pt: { tabs: ["Roleta de conversa", "Memória", "Corrida de palavras"], spin: "Girar", wait: "Gire a roleta para ter um tema", speak: "Fale 60 segundos sobre", use: "Use estas palavras", up: "Acabou o tempo! Muito bem.", mem: "Encontre os pares", pairs: "Pares", again: "Jogar de novo", memDone: "Todos os pares encontrados!", rush: "Toque só nas palavras de comida", start: "Começar", score: "Pontos", time: "Tempo", final: "Pontuação final", live: "Aula ao vivo" }
+  };
+
+  var state = { lang: "es", ui: "en", tab: "roulette", rot: 0 };
+  var timers = [];
+  function later(fn, ms) { var t = setTimeout(fn, ms); timers.push(t); return t; }
+  function every(fn, ms) { var t = setInterval(fn, ms); timers.push(t); return t; }
+  function stopAll() {
+    timers.forEach(function (t) { clearTimeout(t); clearInterval(t); });
+    timers = [];
+    document.querySelectorAll(".w").forEach(function (w) { w.remove(); });
+  }
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+
+  /* sliding indicators */
+  function moveInd(ind, btn, axisPad) {
+    ind.style.width = btn.offsetWidth + "px";
+    ind.style.transform = "translateX(" + (btn.offsetLeft - axisPad) + "px)";
+  }
+  function placeLangInd() { moveInd($("langInd"), document.querySelector('.seg-btn[aria-pressed="true"]'), 5); }
+  function placeTabInd() { moveInd($("tabInd"), document.querySelector('.tab[aria-selected="true"]'), 0); }
+
+  /* render the demo */
+  function render(animate) {
+    stopAll();
+    var L = LANGS[state.lang], U = UI[state.ui];
+    $("avatar").textContent = L.student[0];
+    $("studentName").textContent = L.student;
+    $("studentMeta").textContent = L.name + " " + L.level + " · " + L.lesson;
+    $("liveLbl").textContent = U.live;
+    document.querySelectorAll(".tab").forEach(function (t, i) { t.textContent = U.tabs[i]; });
+    placeTabInd();
+    var stage = $("stage");
+    stage.innerHTML = "";
+    if (state.tab === "roulette") roulette(stage, L, U);
+    if (state.tab === "memory") memory(stage, L, U);
+    if (state.tab === "rush") rush(stage, L, U);
+    if (animate) { stage.classList.remove("swap"); void stage.offsetWidth; stage.classList.add("swap"); }
+  }
+
+  function roulette(stage, L, U) {
+    var box = el("div", "rou");
+    var wb = el("div", "wheel-box");
+    var wheel = el("div", "wheel");
+    wheel.style.transform = "rotate(" + state.rot + "deg)";
+    L.topics.forEach(function (tp, i) {
+      var a = i * 60 + 30;
+      var s = el("span", "em", tp[0]);
+      s.style.transform = "rotate(" + a + "deg) translateY(-60px) rotate(" + (-a) + "deg)";
+      wheel.append(s);
+    });
+    var hub = el("button", "hub", U.spin);
+    hub.type = "button";
+    wb.append(wheel, el("span", "pointer"), hub);
+    var task = el("div", "task");
+    var lbl = el("span", "t-label", U.speak);
+    var topic = el("p", "t-topic wait", U.wait);
+    var chipsLbl = el("span", "t-label", U.use); chipsLbl.hidden = true;
+    var chips = el("div", "chips");
+    var timer = el("div", "timer"); timer.hidden = true;
+    var ring = el("span", "ring"); var secs = el("span", null, "60s");
+    timer.append(ring, secs);
+    task.append(lbl, topic, chipsLbl, chips, timer);
+    box.append(wb, task);
+    stage.append(box);
+
+    hub.addEventListener("click", function () {
+      stopAll();
+      hub.disabled = true;
+      chips.innerHTML = ""; chipsLbl.hidden = true; timer.hidden = true;
+      topic.className = "t-topic wait"; topic.textContent = "…";
+      var k = Math.floor(Math.random() * 6);
+      var center = k * 60 + 30;
+      var cur = ((state.rot % 360) + 360) % 360;
+      var delta = ((360 - center - cur) % 360 + 360) % 360;
+      var jitter = Math.random() * 30 - 15;
+      state.rot += 1440 + delta + jitter;
+      wheel.style.transform = "rotate(" + state.rot + "deg)";
+      later(function () {
+        hub.disabled = false;
+        topic.className = "t-topic"; topic.textContent = L.topics[k][1];
+        chipsLbl.hidden = false;
+        shuffle(L.words).slice(0, 3).forEach(function (w, i) {
+          var c = el("span", "chip", w); c.style.animationDelay = (i * 0.12) + "s"; chips.append(c);
+        });
+        timer.hidden = false;
+        var left = 60; ring.style.setProperty("--p", 1); secs.textContent = "60s";
+        var iv = every(function () {
+          left--; ring.style.setProperty("--p", left / 60); secs.textContent = left + "s";
+          if (left <= 0) { clearInterval(iv); secs.textContent = U.up; }
+        }, 1000);
+      }, 3450);
+    });
+  }
+
+  function memory(stage, L, U) {
+    var head = el("div", "mem-head");
+    var count = el("span", null, U.pairs + " 0/6");
+    head.append(el("strong", null, U.mem), count);
+    var grid = el("div", "grid");
+    var cards = [];
+    L.pairs.forEach(function (p, i) { cards.push({ id: i, txt: p[0], emo: true }); cards.push({ id: i, txt: p[1], emo: false }); });
+    cards = shuffle(cards);
+    var open = [], found = 0, lock = false;
+    var foot = el("div", "mem-done");
+    cards.forEach(function (c) {
+      var b = el("button", "card"); b.type = "button"; b.setAttribute("aria-label", "Card");
+      var inner = el("div", "in");
+      inner.append(el("div", "face front", "?"), el("div", "face back" + (c.emo ? " emo" : ""), c.txt));
+      b.append(inner);
+      b.addEventListener("click", function () {
+        if (lock || b.classList.contains("up") || b.classList.contains("done")) return;
+        b.classList.add("up"); open.push({ b: b, c: c });
+        if (open.length === 2) {
+          lock = true;
+          var a = open[0], z = open[1];
+          if (a.c.id === z.c.id && a.c.emo !== z.c.emo) {
+            later(function () {
+              a.b.classList.add("done"); z.b.classList.add("done");
+              found++; count.textContent = U.pairs + " " + found + "/6";
+              open = []; lock = false;
+              if (found === 6) {
+                foot.innerHTML = "";
+                var again = el("button", "small-btn", U.again); again.type = "button";
+                again.addEventListener("click", function () { render(true); });
+                foot.append(el("p", null, U.memDone), again);
+              }
+            }, 350);
+          } else {
+            later(function () { a.b.classList.remove("up"); z.b.classList.remove("up"); open = []; lock = false; }, 850);
+          }
+        }
+      });
+      grid.append(b);
+    });
+    stage.append(head, grid, foot);
+  }
+
+  function rush(stage, L, U) {
+    var head = el("div", "rush-head");
+    var stats = el("div", "stats");
+    var sc = el("span"); var tm = el("span");
+    stats.append(sc, tm);
+    head.append(el("strong", null, U.rush), stats);
+    var arena = el("div", "arena");
+    var score = 0, left = 20;
+    function paint() { sc.innerHTML = U.score + " <b>" + score + "</b>"; tm.innerHTML = U.time + " <b>" + left + "s</b>"; }
+    paint();
+    function overlay(isEnd) {
+      var o = el("div", "overlay");
+      if (isEnd) { o.append(el("p", null, U.final), el("div", "big-score", String(score))); }
+      else { o.append(el("p", null, U.rush)); }
+      var b = el("button", "play", isEnd ? U.again : U.start); b.type = "button";
+      b.addEventListener("click", function () { o.remove(); start(); });
+      o.append(b); arena.append(o);
+    }
+    var lanes = [14, 74, 134, 194], lane = 0;
+    function spawn() {
+      var isFood = Math.random() < 0.5;
+      var word = isFood ? L.food[Math.floor(Math.random() * L.food.length)] : L.other[Math.floor(Math.random() * L.other.length)];
+      var w = el("button", "w", word); w.type = "button";
+      lane = (lane + 1 + Math.floor(Math.random() * 3)) % 4;
+      w.style.top = lanes[lane] + "px";
+      arena.append(w);
+      var dist = arena.clientWidth + w.offsetWidth + 20;
+      var anim = w.animate([{ transform: "translateX(0)" }, { transform: "translateX(-" + dist + "px)" }], { duration: 3600 + Math.random() * 1200, easing: "linear" });
+      anim.onfinish = function () { w.remove(); };
+      w.addEventListener("click", function () {
+        if (w.dataset.done) return; w.dataset.done = "1";
+        anim.pause();
+        if (isFood) { score++; w.classList.add("hit"); } else { score = Math.max(0, score - 1); w.classList.add("miss"); }
+        paint();
+        w.animate([{ transform: getComputedStyle(w).transform + " scale(1)", opacity: 1 }, { transform: getComputedStyle(w).transform + " scale(1.3)", opacity: 0 }], { duration: 300, easing: "ease-out", fill: "forwards" });
+        later(function () { w.remove(); }, 320);
+      });
+    }
+    function start() {
+      score = 0; left = 20; paint();
+      spawn();
+      every(spawn, 650);
+      var clock = every(function () {
+        left--; paint();
+        if (left <= 0) {
+          stopAll(); clearInterval(clock);
+          arena.querySelectorAll(".w").forEach(function (w) { w.remove(); });
+          overlay(true);
+        }
+      }, 1000);
+    }
+    stage.append(head, arena);
+    overlay(false);
+  }
+
+  /* language you teach */
+  document.querySelectorAll(".seg-btn").forEach(function (b) {
+    b.addEventListener("click", function () {
+      if (state.lang === b.dataset.lang) return;
+      document.querySelectorAll(".seg-btn").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      state.lang = b.dataset.lang;
+      placeLangInd();
+      var L = LANGS[state.lang];
+      var w = $("langWord"); w.textContent = L.name; w.classList.remove("flip"); void w.offsetWidth; w.classList.add("flip");
+      $("capLang").textContent = L.name;
+      var av = $("avail");
+      av.classList.toggle("soon", !L.avail);
+      av.querySelector("span").textContent = L.avail ? "Ready to teach" : "Opening soon";
+      render(true);
+    });
+  });
+
+  /* tabs */
+  document.querySelectorAll(".tab").forEach(function (t) {
+    t.addEventListener("click", function () {
+      if (state.tab === t.dataset.tab) return;
+      document.querySelectorAll(".tab").forEach(function (x) { x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      state.tab = t.dataset.tab;
+      render(true);
+    });
+  });
+
+  /* instruction language */
+  $("uiLang").addEventListener("change", function (e) { state.ui = e.target.value; render(true); });
+
+  render(false);
+  requestAnimationFrame(function () { placeLangInd(); placeTabInd(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { placeLangInd(); placeTabInd(); });
+  window.addEventListener("resize", function () { placeLangInd(); placeTabInd(); });
+
+  /* nav border on scroll */
+  window.addEventListener("scroll", function () { $("nav").classList.toggle("scrolled", window.scrollY > 10); }, { passive: true });
+
+  /* reveal on scroll */
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(function (r) { io.observe(r); });
+  }
+
+  /* calculator with rolling numbers */
+  var PRICE = 40;
+  var shown = { cover: 1, hours: 43, worth: 1733 };
+  function tween(key, to, fmt) {
+    var from = shown[key], t0 = performance.now(), dur = 450;
+    shown[key] = to;
+    function step(t) {
+      var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      $(key).textContent = fmt(from + (to - from) * e);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  function calc() {
+    var r = +$("rate").value, l = +$("lessons").value, p = +$("prep").value;
+    $("rateOut").textContent = "$" + r;
+    $("lessonsOut").textContent = l;
+    $("prepOut").textContent = p + " min";
+    var n = Math.ceil(PRICE / r);
+    var hours = (l * 52 / 12) * p / 60;
+    $("coverUnit").textContent = n === 1 ? "lesson" : "lessons";
+    tween("cover", n, function (v) { return String(Math.round(v)); });
+    tween("hours", Math.round(hours), function (v) { return String(Math.round(v)); });
+    tween("worth", hours * r, function (v) { return "$" + Math.round(v).toLocaleString("en-US"); });
+  }
+  ["rate", "lessons", "prep"].forEach(function (id) { $(id).addEventListener("input", calc); });
+  calc();
+})();
+</script>
+</body>
+</html>
