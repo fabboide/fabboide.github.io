@@ -334,7 +334,7 @@ h1 em{ font-style:normal; color:var(--accent); }
         <span>Ha i capelli lunghi / corti?</span>
         <span>Ha i capelli ricci / lisci?</span>
         <span>Ha i capelli biondi / castani / neri / rossi / grigi?</span>
-        <span>Ha gli occhi chiari / scuri?</span>
+        <span>Ha gli occhi azzurri / verdi / marroni? Chiari / scuri?</span>
         <span>Ha la pelle chiara / scura?</span>
         <span>Ha la barba? Ha i baffi?</span>
       </p></div>
@@ -402,7 +402,10 @@ var PELLE  = ["#F4D3B2","#EDBE94","#E0A87A",  "#A06A45","#7E5234","#5C3A26"];
 var CAPELLI = {
   biondi:"#D9A94B", castani:"#7B4B2A", neri:"#2B2118", rossi:"#B4552B", grigi:"#B5AFA6"
 };
-var OCCHI = { chiari:"#3E8FC4", scuri:"#2A1D12" };
+/* Gli occhi hanno un colore vero (azzurri, verdi, marroni) e una
+   famiglia (chiari, scuri): si puo' chiedere in tutti e due i modi. */
+var OCCHI = { azzurri:"#3E8FC4", verdi:"#4C9A2A", marroni:"#5A3A1E" };
+var FAMIGLIA_OCCHI = { azzurri:"chiari", verdi:"chiari", marroni:"scuri" };
 var MAGLIA = {
   rossa:"#C4312B", blu:"#3D6E8F", verde:"#2E5E4E", gialla:"#E8A33D", bianca:"#EDE7DA"
 };
@@ -486,7 +489,7 @@ function faccia(p){
     var x = i === 0 ? cx - ox : cx + ox;
     /* Niente contorno scuro: sembrerebbe un paio di occhiali. */
     s.push('<ellipse cx="' + x + '" cy="' + oy + '" rx="5.4" ry="4" fill="#FFFDF8"/>');
-    s.push('<circle cx="' + x + '" cy="' + oy + '" r="3.5" fill="' + OCCHI[p.occhi] + '"/>');
+    s.push('<circle cx="' + x + '" cy="' + oy + '" r="3.5" fill="' + OCCHI[p.iride] + '"/>');
     s.push('<circle cx="' + x + '" cy="' + oy + '" r="1.1" fill="#140F0B"/>');
   });
 
@@ -595,7 +598,7 @@ var st = { modo:"lei", size:24, voc:{viso:true, accessori:true, corpo:true, vest
 
 /* come si vedono le domande sulla pagina condivisa */
 var MODI_DOM = [
-  { k: "aperte",   n: "Aperte",      d: "si leggono tutte, \u00e8 l'impalcatura" },
+  { k: "aperte",   n: "Aperte",      d: "si leggono tutte, è l'impalcatura" },
   { k: "temi",     n: "Solo i temi", d: "vede i gruppi, non le frasi" },
   { k: "nascoste", n: "Nascoste",    d: "stanno solo nella tua finestra" }
 ];
@@ -665,7 +668,8 @@ function unaPersona(){
   /* Viso */
   p.barba = uomo && dado(0.35) ? 1 : 0;
   p.baffi = uomo && dado(0.3) ? 1 : 0;
-  p.occhi = dado() ? "chiari" : "scuri";
+  p.iride = dado() ? "marroni" : (dado() ? "azzurri" : "verdi");
+  p.occhi = FAMIGLIA_OCCHI[p.iride];
 
   /* Accessori */
   p.occhiali = v.accessori && dado(0.4) ? 1 : 0;
@@ -683,7 +687,7 @@ function unaPersona(){
    se due persone hanno la stessa firma, la partita non si pu&ograve; chiudere. */
 function firma(p){
   var v = st.voc;
-  var f = [p.uomo ? "u" : "d", p.carnagione, p.capelli, p.barba, p.baffi, p.occhi];
+  var f = [p.uomo ? "u" : "d", p.carnagione, p.capelli, p.barba, p.baffi, p.iride];
   if(p.capelli !== "calvo") f.push(p.forma, p.colore);
   if(v.accessori) f.push(p.occhiali, p.cappello);
   if(v.corpo) f.push(p.eta, p.corpo);
@@ -738,6 +742,9 @@ function tutteLeDomande(){
 
   L.push(D("Viso", "ha la barba",        function(p){ return !!p.barba; }));
   L.push(D("Viso", "ha i baffi",         function(p){ return !!p.baffi; }));
+  L.push(D("Viso", "ha gli occhi azzurri", function(p){ return p.iride === "azzurri"; }));
+  L.push(D("Viso", "ha gli occhi verdi",   function(p){ return p.iride === "verdi"; }));
+  L.push(D("Viso", "ha gli occhi marroni", function(p){ return p.iride === "marroni"; }));
   L.push(D("Viso", "ha gli occhi chiari", function(p){ return p.occhi === "chiari"; }));
   L.push(D("Viso", "ha gli occhi scuri",  function(p){ return p.occhi === "scuri"; }));
   L.push(D("Viso", "ha la pelle chiara", function(p){ return p.carnagione === "chiara"; }));
@@ -795,7 +802,7 @@ function descrizione(p){
   if(p.capelli === "calvo") pezzi.push((p.uomo ? "È calvo" : "È calva") + ".");
   else pezzi.push("Ha i capelli " + p.capelli + " e " + p.forma + ", " + p.colore + ".");
 
-  pezzi.push("Ha gli occhi " + p.occhi + " e la pelle " + p.carnagione + ".");
+  pezzi.push("Ha gli occhi " + p.iride + " e la pelle " + p.carnagione + ".");
 
   var extra = [];
   if(p.barba) extra.push("la barba");
@@ -1041,7 +1048,7 @@ function renderDomande(){
   if(st.dom === "temi"){
     var nota = document.createElement("p");
     nota.className = "dnota";
-    nota.innerHTML = "Sa di che cosa pu\u00f2 chiedere, non come si dice. " +
+    nota.innerHTML = "Sa di che cosa può chiedere, non come si dice. " +
       "<b>Scopri</b> apre un gruppo per otto secondi, quando si blocca.";
     box.appendChild(nota);
     gruppi.forEach(function(g){
@@ -1107,7 +1114,7 @@ function apriFinestraDomande(){
   finDom.document.write(
     '<!doctype html><html lang="it"><head><meta charset="utf-8">' +
     '<meta name="viewport" content="width=device-width, initial-scale=1">' +
-    "<title>Identikit \u00b7 le domande</title><style>" +
+    "<title>Identikit · le domande</title><style>" +
     "body{margin:0;background:#16233F;color:#F7F4EC;font:16px/1.5 Georgia,serif}" +
     ".w{padding:16px 16px 40px}" +
     "h1{font:800 18px Helvetica,Arial,sans-serif;margin:0 0 2px}" +

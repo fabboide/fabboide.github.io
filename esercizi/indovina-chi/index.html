@@ -301,11 +301,17 @@ textarea:focus{ outline:none; border-color:var(--ink); }
    Nessuna foto, nessun disaccordo possibile tra disegno e risposta.
    ============================================================ */
 
-var PELLE  = ["#F2CBA8","#E3AE83","#C98D61","#9A6340","#6B432C"];
+/* Due famiglie di carnagione, tre sfumature per ognuna (come nell'aula):
+   le sfumature perche' le persone sono diverse, le due famiglie perche'
+   a una domanda si/no si deve poter rispondere guardando. */
+var PELLE  = ["#F4D3B2","#EDBE94","#E0A87A",  "#A06A45","#7E5234","#5C3A26"];
 var CAPELLI = {
   biondi:"#D9A94B", castani:"#7B4B2A", neri:"#2B2118", rossi:"#B4552B", grigi:"#B5AFA6"
 };
-var OCCHI = { chiari:"#3E8FC4", scuri:"#2A1D12" };
+/* Gli occhi hanno un colore vero (azzurri, verdi, marroni) e una
+   famiglia (chiari, scuri): si puo' chiedere in tutti e due i modi. */
+var OCCHI = { azzurri:"#3E8FC4", verdi:"#4C9A2A", marroni:"#5A3A1E" };
+var FAMIGLIA_OCCHI = { azzurri:"chiari", verdi:"chiari", marroni:"scuri" };
 var MAGLIA = {
   rossa:"#C4312B", blu:"#3D6E8F", verde:"#2E5E4E", gialla:"#E8A33D", bianca:"#EDE7DA"
 };
@@ -389,7 +395,7 @@ function faccia(p){
     var x = i === 0 ? cx - ox : cx + ox;
     /* Niente contorno scuro: sembrerebbe un paio di occhiali. */
     s.push('<ellipse cx="' + x + '" cy="' + oy + '" rx="5.4" ry="4" fill="#FFFDF8"/>');
-    s.push('<circle cx="' + x + '" cy="' + oy + '" r="3.5" fill="' + OCCHI[p.occhi] + '"/>');
+    s.push('<circle cx="' + x + '" cy="' + oy + '" r="3.5" fill="' + OCCHI[p.iride] + '"/>');
     s.push('<circle cx="' + x + '" cy="' + oy + '" r="1.1" fill="#140F0B"/>');
   });
 
@@ -493,7 +499,12 @@ function mescola(a){
 function unaPersona(){
   var v = st.voc;
   var uomo = dado();
-  var p = { uomo:uomo, pelle:Math.floor(Math.random() * 5) };
+  var chiara = dado();
+  var p = {
+    uomo: uomo,
+    carnagione: chiara ? "chiara" : "scura",
+    pelle: (chiara ? 0 : 3) + Math.floor(Math.random() * 3)
+  };
 
   /* Et&agrave; e corporatura */
   p.eta  = v.corpo && dado(0.36) ? "anziano" : "giovane";
@@ -515,7 +526,8 @@ function unaPersona(){
   /* Viso */
   p.barba = uomo && dado(0.35) ? 1 : 0;
   p.baffi = uomo && dado(0.3) ? 1 : 0;
-  p.occhi = dado() ? "chiari" : "scuri";
+  p.iride = dado() ? "marroni" : (dado() ? "azzurri" : "verdi");
+  p.occhi = FAMIGLIA_OCCHI[p.iride];
 
   /* Accessori */
   p.occhiali = v.accessori && dado(0.4) ? 1 : 0;
@@ -533,7 +545,7 @@ function unaPersona(){
    se due persone hanno la stessa firma, la partita non si pu&ograve; chiudere. */
 function firma(p){
   var v = st.voc;
-  var f = [p.uomo ? "u" : "d", p.capelli, p.barba, p.baffi, p.occhi];
+  var f = [p.uomo ? "u" : "d", p.carnagione, p.capelli, p.barba, p.baffi, p.iride];
   if(p.capelli !== "calvo") f.push(p.forma, p.colore);
   if(v.accessori) f.push(p.occhiali, p.cappello);
   if(v.corpo) f.push(p.eta, p.corpo);
@@ -588,8 +600,13 @@ function tutteLeDomande(){
 
   L.push(D("Viso", "ha la barba",        function(p){ return !!p.barba; }));
   L.push(D("Viso", "ha i baffi",         function(p){ return !!p.baffi; }));
+  L.push(D("Viso", "ha gli occhi azzurri", function(p){ return p.iride === "azzurri"; }));
+  L.push(D("Viso", "ha gli occhi verdi",   function(p){ return p.iride === "verdi"; }));
+  L.push(D("Viso", "ha gli occhi marroni", function(p){ return p.iride === "marroni"; }));
   L.push(D("Viso", "ha gli occhi chiari", function(p){ return p.occhi === "chiari"; }));
   L.push(D("Viso", "ha gli occhi scuri",  function(p){ return p.occhi === "scuri"; }));
+  L.push(D("Viso", "ha la pelle chiara", function(p){ return p.carnagione === "chiara"; }));
+  L.push(D("Viso", "ha la pelle scura",  function(p){ return p.carnagione === "scura"; }));
 
   if(v.accessori){
     L.push(D("Accessori", "porta gli occhiali", function(p){ return !!p.occhiali; }));
@@ -643,7 +660,7 @@ function descrizione(p){
   if(p.capelli === "calvo") pezzi.push((p.uomo ? "È calvo" : "È calva") + ".");
   else pezzi.push("Ha i capelli " + p.capelli + " e " + p.forma + ", " + p.colore + ".");
 
-  pezzi.push("Ha gli occhi " + p.occhi + ".");
+  pezzi.push("Ha gli occhi " + p.iride + " e la pelle " + p.carnagione + ".");
 
   var extra = [];
   if(p.barba) extra.push("la barba");
@@ -706,11 +723,25 @@ function senzaAccenti(s){
 }
 
 function normalizza(s){
-  return senzaAccenti(s)
+  return sinonimi(senzaAccenti(s)
     .replace(/['’]/g, " ")
     .replace(/[^a-z\s]/g, " ")
     .replace(/\s+/g, " ")
-    .trim();
+    .trim());
+}
+
+/* Lo stesso colore si dice in piu' modi: "occhi blu" e' italiano giusto
+   quanto "occhi azzurri". Si riportano alla forma del gioco, ma solo
+   subito dopo "occhi" e "pelle": "blu" da solo e' anche la maglietta,
+   "castani" da soli sono i capelli. */
+function sinonimi(t){
+  return t
+    .replace(/\bocchi (blu|celesti|celeste|azzurro|azzurra)\b/g, "occhi azzurri")
+    .replace(/\bocchi (verde)\b/g, "occhi verdi")
+    .replace(/\bocchi (castani|castano|neri|nero|marrone)\b/g, "occhi marroni")
+    .replace(/\bocchio\b/g, "occhi")
+    .replace(/\bpelle (bianca|chiaro)\b/g, "pelle chiara")
+    .replace(/\bpelle (nera|scuro|olivastra)\b/g, "pelle scura");
 }
 
 /* taglia la vocale finale: magro/magra -> magr, lunghi/lunghe -> lungh.
@@ -879,7 +910,7 @@ function riconosciDomanda(testo, domande, testoDi){
     ["rispDom", "rispSn", "rispMod"].forEach(function(i){ $(i).classList.add("hidden"); });
     $("rispVuoto").classList.remove("hidden");
     $("rispVuoto").innerHTML = liv.come === "click"
-      ? "Scegli una domanda qui sotto. Dilla anche a voce: \u00e8 l\u00ec che serve." +
+      ? "Scegli una domanda qui sotto. Dilla anche a voce: è lì che serve." +
         "<br><span class='en'>Pick a question below. Say it out loud too: that is the part that counts.</span>"
       : "Scrivi la tua domanda qui sotto. Dilla a voce prima di scriverla." +
         "<br><span class='en'>Type your question below. Say it out loud before you type it.</span>";
@@ -1094,7 +1125,8 @@ function riconosciDomanda(testo, domande, testoDi){
     }
     if(p.barba) t.push({ r:radice("barba"), eti:"la barba" });
     if(p.baffi) t.push({ r:radice("baffi"), eti:"i baffi" });
-    t.push({ r:radice(p.occhi), eti:"occhi " + p.occhi });
+    t.push({ dopo:"occhi", r:"occhi " + p.iride, alt:["occhi " + p.occhi], eti:"occhi " + p.iride });
+    t.push({ dopo:"pelle", r:"pelle " + p.carnagione, alt:[], eti:"la pelle " + p.carnagione });
     if(liv.voc.accessori){
       if(p.occhiali) t.push({ r:radice("occhiali"), eti:"gli occhiali" });
       if(p.cappello) t.push({ r:radice("cappello"), eti:"il cappello" });
@@ -1118,8 +1150,7 @@ function riconosciDomanda(testo, domande, testoDi){
     { campo:"eta",     valori:["giovane", "anziano"],          frase:"e" },
     { campo:"corpo",   valori:["magro", "robusto"],            frase:"e" },
     { campo:"capelli", valori:["lunghi", "corti", "calvo"],    frase:"capelli" },
-    { campo:"forma",   valori:["ricci", "lisci"],              frase:"capelli" },
-    { campo:"occhi",   valori:["chiari", "scuri"],             frase:"occhi" }
+    { campo:"forma",   valori:["ricci", "lisci"],              frase:"capelli" }
   ];
 
   /* l'aggettivo si accorda con la persona: Teresa non e' "robusto" */
@@ -1134,11 +1165,12 @@ function riconosciDomanda(testo, domande, testoDi){
      non Teresa. */
   function frasePerCosaE(p, f){
     if(f.frase === "occhi")   return p.nome + " ha gli occhi <b>" + f.vero + "</b>";
+    if(f.frase === "pelle")   return p.nome + " ha la pelle <b>" + f.vero + "</b>";
     if(f.frase === "capelli"){
-      if(f.vero === "calvo")  return p.nome + " \u00e8 <b>" + accorda("calvo", p.uomo) + "</b>";
+      if(f.vero === "calvo")  return p.nome + " è <b>" + accorda("calvo", p.uomo) + "</b>";
       return p.nome + " ha i capelli <b>" + f.vero + "</b>";
     }
-    return p.nome + " \u00e8 <b>" + accorda(f.vero, p.uomo) + "</b>";
+    return p.nome + " è <b>" + accorda(f.vero, p.uomo) + "</b>";
   }
 
   function controllaDescrizione(){
@@ -1155,8 +1187,19 @@ function riconosciDomanda(testo, domande, testoDi){
     var radici = {};
     parole.forEach(function(x){ radici[radice(x)] = x; });
 
+    /* "occhi azzurri", "pelle chiara": le coppie si leggono insieme,
+       se no "chiara" della pelle sembrerebbe detta degli occhi */
+    var coppie = {}, fraseN = normalizza(testo).split(" ");
+    fraseN.forEach(function(w, i){
+      if((w === "occhi" || w === "pelle") && fraseN[i + 1]) coppie[w + " " + fraseN[i + 1]] = true;
+    });
+    function detto(x){
+      if(x.dopo) return !!coppie[x.r] || x.alt.some(function(a){ return !!coppie[a]; });
+      return !!radici[x.r];
+    }
+
     var tratti = trattiDi(p);
-    var detti = tratti.filter(function(x){ return !!radici[x.r]; });
+    var detti = tratti.filter(detto);
 
     /* le finali: se la persona &egrave; una donna, l'aggettivo deve finire in -a */
     var sbagli = [];
@@ -1179,6 +1222,17 @@ function riconosciDomanda(testo, domande, testoDi){
       });
     });
 
+    /* occhi e pelle: vale la coppia, non la parola da sola */
+    var giusteOcchi = ["occhi " + p.iride, "occhi " + p.occhi];
+    ["azzurri", "verdi", "marroni", "chiari", "scuri"].forEach(function(c){
+      if(coppie["occhi " + c] && giusteOcchi.indexOf("occhi " + c) < 0)
+        falsi.push({ scritta:"occhi " + c, vero:p.iride, frase:"occhi" });
+    });
+    ["chiara", "scura"].forEach(function(c){
+      if(coppie["pelle " + c] && c !== p.carnagione)
+        falsi.push({ scritta:"pelle " + c, vero:p.carnagione, frase:"pelle" });
+    });
+
     var perc = Math.round(detti.length / tratti.length * 100);
     var h = "<div class='barra'><i style='width:" + perc + "%'></i></div>" +
       "<p style='margin:0'><b>" + detti.length + " cose su " + tratti.length + ".</b> " +
@@ -1186,7 +1240,7 @@ function riconosciDomanda(testo, domande, testoDi){
       "<br><span class='en'>" + detti.length + " of the " + tratti.length + " things you could have said.</span></p>";
 
     if(falsi.length){
-      h += "<div class='correzione fuori' style='margin-top:10px'><span class='k'>non \u00e8 vero &middot; not true</span>" +
+      h += "<div class='correzione fuori' style='margin-top:10px'><span class='k'>non è vero &middot; not true</span>" +
         falsi.map(function(f){
           return "hai scritto <i>" + f.scritta + "</i>, ma " + frasePerCosaE(p, f);
         }).join("; ") + ".</div>";
@@ -1202,7 +1256,7 @@ function riconosciDomanda(testo, domande, testoDi){
     }
 
     h += "<div class='tratti'>" + tratti.map(function(x){
-      return "<span class='tr" + (radici[x.r] ? " detto" : "") + "'>" + x.eti + "</span>";
+      return "<span class='tr" + (detto(x) ? " detto" : "") + "'>" + x.eti + "</span>";
     }).join("") + "</div>" +
     "<p class='aiuto' style='margin-top:10px'>In verde quello che hai detto. Il resto è quello che si poteva ancora dire." +
     "<br>In green what you said. The rest is what you could still have mentioned.</p>";

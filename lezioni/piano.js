@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "29 ottobre 2026, 00:13";
+var PIANO_AGGIORNATO = "29 ottobre 2026, 17:53";
 
 var PIANO = {
 
@@ -95,33 +95,38 @@ var PIANO = {
 
   "ellie-3mw": {
     "nome": "Ellie",
-    "aggiornato": "26 ottobre 2026",
+    "aggiornato": "29 ottobre 2026",
     "ultima": {
-      "quando": "2026-10-26T13:00:00+01:00",
+      "quando": "2026-10-29T14:30:00+01:00",
       "fatto": [
-        "Describing people: hair, eyes, height, face",
-        "Guess who?",
-        "You described yourself and people you know: very good!"
+        "Verb roulette",
+        "Guess who? Very good!",
+        "A bit of Halloween"
       ]
     },
     "prossima": {
       "quando": "",
-      "obiettivo": "Describe what people are wearing: clothes, colours, stripes and checks.",
+      "obiettivo": "Tell me about your Halloween party, then clothes and colours.",
       "attivita": [
         {
-          "titolo": "Quick review: describe a person",
+          "titolo": "How was the party?",
           "href": "",
-          "nota": "What we did this time, in ten minutes"
+          "nota": "Com'eri vestita? Quante persone sono venute?"
         },
         {
-          "titolo": "Verbs for clothes: portare, mettersi, vestirsi",
+          "titolo": "Verb roulette",
           "href": "",
-          "nota": "Mi metto, ti metti, si mette..."
+          "nota": "Ten minutes of verbs"
         },
         {
           "titolo": "Il guardaroba",
           "href": "",
-          "nota": "A game with clothes we play together"
+          "nota": "Clothes and colours: maglietta rossa, pantaloni neri"
+        },
+        {
+          "titolo": "Conversation",
+          "href": "",
+          "nota": "Ten minutes at the end"
         }
       ]
     },
@@ -129,7 +134,7 @@ var PIANO = {
       {
         "titolo": "Chi è? Guess who, on your own",
         "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
-        "nota": "The same game: level 1, then level 2"
+        "nota": "Now it understands eye colours and skin too"
       },
       {
         "titolo": "Describing people",
@@ -308,34 +313,80 @@ var PIANO = {
     ]
   },
 
-  "rafaela-yrd": {
-    "nome": "Rafaela",
-    "aggiornato": "28 ottobre 2026",
+  "luis-q4m": {
+    "nome": "Luis",
+    "aggiornato": "29 ottobre 2026",
     "ultima": {
-      "quando": "2026-10-28T09:00:00+01:00",
+      "quando": "2026-10-29T16:30:00+01:00",
       "fatto": [
-        "Conversation, with the emphatic questions you prepared",
-        "Practice with questions"
+        "Describing people: quick review",
+        "Clothes: we started today"
       ]
     },
     "prossima": {
-      "quando": "2026-10-29T09:30:00+01:00",
-      "obiettivo": "Questions again, and passato prossimo with the right helper verb: essere or avere.",
+      "quando": "",
+      "obiettivo": "A short warm-up with verbs, more clothes, then half an hour of conversation.",
       "attivita": [
         {
-          "titolo": "Essere or avere? Five minutes",
+          "titolo": "Verb roulette",
           "href": "",
-          "nota": "Sono andata, ho mangiato..."
+          "nota": "Five to ten minutes"
         },
         {
-          "titolo": "What was the question?",
+          "titolo": "Il guardaroba",
           "href": "",
-          "nota": "Find the word, then the whole question, then the bingo"
+          "nota": "Clothes and colours: maglietta rossa, pantaloni neri"
+        },
+        {
+          "titolo": "Conversation, 30 minutes",
+          "href": "",
+          "nota": "Real people, your childhood, and free talk"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "Chi è? Guess who, on your own",
+        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
+        "nota": "Level 2 or 3: you write the questions"
+      },
+      {
+        "titolo": "Describing people",
+        "href": "https://talkwithfabio.com/esercizi/descrivere/",
+        "nota": "Look at the clothes and colours"
+      }
+    ]
+  },
+
+  "rafaela-yrd": {
+    "nome": "Rafaela",
+    "aggiornato": "29 ottobre 2026",
+    "ultima": {
+      "quando": "2026-10-29T09:30:00+01:00",
+      "fatto": [
+        "Verb roulette",
+        "Guess who?",
+        "Ten minutes of conversation"
+      ]
+    },
+    "prossima": {
+      "quando": "2026-10-30T09:30:00+01:00",
+      "obiettivo": "Every lesson now has three parts: ten minutes of verbs, an activity, ten minutes of conversation.",
+      "attivita": [
+        {
+          "titolo": "Verb roulette",
+          "href": "",
+          "nota": "Ten minutes: sono andata, ho mangiato..."
         },
         {
           "titolo": "Guess who?",
           "href": "",
-          "nota": "Describing people"
+          "nota": "You ask the questions out loud, no clicking"
+        },
+        {
+          "titolo": "Conversation",
+          "href": "",
+          "nota": "Your weekend, and three questions back to me"
         }
       ]
     },
@@ -348,7 +399,7 @@ var PIANO = {
       {
         "titolo": "Chi è? Guess who, on your own",
         "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
-        "nota": "Level 1, then level 2"
+        "nota": "Level 2: you write the questions"
       }
     ]
   },
