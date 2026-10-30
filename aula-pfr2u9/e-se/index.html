@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>E se...? · La mia aula</title>
+<link rel="icon" href="../../favicon.svg">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D; --kraft:#D9BC8C;
+  --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --serif:"Newsreader",Georgia,serif;
+  --pen:"Caveat",cursive;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--stone);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.55}
+.nastro{height:6px;background:linear-gradient(90deg,var(--tomato) 0 25%,var(--lemon) 25% 50%,var(--basil) 50% 75%,var(--kraft) 75% 100%)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding:12px 20px;border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar a{color:var(--muted);text-decoration:none;font-family:var(--display);font-size:.9rem}
+.topbar .marchio{font-family:var(--display);font-weight:800;letter-spacing:-.01em}
+.wrap{max-width:820px;margin:0 auto;padding:22px 20px 90px}
+h1{font-family:var(--display);font-weight:800;font-size:2.05rem;letter-spacing:-.025em;margin:8px 0 4px}
+h3{font-family:var(--display);font-size:1.03rem;margin:0 0 6px}
+.lede{color:var(--muted);margin:0 0 6px}
+.pen{font-family:var(--pen);font-size:1.25rem;color:var(--basil);margin:6px 0 0}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:12px 0}
+.btn{font-family:var(--display);font-weight:700;font-size:.94rem;border:1px solid var(--ink);
+  background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 17px;cursor:pointer}
+.btn.verde{background:var(--basil);border-color:var(--basil)}
+.btn.rosso{background:var(--tomato);border-color:var(--tomato)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.riga{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.kbd{font-size:.72em;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin-left:7px}
+@media (hover:none){.kbd{display:none}}
+#fasi{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 14px}
+#fasi button{font-family:var(--display);font-weight:700;font-size:.9rem;border:1px solid var(--line);
+  background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
+#fasi button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+#fasi button .n{color:var(--lemon);margin-right:6px}
+.sez{display:none}
+.sez.on{display:block}
+.tipino{display:inline-block;font-family:var(--display);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 9px;margin-bottom:8px}
+.grande{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.01em;line-height:1.35;margin:4px 0}
+.svela{margin-top:12px;min-height:30px}
+.perche{color:var(--muted);font-size:.96rem;margin:4px 0 0}
+.conti{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0 4px;align-items:baseline}
+.conti div{display:flex;gap:7px;align-items:baseline}
+.conti b{font-family:var(--display);font-weight:800;font-size:1.45rem}
+.conti .g b{color:var(--basil)} .conti .s b{color:var(--tomato)}
+.conti span{font-family:var(--display);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.scuro{background:var(--ink);color:var(--paper);border-radius:18px;padding:20px;margin:12px 0}
+.scuro .spia{font-family:var(--display);font-weight:800;font-size:1.7rem;color:var(--lemon);letter-spacing:-.01em}
+.scuro .chi{font-family:var(--display);font-weight:700;font-size:1.25rem;margin-top:6px}
+.scuro .chi i{font-family:var(--serif);font-weight:400;color:var(--kraft)}
+.scuro .svela .grande{color:var(--paper);font-size:1.3rem}
+.scuro .svela b{color:var(--lemon)}
+.scuro .perche{color:var(--kraft)}
+.crono{font-family:var(--display);font-weight:800;font-size:2rem;font-variant-numeric:tabular-nums}
+.crono.poco{color:var(--tomato)}
+/* catena */
+.anelli{display:flex;flex-direction:column;gap:6px;margin:12px 0 0;padding:0;list-style:none;counter-reset:a}
+.anelli li{counter-increment:a;background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--basil);border-radius:12px;padding:8px 12px;font-size:1.02rem}
+.anelli li::before{content:counter(a)". ";font-family:var(--display);font-weight:800;color:var(--basil)}
+.anelli li.vuoto{color:var(--muted);font-style:italic}
+input[type=text]{flex:1 1 240px;font-family:var(--serif);font-size:1.05rem;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--paper);color:var(--ink)}
+/* dilemmi */
+.dilemma{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch;margin:10px 0}
+.dilemma .op{background:var(--paper);border:2px solid var(--ink);border-radius:16px;padding:16px;font-family:var(--display);font-weight:700;font-size:1.2rem;line-height:1.3;display:flex;align-items:center}
+.dilemma .o{display:flex;align-items:center;font-family:var(--pen);font-size:1.8rem;color:var(--tomato)}
+@media (max-width:560px){.dilemma{grid-template-columns:1fr}.dilemma .o{justify-content:center}}
+.twist{font-family:var(--pen);font-size:1.6rem;color:var(--tomato);min-height:36px;margin-top:6px}
+.formula{font-family:var(--display);font-size:.95rem;color:var(--muted);border:1px dashed var(--line);border-radius:12px;padding:8px 12px;margin-top:10px}
+.formula b{color:var(--ink)}
+.emozione{display:inline-block;font-family:var(--pen);font-size:2rem;color:var(--tomato);transform:rotate(-2deg)}
+@media (max-width:480px){h1{font-size:1.7rem}.grande{font-size:1.25rem}.scuro .spia{font-size:1.4rem}}
+</style>
+</head>
+<body>
+<div class="nastro"></div>
+<div class="topbar">
+  <a href="../">← La mia aula</a>
+  <span class="marchio">E se...?</span>
+</div>
+
+<div class="wrap">
+  <h1>E se...?</h1>
+  <p class="lede">Il periodo ipotetico, quello che si usa davvero: se + congiuntivo imperfetto, poi il condizionale.
+    Prima le forme in coppia, poi una catena che non finisce mai, poi dilemmi con il colpo di scena e le emozioni.</p>
+  <p class="pen">Se vincessi la lotteria, comprerei una macchina. E se comprassi una macchina...?</p>
+
+  <div id="fasi"></div>
+
+  <!-- 1 -->
+  <section class="sez" data-fase="1" data-nome="Le forme">
+    <p class="lede">Esce un soggetto e un verbo. Lei dice le due forme insieme, in una frase sola:
+      <b>se + congiuntivo</b>, <b>condizionale</b>. Poi giri. Generato a ogni carta.</p>
+    <div class="riga"><label class="lede" style="margin:0">Secondi: <select id="lSec"><option>6</option><option selected>10</option><option>15</option><option value="0">senza tempo</option></select></label></div>
+    <div class="scuro">
+      <div class="riga" style="justify-content:space-between"><span class="spia" id="lSogg"></span><span class="crono" id="lCrono"></span></div>
+      <div class="chi" id="lVerbo"></div>
+      <div class="svela" id="lSvela"></div>
+    </div>
+    <div class="riga">
+      <button class="btn" id="lGira" type="button">Gira<span class="kbd">spazio</span></button>
+      <button class="btn verde" id="lOk" type="button">Giuste</button>
+      <button class="btn rosso" id="lNo" type="button">Sbagliate</button>
+    </div>
+    <div class="conti"><div class="g"><b id="lG">0</b><span>giuste</span></div><div class="s"><b id="lS">0</b><span>sbagliate</span></div><div><b id="lSerie">0</b><span>di fila</span></div></div>
+    <p class="perche" id="lRivedi"></p>
+  </section>
+
+  <!-- 2 -->
+  <section class="sez" data-fase="2" data-nome="La catena del se">
+    <p class="lede">Parte una premessa. Lei la finisce col condizionale, poi trasforma la sua conseguenza nella premessa dopo:
+      <i>comprerei una macchina</i> diventa <i>se comprassi una macchina</i>. Più anelli fa senza bloccarsi, meglio è.
+      Se vuoi, scrivi al volo quello che dice: la catena resta sullo schermo.</p>
+    <div class="scuro">
+      <span class="tipino" style="color:var(--kraft);border-color:rgba(255,255,255,.25)">si parte da qui</span>
+      <div class="spia" id="cPartenza"></div>
+    </div>
+    <div class="riga">
+      <input type="text" id="cTesto" placeholder="cosa ha detto (facoltativo)" autocomplete="off">
+      <button class="btn verde" id="cAnello" type="button">Anello +1<span class="kbd">invio</span></button>
+      <button class="btn rosso" id="cRotto" type="button">Si è rotta</button>
+      <button class="btn ghost" id="cNuova" type="button">Nuova premessa</button>
+    </div>
+    <ol class="anelli" id="cLista"></ol>
+    <div class="conti"><div class="g"><b id="cN">0</b><span>anelli</span></div><div><b id="cRec">0</b><span>record</span></div></div>
+  </section>
+
+  <!-- 3 -->
+  <section class="sez" data-fase="3" data-nome="Dilemmi">
+    <p class="lede">Due possibilità, una sola scelta. Lei sceglie e spiega perché. Poi premi <b>Colpo di scena</b>:
+      la situazione cambia e lei deve dire se cambierebbe idea.</p>
+    <div class="dilemma"><div class="op" id="dA"></div><div class="o">o</div><div class="op" id="dB"></div></div>
+    <div class="twist" id="dTwist"></div>
+    <div class="riga">
+      <button class="btn" id="dColpo" type="button">Colpo di scena<span class="kbd">c</span></button>
+      <button class="btn ghost" id="dAvanti" type="button">Un altro<span class="kbd">spazio</span></button>
+    </div>
+    <div class="formula">Per rispondere: <b>Se potessi scegliere, preferirei...</b> · <b>Se fossi in quella situazione, sceglierei...</b> · <b>Se costasse il doppio, allora...</b> · <b>Anche se..., continuerei a...</b></div>
+  </section>
+
+  <!-- 4 -->
+  <section class="sez" data-fase="4" data-nome="Mi sentirei...">
+    <p class="lede">Due modi, a caso. Con un'emozione: lei inventa due situazioni («Mi sentirei in imbarazzo se...»).
+      Con una situazione: lei dice come si sentirebbe e perché. Poi la fa a te.</p>
+    <div class="panel">
+      <span class="tipino" id="eTipo"></span>
+      <div id="eCorpo"></div>
+      <div class="riga" style="margin-top:12px"><button class="btn" id="eAvanti" type="button">Un'altra<span class="kbd">spazio</span></button></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
+  function pesca(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function mescola(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+  function mazzo(arr){ var m=[]; return function(){ if(!m.length) m=mescola(arr); return m.shift(); }; }
+
+  /* ---------- fasi ---------- */
+  var sez = Array.prototype.slice.call(document.querySelectorAll(".sez"));
+  var faseOn = 1;
+  sez.forEach(function(s){
+    var b=document.createElement("button"); b.type="button";
+    b.innerHTML='<span class="n">'+s.dataset.fase+'</span>'+esc(s.dataset.nome);
+    b.addEventListener("click", function(){ vai(+s.dataset.fase); });
+    $("fasi").appendChild(b);
+  });
+  function vai(n){
+    faseOn=n;
+    sez.forEach(function(s,i){ var on=+s.dataset.fase===n; s.classList.toggle("on",on); $("fasi").children[i].classList.toggle("on",on); });
+    if(n!==1) fermaL(); else if(!$("lSvela").innerHTML) avviaL();
+  }
+
+  /* ---------- 1. le forme ---------- */
+  var SOGG=[{p:"io",i:0,r:"mi"},{p:"tu",i:1,r:"ti"},{p:"lei",i:2,r:"si"},{p:"noi",i:3,r:"ci"},{p:"voi",i:4,r:"vi"},{p:"loro",i:5,r:"si"}];
+  var CONG=["ssi","ssi","sse","ssimo","ste","ssero"];
+  var COND=["ei","esti","ebbe","emmo","este","ebbero"];
+  var IRR_CONG={essere:"fo",dare:"de",stare:"ste",fare:"face",dire:"dice",bere:"beve",tradurre:"traduce"};
+  var IRR_COND={essere:"sar",avere:"avr",andare:"andr",potere:"potr",dovere:"dovr",sapere:"sapr",vedere:"vedr",vivere:"vivr",
+    venire:"verr",volere:"vorr",rimanere:"rimarr",bere:"berr",tenere:"terr",fare:"far",dare:"dar",stare:"star",dire:"dir"};
+  function base(v){ return v.replace(/rsi$/,"re"); }
+  function cong(v,i){ v=base(v); return (IRR_CONG[v]||v.slice(0,-2))+CONG[i]; }
+  function condTema(v){
+    v=base(v);
+    if(IRR_COND[v]) return IRR_COND[v];
+    if(/[cg]are$/.test(v)) return v.slice(0,-3)+"her";
+    if(/[cg]iare$/.test(v)) return v.slice(0,-4)+"er";
+    if(/are$/.test(v)) return v.slice(0,-3)+"er";
+    return v.slice(0,-1);
+  }
+  function cond(v,i){ return condTema(v)+COND[i]; }
+  var VERBI=[
+    {v:"essere",c:"in vacanza"},{v:"avere",c:"più tempo"},{v:"andare",c:"a vivere in Italia"},{v:"potere",c:"scegliere"},
+    {v:"dovere",c:"partire domani"},{v:"sapere",c:"la verità"},{v:"vedere",c:"il futuro"},{v:"venire",c:"a Roma"},
+    {v:"volere",c:"cambiare lavoro"},{v:"rimanere",c:"a casa"},{v:"fare",c:"un viaggio"},{v:"dire",c:"tutto"},
+    {v:"stare",c:"meglio"},{v:"dare",c:"una festa"},{v:"bere",c:"meno caffè"},{v:"vivere",c:"al mare"},
+    {v:"comprare",c:"una macchina"},{v:"vincere",c:"la lotteria"},{v:"cercare",c:"una casa nuova"},{v:"pagare",c:"il conto"},
+    {v:"mangiare",c:"italiano ogni giorno"},{v:"cominciare",c:"un corso nuovo"},{v:"recitare",c:"in un film"},{v:"dormire",c:"di più"},
+    {v:"capire",c:"tutto"},{v:"conoscere",c:"qualcuno di famoso"},{v:"tenere",c:"un segreto"},{v:"perdere",c:"il treno"},
+    {v:"trasferirsi",c:"in campagna",rifl:1},{v:"divertirsi",c:"di più",rifl:1},{v:"svegliarsi",c:"tardi",rifl:1},{v:"sentirsi",c:"in ansia",rifl:1}
+  ];
+  var lCur=null,lG=0,lS=0,lSerie=0,lTimer=null,lFine=0,lSbagli=[];
+  function lNuovo(){
+    var so=pesca(SOGG), ve=pesca(VERBI);
+    var pr=ve.rifl?so.r+" ":"";
+    lCur={so:so,ve:ve,a:cong(ve.v,so.i),b:cond(ve.v,so.i),pr:pr};
+    $("lSogg").textContent=so.p;
+    $("lVerbo").innerHTML=esc(ve.v)+(ve.c?" <i>"+esc(ve.c)+"</i>":"");
+    $("lSvela").innerHTML="";
+    avviaL();
+  }
+  function lGira(){
+    fermaL();
+    var c=lCur, sogg=(c.so.p==="lei"||c.so.p==="loro")?c.so.p+" ":"";
+    $("lSvela").innerHTML='<div class="grande">Se '+esc(sogg)+esc(c.pr)+'<b>'+esc(c.a)+'</b> '+esc(c.ve.c)+'... · '+esc(c.pr)+'<b>'+esc(c.b)+'</b></div>';
+  }
+  function avviaL(){
+    fermaL(); var sec=+$("lSec").value;
+    if(!sec){ $("lCrono").textContent=""; return; }
+    lFine=Date.now()+sec*1000;
+    var tick=function(){ var r=Math.max(0,Math.ceil((lFine-Date.now())/1000)); $("lCrono").textContent=r; $("lCrono").classList.toggle("poco",r<=3); if(r===0){ fermaL(); lGira(); } };
+    tick(); lTimer=setInterval(tick,200);
+  }
+  function fermaL(){ if(lTimer){ clearInterval(lTimer); lTimer=null; } }
+  function aggL(){ $("lG").textContent=lG; $("lS").textContent=lS; $("lSerie").textContent=lSerie;
+    $("lRivedi").innerHTML=lSbagli.length?"Da rivedere: <b>"+lSbagli.map(esc).join(", ")+"</b>":""; }
+  $("lGira").onclick=lGira;
+  $("lOk").onclick=function(){ lG++; lSerie++; aggL(); lNuovo(); };
+  $("lNo").onclick=function(){ lS++; lSerie=0; var f=lCur.a+" / "+lCur.b; if(lSbagli.indexOf(f)<0) lSbagli.push(f); aggL(); lNuovo(); };
+  $("lSec").onchange=function(){ if(faseOn===1) avviaL(); };
+
+  /* ---------- 2. la catena ---------- */
+  var PARTENZE=["Se vincessi la lotteria...","Se domani non dovessi lavorare...","Se potessi vivere in un'altra città...","Se fossi invisibile per un giorno...",
+    "Se avessi un mese di vacanza...","Se incontrassi il tuo attore preferito...","Se parlassi perfettamente italiano...","Se potessi tornare indietro di dieci anni...",
+    "Se il tuo telefono sparisse per una settimana...","Se ti offrissero un ruolo in un film...","Se fossi il sindaco della tua città...","Se trovassi un portafoglio pieno di soldi...",
+    "Se potessi cenare con un personaggio storico...","Se avessi un superpotere...","Se ti perdessi in una città straniera senza telefono...","Se potessi imparare qualsiasi cosa in un giorno...",
+    "Se non esistesse internet...","Se potessi cambiare lavoro domani...","Se il tuo gatto parlasse...","Se ti svegliassi nel 1925..."];
+  var nuovaPartenza=mazzo(PARTENZE), cN=0, cRec=0;
+  function cReset(){ $("cPartenza").textContent=nuovaPartenza(); cN=0; $("cLista").innerHTML=""; $("cN").textContent=0; $("cTesto").value=""; }
+  function cAnello(){
+    cN++; if(cN>cRec) cRec=cN;
+    var li=document.createElement("li"); var t=$("cTesto").value.trim();
+    li.textContent=t||"…"; if(!t) li.className="vuoto";
+    $("cLista").appendChild(li); $("cTesto").value="";
+    $("cN").textContent=cN; $("cRec").textContent=cRec;
+  }
+  $("cAnello").onclick=cAnello;
+  $("cTesto").addEventListener("keydown",function(e){ if(e.key==="Enter"){ e.preventDefault(); cAnello(); } });
+  $("cRotto").onclick=function(){ var li=document.createElement("li"); li.className="vuoto"; li.textContent="catena rotta: "+cN+" anelli"; $("cLista").appendChild(li); cN=0; $("cN").textContent=0; };
+  $("cNuova").onclick=cReset;
+
+  /* ---------- 3. dilemmi ---------- */
+  var DILEMMI=[
+    ["vivere al mare","vivere in montagna"],["parlare tutte le lingue del mondo","suonare tutti gli strumenti"],
+    ["non usare mai più il telefono","non prendere mai più un aereo"],["essere famosa","essere ricchissima ma sconosciuta"],
+    ["leggere nel pensiero","diventare invisibile quando vuoi"],["vivere nel passato","vivere nel futuro"],
+    ["recitare in un film","scrivere un romanzo"],["mangiare solo cucina italiana","non mangiarla mai più"],
+    ["conoscere il futuro","cambiare una cosa del passato"],["un anno sabbatico senza soldi","lavorare un anno con il doppio dello stipendio"],
+    ["vivere in Italia senza amici","restare dove sei con tutti i tuoi amici"],["dire sempre la verità","non sapere mai se gli altri mentono"],
+    ["avere una casa enorme in campagna","un monolocale in centro a Roma"],["rivivere sempre lo stesso giorno felice","vivere ogni giorno diverso, anche brutto"],
+    ["fare il lavoro dei tuoi sogni con pochi soldi","un lavoro noioso pagato benissimo"],["viaggiare sempre da sola","non viaggiare mai da sola"]
+  ];
+  var TWIST=["E se costasse il doppio?","E se dovessi farlo da sola?","E se durasse per sempre?","E se lo venissero a sapere tutti?",
+    "E se dovessi decidere entro un'ora?","E se non potessi più tornare indietro?","E se la tua famiglia non fosse d'accordo?","E se fosse l'unica possibilità?",
+    "E se dovessi spiegarlo in italiano a un giudice?","E se la tua migliore amica scegliesse l'opposto?"];
+  var nuovoD=mazzo(DILEMMI), nuovoT=mazzo(TWIST);
+  function dNuovo(){ var d=nuovoD(); if(Math.random()<.5) d=[d[1],d[0]]; $("dA").textContent=d[0]; $("dB").textContent=d[1]; $("dTwist").textContent=""; }
+  $("dAvanti").onclick=dNuovo;
+  $("dColpo").onclick=function(){ $("dTwist").textContent=nuovoT(); };
+
+  /* ---------- 4. mi sentirei ---------- */
+  var EMOZIONI=["in ansia","in imbarazzo","fiera di me","sollevata","a disagio","in colpa","al settimo cielo","delusa","nervosa","commossa","gelosa","offesa","annoiata","spaventata"];
+  var SITUAZIONI=["se dimenticassi il compleanno della tua migliore amica","se ti chiedessero di cantare davanti a cento persone","se un collega si prendesse il merito del tuo lavoro",
+    "se ricevessi una lettera d'amore anonima","se dovessi parlare italiano al telefono con un avvocato","se perdessi le chiavi di casa a mezzanotte",
+    "se uno sconosciuto ti facesse un complimento per strada","se dimenticassi la battuta durante uno spettacolo","se vincessi un premio importante",
+    "se il tuo capo ti chiamasse di domenica","se qualcuno leggesse il tuo diario","se arrivassi in ritardo al matrimonio di un'amica",
+    "se ti accorgessi di aver mandato un messaggio alla persona sbagliata","se dovessi vivere un mese senza internet"];
+  var nuovaE=mazzo(EMOZIONI), nuovaS=mazzo(SITUAZIONI);
+  function eNuova(){
+    if(Math.random()<.5){
+      $("eTipo").textContent="un'emozione";
+      $("eCorpo").innerHTML='<div class="grande">Mi sentirei <span class="emozione">'+esc(nuovaE())+'</span> se...</div><p class="perche">Due situazioni diverse. Poi la fa a te.</p>';
+    } else {
+      $("eTipo").textContent="una situazione";
+      $("eCorpo").innerHTML='<div class="grande">Come ti sentiresti '+esc(nuovaS())+'?</div><p class="perche">Mi sentirei... perché... · E cosa faresti?</p>';
+    }
+  }
+  $("eAvanti").onclick=eNuova;
+
+  /* ---------- tastiera ---------- */
+  document.addEventListener("keydown",function(e){
+    var t=e.target.tagName; if(t==="INPUT"||t==="SELECT") return;
+    if(e.key===" "){ e.preventDefault(); if(faseOn===1) lGira(); else if(faseOn===3) dNuovo(); else if(faseOn===4) eNuova(); }
+    if((e.key==="c"||e.key==="C") && faseOn===3) $("dColpo").click();
+  });
+
+  lNuovo(); fermaL(); cReset(); dNuovo(); eNuova(); vai(1);
+})();
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "30 ottobre 2026, 02:55";
+var PIANO_AGGIORNATO = "30 ottobre 2026, 16:19";
 
 var PIANO = {
 
@@ -146,33 +146,28 @@ var PIANO = {
 
   "igor-nch": {
     "nome": "Igor",
-    "aggiornato": "27 ottobre 2026",
+    "aggiornato": "30 ottobre 2026",
     "ultima": {
-      "quando": "2026-10-27T10:30:00+01:00",
+      "quando": "2026-10-30T11:30:00+01:00",
       "fatto": [
-        "Allenamento di fluency: parlare senza fermarsi",
-        "Le domeniche e come ci informiamo",
-        "Gli errori più frequenti: accordo, articolo, verbi riflessivi"
+        "Fluency: Raffica con 7 secondi, molto meglio",
+        "Conversazione: la palestra e gli allenamenti",
+        "Canzone: Questa domenica di Olly, fino al ritornello"
       ]
     },
     "prossima": {
-      "quando": "",
-      "obiettivo": "Continuare con la fluency: parlare a lungo senza bloccarsi, rispondere in fretta, usare parole nuove al volo.",
+      "quando": "2026-11-03T10:30:00+01:00",
+      "obiettivo": "Parlare liberamente, poi finire la canzone dalla seconda strofa.",
       "attivita": [
         {
-          "titolo": "Ripasso veloce degli errori di oggi",
+          "titolo": "Conversazione",
           "href": "",
-          "nota": "Sono tutte differenti, mi incontro con gli amici, un buon posto"
+          "nota": "La palestra, il weekend, quello che vuoi"
         },
         {
-          "titolo": "Raffica",
+          "titolo": "Questa domenica, Olly",
           "href": "",
-          "nota": "Domande sempre nuove, una risposta in pochi secondi"
-        },
-        {
-          "titolo": "Il Compressore e Parole Bomba",
-          "href": "",
-          "nota": "Lo stesso racconto in sempre meno tempo, e una parola nuova da infilare nel discorso"
+          "nota": "Dalla seconda strofa alla fine"
         }
       ]
     },
@@ -180,12 +175,12 @@ var PIANO = {
       {
         "titolo": "Agreement: the gym",
         "href": "https://talkwithfabio.com/esercizi/palestra-grammatica/?mode=accordo",
-        "nota": "Per l'accordo: tutte differenti, tutte simili"
+        "nota": "I miei allenamenti preferiti, le braccia"
       },
       {
-        "titolo": "Molto: when it changes, when it doesn't",
-        "href": "https://talkwithfabio.com/esercizi/palestra-grammatica/?mode=molto",
-        "nota": "Troppe informazioni, molte domeniche"
+        "titolo": "Prepositions, simple and articulated",
+        "href": "https://talkwithfabio.com/esercizi/preposizioni/",
+        "nota": "In palestra, a casa, al lavoro"
       }
     ]
   },
@@ -360,33 +355,32 @@ var PIANO = {
 
   "rafaela-yrd": {
     "nome": "Rafaela",
-    "aggiornato": "29 ottobre 2026",
+    "aggiornato": "30 ottobre 2026",
     "ultima": {
-      "quando": "2026-10-29T09:30:00+01:00",
+      "quando": "2026-10-30T09:30:00+01:00",
       "fatto": [
-        "Verb roulette",
-        "Guess who?",
-        "Ten minutes of conversation"
+        "Conversation",
+        "The past: passato prossimo"
       ]
     },
     "prossima": {
-      "quando": "2026-10-30T09:30:00+01:00",
-      "obiettivo": "Every lesson now has three parts: ten minutes of verbs, an activity, ten minutes of conversation.",
+      "quando": "2026-11-02T09:00:00+01:00",
+      "obiettivo": "We keep going with the past: what you did, where you went, with essere or avere.",
       "attivita": [
         {
           "titolo": "Verb roulette",
           "href": "",
-          "nota": "Ten minutes: sono andata, ho mangiato..."
+          "nota": "Ten minutes in the past: sono andata, ho mangiato..."
         },
         {
-          "titolo": "Guess who?",
+          "titolo": "What was the question?",
           "href": "",
-          "nota": "You ask the questions out loud, no clicking"
+          "nota": "Questions in the past: Dove sei andata? Cosa hai fatto?"
         },
         {
           "titolo": "Conversation",
           "href": "",
-          "nota": "Your weekend, and three questions back to me"
+          "nota": "Your weekend, in the past, and three questions back to me"
         }
       ]
     },
@@ -395,11 +389,6 @@ var PIANO = {
         "titolo": "Passato prossimo 1: essere or avere?",
         "href": "https://talkwithfabio.com/esercizi/passato-prossimo/?mode=aux",
         "nota": "A few minutes every day"
-      },
-      {
-        "titolo": "Chi è? Guess who, on your own",
-        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
-        "nota": "Level 2: you write the questions"
       }
     ]
   },
@@ -498,6 +487,53 @@ var PIANO = {
         "titolo": "Describing people",
         "href": "https://talkwithfabio.com/esercizi/descrivere/",
         "nota": "Optional. Hair, face, clothes"
+      }
+    ]
+  },
+
+  "sophie-6zk": {
+    "nome": "Sophie",
+    "aggiornato": "30 ottobre 2026",
+    "ultima": {
+      "quando": "2026-10-30T10:30:00+01:00",
+      "fatto": [
+        "Ne, ci e i pronomi",
+        "Il congiuntivo vivo",
+        "Se vincessi la lotteria, comprerei...: congiuntivo e condizionale",
+        "Il caso: un enigma da risolvere con le domande"
+      ]
+    },
+    "prossima": {
+      "quando": "2026-11-02T16:00:00+01:00",
+      "obiettivo": "Continuare con ne, ci e i pronomi, e usare insieme congiuntivo e condizionale: se potessi, farei.",
+      "attivita": [
+        {
+          "titolo": "Senza ripetere",
+          "href": "",
+          "nota": "Ne, ci e i pronomi dentro il discorso"
+        },
+        {
+          "titolo": "Il congiuntivo vivo",
+          "href": "",
+          "nota": "Andiamo avanti dalle fasi che mancano"
+        },
+        {
+          "titolo": "E se...?",
+          "href": "",
+          "nota": "La catena del se, i dilemmi e «mi sentirei... se...»"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "Ne, ci e i pronomi",
+        "href": "https://talkwithfabio.com/esercizi/pronomi/",
+        "nota": "Ci vado spesso, ne ho bisogno, se ce n'è bisogno"
+      },
+      {
+        "titolo": "Aggettivo + infinito: di, da, a o niente",
+        "href": "https://talkwithfabio.com/esercizi/aggettivo-infinito/",
+        "nota": "È bello partire, sono pronta a partire, è facile da dire"
       }
     ]
   }

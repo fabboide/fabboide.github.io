@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Un pomeriggio a Berlino · La mia aula</title>
+<link rel="icon" href="../../favicon.svg">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D; --kraft:#D9BC8C;
+  --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --serif:"Newsreader",Georgia,serif;
+  --pen:"Caveat",cursive;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--stone);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.55}
+.nastro{height:6px;background:linear-gradient(90deg,var(--tomato) 0 25%,var(--lemon) 25% 50%,var(--basil) 50% 75%,var(--kraft) 75% 100%)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding:12px 20px;border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar a{color:var(--muted);text-decoration:none;font-family:var(--display);font-size:.9rem}
+.topbar .marchio{font-family:var(--display);font-weight:800;letter-spacing:-.01em}
+.wrap{max-width:820px;margin:0 auto;padding:22px 20px 90px}
+h1{font-family:var(--display);font-weight:800;font-size:2.05rem;letter-spacing:-.025em;margin:8px 0 4px}
+h2{font-family:var(--display);font-weight:700;font-size:1.3rem;margin:22px 0 8px}
+h3{font-family:var(--display);font-size:1.03rem;margin:0 0 6px}
+.lede{color:var(--muted);margin:0 0 6px}
+.pen{font-family:var(--pen);font-size:1.25rem;color:var(--basil);margin:6px 0 0}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:12px 0}
+.btn{font-family:var(--display);font-weight:700;font-size:.94rem;border:1px solid var(--ink);
+  background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 17px;cursor:pointer}
+.btn.verde{background:var(--basil);border-color:var(--basil)}
+.btn.rosso{background:var(--tomato);border-color:var(--tomato)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn:disabled{opacity:.42;cursor:default}
+.riga{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.kbd{font-size:.72em;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin-left:7px}
+@media (hover:none){.kbd{display:none}}
+
+#fasi{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 14px}
+#fasi button{font-family:var(--display);font-weight:700;font-size:.9rem;border:1px solid var(--line);
+  background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
+#fasi button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+#fasi button .n{color:var(--lemon);margin-right:6px}
+.sez{display:none}
+.sez.on{display:block}
+
+.tipino{display:inline-block;font-family:var(--display);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 9px;margin-bottom:8px}
+.grande{font-family:var(--display);font-weight:700;font-size:1.45rem;letter-spacing:-.01em;line-height:1.35;margin:4px 0}
+.storta{color:var(--tomato);text-decoration:line-through;text-decoration-thickness:2px}
+.giusta{color:var(--basil)}
+.svela{margin-top:12px;min-height:30px}
+.svela .grande{font-size:1.3rem}
+.perche{color:var(--muted);font-size:.96rem;margin:4px 0 0}
+.conti{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0 4px;align-items:baseline}
+.conti div{display:flex;gap:7px;align-items:baseline}
+.conti b{font-family:var(--display);font-weight:800;font-size:1.45rem}
+.conti .g b{color:var(--basil)} .conti .s b{color:var(--tomato)}
+.conti span{font-family:var(--display);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* lampo */
+.lampo{background:var(--ink);color:var(--paper);border-radius:18px;padding:20px;margin:12px 0}
+.lampo .spia{font-family:var(--display);font-weight:800;font-size:1.7rem;color:var(--lemon);letter-spacing:-.01em}
+.lampo .chi{font-family:var(--display);font-weight:700;font-size:1.25rem;margin-top:6px}
+.lampo .chi i{font-family:var(--serif);font-weight:400;color:var(--kraft)}
+.lampo .svela .grande{color:var(--paper)}
+.lampo .svela b{color:var(--lemon)}
+.lampo .perche{color:var(--kraft)}
+
+/* scena */
+.atti{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.atti span{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--muted);background:var(--paper)}
+.atti span.on{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+.atti span.fatto{background:var(--basil);border-color:var(--basil);color:var(--paper)}
+.carta{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--lemon);border-radius:16px;padding:16px 18px;margin:12px 0}
+.carta .eti{font-family:var(--display);font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--lemon);display:block;margin-bottom:4px}
+.carta p{margin:0 0 8px}
+.emozione{display:inline-block;font-family:var(--pen);font-size:1.5rem;color:var(--tomato);transform:rotate(-2deg)}
+.obbl{display:flex;flex-direction:column;gap:7px;margin-top:6px}
+.obbl label{display:flex;gap:10px;align-items:center;border:1px dashed var(--line);border-radius:12px;padding:9px 12px;cursor:pointer;font-size:1.05rem}
+.obbl input{width:20px;height:20px;accent-color:var(--basil)}
+.obbl label.preso{border-style:solid;border-color:var(--basil);background:rgba(46,94,78,.08)}
+.segreto{background:var(--ink);color:var(--paper);border-radius:14px;padding:12px 15px;margin-top:10px;display:none}
+.segreto.on{display:block}
+.crono{font-family:var(--display);font-weight:800;font-size:2rem;font-variant-numeric:tabular-nums}
+.crono.poco{color:var(--tomato)}
+
+/* domande */
+.domanda{font-family:var(--display);font-weight:700;font-size:1.35rem;line-height:1.35;margin:6px 0 10px}
+.parole{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.parole span{border:1px solid var(--line);background:var(--stone);border-radius:999px;padding:5px 11px;font-size:.95rem}
+.parole span b{font-family:var(--display)}
+ul.temi{margin:6px 0 0;padding-left:20px}
+ul.temi li{margin:4px 0}
+@media (max-width:480px){h1{font-size:1.7rem}.grande{font-size:1.2rem}.lampo .spia{font-size:1.4rem}.domanda{font-size:1.15rem}}
+</style>
+</head>
+<body>
+<div class="nastro"></div>
+<div class="topbar">
+  <a href="../">← La mia aula</a>
+  <span class="marchio">Un pomeriggio a Berlino</span>
+</div>
+
+<div class="wrap">
+  <h1>Un pomeriggio a Berlino</h1>
+  <p class="lede">Il congiuntivo imperfetto, quello che serve per dire cosa vorresti, cosa speravi e cosa faresti se.
+    Prima le sue frasi sbagliate, poi le forme a raffica, poi una scena da recitare in quattro atti con l'amica di Berlino,
+    poi le domande su teatro, viaggio e Zeno.</p>
+  <p class="pen">Vorrei che andassimo, non vorrei che andiamo.</p>
+
+  <div id="fasi"></div>
+
+  <!-- 1 -->
+  <section class="sez" data-fase="1" data-nome="Le sue frasi">
+    <p class="lede">Frasi vere, dette da lei nelle ultime lezioni. Le legge, le corregge a voce, poi giri la carta.
+      Le prime sono sul congiuntivo, le ultime su preposizioni e parole.</p>
+    <div class="panel">
+      <span class="tipino" id="fTipo"></span>
+      <div class="grande storta" id="fSbagliata"></div>
+      <div class="svela" id="fSvela"></div>
+      <div class="riga" style="margin-top:12px">
+        <button class="btn" id="fGira" type="button">Gira<span class="kbd">spazio</span></button>
+        <button class="btn verde" id="fOk" type="button">L'ha detta giusta</button>
+        <button class="btn ghost" id="fNo" type="button">Da rifare</button>
+      </div>
+      <div class="conti"><div class="g"><b id="fG">0</b><span>giuste</span></div><div class="s"><b id="fS">0</b><span>da rifare</span></div><div><b id="fRest">0</b><span>rimaste</span></div></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="sez" data-fase="2" data-nome="Lampo">
+    <p class="lede">Esce la spia, il soggetto e il verbo. Lei dice la frase intera e la finisce come vuole, in fretta.
+      Poi giri e vedi la forma. Generato a ogni carta, non finisce mai.</p>
+    <div class="riga">
+      <label class="lede" style="margin:0">Secondi: <select id="lSec"><option>8</option><option selected>12</option><option>20</option><option value="0">senza tempo</option></select></label>
+    </div>
+    <div class="lampo">
+      <div class="riga" style="justify-content:space-between"><span class="spia" id="lSpia"></span><span class="crono" id="lCrono"></span></div>
+      <div class="chi" id="lChi"></div>
+      <div class="svela" id="lSvela"></div>
+    </div>
+    <div class="riga">
+      <button class="btn" id="lGira" type="button">Gira<span class="kbd">spazio</span></button>
+      <button class="btn verde" id="lOk" type="button">Giusta</button>
+      <button class="btn rosso" id="lNo" type="button">Sbagliata</button>
+    </div>
+    <div class="conti"><div class="g"><b id="lG">0</b><span>giuste</span></div><div class="s"><b id="lS">0</b><span>sbagliate</span></div><div><b id="lSerie">0</b><span>di fila</span></div></div>
+    <p class="perche" id="lRivedi"></p>
+  </section>
+
+  <!-- 3 -->
+  <section class="sez" data-fase="3" data-nome="La scena">
+    <p class="lede">Lei arriva a Berlino, tu sei l'amica. Quattro atti da tre minuti. In ogni atto ha un obiettivo, un'emozione da recitare
+      (è il suo corso di recitazione, che si veda) e due frasi da infilare nel discorso. Le spunti quando le dice.
+      La carta nera è solo tua: non condividerla.</p>
+    <div class="atti" id="sAtti"></div>
+    <div class="carta">
+      <span class="eti" id="sDove"></span>
+      <h3 id="sTitolo"></h3>
+      <p id="sObiettivo"></p>
+      <p>Recitala: <span class="emozione" id="sEmo"></span></p>
+      <span class="eti" style="margin-top:8px">Da dire durante la scena</span>
+      <div class="obbl" id="sObbl"></div>
+      <div class="segreto" id="sSegreto"></div>
+    </div>
+    <div class="riga">
+      <span class="crono" id="sCrono">3:00</span>
+      <button class="btn verde" id="sVia" type="button">Via</button>
+      <button class="btn ghost" id="sCarta" type="button">Carta segreta</button>
+      <button class="btn ghost" id="sCambia" type="button">Cambia carte</button>
+      <button class="btn" id="sAvanti" type="button">Atto dopo<span class="kbd">→</span></button>
+    </div>
+    <p class="perche" id="sBilancio"></p>
+  </section>
+
+  <!-- 4 -->
+  <section class="sez" data-fase="4" data-nome="Domande">
+    <p class="lede">Per la chiacchierata finale. Ogni domanda si risponde con il congiuntivo, quasi senza accorgersene.
+      Lei risponde, poi la fa a te.</p>
+    <div class="riga" id="dFiltri" style="margin-bottom:6px"></div>
+    <div class="panel">
+      <span class="tipino" id="dTipo"></span>
+      <div class="domanda" id="dTesto"></div>
+      <p class="perche" id="dAiuto"></p>
+      <div class="riga" style="margin-top:10px"><button class="btn" id="dAvanti" type="button">Un'altra<span class="kbd">spazio</span></button></div>
+    </div>
+    <div class="panel">
+      <h3>Le parole del palco</h3>
+      <div class="parole">
+        <span><b>il copione</b></span><span><b>la battuta</b></span><span><b>le prove</b></span><span><b>il palco</b></span>
+        <span><b>le quinte</b></span><span><b>andare in scena</b></span><span><b>il debutto</b></span><span><b>interpretare</b> un personaggio</span>
+        <span><b>imparare a memoria</b></span><span><b>improvvisare</b></span><span><b>dimenticare la battuta</b></span><span><b>l'ansia da palcoscenico</b></span>
+        <span><b>il pubblico</b></span><span><b>l'applauso</b></span><span><b>il regista</b></span><span><b>calarsi nella parte</b></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="sez" data-fase="5" data-nome="Zeno">
+    <p class="lede">«Il fumo», l'episodio dell'ultima sigaretta. Dopo la lettura: domande che costringono a ragionare
+      sul personaggio, e che si rispondono col congiuntivo (credo che, mi sembra che, se fossi).</p>
+    <div class="panel">
+      <span class="tipino" id="zTipo"></span>
+      <div class="domanda" id="zTesto"></div>
+      <div class="riga" style="margin-top:10px"><button class="btn" id="zAvanti" type="button">Un'altra<span class="kbd">spazio</span></button></div>
+    </div>
+    <div class="panel">
+      <h3>I temi da far uscire</h3>
+      <ul class="temi">
+        <li><b>Il narratore inattendibile</b>: chi scrive è Zeno, su richiesta del suo psicanalista. Possiamo credergli?</li>
+        <li><b>La malattia e la volontà</b>: smettere è il vero obiettivo, o il piacere sta proprio nel decidere di smettere?</li>
+        <li><b>Il tempo e le date</b>: le date «perfette» per l'ultima sigaretta, scritte dappertutto.</li>
+        <li><b>L'ironia</b>: Zeno ride di sé prima che lo faccia il lettore.</li>
+        <li><b>L'inetto</b>: il personaggio che si osserva invece di agire.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
+  function pesca(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function mescola(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+  /* ---------- fasi ---------- */
+  var sez = Array.prototype.slice.call(document.querySelectorAll(".sez"));
+  var faseOn = 1;
+  sez.forEach(function(s){
+    var b = document.createElement("button"); b.type="button";
+    b.innerHTML = '<span class="n">'+s.dataset.fase+'</span>'+esc(s.dataset.nome);
+    b.addEventListener("click", function(){ vai(+s.dataset.fase); });
+    $("fasi").appendChild(b);
+  });
+  function vai(n){
+    faseOn = n;
+    sez.forEach(function(s,i){ s.classList.toggle("on", +s.dataset.fase===n); $("fasi").children[i].classList.toggle("on", +s.dataset.fase===n); });
+    if(n!==2) fermaLampo();
+    else if(!$("lSvela").innerHTML) avviaLampo();
+  }
+
+  /* ---------- 1. le sue frasi ---------- */
+  var FRASI = [
+    {t:"congiuntivo", s:"Vorrei che andiamo da qualche parte di diverso.", g:"Vorrei che <b>andassimo</b> da qualche parte di diverso.", p:"vorrei (condizionale) chiede il congiuntivo imperfetto."},
+    {t:"congiuntivo", s:"È veramente importante che entro in questo aereo.", g:"È veramente importante che <b>entri</b> in questo aereo.", p:"è importante che + congiuntivo presente."},
+    {t:"congiuntivo", s:"Le volevo chiedere se sarebbe possibile di aprire l'aereo.", g:"Le volevo chiedere se <b>fosse</b> possibile aprire l'aereo.", p:"dopo «chiedere se» al passato: congiuntivo imperfetto. E niente «di» dopo possibile."},
+    {t:"congiuntivo", s:"Sarebbe molto piacevole farmi entrare.", g:"Sarebbe molto <b>gentile</b> da parte sua farmi entrare. / Sarebbe gentilissimo se mi <b>facesse</b> entrare.", p:"piacevole = che fa piacere; qui serve gentile. Con «se» arriva l'imperfetto."},
+    {t:"infinito", s:"Sarebbe bello di cambiare luogo.", g:"Sarebbe bello <b>cambiare</b> luogo.", p:"è bello / è facile / è importante + infinito, senza di."},
+    {t:"infinito", s:"Potrebbe essere bello di essere insieme.", g:"Potrebbe essere bello <b>stare</b> insieme.", p:"senza di; e «stare insieme» è più naturale."},
+    {t:"preposizioni", s:"Qualcosa di veramente differente di quello che facciamo di solito.", g:"Qualcosa di veramente <b>diverso da</b> quello che facciamo di solito.", p:"diverso / differente DA."},
+    {t:"preposizioni", s:"Ho dovuto prenderlo al veterinario.", g:"Ho dovuto <b>portarlo dal</b> veterinario.", p:"take to = portare. E dal veterinario, dal medico: da + persona."},
+    {t:"parole", s:"È diventato molto malato.", g:"<b>Si è ammalato</b>.", p:"ammalarsi: un verbo solo."},
+    {t:"parole", s:"Mi scusa veramente.", g:"<b>Scusami</b> davvero.", p:"con l'amica: tu. Scusami."},
+    {t:"parole", s:"Non abbiamo l'abitudine di fare questo.", g:"<b>Non siamo abituate</b> a farlo.", p:"essere abituati a + infinito."},
+    {t:"accordo", s:"Delle vacanze un po' più attiva.", g:"Delle vacanze un po' più <b>attive</b>.", p:"vacanze è plurale."},
+    {t:"particelle", s:"Se c'è il bisogno.", g:"Se <b>ce n'è</b> bisogno.", p:"c'è bisogno di qualcosa: ne prende il posto di «di qualcosa»."},
+    {t:"parole", s:"Darti un po' di cash.", g:"Darti un po' di <b>soldi</b>.", p:"cash si capisce, ma in italiano sono soldi (o contanti)."}
+  ];
+  var fMazzo=[], fCur=null, fG=0, fS=0;
+  function fNuovo(){
+    if(!fMazzo.length) fMazzo = mescola(FRASI);
+    fCur = fMazzo.shift();
+    $("fTipo").textContent = fCur.t;
+    $("fSbagliata").textContent = fCur.s;
+    $("fSvela").innerHTML = "";
+    $("fRest").textContent = fMazzo.length;
+  }
+  function fGira(){ $("fSvela").innerHTML = '<div class="grande giusta">'+fCur.g+'</div><p class="perche">'+esc(fCur.p)+'</p>'; }
+  $("fGira").onclick = fGira;
+  $("fOk").onclick = function(){ fG++; $("fG").textContent=fG; fNuovo(); };
+  $("fNo").onclick = function(){ fS++; $("fS").textContent=fS; fMazzo.splice(Math.min(3,fMazzo.length),0,fCur); fNuovo(); };
+
+  /* ---------- 2. lampo: congiuntivo imperfetto ---------- */
+  var SOGG = [
+    {p:"io", i:0, r:"mi"},{p:"tu", i:1, r:"ti"},{p:"la mia amica", i:2, r:"si"},
+    {p:"noi", i:3, r:"ci"},{p:"voi", i:4, r:"vi"},{p:"i suoi amici", i:5, r:"si"}
+  ];
+  var DESIN = ["ssi","ssi","sse","ssimo","ste","ssero"];
+  var IRR = {essere:"fo", dare:"de", stare:"ste", fare:"face", dire:"dice", bere:"beve", tradurre:"traduce", porre:"pone"};
+  function tema(inf){ return IRR[inf] || inf.slice(0,-2); }
+  function coniuga(inf, i){ return tema(inf)+DESIN[i]; }
+  var VERBI = [
+    {v:"andare", c:"a teatro stasera"},{v:"prendere", c:"la metro"},{v:"essere", c:"in ritardo"},{v:"avere", c:"più tempo"},
+    {v:"fare", c:"un giro sulla Sprea"},{v:"stare", c:"a casa"},{v:"venire", c:"con me"},{v:"dire", c:"la verità"},
+    {v:"sapere", c:"la strada"},{v:"potere", c:"entrare"},{v:"volere", c:"uscire"},{v:"bere", c:"qualcosa insieme"},
+    {v:"uscire", c:"prima"},{v:"dormire", c:"da lei"},{v:"recitare", c:"sul palco"},{v:"dimenticare", c:"la battuta"},
+    {v:"capire", c:"il tedesco"},{v:"dare", c:"una mano"},{v:"trovare", c:"un posto libero"},{v:"perdere", c:"il volo"},
+    {v:"conoscere", c:"un posto segreto"},{v:"vedere", c:"il Muro"},{v:"rimanere", c:"un giorno in più"},{v:"tradurre", c:"il menù"},
+    {v:"divertirsi", c:"", rifl:1},{v:"perdersi", c:"a Kreuzberg", rifl:1},{v:"svegliarsi", c:"presto", rifl:1},{v:"ricordarsi", c:"del biglietto", rifl:1}
+  ];
+  // spie: libera = va bene anche con io; fine = suggerimento per finire la frase
+  var SPIE = [
+    {s:"Vorrei che", libera:false, fine:"…"},
+    {s:"Mi piacerebbe che", libera:false, fine:"…"},
+    {s:"Speravo che", libera:false, fine:"… e invece"},
+    {s:"Pensavo che", libera:false, fine:"… ma"},
+    {s:"Avevo paura che", libera:false, fine:"…"},
+    {s:"Sarebbe meglio che", libera:true, fine:"…"},
+    {s:"Era ora che", libera:false, fine:"!"},
+    {s:"Se", libera:true, fine:"… sarebbe perfetto / cosa faresti?"},
+    {s:"Magari", libera:true, fine:"!"},
+    {s:"Come se", libera:true, fine:"… (mi guarda / parla / fa)"},
+    {s:"Non sapevo che", libera:false, fine:"…"},
+    {s:"Bastava che", libera:true, fine:"…"}
+  ];
+  var lCur=null, lG=0, lS=0, lSerie=0, lTimer=null, lFine=0, lSbagli=[];
+  function forma(sp, so, ve){
+    var verbo = coniuga(ve.v.replace(/rsi$/,"re"), so.i);
+    var pron = ve.rifl ? so.r+" " : "";
+    var sogg = (so.p==="io"||so.p==="tu"||so.p==="noi"||so.p==="voi") ? "" : so.p+" ";
+    var corpo = sogg + pron + "<b>" + verbo + "</b>" + (ve.c ? " "+ve.c : "");
+    return sp.s + " " + corpo;
+  }
+  function lNuovo(){
+    var sp = pesca(SPIE), so, ve = pesca(VERBI);
+    do { so = pesca(SOGG); } while(!sp.libera && so.p==="io");
+    lCur = {sp:sp, so:so, ve:ve, testo:forma(sp,so,ve)};
+    $("lSpia").textContent = sp.s + "…";
+    $("lChi").innerHTML = esc(so.p) + " · " + esc(ve.v) + (ve.c ? " <i>"+esc(ve.c)+"</i>" : "");
+    $("lSvela").innerHTML = "";
+    avviaLampo();
+  }
+  function lGira(){
+    fermaLampo();
+    $("lSvela").innerHTML = '<div class="grande">'+lCur.testo+(lCur.sp.fine.charAt(0)==="!"?"":" ")+esc(lCur.sp.fine)+'</div>';
+  }
+  function avviaLampo(){
+    fermaLampo();
+    var sec = +$("lSec").value;
+    if(!sec){ $("lCrono").textContent=""; return; }
+    lFine = Date.now()+sec*1000;
+    var tick = function(){
+      var r = Math.max(0, Math.ceil((lFine-Date.now())/1000));
+      $("lCrono").textContent = r; $("lCrono").classList.toggle("poco", r<=3);
+      if(r===0){ fermaLampo(); lGira(); }
+    };
+    tick(); lTimer = setInterval(tick, 200);
+  }
+  function fermaLampo(){ if(lTimer){ clearInterval(lTimer); lTimer=null; } }
+  $("lGira").onclick = lGira;
+  $("lOk").onclick = function(){ lG++; lSerie++; agg(); lNuovo(); };
+  $("lNo").onclick = function(){
+    lS++; lSerie=0;
+    var f = coniuga(lCur.ve.v.replace(/rsi$/,"re"), lCur.so.i);
+    if(lSbagli.indexOf(f)<0) lSbagli.push(f);
+    agg(); lNuovo();
+  };
+  $("lSec").onchange = function(){ if(faseOn===2) avviaLampo(); };
+  function agg(){
+    $("lG").textContent=lG; $("lS").textContent=lS; $("lSerie").textContent=lSerie;
+    $("lRivedi").innerHTML = lSbagli.length ? "Da rivedere: <b>"+lSbagli.map(esc).join(", ")+"</b>" : "";
+  }
+
+  /* ---------- 3. la scena ---------- */
+  var ATTI = [
+    {n:"Le novità", ob:"Racconta all'amica cosa è successo nella tua vita negli ultimi mesi: il corso di recitazione, il lavoro, la famiglia. Lei deve capire perché sei così contenta (o stanca).",
+     seg:["Interrompila spesso: «Aspetta, aspetta, chi?»","Fai finta di non sapere niente del corso di recitazione, e falle spiegare tutto.","Sii un po' gelosa: lei non ti ha scritto per mesi."]},
+    {n:"Il programma", ob:"Organizzate il pomeriggio. Tu hai un'idea precisa, lei un'altra. Dovete decidere tre cose da fare prima di cena.",
+     seg:["Vuoi assolutamente andare a un museo noioso. Cedi solo se ti convince.","Sei stanca e vorresti restare a casa: falle trovare un motivo per uscire.","Proponi solo posti molto turistici: lei deve proporre qualcosa di diverso."]},
+    {n:"L'imprevisto", ob:"Qualcosa va storto. Gestiscilo: spiega, chiedi, proponi una soluzione. Con gentilezza, ma senza arrenderti.",
+     imp:["La metro è ferma e lo spettacolo comincia fra venti minuti.","Il ristorante ha perso la vostra prenotazione.","Hai perso il telefono in un Späti.","Il volo di ritorno è stato cancellato.","Il buttafuori non vi fa entrare nel locale.","Alla biglietteria del teatro dicono che i biglietti non sono validi."],
+     seg:["Sei tu, dall'altra parte: l'impiegato, il buttafuori, il cassiere. Di' di no almeno due volte.","Rispondi solo con frasi corte e burocratiche.","Cedi solo se lei usa una frase molto gentile al congiuntivo."]},
+    {n:"A cuore aperto", ob:"La sera, sul balcone. Parlate di cose più personali: cosa vorreste cambiare, cosa vi manca, cosa avreste fatto in modo diverso. Fai almeno tre domande a lei.",
+     seg:["Confessale che stai pensando di trasferirti in Italia.","Dille che non ti senti a casa a Berlino.","Chiedile se rifarebbe tutte le scelte degli ultimi anni."]}
+  ];
+  var LUOGHI = ["in un caffè di Kreuzberg","sotto la Porta di Brandeburgo","alla East Side Gallery","su un battello sulla Sprea","in un parco a Prenzlauer Berg","in un Späti di notte","al Tiergarten","davanti a un teatro"];
+  var EMOZIONI = ["entusiasta","sospettosa","di fretta","commossa","offesa","esageratamente gentile","sussurrando","annoiata","nervosa","teatrale"];
+  var FRASIOBBL = ["Vorrei che…","Se fosse possibile…","Pensavo che…","Magari…!","Come se…","Era ora che…","Sarebbe bello + infinito","Sono pronta a…","Ho bisogno di…","Se ce n'è bisogno","Non è facile da…","Speravo che…","Mi piacerebbe che…","Diverso da…"];
+  var sAtto=0, sStato=[], sTimer=null, sFine=0, sPresi=0, sTot=0;
+  function sCarte(){
+    var a = ATTI[sAtto], f = mescola(FRASIOBBL).slice(0,2);
+    sStato[sAtto] = {dove:pesca(LUOGHI), emo:pesca(EMOZIONI), f:f, seg:pesca(a.seg), imp:a.imp?pesca(a.imp):""};
+    disegnaScena();
+  }
+  function disegnaScena(){
+    var a = ATTI[sAtto], st = sStato[sAtto];
+    $("sAtti").innerHTML = ATTI.map(function(x,i){ return '<span class="'+(i===sAtto?"on":(i<sAtto?"fatto":""))+'">'+(i+1)+'. '+esc(x.n)+'</span>'; }).join("");
+    $("sDove").textContent = "Atto "+(sAtto+1)+" · "+st.dove;
+    $("sTitolo").textContent = a.n;
+    $("sObiettivo").innerHTML = esc(a.ob) + (st.imp ? '<br><b>Imprevisto: '+esc(st.imp)+'</b>' : "");
+    $("sEmo").textContent = st.emo;
+    $("sObbl").innerHTML = st.f.map(function(x,i){ return '<label><input type="checkbox" data-i="'+i+'"> '+esc(x)+'</label>'; }).join("");
+    Array.prototype.forEach.call($("sObbl").querySelectorAll("input"), function(c){
+      c.onchange = function(){ c.parentNode.classList.toggle("preso", c.checked); sPresi += c.checked?1:-1; bilancio(); };
+    });
+    sTot += 2; bilancio();
+    $("sSegreto").innerHTML = "<b>Carta segreta.</b> "+esc(st.seg);
+    $("sSegreto").classList.remove("on");
+    fermaScena(); $("sCrono").textContent="3:00"; $("sCrono").classList.remove("poco");
+  }
+  function bilancio(){ $("sBilancio").textContent = "Frasi infilate finora: "+sPresi+" su "+sTot+"."; }
+  function fermaScena(){ if(sTimer){ clearInterval(sTimer); sTimer=null; } }
+  $("sVia").onclick = function(){
+    fermaScena(); sFine = Date.now()+180000;
+    sTimer = setInterval(function(){
+      var r = Math.max(0, Math.round((sFine-Date.now())/1000));
+      $("sCrono").textContent = Math.floor(r/60)+":"+("0"+(r%60)).slice(-2);
+      $("sCrono").classList.toggle("poco", r<=30);
+      if(r===0) fermaScena();
+    }, 250);
+  };
+  $("sCarta").onclick = function(){ $("sSegreto").classList.toggle("on"); };
+  $("sCambia").onclick = function(){ sTot -= 2; sPresi -= $("sObbl").querySelectorAll("input:checked").length; sCarte(); };
+  $("sAvanti").onclick = function(){ sAtto = (sAtto+1)%ATTI.length; if(sAtto===0){ sPresi=0; sTot=0; } sCarte(); };
+
+  /* ---------- 4. domande ---------- */
+  var DOM = {
+    "Teatro":[
+      ["Cosa ti aspettavi che fosse il corso, prima di cominciare?","mi aspettavo che fosse…"],
+      ["Se potessi interpretare qualsiasi personaggio, chi sceglieresti?","se potessi… sceglierei…"],
+      ["Che cosa vorresti che ti dicesse l'insegnante dopo lo spettacolo?","vorrei che mi dicesse che…"],
+      ["C'è un ruolo che non vorresti mai che ti dessero? Perché?","non vorrei che mi dessero…"],
+      ["Cosa faresti se dimenticassi la battuta sul palco?","se dimenticassi… improvviserei…"],
+      ["Pensi che sia più difficile recitare in italiano o nella tua lingua?","penso che sia…"],
+      ["Cosa è più facile da imparare a memoria: un copione o una canzone?","è più facile da imparare… / è più facile + infinito"]
+    ],
+    "Berlino":[
+      ["Cosa speri che la tua amica ti faccia vedere a Berlino?","spero che mi faccia vedere…"],
+      ["Se il volo fosse cancellato, cosa faresti?","se fosse cancellato…"],
+      ["C'è qualcosa che avevi paura che succedesse durante il viaggio?","avevo paura che…"],
+      ["Come vorresti che fosse il pomeriggio perfetto con lei?","vorrei che fosse…"],
+      ["Che cosa ti sorprenderebbe trovare a Berlino?","mi sorprenderebbe…"],
+      ["Se la tua amica tornasse a vivere vicino a te, cosa cambierebbe?","se tornasse…"]
+    ],
+    "Lei":[
+      ["C'è qualcosa che vorresti che fosse diverso nella tua settimana?","vorrei che fosse diverso…"],
+      ["Se avessi un mese libero, dove andresti?","se avessi…"],
+      ["Che cosa pensavi dell'Italia prima di cominciare a studiare l'italiano?","pensavo che fosse…"],
+      ["Cosa vorresti che i tuoi nipoti imparassero da te?","vorrei che imparassero…"],
+      ["Che vacanza ti piacerebbe che facessimo tutti, se fosse possibile?","mi piacerebbe che…"]
+    ]
+  };
+  var dCat="tutte", dMazzo=[];
+  ["tutte"].concat(Object.keys(DOM)).forEach(function(k){
+    var b=document.createElement("button"); b.type="button"; b.className="btn ghost"; b.textContent=k==="tutte"?"Tutte":k;
+    b.onclick=function(){ dCat=k; dMazzo=[]; Array.prototype.forEach.call($("dFiltri").children,function(x){x.classList.remove("verde");x.classList.add("ghost");}); b.classList.remove("ghost"); b.classList.add("verde"); dNuova(); };
+    $("dFiltri").appendChild(b);
+  });
+  function dNuova(){
+    if(!dMazzo.length){
+      var pool=[]; Object.keys(DOM).forEach(function(k){ if(dCat==="tutte"||dCat===k) DOM[k].forEach(function(d){ pool.push({k:k,d:d}); }); });
+      dMazzo = mescola(pool);
+    }
+    var x = dMazzo.shift();
+    $("dTipo").textContent = x.k; $("dTesto").textContent = x.d[0]; $("dAiuto").textContent = "Per partire: "+x.d[1];
+  }
+  $("dAvanti").onclick = dNuova;
+
+  /* ---------- 5. zeno ---------- */
+  var ZENO = [
+    ["Il personaggio","Credi che Zeno voglia davvero smettere di fumare?"],
+    ["Il personaggio","Perché pensi che l'ultima sigaretta gli sembri sempre la più buona?"],
+    ["Il personaggio","Ti sembra che Zeno sia sincero con chi legge? Dove ti sembra che menta?"],
+    ["Il personaggio","Che rapporto pensi che avesse con suo padre, da quello che racconta?"],
+    ["Il personaggio","Zeno ti sta simpatico? Ti sembra che si compatisca o che si prenda in giro?"],
+    ["Il testo","Perché credi che Svevo abbia fatto scrivere la prefazione al dottor S.?"],
+    ["Il testo","Che effetto fa che sia proprio un paziente a raccontare la propria cura?"],
+    ["Il testo","Perché pensi che Zeno sia così ossessionato dalle date?"],
+    ["Il testo","Ti sembra che il fumo sia il vero problema, o che sia solo una scusa?"],
+    ["Lei","Se fossi il medico di Zeno, cosa gli consiglieresti?"],
+    ["Lei","Hai mai avuto anche tu una tua «ultima sigaretta»? Una promessa che continuavi a rimandare?"],
+    ["Lei","Pensi che sia possibile cambiare un'abitudine solo con la volontà?"],
+    ["Lei","Se potessi chiedere una cosa a Zeno, cosa gli chiederesti?"]
+  ];
+  var zMazzo=[];
+  function zNuova(){ if(!zMazzo.length) zMazzo=mescola(ZENO); var z=zMazzo.shift(); $("zTipo").textContent=z[0]; $("zTesto").textContent=z[1]; }
+  $("zAvanti").onclick = zNuova;
+
+  /* ---------- tastiera ---------- */
+  document.addEventListener("keydown", function(e){
+    if(e.target.tagName==="SELECT"||e.target.tagName==="INPUT") return;
+    if(e.key===" "){
+      e.preventDefault();
+      if(faseOn===1) fGira(); else if(faseOn===2) lGira(); else if(faseOn===4) dNuova(); else if(faseOn===5) zNuova();
+    }
+    if(e.key==="ArrowRight" && faseOn===3) $("sAvanti").click();
+  });
+
+  fNuovo(); lNuovo(); fermaLampo(); sCarte(); dNuova(); zNuova(); vai(1);
+})();
+</script>
+</body>
+</html>
