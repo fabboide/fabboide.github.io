@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "29 ottobre 2026, 17:53";
+var PIANO_AGGIORNATO = "30 ottobre 2026, 02:55";
 
 var PIANO = {
 
@@ -451,6 +451,53 @@ var PIANO = {
         "titolo": "Describing people",
         "href": "https://talkwithfabio.com/esercizi/descrivere/",
         "nota": "Hair, eyes, height and clothes"
+      }
+    ]
+  },
+
+  "samy-k74": {
+    "nome": "Samy",
+    "aggiornato": "29 ottobre 2026",
+    "ultima": {
+      "quando": "2026-10-29T11:30:00+01:00",
+      "fatto": [
+        "Verb roulette",
+        "Describing people: hair and eyes",
+        "Guess who, with the faces game",
+        "Describing your family"
+      ]
+    },
+    "prossima": {
+      "quando": "2026-11-02T18:00:00+01:00",
+      "obiettivo": "Describe a person from head to toe, asking the questions on your own.",
+      "attivita": [
+        {
+          "titolo": "Verb roulette",
+          "href": "",
+          "nota": "Ten minutes: passato prossimo, essere or avere"
+        },
+        {
+          "titolo": "Identikit",
+          "href": "",
+          "nota": "You ask the questions, without help on the screen"
+        },
+        {
+          "titolo": "Conversation",
+          "href": "",
+          "nota": "Describe a real person: a friend, a colleague, someone famous"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "Guess who, in Italian",
+        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
+        "nota": "Optional. Level 2: write the questions yourself"
+      },
+      {
+        "titolo": "Describing people",
+        "href": "https://talkwithfabio.com/esercizi/descrivere/",
+        "nota": "Optional. Hair, face, clothes"
       }
     ]
   }
