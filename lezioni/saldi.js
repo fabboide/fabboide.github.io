@@ -54,7 +54,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "29 ottobre 2026, 11:53";
+var SALDI_AGGIORNATO = "30 ottobre 2026, 11:52";
 
 var SALDI = {
 
@@ -63,18 +63,17 @@ var SALDI = {
     pacchetto: 8,
     inizio: "2026-09-28",
     fatte_prima: 0,
-    fatte: 4,
-    prenotate: 1,
+    fatte: 5,
+    prenotate: 0,
     rimaste: 3,
     passate: [
       "2026-10-09T17:00:00+02:00",
       "2026-10-12T16:30:00+02:00",
       "2026-10-15T16:30:00+02:00",
-      "2026-10-22T16:30:00+02:00"
+      "2026-10-22T16:30:00+02:00",
+      "2026-10-29T16:30:00+01:00"
     ],
-    prossime: [
-      { quando: "2026-10-29T16:30:00+01:00", fine: "2026-10-29T17:20:00+01:00", gestisci: "https://cal.com/booking/69MAZyb9ZCuX3WkmzhLKn2?changes=true" }
-    ],
+    prossime: [],
     promemoria: "Per Fabio: quella del 9 ottobre alle 9:00 non c'è più sul calendario, l'ha spostata lui: adesso è il 9 alle 17:00, prenotata da Cal.com il 7 ottobre, e quella la conto. · Le lezioni di agosto e inizio settembre (27/8, 28/8, 3/9, 10/9) restano fuori da questo pacchetto: il conteggio parte dal 28 settembre."
   },
 
