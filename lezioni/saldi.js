@@ -92,12 +92,12 @@ var SALDI = {
 
   "sophie-6zk": {
     nome: "Sophie",
-    pacchetto: 10,
+    pacchetto: 20,
     inizio: "2026-08-26",
     fatte_prima: 0,
     fatte: 8,
     prenotate: 2,
-    rimaste: 0,
+    rimaste: 10,
     passate: [
       "2026-08-26T12:00:00+02:00",
       "2026-09-01T12:00:00+02:00",
