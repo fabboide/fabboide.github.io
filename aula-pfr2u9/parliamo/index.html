@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parliamo! · Talk with Fabio</title>
+<meta name="description" content="Le prime conversazioni in italiano (A1): il dialogo che sparisce, la regola del due più uno e un incontro con un'identità nuova.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+
+
+/* Nomi dei due */
+.nomi{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 6px}
+.nomi label{font-family:var(--display);font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:6px}
+.nomi input{font:inherit;font-family:var(--text);font-size:1rem;border:1px solid var(--line);border-radius:10px;padding:6px 10px;background:var(--paper);width:9.5em}
+.dotA,.dotB{display:inline-block;width:12px;height:12px;border-radius:50%}
+.dotA{background:var(--tomato)}
+.dotB{background:var(--basil)}
+
+/* Fase 1: il dialogo */
+.livelli{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.livelli span.k{font-family:var(--display);font-weight:700;font-size:.85rem;color:var(--muted);margin-right:4px}
+.dialogo{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.dialogo h3{font-size:1.2rem;margin:0 0 10px}
+.battuta{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;margin:0 0 10px}
+.chi{font-family:var(--display);font-weight:800;font-size:.85rem;color:#fff;border-radius:999px;padding:3px 10px;white-space:nowrap;margin-top:4px}
+.chi.A{background:var(--tomato)}
+.chi.B{background:var(--basil)}
+.frase{font-size:1.32rem;line-height:1.55}
+.w{white-space:nowrap}
+.w.via{color:transparent;border-bottom:2px solid var(--line);border-radius:2px}
+.w.ini .resto{color:transparent;border-bottom:2px solid var(--line)}
+.slot{background:#FDF0D8;border-radius:5px;padding:0 3px;box-shadow:inset 0 -2px 0 var(--lemon)}
+.slot.vuoto{padding:0 8px;text-align:left;color:var(--muted);font-family:var(--hand);font-size:1.15em;background:#FDF0D8}
+.passi{font-family:var(--hand);font-size:1.3rem;color:var(--basil);margin:6px 0 0}
+
+/* Fase 2: le carte */
+.carta{background:var(--bubble);border:1px solid #CBDDD2;border-radius:18px 18px 18px 4px;padding:18px 20px}
+.carta .chiede{font-family:var(--hand);font-size:1.2rem;color:var(--basil);margin:0}
+.carta .q{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,4vw,2.1rem);line-height:1.15;margin:4px 0 10px}
+.carta .avvio{font-size:1.15rem;margin:0}
+.carta .avvio b{font-family:var(--display)}
+.aggiungi{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.aggiungi span{font-family:var(--display);font-weight:600;font-size:.88rem;background:var(--paper);border:1px dashed var(--basil);color:var(--basil);border-radius:999px;padding:4px 10px}
+.regola{border-left:4px solid var(--tomato);background:#FBF0EE;border-radius:0 12px 12px 0;padding:10px 14px;margin:0 0 14px;font-size:1.02rem}
+.regola b{font-family:var(--display)}
+.squadre{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.squadra{border:2px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--paper)}
+.squadra.A{border-color:var(--tomato)}
+.squadra.B{border-color:var(--basil)}
+.squadra h4{font-family:var(--display);margin:0 0 4px;font-size:1rem;display:flex;justify-content:space-between;align-items:baseline}
+.squadra h4 output{font-size:1.8rem;font-weight:800}
+.squadra.A h4 output{color:var(--tomato)}
+.squadra.B h4 output{color:var(--basil)}
+.squadra .pt{display:flex;flex-direction:column;gap:6px}
+.squadra .pt button{font-family:var(--display);font-weight:600;font-size:.85rem;text-align:left;border:1px solid var(--line);background:var(--paper-2,#fff);border-radius:10px;padding:6px 9px}
+.squadra .pt button:active{transform:scale(.98)}
+.turno{font-family:var(--hand);font-size:1.3rem;color:var(--tomato);margin:0 0 6px}
+
+/* Fase 3: le identita */
+.carte2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.carte2{grid-template-columns:1fr}}
+.ident{border:2px solid var(--ink);border-radius:18px;background:var(--paper);padding:14px 16px}
+.ident.A{border-color:var(--tomato)}
+.ident.B{border-color:var(--basil)}
+.ident .di{font-family:var(--hand);font-size:1.15rem;margin:0}
+.ident.A .di{color:var(--tomato)}
+.ident.B .di{color:var(--basil)}
+.ident .nome{font-family:var(--display);font-weight:800;font-size:1.6rem;margin:0 0 6px}
+.ident dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:0;font-size:1.02rem}
+.ident dt{font-family:var(--display);font-weight:700;color:var(--muted);font-size:.85rem;padding-top:3px}
+.ident dd{margin:0}
+.ident.coperta dl,.ident.coperta .nome{filter:blur(7px);user-select:none}
+.scena{border:2px dashed var(--lemon);border-radius:16px;background:#FDF6E8;padding:12px 16px;margin:0 0 14px}
+.scena b{font-family:var(--display)}
+.scena .apre{font-family:var(--hand);font-size:1.35rem;color:var(--tomato);display:block;margin-top:4px}
+.quiz{margin:0;padding-left:22px}
+.quiz li{margin-bottom:8px;font-size:1.05rem}
+.quiz li .ris{display:none;font-family:var(--hand);font-size:1.2rem;color:var(--basil);margin-left:6px}
+.quiz.aperto li .ris{display:inline}
+#p1 .grid2>*,#p2 .grid2>*,#p3 .grid2>*{min-width:0}
+.mini{font-size:.9rem;color:var(--muted);margin:10px 0 0}
+.turno,.passi{min-height:1.4em}
+/* Comuni presi da Che mi racconti? */
+.nota-gram{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin-top:10px}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.vuoto{color:var(--muted);text-align:center;padding:26px 10px}
+/* Appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.appunti .riga{justify-content:space-between}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+/* Frasi utili */
+dialog{border:0;border-radius:16px;padding:0;max-width:660px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.5rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:54%}
+.dlg-body h3{margin:18px 0 4px;color:var(--basil);font-size:1.12rem}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Parliamo!</h1>
+    <p>Le prime conversazioni vere, per chi si blocca appena deve parlare. Prima un dialogo che sparisce pezzo per pezzo, poi domande con la regola del «due più uno», alla fine un incontro al bar con un'identità nuova. <span class="en">First real conversations: a vanishing dialogue, questions with the two-plus-one rule, then a meeting with a new identity.</span></p>
+    <div class="nomi" style="margin-top:14px">
+      <label><span class="dotA"></span><input id="nomeA" value="Persona A" aria-label="Nome della persona A"></label>
+      <label><span class="dotB"></span><input id="nomeB" value="Persona B" aria-label="Nome della persona B"></label>
+      <span class="en">Scrivi i nomi: se è uno solo, B sei tu.</span>
+    </div>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Fasi dell'attività">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>Il dialogo che sparisce</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>Due più uno</button>
+    <button role="tab" aria-selected="false" data-phase="p3"><span class="n">3</span>Chi sei oggi?</button>
+    <button class="side" id="apriKit" type="button">Frasi di salvataggio</button>
+  </nav>
+
+  <!-- FASE 1 -->
+  <section class="phase active" id="p1">
+    <h2>Il dialogo che sparisce</h2>
+    <p class="lead">Leggete il dialogo a due voci. A ogni giro spariscono delle parole, e dovete dirlo lo stesso. Poi scambiate i ruoli. Alla fine le parti gialle diventano vostre: le dite con la vostra vita vera. <span class="en">Read it in two voices. Words vanish each round: say it anyway. Then swap roles. Last round: the yellow bits become your real life.</span></p>
+    <div class="toolbar">
+      <div class="chips" id="f1Temi"></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="toolbar">
+          <div class="livelli" id="f1Livelli"><span class="k">Quanto si vede:</span></div>
+        </div>
+        <div class="dialogo" id="f1Dialogo"></div>
+        <div class="riga">
+          <button class="btn red" id="f1Piu" type="button">Sparisce di più</button>
+          <button class="btn ghost" id="f1Meno" type="button">Torna indietro</button>
+          <button class="btn" id="f1Scambia" type="button">Scambia i ruoli</button>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Come si gioca</h3>
+        <ol style="margin:0;padding-left:20px">
+          <li>leggete tutto ad alta voce, una volta per uno</li>
+          <li>«Sparisce di più»: rileggete. Le parole sparite le dite a memoria</li>
+          <li>arrivati alle iniziali, scambiate i ruoli e ricominciate</li>
+          <li>«Fallo tuo»: al posto del giallo dite la vostra informazione vera</li>
+        </ol>
+        <p class="passi" id="f1Passo"></p>
+        <p class="mini">Il dialogo vero non sparisce: sparisce l'appoggio. È quello che vi serve per parlare senza leggere.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 2 -->
+  <section class="phase" id="p2">
+    <h2>Due più uno</h2>
+    <p class="regola"><b>La regola:</b> si risponde con <b>due informazioni</b>, poi si rilancia con <b>una domanda</b> («E tu?», «Perché?», «Con chi?»). Mai solo «sì» o «no». <span class="en">Answer with two pieces of information, then bounce one question back.</span></p>
+    <div class="toolbar">
+      <div class="chips" id="f2Temi"></div>
+      <div class="timer" id="f2Timer"><output id="f2Clock">1:30</output></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <p class="turno" id="f2Turno"></p>
+        <div class="carta" id="f2Carta"></div>
+        <div class="riga">
+          <button class="btn red" id="f2Next" type="button">Un'altra domanda</button>
+          <button class="btn ghost" id="f2Gira" type="button">Cambia chi chiede</button>
+          <button class="btn ghost" id="f2Tempo" type="button">Cronometro 1:30</button>
+          <span class="count" id="f2Pos"></span>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>I punti (li dai tu)</h3>
+        <div class="squadre" id="f2Squadre"></div>
+        <div class="riga"><button class="btn ghost" id="f2Azzera" type="button">Azzera i punti</button></div>
+        <p class="mini">Un punto per ogni cosa: la risposta, l'informazione in più, il rilancio. Chi rilancia con una domanda vera prende il punto anche se sbaglia la grammatica.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FASE 3 -->
+  <section class="phase" id="p3">
+    <h2>Chi sei oggi?</h2>
+    <p class="lead">Ognuno ha un'identità nuova. Vi incontrate per la prima volta: parlate tre minuti e scoprite tutto dell'altro. Alla fine vi faccio le domande sull'altra persona. Poi si rifà, con la vostra vita vera. <span class="en">New identities, a first meeting, three minutes. Then I check what you learnt about each other. Then again, as yourselves.</span></p>
+    <div class="toolbar">
+      <button class="btn red" id="f3Nuove" type="button">Nuove identità</button>
+      <button class="btn ghost" id="f3Scena" type="button">Cambia posto</button>
+      <button class="btn" id="f3Via" type="button">Via! 3 minuti</button>
+      <div class="timer" id="f3Timer"><output id="f3Clock">3:00</output></div>
+    </div>
+    <div class="scena" id="f3ScenaBox"></div>
+    <div class="carte2" id="f3Carte"></div>
+    <div class="grid2" style="margin-top:16px">
+      <div class="panel">
+        <h3>Il controllo (dopo i 3 minuti)</h3>
+        <p class="mini" style="margin:0 0 8px">Chiedo a ognuno dell'altra persona. Le carte si coprono, la risposta si dice a voce, intera: «Si chiama Paolo».</p>
+        <div class="grid2" style="grid-template-columns:1fr 1fr;gap:12px">
+          <div><h3 id="f3QtA"></h3><ol class="quiz" id="f3QuizA"></ol></div>
+          <div><h3 id="f3QtB"></h3><ol class="quiz" id="f3QuizB"></ol></div>
+        </div>
+        <div class="riga">
+          <button class="btn ghost" id="f3Copri" type="button">Copri le carte</button>
+          <button class="btn ghost" id="f3Risposte" type="button">Mostra le risposte</button>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Il giro finale: voi</h3>
+        <p style="margin:0 0 8px">Stessa scena, stessi tre minuti, ma con la vostra vita vera. Le domande sono già nella bocca: adesso le risposte sono vostre.</p>
+        <p class="mini">Se uno si blocca: «Frasi di salvataggio» in alto. Si possono leggere, a patto di dirle forte.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- APPUNTI -->
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Le frasi che non uscivano, le parole che mancavano, gli errori da riprendere alla fine.</p>
+    <textarea id="note" placeholder="Es. «sono 45 anni» → ho 45 anni · «sono lavoro» → lavoro / faccio l'insegnante"></textarea>
+    <div class="riga">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<dialog id="kit" aria-labelledby="kitTitolo">
+  <div class="dlg-head"><h2 id="kitTitolo">Frasi di salvataggio</h2><button class="btn ghost" id="chiudiKit" type="button">Chiudi</button></div>
+  <div class="dlg-body">
+    <h3>Quando non capisco</h3>
+    <table>
+      <tr><td>Come?</td><td>Sorry? What?</td></tr>
+      <tr><td>Puoi ripetere, per favore?</td><td>Can you say that again?</td></tr>
+      <tr><td>Piano, per favore.</td><td>Slowly, please.</td></tr>
+      <tr><td>Cosa vuol dire «...»?</td><td>What does "..." mean?</td></tr>
+    </table>
+    <h3>Quando non so la parola</h3>
+    <table>
+      <tr><td>Come si dice «...» in italiano?</td><td>How do you say "..." in Italian?</td></tr>
+      <tr><td>Non lo so.</td><td>I don't know.</td></tr>
+      <tr><td>Un momento... allora...</td><td>Just a moment... so...</td></tr>
+      <tr><td>È una cosa per... / È come...</td><td>It's a thing for... / It's like...</td></tr>
+    </table>
+    <h3>Per tenere viva la conversazione</h3>
+    <table>
+      <tr><td>E tu?</td><td>And you?</td></tr>
+      <tr><td>Anch'io! / Io no.</td><td>Me too! / Not me.</td></tr>
+      <tr><td>Davvero? / Ah sì?</td><td>Really?</td></tr>
+      <tr><td>Che bello! / Che peccato!</td><td>How nice! / What a pity!</td></tr>
+      <tr><td>Perché? / Con chi? / Dove?</td><td>Why? / Who with? / Where?</td></tr>
+    </table>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ FASE 1: i dialoghi ============
+     Ogni battuta: [chi, testo]. Le parti tra [[ ]] sono quelle da fare
+     proprie nel giro «Fallo tuo». */
+  var DIALOGHI = [
+    {k:"piacere", t:"Piacere!", r:[
+      ["A","Ciao! Io sono [[Marta]]. E tu come ti chiami?"],
+      ["B","Ciao! Mi chiamo [[Paolo]]. Piacere!"],
+      ["A","Piacere mio. Di dove sei?"],
+      ["B","Sono [[olandese]], di [[Utrecht]]. E tu?"],
+      ["A","Io sono di [[Roma]]. Dove abiti adesso?"],
+      ["B","Abito ad [[Amsterdam]], vicino al centro."],
+      ["A","Che bello! Parli bene italiano!"],
+      ["B","Grazie, ma parlo solo un po'."]
+    ]},
+    {k:"famiglia", t:"La famiglia", r:[
+      ["A","Hai fratelli o sorelle?"],
+      ["B","Sì, ho [[un fratello]] e [[una sorella]]. E tu?"],
+      ["A","Io ho [[una sorella]]. Si chiama [[Anna]]."],
+      ["B","Quanti anni ha?"],
+      ["A","Ha [[quarant'anni]] e abita a [[Milano]]."],
+      ["B","E tu, hai figli?"],
+      ["A","Sì, ho [[due figli]]. E tu?"],
+      ["B","No, non ho figli, ma ho [[un cane]]!"]
+    ]},
+    {k:"lavoro", t:"Il lavoro", r:[
+      ["A","Che lavoro fai?"],
+      ["B","Sono [[insegnante]]. Lavoro in [[una scuola]]. E tu?"],
+      ["A","Io faccio [[l'infermiera]]."],
+      ["B","Ti piace il tuo lavoro?"],
+      ["A","Sì, mi piace molto, ma è [[stancante]]."],
+      ["B","A che ora cominci?"],
+      ["A","Comincio alle [[otto]] e finisco alle [[cinque]]."],
+      ["B","Io invece lavoro [[da casa]]!"]
+    ]},
+    {k:"tempo", t:"Il tempo libero", r:[
+      ["A","Cosa fai nel tempo libero?"],
+      ["B","Mi piace [[cucinare]] e [[andare in bicicletta]]."],
+      ["A","Anch'io vado in bicicletta! Dove vai?"],
+      ["B","Vado [[al parco]] o [[al mare]]."],
+      ["A","Con chi?"],
+      ["B","Con [[mia moglie]]. E tu, cosa fai?"],
+      ["A","Io [[leggo]] e [[guardo i film]]."],
+      ["B","Che film ti piacciono?"],
+      ["A","Mi piacciono i film [[italiani]]!"]
+    ]},
+    {k:"bar", t:"Al bar", r:[
+      ["A","Buongiorno! Cosa prendi?"],
+      ["B","Un [[cappuccino]], grazie. E tu?"],
+      ["A","Per me un [[caffè]] e un [[cornetto]]."],
+      ["B","Hai fame?"],
+      ["A","Sì, tanta! Tu non mangi niente?"],
+      ["B","No, grazie. Quanto costa?"],
+      ["A","Offro io!"],
+      ["B","Grazie mille, sei gentile!"]
+    ]},
+    {k:"casa", t:"La casa", r:[
+      ["A","Dove abiti?"],
+      ["B","Abito in [[un appartamento]] in centro."],
+      ["A","È grande?"],
+      ["B","No, è piccolo, ma è [[molto luminoso]]. E tu?"],
+      ["A","Io abito in [[una casa]] con [[il giardino]]."],
+      ["B","Che bello! Quante camere ci sono?"],
+      ["A","Ci sono [[tre camere]], una cucina e [[due bagni]]."],
+      ["B","Posso venire a trovarti?"]
+    ]},
+    {k:"vacanze", t:"Le vacanze", r:[
+      ["A","Dove vai in vacanza di solito?"],
+      ["B","Di solito vado in [[Italia]]. Mi piace molto!"],
+      ["A","Dove sei stato?"],
+      ["B","Sono stato a [[Capri]] con [[mia moglie]]."],
+      ["A","Com'è?"],
+      ["B","È bellissima! Il mare è [[blu]] e si mangia bene."],
+      ["A","E quest'anno dove vai?"],
+      ["B","Non lo so ancora. Forse in [[Sicilia]]!"]
+    ]},
+    {k:"weekend", t:"Il fine settimana", r:[
+      ["A","Cosa fai questo fine settimana?"],
+      ["B","Sabato vado [[al mercato]]. E tu?"],
+      ["A","Io vado [[a cena]] con [[gli amici]]."],
+      ["B","Dove andate?"],
+      ["A","In un ristorante [[italiano]], naturalmente!"],
+      ["B","E domenica?"],
+      ["A","Domenica [[dormo]] e [[faccio una passeggiata]]."],
+      ["B","Perfetto, buon fine settimana!"]
+    ]}
+  ];
+  var LIVELLI = [
+    {k:0, l:"Tutto"},
+    {k:1, l:"Un po' meno"},
+    {k:2, l:"Metà"},
+    {k:3, l:"Solo le iniziali"},
+    {k:4, l:"Niente"},
+    {k:5, l:"Fallo tuo"}
+  ];
+  var PASSI = [
+    "Leggete tutto, una volta per uno.",
+    "Un terzo delle parole è sparito: ditele lo stesso.",
+    "Metà sparita: guardatevi, non lo schermo.",
+    "Solo le iniziali: siete quasi senza appoggio.",
+    "Niente testo: il dialogo è vostro. Adesso scambiate i ruoli.",
+    "Al posto del giallo, la vostra vita vera."
+  ];
+
+  /* ============ FASE 2: le domande ============
+     q: domanda, s: come si comincia la risposta, p: che cosa aggiungere */
+  var TEMI2 = [
+    {k:"io", l:"Io"}, {k:"fam", l:"Famiglia"}, {k:"lav", l:"Lavoro"}, {k:"gio", l:"La giornata"},
+    {k:"tem", l:"Tempo libero"}, {k:"cib", l:"Cibo"}, {k:"cas", l:"Casa e città"}, {k:"via", l:"Viaggi"}
+  ];
+  var DOMANDE = [
+    {g:"io", q:"Come ti chiami?", s:"Mi chiamo... ma tutti mi chiamano...", p:["Ti piace il tuo nome?","Chi l'ha scelto?"]},
+    {g:"io", q:"Di dove sei?", s:"Sono di... È una città...", p:["Com'è?","È grande o piccola?"]},
+    {g:"io", q:"Dove abiti?", s:"Abito a... in una...", p:["Da quanto tempo?","Ti piace?"]},
+    {g:"io", q:"Quante lingue parli?", s:"Parlo... lingue: ...", p:["Quale preferisci?","Quale è difficile?"]},
+    {g:"io", q:"Perché studi italiano?", s:"Studio italiano perché...", p:["Da quanto tempo?","Ti piace?"]},
+    {g:"fam", q:"Hai fratelli o sorelle?", s:"Sì, ho... / No, sono figlio unico...", p:["Come si chiamano?","Dove abitano?"]},
+    {g:"fam", q:"Hai figli?", s:"Sì, ho... / No, ma...", p:["Quanti anni hanno?","Che cosa fanno?"]},
+    {g:"fam", q:"Hai animali?", s:"Sì, ho un... Si chiama...", p:["Com'è?","Quanti anni ha?"]},
+    {g:"fam", q:"Con chi abiti?", s:"Abito con...", p:["Andate d'accordo?","Chi cucina?"]},
+    {g:"fam", q:"Dove abitano i tuoi genitori?", s:"I miei genitori abitano a...", p:["Li vedi spesso?","È lontano?"]},
+    {g:"lav", q:"Che lavoro fai?", s:"Faccio il / la... / Sono...", p:["Dove?","Ti piace?"]},
+    {g:"lav", q:"Dove lavori?", s:"Lavoro in... / a casa...", p:["È lontano?","Com'è?"]},
+    {g:"lav", q:"Ti piace il tuo lavoro?", s:"Sì, mi piace perché... / No, perché...", p:["Cosa ti piace di più?","E i colleghi?"]},
+    {g:"lav", q:"Come vai al lavoro?", s:"Vado in... / a piedi...", p:["Quanto tempo ci metti?","Ti piace?"]},
+    {g:"lav", q:"A che ora finisci di lavorare?", s:"Finisco alle...", p:["E poi cosa fai?","Sei stanco?"]},
+    {g:"gio", q:"A che ora ti svegli?", s:"Mi sveglio alle...", p:["E nel weekend?","Ti piace la mattina?"]},
+    {g:"gio", q:"Cosa mangi a colazione?", s:"A colazione mangio... e bevo...", p:["Dove?","Con chi?"]},
+    {g:"gio", q:"Cosa fai la sera?", s:"La sera di solito...", p:["Con chi?","A che ora vai a letto?"]},
+    {g:"gio", q:"Bevi il caffè?", s:"Sì, bevo... caffè al giorno / No, preferisco...", p:["Come lo bevi?","Quando?"]},
+    {g:"gio", q:"Cosa fai la domenica?", s:"La domenica...", p:["Con chi?","Ti piace la domenica?"]},
+    {g:"tem", q:"Cosa fai nel tempo libero?", s:"Nel tempo libero mi piace...", p:["Con chi?","Quando?"]},
+    {g:"tem", q:"Fai sport?", s:"Sì, faccio... / Gioco a... / No, ma...", p:["Quante volte alla settimana?","Dove?"]},
+    {g:"tem", q:"Ti piace leggere?", s:"Sì, leggo... / No, preferisco...", p:["Che cosa leggi adesso?","Quando leggi?"]},
+    {g:"tem", q:"Che musica ascolti?", s:"Ascolto... Mi piace...", p:["Suoni uno strumento?","Canti?"]},
+    {g:"tem", q:"Guardi la televisione?", s:"Sì, guardo... / No, guardo le serie su...", p:["Qual è la tua serie preferita?","Con chi?"]},
+    {g:"cib", q:"Qual è il tuo piatto preferito?", s:"Il mio piatto preferito è...", p:["Lo sai cucinare?","Dove lo mangi?"]},
+    {g:"cib", q:"Cucini spesso?", s:"Sì, cucino... / No, cucina...", p:["Cosa cucini?","Ti piace?"]},
+    {g:"cib", q:"Ti piace la pizza? Quale?", s:"Sì, mi piace la pizza...", p:["Dove la mangi?","Con chi?"]},
+    {g:"cib", q:"Vai spesso al ristorante?", s:"Vado al ristorante... volte al mese.", p:["Quale ristorante?","Cosa mangi?"]},
+    {g:"cib", q:"Cosa bevi di solito?", s:"Di solito bevo...", p:["Bevi il vino?","Rosso o bianco?"]},
+    {g:"cas", q:"Com'è la tua casa?", s:"La mia casa è... Ci sono...", p:["Qual è la stanza preferita?","Hai un giardino?"]},
+    {g:"cas", q:"Ti piace la tua città?", s:"Sì, mi piace perché... / Non tanto...", p:["Cosa c'è da vedere?","È cara?"]},
+    {g:"cas", q:"Cosa c'è nella tua città?", s:"Nella mia città c'è... e ci sono...", p:["Qual è il tuo posto preferito?","C'è il mare?"]},
+    {g:"cas", q:"Abiti vicino al mare?", s:"Sì, il mare è a... / No, ma...", p:["Ci vai spesso?","D'estate o d'inverno?"]},
+    {g:"cas", q:"Come sono i tuoi vicini di casa?", s:"I miei vicini sono...", p:["Li conosci bene?","Parlate?"]},
+    {g:"via", q:"Dove vai in vacanza di solito?", s:"Di solito vado in / a...", p:["Con chi?","Per quanto tempo?"]},
+    {g:"via", q:"Sei mai stato in Italia?", s:"Sì, sono stato a... / No, mai, ma...", p:["Ti è piaciuta?","Cosa hai mangiato?"]},
+    {g:"via", q:"Preferisci il mare o la montagna?", s:"Preferisco... perché...", p:["Dove vai?","D'estate o d'inverno?"]},
+    {g:"via", q:"Come viaggi: in treno, in macchina o in aereo?", s:"Viaggio in... perché...", p:["Ti piace l'aereo?","Il viaggio più lungo?"]},
+    {g:"via", q:"Quale città vuoi visitare?", s:"Voglio visitare... perché...", p:["Con chi?","Quando?"]}
+  ];
+
+  /* ============ FASE 3: identità e scene ============ */
+  var NOMI_M = ["Paolo","Marco","Luca","Giorgio","Franco","Andrea","Stefano","Davide","Enzo","Matteo"];
+  var NOMI_F = ["Giulia","Chiara","Anna","Francesca","Laura","Elena","Paola","Sara","Silvia","Rosa"];
+  var CITTA = ["Roma","Milano","Napoli","Torino","Bologna","Firenze","Palermo","Bari","Venezia","Genova","Verona","Lecce"];
+  var LAVORI = [["il cuoco","la cuoca"],["l'insegnante","l'insegnante"],["il medico","la dottoressa"],["il barista","la barista"],
+    ["l'architetto","l'architetta"],["il commesso","la commessa"],["il giornalista","la giornalista"],["l'infermiere","l'infermiera"],
+    ["il parrucchiere","la parrucchiera"],["il tassista","la tassista"],["il cameriere","la cameriera"],["il fotografo","la fotografa"]];
+  var FAMIGLIE = [["è sposato, ha due figli","è sposata, ha due figli"],["è single, vive con un gatto","è single, vive con un gatto"],
+    ["vive ancora con i genitori","vive ancora con i genitori"],["è divorziato, ha una figlia","è divorziata, ha una figlia"],
+    ["è fidanzato da dieci anni","è fidanzata da dieci anni"],["ha cinque fratelli","ha cinque fratelli"],["è sposato, ha tre cani","è sposata, ha tre cani"]];
+  var HOBBY = ["cucinare","ballare il tango","giocare a calcio","dipingere","andare in montagna","suonare la chitarra",
+    "leggere i gialli","fare yoga","andare in bicicletta","cantare","guardare le serie","pescare"];
+  var CIBI = ["la pizza margherita","le lasagne","il gelato al pistacchio","il sushi","la carbonara","i cannoli","la pasta al pesto","il risotto"];
+  var SEGRETI = ["ha paura dei cani","parla con le piante","non sa nuotare","ha cento paia di scarpe","dorme con i calzini",
+    "colleziona tazzine","odia il caffè","canta sotto la doccia"];
+  var SCENE = [
+    {d:"Al bar, in centro", a:"Scusa, è libero questo posto?"},
+    {d:"In treno, da Milano a Roma", a:"Buongiorno! Anche tu vai a Roma?"},
+    {d:"A una festa di amici", a:"Ciao! Come conosci Giulia?"},
+    {d:"In palestra", a:"Ciao! Vieni spesso qui?"},
+    {d:"Al primo giorno di un corso di cucina", a:"Ciao! È la prima volta anche per te?"},
+    {d:"In fila al supermercato", a:"Quanta gente oggi, eh?"}
+  ];
+
+  /* ============ ATTREZZI ============ */
+  function $(id){ return document.getElementById(id); }
+  function pesca(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  /* numero finto-casuale ma fisso per ogni parola: cosi' al giro dopo
+     sparisce la stessa parola, piu' altre, e non parole a caso */
+  function rango(s){ var h = 2166136261; for(var i=0;i<s.length;i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return ((h >>> 0) % 1000) / 1000; }
+
+  var CHIAVE = "icf-parliamo";
+  var stato = { nomeA:"Persona A", nomeB:"Persona B", tema1:"piacere", liv:0, scambio:false, temi2:[], chiedeB:false, punti:{A:0,B:0}, note:"" };
+  try{
+    var s0 = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(s0 && typeof s0 === "object"){ for(var k in stato){ if(s0[k] !== undefined) stato[k] = s0[k]; } }
+  }catch(e){}
+  var salvaT = null;
+  function salva(){
+    clearTimeout(salvaT);
+    salvaT = setTimeout(function(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(stato)); }catch(e){} }, 250);
+  }
+  function nome(x){ return x === "A" ? (stato.nomeA || "A") : (stato.nomeB || "B"); }
+
+  /* Nomi */
+  $("nomeA").value = stato.nomeA; $("nomeB").value = stato.nomeB;
+  ["A","B"].forEach(function(x){
+    $("nome" + x).addEventListener("input", function(){
+      stato["nome" + x] = this.value.trim() || ("Persona " + x); salva();
+      disegna1(); disegna2(); disegnaSquadre(); disegna3();
+    });
+  });
+
+  /* Linguette */
+  var tabs = document.querySelectorAll("nav.steps button[data-phase]");
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){
+      Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(s){
+        s.classList.toggle("active", s.id === t.getAttribute("data-phase"));
+      });
+    });
+  });
+
+  /* Kit */
+  var dlg = $("kit");
+  $("apriKit").addEventListener("click", function(){ if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", ""); });
+  $("chiudiKit").addEventListener("click", function(){ if(dlg.close) dlg.close(); else dlg.removeAttribute("open"); });
+
+  /* Cronometri */
+  function cronometro(outId, boxId, secondi){
+    var t = null, resta = secondi;
+    function fmt(s){ return Math.floor(s/60) + ":" + ("0" + (s%60)).slice(-2); }
+    return {
+      via: function(){
+        clearInterval(t); resta = secondi; $(boxId).classList.remove("zero"); $(outId).textContent = fmt(resta);
+        t = setInterval(function(){
+          resta--; $(outId).textContent = fmt(Math.max(0, resta));
+          if(resta <= 0){ clearInterval(t); $(boxId).classList.add("zero"); }
+        }, 1000);
+      },
+      ferma: function(){ clearInterval(t); resta = secondi; $(boxId).classList.remove("zero"); $(outId).textContent = fmt(secondi); }
+    };
+  }
+
+  /* ============ FASE 1 ============ */
+  DIALOGHI.forEach(function(d){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = d.t; b.dataset.k = d.k;
+    b.addEventListener("click", function(){ stato.tema1 = d.k; stato.liv = 0; stato.scambio = false; salva(); disegna1(); });
+    $("f1Temi").appendChild(b);
+  });
+  LIVELLI.forEach(function(L){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = L.l; b.dataset.k = L.k;
+    b.addEventListener("click", function(){ stato.liv = L.k; salva(); disegna1(); });
+    $("f1Livelli").appendChild(b);
+  });
+  /* le pastiglie dei livelli usano lo stesso stile delle altre */
+  $("f1Livelli").classList.add("chips");
+
+  function parola(w, id, liv){
+    /* w puo' iniziare o finire con la punteggiatura: quella resta sempre */
+    var m = /^([«"(]*)(.*?)([.,!?;:»")]*)$/.exec(w);
+    var pre = m[1], core = m[2], post = m[3];
+    if(!core) return esc(w);
+    var r = rango(id);
+    var nasc = (liv === 1 && r < 0.33) || (liv === 2 && r < 0.62) || liv === 4;
+    if(liv === 3) return esc(pre) + '<span class="w ini">' + esc(core.charAt(0)) + '<span class="resto">' + esc(core.slice(1)) + "</span></span>" + esc(post);
+    if(nasc) return esc(pre) + '<span class="w via">' + esc(core) + "</span>" + esc(post);
+    return esc(w);
+  }
+
+  function battutaHTML(testo, id, liv){
+    /* separa i pezzi [[...]] dal resto */
+    var pezzi = testo.split(/(\[\[[^\]]+\]\])/);
+    var out = "", n = 0;
+    pezzi.forEach(function(p){
+      if(!p) return;
+      var slot = /^\[\[(.+)\]\]$/.exec(p);
+      if(slot){
+        if(liv === 5){ out += '<span class="slot vuoto">… (tu)</span>'; return; }
+        var dentro = slot[1].split(" ").map(function(w){ return parola(w, id + ":" + (n++), liv); }).join(" ");
+        out += '<span class="slot">' + dentro + "</span>";
+        return;
+      }
+      out += p.split(/(\s+)/).map(function(w){
+        if(/^\s+$/.test(w) || !w) return w;
+        return parola(w, id + ":" + (n++), liv === 5 ? 0 : liv);
+      }).join("");
+    });
+    return out;
+  }
+
+  function disegna1(){
+    var d = DIALOGHI.filter(function(x){ return x.k === stato.tema1; })[0] || DIALOGHI[0];
+    Array.prototype.forEach.call($("f1Temi").children, function(b){ b.setAttribute("aria-pressed", String(b.dataset.k === d.k)); });
+    Array.prototype.forEach.call($("f1Livelli").querySelectorAll("button"), function(b){ b.setAttribute("aria-pressed", String(+b.dataset.k === stato.liv)); });
+    var h = "<h3>" + esc(d.t) + "</h3>";
+    d.r.forEach(function(r, i){
+      var chi = r[0];
+      var parla = stato.scambio ? (chi === "A" ? "B" : "A") : chi;
+      h += '<div class="battuta"><span class="chi ' + parla + '">' + esc(nome(parla)) + '</span><div class="frase">' +
+        battutaHTML(r[1], d.k + ":" + i, stato.liv) + "</div></div>";
+    });
+    $("f1Dialogo").innerHTML = h;
+    $("f1Passo").textContent = PASSI[stato.liv];
+  }
+  $("f1Piu").addEventListener("click", function(){ if(stato.liv < 5){ stato.liv++; salva(); disegna1(); } });
+  $("f1Meno").addEventListener("click", function(){ if(stato.liv > 0){ stato.liv--; salva(); disegna1(); } });
+  $("f1Scambia").addEventListener("click", function(){ stato.scambio = !stato.scambio; if(stato.liv === 4) stato.liv = 1; salva(); disegna1(); });
+
+  /* ============ FASE 2 ============ */
+  var mazzo = [], i2 = 0;
+  var crono2 = cronometro("f2Clock", "f2Timer", 90);
+  function attivi(){ return stato.temi2.length ? stato.temi2 : TEMI2.map(function(t){ return t.k; }); }
+  function nuovoMazzo(){
+    var a = attivi();
+    mazzo = shuffle(DOMANDE.filter(function(d){ return a.indexOf(d.g) >= 0; }));
+    i2 = 0;
+  }
+  var tutte = document.createElement("button");
+  tutte.type = "button"; tutte.textContent = "Tutti i temi";
+  tutte.addEventListener("click", function(){ stato.temi2 = []; salva(); temiChips(); nuovoMazzo(); disegna2(); });
+  $("f2Temi").appendChild(tutte);
+  TEMI2.forEach(function(t){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = t.l; b.dataset.k = t.k;
+    b.addEventListener("click", function(){
+      var i = stato.temi2.indexOf(t.k);
+      if(i >= 0) stato.temi2.splice(i, 1); else stato.temi2.push(t.k);
+      salva(); temiChips(); nuovoMazzo(); disegna2();
+    });
+    $("f2Temi").appendChild(b);
+  });
+  function temiChips(){
+    Array.prototype.forEach.call($("f2Temi").children, function(b){
+      b.setAttribute("aria-pressed", String(b.dataset.k ? stato.temi2.indexOf(b.dataset.k) >= 0 : !stato.temi2.length));
+    });
+  }
+  function disegna2(){
+    if(!mazzo.length) nuovoMazzo();
+    if(i2 >= mazzo.length) nuovoMazzo();
+    var d = mazzo[i2];
+    var chi = stato.chiedeB ? "B" : "A", altro = stato.chiedeB ? "A" : "B";
+    $("f2Turno").textContent = nome(chi) + " chiede, " + nome(altro) + " risponde. Poi tocca a " + nome(altro) + " rilanciare.";
+    $("f2Carta").innerHTML = '<p class="chiede">' + esc(nome(chi)) + " chiede a " + esc(nome(altro)) + ":</p>" +
+      '<p class="q">' + esc(d.q) + "</p>" +
+      '<p class="avvio"><b>Per cominciare:</b> ' + esc(d.s) + "</p>" +
+      '<div class="aggiungi"><span>+ ' + esc(d.p[0]) + "</span><span>+ " + esc(d.p[1]) + "</span><span>poi: E tu?</span></div>";
+    $("f2Pos").textContent = (i2 + 1) + " di " + mazzo.length;
+  }
+  $("f2Next").addEventListener("click", function(){ i2++; stato.chiedeB = !stato.chiedeB; salva(); crono2.ferma(); disegna2(); });
+  $("f2Gira").addEventListener("click", function(){ stato.chiedeB = !stato.chiedeB; salva(); disegna2(); });
+  $("f2Tempo").addEventListener("click", function(){ crono2.via(); });
+
+  var VOCI = [["la risposta", 1], ["un'informazione in più", 1], ["il rilancio (E tu? Perché?)", 1]];
+  function disegnaSquadre(){
+    var box = $("f2Squadre"); box.innerHTML = "";
+    ["A","B"].forEach(function(x){
+      var s = document.createElement("div");
+      s.className = "squadra " + x;
+      s.innerHTML = "<h4><span>" + esc(nome(x)) + "</span><output>" + (stato.punti[x] || 0) + "</output></h4>";
+      var pt = document.createElement("div"); pt.className = "pt";
+      VOCI.forEach(function(v){
+        var b = document.createElement("button");
+        b.type = "button"; b.textContent = "+1 " + v[0];
+        b.addEventListener("click", function(){ stato.punti[x] = (stato.punti[x] || 0) + v[1]; salva(); disegnaSquadre(); });
+        pt.appendChild(b);
+      });
+      s.appendChild(pt); box.appendChild(s);
+    });
+  }
+  $("f2Azzera").addEventListener("click", function(){ stato.punti = {A:0, B:0}; salva(); disegnaSquadre(); });
+
+  /* ============ FASE 3 ============ */
+  var identita = null, scena = null;
+  var crono3 = cronometro("f3Clock", "f3Timer", 180);
+  function unaPersona(evitaNome){
+    var uomo = Math.random() < 0.5, n;
+    do { n = pesca(uomo ? NOMI_M : NOMI_F); } while(n === evitaNome);
+    var i = uomo ? 0 : 1;
+    return {
+      uomo: uomo, nome: n, eta: 22 + Math.floor(Math.random() * 47),
+      citta: pesca(CITTA), lavoro: pesca(LAVORI)[i], famiglia: pesca(FAMIGLIE)[i],
+      hobby: shuffle(HOBBY.slice()).slice(0, 2), cibo: pesca(CIBI), segreto: pesca(SEGRETI)
+    };
+  }
+  function carta(x, p){
+    return '<div class="ident ' + x + '" id="carta' + x + '"><p class="di">Oggi ' + esc(nome(x)) + " è...</p>" +
+      '<p class="nome">' + esc(p.nome) + "</p><dl>" +
+      "<dt>Età</dt><dd>" + p.eta + " anni</dd>" +
+      "<dt>Di dov'è</dt><dd>di " + esc(p.citta) + "</dd>" +
+      "<dt>Lavoro</dt><dd>fa " + esc(p.lavoro) + "</dd>" +
+      "<dt>Famiglia</dt><dd>" + esc(p.famiglia) + "</dd>" +
+      "<dt>" + (p.uomo ? "Gli" : "Le") + " piace</dt><dd>" + esc(p.hobby[0]) + " e " + esc(p.hobby[1]) + "</dd>" +
+      "<dt>Piatto preferito</dt><dd>" + esc(p.cibo) + "</dd>" +
+      "<dt>Segreto</dt><dd>" + esc(p.segreto) + " <span class='en'>(lo dice solo se glielo chiedono)</span></dd>" +
+      "</dl></div>";
+  }
+  function quiz(p){
+    var gl = p.uomo ? "gli" : "le";
+    var Q = [
+      ["Come si chiama?", "Si chiama " + p.nome + "."],
+      ["Quanti anni ha?", "Ha " + p.eta + " anni."],
+      ["Di dov'è?", "È di " + p.citta + "."],
+      ["Che lavoro fa?", "Fa " + p.lavoro + "."],
+      ["Ha famiglia?", p.famiglia.charAt(0).toUpperCase() + p.famiglia.slice(1) + "."],
+      ["Che cosa " + gl + " piace fare?", (p.uomo ? "Gli" : "Le") + " piace " + p.hobby[0] + " e " + p.hobby[1] + "."],
+      ["Qual è il suo piatto preferito?", "È " + p.cibo + "."]
+    ];
+    return shuffle(Q).slice(0, 5).map(function(q){
+      return "<li>" + esc(q[0]) + '<span class="ris">' + esc(q[1]) + "</span></li>";
+    }).join("");
+  }
+  function disegna3(){
+    if(!identita) return;
+    $("f3Carte").innerHTML = carta("A", identita.A) + carta("B", identita.B);
+    $("f3ScenaBox").innerHTML = "<b>Dove:</b> " + esc(scena.d) + '<span class="apre">' + esc(nome("A")) + " comincia: «" + esc(scena.a) + "»</span>";
+    $("f3QtA").textContent = "Domande a " + nome("A") + " (su " + identita.B.nome + ")";
+    $("f3QtB").textContent = "Domande a " + nome("B") + " (su " + identita.A.nome + ")";
+  }
+  function nuoveIdentita(){
+    var a = unaPersona(), b = unaPersona(a.nome);
+    identita = { A:a, B:b };
+    $("f3QuizA").innerHTML = quiz(b); $("f3QuizB").innerHTML = quiz(a);
+    $("f3QuizA").classList.remove("aperto"); $("f3QuizB").classList.remove("aperto");
+    disegna3();
+  }
+  $("f3Nuove").addEventListener("click", function(){ crono3.ferma(); nuoveIdentita(); });
+  $("f3Scena").addEventListener("click", function(){ scena = pesca(SCENE.filter(function(s){ return s !== scena; })); disegna3(); });
+  $("f3Via").addEventListener("click", function(){ crono3.via(); });
+  $("f3Copri").addEventListener("click", function(){
+    ["cartaA","cartaB"].forEach(function(id){ var c = $(id); if(c) c.classList.toggle("coperta"); });
+  });
+  $("f3Risposte").addEventListener("click", function(){
+    $("f3QuizA").classList.toggle("aperto"); $("f3QuizB").classList.toggle("aperto");
+  });
+
+  /* ============ APPUNTI ============ */
+  var note = $("note");
+  note.value = stato.note || "";
+  note.addEventListener("input", function(){
+    stato.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("reset").addEventListener("click", function(){
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+
+  /* Avvio */
+  scena = pesca(SCENE);
+  disegna1(); temiChips(); nuovoMazzo(); disegna2(); disegnaSquadre(); nuoveIdentita();
+})();
+</script>
+</body>
+</html>

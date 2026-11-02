@@ -70,6 +70,9 @@ header.sign{padding:26px 0 2px;display:flex;flex-wrap:wrap;gap:12px;align-items:
 .palco{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:26px 28px;margin-top:16px;text-align:center}
 .etichetta{font-family:var(--display);font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .tema{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,4.6vw,2.7rem);line-height:1.15;margin:8px 0 0}
+.tema-mio{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.tema-mio[hidden]{display:none}
+.tema-mio input{flex:1 1 220px;min-width:0;font:inherit;font-size:1.05rem;border:1px solid var(--line);border-radius:999px;padding:9px 16px;background:var(--paper)}
 .anello{width:min(240px,52vw);height:min(240px,52vw);margin:14px auto 0;display:block;transform:rotate(-90deg)}
 .anello circle{fill:none;stroke-width:10;stroke-linecap:round}
 .anello .sfondo{stroke:var(--line)}
@@ -185,10 +188,15 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
     </div>
     <div class="toolbar">
       <button class="btn" id="cPesca" type="button">Pesca un tema</button>
+      <button class="btn ghost" id="cMio" type="button" aria-expanded="false" aria-controls="cMioBox">Il tuo tema</button>
       <button class="btn green grande" id="cVai" type="button" disabled>Via</button>
       <button class="btn giallo grande" id="cBlocco" type="button" disabled>Blocco +1</button>
       <button class="btn ghost" id="cChiudi" type="button" disabled>Chiudi il giro</button>
       <button class="btn ghost" id="cAzzera" type="button">Ricomincia</button>
+    </div>
+    <div class="tema-mio" id="cMioBox" hidden>
+      <input id="cMioIn" type="text" maxlength="90" autocomplete="off" placeholder="es. La tua vacanza a Cipro" aria-label="Scrivi il tema">
+      <button class="btn green" id="cMioOk" type="button">Usa questo tema</button>
     </div>
     <p class="nota-piede"><kbd>spazio</kbd> conta un blocco · <kbd>invio</kbd> chiude il giro. Fra un giro e l'altro si dice solo: <i>«uguale, ma in meno tempo»</i>.</p>
     <div class="riepilogo" id="cFine" hidden>
@@ -766,6 +774,27 @@ kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid 
     comp.tema = pescaDiverso(TEMI, comp.tema);
     $("cTema").textContent = comp.tema;
     cAzzera();
+  });
+  /* Il tema lo può scrivere anche l'insegnante: una vacanza appena fatta,
+     una cosa successa in settimana. Si riprende meglio quello che è vero. */
+  $("cMio").addEventListener("click", function(){
+    var box = $("cMioBox"), apri = box.hidden;
+    box.hidden = !apri;
+    this.setAttribute("aria-expanded", String(apri));
+    if(apri){ $("cMioIn").value = ""; $("cMioIn").focus(); }
+  });
+  function cUsaMio(){
+    var t = $("cMioIn").value.replace(/\s+/g, " ").trim();
+    if(!t || comp.inCorso) return;
+    comp.tema = t;
+    $("cTema").textContent = t;
+    $("cMioBox").hidden = true;
+    $("cMio").setAttribute("aria-expanded", "false");
+    cAzzera();
+  }
+  $("cMioOk").addEventListener("click", cUsaMio);
+  $("cMioIn").addEventListener("keydown", function(e){
+    if(e.key === "Enter"){ e.preventDefault(); cUsaMio(); }
   });
   $("cVai").addEventListener("click", cAvviaGiro);
   $("cChiudi").addEventListener("click", function(){ if(comp.inCorso) cChiudiGiro(); });

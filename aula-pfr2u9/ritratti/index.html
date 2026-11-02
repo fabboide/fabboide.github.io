@@ -1,0 +1,317 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ritratti</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.nota-gram{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin-top:10px}
+
+/* Carte */
+.carta{background:var(--paper);border:2px solid var(--ink);border-radius:18px;padding:18px 20px;min-height:170px}
+.carta .cat{font-family:var(--hand);font-size:1.25rem;color:var(--tomato);margin:0}
+.carta .dom{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,4.2vw,2.1rem);line-height:1.15;margin:4px 0 0}
+.carta .en{display:block;margin-top:6px}
+.box{display:none;margin-top:12px;padding:10px 14px;border-radius:12px;font-size:1.08rem}
+.box.show{display:block}
+.box b{font-family:var(--display)}
+.box.ril{border-left:4px solid var(--basil);background:#E7F0EA;border-radius:0 12px 12px 0}
+.box.aiu{border:1px dashed var(--lemon);background:#FDF6E8}
+.box ul{margin:4px 0 0;padding-left:20px}
+.kit td{padding:4px 6px;border-bottom:1px solid var(--line);vertical-align:top;font-size:.98rem}
+.kit table{width:100%;border-collapse:collapse}
+.kit td:first-child{font-weight:700;white-space:nowrap}
+/* Ritratto */
+.check{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.check button{text-align:left;font-family:var(--display);font-weight:700;font-size:1rem;border:2px solid var(--line);background:var(--paper);border-radius:12px;padding:9px 12px}
+.check button small{display:block;font-family:var(--text);font-weight:400;color:var(--muted);font-size:.85rem}
+.check button[aria-pressed="true"]{border-color:var(--basil);background:#E7F0EA;color:var(--basil)}
+.big{font-family:var(--display);font-weight:800;font-size:2.4rem;line-height:1;margin:0}
+.chi{font-family:var(--hand);font-size:1.3rem;color:var(--basil)}
+@media (max-width:420px){.check{grid-template-columns:1fr}}
+
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--stone:#141B2B;--paper:#1C2438;--ink:#F1ECE0;--muted:#AEB6C8;--line:#334058;--basil:#7FC0A6;--tomato:#F0776F;--bubble:#21352E;color-scheme:dark}}
+:root[data-theme="dark"]{--stone:#141B2B;--paper:#1C2438;--ink:#F1ECE0;--muted:#AEB6C8;--line:#334058;--basil:#7FC0A6;--tomato:#F0776F;--bubble:#21352E;color-scheme:dark}
+.wrap,.topbar-in{padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.box.ril{background:var(--bubble)} .check button[aria-pressed="true"]{background:var(--bubble)} .box.aiu{background:transparent}
+.btn{color:var(--stone)} .btn.ghost{color:var(--ink)}
+</style>
+</head><body>
+
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="https://talkwithfabio.com/aula-pfr2u9/">La mia aula</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Ritratti</h1>
+    <p>Dopo Identikit e Il guardaroba si parla di persone vere: com'è, che cosa porta, com'era vestita. Prima le carte da conversazione, poi il ritratto completo a voce. <span class="en">Talk about real people: looks, clothes, and what they wore.</span></p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Fasi dell'attività">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>Le carte</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>Il ritratto</button>
+  </nav>
+
+  <section class="phase active" id="p1">
+    <h2>Le carte</h2>
+    <p class="lead">Leggi la domanda e rispondi con almeno due frasi. Poi la domanda torna indietro: «E tu?». <span class="en">Answer with at least two sentences, then ask it back.</span></p>
+    <div class="chips" id="cats" style="margin-bottom:14px"></div>
+    <div class="grid2">
+      <div>
+        <div class="carta" aria-live="polite">
+          <p class="cat" id="cCat"></p>
+          <p class="dom" id="cDom"></p>
+          <span class="en" id="cEn"></span>
+        </div>
+        <div class="box ril" id="cRil"></div>
+        <div class="box aiu" id="cAiu"></div>
+        <div class="riga">
+          <button class="btn ghost" id="bAiu" type="button">Aiutino</button>
+          <button class="btn green" id="bRil" type="button">Rilancia</button>
+          <button class="btn red" id="bNext" type="button">Un'altra carta</button>
+          <span class="count" id="cPos"></span>
+        </div>
+      </div>
+      <aside class="panel kit">
+        <h3>Il kit</h3>
+        <table>
+          <tr><td>è</td><td>alta, bassa, magra, giovane, simpatica</td></tr>
+          <tr><td>ha</td><td>i capelli lunghi, gli occhi verdi, la barba</td></tr>
+          <tr><td>porta</td><td>gli occhiali, una gonna, le scarpe nere</td></tr>
+          <tr><td>assomiglia a</td><td>sua madre, un attore</td></tr>
+          <tr><td>mi sono messa</td><td>un vestito rosso (ieri)</td></tr>
+          <tr><td>da piccola</td><td>ero..., avevo i capelli...</td></tr>
+        </table>
+        <p class="nota-gram">I colori si accordano: maglietta rossa, pantaloni neri, scarpe bianche. Blu, rosa e viola non cambiano.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="phase" id="p2">
+    <h2>Il ritratto</h2>
+    <p class="lead">Descrivi la persona della carta dalla testa ai piedi, senza dire il nome. Chi ascolta tocca le caselle quando sente quella parte e alla fine indovina o disegna. Poi si scambia. <span class="en">Describe the person head to toe. The listener ticks the boxes, then guesses or draws.</span></p>
+    <div class="toolbar">
+      <button class="btn red" id="rNuovo" type="button">Nuova persona</button>
+      <button class="btn ghost" id="rScambia" type="button">Scambio</button>
+      <span class="chi" id="rChi"></span>
+      <div class="timer" id="rTimer"><button class="btn ghost" id="rStart" type="button">2:00</button><output id="rT">2:00</output></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="carta">
+          <p class="cat">Descrivi</p>
+          <p class="dom" id="rDom"></p>
+          <span class="en" id="rEn"></span>
+        </div>
+        <div class="check" id="rCheck"></div>
+      </div>
+      <aside class="panel">
+        <h3>Il ritratto</h3>
+        <p class="big" id="rPunti">0/8</p>
+        <p class="en" id="rSub" style="margin:4px 0 12px">Ancora niente.</p>
+        <h3>Le regole</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>niente nome: chi ascolta deve indovinare</li>
+          <li>la casella si tocca solo se la frase è intera («ha gli occhi azzurri»)</li>
+          <li>per il bonus: una domanda di chi ascolta («Porta gli occhiali?»)</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
+  function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+
+  /* Linguette */
+  var tabs = document.querySelectorAll("nav.steps button[data-phase]");
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){
+      Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", String(x === t)); });
+      Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(s){ s.classList.toggle("active", s.id === t.dataset.phase); });
+    });
+  });
+
+  /* ============ LE CARTE ============
+     c: categoria, q: domanda, en: inglese, r: rilanci, a: aiutino */
+  var CAT = { persone:"Le persone", vestiti:"I vestiti", passato:"Al passato", ripasso:"Il ripasso" };
+  var CARTE = [
+    {c:"persone", q:"Com'è la tua migliore amica?", en:"What is your best friend like?", r:["Ha i capelli lunghi o corti?","Di che colore ha gli occhi?","È più alta o più bassa di te?"], a:"È alta / bassa... Ha i capelli... Ha gli occhi..."},
+    {c:"persone", q:"A chi assomigli nella tua famiglia?", en:"Who do you look like in your family?", r:["Hai gli occhi di tua madre o di tuo padre?","E il carattere, di chi è?"], a:"Assomiglio a mia madre / mio padre. Ho gli occhi di..."},
+    {c:"persone", q:"Descrivi una persona della tua famiglia.", en:"Describe someone in your family.", r:["Quanti anni ha?","Dove abita?","Vi vedete spesso?"], a:"Si chiama... Ha ... anni. È... Ha..."},
+    {c:"persone", q:"Com'è il tuo attore o la tua attrice preferita?", en:"What does your favourite actor look like?", r:["In quale film l'hai visto?","Perché ti piace?"], a:"È... Ha i capelli... Porta spesso..."},
+    {c:"persone", q:"Descrivi me: com'è Fabio?", en:"Describe your teacher!", r:["E com'è vestito oggi?","Secondo te quanti anni ho?"], a:"Fabio è... Ha i capelli... Porta..."},
+    {c:"persone", q:"Preferisci i capelli lunghi o corti? Perché?", en:"Long or short hair? Why?", r:["Hai mai cambiato colore di capelli?","Quando vai dal parrucchiere?"], a:"Preferisco... perché... Di solito / qualche volta / mai..."},
+    {c:"persone", q:"Chi è la persona più alta che conosci?", en:"Who is the tallest person you know?", r:["E la più bassa?","Chi ha i capelli più lunghi?"], a:"La persona più alta che conosco è... È alta quasi due metri!"},
+    {c:"persone", q:"Pensa a un collega o a un vicino di casa. Com'è?", en:"Think of a colleague or neighbour.", r:["È simpatico?","Che cosa porta di solito?"], a:"È... Ha... Di solito porta..."},
+    {c:"vestiti", q:"Che cosa porti oggi?", en:"What are you wearing today?", r:["Di che colore è?","È comodo o elegante?"], a:"Oggi porto una maglietta..., dei pantaloni..., le scarpe..."},
+    {c:"vestiti", q:"Qual è il tuo colore preferito per i vestiti?", en:"Your favourite colour to wear?", r:["E quale colore non porti mai?","Hai molti vestiti neri?"], a:"Il mio colore preferito è... Non porto mai il..."},
+    {c:"vestiti", q:"Che cosa ti metti per una festa?", en:"What do you wear to a party?", r:["E per andare al lavoro?","E la domenica a casa?"], a:"Per una festa mi metto... Per il lavoro porto..."},
+    {c:"vestiti", q:"Preferisci la gonna o i pantaloni?", en:"Skirt or trousers?", r:["Perché?","Porti spesso il vestito?"], a:"Preferisco... perché sono più comodi / eleganti."},
+    {c:"vestiti", q:"Che cosa porti in estate? E in inverno?", en:"Summer clothes, winter clothes?", r:["Qual è la stagione che preferisci per vestirti?","Hai un cappotto preferito?"], a:"In estate porto... In inverno mi metto il cappotto, la sciarpa..."},
+    {c:"vestiti", q:"Dove compri i vestiti?", en:"Where do you buy clothes?", r:["Ti piace fare shopping?","Compri anche online?"], a:"Compro i vestiti al centro commerciale / online / al mercato..."},
+    {c:"vestiti", q:"Porti spesso le scarpe con il tacco?", en:"Do you often wear high heels?", r:["E le scarpe da ginnastica?","Quante paia di scarpe hai?"], a:"Sempre / spesso / qualche volta / mai."},
+    {c:"vestiti", q:"Che cosa c'è nel tuo armadio?", en:"What's in your wardrobe?", r:["Qual è il capo che metti di più?","C'è qualcosa che non metti mai?"], a:"Nel mio armadio ci sono... C'è una giacca..."},
+    {c:"passato", q:"Che cosa ti sei messa ieri?", en:"What did you wear yesterday?", r:["Perché?","Dove sei andata?"], a:"Ieri mi sono messa... (essere: mi sono messa, mi sono vestita)"},
+    {c:"passato", q:"Come ti sei vestita per l'ultima festa?", en:"What did you wear to the last party?", r:["Ad Halloween ti sei travestita? Da cosa?","Chi era vestito meglio?"], a:"Mi sono vestita da... Mi sono messa..."},
+    {c:"passato", q:"Qual è l'ultimo vestito che hai comprato?", en:"The last thing you bought to wear?", r:["Dove l'hai comprato?","Quanto l'hai pagato?","L'hai già messo?"], a:"L'ultimo vestito che ho comprato è... L'ho comprato a..."},
+    {c:"passato", q:"Com'eri da piccola?", en:"What were you like as a child?", r:["Avevi i capelli lunghi?","Che cosa ti piaceva mettere?"], a:"Da piccola ero... Avevo i capelli... Portavo sempre..."},
+    {c:"passato", q:"Com'era vestito il tuo insegnante preferito a scuola?", en:"Your favourite teacher at school: what did they wear?", r:["Com'era?","Che materia insegnava?"], a:"Era... Aveva... Portava sempre..."},
+    {c:"ripasso", q:"Fammi tre domande per trovare una persona.", en:"Ask me three Guess Who questions.", r:["Ora una sui vestiti.","E una sugli occhi."], a:"Ha i capelli...? È...? Porta...?"},
+    {c:"ripasso", q:"«Ha» o «è»? Dimmi due frasi con ha e due con è.", en:"Two sentences with ha, two with è.", r:["E con porta?"], a:"Ha gli occhi azzurri. È alta. Ha la barba. È magro."},
+    {c:"ripasso", q:"Dimmi cinque colori, con una maglietta e con dei pantaloni.", en:"Five colours, agreed.", r:["E con le scarpe?","Quali colori non cambiano?"], a:"Una maglietta rossa, dei pantaloni rossi. Blu, rosa e viola non cambiano."},
+    {c:"ripasso", q:"Quale gioco ti è piaciuto di più: Identikit o Il guardaroba?", en:"Which game did you like best?", r:["Perché?","Che cosa è stato difficile?"], a:"Mi è piaciuto di più... perché... È stato difficile..."},
+    {c:"ripasso", q:"Quali parole nuove hai imparato oggi?", en:"Which new words did you learn today?", r:["Usane una in una frase su di te."], a:"Ho imparato... Per esempio: ..."}
+  ];
+  var catAttiva = "tutte", mazzo = [], pos = 0;
+  function costruisciChips(){
+    var box = $("cats"); box.innerHTML = "";
+    [["tutte","Tutte"]].concat(Object.keys(CAT).map(function(k){ return [k, CAT[k]]; })).forEach(function(x){
+      var b = document.createElement("button");
+      b.type = "button"; b.textContent = x[1];
+      b.setAttribute("aria-pressed", String(x[0] === catAttiva));
+      b.addEventListener("click", function(){ catAttiva = x[0]; costruisciChips(); nuovoMazzo(); });
+      box.appendChild(b);
+    });
+  }
+  function nuovoMazzo(){
+    mazzo = shuffle(CARTE.filter(function(c){ return catAttiva === "tutte" || c.c === catAttiva; }));
+    pos = 0; mostra();
+  }
+  function mostra(){
+    var c = mazzo[pos];
+    $("cCat").textContent = CAT[c.c];
+    $("cDom").textContent = c.q;
+    $("cEn").textContent = c.en;
+    $("cRil").innerHTML = "<b>Rilancia:</b><ul>" + c.r.map(function(x){ return "<li>" + x + "</li>"; }).join("") + "<li>E tu?</li></ul>";
+    $("cAiu").innerHTML = "<b>Aiutino:</b> " + c.a;
+    $("cRil").classList.remove("show"); $("cAiu").classList.remove("show");
+    $("cPos").textContent = (pos + 1) + " / " + mazzo.length;
+  }
+  $("bNext").addEventListener("click", function(){ pos++; if(pos >= mazzo.length){ mazzo = shuffle(mazzo); pos = 0; } mostra(); });
+  $("bRil").addEventListener("click", function(){ $("cRil").classList.toggle("show"); });
+  $("bAiu").addEventListener("click", function(){ $("cAiu").classList.toggle("show"); });
+  costruisciChips(); nuovoMazzo();
+
+  /* ============ IL RITRATTO ============ */
+  var PERSONE = [
+    ["una persona della tua famiglia","someone in your family"],
+    ["la tua migliore amica o il tuo migliore amico","your best friend"],
+    ["una persona famosa (non dire il nome!)","a famous person, no name"],
+    ["un collega o il tuo capo","a colleague or your boss"],
+    ["una persona che hai visto oggi","someone you saw today"],
+    ["te stessa da piccola","yourself as a child"],
+    ["un personaggio di un film o di una serie","a film or TV character"],
+    ["la persona più elegante che conosci","the most elegant person you know"],
+    ["un vicino di casa","a neighbour"],
+    ["una persona di questa lezione: Fabio!","your teacher"]
+  ];
+  var PARTI = [
+    ["I capelli","colore, lunghi, ricci"],
+    ["Gli occhi","colore, occhiali"],
+    ["Altezza e corporatura","alta, magra, robusta"],
+    ["L'età","giovane, ha circa 40 anni"],
+    ["Sopra","maglietta, camicia, giacca"],
+    ["Sotto e i piedi","pantaloni, gonna, scarpe"],
+    ["Un dettaglio","barba, cappello, borsa, tatuaggio"],
+    ["Il carattere","simpatica, timida, allegra"]
+  ];
+  var chiParla = 0, persoUltima = -1;
+  function nomeChi(){ $("rChi").textContent = chiParla === 0 ? "Tocca a te: descrivi" : "Tocca a Fabio: descrive lui"; }
+  function nuovaPersona(){
+    var i; do { i = Math.floor(Math.random() * PERSONE.length); } while(i === persoUltima && PERSONE.length > 1);
+    persoUltima = i;
+    $("rDom").textContent = PERSONE[i][0].charAt(0).toUpperCase() + PERSONE[i][0].slice(1);
+    $("rEn").textContent = PERSONE[i][1];
+    var box = $("rCheck"); box.innerHTML = "";
+    PARTI.forEach(function(p){
+      var b = document.createElement("button");
+      b.type = "button"; b.setAttribute("aria-pressed", "false");
+      b.innerHTML = p[0] + "<small>" + p[1] + "</small>";
+      b.addEventListener("click", function(){ b.setAttribute("aria-pressed", String(b.getAttribute("aria-pressed") !== "true")); conta(); });
+      box.appendChild(b);
+    });
+    fermaTimer(); conta();
+  }
+  function conta(){
+    var n = document.querySelectorAll("#rCheck button[aria-pressed='true']").length;
+    $("rPunti").textContent = n + "/8";
+    $("rSub").textContent = n === 0 ? "Ancora niente." : n < 5 ? "Bene, continua: manca ancora qualcosa." : n < 8 ? "Quasi completo!" : "Ritratto completo. Indovina chi è!";
+  }
+  /* Timer 2 minuti */
+  var tLeft = 120, tId = null;
+  function fmt(s){ return Math.floor(s/60) + ":" + ("0" + (s%60)).slice(-2); }
+  function fermaTimer(){ clearInterval(tId); tId = null; tLeft = 120; $("rT").textContent = fmt(tLeft); $("rStart").textContent = "Via!"; $("rTimer").classList.remove("zero"); }
+  $("rStart").addEventListener("click", function(){
+    if(tId){ fermaTimer(); return; }
+    $("rStart").textContent = "Stop";
+    tId = setInterval(function(){
+      tLeft--; $("rT").textContent = fmt(Math.max(tLeft, 0));
+      if(tLeft <= 0){ clearInterval(tId); tId = null; $("rTimer").classList.add("zero"); $("rStart").textContent = "Di nuovo"; tLeft = 120; }
+    }, 1000);
+  });
+  $("rNuovo").addEventListener("click", nuovaPersona);
+  $("rScambia").addEventListener("click", function(){ chiParla = 1 - chiParla; nomeChi(); nuovaPersona(); });
+  nomeChi(); nuovaPersona();
+})();
+</script>
+</body></html>

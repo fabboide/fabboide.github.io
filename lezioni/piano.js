@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "30 ottobre 2026, 16:19";
+var PIANO_AGGIORNATO = "2 novembre 2026, 15:55";
 
 var PIANO = {
 
@@ -95,7 +95,7 @@ var PIANO = {
 
   "ellie-3mw": {
     "nome": "Ellie",
-    "aggiornato": "29 ottobre 2026",
+    "aggiornato": "2 novembre 2026",
     "ultima": {
       "quando": "2026-10-29T14:30:00+01:00",
       "fatto": [
@@ -105,7 +105,7 @@ var PIANO = {
       ]
     },
     "prossima": {
-      "quando": "",
+      "quando": "2026-11-03T15:00:00+01:00",
       "obiettivo": "Tell me about your Halloween party, then clothes and colours.",
       "attivita": [
         {
@@ -146,23 +146,31 @@ var PIANO = {
 
   "igor-nch": {
     "nome": "Igor",
-    "aggiornato": "30 ottobre 2026",
+    "aggiornato": "2 novembre 2026",
     "ultima": {
-      "quando": "2026-10-30T11:30:00+01:00",
+      "quando": "2026-11-02T11:00:00+01:00",
       "fatto": [
-        "Fluency: Raffica con 7 secondi, molto meglio",
-        "Conversazione: la palestra e gli allenamenti",
-        "Canzone: Questa domenica di Olly, fino al ritornello"
+        "Conversazione: la vacanza a Cipro"
       ]
     },
     "prossima": {
-      "quando": "2026-11-03T10:30:00+01:00",
-      "obiettivo": "Parlare liberamente, poi finire la canzone dalla seconda strofa.",
+      "quando": "2026-11-09T11:00:00+01:00",
+      "obiettivo": "Raccontare la vacanza al passato, adesso che sei tornato: passato prossimo e imperfetto insieme.",
       "attivita": [
+        {
+          "titolo": "Il ritorno",
+          "href": "",
+          "nota": "Cipro e Polonia a confronto: più caldo di, meno caro di"
+        },
+        {
+          "titolo": "Il Compressore: la vacanza a Cipro",
+          "href": "",
+          "nota": "Lo stesso racconto in 90, 60 e 40 secondi"
+        },
         {
           "titolo": "Conversazione",
           "href": "",
-          "nota": "La palestra, il weekend, quello che vuoi"
+          "nota": "La cosa più bella del viaggio, un imprevisto, un consiglio per chi ci va"
         },
         {
           "titolo": "Questa domenica, Olly",
@@ -173,14 +181,14 @@ var PIANO = {
     },
     "compiti": [
       {
-        "titolo": "Agreement: the gym",
-        "href": "https://talkwithfabio.com/esercizi/palestra-grammatica/?mode=accordo",
-        "nota": "I miei allenamenti preferiti, le braccia"
+        "titolo": "Passato prossimo",
+        "href": "https://talkwithfabio.com/esercizi/passato-prossimo/",
+        "nota": "Essere o avere? Per raccontare il viaggio"
       },
       {
         "titolo": "Prepositions, simple and articulated",
         "href": "https://talkwithfabio.com/esercizi/preposizioni/",
-        "nota": "In palestra, a casa, al lavoro"
+        "nota": "A Cipro, in Polonia, al mare"
       }
     ]
   },
@@ -395,51 +403,50 @@ var PIANO = {
 
   "robmarie-7vc": {
     "nome": "Rob & Marie",
-    "aggiornato": "28 ottobre 2026",
+    "aggiornato": "2 novembre 2026",
     "ultima": {
-      "quando": "2026-10-28T12:00:00+01:00",
+      "quando": "2026-11-02T10:00:00+01:00",
       "fatto": [
-        "Verb roulette",
-        "Describing people: hair",
-        "Guess who?"
+        "Describing people: eyes, height, build, age, beard and glasses",
+        "Ha + capelli, occhi, barba / è + alto, magro, giovane"
       ]
     },
     "prossima": {
-      "quando": "2026-11-02T10:00:00+01:00",
-      "obiettivo": "Describe a whole person: eyes, height, age, beard and glasses. Then, if there is time, clothes.",
+      "quando": "2026-11-09T10:00:00+01:00",
+      "obiettivo": "A whole lesson of speaking. No new grammar: just getting the words out, with each other.",
       "attivita": [
         {
           "titolo": "Verb roulette",
           "href": "",
-          "nota": "Ten minutes of verbs, every lesson"
+          "nota": "Five minutes, and every sentence true for you"
         },
         {
-          "titolo": "Describing people: everything after hair",
+          "titolo": "The vanishing dialogue",
           "href": "",
-          "nota": "Ha gli occhi azzurri, è alta"
+          "nota": "Read it together, then say it with fewer and fewer words on screen"
         },
         {
-          "titolo": "Guess who?",
+          "titolo": "Two plus one",
           "href": "",
-          "nota": "With all the new words"
+          "nota": "Answer with two pieces of information, then ask one question back: E tu?"
         },
         {
-          "titolo": "Il guardaroba",
+          "titolo": "Who are you today?",
           "href": "",
-          "nota": "Clothes and colours, if there is time"
+          "nota": "A new identity, a three minute meeting, then what did you learn about the other?"
         }
       ]
     },
     "compiti": [
       {
-        "titolo": "Guess who, on your own",
-        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
-        "nota": "Level 1, then level 2"
+        "titolo": "Dialogues to repeat",
+        "href": "https://talkwithfabio.com/dialoghi/",
+        "nota": "The dialogue Conoscersi: read it in two voices, then hide your lines"
       },
       {
-        "titolo": "Describing people",
-        "href": "https://talkwithfabio.com/esercizi/descrivere/",
-        "nota": "Hair, eyes, height and clothes"
+        "titolo": "Guess who, on your own",
+        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
+        "nota": "To keep describing people fresh"
       }
     ]
   },
