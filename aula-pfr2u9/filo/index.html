@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il filo · Talk with Fabio</title>
+<meta name="description" content="Fluenza per A2: la storia a scala e Non mi fermo, per parlare senza fermarsi anche quando manca una parola.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+
+
+/* Il filo */
+.regola{border-left:4px solid var(--tomato);background:#FBF0EE;border-radius:0 12px 12px 0;padding:10px 14px;margin:0 0 14px;font-size:1.02rem}
+.regola b{font-family:var(--display)}
+.mini{font-size:.9rem;color:var(--muted);margin:10px 0 0}
+.palco{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.testa-giro{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:0 0 12px}
+.giro-tag{font-family:var(--display);font-weight:800;font-size:1.05rem}
+.giro-tag span{display:inline-block;background:var(--ink);color:var(--paper);border-radius:999px;padding:2px 10px;margin-right:8px;font-size:.85rem}
+.ascolta{font-family:var(--hand);font-size:1.35rem;color:var(--tomato);margin:0}
+.orologio{font-family:var(--display);font-weight:800;font-size:2rem;font-variant-numeric:tabular-nums;min-width:3.2em;text-align:right}
+.orologio.zero{color:var(--tomato)}
+.barra{height:8px;border-radius:999px;background:var(--line);overflow:hidden;margin:0 0 14px}
+.barra i{display:block;height:100%;width:100%;background:var(--basil);transition:width .2s linear}
+.barra.poco i{background:var(--tomato)}
+
+.vignette{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media(max-width:760px){.vignette{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.vig{position:relative;border:2px solid var(--ink);border-radius:16px;background:#FFFDF8;padding:12px 12px 10px;min-height:150px;display:flex;flex-direction:column;gap:6px}
+.vig .num{position:absolute;top:8px;left:10px;font-family:var(--hand);font-size:1.3rem;color:var(--muted)}
+.vig .em{font-size:2.6rem;line-height:1;text-align:center;margin-top:6px}
+.vig .kw{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.vig .kw span{font-family:var(--display);font-weight:600;font-size:.88rem;background:var(--stone);border:1px solid var(--line);border-radius:8px;padding:2px 8px}
+.vig .ponte{font-family:var(--hand);font-size:1.3rem;color:var(--basil);text-align:center;margin-top:auto}
+.vig .ponte .vela{color:transparent;border-bottom:2px solid var(--line)}
+.giro3 .vig .kw,.giro3 .vig .ponte{display:none}
+.giro3 .vig .em{font-size:3.4rem;margin-top:16px}
+
+.ponti{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.ponti button{font-family:var(--display);font-weight:600;font-size:.9rem;border:1px dashed var(--basil);background:var(--paper);color:var(--basil);border-radius:999px;padding:6px 12px}
+.ponti button[aria-pressed="true"]{background:var(--basil);color:#fff;border-style:solid}
+.ponti .k{font-family:var(--display);font-weight:700;font-size:.8rem;color:var(--muted);align-self:center;margin-right:2px}
+
+.btn.giallo{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+.btn.grande{font-size:1.1rem;padding:13px 24px}
+.contatore{font-family:var(--display);font-weight:800;font-size:1.05rem;display:inline-flex;align-items:center;gap:8px}
+.contatore b{font-size:1.7rem;color:var(--tomato);min-width:1.3em;text-align:center}
+
+.tua{border:2px dashed var(--lemon);background:#FDF6E8;border-radius:16px;padding:14px 16px;margin-top:14px}
+.tua p{margin:0}
+.tua .dom{font-family:var(--display);font-weight:800;font-size:1.3rem;margin:4px 0 0}
+
+/* quadro dei giri */
+.quadro{margin-top:16px;background:#20304F;color:#FFFDF8;border-radius:16px;padding:16px 18px}
+.quadro h3{color:var(--lemon);margin:0 0 10px}
+.righe{display:grid;gap:8px}
+.riga-q{display:grid;grid-template-columns:7.5em minmax(0,1fr) auto;gap:10px;align-items:center;font-family:var(--display);font-size:.9rem}
+.riga-q .bar{height:16px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden}
+.riga-q .bar i{display:block;height:100%;background:var(--lemon);border-radius:999px}
+.riga-q .val{font-weight:700;white-space:nowrap}
+.quadro .frase{font-family:var(--hand);font-size:1.3rem;color:var(--lemon);margin:12px 0 0}
+
+/* Non mi fermo */
+.carta-p{background:var(--bubble,#E7F0EA);border:1px solid #CBDDD2;border-radius:18px;padding:22px 20px;text-align:center}
+.carta-p .et{font-family:var(--display);font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.carta-p .parola{font-family:var(--display);font-weight:800;font-size:clamp(2rem,7vw,3.2rem);line-height:1.1;margin:6px 0}
+.carta-p .vietate{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px}
+.carta-p .vietate span{font-family:var(--display);font-weight:700;font-size:.9rem;color:var(--tomato);border:1px solid var(--tomato);border-radius:999px;padding:3px 10px;text-decoration:line-through}
+.punti3{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;font-family:var(--display);font-weight:700;margin-top:12px}
+.punti3 span{display:block;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.punti3 b{font-size:1.6rem}
+.interr{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;font-size:.92rem}
+.interr input{width:20px;height:20px;accent-color:var(--basil)}
+#p1 .grid2>*,#p2 .grid2>*{min-width:0}
+/* Comuni presi da Che mi racconti? */
+.nota-gram{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin-top:10px}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.vuoto{color:var(--muted);text-align:center;padding:26px 10px}
+/* Appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.appunti .riga{justify-content:space-between}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+/* Frasi utili */
+dialog{border:0;border-radius:16px;padding:0;max-width:660px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.5rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:54%}
+.dlg-body h3{margin:18px 0 4px;color:var(--basil);font-size:1.12rem}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Il filo</h1>
+    <p>Fluenza per A2: parlare senza fermarsi, anche quando manca una parola. Due allenamenti: una storia raccontata tre volte con sempre meno aiuti, e un gioco in cui la parola che manca non è mai una scusa per stare zitti. <span class="en">A2 fluency: keep talking, even when a word is missing.</span></p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Allenamenti">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>La storia a scala</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>Non mi fermo</button>
+    <button class="side" id="apriKit" type="button">Frasi ponte</button>
+  </nav>
+
+  <!-- 1 · LA STORIA A SCALA -->
+  <section class="phase active" id="p1">
+    <h2>La storia a scala</h2>
+    <p class="lead">Una storia in sei vignette, raccontata in prima persona tre volte di fila. A ogni giro c'è meno tempo e meno aiuto, e cambia chi ascolta. Alla fine la stessa storia diventa tua. <span class="en">One story, three times: less time and less help each round. Then tell your own.</span></p>
+    <div class="toolbar"><div class="chips" id="f1Storie"></div></div>
+    <div class="grid2">
+      <div>
+        <div class="palco" id="f1Palco">
+          <div class="testa-giro">
+            <div>
+              <div class="giro-tag" id="f1Giro"><span>Preparazione</span>45 secondi per pensare</div>
+              <p class="ascolta" id="f1Ascolta">Guarda le vignette. Solo idee, niente frasi scritte.</p>
+            </div>
+            <div class="orologio" id="f1Clock">0:45</div>
+          </div>
+          <div class="barra" id="f1Barra"><i id="f1Riempi"></i></div>
+          <div class="vignette" id="f1Vig"></div>
+          <div class="ponti" id="f1Ponti"></div>
+          <div class="tua" id="f1Tua" hidden>
+            <p class="en">Adesso la tua storia: stessa forma, la tua vita. Le frasi ponte restano.</p>
+            <p class="dom" id="f1TuaDom"></p>
+          </div>
+        </div>
+        <div class="riga">
+          <button class="btn green grande" id="f1Via" type="button">Via: prepara</button>
+          <button class="btn giallo grande" id="f1Silenzio" type="button" disabled>Silenzio +1</button>
+          <button class="btn ghost" id="f1Stop" type="button" disabled>Chiudi il giro</button>
+          <span class="contatore">silenzi <b id="f1Sil">0</b></span>
+        </div>
+        <div class="quadro" id="f1Quadro" hidden>
+          <h3>I giri a confronto</h3>
+          <div class="righe" id="f1Righe"></div>
+          <p class="frase" id="f1Frase"></p>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Come si gioca</h3>
+        <ol style="margin:0;padding-left:20px">
+          <li><b>Prepara</b>: 45 secondi a guardare le vignette, senza scrivere frasi</li>
+          <li><b>Giro 1</b>, 2 minuti: tutto visibile, parole e frasi ponte</li>
+          <li><b>Giro 2</b>, 1:30: le frasi ponte si vedono a metà</li>
+          <li><b>Giro 3</b>, 1 minuto: solo le immagini</li>
+          <li><b>La tua</b>: la stessa storia, ma vera</li>
+        </ol>
+        <p class="mini"><b>Tu</b> premi <kbd>spazio</kbd> o «Silenzio» quando si ferma più di due secondi, e tocchi le frasi ponte quando le usa. Non si corregge durante: dopo il giro 1, trenta secondi per due correzioni al massimo, poi si riparte.</p>
+        <p class="mini">Perché funziona: ripetere la stessa storia subito, con meno tempo, accorcia le pause; le frasi pronte riempiono i buchi. Si misura solo che il filo non si spezzi.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2 · NON MI FERMO -->
+  <section class="phase" id="p2">
+    <h2>Non mi fermo</h2>
+    <p class="regola"><b>La regola:</b> descrivi la parola senza dirla. Se non sai una parola, non ti fermi: usi una frase ponte («è una cosa che…», «si usa per…»). Io indovino solo dopo <b>almeno tre frasi</b>. <span class="en">Describe the word without saying it. Missing a word? Use a bridge phrase, never silence.</span></p>
+    <div class="toolbar">
+      <div class="chips" id="f2Temi"></div>
+      <label class="interr"><input type="checkbox" id="f2Diff"> Due parole vietate</label>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="palco">
+          <div class="testa-giro">
+            <div class="giro-tag" id="f2Manche"><span>Manche 1</span>tre minuti</div>
+            <div class="orologio" id="f2Clock">3:00</div>
+          </div>
+          <div class="barra" id="f2Barra"><i id="f2Riempi"></i></div>
+          <div class="carta-p" id="f2Carta">
+            <div class="et">la parola</div>
+            <div class="parola" id="f2Parola">Premi «Via»</div>
+            <div class="vietate" id="f2Vietate"></div>
+          </div>
+          <div class="ponti" id="f2Ponti"></div>
+          <div class="punti3">
+            <div><span>indovinate</span><b id="f2Ok">0</b></div>
+            <div><span>passate</span><b id="f2Pass">0</b></div>
+            <div><span>silenzi</span><b id="f2Sil">0</b></div>
+            <div><span>frasi ponte</span><b id="f2Fr">0</b></div>
+          </div>
+        </div>
+        <div class="riga">
+          <button class="btn red grande" id="f2Via" type="button">Via</button>
+          <button class="btn green grande" id="f2Indov" type="button" disabled>Indovinata!</button>
+          <button class="btn giallo grande" id="f2Silenzio" type="button" disabled>Silenzio +1</button>
+          <button class="btn ghost" id="f2Passo" type="button" disabled>Passo (max 3)</button>
+        </div>
+        <div class="quadro" id="f2Quadro" hidden>
+          <h3>Le manche a confronto</h3>
+          <div class="righe" id="f2Righe"></div>
+          <p class="frase" id="f2Frase"></p>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Come si gioca</h3>
+        <ol style="margin:0;padding-left:20px">
+          <li>prima manche con le frasi ponte in vista, tre minuti</li>
+          <li>io indovino tardi apposta: deve dire almeno tre cose</li>
+          <li>seconda manche, stesse regole: si guarda se i silenzi scendono</li>
+          <li>se va bene, terza manche con le due parole vietate</li>
+        </ol>
+        <p class="mini"><kbd>spazio</kbd> = silenzio (più di due secondi). <kbd>invio</kbd> = indovinata. Tocca una frase ponte quando la usa: il numero sale. Pausa con «allora…, cioè…, tipo…» va benissimo; il silenzio no.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- APPUNTI -->
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Gli errori si scrivono qui e si riprendono a fine giro, mai durante.</p>
+    <textarea id="note" placeholder="Es. «ho andato» → sono andata · «non so come dire» → non so come si dice"></textarea>
+    <div class="riga">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<dialog id="kit" aria-labelledby="kitTitolo">
+  <div class="dlg-head"><h2 id="kitTitolo">Frasi ponte</h2><button class="btn ghost" id="chiudiKit" type="button">Chiudi</button></div>
+  <div class="dlg-body">
+    <h3>Per prendere tempo</h3>
+    <table>
+      <tr><td>Allora… / Dunque…</td><td>So… / Well…</td></tr>
+      <tr><td>Vediamo…</td><td>Let's see…</td></tr>
+      <tr><td>Cioè… / Tipo…</td><td>I mean… / Like…</td></tr>
+      <tr><td>Come si dice…?</td><td>How do you say…?</td></tr>
+    </table>
+    <h3>Per andare avanti nella storia</h3>
+    <table>
+      <tr><td>Prima… / Poi… / Dopo…</td><td>First… / Then… / After…</td></tr>
+      <tr><td>A un certo punto…</td><td>At some point…</td></tr>
+      <tr><td>Per fortuna… / Purtroppo…</td><td>Luckily… / Unfortunately…</td></tr>
+      <tr><td>Alla fine…</td><td>In the end…</td></tr>
+    </table>
+    <h3>Quando manca la parola</h3>
+    <table>
+      <tr><td>È una cosa che… / È un posto dove…</td><td>It's a thing that… / a place where…</td></tr>
+      <tr><td>Si usa per…</td><td>You use it to…</td></tr>
+      <tr><td>È come…, ma…</td><td>It's like…, but…</td></tr>
+      <tr><td>Non so come si dice, ma…</td><td>I don't know the word, but…</td></tr>
+    </table>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============ 1 · LE STORIE ============
+     Sei vignette ciascuna: e = immagine, k = parole (all'infinito, le coniuga lei),
+     c = la frase ponte che apre quel pezzo. Prima persona: la storia è «sua». */
+  var STORIE = [
+    {k:"mattina", t:"Una mattina storta", tua:"Racconta una giornata in cui è andato tutto storto.", v:[
+      {e:"⏰", k:["la sveglia","non suonare"], c:"Una mattina…"},
+      {e:"🏃", k:["vestirsi di corsa","niente colazione"], c:"Allora…"},
+      {e:"🚌", k:["l'autobus","in ritardo"], c:"Poi…"},
+      {e:"🌧️", k:["la pioggia","senza ombrello"], c:"A un certo punto…"},
+      {e:"🏢", k:["l'ufficio","chiuso"], c:"Purtroppo…"},
+      {e:"📅", k:["è sabato!","tornare a letto"], c:"Alla fine…"}
+    ]},
+    {k:"appuntamento", t:"Il primo appuntamento", tua:"Racconta un appuntamento o un incontro che ti ricordi bene.", v:[
+      {e:"📱", k:["conoscere","un'app"], c:"Qualche mese fa…"},
+      {e:"🍝", k:["prenotare","un ristorante"], c:"Prima…"},
+      {e:"🪑", k:["aspettare","mezz'ora"], c:"Poi…"},
+      {e:"📞", k:["telefonare","il ristorante sbagliato"], c:"A un certo punto…"},
+      {e:"🚕", k:["prendere un taxi","correre"], c:"Per fortuna…"},
+      {e:"😂", k:["ridere","cenare insieme"], c:"Alla fine…"}
+    ]},
+    {k:"valigia", t:"La valigia sbagliata", tua:"Racconta un viaggio con un problema.", v:[
+      {e:"✈️", k:["partire","Roma"], c:"L'estate scorsa…"},
+      {e:"🧳", k:["prendere la valigia","stanco"], c:"Allora…"},
+      {e:"🏨", k:["l'albergo","aprire la valigia"], c:"Poi…"},
+      {e:"👔", k:["i vestiti","non sono miei"], c:"A un certo punto…"},
+      {e:"☎️", k:["chiamare","l'aeroporto"], c:"Per fortuna…"},
+      {e:"🤝", k:["scambiare le valigie","un nuovo amico"], c:"Alla fine…"}
+    ]},
+    {k:"gatto", t:"Il gatto del vicino", tua:"Racconta una storia con un animale.", v:[
+      {e:"🐱", k:["un gatto","entrare dalla finestra"], c:"Una sera…"},
+      {e:"🥛", k:["dare il latte","accarezzare"], c:"Allora…"},
+      {e:"🛋️", k:["dormire","sul divano"], c:"Poi…"},
+      {e:"🔔", k:["il vicino","suonare alla porta"], c:"La mattina dopo…"},
+      {e:"😟", k:["cercare il gatto","da due giorni"], c:"Purtroppo…"},
+      {e:"🎂", k:["portare una torta","ringraziare"], c:"Alla fine…"}
+    ]},
+    {k:"cena", t:"La cena per gli amici", tua:"Racconta una cena o una festa a casa tua.", v:[
+      {e:"🛒", k:["fare la spesa","il supermercato"], c:"Sabato scorso…"},
+      {e:"👩‍🍳", k:["cucinare","le lasagne"], c:"Prima…"},
+      {e:"🔥", k:["il forno","bruciare"], c:"A un certo punto…"},
+      {e:"🚪", k:["arrivare","gli amici"], c:"Purtroppo…"},
+      {e:"🍕", k:["ordinare","la pizza"], c:"Allora…"},
+      {e:"🍷", k:["una serata","bellissima"], c:"Alla fine…"}
+    ]},
+    {k:"montagna", t:"Una gita in montagna", tua:"Racconta una gita o una passeggiata che ti è piaciuta.", v:[
+      {e:"⛰️", k:["partire presto","la montagna"], c:"Una domenica…"},
+      {e:"🥾", k:["camminare","tre ore"], c:"Prima…"},
+      {e:"🌫️", k:["la nebbia","perdere il sentiero"], c:"A un certo punto…"},
+      {e:"🐄", k:["una mucca","un pastore"], c:"Per fortuna…"},
+      {e:"🏠", k:["un rifugio","mangiare la polenta"], c:"Poi…"},
+      {e:"🚗", k:["tornare a casa","stanchi ma felici"], c:"Alla fine…"}
+    ]},
+    {k:"sorpresa", t:"La festa a sorpresa", tua:"Racconta un compleanno o una sorpresa.", v:[
+      {e:"🎂", k:["il compleanno","un'amica"], c:"Il mese scorso…"},
+      {e:"🤫", k:["organizzare","in segreto"], c:"Prima…"},
+      {e:"🎈", k:["decorare","la casa"], c:"Poi…"},
+      {e:"🔑", k:["arrivare","un'ora prima"], c:"A un certo punto…"},
+      {e:"🙈", k:["nascondersi","in cucina"], c:"Allora…"},
+      {e:"🎉", k:["urlare","«Sorpresa!»"], c:"Alla fine…"}
+    ]},
+    {k:"colloquio", t:"Il colloquio di lavoro", tua:"Racconta il tuo primo giorno di lavoro, o un colloquio.", v:[
+      {e:"👔", k:["mettersi","la giacca"], c:"Lunedì scorso…"},
+      {e:"☕", k:["il caffè","macchiare la camicia"], c:"A colazione…"},
+      {e:"⌛", k:["non c'è tempo","cambiarsi"], c:"Purtroppo…"},
+      {e:"🤝", k:["il direttore","salutare"], c:"Poi…"},
+      {e:"😅", k:["anche lui","una macchia"], c:"A un certo punto…"},
+      {e:"✅", k:["ridere insieme","il lavoro"], c:"Alla fine…"}
+    ]}
+  ];
+  var PONTI1 = ["Allora…","Prima…","Poi…","A un certo punto…","Per fortuna…","Purtroppo…","Alla fine…","Cioè… / Tipo…"];
+  var GIRI = [
+    {n:"Preparazione", s:45, a:"Guarda le vignette. Solo idee, niente frasi scritte."},
+    {n:"Giro 1", s:120, a:"Raccontala a me, con calma: tutto è in vista."},
+    {n:"Giro 2", s:90, a:"Adesso a un amico al bar: vuole sapere tutto."},
+    {n:"Giro 3", s:60, a:"Adesso a un collega che ha fretta: un minuto!"},
+    {n:"La tua", s:90, a:"Stessa forma, la tua vita."}
+  ];
+
+  /* ============ 2 · LE PAROLE ============ */
+  var TEMI2 = [{k:"casa",l:"Casa"},{k:"cibo",l:"Cibo"},{k:"citta",l:"Città"},{k:"persone",l:"Persone"},{k:"cose",l:"Cose"}];
+  var PAROLE = [
+    {g:"casa",p:"il frigorifero",v:["freddo","cucina"]},{g:"casa",p:"il letto",v:["dormire","camera"]},
+    {g:"casa",p:"la lavatrice",v:["vestiti","lavare"]},{g:"casa",p:"lo specchio",v:["guardarsi","bagno"]},
+    {g:"casa",p:"il divano",v:["sedersi","soggiorno"]},{g:"casa",p:"la chiave",v:["porta","aprire"]},
+    {g:"casa",p:"il cuscino",v:["letto","testa"]},{g:"casa",p:"la finestra",v:["vetro","aria"]},
+    {g:"casa",p:"il forno",v:["cucinare","caldo"]},{g:"casa",p:"la doccia",v:["acqua","lavarsi"]},
+    {g:"casa",p:"il telecomando",v:["televisione","canale"]},{g:"casa",p:"il balcone",v:["fuori","piante"]},
+    {g:"cibo",p:"il gelato",v:["freddo","estate"]},{g:"cibo",p:"la pizza",v:["Napoli","mozzarella"]},
+    {g:"cibo",p:"il caffè",v:["bar","mattina"]},{g:"cibo",p:"il pane",v:["panetteria","farina"]},
+    {g:"cibo",p:"la colazione",v:["mattina","cornetto"]},{g:"cibo",p:"il vino",v:["rosso","bicchiere"]},
+    {g:"cibo",p:"l'uovo",v:["gallina","frittata"]},{g:"cibo",p:"la mela",v:["frutta","rossa"]},
+    {g:"cibo",p:"il cioccolato",v:["dolce","marrone"]},{g:"cibo",p:"il tiramisù",v:["dolce","caffè"]},
+    {g:"cibo",p:"lo zucchero",v:["dolce","bianco"]},{g:"cibo",p:"la minestra",v:["calda","cucchiaio"]},
+    {g:"citta",p:"la stazione",v:["treno","binario"]},{g:"citta",p:"l'ospedale",v:["medico","malato"]},
+    {g:"citta",p:"la farmacia",v:["medicine","ricetta"]},{g:"citta",p:"il supermercato",v:["spesa","comprare"]},
+    {g:"citta",p:"la biblioteca",v:["libri","leggere"]},{g:"citta",p:"il parco",v:["alberi","verde"]},
+    {g:"citta",p:"la spiaggia",v:["mare","sabbia"]},{g:"citta",p:"l'aeroporto",v:["aereo","volare"]},
+    {g:"citta",p:"il museo",v:["quadri","arte"]},{g:"citta",p:"la palestra",v:["sport","allenarsi"]},
+    {g:"citta",p:"il cinema",v:["film","schermo"]},{g:"citta",p:"il semaforo",v:["rosso","strada"]},
+    {g:"persone",p:"il medico",v:["ospedale","malato"]},{g:"persone",p:"il cameriere",v:["ristorante","servire"]},
+    {g:"persone",p:"il cuoco",v:["cucina","ristorante"]},{g:"persone",p:"l'insegnante",v:["scuola","studenti"]},
+    {g:"persone",p:"il vicino di casa",v:["casa","accanto"]},{g:"persone",p:"la nonna",v:["vecchia","mamma"]},
+    {g:"persone",p:"il poliziotto",v:["legge","ladro"]},{g:"persone",p:"il postino",v:["lettere","posta"]},
+    {g:"persone",p:"il parrucchiere",v:["capelli","tagliare"]},{g:"persone",p:"il turista",v:["viaggio","visitare"]},
+    {g:"persone",p:"il cantante",v:["musica","voce"]},{g:"persone",p:"il pilota",v:["aereo","volare"]},
+    {g:"cose",p:"il telefono",v:["chiamare","cellulare"]},{g:"cose",p:"lo zaino",v:["scuola","spalle"]},
+    {g:"cose",p:"il portafoglio",v:["soldi","tasca"]},{g:"cose",p:"gli occhiali",v:["occhi","vedere"]},
+    {g:"cose",p:"la valigia",v:["viaggio","vestiti"]},{g:"cose",p:"l'orologio",v:["ore","polso"]},
+    {g:"cose",p:"la bicicletta",v:["ruote","pedalare"]},{g:"cose",p:"la sciarpa",v:["collo","inverno"]},
+    {g:"cose",p:"il passaporto",v:["viaggio","aeroporto"]},{g:"cose",p:"la sveglia",v:["mattina","suonare"]},
+    {g:"cose",p:"il regalo",v:["compleanno","pacco"]},{g:"cose",p:"l'ombrello",v:["pioggia","aprire"]}
+  ];
+  var PONTI2 = ["È una cosa che…","È un posto dove…","È una persona che…","Si usa per…","È come…, ma…","Il contrario di…","Di solito…","Cioè… / Tipo…"];
+  var MANCHE = 180, MAX_PASSI = 3;
+
+  /* ============ ATTREZZI ============ */
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function mescola(a){ a = a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+  function mmss(s){ s = Math.max(0, Math.ceil(s)); return Math.floor(s/60) + ":" + ("0" + (s%60)).slice(-2); }
+  function perMin(n, sec){ return sec > 0 ? n / (sec / 60) : 0; }
+  function uno(x){ return (Math.round(x * 10) / 10).toString().replace(".", ","); }
+
+  var CHIAVE = "icf-filo";
+  var mem = { storia:"mattina", temi:[], diff:false, note:"" };
+  try{
+    var m0 = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(m0 && typeof m0 === "object"){ for(var k in mem){ if(m0[k] !== undefined) mem[k] = m0[k]; } }
+  }catch(e){}
+  var salvaT = null;
+  function salva(){ clearTimeout(salvaT); salvaT = setTimeout(function(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(mem)); }catch(e){} }, 250); }
+
+  /* un orologio che scende, con barra */
+  function Orologio(clockId, barraId, riempiId){
+    this.c = $(clockId); this.b = $(barraId); this.r = $(riempiId); this.id = null; this.tot = 0; this.resta = 0; this.inizio = 0;
+  }
+  Orologio.prototype.mostra = function(s){ this.c.textContent = mmss(s); this.c.classList.remove("zero"); this.r.style.width = "100%"; this.b.classList.remove("poco"); };
+  Orologio.prototype.via = function(sec, fine){
+    var self = this;
+    clearInterval(this.id); this.tot = sec; this.resta = sec; this.inizio = Date.now();
+    this.mostra(sec);
+    this.id = setInterval(function(){
+      self.resta = self.tot - (Date.now() - self.inizio) / 1000;
+      self.c.textContent = mmss(self.resta);
+      var f = Math.max(0, self.resta / self.tot);
+      self.r.style.width = (f * 100) + "%";
+      self.b.classList.toggle("poco", f <= 0.2);
+      if(self.resta <= 0){ clearInterval(self.id); self.id = null; self.c.classList.add("zero"); fine(); }
+    }, 200);
+  };
+  Orologio.prototype.ferma = function(){ clearInterval(this.id); this.id = null; return Math.min(this.tot, (Date.now() - this.inizio) / 1000); };
+
+  /* Linguette e kit */
+  var tabs = document.querySelectorAll("nav.steps button[data-phase]");
+  var fase = "p1";
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){
+      fase = t.getAttribute("data-phase");
+      Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(s){ s.classList.toggle("active", s.id === fase); });
+    });
+  });
+  var dlg = $("kit");
+  $("apriKit").addEventListener("click", function(){ if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", ""); });
+  $("chiudiKit").addEventListener("click", function(){ if(dlg.close) dlg.close(); else dlg.removeAttribute("open"); });
+
+  /* quadro a barre: righe = [{nome, n, sec, extra}] */
+  function quadro(boxId, righeId, fraseId, righe, cosa){
+    if(!righe.length){ $(boxId).hidden = true; return; }
+    var tassi = righe.map(function(r){ return perMin(r.n, r.sec); });
+    var max = Math.max.apply(null, tassi.concat([1]));
+    $(righeId).innerHTML = righe.map(function(r, i){
+      return '<div class="riga-q"><span>' + esc(r.nome) + '</span><span class="bar"><i style="width:' + Math.max(3, tassi[i] / max * 100) + '%"></i></span>' +
+        '<span class="val">' + r.n + (r.n === 1 ? " silenzio · " : " silenzi · ") + uno(tassi[i]) + "/min" + (r.extra ? " · " + esc(r.extra) : "") + "</span></div>";
+    }).join("");
+    var f = "";
+    if(righe.length >= 2){
+      var a = tassi[0], b = tassi[tassi.length - 1];
+      if(b < a) f = "I silenzi al minuto sono scesi da " + uno(a) + " a " + uno(b) + ": il filo regge. È esattamente quello che si allena.";
+      else if(b === a) f = "Stesso ritmo di silenzi, ma in meno tempo e con meno aiuti: già questo è un passo.";
+      else f = "Più silenzi " + cosa + ": normale, gli aiuti sono spariti. Prossima volta stessa storia, e i numeri scendono.";
+    } else f = "Primo giro fatto. Il confronto arriva dal secondo.";
+    $(fraseId).textContent = f;
+    $(boxId).hidden = false;
+  }
+
+  /* ============ FASE 1 ============ */
+  var s1 = { passo:-1, inCorso:false, sil:0, ponti:[], righe:[] };
+  var oro1 = new Orologio("f1Clock", "f1Barra", "f1Riempi");
+  function storia(){ return STORIE.filter(function(s){ return s.k === mem.storia; })[0] || STORIE[0]; }
+
+  STORIE.forEach(function(s){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = s.t; b.dataset.k = s.k;
+    b.addEventListener("click", function(){ if(s1.inCorso) return; mem.storia = s.k; salva(); azzera1(); });
+    $("f1Storie").appendChild(b);
+  });
+  PONTI1.forEach(function(p){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = p; b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function(){
+      var on = b.getAttribute("aria-pressed") !== "true";
+      b.setAttribute("aria-pressed", String(on));
+      var i = s1.ponti.indexOf(p);
+      if(on && i < 0) s1.ponti.push(p); else if(!on && i >= 0) s1.ponti.splice(i, 1);
+    });
+    $("f1Ponti").appendChild(b);
+  });
+  var lab = document.createElement("span"); lab.className = "k"; lab.textContent = "Ponti usati:";
+  $("f1Ponti").insertBefore(lab, $("f1Ponti").firstChild);
+
+  function ponteVelato(c, giro){
+    if(giro < 2) return esc(c);
+    var parole = c.split(" ");
+    if(parole.length > 1) return esc(parole[0]) + ' <span class="vela">' + esc(parole.slice(1).join(" ")) + "</span>";
+    return esc(c.charAt(0)) + '<span class="vela">' + esc(c.slice(1)) + "</span>";
+  }
+  function disegnaVignette(){
+    var s = storia(), g = Math.max(0, s1.passo);
+    var vis = (s1.passo === 4) ? 1 : g;   /* nella «tua» si torna a vedere tutto, come appoggio */
+    $("f1Palco").classList.toggle("giro3", vis === 3);
+    $("f1Vig").innerHTML = s.v.map(function(v, i){
+      return '<div class="vig"><span class="num">' + (i + 1) + '</span><div class="em" aria-hidden="true">' + v.e + "</div>" +
+        '<div class="kw">' + v.k.map(function(w){ return "<span>" + esc(w) + "</span>"; }).join("") + "</div>" +
+        '<div class="ponte">' + ponteVelato(v.c, vis) + "</div></div>";
+    }).join("");
+    $("f1Tua").hidden = s1.passo !== 4;
+    $("f1TuaDom").textContent = s.tua;
+    Array.prototype.forEach.call($("f1Storie").children, function(b){ b.setAttribute("aria-pressed", String(b.dataset.k === s.k)); });
+  }
+  function etichetta(){
+    var p = Math.max(0, Math.min(s1.passo, GIRI.length - 1));
+    var g = GIRI[p];
+    var sub = p === 0 ? "45 secondi per pensare" : (p === 4 ? "1:30, la tua storia" : mmss(g.s) + (p === 1 ? ", tutto in vista" : p === 2 ? ", aiuti a metà" : ", solo le immagini"));
+    $("f1Giro").innerHTML = "<span>" + esc(g.n) + "</span>" + esc(sub);
+    $("f1Ascolta").textContent = g.a;
+  }
+  function pulsanteVia(){
+    var prossimo = s1.passo + 1;
+    var b = $("f1Via");
+    if(prossimo >= GIRI.length){ b.textContent = "Rifai con un'altra storia"; return; }
+    var g = GIRI[prossimo];
+    b.textContent = prossimo === 0 ? "Via: prepara" : (prossimo === 4 ? "Via: la tua storia (1:30)" : "Via: " + g.n.toLowerCase() + " (" + mmss(g.s) + ")");
+  }
+  function azzera1(){
+    oro1.ferma();
+    s1 = { passo:-1, inCorso:false, sil:0, ponti:[], righe:[] };
+    $("f1Sil").textContent = "0";
+    oro1.mostra(GIRI[0].s);
+    resetPonti1();
+    disegnaVignette(); etichetta(); pulsanteVia();
+    $("f1Via").disabled = false; $("f1Silenzio").disabled = true; $("f1Stop").disabled = true;
+    $("f1Quadro").hidden = true;
+  }
+  function resetPonti1(){
+    s1.ponti = [];
+    Array.prototype.forEach.call($("f1Ponti").querySelectorAll("button"), function(b){ b.setAttribute("aria-pressed", "false"); });
+  }
+  function avvia1(){
+    if(s1.passo + 1 >= GIRI.length){ var lista = STORIE.map(function(s){ return s.k; }); mem.storia = lista[(lista.indexOf(mem.storia) + 1) % lista.length]; salva(); azzera1(); return; }
+    s1.passo++;
+    s1.inCorso = true; s1.sil = 0; $("f1Sil").textContent = "0";
+    resetPonti1();
+    disegnaVignette(); etichetta();
+    var parla = s1.passo > 0;
+    $("f1Via").disabled = true;
+    $("f1Silenzio").disabled = !parla;
+    $("f1Stop").disabled = false;
+    $("f1Stop").textContent = parla ? "Chiudi il giro" : "Pronti, via";
+    oro1.via(GIRI[s1.passo].s, chiudi1);
+  }
+  function chiudi1(){
+    if(!s1.inCorso) return;
+    var usati = oro1.ferma();
+    s1.inCorso = false;
+    if(s1.passo > 0){
+      s1.righe.push({ nome: GIRI[s1.passo].n, n: s1.sil, sec: Math.max(10, usati), extra: s1.ponti.length + (s1.ponti.length === 1 ? " ponte" : " ponti") });
+      quadro("f1Quadro", "f1Righe", "f1Frase", s1.righe, "nell'ultimo giro");
+    }
+    $("f1Silenzio").disabled = true; $("f1Stop").disabled = true;
+    $("f1Via").disabled = false;
+    pulsanteVia();
+    if(s1.passo === 0){ avvia1(); }   /* dopo la preparazione si parte subito col giro 1 */
+  }
+  $("f1Via").addEventListener("click", avvia1);
+  $("f1Stop").addEventListener("click", chiudi1);
+  $("f1Silenzio").addEventListener("click", function(){ if(s1.inCorso && s1.passo > 0){ s1.sil++; $("f1Sil").textContent = s1.sil; } });
+
+  /* ============ FASE 2 ============ */
+  var s2 = { inCorso:false, mazzo:[], i:0, ok:0, pass:0, sil:0, fr:0, manche:0, righe:[] };
+  var oro2 = new Orologio("f2Clock", "f2Barra", "f2Riempi");
+  $("f2Diff").checked = !!mem.diff;
+  $("f2Diff").addEventListener("change", function(){ mem.diff = this.checked; salva(); disegnaCarta(); });
+
+  var tutti = document.createElement("button");
+  tutti.type = "button"; tutti.textContent = "Tutti i temi";
+  tutti.addEventListener("click", function(){ if(s2.inCorso) return; mem.temi = []; salva(); temiChips(); });
+  $("f2Temi").appendChild(tutti);
+  TEMI2.forEach(function(t){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = t.l; b.dataset.k = t.k;
+    b.addEventListener("click", function(){
+      if(s2.inCorso) return;
+      var i = mem.temi.indexOf(t.k);
+      if(i >= 0) mem.temi.splice(i, 1); else mem.temi.push(t.k);
+      salva(); temiChips();
+    });
+    $("f2Temi").appendChild(b);
+  });
+  function temiChips(){
+    Array.prototype.forEach.call($("f2Temi").children, function(b){
+      b.setAttribute("aria-pressed", String(b.dataset.k ? mem.temi.indexOf(b.dataset.k) >= 0 : !mem.temi.length));
+    });
+  }
+  PONTI2.forEach(function(p){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = p; b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function(){
+      if(!s2.inCorso) return;
+      s2.fr++; $("f2Fr").textContent = s2.fr;
+      b.setAttribute("aria-pressed", "true");
+      setTimeout(function(){ b.setAttribute("aria-pressed", "false"); }, 350);
+    });
+    $("f2Ponti").appendChild(b);
+  });
+  var lab2 = document.createElement("span"); lab2.className = "k"; lab2.textContent = "Tocca quando la usa:";
+  $("f2Ponti").insertBefore(lab2, $("f2Ponti").firstChild);
+
+  function disegnaCarta(){
+    var c = s2.mazzo[s2.i];
+    if(!s2.inCorso || !c){ $("f2Vietate").innerHTML = ""; return; }
+    $("f2Parola").textContent = c.p;
+    $("f2Vietate").innerHTML = mem.diff ? c.v.map(function(w){ return "<span>" + esc(w) + "</span>"; }).join("") : "";
+  }
+  function numeri2(){
+    $("f2Ok").textContent = s2.ok; $("f2Pass").textContent = s2.pass; $("f2Sil").textContent = s2.sil; $("f2Fr").textContent = s2.fr;
+    $("f2Passo").disabled = !s2.inCorso || s2.pass >= MAX_PASSI;
+    $("f2Passo").textContent = "Passo (" + (MAX_PASSI - s2.pass) + ")";
+  }
+  function avanti2(){
+    s2.i++;
+    if(s2.i >= s2.mazzo.length){ s2.mazzo = s2.mazzo.concat(mescola(s2.mazzo)); }
+    disegnaCarta();
+  }
+  function avvia2(){
+    var att = mem.temi.length ? mem.temi : TEMI2.map(function(t){ return t.k; });
+    s2.mazzo = mescola(PAROLE.filter(function(p){ return att.indexOf(p.g) >= 0; }));
+    s2.i = 0; s2.ok = 0; s2.pass = 0; s2.sil = 0; s2.fr = 0; s2.manche++;
+    s2.inCorso = true;
+    $("f2Manche").innerHTML = "<span>Manche " + s2.manche + "</span>tre minuti" + (mem.diff ? ", con le parole vietate" : "");
+    $("f2Via").disabled = true; $("f2Indov").disabled = false; $("f2Silenzio").disabled = false;
+    numeri2(); disegnaCarta();
+    oro2.via(MANCHE, chiudi2);
+  }
+  function chiudi2(){
+    if(!s2.inCorso) return;
+    var usati = oro2.ferma();
+    s2.inCorso = false;
+    s2.righe.push({ nome: "Manche " + s2.manche, n: s2.sil, sec: Math.max(10, usati), extra: s2.ok + (s2.ok === 1 ? " indovinata" : " indovinate") });
+    quadro("f2Quadro", "f2Righe", "f2Frase", s2.righe, "in questa manche");
+    $("f2Parola").textContent = "Tempo!";
+    $("f2Vietate").innerHTML = "";
+    $("f2Via").disabled = false; $("f2Via").textContent = "Via: manche " + (s2.manche + 1);
+    $("f2Indov").disabled = true; $("f2Silenzio").disabled = true;
+    numeri2();
+  }
+  $("f2Via").addEventListener("click", avvia2);
+  $("f2Indov").addEventListener("click", function(){ if(!s2.inCorso) return; s2.ok++; numeri2(); avanti2(); });
+  $("f2Passo").addEventListener("click", function(){ if(!s2.inCorso || s2.pass >= MAX_PASSI) return; s2.pass++; numeri2(); avanti2(); });
+  $("f2Silenzio").addEventListener("click", function(){ if(!s2.inCorso) return; s2.sil++; numeri2(); });
+
+  /* ============ TASTIERA ============ */
+  document.addEventListener("keydown", function(e){
+    if(/^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName || "").toUpperCase())) return;
+    if(dlg.open) return;
+    if(e.key === " "){
+      if(fase === "p1" && s1.inCorso && s1.passo > 0){ e.preventDefault(); $("f1Silenzio").click(); }
+      else if(fase === "p2" && s2.inCorso){ e.preventDefault(); $("f2Silenzio").click(); }
+    } else if(e.key === "Enter"){
+      if(e.target.tagName === "BUTTON") return;   /* il pulsante col focus si preme da solo */
+      if(fase === "p2" && s2.inCorso){ e.preventDefault(); $("f2Indov").click(); }
+    }
+  });
+
+  /* ============ APPUNTI ============ */
+  var note = $("note");
+  note.value = mem.note || "";
+  note.addEventListener("input", function(){ mem.note = note.value; salva(); $("salvato").textContent = "Appunti salvati."; });
+  $("reset").addEventListener("click", function(){ try{ localStorage.removeItem(CHIAVE); }catch(e){} location.reload(); });
+
+  /* Avvio */
+  temiChips(); numeri2(); azzera1();
+})();
+</script>
+</body>
+</html>

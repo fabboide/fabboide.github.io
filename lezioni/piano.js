@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "2 novembre 2026, 15:55";
+var PIANO_AGGIORNATO = "2 novembre 2026, 20:46";
 
 var PIANO = {
 
@@ -50,45 +50,45 @@ var PIANO = {
 
   "bianca-hco": {
     "nome": "Bianca",
-    "aggiornato": "26 ottobre 2026",
+    "aggiornato": "2 novembre 2026",
     "ultima": {
-      "quando": "2026-10-26T14:00:00+01:00",
+      "quando": "2026-11-02T15:00:00+01:00",
       "fatto": [
-        "Describing people: hair, eyes, height, face",
-        "Guess who?"
+        "Describing people: quick review",
+        "Clothes and colours with Il guardaroba. Very good!"
       ]
     },
     "prossima": {
-      "quando": "2026-11-09T13:30:00+01:00",
-      "obiettivo": "Describe what people are wearing: clothes, colours, stripes and checks.",
+      "quando": "2026-11-09T15:00:00+01:00",
+      "obiettivo": "A whole lesson on fluency: keep talking without stopping, even when a word is missing.",
       "attivita": [
         {
-          "titolo": "Quick review: describe a person",
+          "titolo": "Warm-up: what are you wearing today?",
           "href": "",
-          "nota": "What we did this time"
+          "nota": "Start from what you already know"
         },
         {
-          "titolo": "Verbs for clothes: portare, mettersi, vestirsi",
+          "titolo": "The story ladder",
           "href": "",
-          "nota": "Mi metto, ti metti, si mette..."
+          "nota": "One story, three times: less time and less help each round"
         },
         {
-          "titolo": "Il guardaroba",
+          "titolo": "Non mi fermo",
           "href": "",
-          "nota": "A game with clothes we play together"
+          "nota": "Describe a word without saying it. Missing a word? Use a bridge phrase"
         }
       ]
     },
     "compiti": [
       {
+        "titolo": "Dialogues to repeat",
+        "href": "https://talkwithfabio.com/dialoghi/",
+        "nota": "Read aloud, then hide your lines and say them again"
+      },
+      {
         "titolo": "Chi è? Guess who, on your own",
         "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
         "nota": "Try level 2: you write the questions"
-      },
-      {
-        "titolo": "The first 190 words",
-        "href": "https://talkwithfabio.com/esercizi/parole-a1/",
-        "nota": "A few minutes a day"
       }
     ]
   },
