@@ -47,6 +47,8 @@ nav.steps button{font-family:var(--display);background:none;border:0;padding:10p
 nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
 nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
 nav.steps .side{margin-left:auto;color:var(--basil)}
+nav.steps .giochi-link{font-family:var(--display);font-weight:700;color:var(--tomato);text-decoration:none;padding:10px 13px 12px;align-self:center}
+nav.steps .giochi-link + .side{margin-left:0}
 section.phase{display:none}
 section.phase.active{display:block}
 h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
@@ -150,6 +152,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>Rispondi al volo</button>
     <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>Il racconto</button>
     <button role="tab" aria-selected="false" data-phase="p3"><span class="n">3</span>L'amica curiosa</button>
+    <a class="side giochi-link" href="../paroline/">Altri giochi &rarr;</a>
     <button class="side" id="apriPromemoria" type="button">Promemoria</button>
   </nav>
 
@@ -221,7 +224,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
   <!-- FASE 3 -->
   <section class="phase" id="p3">
     <h2>L'amica curiosa</h2>
-    <p class="lead">Io sono un'amica italiana che vuole sapere tutto. Tu rispondi e racconti, senza ripetere le parole. Ogni volta che usi bene una parolina tocco la sua casella: le vuoi tutte e cinque prima che finisca il tempo. <span class="en">I'm a very nosy friend. Use all five kinds of little words before time runs out.</span></p>
+    <p class="lead">Io sono un'amica italiana che vuole sapere tutto. Tu rispondi e racconti, senza ripetere le parole. Ogni volta che usi bene una parolina tocco la sua casella: le vuoi tutte e sei prima che finisca il tempo. <span class="en">I'm a very nosy friend. Use all six kinds of little words before time runs out.</span></p>
     <div class="toolbar">
       <button class="btn red" id="f3Via" type="button">Via! 3 minuti</button>
       <button class="btn ghost" id="f3Tema" type="button">Cambia tema</button>
@@ -237,9 +240,9 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
         </div>
       </div>
       <aside class="panel">
-        <h3>Le cinque famiglie</h3>
+        <h3>Le sei famiglie</h3>
         <div class="famiglie" id="f3Famiglie"></div>
-        <div class="vittoria" id="f3Vinto">Tutte e cinque!</div>
+        <div class="vittoria" id="f3Vinto">Tutte e sei!</div>
         <div class="riga"><button class="btn ghost" id="f3Azzera" type="button">Azzera le caselle</button></div>
         <p class="mini">Se ripeti la parola dico «senza ripetere!» e rifai la frase.</p>
       </aside>
@@ -286,7 +289,8 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     {k:"civ", l:"CI · con i verbi"},
     {k:"dir", l:"lo, la, li, le"},
     {k:"ind", l:"gli, le (a qualcuno)"},
-    {k:"acc", l:"Al passato · l'accordo"}
+    {k:"acc", l:"Al passato · l'accordo"},
+    {k:"com", l:"Due insieme · glielo, ce l'ho"}
   ];
   function nomeGruppo(k){ for(var i=0;i<GRUPPI.length;i++){ if(GRUPPI[i].k === k) return GRUPPI[i].l; } return k; }
 
@@ -359,7 +363,48 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     {g:"acc", q:"Dove hai messo le chiavi?", a:["[Le] ho mess[e] sul tavolo."]},
     {g:"acc", q:"Hai letto i messaggi di Chiara?", a:["Sì, [li] ho lett[i], ma non [le] ho ancora rispost[o]."], n:"Rispondere a Chiara: le ho risposto, senza accordo."},
     {g:"acc", q:"Hai scritto a tua sorella?", a:["Sì, [le] ho scritt[o] ieri sera."], n:"Scrivere a qualcuno: con gli e le il participio non cambia mai."},
-    {g:"acc", q:"Hai invitato le tue colleghe alla festa?", a:["Sì, [le] ho invitat[e] tutte."]}
+    {g:"acc", q:"Hai invitato le tue colleghe alla festa?", a:["Sì, [le] ho invitat[e] tutte."]},
+
+    {g:"neq", q:"Hai figli?", a:["Sì, [ne] ho due.","No, non [ne] ho."]},
+    {g:"neq", q:"Quanti anni hai?", a:["[Ne] ho trentadue."], n:"Anche con l'età: ne ho trenta. Senza ne la frase resta a metà."},
+    {g:"neq", q:"Quanti libri leggi in un anno?", a:["[Ne] leggo una decina.","Purtroppo [ne] leggo pochi."]},
+    {g:"neq", q:"Metti lo zucchero nel caffè?", a:["Sì, [ne] metto un cucchiaino.","No, non [ne] metto."]},
+    {g:"ned", q:"Sei contenta del tuo lavoro?", a:["Sì, [ne] sono molto contenta.","Così così, non [ne] sono contentissima."]},
+    {g:"ned", q:"Hai parlato del problema con il capo?", a:["Sì, [ne] ho parlato ieri.","No, non [ne] ho ancora parlato."]},
+    {g:"cil", q:"Vai spesso a teatro?", a:["Sì, [ci] vado una volta al mese.","No, [ci] vado raramente."]},
+    {g:"cil", q:"A che ora torni a casa stasera?", a:["[Ci] torno verso le otto."]},
+    {g:"cil", q:"Sei già passata in farmacia?", a:["Sì, [ci] sono passata stamattina.","No, [ci] passo dopo."]},
+    {g:"civ", q:"Hai pensato a cosa fare a Natale?", a:["Sì, [ci] ho pensato: vado dai miei.","Non [ci] ho ancora pensato."]},
+    {g:"civ", q:"Riesci a dormire in aereo?", a:["No, non [ci] riesco mai.","Sì, [ci] riesco benissimo."]},
+    {g:"civ", q:"Hai provato a parlare italiano al bar?", a:["Sì, [ci] ho provato e ha funzionato!"]},
+    {g:"dir", q:"Chi fa la spesa a casa tua?", a:["[La] faccio io, il sabato."]},
+    {g:"dir", q:"Dove metti le chiavi quando arrivi a casa?", a:["[Le] metto sempre sul mobile dell'ingresso."]},
+    {g:"dir", q:"Ascolti la musica italiana?", a:["Sì, [la] ascolto in macchina.","Non [la] ascolto molto."]},
+    {g:"dir", q:"Inviti spesso gli amici a cena?", a:["Sì, [li] invito una volta al mese."]},
+    {g:"ind", q:"Cosa scrivi a un'amica per il compleanno?", a:["[Le] scrivo «tanti auguri!» e [le] mando un vocale."]},
+    {g:"ind", q:"Cosa porti agli amici quando vai a cena da loro?", a:["[Gli] porto una bottiglia di vino."]},
+    {g:"ind", q:"Hai risposto a Laura?", a:["Sì, [le] ho risposto subito."], n:"Rispondere a qualcuno: le ho risposto, e il participio non cambia."},
+    {g:"ind", q:"Ti piacciono i film italiani?", a:["Sì, [mi] piacciono tanto."]},
+    {g:"acc", q:"Hai preso le medicine?", a:["Sì, [le] ho pres[e] dopo pranzo."]},
+    {g:"acc", q:"Quante pagine hai letto ieri sera?", a:["[Ne] ho lett[e] una ventina."]},
+    {g:"acc", q:"Hai trovato la tua borsa?", a:["Sì, [l']ho trovat[a] in macchina."]},
+    {g:"acc", q:"Hai già fatto la valigia?", a:["No, non [l']ho ancora fatt[a]."]},
+    {g:"acc", q:"Hai visto i tuoi cugini a Natale?", a:["Sì, [li] ho vist[i] tutti."]},
+
+    {g:"com", q:"Hai il biglietto?", a:["Sì, [ce l']ho!","No, non [ce l']ho."], n:"Con avere, nel parlato si dice ce l'ho, ce li ho, ce le ho."},
+    {g:"com", q:"Chi ha le chiavi della macchina?", a:["[Ce le] ho io."]},
+    {g:"com", q:"Hai dato il libro a Marco?", a:["Sì, [gliel']ho dat[o] ieri.","No, [glielo] do domani."]},
+    {g:"com", q:"Hai detto a Sara della festa?", a:["Sì, [gliel']ho detto stamattina."], n:"Dire una cosa a Sara: glielo dico, gliel'ho detto. Glie- vale per lui e per lei."},
+    {g:"com", q:"Mi presti la tua bici?", a:["Sì, [te la] presto volentieri.","Mi dispiace, non [te la] posso prestare."]},
+    {g:"com", q:"Mi mandi le foto della vacanza?", a:["Sì, [te le] mando stasera."]},
+    {g:"com", q:"Ti ricordi il nome di quel ristorante?", a:["No, non [me lo] ricordo.","Sì, [me lo] ricordo benissimo."]},
+    {g:"com", q:"Chi ti ha regalato quella sciarpa?", a:["[Me l']ha regalat[a] mia sorella."]},
+    {g:"com", q:"Chi ti ha spiegato il congiuntivo?", a:["[Me l']ha spiegato Fabio!"]},
+    {g:"com", q:"Ci sono ancora biscotti?", a:["Sì, [ce ne] sono ancora tanti.","No, non [ce ne] sono più."], n:"C'è, ci sono + ne: ce n'è uno, ce ne sono tanti."},
+    {g:"com", q:"C'è ancora del caffè?", a:["Sì, [ce n']è ancora un po'.","No, non [ce n']è più."]},
+    {g:"com", q:"Quante fette di torta dai ai bambini?", a:["[Gliene] do una a testa."]},
+    {g:"com", q:"Ti ricordi della nostra prima lezione?", a:["Sì, [me ne] ricordo benissimo!"], n:"Ricordarsi di qualcosa: me ne ricordo. Ricordarsi qualcosa: me lo ricordo."},
+    {g:"com", q:"Hai restituito il libro a Giulia?", a:["Sì, [gliel']ho restituit[o] ieri."]}
   ];
 
   /* ============ FASE 2: racconti ============
@@ -370,7 +415,11 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     {t:"Un weekend al lago", x:"Lo scorso weekend sono andata al lago di Como con degli amici. {Siamo andati al lago di Como|[Ci] siamo andati} in treno. Marco aveva prenotato una casetta sul lago e {Marco aveva trovato la casetta|[l']aveva trovata} su internet. Sabato abbiamo fatto un giro in barca e {abbiamo fatto tante foto|[ne] abbiamo fatte tante}. La sera abbiamo cenato in un ristorante sul porto, e {nel ristorante abbiamo mangiato|[ci] abbiamo mangiato} un risotto buonissimo. Ho mandato le foto a mia madre e {ho mandato le foto anche a mio fratello|[le] ho mandate anche a mio fratello}. Il lago mi è piaciuto tantissimo: {tornerò al lago|[ci] tornerò} sicuramente."},
     {t:"In ufficio", x:"Nel mio ufficio lavorano otto persone. Vado d'accordo con i colleghi e {vedo i colleghi|[li] vedo} anche fuori dal lavoro. La mia responsabile si chiama Laura. Ogni venerdì {mando a Laura|[le] mando} un report e {Laura legge il report|lei [lo] legge} sempre con attenzione. Quando ho un problema, {parlo del problema con Laura|[ne] parlo con lei}. Ieri c'era una riunione importante, ma non {sono andata alla riunione|[ci] sono andata}: ero dal medico. Laura non era contenta, e {ho pensato alla riunione|[ci] ho pensato} tutta la sera."},
     {t:"La cena di sabato", x:"Sabato ho invitato a cena tre amiche. {Ho invitato le amiche|[Le] ho invitate} a casa mia per il compleanno di Chiara. Ho fatto le lasagne e {ho preparato le lasagne|[le] ho preparate} la mattina. Chiara adora il tiramisù, quindi {a Chiara ho fatto|[le] ho fatto} anche un tiramisù. Purtroppo il vino era finito e non {avevo più vino|[ne] avevo più}. Per fortuna Marta {ha portato due bottiglie di vino|[ne] ha portate due}. Alla fine abbiamo parlato tutta la sera del viaggio in Sicilia: {parliamo del viaggio in Sicilia|[ne] parliamo} da mesi!"},
-    {t:"Il telefono nuovo", x:"La settimana scorsa ho comprato un telefono nuovo. {Ho comprato il telefono|[L']ho comprato} in un negozio in centro. Il commesso era gentile e {al commesso ho chiesto|[gli] ho chiesto} di aiutarmi con le app. Sul telefono vecchio avevo tantissime foto, e {ho spostato tutte le foto|[le] ho spostate tutte} sul telefono nuovo. Il telefono vecchio non lo uso più: {tengo il telefono vecchio|[lo] tengo} in un cassetto e non {penso più al telefono vecchio|[ci] penso più}. Le app? Prima avevo cento app, adesso {ho dieci app|[ne] ho dieci}."}
+    {t:"Il telefono nuovo", x:"La settimana scorsa ho comprato un telefono nuovo. {Ho comprato il telefono|[L']ho comprato} in un negozio in centro. Il commesso era gentile e {al commesso ho chiesto|[gli] ho chiesto} di aiutarmi con le app. Sul telefono vecchio avevo tantissime foto, e {ho spostato tutte le foto|[le] ho spostate tutte} sul telefono nuovo. Il telefono vecchio non lo uso più: {tengo il telefono vecchio|[lo] tengo} in un cassetto e non {penso più al telefono vecchio|[ci] penso più}. Le app? Prima avevo cento app, adesso {ho dieci app|[ne] ho dieci}."},
+    {t:"Il corso di teatro", x:"Da settembre faccio un corso di teatro. {Faccio il corso di teatro|[Lo] faccio} il martedì sera, in una scuola vicino a casa. Al corso siamo in dodici e {conosco già tre persone|[ne] conosco già tre} dal lavoro. L'insegnante si chiama Paolo: {a Paolo piace|[gli] piace} tantissimo improvvisare. La settimana scorsa ci ha dato un monologo e {ho imparato il monologo|[l']ho imparato} a memoria in due giorni. Mia sorella mi ha aiutata: {a mia sorella ho recitato il monologo|[gliel']ho recitato} tre volte. A dicembre c'è lo spettacolo, e {penso allo spettacolo|[ci] penso} ogni giorno!"},
+    {t:"Il regalo per Marco", x:"Domenica era il compleanno di Marco e non avevo ancora il regalo. Sabato sono andata in centro e {in centro ho girato|[ci] ho girato} per due ore. Volevo comprare un libro, ma Marco {ha già tanti libri|[ne] ha già tanti}. Alla fine ho visto una bellissima sciarpa blu e {ho comprato la sciarpa|[l']ho comprata}. La commessa {ha incartato la sciarpa|[l']ha incartata} con una carta rossa. Domenica {ho dato la sciarpa a Marco|[gliel']ho data} prima di cena, e lui {si è messo la sciarpa|[se l']è messa} subito. Di regali quest'anno {ho fatto tanti regali|[ne] ho fatti tanti}!"},
+    {t:"Tre giorni a Berlino", x:"Il mese scorso sono andata a Berlino. {Sono andata a Berlino|[Ci] sono andata} con la mia amica Anna, che {conosce benissimo Berlino|[la] conosce benissimo} perché {ha abitato a Berlino|[ci] ha abitato} due anni. Anna ha trovato un appartamento e {mi ha mandato l'indirizzo dell'appartamento|[me l']ha mandato} su WhatsApp. Abbiamo visto tanti musei: {abbiamo visitato quattro musei|[ne] abbiamo visitati quattro} in tre giorni. Ho comprato delle cartoline e {ho spedito le cartoline ai miei genitori|[gliele] ho spedite} dall'aeroporto. Anna vuole tornare a Berlino l'anno prossimo, e io {voglio tornare a Berlino|[ci] voglio tornare} con lei."},
+    {t:"Le chiavi perse", x:"Ieri sera non trovavo più le chiavi di casa. {Ho cercato le chiavi|[Le] ho cercate} dappertutto: in borsa, in macchina, in ufficio. Allora ho chiamato mio fratello, perché {mio fratello ha una copia delle chiavi|lui [ne] ha una copia}. {A mio fratello ho chiesto|[Gli] ho chiesto} di portarmi la copia, e {mio fratello mi ha portato la copia|[me l']ha portata} in mezz'ora. Quando sono entrata in cucina, le chiavi erano sul tavolo: {avevo lasciato le chiavi sul tavolo|[le] avevo lasciate lì} la mattina! Mio fratello ha riso tantissimo, e adesso {racconta questa storia a tutti|[la] racconta a tutti}."}
   ];
 
   /* ============ FASE 3: temi ============ */
@@ -379,7 +428,8 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     {k:"ne", b:"ne", s:"ne ho due, ne parlo"},
     {k:"dir", b:"lo, la, li, le", s:"la chiamo, li vedo"},
     {k:"ind", b:"gli, le", s:"le scrivo, gli dico"},
-    {k:"acc", b:"al passato", s:"l'ho vista, ne ho fatte tre"}
+    {k:"acc", b:"al passato", s:"l'ho vista, ne ho fatte tre"},
+    {k:"com", b:"due insieme", s:"glielo, ce l'ho, me ne"}
   ];
   var TEMI = [
     {t:"Il tuo weekend", d:["Sei uscita sabato sera? Dove sei andata?","Ci vai spesso? Con chi?","Hai visto le tue amiche?","Hai bevuto qualcosa? Quanti bicchieri?","Hai fatto delle foto? Le hai mandate a qualcuno?","Hai raccontato tutto a tua madre?"]},
@@ -388,7 +438,12 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     {t:"I viaggi", d:["Sei mai stata in Sicilia?","Quante volte sei stata in Italia?","Con chi ci sei andata?","Hai comprato dei souvenir? Quanti?","Hai mandato le foto alla tua famiglia?","Ci torneresti? Quando?"]},
     {t:"Le amiche italiane", d:["Come hai conosciuto la tua amica italiana?","La vedi spesso?","Le scrivi in italiano o in inglese?","Di che cosa parlate?","Cosa le hai regalato per il compleanno?","Ti corregge quando sbagli?"]},
     {t:"Il telefono", d:["Quante app hai?","Usi Instagram? Quanto tempo ci passi?","Rispondi subito ai messaggi?","Hai mai perso il telefono? Dove l'hai ritrovato?","Quante foto ci sono nel tuo telefono?","Chiami tua madre o le scrivi?"]},
-    {t:"Il lavoro", d:["Dove lavori? Come ci vai?","Quanto ci metti ad arrivare?","Vedi i colleghi anche fuori?","Hai una capa o un capo? Gli parli spesso?","Quante riunioni hai alla settimana?","Pensi al lavoro anche nel weekend?"]}
+    {t:"Il lavoro", d:["Dove lavori? Come ci vai?","Quanto ci metti ad arrivare?","Vedi i colleghi anche fuori?","Hai una capa o un capo? Gli parli spesso?","Quante riunioni hai alla settimana?","Pensi al lavoro anche nel weekend?"]},
+    {t:"Il teatro e il cinema", d:["Vai spesso a teatro? Con chi ci vai?","Hai visto un bel film di recente? Me lo consigli?","Quanti film hai visto questo mese?","Hai mai recitato? Ti è piaciuto?","Ti ricordi il primo film che hai visto al cinema?","Racconti i film alle amiche? Cosa gli dici?"]},
+    {t:"La famiglia", d:["Quanti cugini hai?","Vedi spesso i tuoi genitori? Dove abitano?","Cosa hai regalato a tua madre l'ultima volta?","Chiami tuo fratello o tua sorella? Quanto spesso?","Siete mai andati in vacanza tutti insieme? Dove?","Hai delle foto di quando eri piccola? Le guardi mai?"]},
+    {t:"Lo shopping", d:["Dove compri i vestiti?","Quante paia di scarpe hai?","Hai comprato qualcosa questa settimana? Dove l'hai comprato?","Compri online? Quanto ci spendi?","Hai mai riportato qualcosa in negozio? Perché?","Regali spesso dei vestiti alle amiche?"]},
+    {t:"Le feste", d:["Come festeggi il compleanno?","Quante persone hai invitato l'ultima volta?","Ti piace il Natale? Dove lo passi?","Hai già pensato ai regali?","Hai mai organizzato una festa a sorpresa? Per chi?","Cosa hai mangiato l'ultimo Capodanno?"]},
+    {t:"Lo sport e il benessere", d:["Fai sport? Quante volte alla settimana?","Vai in palestra? Come ci vai?","Bevi abbastanza acqua? Quanta ne bevi?","Riesci a dormire otto ore?","Hai mai corso una gara? Te la ricordi?","Hai paura di qualche sport? Perché?"]}
   ];
 
   /* ============ ATTREZZI ============ */
@@ -399,12 +454,14 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
   function evidenzia(q){ return esc(q).replace(/\[([^\]]+)\]/g, "<b>$1</b>"); }
 
   var CHIAVE = "icf-senza-ripetere";
-  var stato = { bene:0, viste:0, secondi:10, gruppi:GRUPPI.map(function(g){ return g.k; }), modo:"segnate", note:"" };
+  var stato = { bene:0, viste:0, secondi:10, gruppi:GRUPPI.map(function(g){ return g.k; }), modo:"segnate", note:"", v2:false };
   try{
     var s0 = JSON.parse(localStorage.getItem(CHIAVE) || "null");
     if(s0 && typeof s0 === "object"){ for(var k in stato){ if(s0[k] !== undefined) stato[k] = s0[k]; } }
   }catch(e){}
   if(!Array.isArray(stato.gruppi) || !stato.gruppi.length) stato.gruppi = GRUPPI.map(function(g){ return g.k; });
+  /* «Due insieme» è arrivato dopo: si accende anche per chi aveva già salvato i gruppi */
+  if(!stato.v2){ if(stato.gruppi.indexOf("com") < 0) stato.gruppi.push("com"); stato.v2 = true; }
   var salvaT = null;
   function salva(){
     clearTimeout(salvaT);
@@ -589,8 +646,8 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     });
     var tutte = FAMIGLIE.every(function(f){ return conti[f.k]; });
     $("f3Vinto").classList.toggle("show", tutte);
-    if(tutte && timer3){ clearInterval(timer3); timer3 = null; $("f3Vinto").textContent = "Tutte e cinque, con " + orologio(resta3) + " di anticipo!"; }
-    else if(tutte) $("f3Vinto").textContent = "Tutte e cinque!";
+    if(tutte && timer3){ clearInterval(timer3); timer3 = null; $("f3Vinto").textContent = "Tutte e sei, con " + orologio(resta3) + " di anticipo!"; }
+    else if(tutte) $("f3Vinto").textContent = "Tutte e sei!";
   }
   function orologio(s){ return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
   $("f3Via").addEventListener("click", function(){

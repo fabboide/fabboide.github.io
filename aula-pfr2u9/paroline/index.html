@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paroline in gioco · Talk with Fabio</title>
+<meta name="description" content="Ne, ci e i pronomi in tre giochi parlati: Il segreto, L'eredità della zia, Passa la palla.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+
+
+/* Paroline in gioco */
+.mini{font-size:.9rem;color:var(--muted);margin:10px 0 0}
+.regola{border-left:4px solid var(--tomato);background:#FBF0EE;border-radius:0 12px 12px 0;padding:10px 14px;margin:0 0 14px;font-size:1.02rem}
+.regola b{font-family:var(--display)}
+.btn.giallo{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+.btn.grande{font-size:1.1rem;padding:13px 24px}
+.punteggi{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--display);font-weight:700;margin:12px 0 0}
+.punteggi span{display:block;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.punteggi b{font-size:1.7rem}
+.punteggi .rosso b{color:var(--tomato)}
+.punteggi .verde b{color:var(--basil)}
+
+/* Il segreto */
+.segreto{position:relative;border:2px solid var(--ink);border-radius:20px;background:var(--paper);padding:22px 20px;text-align:center;min-height:170px}
+.segreto .cat{font-family:var(--display);font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.segreto .cosa{font-family:var(--display);font-weight:800;font-size:clamp(2rem,7vw,3.2rem);line-height:1.1;margin:8px 0 4px;transition:filter .25s}
+.segreto .em{font-size:3rem;line-height:1;transition:filter .25s}
+.segreto.coperto .cosa,.segreto.coperto .em{filter:blur(16px);user-select:none}
+.segreto .avviso{font-family:var(--hand);font-size:1.5rem;color:var(--tomato);margin:6px 0 0;min-height:1.6em}
+.domande-fabio{margin:0;padding-left:22px}
+.domande-fabio li{margin:0 0 6px;font-size:1.05rem}
+.domande-fabio li button{font:inherit;text-align:left;background:none;border:0;padding:0;color:inherit;cursor:pointer}
+.domande-fabio li.fatta{color:var(--muted);text-decoration:line-through}
+
+/* L'eredità */
+.oggetto{border:2px solid var(--ink);border-radius:20px;background:var(--paper);padding:18px;text-align:center}
+.oggetto .em{font-size:3rem;line-height:1}
+.oggetto .nome{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,5vw,2.3rem);margin:6px 0 2px}
+.oggetto .pista{font-family:var(--hand);font-size:1.35rem;color:var(--basil);margin:4px 0 0}
+.parenti{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:14px}
+.parenti button{border:2px solid var(--line);background:var(--paper);border-radius:14px;padding:10px 12px;text-align:left;font-family:var(--display)}
+.parenti button b{display:block;font-size:1.05rem}
+.parenti button span{display:block;font-size:.82rem;color:var(--muted);font-family:var(--text);margin-top:2px}
+.parenti button output{float:right;font-weight:800;color:var(--basil)}
+.parenti button b{padding-right:1.3em}
+.parenti button:hover{border-color:var(--ink)}
+.parenti button.io{border-style:dashed}
+.modello{background:var(--bubble);border:1px solid #CBDDD2;border-radius:14px;padding:12px 14px;margin-top:12px;font-size:1.15rem;visibility:hidden}
+.modello.visto{visibility:visible}
+.modello b{color:var(--tomato)}
+.lista-eredita{margin:0;padding-left:20px;font-size:.95rem}
+.lista-eredita li{margin-bottom:3px}
+
+/* Passa la palla */
+.palla{border:2px solid var(--ink);border-radius:20px;background:var(--paper);padding:22px 20px;text-align:center}
+.palla .liv{font-family:var(--display);font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.palla .frase{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,5.5vw,2.5rem);line-height:1.2;margin:10px 0}
+.palla .chiede{font-family:var(--hand);font-size:1.35rem;color:var(--basil);margin:0}
+.palla .ris{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,5vw,2.1rem);color:var(--tomato);min-height:1.4em;margin:8px 0 0;visibility:hidden}
+.palla .ris.visto{visibility:visible}
+.barra{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin:12px 0 0}
+.barra i{display:block;height:100%;width:100%;background:var(--lemon);transition:width .1s linear}
+.barra.poco i{background:var(--tomato)}
+.serie{font-family:var(--display);font-weight:800;font-size:2.4rem;line-height:1;color:var(--basil)}
+#p1 .grid2>*,#p2 .grid2>*,#p3 .grid2>*{min-width:0}
+nav.steps .giochi-link{font-family:var(--display);font-weight:700;color:var(--tomato);text-decoration:none;padding:10px 13px 12px;align-self:center;margin-left:auto}
+kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 7px;background:var(--paper)}
+/* Comuni presi da Che mi racconti? */
+.nota-gram{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin-top:10px}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.vuoto{color:var(--muted);text-align:center;padding:26px 10px}
+/* Appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.appunti .riga{justify-content:space-between}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+/* Frasi utili */
+dialog{border:0;border-radius:16px;padding:0;max-width:660px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.5rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:54%}
+.dlg-body h3{margin:18px 0 4px;color:var(--basil);font-size:1.12rem}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Paroline in gioco</h1>
+    <p>Ne, ci e i pronomi dentro tre giochi, dove la parolina non è un esercizio: serve per vincere. Un segreto da non tradire, un'eredità da dividere, una palla da passare sempre più veloce. <span class="en">Three games where the little words are the only way to win.</span></p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Giochi">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>Il segreto</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>L'eredità della zia</button>
+    <button role="tab" aria-selected="false" data-phase="p3"><span class="n">3</span>Passa la palla</button>
+    <a class="side giochi-link" href="../senza-ripetere/">&larr; Senza ripetere</a>
+  </nav>
+
+  <!-- 1 · IL SEGRETO -->
+  <section class="phase active" id="p1">
+    <h2>Il segreto</h2>
+    <p class="regola"><b>La regola:</b> hai una cosa segreta. Io ti faccio domande e tu rispondi con frasi intere, ma <b>se dici il nome, hai perso</b>: al suo posto ci vanno ne, ci e i pronomi. Attenzione, anche la parolina dà indizi: «le tengo in borsa» mi dice che sono tante e femminili. <span class="en">Never say the name of your secret: the little words do the job.</span></p>
+    <div class="toolbar">
+      <div class="chips" id="s1Cat"></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="segreto coperto" id="s1Card">
+          <div class="cat" id="s1CatTxt">il segreto</div>
+          <div class="em" id="s1Em">❓</div>
+          <div class="cosa" id="s1Cosa">Pesca un segreto</div>
+          <p class="avviso" id="s1Avviso"></p>
+        </div>
+        <div class="riga">
+          <button class="btn red grande" id="s1Pesca" type="button">Pesca un segreto</button>
+          <button class="btn ghost" id="s1Sbircia" type="button" disabled>Sbircia (3 s)</button>
+        </div>
+        <div class="punteggi">
+          <div><span>domande</span><b id="s1Dom">0</b> <small>/ 10</small></div>
+          <div class="verde"><span>paroline giuste</span><b id="s1Ok">0</b></div>
+          <div class="rosso"><span>nome detto</span><b id="s1Nome">0</b></div>
+        </div>
+        <div class="riga">
+          <button class="btn green" id="s1Giusta" type="button">+1 parolina giusta</button>
+          <button class="btn giallo" id="s1Prompt" type="button">«Senza ripetere!»</button>
+          <button class="btn ghost" id="s1Detto" type="button">Ha detto il nome</button>
+          <button class="btn" id="s1Indovinato" type="button">Indovinato!</button>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Le mie domande</h3>
+        <p class="mini" style="margin:0 0 8px">Le chiedo senza sapere il segreto: per questo a volte scrivo lo/la. Tocca una domanda quando è fatta.</p>
+        <ol class="domande-fabio" id="s1Domande"></ol>
+        <p class="mini"><b>Come si gioca.</b> Pesco il segreto e guardo altrove per tre secondi: la carta si copre da sola. Massimo dieci domande. Se ripete il nome: «Senza ripetere!» e rifà la frase (un punto in meno solo se lo dice di nuovo). Poi si scambia: il segreto ce l'ho io e le domande le fa lei.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2 · L'EREDITÀ -->
+  <section class="phase" id="p2">
+    <h2>L'eredità della zia</h2>
+    <p class="regola"><b>La regola:</b> zia Adele ti ha lasciato tredici cose strane, e tu decidi a chi darle. Comincia sempre dall'oggetto e poi la parolina doppia: «Il pianoforte… <b>glielo</b> lascio a zio Piero, perché…», «Le scarpe… <b>me le</b> tengo io». Alla fine arriva il notaio e vuole sapere tutto, al passato. <span class="en">Object first, then the double pronoun: glielo, gliela, me lo...</span></p>
+    <div class="toolbar">
+      <div class="chips" id="e2Fasi"></div>
+      <span class="count" id="e2Pos"></span>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="oggetto" id="e2Ogg"></div>
+        <div class="parenti" id="e2Parenti"></div>
+        <div class="modello" id="e2Modello"></div>
+        <div class="riga" id="e2RigaNotaio" hidden>
+          <button class="btn ghost" id="e2Scopri" type="button">Scopri</button>
+          <button class="btn green" id="e2Bene" type="button">Detta bene</button>
+          <button class="btn red" id="e2Male" type="button">Da rifare</button>
+          <span class="count" id="e2Punti"></span>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Chi riceve cosa</h3>
+        <ul class="lista-eredita" id="e2Lista"><li class="mini" style="list-style:none;margin-left:-20px">Ancora niente.</li></ul>
+        <p class="mini"><b>Come si gioca.</b> Prima la divisione: per ogni oggetto lei sceglie e motiva, io tocco la persona. Poi «Il notaio»: chiedo «E il quadro?» e lei risponde al passato, con l'accordo: «Gliel'ho lasciato a zio Piero», «Le scarpe me le sono tenute». Le frasi sbagliate tornano dopo.</p>
+        <div class="riga"><button class="btn ghost" id="e2Nuova" type="button">Nuova eredità</button></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 3 · PASSA LA PALLA -->
+  <section class="phase" id="p3">
+    <h2>Passa la palla</h2>
+    <p class="regola"><b>La regola:</b> leggi la frase e dilla subito con le paroline, prima che finisca la barra. Cinque livelli, dal pronome semplice a «gliene ho passate tre». La serie si allunga finché non sbagli. <span class="en">Say it with pronouns before the bar runs out.</span></p>
+    <div class="toolbar">
+      <div class="chips" id="p3Livelli"></div>
+      <div class="chips" id="p3Secondi"></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="palla">
+          <div class="liv" id="p3Liv">livello</div>
+          <p class="frase" id="p3Frase">Premi «Via»</p>
+          <p class="chiede" id="p3Chiede"></p>
+          <div class="barra" id="p3Barra"><i id="p3Riempi"></i></div>
+          <p class="ris" id="p3Ris"></p>
+        </div>
+        <div class="riga">
+          <button class="btn red grande" id="p3Via" type="button">Via</button>
+          <button class="btn green grande" id="p3Si" type="button" disabled>Giusta</button>
+          <button class="btn ghost grande" id="p3No" type="button" disabled>Sbagliata</button>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>La serie</h3>
+        <p class="serie" id="p3Serie">0</p>
+        <p class="mini" style="margin-top:4px">record: <b id="p3Record">0</b> · oggi: <b id="p3Fatte">0</b> giuste su <b id="p3Tot">0</b></p>
+        <h3 style="margin-top:14px">Come si gioca</h3>
+        <p class="mini" style="margin-top:0"><kbd>invio</kbd> = giusta, <kbd>x</kbd> = sbagliata. Se la barra finisce, compare la risposta e la ripete lei. Prima un livello alla volta, poi «Mix»: è lì che diventa automatico.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- APPUNTI -->
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Le paroline sbagliate e l'accordo: si riprendono alla fine, tre al massimo.</p>
+    <textarea id="note" placeholder="Es. «lo do a lei» → glielo do · «ho lasciato le scarpe» → le ho lasciate · «ce ho» → ce l'ho"></textarea>
+    <div class="riga">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  function $(id){ return document.getElementById(id); }
+  function pesca(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function mescola(a){ a = a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  var CHIAVE = "icf-paroline";
+  var mem = { record:0, livelli:[1], secondi:6, note:"" };
+  try{
+    var m0 = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(m0 && typeof m0 === "object"){ for(var k in mem){ if(m0[k] !== undefined) mem[k] = m0[k]; } }
+  }catch(e){}
+  if(!Array.isArray(mem.livelli) || !mem.livelli.length) mem.livelli = [1];
+  var salvaT = null;
+  function salva(){ clearTimeout(salvaT); salvaT = setTimeout(function(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(mem)); }catch(e){} }, 250); }
+
+  /* Linguette */
+  var fase = "p1";
+  var tabs = document.querySelectorAll("nav.steps button[data-phase]");
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){
+      fase = t.getAttribute("data-phase");
+      Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(s){ s.classList.toggle("active", s.id === fase); });
+      if(fase !== "p3") ferma3();
+    });
+  });
+
+  /* ============ 1 · IL SEGRETO ============ */
+  var CATEGORIE = [
+    {k:"cosa", l:"Una cosa", e:["🔑","📱","👓","🚲","👛","👟","🔌","☂️","🎧","🛂","☕","🧦"],
+      v:["le chiavi di casa","il telefono","gli occhiali da sole","la bicicletta","il portafoglio","le scarpe da ginnastica","il caricabatterie","l'ombrello","le cuffie","il passaporto","la macchina del caffè","i calzini colorati"],
+      d:["Ce l'hai anche adesso, qui con te?","Dove lo/la tieni di solito?","Quanti/e ne hai?","Lo/la usi tutti i giorni?","L'hai comprato/a tu o te l'hanno regalato/a?","L'hai mai perso/a?","Lo/la presteresti a un'amica?","Quando l'hai usato/a l'ultima volta?","Lo/la porti in vacanza?","Ne hai bisogno per lavorare?"]},
+    {k:"posto", l:"Un posto", e:["🏋️","🏖️","📚","🛒","🗼","⛰️","🦷","🎬","🏡","✈️"],
+      v:["la palestra","il mare","la biblioteca","il supermercato","Parigi","la montagna","il dentista","il cinema","la casa dei nonni","l'aeroporto"],
+      d:["Ci vai spesso?","Con chi ci vai?","Quanto ci metti ad arrivarci?","Ci sei stata questa settimana?","Cosa ci fai di solito?","Quanto tempo ci resti?","Ci torneresti domani?","Ne parli spesso con le amiche?","Ci vai volentieri o per forza?","Ci sei mai andata da sola?"]},
+    {k:"persona", l:"Una persona", e:["👩","💼","🩺","👯","🏠","📮","👵","✂️","🧑‍💻","🧑‍🏫"],
+      v:["la mamma","il capo","il medico di famiglia","la migliore amica","i vicini di casa","il postino","la nonna","il parrucchiere","i colleghi","l'insegnante di italiano"],
+      d:["Lo/la vedi spesso?","Gli/le telefoni o gli/le scrivi?","Cosa gli/le hai regalato l'ultima volta?","L'hai visto/a questa settimana?","Gli/le racconti i tuoi segreti?","Ne parli bene o male?","Ci vai d'accordo?","Lo/la conosci da tanto?","Gli/le hai mai chiesto un favore?","Lo/la inviteresti a cena?"]},
+    {k:"cibo", l:"Un cibo", e:["🍕","☕","🥚","🍫","🍝","🍓","🍷","💧","🍪","🍨"],
+      v:["la pizza","il caffè","le uova","il cioccolato","la pasta","le fragole","il vino rosso","l'acqua frizzante","i biscotti","il gelato"],
+      d:["Ne mangi/bevi tanto?","Quanto/a ne hai in casa adesso?","Lo/la compri tu? Dove?","Lo/la sai preparare?","L'hai mangiato/a o bevuto/a ieri?","Lo/la offri agli ospiti?","Ne hai voglia adesso?","Ci metti qualcosa sopra o dentro?","Lo/la mangi a colazione?","Quando l'hai assaggiato/a la prima volta?"]}
+  ];
+  var s1 = { cat:"tutte", segreto:null, dom:0, ok:0, nome:0, timer:null, finito:true };
+  var tutteCat = document.createElement("button");
+  tutteCat.type = "button"; tutteCat.textContent = "A sorpresa"; tutteCat.dataset.k = "tutte";
+  $("s1Cat").appendChild(tutteCat);
+  CATEGORIE.forEach(function(c){
+    var b = document.createElement("button"); b.type = "button"; b.textContent = c.l; b.dataset.k = c.k;
+    $("s1Cat").appendChild(b);
+  });
+  Array.prototype.forEach.call($("s1Cat").children, function(b){
+    b.addEventListener("click", function(){ s1.cat = b.dataset.k; catChips(); });
+  });
+  function catChips(){ Array.prototype.forEach.call($("s1Cat").children, function(b){ b.setAttribute("aria-pressed", String(b.dataset.k === s1.cat)); }); }
+
+  function copri(dopo){
+    clearInterval(s1.timer);
+    var n = dopo;
+    $("s1Card").classList.remove("coperto");
+    $("s1Avviso").textContent = "Fabio, non guardare! " + n + "…";
+    s1.timer = setInterval(function(){
+      n--;
+      if(n <= 0){ clearInterval(s1.timer); $("s1Card").classList.add("coperto"); $("s1Avviso").textContent = "Coperto. Via con le domande!"; return; }
+      $("s1Avviso").textContent = "Fabio, non guardare! " + n + "…";
+    }, 1000);
+  }
+  function domandeFabio(c){
+    $("s1Domande").innerHTML = "";
+    mescola(c.d).slice(0, 10).forEach(function(q){
+      var li = document.createElement("li");
+      var b = document.createElement("button"); b.type = "button"; b.textContent = q;
+      b.addEventListener("click", function(){
+        if(li.classList.contains("fatta") || s1.finito) return;
+        li.classList.add("fatta"); s1.dom++; numeri1();
+        if(s1.dom >= 10) fine1("Dieci domande e il segreto regge: ha vinto lei!");
+      });
+      li.appendChild(b); $("s1Domande").appendChild(li);
+    });
+  }
+  function numeri1(){ $("s1Dom").textContent = s1.dom; $("s1Ok").textContent = s1.ok; $("s1Nome").textContent = s1.nome; }
+  function pescaSegreto(){
+    var c = s1.cat === "tutte" ? pesca(CATEGORIE) : CATEGORIE.filter(function(x){ return x.k === s1.cat; })[0];
+    var i = Math.floor(Math.random() * c.v.length);
+    if(s1.segreto && s1.segreto.v === c.v[i]) i = (i + 1) % c.v.length;
+    s1.segreto = { c:c, v:c.v[i], e:c.e[i] };
+    s1.dom = 0; s1.finito = false;
+    $("s1CatTxt").textContent = c.l;
+    $("s1Em").textContent = s1.segreto.e;
+    $("s1Cosa").textContent = s1.segreto.v;
+    domandeFabio(c);
+    numeri1();
+    $("s1Sbircia").disabled = false;
+    copri(3);
+  }
+  function fine1(msg){
+    clearInterval(s1.timer);
+    s1.finito = true;
+    $("s1Card").classList.remove("coperto");
+    $("s1Avviso").textContent = msg;
+    $("s1Sbircia").disabled = true;
+  }
+  $("s1Pesca").addEventListener("click", pescaSegreto);
+  $("s1Sbircia").addEventListener("click", function(){ if(!s1.finito) copri(3); });
+  $("s1Giusta").addEventListener("click", function(){ if(s1.finito) return; s1.ok++; numeri1(); });
+  $("s1Prompt").addEventListener("click", function(){
+    if(s1.finito) return;
+    $("s1Avviso").textContent = "Senza ripetere! Rifai la frase.";
+    setTimeout(function(){ if(!s1.finito && $("s1Card").classList.contains("coperto")) $("s1Avviso").textContent = "Coperto. Via con le domande!"; }, 2500);
+  });
+  $("s1Detto").addEventListener("click", function(){ if(s1.finito) return; s1.nome++; numeri1(); fine1("Ha detto il nome! Il segreto era…"); });
+  $("s1Indovinato").addEventListener("click", function(){ if(s1.finito) return; fine1("Indovinato in " + s1.dom + (s1.dom === 1 ? " domanda." : " domande.")); });
+  catChips();
+
+  /* ============ 2 · L'EREDITÀ DELLA ZIA ============ */
+  var OGGETTI = [
+    {n:"il pianoforte", g:"m", pl:false, e:"🎹", p:"suona ancora, ma è stonato"},
+    {n:"la pelliccia", g:"f", pl:false, e:"🧥", p:"vera, del 1962"},
+    {n:"i gioielli", g:"m", pl:true, e:"💍", p:"un po' veri e un po' finti"},
+    {n:"le tazzine di porcellana", g:"f", pl:true, e:"☕", p:"ne manca una"},
+    {n:"il pappagallo", g:"m", pl:false, e:"🦜", p:"parla solo in dialetto"},
+    {n:"la Vespa rossa", g:"f", pl:false, e:"🛵", p:"non parte da dieci anni"},
+    {n:"i libri di cucina", g:"m", pl:true, e:"📚", p:"pieni di macchie di sugo"},
+    {n:"le lettere d'amore", g:"f", pl:true, e:"💌", p:"e non sono dello zio"},
+    {n:"l'orologio d'oro", g:"m", pl:false, e:"⌚", p:"va indietro di un'ora"},
+    {n:"la collezione di francobolli", g:"f", pl:false, e:"📮", p:"forse vale una fortuna"},
+    {n:"il quadro con il gatto", g:"m", pl:false, e:"🖼️", p:"il gatto ti guarda sempre"},
+    {n:"le scarpe col tacco", g:"f", pl:true, e:"👠", p:"numero 36, mai messe"},
+    {n:"i vasetti di marmellata", g:"m", pl:true, ne:true, e:"🍓", p:"sono trecento, tutti fatti in casa"}
+  ];
+  var PARENTI = [
+    {k:"piero", n:"zio Piero", a:"a zio Piero", t:"suona il piano, vive in campagna con tre cani"},
+    {k:"marta", n:"la cugina Marta", a:"a Marta", t:"ama la moda, ha appena cambiato casa"},
+    {k:"nipoti", n:"i nipoti Luca e Sofia", a:"ai nipoti", t:"8 e 12 anni, rompono tutto"},
+    {k:"rosa", n:"la signora Rosa", a:"alla signora Rosa", t:"la vicina, 90 anni, ha visto tutto"},
+    {k:"io", n:"Me lo tengo io!", a:"", t:"perché sì", io:true}
+  ];
+  function dir(o){ return o.pl ? (o.g === "f" ? "le" : "li") : (o.g === "f" ? "la" : "lo"); }
+  function fin(o){ return o.pl ? (o.g === "f" ? "e" : "i") : (o.g === "f" ? "a" : "o"); }
+  /* presente: «il pianoforte glielo lascio a zio Piero» / «me lo tengo» */
+  function frasePresente(o, p){
+    if(p.io) return cap(o.n) + "… <b>" + (o.ne ? "me ne" : "me " + dir(o)) + "</b> tengo" + (o.ne ? " cento" : "") + " io.";
+    return cap(o.n) + "… <b>" + (o.ne ? "gliene" : "glie" + dir(o)) + "</b> lascio" + (o.ne ? " cento" : "") + " " + p.a + ".";
+  }
+  /* passato, per il notaio: «gliel'ho lasciato» / «me la sono tenuta» */
+  function frasePassato(o, p){
+    var e = fin(o);
+    if(p.io){
+      if(o.ne) return "<b>Me ne</b> sono tenut" + e + " cento.";
+      return "<b>Me " + dir(o) + "</b> sono tenut" + e + ".";
+    }
+    if(o.ne) return "<b>Gliene</b> ho lasciat" + e + " cento " + p.a + ".";
+    var cl = o.pl ? "<b>Glie" + dir(o) + "</b> ho" : "<b>Gliel'</b>ho";
+    return cl + " lasciat" + e + " " + p.a + ".";
+  }
+  var e2 = { modo:"dividi", ordine:[], i:0, scelte:{}, coda:[], bene:0, tot:0 };
+  [{k:"dividi", l:"1 · La divisione"}, {k:"notaio", l:"2 · Il notaio"}].forEach(function(m){
+    var b = document.createElement("button"); b.type = "button"; b.textContent = m.l; b.dataset.k = m.k;
+    b.addEventListener("click", function(){ if(m.k === "notaio" && !Object.keys(e2.scelte).length) return; e2.modo = m.k; if(m.k === "notaio") avviaNotaio(); disegna2(); });
+    $("e2Fasi").appendChild(b);
+  });
+  function nuovaEredita(){
+    e2 = { modo:"dividi", ordine:mescola(OGGETTI.map(function(_, i){ return i; })), i:0, scelte:{}, coda:[], bene:0, tot:0 };
+    disegna2();
+  }
+  function lista2(){
+    var ks = Object.keys(e2.scelte);
+    if(!ks.length){ $("e2Lista").innerHTML = '<li class="mini" style="list-style:none;margin-left:-20px">Ancora niente.</li>'; return; }
+    $("e2Lista").innerHTML = ks.map(function(i){
+      var p = PARENTI.filter(function(x){ return x.k === e2.scelte[i]; })[0];
+      return "<li>" + OGGETTI[i].e + " " + esc(OGGETTI[i].n) + " → " + esc(p.io ? "lei" : p.n) + "</li>";
+    }).join("");
+  }
+  function disegna2(){
+    Array.prototype.forEach.call($("e2Fasi").children, function(b){ b.setAttribute("aria-pressed", String(b.dataset.k === e2.modo)); });
+    $("e2Modello").classList.remove("visto");
+    lista2();
+    if(e2.modo === "dividi"){
+      $("e2RigaNotaio").hidden = true;
+      $("e2Parenti").hidden = false;
+      if(e2.i >= e2.ordine.length){
+        $("e2Ogg").innerHTML = '<div class="em">📜</div><div class="nome">Tutto diviso!</div><p class="pista">Adesso arriva il notaio: tocca «2 · Il notaio».</p>';
+        $("e2Parenti").hidden = true;
+        $("e2Pos").textContent = e2.ordine.length + " di " + e2.ordine.length;
+        return;
+      }
+      var o = OGGETTI[e2.ordine[e2.i]];
+      $("e2Ogg").innerHTML = '<div class="em">' + o.e + '</div><div class="nome">' + esc(cap(o.n)) + '</div><p class="pista">' + esc(o.p) + "</p>";
+      $("e2Pos").textContent = (e2.i + 1) + " di " + e2.ordine.length;
+      $("e2Parenti").innerHTML = "";
+      PARENTI.forEach(function(p){
+        var b = document.createElement("button"); b.type = "button"; if(p.io) b.className = "io";
+        var quanti = Object.keys(e2.scelte).filter(function(i){ return e2.scelte[i] === p.k; }).length;
+        b.innerHTML = "<output>" + (quanti || "") + "</output><b>" + esc(p.n) + "</b><span>" + esc(p.t) + "</span>";
+        b.addEventListener("click", function(){
+          e2.scelte[e2.ordine[e2.i]] = p.k;
+          $("e2Modello").innerHTML = "Si dice: " + frasePresente(o, p);
+          $("e2Modello").classList.add("visto");
+          lista2();
+          var fermo = e2.i;
+          setTimeout(function(){ if(e2.modo === "dividi" && e2.i === fermo){ e2.i++; disegna2(); } }, 1600);
+        });
+        $("e2Parenti").appendChild(b);
+      });
+    } else {
+      $("e2Parenti").hidden = true;
+      $("e2RigaNotaio").hidden = false;
+      $("e2Punti").textContent = e2.bene + " su " + e2.tot;
+      if(!e2.coda.length){
+        $("e2Ogg").innerHTML = '<div class="em">🖋️</div><div class="nome">Il notaio è soddisfatto.</div><p class="pista">' + e2.bene + " risposte giuste su " + e2.tot + ".</p>";
+        $("e2Pos").textContent = "";
+        return;
+      }
+      var j = e2.coda[0], ob = OGGETTI[j];
+      $("e2Ogg").innerHTML = '<div class="em">' + ob.e + '</div><p class="pista">Il notaio chiede:</p><div class="nome">«E ' + esc(ob.n) + '?»</div>';
+      var par = PARENTI.filter(function(x){ return x.k === e2.scelte[j]; })[0];
+      $("e2Modello").innerHTML = frasePassato(ob, par);
+      $("e2Pos").textContent = "ne mancano " + e2.coda.length;
+    }
+  }
+  function avviaNotaio(){ e2.coda = mescola(Object.keys(e2.scelte).map(Number)); e2.bene = 0; e2.tot = 0; }
+  $("e2Scopri").addEventListener("click", function(){ $("e2Modello").classList.add("visto"); });
+  $("e2Bene").addEventListener("click", function(){ if(!e2.coda.length) return; e2.coda.shift(); e2.bene++; e2.tot++; disegna2(); });
+  $("e2Male").addEventListener("click", function(){
+    if(!e2.coda.length) return;
+    var j = e2.coda.shift(); e2.tot++;
+    e2.coda.splice(Math.min(e2.coda.length, 2 + Math.floor(Math.random() * 2)), 0, j);
+    disegna2();
+  });
+  $("e2Nuova").addEventListener("click", nuovaEredita);
+
+  /* ============ 3 · PASSA LA PALLA ============ */
+  var COSE = [
+    {n:"il libro", g:"m", pl:false}, {n:"la penna", g:"f", pl:false}, {n:"i biscotti", g:"m", pl:true},
+    {n:"le chiavi", g:"f", pl:true}, {n:"il caffè", g:"m", pl:false}, {n:"la foto", g:"f", pl:false},
+    {n:"gli occhiali", g:"m", pl:true}, {n:"le cartoline", g:"f", pl:true}, {n:"il biglietto", g:"m", pl:false},
+    {n:"la ricetta", g:"f", pl:false}, {n:"i documenti", g:"m", pl:true}, {n:"le foto", g:"f", pl:true}
+  ];
+  var QUANTI = [
+    {n:"caramelle", g:"f"}, {n:"biscotti", g:"m"}, {n:"foto", g:"f"}, {n:"libri", g:"m"}, {n:"euro", g:"m"}, {n:"mele", g:"f"}
+  ];
+  var NUMERI = ["due","tre","quattro","cinque","dieci"];
+  var VERBI = [
+    {p:"passo", pp:"passat"}, {p:"do", pp:"dat"}, {p:"presto", pp:"prestat"}, {p:"mando", pp:"mandat"}, {p:"regalo", pp:"regalat"}
+  ];
+  var A_CHI = [
+    {a:"a Luca", ind:"gli", c:"glie"}, {a:"a Marta", ind:"le", c:"glie"}, {a:"a te", ind:"ti", c:"te"},
+    {a:"ai ragazzi", ind:"gli", c:"glie"}, {a:"a voi", ind:"vi", c:"ve"}
+  ];
+  var LIVELLI = [
+    {k:1, l:"1 · la cosa", c:"Al posto della cosa: lo, la, li, le."},
+    {k:2, l:"2 · la persona", c:"Al posto della persona: gli, le, ti, vi."},
+    {k:3, l:"3 · tutte e due", c:"Tutte e due insieme: glielo, te la, ve li…"},
+    {k:4, l:"4 · al passato", c:"Tutte e due, al passato, con l'accordo."},
+    {k:5, l:"5 · con ne", c:"Con la quantità: gliene, te ne, ve ne."}
+  ];
+  /* pronome doppio: glie+lo = glielo; te+lo = te lo */
+  function doppio(c, d){ return c === "glie" ? "glie" + d : c + " " + d; }
+  function doppioHo(c, d){
+    var elide = (d === "lo" || d === "la");
+    if(c === "glie") return elide ? "gliel'ho" : "glie" + d + " ho";
+    return elide ? c + " l'ho" : c + " " + d + " ho";
+  }
+  function genera(liv){
+    var v = pesca(VERBI), chi = pesca(A_CHI);
+    if(liv === 5){
+      var q = pesca(QUANTI), num = pesca(NUMERI), passato = Math.random() < 0.5;
+      var e = q.g === "f" ? "e" : "i";
+      var cne = chi.c === "glie" ? "gliene" : chi.c + " ne";
+      if(passato) return { f:"Ho " + v.pp + "o " + num + " " + q.n + " " + chi.a + ".", r:cap(cne) + " ho " + v.pp + e + " " + num + "." };
+      return { f:cap(v.p) + " " + num + " " + q.n + " " + chi.a + ".", r:cap(cne) + " " + v.p + " " + num + "." };
+    }
+    var o = pesca(COSE), d = dir(o);
+    if(liv === 1) return { f:cap(v.p) + " " + o.n + " " + chi.a + ".", r:cap(d) + " " + v.p + " " + chi.a + "." };
+    if(liv === 2) return { f:cap(v.p) + " " + o.n + " " + chi.a + ".", r:cap(chi.ind) + " " + v.p + " " + o.n + "." };
+    if(liv === 3) return { f:cap(v.p) + " " + o.n + " " + chi.a + ".", r:cap(doppio(chi.c, d)) + " " + v.p + "." };
+    return { f:"Ho " + v.pp + "o " + o.n + " " + chi.a + ".", r:cap(doppioHo(chi.c, d)) + " " + v.pp + fin(o) + "." };
+  }
+  var p3 = { inCorso:false, carta:null, liv:1, resta:0, id:null, serie:0, fatte:0, tot:0, attesa:false };
+  LIVELLI.forEach(function(L){
+    var b = document.createElement("button"); b.type = "button"; b.textContent = L.l; b.dataset.k = L.k;
+    b.addEventListener("click", function(){
+      var i = mem.livelli.indexOf(L.k);
+      if(i >= 0){ if(mem.livelli.length === 1) return; mem.livelli.splice(i, 1); } else mem.livelli.push(L.k);
+      salva(); livChips();
+    });
+    $("p3Livelli").appendChild(b);
+  });
+  var mix = document.createElement("button"); mix.type = "button"; mix.textContent = "Mix"; mix.dataset.k = "mix";
+  mix.addEventListener("click", function(){ mem.livelli = [1,2,3,4,5]; salva(); livChips(); });
+  $("p3Livelli").appendChild(mix);
+  function livChips(){
+    Array.prototype.forEach.call($("p3Livelli").children, function(b){
+      b.setAttribute("aria-pressed", String(b.dataset.k === "mix" ? mem.livelli.length === 5 : mem.livelli.indexOf(+b.dataset.k) >= 0));
+    });
+  }
+  [4, 6, 9].forEach(function(n){
+    var b = document.createElement("button"); b.type = "button"; b.textContent = n + " s"; b.dataset.k = n;
+    b.addEventListener("click", function(){ mem.secondi = n; salva(); secChips(); });
+    $("p3Secondi").appendChild(b);
+  });
+  function secChips(){ Array.prototype.forEach.call($("p3Secondi").children, function(b){ b.setAttribute("aria-pressed", String(+b.dataset.k === mem.secondi)); }); }
+
+  function numeri3(){
+    $("p3Serie").textContent = p3.serie; $("p3Record").textContent = mem.record;
+    $("p3Fatte").textContent = p3.fatte; $("p3Tot").textContent = p3.tot;
+  }
+  function prossima3(){
+    clearInterval(p3.id);
+    p3.liv = pesca(mem.livelli);
+    p3.carta = genera(p3.liv);
+    var L = LIVELLI[p3.liv - 1];
+    $("p3Liv").textContent = "livello " + L.l;
+    $("p3Chiede").textContent = L.c;
+    $("p3Frase").textContent = p3.carta.f;
+    $("p3Ris").textContent = p3.carta.r;
+    $("p3Ris").classList.remove("visto");
+    p3.attesa = false; p3.resta = mem.secondi;
+    var t0 = Date.now();
+    $("p3Riempi").style.width = "100%"; $("p3Barra").classList.remove("poco");
+    p3.id = setInterval(function(){
+      var r = mem.secondi - (Date.now() - t0) / 1000;
+      var f = Math.max(0, r / mem.secondi);
+      $("p3Riempi").style.width = (f * 100) + "%";
+      $("p3Barra").classList.toggle("poco", f <= 0.3);
+      if(r <= 0){ clearInterval(p3.id); $("p3Ris").classList.add("visto"); p3.attesa = true; }
+    }, 100);
+  }
+  function giudica(ok){
+    if(!p3.inCorso) return;
+    clearInterval(p3.id);
+    p3.tot++;
+    if(ok){ p3.fatte++; p3.serie++; if(p3.serie > mem.record){ mem.record = p3.serie; salva(); } }
+    else p3.serie = 0;
+    numeri3();
+    if(!ok && !$("p3Ris").classList.contains("visto")){
+      $("p3Ris").classList.add("visto");
+      setTimeout(function(){ if(p3.inCorso) prossima3(); }, 1800);
+      return;
+    }
+    if(ok && !$("p3Ris").classList.contains("visto")){ $("p3Ris").classList.add("visto"); setTimeout(function(){ if(p3.inCorso) prossima3(); }, 700); return; }
+    prossima3();
+  }
+  function via3(){
+    p3.inCorso = true; p3.serie = 0; numeri3();
+    $("p3Via").textContent = "Ricomincia";
+    $("p3Si").disabled = false; $("p3No").disabled = false;
+    prossima3();
+  }
+  function ferma3(){ clearInterval(p3.id); p3.inCorso = false; $("p3Si").disabled = true; $("p3No").disabled = true; }
+  $("p3Via").addEventListener("click", via3);
+  $("p3Si").addEventListener("click", function(){ giudica(true); });
+  $("p3No").addEventListener("click", function(){ giudica(false); });
+  document.addEventListener("keydown", function(e){
+    if(/^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName || "").toUpperCase())) return;
+    if(fase !== "p3" || !p3.inCorso) return;
+    if(e.key === "Enter"){ if(e.target.tagName === "BUTTON") return; e.preventDefault(); giudica(true); }
+    else if(e.key === "x" || e.key === "X"){ e.preventDefault(); giudica(false); }
+  });
+
+  /* ============ APPUNTI ============ */
+  var note = $("note");
+  note.value = mem.note || "";
+  note.addEventListener("input", function(){ mem.note = note.value; salva(); $("salvato").textContent = "Appunti salvati."; });
+  $("reset").addEventListener("click", function(){
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+
+  /* Avvio */
+  livChips(); secChips(); numeri3(); nuovaEredita();
+})();
+</script>
+</body>
+</html>
