@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "3 novembre 2026, 03:15";
+var PIANO_AGGIORNATO = "3 novembre 2026, 11:02";
 
 var PIANO = {
 
@@ -373,7 +373,7 @@ var PIANO = {
 
   "rafaela-yrd": {
     "nome": "Rafaela",
-    "aggiornato": "30 ottobre 2026",
+    "aggiornato": "3 novembre 2026",
     "ultima": {
       "quando": "2026-10-30T09:30:00+01:00",
       "fatto": [
@@ -382,7 +382,7 @@ var PIANO = {
       ]
     },
     "prossima": {
-      "quando": "2026-11-02T09:00:00+01:00",
+      "quando": "2026-11-03T09:30:00+01:00",
       "obiettivo": "We keep going with the past: what you did, where you went, with essere or avere.",
       "attivita": [
         {
@@ -463,7 +463,7 @@ var PIANO = {
 
   "samy-k74": {
     "nome": "Samy",
-    "aggiornato": "29 ottobre 2026",
+    "aggiornato": "3 novembre 2026",
     "ultima": {
       "quando": "2026-10-29T11:30:00+01:00",
       "fatto": [
@@ -474,7 +474,7 @@ var PIANO = {
       ]
     },
     "prossima": {
-      "quando": "2026-11-02T18:00:00+01:00",
+      "quando": "2026-11-12T18:00:00+01:00",
       "obiettivo": "Describe a person from head to toe, asking the questions on your own.",
       "attivita": [
         {
