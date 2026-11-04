@@ -307,8 +307,8 @@ footer{
 
   /* ==========================================================
      I MATERIALI
-     livello: "A1" | "A2" | "tutti"
-     tipo:    "Grammatica" | "Lessico" | "Parlato"
+     livello: "A1" | "A2" | "B1" | "B2" | "tutti"
+     tipo:    "Giochi" | "Parlato" | "Grammatica" | "Pronuncia" | "Verifiche"
      cosa:    a cosa serve, in una riga
      live:    come usarlo a voce, la nota rossa
      href:    "" se è solo un promemoria
@@ -326,7 +326,7 @@ footer{
     {
       titolo:"Identikit", livello:"A1", tipo:"Giochi",
       cosa:"Trova la persona misteriosa facendo domande sull'aspetto fisico. Il tabellone è generato a ogni partita e le facce sono disegnate dai tratti, quindi non ce ne sono mai due uguali.",
-      live:"Serve a farle fare le domande, non a risponderle: nell'oca lei risponde e basta. Regola ferrea, la domanda si dice a voce prima che io clicchi. Primo giro con dodici facce e solo capelli e viso, poi ventiquattro e tutto acceso. Alla fine le chiedo di descrivere la persona da sola.",
+      live:"Serve a farle fare le domande, non a rispondere: nell'oca lei risponde e basta. Regola ferrea, la domanda si dice a voce prima che io clicchi. Primo giro con dodici facce e solo capelli e viso, poi ventiquattro e tutto acceso. Alla fine le chiedo di descrivere la persona da sola.",
       img:"copertine/identikit.webp",
       href:"identikit/", tag:"aspetto fisico descrizione capelli occhi barba occhiali domande interrogative a1 indovina chi persona"
     },
@@ -372,7 +372,7 @@ footer{
     {
       titolo:"Il Processo", livello:"B1", tipo:"Giochi",
       cosa:"Tribunale dell'italiano: accuse assurde da smontare parlando, con il pubblico ministero che incalza al congiuntivo.",
-      live:"Da B1 in su. Le battute dell'accusa sono tutte al congiuntivo: gliele leggo a voce e gli chiedo di rispondere nello stesso registro.",
+      live:"Da B1 in su. Molte battute dell'accusa sono al congiuntivo: gliele leggo a voce e gli chiedo di rispondere nello stesso registro.",
       img:"copertine/processo.webp",
       href:"processo/", tag:"gioco processo tribunale accuse alibi congiuntivo difesa b1 b2 parlato"
     },
@@ -457,7 +457,7 @@ footer{
     {
       titolo:"Dialoghi da ripetere", livello:"A2", tipo:"Parlato",
       cosa:"Dieci dialoghi di tutti i giorni (bar, ristorante, biglietteria, negozio, strada, albergo, farmacia, telefono, mercato, conoscersi) con la traduzione riga per riga.",
-      live:"Prima lo leggiamo insieme a due voci. Poi premo Nascondi le mie battute: resta l'inglese e l'italiano lo deve produrre lei. Tocco una riga e la sento (voce del browser), o la scopro se è coperta. Si stampa anche.",
+      live:"Prima lo leggiamo insieme a due voci. Poi premo Nascondi le mie battute: resta l'inglese e l'italiano lo deve produrre lei. Tocco una riga e la sento (audio registrato), o la scopro se è coperta. Si stampa anche.",
       img:"copertine/dialoghi.webp",
       href:"https://talkwithfabio.com/dialoghi/", tag:"dialoghi frasi situazioni bar ristorante stazione negozio strada albergo farmacia telefono mercato viaggio frasario ripetere a1 a2 parlato"
     },
@@ -492,7 +492,7 @@ footer{
     {
       titolo:"Test di livello A1", livello:"A1", tipo:"Verifiche",
       cosa:"Verifica A1 completa, sul modello CILS: cinque parti da 20 punti, ognuna si supera con 11. Ascolto (cinque messaggi corti, un dialogo da trascrivere e un dettato con i buchi), lettura (un messaggio, tre persone da abbinare, un dialogo da rimettere in ordine), strutture (cloze, presente, passato prossimo), due testi cortissimi da scrivere (20-40 e 15-30 parole) e due prove di parlato.",
-      live:"Tarata sul sillabo ufficiale A1: niente imperfetto, niente condizionale, niente congiuntivo, e il participio non deve accordarsi. La cosa più importante che devi fare tu è leggere LENTO: a velocità naturale misuri la tua velocità, non il suo italiano. Nelle due prove difficili, l’abbinamento e il riordino, il riquadro verde « come si fa » dà la strategia anche a lei: sono tipi di compito che si vincono col metodo, non col livello.",
+      live:"Tarata sul sillabo ufficiale A1: niente imperfetto, niente condizionale, niente congiuntivo, e l'accordo del participio non si chiede. La cosa più importante che devi fare tu è leggere LENTO: a velocità naturale misuri la tua velocità, non il suo italiano. Nelle due prove difficili, l’abbinamento e il riordino, il riquadro verde « come si fa » dà la strategia anche a lei: sono tipi di compito che si vincono col metodo, non col livello.",
       img:"copertine/test-a1.webp",
       href:"test-a1/", tag:"test verifica livello a1 esame prova principianti ascolto dettato lettura abbinamento riordino dialogo strutture presente passato prossimo scrittura parlato valutazione punteggio cils"
     },
@@ -566,7 +566,7 @@ footer{
 
   function passa(m){
     if(attivo !== "all"){
-      if(attivo === "A1" || attivo === "A2"){
+      if(LIVELLI.indexOf(attivo) !== -1){
         if(m.livello !== attivo && m.livello !== "tutti") return false;
       } else if(m.tipo !== attivo) return false;
     }

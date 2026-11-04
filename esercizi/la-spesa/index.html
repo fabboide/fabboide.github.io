@@ -273,7 +273,7 @@ body.senza-voce .solovoce{ display:none !important }
 
   <div class="blocco">
     <h2>Adesso raccontala</h2>
-    <p class="sotto">Now tell the story of your shopping trip, out loud, at the past tense.</p>
+    <p class="sotto">Now tell the story of your shopping trip, out loud, in the past tense.</p>
     <p id="racconta" style="margin:0 0 10px"></p>
     <ul class="grp" id="raccontaspunti" style="margin:0; padding-left:18px"></ul>
   </div>
@@ -478,7 +478,7 @@ var RICETTE = [
 var IMPREVISTI = [
   { t:"finito", d:"&Egrave; finito",
     dice:"Mi dispiace, oggi è finito.",
-    tocca:"Deve cambiare prodotto o chiederle un consiglio: <em>e cosa mi consiglia?</em>" },
+    tocca:"Deve cambiare prodotto o chiedergli un consiglio: <em>e cosa mi consiglia?</em>" },
   { t:"caro", d:"C'&egrave; solo quello pi&ugrave; caro",
     dice:"Di quello normale non ne ho più. Ho solo quello buono, però costa il doppio.",
     tocca:"Deve decidere e dirlo: <em>va bene lo stesso</em> oppure <em>no, grazie, allora prendo altro</em>." },
@@ -834,7 +834,8 @@ function nLettere(n){
   if(n < 1000){
     var c = Math.floor(n / 100), r = n % 100;
     var testa = (c === 1 ? "cento" : UNI[c] + "cento");
-    return r === 0 ? testa : testa + nLettere(r);
+    if(r === 8 || Math.floor(r / 10) === 8) testa = testa.slice(0, -1);  /* centotto, centottanta */
+    return r === 0 ? testa : testa + (r === 3 ? "tré" : nLettere(r));   /* centotré */
   }
   return String(n);
 }
@@ -979,7 +980,7 @@ function mostra(id){
 }
 
 var MODI = [
-  { k:"prof", t:"Con l'insegnante (o un amico)", d:"Lui apre una finestra solo sua con i prezzi e le carte del commesso. Tu vedi solo lo scaffale, e per sapere quanto costa una cosa devi chiedergliela." },
+  { k:"prof", t:"Con l'insegnante (o un amico)", d:"Lui apre una finestra solo sua con i prezzi e le carte del commesso. Tu vedi solo lo scaffale, e per sapere quanto costa una cosa devi chiederglielo." },
   { k:"solo", t:"Da solo", d:"Il commesso lo fa la pagina: i prezzi te li dice a voce e non li scrive mai. Tocca a te ascoltare il numero e tenere il conto." }
 ];
 
@@ -1219,7 +1220,7 @@ function allaCassa(){
   var righe = "";
   righe += completo
     ? "<p style=\"margin:0 0 4px\">Hai preso tutto quello che serve.</p>"
-    : "<p style=\"margin:0 0 4px\">Ti manca ancora: <b>" + m.map(function(x){ return PER_ID[x[0]].nome; }).join(", ") + "</b>.</p>";
+    : "<p style=\"margin:0 0 4px\">" + (m.length > 1 ? "Ti mancano" : "Ti manca") + " ancora: <b>" + m.map(function(x){ return PER_ID[x[0]].nome; }).join(", ") + "</b>.</p>";
   righe += dentro
     ? "<p style=\"margin:0\">Il conto sta dentro il budget: ti avanzano " + prezzoScritto(R.budget - t) + ".</p>"
     : "<p style=\"margin:0\">Hai sforato di " + prezzoScritto(t - R.budget) + ". Cosa toglieresti?</p>";
@@ -1323,7 +1324,7 @@ function avvisoPopup(){
   var a = $("avviso");
   a.classList.remove("hidden");
   a.innerHTML = "<b>Il browser ha bloccato la finestra del commesso.</b> Permetti le finestre pop-up per questo sito "
-    + "e tocca <em>Riapri il banco</em>, oppure gioca in modo <em>Da solo</em>: i prezzi te li dice la pagina.";
+    + "e tocca <em>Ricomincia</em> e poi <em>Al negozio</em>, oppure gioca in modo <em>Da solo</em>: i prezzi te li dice la pagina.";
 }
 
 /* ============================================================

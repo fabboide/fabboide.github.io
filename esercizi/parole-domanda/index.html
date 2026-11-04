@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Le parole delle domande — Talk with Fabio</title>
-<meta name="description" content="The little words that open a question in Italian: chi, cosa, quando, dove, come, perche, quanto, quale, questo. Multiple choice, writing and a sixty second challenge.">
+<meta name="description" content="The little words that open a question in Italian: chi, cosa, quando, dove, come, perché, quanto, quale, questo. Multiple choice, writing and a sixty second challenge.">
 <link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Talk with Fabio">
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="Le parole delle domande">
-<meta property="og:description" content="The little words that open a question in Italian: chi, cosa, quando, dove, come, perche, quanto, quale, questo. Multiple choice, writing and a sixty second challenge.">
+<meta property="og:description" content="The little words that open a question in Italian: chi, cosa, quando, dove, come, perché, quanto, quale, questo. Multiple choice, writing and a sixty second challenge.">
 <meta property="og:url" content="https://talkwithfabio.com/esercizi/parole-domanda/">
 <meta property="og:image" content="https://talkwithfabio.com/img/og-domande.jpg">
 <meta property="og:image:width" content="1200">
@@ -23,7 +23,7 @@
 <meta property="og:image:alt" content="Talk with Fabio — Le parole delle domande">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Le parole delle domande">
-<meta name="twitter:description" content="The little words that open a question in Italian: chi, cosa, quando, dove, come, perche, quanto, quale, questo. Multiple choice, writing and a sixty second challenge.">
+<meta name="twitter:description" content="The little words that open a question in Italian: chi, cosa, quando, dove, come, perché, quanto, quale, questo. Multiple choice, writing and a sixty second challenge.">
 <meta name="twitter:image" content="https://talkwithfabio.com/img/og-domande.jpg">
 
 <link rel="stylesheet" href="/fonts/fonts.css">
@@ -407,7 +407,7 @@ a{ color:inherit; }
       <p class="lede">
         Chi, cosa, quando, dove, come, perch&eacute;, quanto. Con queste in bocca una
         conversazione la tieni aperta anche quando il resto dell'italiano ti manca.
-        Scegli una modalit&agrave;, scalda con il Livello 1 e sali fino alla sfida a tempo.
+        Scegli una modalit&agrave;, scaldati con il Livello 1 e sali fino alla sfida a tempo.
       </p>
       <p class="lede en">
         Chi, cosa, quando, dove, come, perch&eacute;, quanto. With these in your mouth you can
@@ -458,7 +458,9 @@ a{ color:inherit; }
      essere una sola, e una frase come "___ ci vediamo?" accetta
      sia "dove" sia "quando". Per questo ogni frase porta con sé
      la sua coda che la rende univoca ("___ ci vediamo, davanti
-     al bar?") e la sua traduzione inglese.
+     al bar?") e la sua traduzione inglese. Dove una seconda parola
+     resta giusta ("Da quanto studi italiano?"), la frase la porta
+     in "ok": non esce tra le opzioni e, se la scrivi, vale.
 
      Le frasi con "cosa" non entrano nei livelli in cui si
      scrive: "che cosa" e "che" sono altrettanto giuste, e
@@ -490,8 +492,8 @@ a{ color:inherit; }
       explainEn:"&laquo;Chi&raquo; is for <b>people</b>, and it stays singular even when you mean several of them.",
       frasi:[
         {b:"",       a:" è quella ragazza?",        tr:"Who is that girl?"},
-        {b:"Con ",   a:" studi l'italiano?",             tr:"Who do you study Italian with?"},
-        {b:"",       a:" ha preso il mio caffè?",   tr:"Who took my coffee?"},
+        {b:"Con ",   a:" studi l'italiano?",             tr:"Who do you study Italian with?", ok:["cosa"]},
+        {b:"",       a:" ha preso il mio caffè, tu o Marco?", tr:"Who took my coffee, you or Marco?"},
         {b:"Di ",    a:" è questa borsa?",          tr:"Whose bag is this?"},
         {b:"",       a:" viene al cinema con noi, tu o Marco?", tr:"Who is coming to the cinema with us, you or Marco?"},
         {b:"A ",     a:" scrivi?",                       tr:"Who are you writing to?"}
@@ -507,7 +509,7 @@ a{ color:inherit; }
         {b:"", a:" vuol dire questa parola?",      tr:"What does this word mean?"},
         {b:"", a:" c'è nel frigo?",           tr:"What's in the fridge?"},
         {b:"", a:" hai mangiato, la pizza o la pasta?", tr:"What did you eat, the pizza or the pasta?"},
-        {b:"", a:" facciamo domani?",              tr:"What shall we do tomorrow?"}
+        {b:"", a:" facciamo domani?",              tr:"What shall we do tomorrow?", ok:["come"]}
       ]
     },
     {
@@ -516,10 +518,10 @@ a{ color:inherit; }
       explainEn:"&laquo;Quando&raquo; asks about <b>time</b>: a day, an hour, a moment.",
       frasi:[
         {b:"",      a:" arriva il treno, alle otto?",   tr:"When does the train arrive, at eight?"},
-        {b:"",      a:" finisce la lezione?",           tr:"When does the lesson finish?"},
+        {b:"",      a:" finisce la lezione, alle sei?", tr:"When does the lesson finish, at six?"},
         {b:"",      a:" parti per l'Italia, in agosto?", tr:"When are you leaving for Italy, in August?"},
         {b:"",      a:" sei libero?",                   tr:"When are you free?"},
-        {b:"Da ",   a:" studi italiano?",               tr:"How long have you been studying Italian?"},
+        {b:"Da ",   a:" studi italiano?",               tr:"How long have you been studying Italian?", ok:["quanto"]},
         {b:"",      a:" ci vediamo, alle otto?",        tr:"When shall we meet, at eight?"}
       ]
     },
@@ -541,7 +543,7 @@ a{ color:inherit; }
       explainIt:"&laquo;Come&raquo; chiede il <b>modo</b>: come stai, come si dice, come ci arrivi.",
       explainEn:"&laquo;Come&raquo; asks about <b>manner</b>: how you are, how you say something, how you get there.",
       frasi:[
-        {b:"", a:" stai?",                                       tr:"How are you?"},
+        {b:"", a:" stai?",                                       tr:"How are you?", ok:["dove"]},
         {b:"", a:" ti chiami?",                                  tr:"What's your name?"},
         {b:"", a:" si dice «water» in italiano?",        tr:"How do you say «water» in Italian?"},
         {b:"", a:" arrivi in centro, a piedi o in autobus?",     tr:"How do you get to the centre, on foot or by bus?"},
@@ -582,12 +584,14 @@ a{ color:inherit; }
   function genDomande(){
     var g = pick(GRUPPI);
     var f = pick(g.frasi);
-    var altre = shuffle(PAROLE.filter(function(w){ return w !== g.w; })).slice(0,3);
+    var buone = f.ok || [];
+    var altre = shuffle(PAROLE.filter(function(w){ return w !== g.w && buone.indexOf(w) < 0; })).slice(0,3);
 
     return {
       before: f.b,
       after: f.a,
       correct: g.w,
+      accept: buone,
       options: shuffle(altre.concat([g.w])),
       explainIt: g.explainIt,
       explainEn: g.explainEn,
@@ -680,13 +684,13 @@ a{ color:inherit; }
      b:"", a:" maglietta metti domani?", tr:"Which t-shirt are you wearing tomorrow?"},
 
     {w:"quali", g:"plurale", gEn:"plural", forme:FORME_QUALE, sp:SP_QUALE,
-     b:"", a:" sono i tuoi film preferiti?", tr:"Which are your favourite films?"},
+     b:"", a:" sono i tuoi film preferiti?", tr:"What are your favourite films?"},
     {w:"quali", g:"plurale", gEn:"plural", forme:FORME_QUALE, sp:SP_QUALE,
-     b:"", a:" sono le tue città preferite?", tr:"Which are your favourite cities?"},
+     b:"", a:" sono le tue città preferite?", tr:"What are your favourite cities?"},
     {w:"quali", g:"plurale", gEn:"plural", forme:FORME_QUALE, sp:SP_QUALE,
-     b:"", a:" sono i piatti che ti piacciono?", tr:"Which are the dishes you like?"},
+     b:"", a:" sono i piatti che ti piacciono?", tr:"What are the dishes you like?"},
     {w:"quali", g:"plurale", gEn:"plural", forme:FORME_QUALE, sp:SP_QUALE,
-     b:"", a:" sono le parole più difficili per te?", tr:"Which are the hardest words for you?"},
+     b:"", a:" sono le parole più difficili per te?", tr:"What are the hardest words for you?"},
 
     /* questo */
     {w:"questo", g:"maschile singolare", gEn:"masculine singular", forme:FORME_QUESTO, sp:SP_QUESTO,
@@ -742,7 +746,7 @@ a{ color:inherit; }
   var LIVELLI = [
     {num:1, name:"Riscaldamento", nameEn:"Warm-up", desc:"Scelta multipla, con spiegazione. Nessun limite di tempo.", descEn:"Multiple choice with explanations. Untimed.", mode:"mc", count:10, timed:false, icon:ICON_PENCIL},
     {num:2, name:"Allenamento", nameEn:"Workout", desc:"Scrivi la parola a memoria. Nessun limite di tempo.", descEn:"Type the word from memory. Untimed.", mode:"type", count:10, timed:false, icon:ICON_WRITE},
-    {num:3, name:"Sfida a tempo", nameEn:"Timed challenge", desc:"60 secondi, il più possibile corrette. Batti il tuo record.", descEn:"60 seconds, as many as you can. Beat your record.", mode:"mc", timed:true, icon:ICON_CLOCK}
+    {num:3, name:"Sfida a tempo", nameEn:"Timed challenge", desc:"60 secondi, più risposte corrette possibile. Batti il tuo record.", descEn:"60 seconds, as many as you can. Beat your record.", mode:"mc", timed:true, icon:ICON_CLOCK}
   ];
 
   var MODES = {
@@ -752,8 +756,8 @@ a{ color:inherit; }
         {k:"chi / cosa", it:"&laquo;Chi&raquo; per le <b>persone</b>, &laquo;cosa&raquo; per le <b>cose</b>. Sono le due domande che userai pi&ugrave; spesso.",
          en:"&laquo;Chi&raquo; for people, &laquo;cosa&raquo; for things. These two carry most of your questions.",
          ex:"Chi &egrave; quella ragazza? &middot; Cosa fai stasera?"},
-        {k:"quando / dove / come", it:"&laquo;Quando&raquo; chiede il tempo, &laquo;dove&raquo; il luogo, &laquo;come&raquo; il modo. Non cambiano mai forma.",
-         en:"&laquo;Quando&raquo; asks about time, &laquo;dove&raquo; about place, &laquo;come&raquo; about manner. None of them ever changes.",
+        {k:"quando / dove / come", it:"&laquo;Quando&raquo; chiede il tempo, &laquo;dove&raquo; il luogo, &laquo;come&raquo; il modo. Non cambiano mai per genere e numero.",
+         en:"&laquo;Quando&raquo; asks about time, &laquo;dove&raquo; about place, &laquo;come&raquo; about manner. None of them ever changes for gender or number.",
          ex:"Quando arriva il treno? &middot; Dove abiti? &middot; Come stai?"},
         {k:"perché / quanto", it:"&laquo;Perch&eacute;&raquo; chiede il motivo e serve anche per rispondere. &laquo;Quanto&raquo; con <i>costa</i>, <i>dura</i> e <i>ci vuole</i> resta sempre uguale.",
          en:"&laquo;Perch&eacute;&raquo; asks why and also answers it. &laquo;Quanto&raquo; with <i>costa</i>, <i>dura</i> and <i>ci vuole</i> never changes.",
@@ -1003,10 +1007,11 @@ a{ color:inherit; }
     if(state.answered) return;
     state.answered = true;
     var it = state.item;
-    var ok = norm(raw) === norm(it.correct);
+    var alt = (it.accept || []).filter(function(w){ return norm(raw) === norm(w); })[0];
+    var ok = norm(raw) === norm(it.correct) || !!alt;
 
     var blank = document.getElementById("blank");
-    blank.textContent = it.correct;
+    blank.textContent = alt || it.correct;
     blank.classList.add(ok ? "ok" : "no");
 
     if(state.level.mode==="mc"){

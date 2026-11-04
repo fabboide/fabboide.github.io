@@ -296,12 +296,12 @@ h1 em{ font-style:normal; color:var(--rosso); }
     </article>
     <article class="rulecard" style="--c:var(--saffron)">
       <h2>NE &middot; di qualcosa</h2>
-      <p>Tutti i verbi con <b>di</b>: parlare di, sapere di, avere voglia di.</p>
+      <p>Tanti verbi ed espressioni con <b>di</b>: parlare di, sapere di, avere voglia di.</p>
       <span class="ex">Ne parlano tutti. Cosa ne pensi?</span>
     </article>
     <article class="rulecard" style="--c:var(--azzurro)">
       <h2>CI &middot; i luoghi</h2>
-      <p>Qualsiasi posto già nominato: a scuola, in Giappone, al mare.</p>
+      <p>Il posto già nominato dove vai o dove stai: a scuola, in Giappone, al mare.</p>
       <span class="ex">Ci vado in autobus.</span>
     </article>
     <article class="rulecard" style="--c:var(--viola)">
@@ -495,7 +495,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
 
     {cat:"ne_cosa", type:"blank", q:"Cosa <span class=\"blank\">___</span> pensi del nuovo direttore?",
      opts:["ci", "ne", "lo", "gli"], correct:1, accept:["ne"],
-     note:"Per l'<b>opinione</b> si usa «che cosa ne pensi». Con «ci penso» invece dici che te ne occupi tu.",
+     note:"Per l'<b>opinione</b> si usa «che cosa ne pensi». Con «ci penso io» invece dici che te ne occupi tu.",
      tr:"What do you think of the new manager?"},
 
     {cat:"ne_cosa", type:"blank", q:"– Sai qualcosa dell'esame?<br>– No, non <span class=\"blank\">___</span> so niente.",
@@ -600,7 +600,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
 
     {cat:"ci_verbi", type:"blank", q:"– Chi pensa alla cena?<br>– Non preoccuparti, <span class=\"blank\">___</span> penso io.",
      opts:["ne", "ci", "lo", "gli"], correct:1, accept:["ci"],
-     note:"<b>Pensarci</b> = occuparsene. «Ci penso io» vuol dire: me ne occupo io. Diverso da «che ne pensi?», che chiede l'opinione.",
+     note:"«<b>Ci penso io</b>» vuol dire: me ne occupo io (pensarci vuol dire anche pensare a qualcosa: ci penso spesso). Diverso da «che ne pensi?», che chiede l'opinione.",
      tr:"Who's taking care of dinner? Don't worry, I'll see to it."},
 
     {cat:"ci_verbi", type:"blank", q:"– Credi ai fantasmi?<br>– No, non <span class=\"blank\">___</span> credo.",
@@ -623,12 +623,12 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"<b>Provare a</b> fare qualcosa: ci ho provato.",
      tr:"Did you try calling him? Yes, I tried twice."},
 
-    {cat:"ci_verbi", type:"blank", q:"– Quanto tempo ci vuole da qui alla stazione?<br>– <span class=\"blank\">___</span> vogliono venti minuti.",
+    {cat:"ci_verbi", type:"blank", q:"– Quanto è lontana la stazione da qui?<br>– <span class=\"blank\">___</span> vogliono venti minuti.",
      opts:["Ne", "Ci", "Li", "Lo"], correct:1, accept:["Ci"],
      note:"<b>Volerci</b> per il tempo necessario: ci vuole un'ora, ci vogliono venti minuti. Il verbo va con il tempo.",
-     tr:"How long does it take? It takes twenty minutes."},
+     tr:"How far is the station from here? It takes twenty minutes."},
 
-    {cat:"ci_verbi", type:"blank", q:"– Quanto hai messo ad arrivare?<br>– <span class=\"blank\">___</span> ho messo due ore.",
+    {cat:"ci_verbi", type:"blank", q:"– Quanto tempo hai impiegato per arrivare?<br>– <span class=\"blank\">___</span> ho messo due ore.",
      opts:["Ne", "Lo", "Ci", "Gli"], correct:2, accept:["Ci"],
      note:"<b>Metterci</b> = impiegare tempo: ci ho messo due ore. «Volerci» è impersonale, «metterci» ha un soggetto.",
      tr:"How long did it take you? It took me two hours."},
@@ -639,8 +639,8 @@ h1 em{ font-style:normal; color:var(--rosso); }
      tr:"Do you notice how he speaks? No, I don't notice it."},
 
     {cat:"ci_verbi", type:"blank", q:"– Capisci qualcosa di motori?<br>– No, non <span class=\"blank\">___</span> capisco niente.",
-     opts:["ne", "ci", "lo", "li"], correct:1, accept:["ci"],
-     note:"«Non ci capisco niente» è il modo normale di dire che non ci si raccapezza. Con «ne» diventerebbe «non ne so niente», che è un'altra cosa.",
+     opts:["gli", "ci", "lo", "li"], correct:1, accept:["ci", "ne"],
+     note:"«Non ci capisco niente» è il modo normale di dire che non ci si raccapezza. Si dice anche «non ne capisco niente» (di motori): va bene anche così.",
      tr:"Do you understand anything about engines? No, I don't understand a thing."},
 
     {cat:"ci_verbi", type:"full", q:"Quale frase vuol dire «me ne occupo io»?",
@@ -698,10 +698,10 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"I cugini → <b>li</b> vedo.",
      tr:"Do you see your cousins often? I see them at Christmas."},
 
-    {cat:"diretti", type:"full", q:"Quale frase è scritta bene?",
-     opts:["Sì, la apro io.", "Sì, l'apro io.", "Sì, gli apro io.", "Sì, ne apro io."], correct:1, accept:["Sì, l'apro io."],
-     note:"Davanti a vocale <b>lo</b> e <b>la</b> perdono la vocale e prendono l'apostrofo: l'apro io.",
-     tr:"Before a vowel, lo and la become l'."},
+    {cat:"diretti", type:"full", q:"Apri tu la finestra? Quale risposta è giusta?",
+     opts:["Sì, le apro io.", "Sì, l'apro io.", "Sì, gli apro io.", "Sì, ne apro io."], correct:1, accept:["Sì, l'apro io."],
+     note:"La finestra è un complemento diretto femminile singolare: <b>la</b>. Davanti a vocale di solito si apostrofa: l'apro io (si trova anche «la apro»).",
+     tr:"La finestra is a feminine direct object: la, usually shortened to l' before a vowel."},
 
     {cat:"diretti", type:"full", q:"Quale coppia è giusta?",
      opts:["Chiamo Marta → le chiamo", "Chiamo Marta → la chiamo", "Chiamo Marta → ne chiamo", "Chiamo Marta → ci chiamo"], correct:1, accept:["Chiamo Marta → la chiamo"],
@@ -733,10 +733,10 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"A tuo padre = a lui → <b>gli</b>.",
      tr:"What are you giving your father? I'm giving him a tie."},
 
-    {cat:"indiretti", type:"blank", q:"– Mi presti la macchina?<br>– Sì, <span class=\"blank\">___</span> presto la macchina.",
-     opts:["ti", "lo", "ne", "ci"], correct:0, accept:["ti"],
+    {cat:"indiretti", type:"blank", q:"– Che cosa mi presti per il viaggio?<br>– <span class=\"blank\">___</span> presto la mia valigia grande.",
+     opts:["Ti", "Lo", "Ne", "Ci"], correct:0, accept:["ti"],
      note:"«Prestare <b>a</b> qualcuno»: alla seconda persona è <b>ti</b>, uguale al diretto.",
-     tr:"Will you lend me the car? Yes, I'll lend you the car."},
+     tr:"What will you lend me for the trip? I'll lend you my big suitcase."},
 
     {cat:"indiretti", type:"blank", q:"– Chiedi a Paolo se viene?<br>– Va bene, <span class=\"blank\">___</span> chiedo se viene.",
      opts:["lo", "gli", "ne", "ci"], correct:1, accept:["gli"],
@@ -748,10 +748,10 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"«Dire qualcosa <b>a</b> qualcuno»: a lei → <b>le</b> ho detto tutto.",
      tr:"Did you tell your sister the truth? Yes, I told her everything."},
 
-    {cat:"indiretti", type:"blank", q:"– Ci fai un favore?<br>– Certo, <span class=\"blank\">___</span> faccio un favore volentieri.",
+    {cat:"indiretti", type:"blank", q:"– Ci fai un favore?<br>– Certo, che cosa <span class=\"blank\">___</span> serve?",
      opts:["ci", "vi", "gli", "ne"], correct:1, accept:["vi"],
-     note:"Se loro dicono «ci fai», tu rispondi «<b>vi</b> faccio»: è la seconda persona plurale.",
-     tr:"Will you do us a favour? Of course, I'll do you a favour."},
+     note:"Se loro dicono «ci fai un favore?», tu rispondi con <b>vi</b>: che cosa vi serve? È la seconda persona plurale.",
+     tr:"Will you do us a favour? Of course, what do you need?"},
 
     {cat:"indiretti", type:"blank", q:"– Hai parlato al professore?<br>– Sì, <span class=\"blank\">___</span> ho parlato stamattina.",
      opts:["lo", "gli", "ne", "ci"], correct:1, accept:["gli"],
@@ -770,7 +770,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
 
     {cat:"accordo", type:"blank", q:"– Hai visto Maria?<br>– Sì, <span class=\"blank\">___</span>ho vista ieri.",
      opts:["le", "l'", "gli", "ne"], correct:1, accept:["l'", "l", "la"],
-     note:"Davanti a «ho» il pronome <b>la</b> diventa <b>l'</b>, e il participio si accorda: l'ho vist<b>a</b>.",
+     note:"Davanti a «ho» il pronome <b>la</b> di solito diventa <b>l'</b>, e il participio si accorda: l'ho vist<b>a</b>.",
      tr:"Did you see Maria? Yes, I saw her yesterday."},
 
     {cat:"accordo", type:"blank", q:"– Hai comprato le mele?<br>– Sì, <span class=\"blank\">___</span> ho comprate.",
@@ -915,7 +915,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
 
     {cat:"ne_cosa", type:"blank", q:"– Che cosa pensi della proposta?<br>– <span class=\"blank\">___</span> penso tutto il bene possibile.",
      opts:["Ci", "Ne", "La", "Gli"], correct:1, accept:["Ne"],
-     note:"Per l'opinione si usa <b>ne</b>: ne penso bene. «Ci penso» sarebbe occuparsene.",
+     note:"Per l'opinione si usa <b>ne</b>: ne penso bene. «Ci penso» vorrebbe dire pensare a una cosa o occuparsene, non dare un'opinione.",
      tr:"What do you think of the proposal? I think very highly of it."},
 
     {cat:"ne_cosa", type:"blank", q:"– Sei contento del risultato?<br>– Sì, <span class=\"blank\">___</span> sono molto contento.",
@@ -965,8 +965,8 @@ h1 em{ font-style:normal; color:var(--rosso); }
 
     {cat:"ne_cosa", type:"full", q:"Quale frase usa «ne» in modo giusto?",
      opts:["Ne vado al mare domani.", "Ne parliamo domani.", "Ne sono stato in Francia.", "Ne penso io alla cena."], correct:1, accept:["Ne parliamo domani."],
-     note:"«Ne» sta per «di qualcosa» o per una quantità. Per i luoghi ci vuole <b>ci</b>, e per occuparsi di una cosa si dice «ci penso io».",
-     tr:"«Ne» replaces «di + something» or a quantity, never a place."},
+     note:"Qui «ne» sta per «di qualcosa»: ne parliamo domani. Per il posto dove vai o dove sei ci vuole <b>ci</b>, e per occuparsi di una cosa si dice «ci penso io».",
+     tr:"Here «ne» replaces «di + something». For a place you go to or are in, use «ci»."},
 
     {cat:"ci_luogo", type:"blank", q:"– Sei già andato al nuovo supermercato?<br>– No, <span class=\"blank\">___</span> vado domani.",
      opts:["ne", "ci", "lo", "gli"], correct:1, accept:["ci"],
@@ -1040,8 +1040,8 @@ h1 em{ font-style:normal; color:var(--rosso); }
 
     {cat:"ci_luogo", type:"full", q:"Quale frase è giusta?",
      opts:["Vado a Roma, ne vado sabato.", "Vado a Roma, ci vado sabato.", "Vado a Roma, la vado sabato.", "Vado a Roma, lo vado sabato."], correct:1, accept:["Vado a Roma, ci vado sabato."],
-     note:"Il luogo torna sempre con <b>ci</b>: ci vado sabato.",
-     tr:"A place always comes back as «ci»."},
+     note:"Il posto dove vai torna con <b>ci</b>: ci vado sabato.",
+     tr:"The place you go to comes back as «ci»."},
 
     {cat:"ci_verbi", type:"blank", q:"– Conti su di me?<br>– Certo che <span class=\"blank\">___</span> conto.",
      opts:["ne", "ci", "lo", "gli"], correct:1, accept:["ci"],
@@ -1058,12 +1058,12 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"«Giocare <b>a</b> qualcosa»: ci gioco il sabato.",
      tr:"Do you still play tennis? Yes, I play on Saturdays."},
 
-    {cat:"ci_verbi", type:"blank", q:"– Quanto tempo ci vuole per la torta?<br>– <span class=\"blank\">___</span> vuole un'ora.",
+    {cat:"ci_verbi", type:"blank", q:"– Quanto tempo serve per la torta?<br>– <span class=\"blank\">___</span> vuole un'ora.",
      opts:["Ne", "Ci", "Lo", "Gli"], correct:1, accept:["Ci"],
      note:"<b>Volerci</b>: ci vuole un'ora, ci vogliono due ore. Il verbo si accorda con il tempo, non con la persona.",
      tr:"How long does the cake take? It takes an hour."},
 
-    {cat:"ci_verbi", type:"blank", q:"– Quanto ci metti ad arrivare?<br>– <span class=\"blank\">___</span> metto venti minuti.",
+    {cat:"ci_verbi", type:"blank", q:"– Quanto tempo impieghi per arrivare?<br>– <span class=\"blank\">___</span> metto venti minuti.",
      opts:["Ne", "Ci", "Lo", "Gli"], correct:1, accept:["Ci"],
      note:"<b>Metterci</b> = impiegare: ci metto venti minuti. A differenza di «volerci», qui c'è una persona che impiega tempo.",
      tr:"How long does it take you to get there? It takes me twenty minutes."},
@@ -1085,7 +1085,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
 
     {cat:"ci_verbi", type:"blank", q:"– Pensi tu ai biglietti?<br>– Sì, <span class=\"blank\">___</span> penso io.",
      opts:["ne", "ci", "li", "gli"], correct:1, accept:["ci"],
-     note:"«Pensare <b>a</b> qualcosa» = occuparsene: ci penso io.",
+     note:"«Pensare <b>a</b> qualcosa»: ci penso. E «ci penso io» vuol dire: me ne occupo io.",
      tr:"Will you take care of the tickets? Yes, I'll see to it."},
 
     {cat:"ci_verbi", type:"blank", q:"– Provi a chiamarlo tu?<br>– <span class=\"blank\">___</span> provo subito.",
@@ -1099,11 +1099,11 @@ h1 em{ font-style:normal; color:var(--rosso); }
      tr:"Are you attached to that jumper? I'm very attached to it."},
 
     {cat:"ci_verbi", type:"blank", q:"– Capisci qualcosa di questo modulo?<br>– Non <span class=\"blank\">___</span> capisco niente.",
-     opts:["ne", "ci", "lo", "gli"], correct:1, accept:["ci"],
-     note:"«Non ci capisco niente» è il modo normale di dire che non ci si raccapezza.",
+     opts:["li", "ci", "lo", "gli"], correct:1, accept:["ci", "ne"],
+     note:"«Non ci capisco niente» è il modo normale di dire che non ci si raccapezza. Si dice anche «non ne capisco niente»: va bene anche così.",
      tr:"Do you understand anything on this form? I don't understand a thing."},
 
-    {cat:"ci_verbi", type:"blank", q:"– Hai messo molto a finire?<br>– <span class=\"blank\">___</span> ho messo tutta la sera.",
+    {cat:"ci_verbi", type:"blank", q:"– Hai impiegato molto tempo per finire?<br>– <span class=\"blank\">___</span> ho messo tutta la sera.",
      opts:["Ne", "Ci", "Lo", "Gli"], correct:1, accept:["Ci"],
      note:"<b>Metterci</b> al passato: ci ho messo tutta la sera.",
      tr:"Did it take you long to finish? It took me all evening."},
@@ -1118,7 +1118,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"«Sperare <b>in</b> qualcosa»: ci spero.",
      tr:"Are you still hoping for an answer? Yes, I'm still hoping."},
 
-    {cat:"ci_verbi", type:"full", q:"Quale frase vuol dire che hai un'<b>opinione</b> su una cosa?",
+    {cat:"ci_verbi", type:"full", q:"Quale frase chiede un'<b>opinione</b> su una cosa?",
      opts:["Ci penso io.", "Cosa ne pensi?", "Ci tengo molto.", "Ci provo domani."], correct:1, accept:["Cosa ne pensi?"],
      note:"«Che ne pensi?» chiede l'opinione; «ci penso io» vuol dire che te ne occupi tu.",
      tr:"«Cosa ne pensi?» asks for an opinion."},
@@ -1233,10 +1233,10 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"«Insegnare qualcosa <b>a</b> qualcuno»: le insegno io.",
      tr:"Who teaches your daughter Italian? I do."},
 
-    {cat:"indiretti", type:"blank", q:"– Offri tu il caffè a Paolo?<br>– Sì, <span class=\"blank\">___</span> offro il caffè.",
-     opts:["lo", "gli", "ne", "ci"], correct:1, accept:["gli"],
+    {cat:"indiretti", type:"blank", q:"– Che cosa offri a Paolo?<br>– <span class=\"blank\">___</span> offro un caffè.",
+     opts:["Lo", "Gli", "Ne", "Ci"], correct:1, accept:["gli"],
      note:"«Offrire qualcosa <b>a</b> qualcuno»: gli offro il caffè.",
-     tr:"Are you buying Paolo a coffee? Yes, I'm buying him a coffee."},
+     tr:"What are you getting Paolo? I'm buying him a coffee."},
 
     {cat:"indiretti", type:"blank", q:"– Hai promesso qualcosa ai bambini?<br>– <span class=\"blank\">___</span> ho promesso il gelato.",
      opts:["Li", "Gli", "Ne", "Ci"], correct:1, accept:["Gli"],
@@ -1248,10 +1248,10 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"«Consigliare qualcosa <b>a</b> qualcuno»: a lei &rarr; le.",
      tr:"What do you recommend to a beginner? I recommend she starts speaking right away."},
 
-    {cat:"indiretti", type:"blank", q:"– Presti la bici a tuo fratello?<br>– Sì, <span class=\"blank\">___</span> presto la bici.",
-     opts:["lo", "gli", "ne", "ci"], correct:1, accept:["gli"],
+    {cat:"indiretti", type:"blank", q:"– Che cosa presti a tuo fratello?<br>– <span class=\"blank\">___</span> presto la bici.",
+     opts:["Lo", "Gli", "Ne", "Ci"], correct:1, accept:["gli"],
      note:"«Prestare qualcosa <b>a</b> qualcuno»: gli presto la bici.",
-     tr:"Will you lend your brother the bike? Yes, I'll lend him the bike."},
+     tr:"What are you lending your brother? I'm lending him the bike."},
 
     {cat:"indiretti", type:"blank", q:"– Ti piace il jazz?<br>– Sì, <span class=\"blank\">___</span> piace molto.",
      opts:["mi", "lo", "ne", "ci"], correct:0, accept:["mi"],

@@ -340,6 +340,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
 
   /* ---------- FASE 1: quiz ---------- */
   var SHOPS = ["fruttivendolo","macelleria","pescheria","salumeria","forno","alimentari"];
+  var DOVE = {fruttivendolo:"dal fruttivendolo", macelleria:"in macelleria", pescheria:"in pescheria", salumeria:"in salumeria", forno:"al forno", alimentari:"in un negozio di alimentari"};
   var QUIZ = shuffle([
     ["il pesce spada","pescheria"],["la salsiccia","macelleria"],["la mortadella","salumeria"],
     ["la focaccia","forno"],["il basilico","fruttivendolo"],["le vongole","pescheria"],
@@ -367,10 +368,10 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
       b.addEventListener("click", function(){
         if (qAnswered) return; qAnswered = true;
         var right = QUIZ[qi][1];
-        if (s === right){ b.classList.add("right"); qScore++; qFb.style.color = "var(--ok)"; qFb.textContent = "Giusto! Si compra in " + right + "."; }
+        if (s === right){ b.classList.add("right"); qScore++; qFb.style.color = "var(--ok)"; qFb.textContent = "Giusto! Si compra " + DOVE[right] + "."; }
         else {
           b.classList.add("wrong"); qFb.style.color = "var(--warn)";
-          qFb.textContent = "No, si compra in " + right + ".";
+          qFb.textContent = "No, si compra " + DOVE[right] + ".";
           Array.prototype.forEach.call(qShops.children, function(x){ if (x.textContent === right) x.classList.add("right"); });
         }
       });
@@ -501,12 +502,20 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     if (it.u === "etto") return q === 1 ? "un etto" : q + " etti";
     return q + " " + (q === 1 ? it.s : it.pl);
   }
+  // "1 anguria", "3 panini", "2 mozzarelle di bufala": niente "1 anguria di anguria"
+  function cartLabel(it, q){
+    if (it.u === "pz"){
+      var w = it.it.split(" "), first = w[0];
+      if (first === it.s || first === it.pl) return q + " " + (q === 1 ? it.s : it.pl) + (w.length > 1 ? " " + w.slice(1).join(" ") : "");
+    }
+    return qtyText(it, q) + " di " + it.it;
+  }
   // cleaner per-piece label
   function pieceLabel(it){
     if (it.p === 0) return "Gratis!";
     if (it.u === "kg") return eur(it.p) + " al chilo";
     if (it.u === "etto") return eur(it.p) + " all'etto";
-    return eur(it.p) + " a " + it.s;
+    return eur(it.p) + (/^a/i.test(it.s) ? " ad " : " a ") + it.s;
   }
 
   var stallsEl = document.getElementById("stalls"), tagsEl = document.getElementById("tags"),
@@ -556,7 +565,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     cart.forEach(function(c, idx){
       var it = ITEMS[c.id];
       var li = document.createElement("li");
-      li.innerHTML = "<span>" + qtyText(it, c.q) + " di " + it.it + "</span><span>" + eur(it.p * c.q) + ' <button type="button" aria-label="Togli ' + it.it + '">✕</button></span>';
+      li.innerHTML = "<span>" + cartLabel(it, c.q) + "</span><span>" + eur(it.p * c.q) + ' <button type="button" aria-label="Togli ' + it.it + '">✕</button></span>';
       li.querySelector("button").addEventListener("click", function(){ cart.splice(idx,1); renderCart(); });
       list.appendChild(li);
     });
@@ -661,7 +670,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     html += "<hr>" + '<div class="row"><b>TOTALE</b><b>' + eur(tot) + "</b></div>";
     html += '<div class="row"><span>Budget</span><span>' + eur(mission.budget) + "</span></div>";
     html += "<hr><div>" + (tot <= mission.budget ? "Nel budget, ottimo!" : "Fuori budget di " + eur(tot - mission.budget) + ".") + "</div>";
-    html += "<div>" + (missing.length ? "Manca: " + missing.map(function(id){ return ITEMS[id].it; }).join(", ") : "Missione completa!") + "</div>";
+    html += "<div>" + (missing.length ? "Non hai preso: " + missing.map(function(id){ return ITEMS[id].it; }).join(", ") : "Missione completa!") + "</div>";
     html += '<div style="text-align:center;margin-top:10px">Grazie e arrivederci!</div>';
     r.innerHTML = html;
   }

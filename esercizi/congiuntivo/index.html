@@ -233,7 +233,7 @@ var PERCORSO = [
   subito: [
     { f: ["È vero che ", " tardi."], v: "essere", o: ["è", "sia", "fosse"], g: 0, n: "« È vero che » è una certezza: indicativo." },
     { f: ["Credo che ", " tardi."], v: "essere", o: ["è", "sia", "fosse"], g: 1, n: "« Credo che » è un'opinione: congiuntivo." },
-    { f: ["Mi hanno detto che ", " domani."], v: "arrivare, lui", o: ["arriva", "arrivi", "arrivasse"], g: 0, n: "Riportare quello che ti hanno detto è un fatto: indicativo." }
+    { f: ["Mi hanno detto che ", " domani."], v: "arrivare, lui", o: ["arriva", "arrivi", "arrivasse"], g: 0, n: "« Mi hanno detto che » riporta un'informazione: indicativo. Con « si dice che » invece chi parla prende le distanze, e arriva il congiuntivo (tappa 5)." }
   ]
 },
 
@@ -307,7 +307,7 @@ var PERCORSO = [
   },
   regola: {
     html: "Le prime tre persone sono sempre identiche. Quindi un verbo al congiuntivo presente " +
-          "ha <b>quattro forme da ricordare, non sei</b>. Chi parla si capisce dal contesto, " +
+          "ha <b>quattro forme da ricordare, non sei</b>. Il soggetto si capisce dal contesto, " +
           "e infatti il pronome spesso si dice (<i>che tu sia</i>, <i>che lui sia</i>).",
     en: "The first three persons are always identical, so there are four forms to learn, not six. That is why the pronoun is often said out loud.",
     tab: [
@@ -335,7 +335,7 @@ var PERCORSO = [
     d: "« Vengo, a meno che non piova. » Che cosa vuol dire?",
     o: ["Vengo anche se piove.", "Vengo, tranne se piove.", "Non vengo se piove, ma forse vengo lo stesso."],
     g: 1,
-    dopo: "« A meno che non » vuol dire « tranne se ». E quel <b>non non nega niente</b>: fa parte dell'espressione e non si toglie mai."
+    dopo: "« A meno che non » vuol dire « tranne se ». E quel <b>non non nega niente</b>: fa parte dell'espressione e di solito si mette (« a meno che piova » è corretto, ma si sente meno)."
   },
   regola: {
     html: "Alcune espressioni aprono il congiuntivo <b>sempre</b>, qualunque cosa dica la frase principale. " +
@@ -343,10 +343,10 @@ var PERCORSO = [
     en: "Some expressions always take the subjunctive, whatever the main clause says. These are learned, not worked out.",
     fam: [
       ["Impersonali, tutte con <b>che</b>", "è facile · è difficile · è possibile · è impossibile · è importante · è strano · è giusto · non è giusto · si dice · bisogna"],
-      ["A meno che <b>non</b>", "il « non » è fisso e non nega: « vengo, a meno che non piova »"],
+      ["A meno che <b>non</b>", "il « non » di solito c'è, ma non nega: « vengo, a meno che non piova »"],
       ["Senza che", "soggetti diversi: « è uscita senza che io lo sapessi ». Stesso soggetto → senza + infinito: « è uscita senza dire niente »"],
       ["Prima che", "« chiama prima che parta ». Ma <b>dopo che</b> vuole l'indicativo: « dopo che è partito »"],
-      ["Nonostante · sebbene · malgrado", "formali, scritti. Nel parlato si usa <b>anche se</b>, che vuole l'<b>indicativo</b>"]
+      ["Nonostante · sebbene · malgrado", "sebbene e malgrado sono formali, nonostante si usa anche parlando. Nel parlato si usa spesso <b>anche se</b>, che vuole l'<b>indicativo</b>"]
     ],
     chiave: "Prima che → congiuntivo. Dopo che → indicativo. Non chiedere perché."
   },
@@ -368,17 +368,18 @@ var PERCORSO = [
     dopo: "Congiuntivo imperfetto. E non è un passato: il desiderio è per stasera."
   },
   regola: {
-    html: "Quando la frase principale ha un <b>condizionale</b> (vorrei, preferirei, avrei voluto), " +
-          "la dipendente va al <b>congiuntivo imperfetto</b>. Sempre, senza eccezioni.<br><br>" +
+    html: "Quando la frase principale ha un <b>condizionale</b> che esprime volontà o preferenza (vorrei, preferirei, avrei voluto), " +
+          "la dipendente va al <b>congiuntivo imperfetto</b>. Dopo <i>avrei voluto</i> o <i>avrei preferito</i>, se l'azione è già conclusa, " +
+          "si può salire al trapassato: <i>avrei voluto che fosse andata meglio</i>.<br><br>" +
           "L'imperfetto qui <b>non vuol dire passato</b>: è solo la forma che la struttura richiede. " +
           "<i>Vorrei che tu arrivassi in orario</i> parla di stasera.<br><br>" +
           "Quello che cambia il significato è il condizionale davanti, non il congiuntivo dietro:",
-    en: "A conditional in the main clause always takes the imperfect subjunctive. The imperfect here does not mean past: it is just the form the structure requires.",
+    en: "A conditional of wanting or preferring in the main clause takes the imperfect subjunctive (after avrei voluto, also the pluperfect for something already finished). The imperfect here does not mean past: it is just the form the structure requires.",
     due: [["Vorrei che tu leggessi questo libro.", "Avrei voluto che tu leggessi questo libro."],
           ["(puoi ancora farlo)", "(non l'hai fatto)"],
           ["Preferirei che il team capisse.", "Avrei preferito che il team capisse."],
           ["(è ancora possibile)", "(non è successo)"]],
-    chiave: "Vorrei = ancora possibile. Avrei voluto = non è successo. La dipendente non cambia."
+    chiave: "Vorrei = ancora possibile. Avrei voluto = non è successo. La dipendente può restare la stessa."
   },
   subito: [
     { f: ["Vorrei che questa fragranza ", " disponibile tutto l'anno."], v: "essere", o: ["è", "sia", "fosse"], g: 2, n: "Condizionale davanti: congiuntivo imperfetto dietro." },
@@ -403,7 +404,7 @@ var PERCORSO = [
     en: "You never choose between four tenses, only between two. The main clause decides which pair.",
     tab2: [
       ["Principale al PRESENTE", "penso che...", "stessa cosa o dopo → <b>presente</b><br><i>Penso che sia pronta.</i>", "prima → <b>passato</b><br><i>Penso che sia andata bene.</i>"],
-      ["Principale al PASSATO", "pensavo che...", "stessa cosa o dopo → <b>imperfetto</b><br><i>Pensavo che fosse pronta.</i>", "prima → <b>trapassato</b><br><i>Pensavo che fosse già andata.</i>"]
+      ["Principale al PASSATO", "pensavo che...", "stessa cosa → <b>imperfetto</b><br><i>Pensavo che fosse pronta.</i><br>dopo → di solito <b>condizionale passato</b><br><i>Pensavo che sarebbe arrivata.</i>", "prima → <b>trapassato</b><br><i>Pensavo che fosse già andata.</i>"]
     ],
     chiave: "Presente comanda presente e passato. Passato comanda imperfetto e trapassato. La linea in mezzo non si attraversa."
   },
@@ -433,7 +434,7 @@ var FINALE = [
   { f: ["Bisogna che il team ", " pronto."], v: "essere", o: ["è", "sia", "fosse"], g: 1, tappa: 4 },
   { f: ["Vengo, a meno che non ", " problemi."], v: "esserci", o: ["ci sono", "ci siano", "ci sarebbero"], g: 1, tappa: 4 },
   { f: ["È uscita senza che io lo ", "."], v: "sapere", o: ["so", "sappia", "sapessi"], g: 2, tappa: 4 },
-  { f: ["Dopo che ", " , ti chiamo."], v: "finire, io", o: ["ho finito", "abbia finito", "finissi"], g: 0, tappa: 4 },
+  { f: ["Dopo che ", ", ti chiamo."], v: "finire, io", o: ["ho finito", "abbia finito", "finissi"], g: 0, tappa: 4 },
   { f: ["Chiama prima che ", " l'ufficio."], v: "chiudere, esso", o: ["chiude", "chiuda", "chiudesse"], g: 1, tappa: 4 },
   { f: ["Anche se ", " caro, l'ho comprato."], v: "essere, esso", o: ["era", "fosse", "sia"], g: 0, tappa: 4 },
   { f: ["Sebbene ", " caro, l'ho comprato."], v: "essere, esso", o: ["era", "fosse", "sia"], g: 1, tappa: 4 },

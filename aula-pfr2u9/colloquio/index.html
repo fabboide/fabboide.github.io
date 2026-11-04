@@ -439,7 +439,7 @@ var SETTORI = [
   { k:"scuola", n:"Scuola e formazione",
     posizioni:["insegnante di inglese","tutor di doposcuola","coordinatore / coordinatrice didattica","insegnante di italiano per stranieri"] },
   { k:"ufficio", n:"Ufficio",
-    posizioni:["impiegato / impiegata amministrativa","segretario / segretaria di direzione","addetto / addetta alle risorse umane","contabile"] },
+    posizioni:["impiegato amministrativo / impiegata amministrativa","segretario / segretaria di direzione","addetto / addetta alle risorse umane","contabile"] },
   { k:"tecnologia", n:"Tecnologia",
     posizioni:["programmatore / programmatrice","grafico / grafica","social media manager","assistenza clienti tecnica"] },
   { k:"commercio", n:"Commercio",
@@ -482,7 +482,7 @@ var STIPENDI = [
   "1.200 euro al mese netti",
   "1.350 euro al mese netti, più i buoni pasto",
   "1.500 euro al mese netti",
-  "1.700 euro al mese netti, tredicesima compresa",
+  "1.700 euro al mese netti, più la tredicesima",
   "da definire in base all'esperienza",
   "900 euro al mese per il part time"
 ];
@@ -509,7 +509,7 @@ var PARTICOLARI = [
   "Le ferie si prendono a gennaio: d'estate siamo nel periodo più pieno.",
   "Da noi non si fa smart working, si viene in sede tutti i giorni.",
   "Una settimana di turno di notte al mese, a rotazione.",
-  "Lo stipendio non è altissimo, ma c'è la mensa e il corso di formazione pagato.",
+  "Lo stipendio non è altissimo, ma ci sono la mensa e il corso di formazione pagato.",
   "Cerchiamo qualcuno che cominci lunedì prossimo.",
   "Il primo anno non si può chiedere il part time.",
   "Ci sono due candidati e un posto solo."
@@ -590,7 +590,7 @@ function q(fase, testo, aiuto){ D.push({ f:fase, q:testo, a:aiuto || "" }); }
 q("rompi","Si accomodi. Ha trovato facilmente?","Due frasi e basta, poi passa la palla: <b>«Sì, grazie, nessun problema.»</b>");
 q("rompi","Mi parli un po' di lei.","La domanda più temuta. Tre frasi: chi sei, cosa fai adesso, perché sei qui.");
 q("rompi","Perché ha risposto a questo annuncio?","Deve nominare qualcosa dell'annuncio, se no si capisce che non l'ha letto.");
-q("rompi","Cosa sa della nostra azienda?","Se non sa niente, si cava con una domanda: <b>«Poco, me ne parla lei?»</b>");
+q("rompi","Cosa sa della nostra azienda?","Se non sa niente, se la cava con una domanda: <b>«Poco, me ne parla lei?»</b>");
 q("rompi","Come ha saputo di noi?","<b>Ho visto l'annuncio / me l'ha detto un'amica / vi seguo da tempo.</b>");
 q("rompi","Di cosa si occupa adesso?","<b>Mi occupo di... / Faccio il... / Lavoro come...</b> Tre modi, uno vale l'altro.");
 
@@ -608,7 +608,7 @@ q("studi","Come studiava, di solito? In biblioteca, a casa?","Lessico dello stud
 /* --- L'esperienza --- */
 q("esper","Mi racconti il suo ultimo lavoro.","Tutto al passato. Se scivola al presente, lo segno e lo riprendo dopo.");
 q("esper","Di cosa si occupava, esattamente?","<b>Mi occupavo di... / Gestivo... / Rispondevo alle mail e ai clienti.</b>");
-q("esper","Perché si è licenziata?","Trappola: non si parla male del capo vecchio. <b>Cercavo qualcosa di diverso.</b>");
+q("esper","Perché si è licenziata?","Trappola: non si parla male dell'ex capo. <b>Cercavo qualcosa di diverso.</b>");
 q("esper","Quante persone gestiva?","<b>Gestivo un gruppo di cinque persone.</b>");
 q("esper","Qual è stato il progetto più difficile?","Racconto lungo, al passato. Lasciala andare, non interrompere.");
 q("esper","Ha mai fatto i turni? E gli straordinari?","<b>Facevo il turno di notte una settimana al mese.</b>");
@@ -819,7 +819,7 @@ function aggiornaCV(){
   if(st.modo === "io"){
     z.innerHTML = '<div class="cvcard"><p class="lab">Il ribaltone</p><h3>Il candidato sono io</h3>'
       + '<p class="io">Le domande le fa lei, con la lista della linguetta 2. Io rispondo male di proposito: '
-      + 'giro intorno, non dico i numeri, parlo male del capo vecchio. Lei deve accorgersene e incalzare.</p></div>';
+      + 'giro intorno, non dico i numeri, parlo male dell\'ex capo. Lei deve accorgersene e incalzare.</p></div>';
     return;
   }
   if(st.cv === "io"){

@@ -98,8 +98,8 @@ input[type=text]{flex:1 1 240px;font-family:var(--serif);font-size:1.05rem;borde
 
   <!-- 1 -->
   <section class="sez" data-fase="1" data-nome="Le forme">
-    <p class="lede">Esce un soggetto e un verbo. Lei dice le due forme insieme, in una frase sola:
-      <b>se + congiuntivo</b>, <b>condizionale</b>. Poi giri. Generato a ogni carta.</p>
+    <p class="lede">Esce un soggetto e un verbo. Lei dice due frasi con lo stesso verbo e le finisce come vuole:
+      <b>se + congiuntivo</b>, poi <b>condizionale + se</b>. Poi giri. Generato a ogni carta.</p>
     <div class="riga"><label class="lede" style="margin:0">Secondi: <select id="lSec"><option>6</option><option selected>10</option><option>15</option><option value="0">senza tempo</option></select></label></div>
     <div class="scuro">
       <div class="riga" style="justify-content:space-between"><span class="spia" id="lSogg"></span><span class="crono" id="lCrono"></span></div>
@@ -224,7 +224,11 @@ input[type=text]{flex:1 1 240px;font-family:var(--serif);font-size:1.05rem;borde
   function lGira(){
     fermaL();
     var c=lCur, sogg=(c.so.p==="lei"||c.so.p==="loro")?c.so.p+" ":"";
-    $("lSvela").innerHTML='<div class="grande">Se '+esc(sogg)+esc(c.pr)+'<b>'+esc(c.a)+'</b> '+esc(c.ve.c)+'... · '+esc(c.pr)+'<b>'+esc(c.b)+'</b></div>';
+    /* due frasi con lo stesso verbo: «Se vincessi la lotteria...» e «Vincerei la lotteria se...»
+       (non «Se vincessi la lotteria, vincerei», che non ha senso) */
+    var inizio=sogg+c.pr, cap=function(s){ return s.charAt(0).toUpperCase()+s.slice(1); };
+    var seconda=inizio ? esc(cap(inizio))+'<b>'+esc(c.b)+'</b>' : '<b>'+esc(cap(c.b))+'</b>';
+    $("lSvela").innerHTML='<div class="grande">Se '+esc(sogg)+esc(c.pr)+'<b>'+esc(c.a)+'</b> '+esc(c.ve.c)+'... · '+seconda+(c.ve.c?' '+esc(c.ve.c):'')+' se...</div>';
   }
   function avviaL(){
     fermaL(); var sec=+$("lSec").value;
@@ -258,7 +262,7 @@ input[type=text]{flex:1 1 240px;font-family:var(--serif);font-size:1.05rem;borde
   }
   $("cAnello").onclick=cAnello;
   $("cTesto").addEventListener("keydown",function(e){ if(e.key==="Enter"){ e.preventDefault(); cAnello(); } });
-  $("cRotto").onclick=function(){ var li=document.createElement("li"); li.className="vuoto"; li.textContent="catena rotta: "+cN+" anelli"; $("cLista").appendChild(li); cN=0; $("cN").textContent=0; };
+  $("cRotto").onclick=function(){ var li=document.createElement("li"); li.className="vuoto"; li.textContent="catena rotta: "+cN+(cN===1?" anello":" anelli"); $("cLista").appendChild(li); cN=0; $("cN").textContent=0; };
   $("cNuova").onclick=cReset;
 
   /* ---------- 3. dilemmi ---------- */
@@ -268,13 +272,13 @@ input[type=text]{flex:1 1 240px;font-family:var(--serif);font-size:1.05rem;borde
     ["leggere nel pensiero","diventare invisibile quando vuoi"],["vivere nel passato","vivere nel futuro"],
     ["recitare in un film","scrivere un romanzo"],["mangiare solo cucina italiana","non mangiarla mai più"],
     ["conoscere il futuro","cambiare una cosa del passato"],["un anno sabbatico senza soldi","lavorare un anno con il doppio dello stipendio"],
-    ["vivere in Italia senza amici","restare dove sei con tutti i tuoi amici"],["dire sempre la verità","non sapere mai se gli altri mentono"],
+    ["vivere in Italia senza amici","restare dove sei con tutti i tuoi amici"],["non poter mai mentire","non sapere mai se gli altri mentono"],
     ["avere una casa enorme in campagna","un monolocale in centro a Roma"],["rivivere sempre lo stesso giorno felice","vivere ogni giorno diverso, anche brutto"],
     ["fare il lavoro dei tuoi sogni con pochi soldi","un lavoro noioso pagato benissimo"],["viaggiare sempre da sola","non viaggiare mai da sola"]
   ];
   var TWIST=["E se costasse il doppio?","E se dovessi farlo da sola?","E se durasse per sempre?","E se lo venissero a sapere tutti?",
     "E se dovessi decidere entro un'ora?","E se non potessi più tornare indietro?","E se la tua famiglia non fosse d'accordo?","E se fosse l'unica possibilità?",
-    "E se dovessi spiegarlo in italiano a un giudice?","E se la tua migliore amica scegliesse l'opposto?"];
+    "E se durasse solo un anno?","E se la tua migliore amica scegliesse l'opposto?"];
   var nuovoD=mazzo(DILEMMI), nuovoT=mazzo(TWIST);
   function dNuovo(){ var d=nuovoD(); if(Math.random()<.5) d=[d[1],d[0]]; $("dA").textContent=d[0]; $("dB").textContent=d[1]; $("dTwist").textContent=""; }
   $("dAvanti").onclick=dNuovo;

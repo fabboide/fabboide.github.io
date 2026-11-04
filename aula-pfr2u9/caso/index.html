@@ -271,7 +271,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
       t:"La valigia in albergo", liv:"A2",
       s:"Una donna entra in un albergo con una valigia pesante. Dieci minuti dopo esce senza valigia, e sorride.",
       p:[["la valigia","suitcase"],["l'albergo","hotel"],["la reception","front desk"],["il proprietario","the owner"],["la ricompensa","reward"]],
-      sol:"La valigia non era sua: l'aveva trovata su un treno, dimenticata da un altro passeggero. Dentro c'era un biglietto con il nome dell'albergo e il numero della camera. La donna è andata alla reception, ha lasciato lì la valigia per il proprietario e se n'è andata. Sorride perché l'albergo, per ringraziarla, le ha offerto la cena al ristorante.",
+      sol:"La valigia non era sua: l'aveva trovata su un treno, dimenticata da un altro passeggero. Sulla valigia c'era un'etichetta con il nome dell'albergo e il numero della camera. La donna è andata alla reception, ha lasciato lì la valigia per il proprietario e se n'è andata. Sorride perché l'albergo, per ringraziarla, le ha offerto la cena al ristorante.",
       ind:["La donna è contenta per qualcosa che ha fatto, non per qualcosa che ha nascosto.",
            "La domanda giusta è: di chi è la valigia?",
            "La donna non dorme in albergo e non conosce nessuno lì dentro. La valigia l'ha trovata."],
@@ -389,7 +389,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
       ind:["I vigili non lo conoscono e non stanno chiudendo un occhio.",
            "Non tutti quelli che passano per strada stanno guidando.",
            "La regola c'è, ma non riguarda lui."],
-      qa:[["È un poliziotto o un'ambulanza?","No"],
+      qa:[["È un poliziotto o guida un'ambulanza?","No"],
           ["I vigili lo conoscono?","No"],
           ["È un'emergenza?","No"],
           ["È in macchina?","No"],
@@ -468,7 +468,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
   function disegnaRecord(){
     Array.prototype.forEach.call(document.querySelectorAll("[data-ris]"), function(el){
       var r = stato.record[el.getAttribute("data-ris")];
-      el.textContent = r ? "risolto in " + r + " domande" : "";
+      el.textContent = r ? "risolto in " + r + (r === 1 ? " domanda" : " domande") : "";
     });
   }
   disegnaRecord();
@@ -492,7 +492,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
       par.appendChild(s);
     });
     $("gIndizio").hidden = true;
-    $("record").textContent = stato.record[k] ? "Il tuo record su questo caso: " + stato.record[k] + " domande." : "";
+    $("record").textContent = stato.record[k] ? "Il tuo record su questo caso: " + stato.record[k] + (stato.record[k] === 1 ? " domanda." : " domande.") : "";
     disegnaLista();
     mostra("sGioco");
     avviaCronometro();

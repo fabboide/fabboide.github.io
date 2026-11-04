@@ -142,7 +142,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
 <div class="wrap">
   <header class="sign">
     <h1>Racconta il passato</h1>
-    <p>Due tempi, un racconto solo: <b style="color:var(--imp)">l'imperfetto</b> dice com'era, <b style="color:var(--pp)">il passato prossimo</b> dice cosa è successo. Quattro giri, dal racconto libero al drill veloce. <span class="en">Imperfect sets the scene, present perfect moves the story.</span></p>
+    <p>Due tempi, un racconto solo: <b style="color:var(--imp)">l'imperfetto</b> dice com'era, <b style="color:var(--pp)">il passato prossimo</b> dice cosa è successo. Quattro giri, dal racconto libero al drill veloce. <span class="en">The imperfect sets the scene, the passato prossimo (I went, I saw) moves the story.</span></p>
   </header>
 
   <nav class="steps" role="tablist" aria-label="Le quattro modalità">
@@ -340,7 +340,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     </table>
     <h3>Le due trappole vere</h3>
     <table>
-      <tr><td><b>Mentre</b> vuole l'imperfetto, sempre</td><td class="en">Mentre camminavo (mai «mentre ho camminato»)</td></tr>
+      <tr><td><b>Mentre</b> vuole l'imperfetto, quasi sempre</td><td class="en">Mentre camminavo (non «mentre ho camminato»)</td></tr>
       <tr><td>Un periodo lungo ma <b>chiuso</b> vuole il passato prossimo</td><td class="en">Ho lavorato lì per cinque anni. (ora non più)</td></tr>
     </table>
     <h3>L'ausiliare, in due righe</h3>
@@ -432,7 +432,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
   ];
 
   var FINALI = [
-    "…e alla fine è andata meglio di così.",
+    "…e alla fine è andata meglio del previsto.",
     "…e da quel giorno non l'ho più fatto.",
     "…e per fortuna è finita lì.",
     "…e ancora adesso ci rido su.",
@@ -453,7 +453,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
      r:"A che ora sei arrivat[a] a casa ieri? Dillo così: «erano le…»"},
     {f:"L'estate scorsa ______ una coppia molto simpatica.", v:"conoscere", t:"pp", c:"azione conclusa",
      sol:"L'estate scorsa ho conosciuto una coppia molto simpatica.", p:"Fatto singolo e concluso.",
-     r:"Chi hai conosciuto di nuovo quest'anno?"},
+     r:"Chi hai conosciuto quest'anno?"},
     {f:"Il mare ______ calmo e non c'era vento.", v:"essere", t:"imp", c:"descrizione",
      sol:"Il mare era calmo e non c'era vento.", p:"Pura descrizione dello sfondo.",
      r:"Descrivi il posto più bello che hai visto quest'anno: tre cose."},
@@ -472,7 +472,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     {f:"______ a casa alla fine di agosto.", v:"tornare", t:"pp", c:"azione conclusa",
      sol:"Sono tornat[a] a casa alla fine di agosto.", p:"Azione conclusa con una data precisa.",
      r:"Quando sei tornat[a] dall'ultima vacanza?"},
-    {f:"Ero stanchissim[a], così ______ di restare a casa.", v:"decidere", t:"pp", c:"interruzione",
+    {f:"Ero stanchissim[a], così ______ di restare a casa.", v:"decidere", t:"pp", c:"azione conclusa",
      sol:"Ero stanchissim[a], così ho deciso di restare a casa.", p:"La stanchezza è lo sfondo, la decisione è l'azione.",
      r:"L'ultima volta che eri stanchissim[a], cosa hai deciso di fare?"},
     {f:"Il locale ______ pieno e la musica era altissima.", v:"essere", t:"imp", c:"descrizione",
@@ -514,9 +514,9 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     {f:"Ieri ______ tutto il giorno senza fermarmi.", v:"lavorare", t:"pp", c:"periodo chiuso",
      sol:"Ieri ho lavorato tutto il giorno senza fermarmi.", p:"Trappola: è lungo, ma è un blocco chiuso dentro «ieri».",
      r:"Cosa hai fatto ieri, dall'inizio alla fine? Tre frasi."},
-    {f:"Quel giorno ______ paura di parlare.", v:"avere", t:"imp", c:"stato d'animo",
-     sol:"Quel giorno avevo paura di parlare.", p:"Stato d'animo che dura: imperfetto.",
-     r:"Quando hai avuto paura di parlare in italiano? Com'è andata?"},
+    {f:"Da piccol[a] ______ paura del buio e dormivo con la luce accesa.", v:"avere", t:"imp", c:"stato d'animo",
+     sol:"Da piccol[a] avevo paura del buio e dormivo con la luce accesa.", p:"Stato d'animo che dura: imperfetto.",
+     r:"Di cosa avevi paura da piccol[a]? E adesso?"},
     {f:"Appena ______ la notizia, ho chiamato mia sorella.", v:"sapere", t:"pp", c:"azione conclusa",
      sol:"Appena ho saputo la notizia, ho chiamato mia sorella.", p:"Due azioni una dopo l'altra: la storia avanza.",
      r:"A chi telefoni per prim[a] quando hai una bella notizia?"},
@@ -618,7 +618,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     }, 250);
   }
 
-  /* genere: [a] diventa a oppure o, [e] student[e] resta uguale al maschile */
+  /* genere: [a] diventa a oppure o, [e] diventa e oppure essa (studente / studentessa) */
   function g(testo){
     return String(testo)
       .replace(/\[a\]/g, stato.m ? "o" : "a")

@@ -443,12 +443,12 @@ h1 em{ font-style:normal; color:var(--rosso); }
      tr:"Last night I studied for three hours."},
 
     {cat:"tempo", type:"blank", q:"Il treno parte <span class=\"blank\">___</span> cinque minuti, corri!",
-     opts:["tra", "da", "per", "a"], correct:0, accept:["tra"],
+     opts:["tra", "da", "per", "a"], correct:0, accept:["tra", "fra"],
      note:"Quanto manca a una cosa futura: <b>tra</b> (o «fra», è uguale) cinque minuti.",
      tr:"The train leaves in five minutes, run!"},
 
     {cat:"tempo", type:"blank", q:"<span class=\"blank\">___</span> estate andiamo sempre in Sicilia.",
-     opts:["In", "A", "Da", "Per"], correct:0, accept:["In"],
+     opts:["In", "A", "Da", "Per"], correct:0, accept:["In", "D'"],
      note:"Le stagioni vogliono <b>in</b>: in estate, in inverno. Si sente anche «d'estate».",
      tr:"In summer we always go to Sicily."},
 
@@ -458,8 +458,8 @@ h1 em{ font-style:normal; color:var(--rosso); }
      tr:"I was born in 1995."},
 
     {cat:"tempo", type:"blank", q:"Il museo è chiuso <span class=\"blank\">___</span> lunedì.",
-     opts:["il", "al", "nel", "di"], correct:0, accept:["il"],
-     note:"Con il giorno della settimana, <b>il</b> dice «tutti i lunedì». Senza articolo, «lunedì» è quello prossimo.",
+     opts:["il", "al", "nel", "a"], correct:0, accept:["il", "di"],
+     note:"Con il giorno della settimana, <b>il</b> dice «tutti i lunedì» (vale lo stesso «di lunedì»). Senza articolo, «lunedì» è quello prossimo.",
      tr:"The museum is closed on Mondays."},
 
     {cat:"tempo", type:"blank", q:"Lavoro <span class=\"blank\">___</span> nove alle cinque.",
@@ -468,13 +468,13 @@ h1 em{ font-style:normal; color:var(--rosso); }
      tr:"I work from nine to five."},
 
     {cat:"tempo", type:"blank", q:"Finisco il lavoro <span class=\"blank\">___</span> venerdì.",
-     opts:["entro", "da", "tra", "per"], correct:0, accept:["entro"],
-     note:"<b>Entro</b> dice il limite: entro venerdì, non più tardi.",
+     opts:["entro", "da", "tra", "in"], correct:0, accept:["entro", "per"],
+     note:"<b>Entro</b> dice il limite: entro venerdì, non più tardi. Va bene anche «per venerdì».",
      tr:"I'll finish the work by Friday."},
 
     {cat:"tempo", type:"blank", q:"Ci ho messo due ore <span class=\"blank\">___</span> arrivare.",
-     opts:["per", "di", "con", "da"], correct:0, accept:["per"],
-     note:"«Metterci due ore <b>per</b> fare qualcosa». Si sente anche «ad arrivare», ma «per» è la forma piena.",
+     opts:["per", "di", "con", "da"], correct:0, accept:["per", "ad", "a"],
+     note:"«Metterci due ore <b>per</b> fare qualcosa», oppure «a fare qualcosa»: ci ho messo due ore ad arrivare. Vanno bene tutte e due.",
      tr:"It took me two hours to get there."},
 
     {cat:"tempo", type:"blank", q:"Sono in Italia <span class=\"blank\">___</span> 3 marzo.",
@@ -483,18 +483,18 @@ h1 em{ font-style:normal; color:var(--rosso); }
      tr:"I've been in Italy since 3 March."},
 
     {cat:"tempo", type:"blank", q:"Che cosa fai <span class=\"blank\">___</span> mattina?",
-     opts:["di", "in", "a", "da"], correct:0, accept:["di"],
+     opts:["di", "in", "a", "da"], correct:0, accept:["di", "la"],
      note:"Le parti della giornata in generale vogliono <b>di</b>: di mattina, di sera, di notte.",
      tr:"What do you do in the morning?"},
 
     {cat:"tempo", type:"blank", q:"Torno a casa <span class=\"blank\">___</span> un'ora.",
-     opts:["tra", "da", "per", "in"], correct:0, accept:["tra"],
-     note:"Manca un'ora all'azione: <b>tra</b> un'ora.",
+     opts:["tra", "da", "a", "di"], correct:0, accept:["tra", "fra"],
+     note:"Manca un'ora all'azione: <b>tra</b> (o «fra») un'ora.",
      tr:"I'll be home in an hour."},
 
     {cat:"per_con", type:"blank", q:"Parto <span class=\"blank\">___</span> Roma domani mattina.",
-     opts:["per", "a", "da", "in"], correct:0, accept:["per"],
-     note:"La destinazione di un viaggio che comincia vuole <b>per</b>: parto per Roma. Ma «vado a Roma».",
+     opts:["per", "a", "di", "in"], correct:0, accept:["per", "da"],
+     note:"La destinazione di un viaggio che comincia vuole <b>per</b>: parto per Roma. Ma «vado a Roma». «Parto da Roma» invece dice da dove parti.",
      tr:"I'm leaving for Rome tomorrow morning."},
 
     {cat:"per_con", type:"blank", q:"Questo regalo è <span class=\"blank\">___</span> te.",
@@ -508,18 +508,18 @@ h1 em{ font-style:normal; color:var(--rosso); }
      tr:"I'm going out with my friends."},
 
     {cat:"per_con", type:"blank", q:"Ho parlato <span class=\"blank\">___</span> direttore stamattina.",
-     opts:["con il", "al", "del", "per il"], correct:0, accept:["con il"],
+     opts:["con il", "con", "nel", "a il"], correct:0, accept:["con il", "col", "al"],
      note:"«Parlare <b>con</b> qualcuno» è la conversazione; «parlare a qualcuno» è più formale e a senso unico.",
      tr:"I spoke with the director this morning."},
 
     {cat:"per_con", type:"blank", q:"Il treno <span class=\"blank\">___</span> Milano parte dal binario 3.",
-     opts:["per", "a", "da", "in"], correct:0, accept:["per"],
-     note:"La destinazione di un mezzo vuole <b>per</b>: il treno per Milano.",
+     opts:["per", "a", "con", "in"], correct:0, accept:["per", "da"],
+     note:"La destinazione di un mezzo vuole <b>per</b>: il treno per Milano. «Il treno da Milano» invece è quello che arriva da Milano.",
      tr:"The train to Milan leaves from platform 3."},
 
     {cat:"per_con", type:"blank", q:"Mangio sempre <span class=\"blank\">___</span> fretta.",
-     opts:["di", "con", "per", "in"], correct:0, accept:["di"],
-     note:"«Con fretta» no: si dice <b>di fretta</b>. È una di quelle espressioni da imparare come sono.",
+     opts:["di", "con", "per", "a"], correct:0, accept:["di", "in"],
+     note:"«Con fretta» no: si dice <b>di fretta</b> (o «in fretta»). È una di quelle espressioni da imparare come sono.",
      tr:"I always eat in a hurry."},
 
     {cat:"per_con", type:"blank", q:"Scrivo <span class=\"blank\">___</span> penna, non a matita.",
@@ -528,17 +528,17 @@ h1 em{ font-style:normal; color:var(--rosso); }
      tr:"I write in pen, not in pencil."},
 
     {cat:"per_con", type:"blank", q:"Ho tagliato il pane <span class=\"blank\">___</span> coltello.",
-     opts:["con il", "al", "del", "per il"], correct:0, accept:["con il"],
+     opts:["con il", "al", "del", "per il"], correct:0, accept:["con il", "col"],
      note:"Lo strumento vuole <b>con</b> più l'articolo: con il coltello.",
      tr:"I cut the bread with the knife."},
 
     {cat:"per_con", type:"blank", q:"Vieni <span class=\"blank\">___</span> noi al mare?",
-     opts:["con", "per", "da", "tra"], correct:0, accept:["con"],
-     note:"La compagnia vuole <b>con</b>: vieni con noi.",
+     opts:["con", "per", "di", "tra"], correct:0, accept:["con", "da"],
+     note:"La compagnia vuole <b>con</b>: vieni con noi. «Vieni da noi» invece vuol dire «a casa nostra».",
      tr:"Are you coming to the seaside with us?"},
 
     {cat:"per_con", type:"blank", q:"Il libro è <span class=\"blank\">___</span> due sedie.",
-     opts:["tra", "per", "con", "di"], correct:0, accept:["tra"],
+     opts:["tra", "per", "con", "di"], correct:0, accept:["tra", "fra"],
      note:"Lo spazio in mezzo a due cose vuole <b>tra</b> (o «fra»): tra le due sedie.",
      tr:"The book is between the two chairs."},
 
@@ -557,7 +557,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"Le città vogliono <b>a</b>: vado a Roma. «Parto per Roma» si dice, ma è la partenza, non l'arrivo.",
      tr:"Cities take «a»: vado a Roma."},
 
-    {cat:"per_con", type:"full", q:"Quale frase è giusta? <span class=\"qtag\">per con</span>",
+    {cat:"luoghi", type:"full", q:"Quale frase è giusta? <span class=\"qtag\">luoghi</span>",
      opts:["Vado a Italia in agosto.", "Vado in Italia in agosto.", "Vado nella Italia in agosto.", "Vado per Italia in agosto."], correct:1, accept:["Vado in Italia in agosto."],
      note:"I paesi vogliono <b>in</b>: vado in Italia, in Francia, in Giappone.",
      tr:"Countries take «in»: vado in Italia."},
@@ -583,7 +583,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
      tr:"We're going on holiday in September."},
 
     {cat:"luoghi", type:"full", q:"Quale frase è giusta? <span class=\"qtag\">luoghi</span>",
-     opts:["Sono in casa di Marco.", "Sono a casa di Marco.", "Sono alla casa di Marco.", "Sono per casa di Marco."], correct:1, accept:["Sono a casa di Marco."],
+     opts:["Sono da casa di Marco.", "Sono a casa di Marco.", "Sono alla casa di Marco.", "Sono per casa di Marco."], correct:1, accept:["Sono a casa di Marco."],
      note:"«Casa» vuole <b>a</b>: a casa, a casa mia, a casa di Marco.",
      tr:"«Casa» takes «a»: a casa di Marco."},
 
@@ -593,7 +593,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
      tr:"I came in my brother's car."},
 
     {cat:"mezzi", type:"full", q:"Quale frase è giusta? <span class=\"qtag\">mezzi</span>",
-     opts:["Vado a lavoro in la macchina.", "Vado a lavoro in macchina.", "Vado a lavoro con macchina.", "Vado a lavoro a macchina."], correct:1, accept:["Vado a lavoro in macchina."],
+     opts:["Vado al lavoro in la macchina.", "Vado al lavoro in macchina.", "Vado al lavoro con macchina.", "Vado al lavoro a macchina."], correct:1, accept:["Vado al lavoro in macchina."],
      note:"Il mezzo generico va con <b>in</b> e senza articolo: in macchina, in treno, in aereo.",
      tr:"A generic means of transport: in macchina, no article."},
 
@@ -603,7 +603,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
      tr:"The book is on the table, next to the keys."},
 
     {cat:"articolate", type:"blank", q:"Ho parlato <span class=\"blank\">___</span> amica di Sara.",
-     opts:["con l'", "alla", "della", "dall'"], correct:0, accept:["con l'"],
+     opts:["con l'", "conl'", "nell'", "sull'"], correct:0, accept:["con l'", "all'"],
      note:"Davanti a vocale l'articolo «la» diventa <b>l'</b>, e «con» non si attacca mai: con l'amica.",
      tr:"I spoke to Sara's friend."},
 
@@ -680,17 +680,19 @@ h1 em{ font-style:normal; color:var(--rosso); }
     {t:"Mi piacerebbe vivere %s.", tipi:["viaggio"]},
     {t:"Il mese prossimo vado %s.", tipi:["viaggio"]},
     {t:"Stasera vado %s.", tipi:["giornata"]},
-    {t:"Domani sono %s.", tipi:["giornata"]},
+    {t:"Domani sono %s.", tipi:["giornata"], noCasa:true},
     {t:"Torno %s alle sette.", tipi:["giornata"]},
-    {t:"Resto %s tutto il giorno.", tipi:["giornata"]},
+    {t:"Resto %s tutto il giorno.", tipi:["giornata"], noCasa:true},
     {t:"Vado %s ogni giorno.", tipi:["giornata"]},
     {t:"È tardi, vado %s.", tipi:["casa"]},
-    {t:"Sono già %s.", tipi:["casa","giornata"]}
+    {t:"Sono già %s.", tipi:["casa","giornata"], noCasa:true}
   ];
 
   function genLuoghi(){
     var f = pick(F_LUOGHI);
     var posti = LUOGHI.filter(function(x){ return f.tipi.indexOf(x.t) !== -1; });
+    /* "resto in casa", "sono già in casa": qui anche "in" sarebbe giusto */
+    if(f.noCasa) posti = posti.filter(function(x){ return x.n !== "casa"; });
     var posto = pick(posti);
     var frase = su(f.t, BUCO + " " + posto.n);
     var conA = posto.p === "a";
@@ -723,7 +725,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
   var CITTA = ["Napoli","Bologna","Palermo","Genova","Bari","Verona","Trieste","Catania"];
   var NOMI  = ["Marco","Sara","Luca","Giulia","Paolo","Anna","Chiara","Matteo"];
   var F_DIDA = [
-    {t:"Sono %s, ma vivo a Torino.", p:"di", chi:"citta",
+    {t:"Si sente dall'accento che sono %s.", p:"di", chi:"citta",
      n:"<b>Essere di</b> dice da dove vieni: sono di Napoli."},
     {t:"Vengo %s e ci torno ogni estate.", p:"da", chi:"citta",
      n:"<b>Venire da</b> dice la provenienza: vengo da Napoli."},
@@ -733,8 +735,8 @@ h1 em{ font-style:normal; color:var(--rosso); }
      n:"Il possesso vuole <b>di</b>: la macchina di Marco."},
     {t:"Stasera andiamo %s.", p:"da", chi:"nome",
      n:"<b>Andare da</b> una persona vuol dire andare a casa sua: vado da Marco."},
-    {t:"Ho ricevuto un messaggio %s.", p:"da", chi:"nome",
-     n:"Chi manda qualcosa è introdotto da <b>da</b>: un messaggio da Sara."},
+    {t:"L'ho saputo %s.", p:"da", chi:"nome",
+     n:"Chi ti dà una notizia è introdotto da <b>da</b>: l'ho saputo da Sara."},
     {t:"È un amico %s.", p:"di", chi:"nome",
      n:"Il legame tra due persone vuole <b>di</b>: un amico di Luca."}
   ];
@@ -762,7 +764,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
                 {a:"le",n:"sedie"},{a:"il",n:"letto"}];
   var CONTENITORI = [{a:"il",n:"cassetto"},{a:"lo",n:"zaino"},{a:"l",n:"armadio"},{a:"la",n:"borsa"},
                      {a:"la",n:"valigia"},{a:"i",n:"cassetti"},{a:"gli",n:"zaini"},{a:"le",n:"borse"},
-                     {a:"la",n:"cucina"},{a:"il",n:"frigorifero"}];
+                     {a:"il",n:"frigorifero"}];
   var PERSONE = [{a:"il",n:"ragazzo"},{a:"lo",n:"studente"},{a:"l",n:"amico"},{a:"la",n:"ragazza"},
                  {a:"l",n:"amica"},{a:"i",n:"ragazzi"},{a:"gli",n:"studenti"},{a:"le",n:"amiche"},
                  {a:"il",n:"direttore"},{a:"la",n:"vicina"}];
@@ -771,15 +773,17 @@ h1 em{ font-style:normal; color:var(--rosso); }
                    {a:"lo",n:"studio"},{a:"il",n:"dentista"}];
 
   var F_ART = [
-    {p:"su", t:"Ho lasciato le chiavi %s.", nomi:MOBILI},
-    {p:"su", t:"Il gatto dorme %s.", nomi:MOBILI},
-    {p:"in", t:"Le forbici sono %s.", nomi:CONTENITORI},
-    {p:"in", t:"Ho messo tutto %s.", nomi:CONTENITORI},
-    {p:"a",  t:"Ho scritto %s ieri sera.", nomi:PERSONE},
+    /* vieta: preposizioni che qui darebbero un'altra frase giusta
+       ("nel letto", "sull'armadio", "dalla vicina"), quindi non escono */
+    {p:"su", t:"Ho lasciato le chiavi %s.", nomi:MOBILI, vieta:["in","a"]},
+    {p:"su", t:"Il gatto dorme %s.", nomi:MOBILI, vieta:["in","a"]},
+    {p:"in", t:"Le forbici sono %s.", nomi:CONTENITORI, vieta:["su"]},
+    {p:"in", t:"Ho messo tutto %s.", nomi:CONTENITORI, vieta:["su"]},
+    {p:"a",  t:"Ho telefonato %s ieri sera.", nomi:PERSONE, vieta:["da"]},
     {p:"a",  t:"Questo regalo lo do %s.", nomi:PERSONE},
     {p:"di", t:"Questa è la macchina %s.", nomi:PERSONE},
     {p:"di", t:"Non ricordo il nome %s.", nomi:PERSONE},
-    {p:"da", t:"Torno %s alle sei.", nomi:LUOGHI_DA},
+    {p:"da", t:"Sono appena uscito %s.", nomi:LUOGHI_DA},
     {p:"da", t:"Vengo via %s adesso.", nomi:LUOGHI_DA}
   ];
 
@@ -790,7 +794,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
     var frase = su(f.t, BUCO + " " + nome.n);
 
     var altroArt = pick(Object.keys(TAB[f.p]).filter(function(k){ return k !== nome.a; }));
-    var altrePrep = mix(Object.keys(TAB).filter(function(p){ return p !== f.p; })).slice(0,2);
+    var altrePrep = mix(Object.keys(TAB).filter(function(p){ return p !== f.p && !(f.vieta && f.vieta.indexOf(p) !== -1); })).slice(0,2);
     var opts = mix([giusta,
                     TAB[f.p][altroArt],
                     TAB[altrePrep[0]][nome.a],
@@ -800,7 +804,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
     if(unici.length < 4) return null;
 
     var note = "<b>" + f.p + " + " + ART_NOME[nome.a] + " = " + giusta + "</b>. " +
-               "Il nome è «" + ART_NOME[nome.a] + " " + nome.n + "», quindi la preposizione si attacca al suo articolo.";
+               "Il nome è «" + ART_NOME[nome.a] + (nome.a === "l" ? "" : " ") + nome.n + "», quindi la preposizione si attacca al suo articolo.";
     return {cat:"articolate", type:"blank", q:frase, opts:opts,
             correct: opts.indexOf(giusta), accept:[giusta], note:note, tr:""};
   }

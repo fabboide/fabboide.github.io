@@ -202,7 +202,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
 
   <!-- ---------- FASE 4 ---------- -->
   <section class="schermo" id="s4">
-    <p class="intro-fase">Il modo l'ha scelto: adesso il tempo. <b>Comanda la frase di sopra</b>, non l'orecchio. Presente sopra, presente o passato sotto. Passato o condizionale sopra, imperfetto o trapassato sotto.</p>
+    <p class="intro-fase">Il modo l'ha scelto: adesso il tempo. <b>Comanda la frase di sopra</b>, non l'orecchio. Presente sopra, presente o passato sotto. Passato sopra, imperfetto o trapassato sotto. E dopo <i>vorrei che</i>, l'imperfetto.</p>
     <div class="carta">
       <p class="etichetta">Completa a voce</p>
       <p class="grande" id="s4Frase">Pesca una frase.</p>
@@ -329,7 +329,8 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     { e:"come se",              c:true,  f:"Congiunzione",
       n:"<b>Come se</b> non prende mai il presente: vuole l'imperfetto o il trapassato. <i>Fa come se niente fosse.</i>" },
 
-    { e:"chiunque",             c:true,  f:"Indefinito" },
+    { e:"chiunque",             c:true,  f:"Indefinito",
+      n:"<b>Chiunque</b> vuole il congiuntivo quando apre una frase: <i>chiunque sia, non apro</i>. Ma se è il soggetto di una frase normale, l'indicativo va benissimo: <i>chiunque può farlo</i>." },
     { e:"qualunque cosa",       c:true,  f:"Indefinito" },
     { e:"dovunque",             c:true,  f:"Indefinito" },
 
@@ -440,7 +441,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
   var TEMPI = [
     { f:"Penso che lui ___ adesso.", v:"arrivare", s:"arrivi", t:"congiuntivo presente", regola:"reggente al presente, azione contemporanea" },
     { f:"Penso che lui ___ ieri.", v:"arrivare", s:"sia arrivato", t:"congiuntivo passato", regola:"reggente al presente, azione già avvenuta" },
-    { f:"Pensavo che lui ___ il giorno dopo.", v:"arrivare", s:"arrivasse", t:"congiuntivo imperfetto", regola:"reggente al passato, azione contemporanea o successiva" },
+    { f:"Pensavo che lui ___ in quel momento.", v:"arrivare", s:"arrivasse", t:"congiuntivo imperfetto", regola:"reggente al passato, azione contemporanea. Se l'azione viene dopo, si usa il condizionale passato: pensavo che sarebbe arrivato il giorno dopo" },
     { f:"Pensavo che lui ___ il giorno prima.", v:"arrivare", s:"fosse arrivato", t:"congiuntivo trapassato", regola:"reggente al passato, azione ancora prima" },
     { f:"Spero che tu ___ bene.", v:"stare", s:"stia", t:"congiuntivo presente", regola:"reggente al presente" },
     { f:"Speravo che tu ___ bene.", v:"stare", s:"stessi", t:"congiuntivo imperfetto", regola:"reggente al passato" },
@@ -452,7 +453,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     { f:"Mi sembrava che non ___ niente.", v:"capire", s:"capisse", t:"congiuntivo imperfetto", regola:"reggente al passato" },
     { f:"Non credo che ___ la verità ieri.", v:"dire", s:"abbia detto", t:"congiuntivo passato", regola:"reggente al presente, azione già avvenuta" },
     { f:"Non credevo che ___ la verità quel giorno.", v:"dire", s:"avesse detto", t:"congiuntivo trapassato", regola:"reggente al passato, azione ancora prima" },
-    { f:"Vorrei che tu ___ con me.", v:"venire", s:"venissi", t:"congiuntivo imperfetto", regola:"il condizionale sopra chiede l'imperfetto, mai il presente" },
+    { f:"Vorrei che tu ___ con me.", v:"venire", s:"venissi", t:"congiuntivo imperfetto", regola:"vorrei che, preferirei che: la volontà al condizionale chiede l'imperfetto, mai il presente" },
     { f:"Se ___ tempo, ti aiuterei.", v:"avere", s:"avessi", t:"congiuntivo imperfetto", regola:"periodo ipotetico: se + imperfetto, poi condizionale" },
     { f:"Fa come se niente ___.", v:"essere", s:"fosse", t:"congiuntivo imperfetto", regola:"come se non prende mai il presente" },
     { f:"Magari ___ vero!", v:"essere", s:"fosse", t:"congiuntivo imperfetto", regola:"magari da solo, come desiderio" }

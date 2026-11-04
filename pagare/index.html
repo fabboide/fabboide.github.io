@@ -286,10 +286,10 @@ h1 .hl{color:var(--rosso);}
    1. I LINK DI PAGAMENTO
 
    Sono i link "aperti" di Wise, uno per valuta. L'importo non sta
-   dentro il link: glielo passiamo nell'indirizzo, cosi cambiare un
+   dentro il link: glielo passiamo nell'indirizzo, così cambiare un
    prezzo vuol dire cambiare un numero qui sotto e non rifare i link.
 
-   Finche una casella e vuota, il pulsante di quella valuta diventa
+   Finché una casella è vuota, il pulsante di quella valuta diventa
    "scrivimi e te lo mando", quindi la pagina funziona lo stesso.
    ============================================================ */
 
@@ -307,7 +307,7 @@ var MAIL = "boccuzzifabio@gmail.com";
 /* ============================================================
    2. I PREZZI
 
-   Decisi il 25 settembre 2026. Dentro c'e' fra il 2 e il 6% di
+   Decisi il 25 settembre 2026. Dentro c'è fra il 2 e il 6% di
    margine sul cambio, che serve ad assorbire le oscillazioni senza
    dover toccare niente ogni mese.
    ============================================================ */
@@ -334,7 +334,7 @@ var PACCHETTI = [
 
    Dal fuso orario del browser, che non chiede niente a nessuno e
    non manda l'indirizzo IP di chi legge a un servizio esterno.
-   E' solo un punto di partenza: le pastiglie restano in vista e la
+   È solo un punto di partenza: le pastiglie restano in vista e la
    scelta a mano vince sempre, anche alla visita dopo.
    ============================================================ */
 
@@ -396,7 +396,7 @@ function linkPagamento(importo){
    Il foglietto per chiedere il link
 
    Niente mailto secco: su parecchi Mac e su parecchi telefoni l'app
-   di posta non e' configurata, si clicca e non succede niente. Tre
+   di posta non è configurata, si clicca e non succede niente. Tre
    strade, e "copia" funziona sempre e ovunque.
    ============================================================ */
 
@@ -408,8 +408,9 @@ function testoRichiesta(pac){
   };
   return {
     ogg: "Payment link: " + pac.titolo + " (" + scelta + ")",
-    corpo: "Hi Fabio, I'd like the " + pac.titolo.toLowerCase()
-         + " block and I'd like to pay in " + val().nome.toLowerCase()
+    corpo: "Hi Fabio, I'd like "
+         + (pac.n > 1 ? "the " + pac.n + "-lesson block" : "a single lesson")
+         + " and I'd like to pay in " + val().nome.toLowerCase()
          + ". Could you send me the payment link?"
   };
 }

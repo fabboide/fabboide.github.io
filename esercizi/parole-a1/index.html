@@ -354,7 +354,7 @@ body.senza-voce .vocerow{ display:none !important; }
       <p class="eyebrow">A1 &middot; le parole che incontri per prime</p>
       <h1>Le prime parole, una carta alla volta.</h1>
       <p class="lede">
-        Centottantasei parole: nomi con il loro articolo, verbi, aggettivi.
+        Centonovanta parole: nomi con il loro articolo, verbi, aggettivi.
         Ogni carta ti fa vedere la parola dentro una frase vera, perché una parola
         da sola si dimentica in tre giorni.
       </p>
@@ -486,10 +486,10 @@ var WORDS = [
   /* ---------------- LE PERSONE ---------------- */
   {t:"persone", w:"l'uomo", en:"man", pos:"n", ex:"Quell'uomo è mio zio.", exEn:"That man is my uncle."},
   {t:"persone", w:"la donna", en:"woman", pos:"n", ex:"La donna alla cassa è molto gentile.", exEn:"The woman at the till is very kind."},
-  {t:"persone", w:"il bambino", en:"child", pos:"n", ex:"Il bambino gioca in giardino.", exEn:"The child is playing in the garden."},
+  {t:"persone", w:"il bambino", en:"child", pos:"n", alt:["la bambina"], ex:"Il bambino gioca in giardino.", exEn:"The child is playing in the garden."},
   {t:"persone", w:"il ragazzo", en:"boy, young man", pos:"n", ex:"Quel ragazzo studia con me.", exEn:"That boy studies with me."},
   {t:"persone", w:"la ragazza", en:"girl, young woman", pos:"n", ex:"La ragazza parla tre lingue.", exEn:"The girl speaks three languages."},
-  {t:"persone", w:"l'amico", en:"friend", pos:"n", ex:"Vado al cinema con un amico.", exEn:"I'm going to the cinema with a friend."},
+  {t:"persone", w:"l'amico", en:"friend", pos:"n", alt:["l'amica"], ex:"Vado al cinema con un amico.", exEn:"I'm going to the cinema with a friend."},
   {t:"persone", w:"la famiglia", en:"family", pos:"n", ex:"La mia famiglia è grande.", exEn:"My family is big."},
   {t:"persone", w:"la madre", en:"mother", pos:"n", ex:"Mia madre cucina benissimo.", exEn:"My mother is a great cook."},
   {t:"persone", w:"il padre", en:"father", pos:"n", ex:"Mio padre lavora in banca.", exEn:"My father works at a bank."},
@@ -505,7 +505,7 @@ var WORDS = [
 
   /* ---------------- LA CASA ---------------- */
   {t:"casa", w:"la casa", en:"house, home", pos:"n", ex:"La mia casa è vicino alla stazione.", exEn:"My house is near the station."},
-  {t:"casa", w:"la camera", en:"room, bedroom", pos:"n", ex:"La camera ha una finestra grande.", exEn:"The room has a big window."},
+  {t:"casa", w:"la camera", en:"room, bedroom", pos:"n", alt:["la stanza"], ex:"La camera ha una finestra grande.", exEn:"The room has a big window."},
   {t:"casa", w:"la cucina", en:"kitchen", pos:"n", ex:"In cucina c'è il caffè.", exEn:"There's coffee in the kitchen."},
   {t:"casa", w:"il bagno", en:"bathroom", pos:"n", ex:"Scusa, dov'è il bagno?", exEn:"Excuse me, where's the bathroom?"},
   {t:"casa", w:"il letto", en:"bed", pos:"n", ex:"Vado a letto presto.", exEn:"I go to bed early."},
@@ -534,7 +534,7 @@ var WORDS = [
   {t:"cibo", w:"il pesce", en:"fish", pos:"n", ex:"Il venerdì mangiamo il pesce.", exEn:"On Fridays we eat fish."},
   {t:"cibo", w:"il pollo", en:"chicken", pos:"n", ex:"Il pollo è nel forno.", exEn:"The chicken is in the oven."},
   {t:"cibo", w:"la frutta", en:"fruit", pos:"n", ex:"Mangio la frutta dopo pranzo.", exEn:"I eat fruit after lunch."},
-  {t:"cibo", w:"la verdura", en:"vegetables", pos:"n", ex:"Compro la verdura al mercato.", exEn:"I buy vegetables at the market."},
+  {t:"cibo", w:"la verdura", en:"vegetables", pos:"n", alt:["le verdure"], ex:"Compro la verdura al mercato.", exEn:"I buy vegetables at the market."},
   {t:"cibo", w:"lo zucchero", en:"sugar", pos:"n", ex:"Un caffè senza zucchero, grazie.", exEn:"A coffee without sugar, thanks."},
   {t:"cibo", w:"il sale", en:"salt", pos:"n", ex:"Manca il sale.", exEn:"It needs salt."},
   {t:"cibo", w:"la colazione", en:"breakfast", pos:"n", ex:"Faccio colazione alle sette.", exEn:"I have breakfast at seven."},
@@ -799,6 +799,10 @@ var WORDS = [
   /* La parola senza articolo: serve per accettare "casa" quando la
      risposta giusta e "la casa", e poi far notare l'articolo. */
   function bare(w){ return w.replace(/^(l'|un'|dell')/i,"").replace(/^(il|lo|la|i|gli|le|un|uno|una)\s+/i,""); }
+  /* Le varianti giuste di una parola (campo alt, facoltativo): nello
+     Scrivi valgono come la risposta principale e nelle prove non escono
+     mai come distrattori, se no ci sarebbero due risposte giuste. */
+  function simili(a, b){ return (a.alt||[]).indexOf(b.w)!==-1 || (b.alt||[]).indexOf(a.w)!==-1; }
   var POS_IT = {n:"nome", v:"verbo", a:"aggettivo", avv:"avverbio"};
   var POS_EN = {n:"noun", v:"verb", a:"adjective", avv:"adverb"};
   function themeOf(k){ for(var i=0;i<THEMES.length;i++){ if(THEMES[i].k===k) return THEMES[i]; } return null; }
@@ -991,9 +995,9 @@ var WORDS = [
       h += '<p class="today-txt">Per oggi hai finito. Torna domani e le carte si riaprono da sole.<br><span class="en">All caught up. Come back tomorrow.</span></p>';
     } else {
       h += '<b>'+s.giro+'</b>';
-      h += '<p class="today-txt">carte per oggi &middot; <span class="en">cards for today</span></p>';
+      h += '<p class="today-txt">'+(s.giro===1 ? 'carta per oggi &middot; <span class="en">card for today</span>' : 'carte per oggi &middot; <span class="en">cards for today</span>')+'</p>';
       if(s.due) h += '<span class="pill hot">'+s.due+' da ripassare</span>';
-      if(s.nuoveOggi) h += '<span class="pill">'+s.nuoveOggi+' parole nuove</span>';
+      if(s.nuoveOggi) h += '<span class="pill">'+s.nuoveOggi+(s.nuoveOggi===1 ? ' parola nuova' : ' parole nuove')+'</span>';
       else if(s.nuove) h += '<span class="pill">'+s.nuove+' ancora da scoprire</span>';
       if(s.sapute) h += '<span class="pill done">'+s.sapute+' in cassaforte</span>';
       h += '<button class="btn" data-action="open" data-mode="carte">Comincia <span class="sub">go</span></button>';
@@ -1035,7 +1039,7 @@ var WORDS = [
     h+='<div class="deck-bar"><i style="width:'+pct+'%"></i></div>';
     h+='<div class="deck-nums"><span><b>'+s.n+'</b> carte</span>';
     if(s.due) h+='<span class="due"><b>'+s.due+'</b> da ripassare</span>';
-    if(s.nuove) h+='<span><b>'+s.nuove+'</b> nuove</span>';
+    if(s.nuove) h+='<span><b>'+s.nuove+'</b>'+(s.nuove===1 ? ' nuova' : ' nuove')+'</span>';
     if(!s.due && !s.nuove) h+='<span>tutto a posto</span>';
     h+='</div></button>';
     return h;
@@ -1168,14 +1172,16 @@ var WORDS = [
     var h='<div class="results" style="--mode:'+MODES.carte.color+'">';
     h+='<p class="eyebrow">giro finito &middot; round done</p>';
     h+='<div class="res-score">'+state.seen+'</div>';
-    h+='<p class="res-sub">carte viste, '+state.known+' sapute al primo colpo<br><span class="en">cards seen, '+state.known+' known first time</span></p>';
+    h+='<p class="res-sub">'+(state.seen===1 ? 'carta vista' : 'carte viste')+', '+state.known+(state.known===1 ? ' saputa' : ' sapute')+' al primo colpo<br><span class="en">'+(state.seen===1 ? 'card seen' : 'cards seen')+', '+state.known+' known first time</span></p>';
     if(state.freeRun){
       h+='<div class="res-badge quiet">giro libero: le scadenze non sono cambiate</div>';
     } else {
-      h+='<div class="res-badge">&#9733; '+s.sapute+' parole in cassaforte su '+s.n+'</div>';
+      h+='<div class="res-badge">&#9733; '+s.sapute+(s.sapute===1 ? ' parola' : ' parole')+' in cassaforte su '+s.n+'</div>';
     }
     h+='<p class="res-msg">'+(domani
-        ? 'Domani ti aspettano '+domani+' carte. Cinque minuti e sono fatte.<br><span class="en" style="font-size:.92rem">'+domani+' cards are waiting for you tomorrow.</span>'
+        ? (domani===1
+            ? 'Domani ti aspetta 1 carta.<br><span class="en" style="font-size:.92rem">1 card is waiting for you tomorrow.</span>'
+            : 'Domani ti aspettano '+domani+' carte. Cinque minuti e sono fatte.<br><span class="en" style="font-size:.92rem">'+domani+' cards are waiting for you tomorrow.</span>')
         : 'Le prossime carte torneranno fra qualche giorno: è così che restano.<br><span class="en" style="font-size:.92rem">The next cards come back in a few days. That is what makes them stick.</span>')+'</p>';
     h+='<div class="res-actions">';
     h+='<button class="btn" data-action="retry">Un altro giro <span class="sub">again</span></button>';
@@ -1247,7 +1253,7 @@ var WORDS = [
       /* Al contrario: la domanda e in inglese e le opzioni sono le parole
          italiane. Stessi criteri per i distrattori: stesso tema, stessa
          parte del discorso, se no si indovina senza sapere niente. */
-      var temaEn = WORDS.filter(function(x){ return x.t===w.t && x.w!==w.w; });
+      var temaEn = WORDS.filter(function(x){ return x.t===w.t && x.w!==w.w && !simili(w,x); });
       var stessiEn = temaEn.filter(function(x){ return x.pos===w.pos; });
       var baseEn = stessiEn.length>=3 ? stessiEn : (temaEn.length ? temaEn : WORDS);
       var sameEn = shuffle(baseEn).slice(0,3);
@@ -1256,7 +1262,7 @@ var WORDS = [
       var kEn=0;
       while(sameEn.length<3 && kEn<altriEn.length){
         var exEn=altriEn[kEn++];
-        if(exEn.w!==w.w && sameEn.map(function(x){return x.w;}).indexOf(exEn.w)===-1) sameEn.push(exEn);
+        if(exEn.w!==w.w && !simili(w,exEn) && sameEn.map(function(x){return x.w;}).indexOf(exEn.w)===-1) sameEn.push(exEn);
       }
       it.prompt=w.en; it.promptPos=POS_EN[w.pos];
       it.correct=w.w;
@@ -1269,7 +1275,7 @@ var WORDS = [
       var conParentesi = /\(/.test(w.en);
       function stessaForma(x){ return /\(/.test(x.en)===conParentesi; }
       function stessoTipo(x){ return x.pos===w.pos; }
-      var tema = WORDS.filter(function(x){ return x.t===w.t && x.en!==w.en; });
+      var tema = WORDS.filter(function(x){ return x.t===w.t && x.en!==w.en && !simili(w,x); });
       /* Meglio: stesso tema, stessa parte del discorso, stessa forma.
          Se non bastano scendo di un gradino alla volta. In un tema misto
          un aggettivo in mezzo a tre nomi si riconosce senza saperlo. */
@@ -1283,7 +1289,7 @@ var WORDS = [
       var k=0;
       while(same.length<3 && k<altri.length){
         var extra=altri[k++];
-        if(extra.en!==w.en && same.map(function(x){return x.en;}).indexOf(extra.en)===-1) same.push(extra);
+        if(extra.en!==w.en && !simili(w,extra) && same.map(function(x){return x.en;}).indexOf(extra.en)===-1) same.push(extra);
       }
       it.prompt=w.w; it.promptPos=POS_IT[w.pos]+" &middot; "+POS_EN[w.pos];
       it.correct=w.en;
@@ -1400,10 +1406,13 @@ var WORDS = [
         else if(b===tile) b.classList.add("no");
       });
     } else {
-      var full=norm(it.correct), nude=norm(bare(it.correct));
-      ok = norm(given)===full || norm(given)===nude;
-      if(ok && norm(given)===nude && full!==nude){
-        note=" Manca solo l'articolo: si dice <b>"+esc(it.correct)+"</b>.";
+      var dato=norm(given), presa=null;
+      [it.correct].concat(w.alt||[]).forEach(function(f){
+        if(!presa && (dato===norm(f) || dato===norm(bare(f)))) presa=f;
+      });
+      ok = !!presa;
+      if(ok && dato===norm(bare(presa)) && norm(presa)!==norm(bare(presa))){
+        note=" Manca solo l'articolo: si dice <b>"+esc(presa)+"</b>.";
       }
       var inp=document.getElementById("typed");
       if(inp){ inp.classList.add(ok?"ok":"no"); inp.disabled=true; }

@@ -347,10 +347,10 @@ p{ margin:0; } button{ font-family:inherit; } a{ color:inherit; }
          participio si accorda, quindi servono soggetti di genere
          noto: "io sono andato/andata" non ha una risposta sola. */
 var SUBJECTS = [
-  {it:"Io",             itl:"io",             en:"I",              enl:"I",               p:"1s", any:false},
-  {it:"Tu",             itl:"tu",             en:"You",            enl:"you",             p:"2s", any:false},
-  {it:"Noi",            itl:"noi",            en:"We",             enl:"we",              p:"1p", any:false},
-  {it:"Voi",            itl:"voi",            en:"You",            enl:"you",             p:"2p", any:false},
+  {it:"Io",             itl:"(io)",             en:"I",              enl:"I",               p:"1s", any:false},
+  {it:"Tu",             itl:"(tu)",             en:"You",            enl:"you",             p:"2s", any:false},
+  {it:"Noi",            itl:"(noi)",            en:"We",             enl:"we",              p:"1p", any:false},
+  {it:"Voi",            itl:"(voi)",            en:"You",            enl:"you",             p:"2p", any:false},
   {it:"Marco",          itl:"Marco",          en:"Marco",          enl:"Marco",           p:"3s", g:"m", n:"s", any:true},
   {it:"Anna",           itl:"Anna",           en:"Anna",           enl:"Anna",            p:"3s", g:"f", n:"s", any:true},
   {it:"Mio fratello",   itl:"mio fratello",   en:"My brother",     enl:"my brother",      p:"3s", g:"m", n:"s", any:true},
@@ -383,9 +383,17 @@ var WHEN = [
 /* Non tutte le espressioni di tempo stanno bene con tutti i verbi:
    "Stamattina ho cenato" e "Ieri sera mi sono svegliato presto" sono
    frasi giuste in grammatica e sbagliate nella testa di chi legge. */
-var W_NOT_MORNING = WHEN.filter(function(w){ return w.it!=="Stamattina"; });
-var W_NOT_EVENING = WHEN.filter(function(w){ return w.it!=="Ieri sera"; });
-var W_WHOLE_DAY   = WHEN.filter(function(w){ return w.it!=="Stamattina" && w.it!=="Ieri sera"; });
+/* "L'anno scorso ho bevuto un caffè", "Il mese scorso ho fatto colazione":
+   le azioni di tutti i giorni stanno male con il mese e l'anno scorso.
+   Quelle due espressioni escono solo dove il complemento le chiede
+   (w esplicito, W_LONG, W_ANY). */
+var W_ANY   = WHEN;
+var W_SHORT = WHEN.filter(function(w){ return w.it!=="Il mese scorso" && w.it!=="L'anno scorso"; });
+var W_NOT_MORNING = W_SHORT.filter(function(w){ return w.it!=="Stamattina"; });
+var W_NOT_EVENING = W_SHORT.filter(function(w){ return w.it!=="Ieri sera"; });
+var W_WHOLE_DAY   = W_SHORT.filter(function(w){ return w.it!=="Stamattina" && w.it!=="Ieri sera"; });
+/* Le abitudini del mattino: niente "la settimana scorsa si è svegliato alle sei". */
+var W_MORNING_DAY = W_NOT_EVENING.filter(function(w){ return w.it!=="La settimana scorsa"; });
 /* Per quello che e durato piu di un giorno: "Stamattina e restato due giorni" no. */
 var W_LONG = WHEN.filter(function(w){ return /scors/.test(w.it); });
 
@@ -428,11 +436,11 @@ var VERBS = [
   {inf:"cantare", pp:"cantato", aux:"avere", enP:"sang", c:[
     {it:"una canzone", en:"a song"},{it:"sotto la doccia", en:"in the shower"}]},
   {inf:"telefonare", pp:"telefonato", aux:"avere", enP:"phoned", c:[
-    {it:"a mia madre", en:"my mother"},{it:"in banca", en:"the bank"}]},
+    {it:"a mia madre", en:"my mother"},{it:"in banca", en:"the bank", w:W_NOT_EVENING}]},
   {inf:"cenare", pp:"cenato", aux:"avere", enP:"had dinner", w:W_NOT_MORNING, c:[
     {it:"fuori", en:"out"},{it:"in pizzeria", en:"at a pizzeria"},{it:"tardi", en:"late"}]},
   {inf:"viaggiare", pp:"viaggiato", aux:"avere", enP:"travelled", c:[
-    {it:"in treno", en:"by train"},{it:"tutto il mese", en:"all month", w:[{it:"Il mese scorso", en:"Last month"},{it:"L'anno scorso", en:"Last year"}]}]},
+    {it:"in treno", en:"by train"},{it:"per tre settimane", en:"for three weeks", w:[{it:"Il mese scorso", en:"Last month"},{it:"L'anno scorso", en:"Last year"}]}]},
   {inf:"camminare", pp:"camminato", aux:"avere", enP:"walked", c:[
     {it:"per due ore", en:"for two hours"},{it:"in montagna", en:"in the mountains"}]},
   {inf:"cucinare", pp:"cucinato", aux:"avere", enP:"cooked", c:[
@@ -440,7 +448,7 @@ var VERBS = [
   {inf:"incontrare", pp:"incontrato", aux:"avere", enP:"met", c:[
     {it:"un vecchio amico", en:"an old friend"},{it:"il vicino di casa", en:"the neighbour"}]},
   {inf:"trovare", pp:"trovato", aux:"avere", enP:"found", c:[
-    {it:"un lavoro", en:"a job"},{it:"le chiavi", en:"the keys"},{it:"un bel posto", en:"a nice place"}]},
+    {it:"un lavoro", en:"a job", w:W_ANY},{it:"le chiavi", en:"the keys"},{it:"un bel posto", en:"a nice place"}]},
   {inf:"portare", pp:"portato", aux:"avere", enP:"brought", c:[
     {it:"il dolce", en:"the dessert"},{it:"un regalo", en:"a present"}]},
   {inf:"ripetere", pp:"ripetuto", aux:"avere", enP:"repeated", c:[
@@ -448,7 +456,7 @@ var VERBS = [
   {inf:"ricevere", pp:"ricevuto", aux:"avere", enP:"received", c:[
     {it:"una bella notizia", en:"good news"},{it:"un pacco", en:"a parcel"}]},
   {inf:"vendere", pp:"venduto", aux:"avere", enP:"sold", c:[
-    {it:"la macchina", en:"the car"},{it:"la casa al mare", en:"the house by the sea"}]},
+    {it:"la macchina", en:"the car", w:W_ANY},{it:"la casa al mare", en:"the house by the sea", w:W_ANY}]},
   {inf:"pulire", pp:"pulito", aux:"avere", enP:"cleaned", c:[
     {it:"la casa", en:"the house"},{it:"la cucina", en:"the kitchen"}]},
   {inf:"dormire", pp:"dormito", aux:"avere", enP:"slept", c:[
@@ -459,7 +467,7 @@ var VERBS = [
   /* ---------------- AVERE, participio irregolare ---------------- */
   {inf:"fare", pp:"fatto", aux:"avere", irr:true, enP:"did", c:[
     {it:"la spesa", en:"the shopping"},{it:"i compiti", en:"the homework"},
-    {it:"una passeggiata", en:"for a walk", ev:"went"},{it:"colazione", en:"breakfast", ev:"had", w:W_NOT_EVENING}]},
+    {it:"una passeggiata", en:"for a walk", ev:"went"},{it:"colazione", en:"breakfast", ev:"had", w:W_MORNING_DAY}]},
   {inf:"dire", pp:"detto", aux:"avere", irr:true, enP:"said", c:[
     {it:"la verità", en:"the truth", ev:"told"},{it:"una bugia", en:"a lie", ev:"told"},{it:"tutto", en:"everything"}]},
   {inf:"vedere", pp:"visto", aux:"avere", irr:true, enP:"saw", c:[
@@ -469,7 +477,7 @@ var VERBS = [
   {inf:"scrivere", pp:"scritto", aux:"avere", irr:true, enP:"wrote", c:[
     {it:"una mail", en:"an email"},{it:"un messaggio", en:"a message"},{it:"una lettera", en:"a letter"}]},
   {inf:"bere", pp:"bevuto", aux:"avere", irr:true, enP:"drank", c:[
-    {it:"un caffè", en:"a coffee"},{it:"troppo vino", en:"too much wine"},{it:"una birra", en:"a beer"}]},
+    {it:"un caffè", en:"a coffee", w:W_SHORT},{it:"troppo vino", en:"too much wine"},{it:"una birra", en:"a beer", w:W_SHORT}]},
   {inf:"prendere", pp:"preso", aux:"avere", irr:true, enP:"took", c:[
     {it:"il treno", en:"the train"},{it:"un caffè", en:"a coffee", ev:"had"},{it:"l'autobus", en:"the bus"}]},
   {inf:"mettere", pp:"messo", aux:"avere", irr:true, enP:"put", c:[
@@ -485,7 +493,7 @@ var VERBS = [
   {inf:"perdere", pp:"perso", aux:"avere", irr:true, enP:"lost", c:[
     {it:"le chiavi", en:"the keys"},{it:"il treno", en:"the train"},{it:"la pazienza", en:"patience"}]},
   {inf:"vincere", pp:"vinto", aux:"avere", irr:true, enP:"won", c:[
-    {it:"la partita", en:"the match"},{it:"un premio", en:"a prize"}]},
+    {it:"la partita", en:"the match"},{it:"un premio", en:"a prize", w:W_ANY}]},
   {inf:"offrire", pp:"offerto", aux:"avere", irr:true, enP:"offered", c:[
     {it:"il caffè a tutti", en:"coffee to everyone"},{it:"la cena a tutti", en:"dinner to everyone"}]},
 
@@ -503,7 +511,7 @@ var VERBS = [
   {inf:"uscire", pp:"uscito", aux:"essere", enP:"went out", c:[
     {it:"con gli amici", en:"with friends"},{it:"presto", en:"early"},{it:"a fare due passi", en:"for a short walk"}]},
   {inf:"restare", pp:"restato", aux:"essere", enP:"stayed", c:[
-    {it:"a casa", en:"at home"},{it:"due giorni", en:"for two days", w:W_LONG}]},
+    {it:"a casa", en:"at home"},{it:"due giorni a Roma", en:"for two days in Rome", w:W_LONG}]},
   {inf:"cadere", pp:"caduto", aux:"essere", enP:"fell", c:[
     {it:"dalla bici", en:"off the bike"},{it:"per strada", en:"in the street"}]},
   {inf:"venire", pp:"venuto", aux:"essere", irr:true, enP:"came", c:[
@@ -521,9 +529,9 @@ var VERBS = [
   /* ---------------- RIFLESSIVI (sempre essere) ----------------
      Solo terze persone, cosi il pronome e sempre "si": arrivano
      dal filtro any:true, che vale per tutti i verbi con essere. */
-  {inf:"svegliarsi", pp:"svegliato", aux:"essere", refl:true, enP:"woke up", w:W_NOT_EVENING, c:[
+  {inf:"svegliarsi", pp:"svegliato", aux:"essere", refl:true, enP:"woke up", w:W_MORNING_DAY, c:[
     {it:"presto", en:"early"},{it:"alle sei", en:"at six"},{it:"tardi", en:"late"}]},
-  {inf:"alzarsi", pp:"alzato", aux:"essere", refl:true, enP:"got up", w:W_NOT_EVENING, c:[
+  {inf:"alzarsi", pp:"alzato", aux:"essere", refl:true, enP:"got up", w:W_MORNING_DAY, c:[
     {it:"subito", en:"straight away"},{it:"alle sette", en:"at seven"}]},
   {inf:"divertirsi", pp:"divertito", aux:"essere", refl:true, enP:"had fun", c:[
     {it:"molto", en:"a lot of fun", ev:"had"},{it:"alla festa", en:"at the party", w:W_NOT_MORNING}]},
@@ -534,7 +542,7 @@ var VERBS = [
   {inf:"addormentarsi", pp:"addormentato", aux:"essere", refl:true, enP:"fell asleep", c:[
     {it:"sul divano", en:"on the sofa"},{it:"davanti alla TV", en:"in front of the TV"}]},
   {inf:"sposarsi", pp:"sposato", aux:"essere", refl:true, enP:"got married", c:[
-    {it:"in comune", en:"at the town hall"},{it:"in campagna", en:"in the countryside"}]}
+    {it:"in comune", en:"at the town hall", w:W_ANY},{it:"in campagna", en:"in the countryside", w:W_ANY}]}
 ];
 
 
@@ -589,7 +597,7 @@ var VERBS = [
     var subs = v.aux==="essere" ? SUBJECTS.filter(function(s){ return s.any; }) : SUBJECTS;
     var subj = pick(subs);
     var comp = pick(v.c);
-    var when = pick(comp.w || v.w || WHEN);
+    var when = pick(comp.w || v.w || W_SHORT);
 
     var aux = AUX[v.aux][subj.p];
     var part = v.aux==="essere" ? agree(v.pp, subj.g, subj.n) : v.pp;
@@ -695,20 +703,27 @@ var VERBS = [
   }
 
   /* ---------------- SPIEGAZIONI ---------------- */
+  /* Verbi di movimento che vogliono avere: la regola "movimento = essere"
+     li sbaglierebbe, quindi la spiegazione lo dice apertamente. */
+  var ATTIVITA = {camminare:true, viaggiare:true, ballare:true};
   function auxWhy(v, subj, aux){
     var why = v.refl
       ? "I verbi riflessivi vogliono sempre <b>essere</b>."
       : (v.aux==="essere"
-          ? "&laquo;"+v.inf+"&raquo; indica movimento, stato o cambiamento: vuole <b>essere</b>."
-          : "&laquo;"+v.inf+"&raquo; vuole <b>avere</b>, come la grande maggioranza dei verbi italiani.");
+          ? "&laquo;"+v.inf+"&raquo; indica un cambiamento di luogo o di stato, oppure uno stato: vuole <b>essere</b>."
+          : (ATTIVITA[v.inf]
+              ? "&laquo;"+v.inf+"&raquo; è un movimento, ma non porta da un posto a un altro: è un'attività, e vuole <b>avere</b>."
+              : "&laquo;"+v.inf+"&raquo; vuole <b>avere</b>, come la grande maggioranza dei verbi italiani."));
     return why+" Il soggetto è &laquo;"+subj.it+"&raquo;, "+PERSON_IT[subj.p]+", quindi &laquo;"+aux+"&raquo;.";
   }
   function auxWhyEn(v, subj, aux){
     var why = v.refl
       ? "Reflexive verbs always take <b>essere</b>."
       : (v.aux==="essere"
-          ? "&laquo;"+v.inf+"&raquo; is a verb of movement, state or change, so it takes <b>essere</b>."
-          : "&laquo;"+v.inf+"&raquo; takes <b>avere</b>, like the large majority of Italian verbs.");
+          ? "&laquo;"+v.inf+"&raquo; expresses a change of place or state, or a state, so it takes <b>essere</b>."
+          : (ATTIVITA[v.inf]
+              ? "&laquo;"+v.inf+"&raquo; is movement, but it doesn't take you from one place to another: it's an activity, so it takes <b>avere</b>."
+              : "&laquo;"+v.inf+"&raquo; takes <b>avere</b>, like the large majority of Italian verbs."));
     return why+" The subject is &laquo;"+subj.it+"&raquo;, so the form is &laquo;"+aux+"&raquo;.";
   }
   function partWhy(v, subj, part){
@@ -731,7 +746,7 @@ var VERBS = [
     if(v.irr) base = "&laquo;"+v.inf+"&raquo; has an <b>irregular</b> participle: &laquo;"+v.pp+"&raquo;.";
     else base = "&laquo;"+v.inf+"&raquo; is regular, so the participle is &laquo;"+v.pp+"&raquo;.";
     if(v.aux==="essere") base += " With essere the participle agrees with the subject ("+GEN_EN[subj.g][subj.n]+"): &laquo;"+part+"&raquo;.";
-    else base += " With avere it never agrees: &laquo;"+part+"&raquo;.";
+    else base += " With avere it doesn't agree with the subject: &laquo;"+part+"&raquo;.";
     return base;
   }
 
@@ -740,19 +755,19 @@ var VERBS = [
     aux:{ key:"aux", color:"var(--verde)", title:"Essere o avere?",
       rules:[
         {k:"avere", it:"La maggior parte dei verbi vuole <b>avere</b>: tutti quelli che reggono un oggetto (mangiare, leggere, comprare) e molti altri.", en:"Most verbs take <b>avere</b>, in particular every verb that takes an object.", ex:"Ieri ho mangiato una pizza"},
-        {k:"essere", it:"Vogliono <b>essere</b> i verbi di movimento e di stato (andare, venire, arrivare, restare) e <b>tutti i riflessivi</b>.", en:"Verbs of movement and state take <b>essere</b>, and so does every reflexive verb.", ex:"Ieri Anna è andata al mare"},
+        {k:"essere", it:"Vogliono <b>essere</b> molti verbi che indicano un cambiamento di luogo o di stato (andare, venire, arrivare, nascere), i verbi di stato come restare e stare, e <b>tutti i riflessivi</b>. Attenzione: camminare, viaggiare e ballare sono movimento ma vogliono <b>avere</b>.", en:"Many verbs of change of place or state take <b>essere</b> (andare, venire, arrivare, nascere), and so do restare, stare and every reflexive verb. But camminare, viaggiare and ballare take <b>avere</b>.", ex:"Ieri Anna è andata al mare &middot; Ieri Anna ha camminato per due ore"},
         {k:"attenzione", it:"L'ausiliare va coniugato con il soggetto: <b>ho, hai, ha, abbiamo, avete, hanno</b> e <b>sono, sei, è, siamo, siete, sono</b>.", en:"The auxiliary is conjugated to match the subject.", ex:"Noi abbiamo &middot; Loro sono"}
       ]},
     part:{ key:"part", color:"var(--saffron)", title:"Il participio",
       rules:[
         {k:"regolari", it:"I regolari seguono la fine dell'infinito: <b>-are &rarr; -ato</b>, <b>-ere &rarr; -uto</b>, <b>-ire &rarr; -ito</b>.", en:"Regular participles follow the infinitive ending.", ex:"parlato &middot; ricevuto &middot; dormito"},
         {k:"irregolari", it:"Alcuni sono irregolari e vanno imparati a memoria. Qui trovi solo quelli che servono davvero: fatto, detto, visto, letto, scritto, preso, messo, aperto, chiuso, chiesto, risposto, perso, vinto, offerto, bevuto, venuto, rimasto, nato, stato.", en:"A few are irregular and have to be learnt. Only the useful ones appear here.", ex:"fare &rarr; fatto &middot; leggere &rarr; letto"},
-        {k:"accordo", it:"Con <b>essere</b> il participio si accorda con il soggetto: andato, andata, andati, andate. Con <b>avere</b> non si accorda mai.", en:"With <b>essere</b> the participle agrees with the subject. With <b>avere</b> it never does.", ex:"Anna è andata &middot; Anna ha mangiato"}
+        {k:"accordo", it:"Con <b>essere</b> il participio si accorda con il soggetto: andato, andata, andati, andate. Con <b>avere</b> non si accorda con il soggetto.", en:"With <b>essere</b> the participle agrees with the subject. With <b>avere</b> it doesn't.", ex:"Anna è andata &middot; Anna ha mangiato"}
       ]},
     all:{ key:"all", color:"var(--rosso)", title:"Tutto insieme",
       rules:[
         {k:"i due pezzi", it:"Passato prossimo = <b>ausiliare coniugato</b> + <b>participio passato</b>. Devi azzeccarli tutti e due.", en:"Passato prossimo = conjugated auxiliary + past participle. You need both.", ex:"Anna è andata &middot; Marco ha letto"},
-        {k:"la trappola", it:"L'errore più comune è &laquo;ha andato&raquo;. L'altro è accordare il participio anche con avere: &laquo;ha letta&raquo; non esiste.", en:"The two classic mistakes: using avere with a movement verb, and making the participle agree after avere.", ex:"NO: ha andato &middot; NO: Anna ha letta"}
+        {k:"la trappola", it:"L'errore più comune è &laquo;ha andato&raquo;. L'altro è accordare il participio con il soggetto anche con avere: &laquo;Anna ha letta&raquo; è sbagliato.", en:"The two classic mistakes: using avere with verbs like andare, and making the participle agree with the subject after avere.", ex:"NO: ha andato &middot; NO: Anna ha letta"}
       ]}
   };
 
@@ -949,7 +964,9 @@ var VERBS = [
     var tray=document.getElementById("tray"); if(tray) tray.classList.add("on");
     var fb=document.getElementById("feedback");
     fb.className="feedback show "+(ok?"ok":"no");
-    fb.innerHTML=(ok?"Giusto! ":"Quasi &middot; era &laquo;"+esc(it.correct)+"&raquo;. ")+it.explainIt+
+    /* "e andata" passa come giusto, ma senza accento è un'altra parola */
+    var senzaAccento = ok && state.level.mode!=="mc" && /è/.test(it.correct) && !/[èé]/.test(String(given));
+    fb.innerHTML=(ok?(senzaAccento?"Giusto, ma attenzione all'accento: &laquo;<b>è</b>&raquo; (verbo), non &laquo;e&raquo; (and). ":"Giusto! "):"Quasi &middot; era &laquo;"+esc(it.correct)+"&raquo;. ")+it.explainIt+
       '<span class="fb-en">'+it.explainEn+'</span>'+
       '<span class="fb-tr"><span class="fb-key">in inglese</span>'+esc(it.translation)+'</span>';
     padForTray(true);

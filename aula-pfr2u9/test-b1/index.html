@@ -546,7 +546,7 @@ var STR1 = {
   ],
   item: [
     { o: ["lavoro", "ho lavorato", "lavorerò"], g: 0, n: "«in questo periodo» vuole il presente" },
-    { o: ["vengo", "venivo", "venissi"], g: 0, n: "in italiano il futuro vicino si dice col presente" },
+    { o: ["vengo", "venivo", "venissi"], g: 0, n: "in italiano il futuro vicino si può dire col presente" },
     { o: ["tutte", "tutti", "tutto"], g: 1, n: "si riferisce a «i treni»" },
     { o: ["è", "sia", "era"], g: 1, n: "«spero che» + congiuntivo" },
     { o: ["me", "mi", "ti"], g: 1, n: "«mi racconti»: davanti al verbo si usa mi, non me" },
@@ -578,7 +578,7 @@ var STR2 = {
     { inf: "uscire · noi", ok: ["siamo usciti", "siamo uscite"], n: "uscire vuole essere" },
     { inf: "piovere", ok: ["pioveva"], n: "imperfetto: situazione, non azione" },
     { inf: "essere · noi", ok: ["eravamo"], n: "imperfetto di stato" },
-    { inf: "guidare · noi", ok: ["guidavamo"], n: "«mentre» vuole sempre l'imperfetto" },
+    { inf: "guidare · noi", ok: ["guidavamo"], n: "«mentre» vuole di solito l'imperfetto" },
     { inf: "arrivare · noi", ok: ["siamo arrivati", "siamo arrivate"], n: "passato prossimo, azione conclusa" },
     { inf: "essere", ok: ["sarebbe stato", "sarebbe"], n: "condizionale: un rimpianto" },
     { inf: "stendersi · noi", ok: ["ci siamo stesi", "ci siamo stese"], n: "riflessivo al passato: essere + accordo" },
@@ -603,7 +603,7 @@ var STR3 = {
   item: [
     { ok: ["in"], n: "in + nome di paese" },
     { ok: ["a", "in"], n: "a settembre (anche «in settembre»)" },
-    { ok: ["a"], n: "a casa di qualcuno" },
+    { ok: ["a", "in"], n: "a casa di qualcuno (anche «in casa di»)" },
     { ok: ["in"], n: "in affitto: espressione fissa" },
     { ok: ["alla"], n: "vicino a + articolo" },
     { ok: ["in", "per"], n: "lavorare in un posto" },
@@ -619,7 +619,7 @@ var STR4 = {
   perFabio: "Sei frasi secche. Se cadono la 1, 2 e 3 il buco è nei pronomi: /esercizi/pronomi/ e /esercizi/pronomi-combinati/.",
   item: [
     { d: "«Hai visto Marta?» «Sì, ___ ho incontrata ieri.»", o: ["le", "l'", "gli"], g: 1, mira: "diretto femminile davanti a vocale" },
-    { d: "Ho telefonato a Giorgio e ___ ho detto tutto.", o: ["lo", "gli", "l'"], g: 1, mira: "telefonare *a* qualcuno: indiretto" },
+    { d: "Ho telefonato a Giorgio e ___ ho detto tutto.", o: ["lo", "gli", "l'"], g: 1, mira: "dire *a* qualcuno: indiretto" },
     { d: "Di questo film ___ hanno parlato tutti.", o: ["ci", "ne", "lo"], g: 1, mira: "parlare *di*: ne" },
     { d: "Non sono andato alla festa ___ ero stanco.", o: ["perché", "perciò", "benché"], g: 0, mira: "la causa" },
     { d: "Mi piacerebbe venire, ___ domani lavoro.", o: ["però", "quindi", "siccome"], g: 0, mira: "l'opposizione" },
@@ -638,7 +638,7 @@ var SCRITTURA = [
   { titolo: "Prova 2 · Scrivi un messaggio",
     min: 50, max: 80,
     traccia: "Un amico italiano ti ha prestato la sua casa per un fine settimana. Scrivigli un messaggio.",
-    scaletta: ["ringrazialo", "dì una cosa che ti è piaciuta della casa o del posto", "chiedigli se potete tornarci a maggio"],
+    scaletta: ["ringrazialo", "di' una cosa che ti è piaciuta della casa o del posto", "chiedigli se potete tornarci a maggio"],
     cosaGuardo: "Qui conta il registro: deve essere informale ma non tradotto dall'inglese. Guarda l'apertura e la chiusura (niente «Caro amico», niente «Cordiali saluti» a un amico), il condizionale della richiesta («potremmo», «ti andrebbe»), e se fa tutte e tre le cose o solo due." }
 ];
 
@@ -703,7 +703,7 @@ var FASCE = [
     dillo: "Il totale va, ma se una parte è sotto soglia all'esame non passerebbe. È lì che va messo il lavoro." },
   { min: 40, t: "Vicino al B1", d: "Non ancora, ma manca poco.",
     dillo: "Scegli una parte sola su cui lavorare, quella più bassa. Due mesi su una cosa valgono più di due settimane su tutto." },
-  { min: 0, t: "A2 consolidato", d: "Il B1 è un passo più avanti.",
+  { min: 0, t: "Sotto il B1", d: "Il B1 è un passo più avanti.",
     dillo: "Non parlare di esame. Parla di cosa sa già fare e della distanza, in settimane di lavoro." }
 ];
 

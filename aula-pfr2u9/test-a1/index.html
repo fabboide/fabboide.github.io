@@ -434,7 +434,7 @@ var ASC3 = {
   tipo: "dettato",
   titolo: "Prova 3 · Scrivi le parole che mancano",
   istruzioni: "Ascolta e scrivi la parola che manca. Lo senti due volte.",
-  perFabio: "Questo è un dettato con i buchi. Leggi il testo intero la prima volta, poi la seconda volta fermati un secondo su ogni buco. Si valuta l'orecchio, non l'ortografia: se scrive «trenta» con un errore di lettere, conta giusto e segnatelo per dopo.",
+  perFabio: "Questo è un dettato con i buchi. Leggi il testo intero la prima volta, poi la seconda volta fermati un secondo su ogni buco. Si valuta l'orecchio, non l'ortografia: se scrive «diciotto» con un errore di lettere, conta giusto e segnatelo per dopo.",
   copione: [
     "Mi chiamo Luca e abito a Torino.",
     "Ho diciotto anni.",
@@ -475,7 +475,7 @@ var LET1 = {
     { d: "A che ora comincia la festa?",
       o: ["Alle sei", "Alle otto di sera", "Alle otto di mattina"],
       g: 1, mira: "«alle otto di sera»" },
-    { d: "Che cosa può portare Sara?",
+    { d: "Che cosa può portare Sara, se vuole?",
       o: ["Niente", "La torta, se vuole", "Il pane"],
       g: 1, mira: "«non devi portare niente, solo la torta se vuoi»" },
     { d: "Dove abita Luca?",
@@ -602,7 +602,7 @@ var SCRITTURA = [
     min: 20, max: 40,
     traccia: "Descrivi la tua famiglia oppure la tua casa. Scegli tu.",
     scaletta: ["quante persone o quante stanze", "come sono", "una cosa che ti piace"],
-    cosaGuardo: "Venti parole sono pochissime: qui non si giudica la ricchezza, si giudica se le frasi stanno in piedi. Guarda l'accordo fra nome e aggettivo (mia sorella è alta, non alto), il verbo essere e avere al posto giusto, e se usa «e» e «ma» per legare invece di mettere punti dappertutto. Sotto le venti parole la prova si annulla: diglielo prima." },
+    cosaGuardo: "Venti parole sono pochissime: qui non si giudica la ricchezza, si giudica se le frasi stanno in piedi. Guarda l'accordo fra nome e aggettivo (mia sorella è alta, non alto), i verbi essere e avere al posto giusto, e se usa «e» e «ma» per legare invece di mettere punti dappertutto. Sotto le venti parole la prova si annulla: diglielo prima." },
   { titolo: "Prova 2 · Scrivi un messaggio",
     min: 15, max: 30,
     traccia: "Scrivi un messaggio a un amico italiano: invitalo a mangiare a casa tua.",
@@ -675,7 +675,7 @@ var FASCE = [
 var RIMANDI = {
   p1: [{ t: "Le prime 80 frasi", h: "/esercizi/prime-frasi/" }, { t: "Dove cade l'accento?", h: "../accento/" }],
   p2: [{ t: "Le prime 190 parole", h: "/esercizi/parole-a1/" }, { t: "Descrivere le persone", h: "/esercizi/descrivere/" }],
-  p3: [{ t: "Essere e avere, la roulette", h: "../roulette/" }, { t: "Preposizioni", h: "/esercizi/preposizioni/" },
+  p3: [{ t: "La roulette dei verbi", h: "../roulette/" }, { t: "Preposizioni", h: "/esercizi/preposizioni/" },
        { t: "Possessivi", h: "/esercizi/possessivi/" }, { t: "Passato prossimo", h: "/esercizi/passato-prossimo/" }],
   p4: [{ t: "Le prime 80 frasi", h: "/esercizi/prime-frasi/" }, { t: "I numeri", h: "/esercizi/numeri/" }],
   p5: [{ t: "Missione Italia (l'oca)", h: "../oca/" }, { t: "Identikit", h: "../identikit/" }, { t: "Le parole delle domande", h: "/esercizi/parole-domanda/" }]
@@ -1420,7 +1420,7 @@ var RIMANDI = {
 
   $("bFin").addEventListener("click", function(){
     if(fin && !fin.closed){ fin.focus(); return; }
-    fin = window.open("", "testb1ins", "width=760,height=900");
+    fin = window.open("", "testa1ins", "width=760,height=900");
     if(!fin){
       alert("Il browser ha bloccato la finestra. Permetti i pop-up per questa pagina: i copioni dell'ascolto stanno là.");
       return;

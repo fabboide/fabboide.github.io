@@ -490,7 +490,7 @@ V("spendere","casa","A","spendo|spendi|spende|spendiamo|spendete|spendono","spes
 V("fare la spesa","casa irregolari","A","faccio|fai|fa|facciamo|fate|fanno","fatto","la spesa",
   "sm we ve du og","sup cen","fam sor sol","Il sabato o durante la settimana?");
 V("dare una mano","casa irregolari","A","do|dai|dà|diamo|date|danno","dato","una mano",
-  "sm we og du dl","cas cuc","","A chi la dai di solito?");
+  "sm we og du dl","cas cuc","","A chi dai una mano di solito?");
 
 /* --- Irregolari --- */
 V("andare al lavoro","irregolari giornata","E","vado|vai|va|andiamo|andate|vanno","andato","al lavoro",
@@ -511,13 +511,13 @@ V("dire la verità","irregolari libero","A","dico|dici|dice|diciamo|dite|dicono"
   "sm og we du","","","Ti è mai costato caro?");
 V("scegliere","irregolari bar","A","scelgo|scegli|sceglie|scegliamo|scegliete|scelgono","scelto","il ristorante",
   "sm we ve du og","","ami fam sor","Chi sceglie di solito?");
-V("partire","irregolari libero","E","parto|parti|parte|partiamo|partite|partono","partito","",
+V("partire","libero","E","parto|parti|parte|partiamo|partite|partono","partito","",
   "pr ma we es ve","","fam ami sor sol","Per dove?");
 V("rimanere","irregolari casa","E","rimango|rimani|rimane|rimaniamo|rimanete|rimangono","rimasto","a casa",
   "do we se sm po","","fam can sol","Cosa fai quando resti dentro?");
 V("volere","irregolari bar","A","voglio|vuoi|vuole|vogliamo|volete|vogliono","voluto","un caffè",
   "ma po sm dl og","bar uff","col ami","Lungo o macchiato?");
-V("arrabbiarsi","irregolari giornata riflessivi","R","arrabbio|arrabbi|arrabbia|arrabbiamo|arrabbiate|arrabbiano","arrabbiato","",
+V("arrabbiarsi","giornata riflessivi","R","arrabbio|arrabbi|arrabbia|arrabbiamo|arrabbiate|arrabbiano","arrabbiato","",
   "sm og we","uff cas","col vic fam","Per cosa, di solito?");
 V("mettersi","riflessivi irregolari giornata","R","metto|metti|mette|mettiamo|mettete|mettono","messo","le scarpe",
   "ma pr og sm","cas","","Quali sono le tue preferite?");
@@ -590,6 +590,9 @@ var FAM = TEMI.concat(PROP);
 
 /* La catena racconta azioni in fila: i verbi di stato non ci stanno. */
 var FUORI_CATENA = {"essere in ritardo":1,"stare bene":1,"sentirsi bene":1,"avere fame":1,"annoiarsi":1,"dire la verit\u00e0":1,"volere":1};
+
+/* Irregolari solo al participio: al presente si coniugano come i regolari. */
+var PRES_REGOLARE = {"leggere":1,"scrivere":1,"aprire":1,"chiudere":1,"mettere in ordine":1,"vedere":1,"ridere":1};
 
 var SOGG = ["io","tu","lei","noi","voi","loro"];
 var PRON = ["mi","ti","si","ci","vi","si"];
@@ -696,11 +699,21 @@ function contestoTesto(ctx, i, tempo){
   return L[ctx.k];
 }
 
+/* Al presente "sempre" va subito dopo il verbo coniugato, non in fondo:
+   "pago sempre il conto", non "pago il conto sempre". Restituisce il
+   gruppo verbale con "sempre" dentro, oppure null se non serve. */
+function gruppoSempre(v, i, ctx, tempo){
+  if(tempo !== "pres" || !ctx || ctx.tipo !== "t" || ctx.k !== "sm") return null;
+  return (v.tipo === "R" ? PRON[i] + " " : "") + v.pres[i] + " sempre" + (v.coda ? " " + v.coda : "");
+}
+
 /* Frase completa, in HTML. */
 function frase(tiro){
   var i = tiro.s, v = tiro.v, tempo = tiro.tempo;
   var g = gruppo(v, i, tempo);
   var cx = tiro.ctx ? contestoTesto(tiro.ctx, i, tempo) : "";
+  var gs = gruppoSempre(v, i, tiro.ctx, tempo);
+  if(gs){ g = gs; cx = ""; }
   var sogg = etichettaSogg(i);
   var parti;
   if(tempo === "pass" && tiro.ctx && tiro.ctx.tipo === "t" && T[tiro.ctx.k][2]){
@@ -724,6 +737,8 @@ function modelloIo(tiro){
   var v = tiro.v, tempo = tiro.tempo;
   var g = gruppo(v, 0, tempo);
   var cx = tiro.ctx ? contestoTesto(tiro.ctx, 0, tempo) : "";
+  var gs = gruppoSempre(v, 0, tiro.ctx, tempo);
+  if(gs){ g = gs; cx = ""; }
   if(tempo === "pass" && tiro.ctx && tiro.ctx.tipo === "t" && T[tiro.ctx.k][2]) return cap(cx) + " io " + g + ".";
   return "Io " + g + (cx ? " " + cx : "") + ".";
 }
@@ -731,6 +746,8 @@ function modelloIoNeg(tiro, senzaPunto){
   var v = tiro.v, tempo = tiro.tempo;
   var g = gruppo(v, 0, tempo);
   var cx = tiro.ctx ? contestoTesto(tiro.ctx, 0, tempo) : "";
+  var gs = gruppoSempre(v, 0, tiro.ctx, tempo);
+  if(gs){ g = gs; cx = ""; }
   var neg = v.tipo === "R" ? g.replace(/^(\S+)/, "non $1") : "non " + g;
   return "No, io " + neg + (cx ? " " + cx : "") + (senzaPunto ? "" : ".");
 }
@@ -1121,12 +1138,14 @@ function notaVerbo(t){
   } else {
     if(v.tipo === "R"){
       testo = "Senza il <b>" + PRON[i] + "</b> la frase non esiste. È il pezzo che sparisce per primo.";
+    } else if(v.fams.indexOf("irregolari") >= 0 && PRES_REGOLARE[v.inf]){
+      testo = "Al presente è regolare: irregolare è solo il participio, <b>" + escTxt(v.pp) + "</b>.";
     } else if(v.fams.indexOf("irregolari") >= 0){
       testo = "Verbo irregolare: la radice cambia, non si ricava dall'infinito.";
     } else {
       testo = /isco$/.test(v.pres[0])
         ? "Verbo in <b>-isc-</b>: torna nelle persone singolari e in <b>" + escTxt(v.pres[5]) + "</b>, sparisce in noi e voi."
-        : "Infinito <b>" + escTxt(v.inf) + "</b>, terza persona plurale accento sulla radice: <b>" + escTxt(v.pres[5]) + "</b>.";
+        : "Infinito <b>" + escTxt(v.inf) + "</b>, terza persona plurale con l'accento sulla radice: <b>" + escTxt(v.pres[5]) + "</b>.";
     }
   }
   return out.join(" ") + (out.length ? "<br>" : "") + testo;
@@ -1187,6 +1206,8 @@ function renderPunteggio(){
 function fraseVF(t){
   var g = gruppo(t.v, 1, t.tempo);
   var cx = t.ctx ? contestoTesto(t.ctx, 1, t.tempo) : "";
+  var gs = gruppoSempre(t.v, 1, t.ctx, t.tempo);
+  if(gs){ g = gs; cx = ""; }
   var corpo = g + (cx ? " " + cx : "");
   return (t.frame || FRAMES_VF[0]).replace("{V}", corpo);
 }

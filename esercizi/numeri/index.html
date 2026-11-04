@@ -142,7 +142,7 @@ footer a{color:var(--verde)}
 
 <div class="wrap">
   <h1>I numeri, da 1 a 1000</h1>
-  <p class="lede">Tre scalini. Prima le sette regole che costruiscono tutti i numeri, poi si allena finché non ci pensi più.</p>
+  <p class="lede">Tre scalini. Prima le sette regole che costruiscono tutti i numeri, poi ti alleni finché non ci pensi più.</p>
   <p class="pen">A memoria si impara solo da 11 a 19. Tutto il resto si costruisce.</p>
 
   <div class="chips" id="scalini"></div>
@@ -337,7 +337,7 @@ var REGOLE = [
 
   { t: "Anche CENTO perde la o davanti a OTTO",
     c: "cento + otto fa <b>centotto</b>, cento + ottanta fa <b>centottanta</b>. Stessa regola delle decine.",
-    p: "Attenzione a non confonderlo: <b>centotto</b> è 108, <b>centodiciotto</b> è 118. Una sillaba sola di differenza.",
+    p: "Attenzione a non confonderlo: <b>centotto</b> è 108, <b>centodiciotto</b> è 118. Si somigliano, ma centodiciotto ha due sillabe in più.",
     en: "CENTO also drops its o before OTTO and OTTANTA.",
     es: [[108, "centotto"], [118, "centodiciotto"], [180, "centottanta"], [188, "centottantotto"]] },
 
@@ -348,7 +348,7 @@ var REGOLE = [
     es: [[247, "duecentoquarantasette"], [1998, "millenovecentonovantotto"], [2026, "duemilaventisei"]] },
 
   { t: "Le doppie si sentono, e cambiano la parola",
-    c: "dicia<b>ss</b>ette, dicia<b>nn</b>ove, se<b>ss</b>anta, no<b>vant</b>anove.",
+    c: "dicia<b>ss</b>ette, dicia<b>nn</b>ove, se<b>ss</b>anta, se<b>tt</b>anta.",
     p: "Se dici « dicia-sette » con una esse sola non si capisce. Sulle doppie la voce si ferma un attimo: è il modo più veloce per farsi capire al telefono.",
     en: "Double consonants are pronounced long, and they change the word.",
     es: [[17, "diciassette"], [19, "diciannove"], [60, "sessanta"], [70, "settanta"]] }
@@ -357,14 +357,14 @@ var REGOLE = [
 /* numeri come arrivano nella vita vera: scritti a mano, perché qui
    non basta la parola, serve come si dice davvero la cosa intera */
 var MONDO = [
-  { cifra: "3,50 \u20ac",  dire: "tre euro e cinquanta",   dove: "al bar",            tipo: "soldi" },
-  { cifra: "12,90 \u20ac", dire: "dodici euro e novanta",  dove: "il conto",          tipo: "soldi" },
-  { cifra: "7,25 \u20ac",  dire: "sette euro e venticinque", dove: "il biglietto",    tipo: "soldi" },
+  { cifra: "3,50 \u20ac",  dire: "tre euro e cinquanta",   dove: "al bar",            tipo: "soldi", alt: ["tre euro e cinquanta centesimi", "tre e cinquanta"] },
+  { cifra: "12,90 \u20ac", dire: "dodici euro e novanta",  dove: "il conto",          tipo: "soldi", alt: ["dodici euro e novanta centesimi", "dodici e novanta"] },
+  { cifra: "7,25 \u20ac",  dire: "sette euro e venticinque", dove: "il biglietto",    tipo: "soldi", alt: ["sette euro e venticinque centesimi", "sette e venticinque"] },
   { cifra: "0,80 \u20ac",  dire: "ottanta centesimi",      dove: "il resto",          tipo: "soldi" },
 
-  { cifra: "1,5 kg",   dire: "un chilo e mezzo",       dove: "dal fruttivendolo", tipo: "quantita" },
-  { cifra: "500 g",    dire: "cinquecento grammi",     dove: "dal salumiere",     tipo: "quantita" },
-  { cifra: "250 g",    dire: "due etti e mezzo",       dove: "dal salumiere",     tipo: "quantita" },
+  { cifra: "1,5 kg",   dire: "un chilo e mezzo",       dove: "dal fruttivendolo", tipo: "quantita", alt: ["un chilo e cinquecento", "un chilo e cinquecento grammi", "millecinquecento grammi"] },
+  { cifra: "500 g",    dire: "cinquecento grammi",     dove: "dal salumiere",     tipo: "quantita", alt: ["mezzo chilo", "cinque etti"] },
+  { cifra: "250 g",    dire: "due etti e mezzo",       dove: "dal salumiere",     tipo: "quantita", alt: ["duecentocinquanta grammi"] },
   { cifra: "2 l",      dire: "due litri",              dove: "al supermercato",   tipo: "quantita" },
 
   { cifra: "1998",     dire: "millenovecentonovantotto", dove: "l'anno di nascita", tipo: "anno" },
@@ -377,10 +377,10 @@ var MONDO = [
   { cifra: "15 agosto", dire: "il quindici agosto",    dove: "ferragosto",        tipo: "data" },
   { cifra: "24 dicembre", dire: "il ventiquattro dicembre", dove: "la vigilia",   tipo: "data" },
 
-  { cifra: "14:35",    dire: "le quattordici e trentacinque", dove: "l'orario del treno", tipo: "ora" },
-  { cifra: "8:15",     dire: "le otto e un quarto",    dove: "l'appuntamento",    tipo: "ora" },
-  { cifra: "19:40",    dire: "le diciannove e quaranta", dove: "il volo",         tipo: "ora" },
-  { cifra: "6:30",     dire: "le sei e mezza",         dove: "la sveglia",        tipo: "ora" },
+  { cifra: "14:35",    dire: "le quattordici e trentacinque", dove: "l'orario del treno", tipo: "ora", alt: ["le due e trentacinque"] },
+  { cifra: "8:15",     dire: "le otto e un quarto",    dove: "l'appuntamento",    tipo: "ora", alt: ["le otto e quindici"] },
+  { cifra: "19:40",    dire: "le diciannove e quaranta", dove: "il volo",         tipo: "ora", alt: ["le sette e quaranta", "le otto meno venti"] },
+  { cifra: "6:30",     dire: "le sei e mezza",         dove: "la sveglia",        tipo: "ora", alt: ["le sei e mezzo", "le sei e trenta"] },
 
   { cifra: "binario 7", dire: "binario sette",         dove: "in stazione",       tipo: "numero" },
   { cifra: "347 892 4410", dire: "tre quattro sette, otto nove due, quattro quattro uno zero", dove: "il telefono, cifra per cifra", tipo: "numero" },
@@ -390,7 +390,7 @@ var MONDO = [
   { cifra: "42",       dire: "quarantadue",            dove: "la taglia delle scarpe", tipo: "misura" },
   { cifra: "34 anni",  dire: "trentaquattro anni",     dove: "l'et\u00e0",       tipo: "misura" },
   { cifra: "pagina 128", dire: "pagina centoventotto", dove: "a lezione",         tipo: "misura" },
-  { cifra: "80 km/h",  dire: "ottanta all'ora",        dove: "in macchina",       tipo: "misura" }
+  { cifra: "80 km/h",  dire: "ottanta all'ora",        dove: "in macchina",       tipo: "misura", alt: ["ottanta chilometri all'ora", "ottanta chilometri orari"] }
 ];
 
 /* i tre scalini, come li ha chiesti Fabio, piu il mondo vero */
@@ -461,7 +461,7 @@ var SCALINI = [
       var m, giri = 0;
       do { m = MONDO[a_caso(MONDO.length)]; giri++; } while(m === ultimo && giri < 8);
       ultimo = m;
-      return { mondo:true, cifra:m.cifra, parola:m.dire, dove:m.dove, tipo:m.tipo, chiave:m.cifra };
+      return { mondo:true, cifra:m.cifra, parola:m.dire, alt:m.alt || [], dove:m.dove, tipo:m.tipo, chiave:m.cifra };
     }
     /* estrazione pesata */
     var tot = 0, i, pesi = [];
@@ -479,13 +479,14 @@ var SCALINI = [
   /* quale regola spiega questo numero */
   function regolina(n){
     if(typeof n !== "number") return "";
-    var u = n % 10;
+    var u = n % 10, d = n % 100;
     if(n >= 11 && n <= 16) return "Da 11 a 16 la decina sta in fondo: " + inParole(n) + ".";
     if(n >= 17 && n <= 19) return "Da 17 in poi si gira e comincia con dici-: " + inParole(n) + ".";
-    if(n > 20 && (u === 1 || u === 8)) return "La decina perde la vocale davanti a " + UNITA[u] + ": " + inParole(n) + ", non « " + DECINE[Math.floor((n % 100) / 10)] + UNITA[u] + " ».";
-    if(u === 3 && n > 3) return "Il tre finale prende l'accento: " + inParole(n) + ".";
-    if(n >= 100 && (n % 100 === 8 || (n % 100 >= 80 && n % 100 <= 88))) return "Anche cento perde la o davanti a otto: " + inParole(n) + ".";
-    if(n >= 100) return "Cento non cambia mai, e si scrive tutto attaccato: " + inParole(n) + ".";
+    /* d > 20: in 101, 108, 111, 118 non c'e' nessuna decina che perde la vocale */
+    if(d > 20 && (u === 1 || u === 8)) return "La decina perde la vocale davanti a " + UNITA[u] + ": " + inParole(n) + ", non « " + DECINE[Math.floor(d / 10)] + UNITA[u] + " ».";
+    if(u === 3 && n > 3 && d !== 13) return "Il tre finale prende l'accento: " + inParole(n) + ".";
+    if(n >= 100 && n < 1000 && (d === 8 || (d >= 80 && d <= 88))) return "Anche cento perde la o davanti a otto: " + inParole(n) + ".";
+    if(n >= 100 && n < 1000) return "Cento non cambia mai, e si scrive tutto attaccato: " + inParole(n) + ".";
     return "";
   }
 
@@ -687,6 +688,15 @@ var SCALINI = [
     if(scrRisposto) return;
     scrRisposto = true;
     var r = salta ? "no" : confronta($("scrInput").value, scrOra.parola, scrOra.mondo ? null : scrOra.n);
+    /* nel mondo vero la stessa cosa si dice in piu' modi, anche senza articolo:
+       "le otto e quindici", "le sei e trenta", "due giugno" */
+    if(r === "no" && !salta && scrOra.mondo){
+      var via = function(t){ return String(t || "").trim().replace(/^(il|le)\s+/i, ""); };
+      var scritto = via($("scrInput").value);
+      [scrOra.parola].concat(scrOra.alt || []).forEach(function(forma){
+        if(r === "no") r = confronta(scritto, via(forma), null);
+      });
+    }
     var e = $("scrEsito");
     e.className = "esito " + (r === "no" ? "no" : "si");
     if(r === "si"){

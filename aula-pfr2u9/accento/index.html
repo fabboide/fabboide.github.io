@@ -168,7 +168,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
         <p class="count" id="punteggio" style="font-size:1.6rem;margin:0 0 4px">0 / 0</p>
         <p class="en" id="punteggioSub" style="margin:0 0 14px">Si comincia.</p>
         <h3>La regola corta</h3>
-        <p style="margin:0 0 10px">Quasi tutte le parole italiane hanno l'accento sulla <b>penultima</b> sillaba. Quando scivola più indietro non si vede: va imparata con la parola.</p>
+        <p style="margin:0 0 10px">La maggior parte delle parole italiane ha l'accento sulla <b>penultima</b> sillaba. Quando scivola più indietro non si vede: va imparata con la parola.</p>
         <div id="boxRivedere" hidden>
           <h3>Da rivedere</h3>
           <div class="rivedere" id="rivedere"></div>
@@ -256,7 +256,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
   <div class="dlg-body">
     <h3>Dove cade l'accento</h3>
     <table>
-      <tr><td>La maggioranza: sulla <b>penultima</b> sillaba (parole <i>piane</i>)</td><td class="en">ami-CO, paro-LA, panino</td></tr>
+      <tr><td>La maggioranza: sulla <b>penultima</b> sillaba (parole <i>piane</i>)</td><td class="en">a-MI-co, pa-RO-la, pa-NI-no</td></tr>
       <tr><td>Molte parole comuni: sulla <b>terzultima</b> (<i>sdrucciole</i>)</td><td class="en">teléfono, màcchina, sàbato</td></tr>
       <tr><td>Sull'<b>ultima</b>: e allora l'accento <b>si scrive</b> (<i>tronche</i>)</td><td class="en">città, caffè, perché</td></tr>
       <tr><td>I verbi di <i>loro</i> tirano l'accento indietro</td><td class="en">pàrlano, àbitano, teléfonano</td></tr>
@@ -456,7 +456,7 @@ var TESTI = [
 ];
 
 var SCIOGLILINGUA = [
-  {s:"Trentatré trentini entrarono a Trento tutti e trentatré trotterellando.", f:"la t e la erre doppia"},
+  {s:"Trentatré trentini entrarono a Trento tutti e trentatré trotterellando.", f:"la t doppia e il gruppo tr"},
   {s:"Sopra la panca la capra campa, sotto la panca la capra crepa.", f:"le vocali chiare: campa / crepa"},
   {s:"Sul tagliere l'aglio taglia, non tagliare la tovaglia.", f:"il suono gli"},
   {s:"Tre tigri contro tre tigri.", f:"la erre"},
@@ -480,7 +480,7 @@ var SCIOGLILINGUA = [
     return d === 0 ? "tronca" : d === 1 ? "piana" : d === 2 ? "sdrucciola" : "bisdrucciola";
   }
   var SPIEGA = {
-    piana:"Piana: l'accento sulla penultima, come quasi sempre.",
+    piana:"Piana: l'accento sulla penultima, come nella maggior parte delle parole.",
     sdrucciola:"Sdrucciola: l'accento scivola sulla terzultima.",
     tronca:"Tronca: l'accento in fondo, e infatti si scrive.",
     bisdrucciola:"Bisdrucciola: l'accento va ancora più indietro, sulla quartultima."

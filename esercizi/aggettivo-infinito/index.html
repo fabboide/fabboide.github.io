@@ -283,19 +283,19 @@ h1 em{ font-style:normal; color:var(--rosso); }
   <div class="intro">
     <p class="eyebrow">B1 &middot; aggettivo + infinito</p>
     <h1>È bello <em>di</em>... o è bello <em>e basta</em>?</h1>
-    <p class="lede">Quattro costruzioni, quattro scelte diverse: niente preposizione, <b>da</b>, <b>di</b>, <b>a</b>. La regola non dipende dall'aggettivo ma da chi è il soggetto. Tienile accese tutte: è quando si mescolano che si impara.</p>
-    <p class="lede en">Four constructions, four different choices: no preposition, da, di, a. The rule depends on what the subject is, not on the adjective. Keep them all switched on: mixing them is the point.</p>
+    <p class="lede">Quattro costruzioni, quattro scelte diverse: niente preposizione, <b>da</b>, <b>di</b>, <b>a</b>. Tra niente e <b>da</b> decide il soggetto: un'azione in generale o una cosa precisa. Tra <b>di</b> e <b>a</b> decide l'aggettivo, quindi conviene impararlo insieme alla sua preposizione: contento di, pronto a. Tienile accese tutte: è quando si mescolano che si impara.</p>
+    <p class="lede en">Four constructions, four different choices: no preposition, da, di, a. Between no preposition and da, the subject decides: an action in general or a specific thing. Between di and a, the adjective decides, so learn each adjective with its preposition: contento di, pronto a. Keep them all switched on: mixing them is the point.</p>
   </div>
 
   <div class="rules">
     <article class="rulecard" style="--c:var(--verde)">
       <h2>1. Giudizio generale</h2>
-      <p>Nessuna preposizione. Il soggetto non è nessuno in particolare.</p>
+      <p>Nessuna preposizione. Il soggetto è l'infinito stesso: viaggiare è bello.</p>
       <span class="ex">È bello viaggiare.</span>
     </article>
     <article class="rulecard" style="--c:var(--ink)">
       <h2>2. Una cosa precisa &middot; DA</h2>
-      <p>Il soggetto è una cosa, e la cosa "si riceve" l'azione.</p>
+      <p>Il soggetto è una cosa, e la cosa "riceve" l'azione.</p>
       <span class="ex">Questo libro è bello da leggere.</span>
     </article>
     <article class="rulecard" style="--c:var(--saffron)">
@@ -413,7 +413,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
     /* ---------------- 1. GIUDIZIO GENERALE: nessuna preposizione ---------------- */
     {cat:"generale", type:"blank", q:"È bello <span class=\"blank\">___</span> viaggiare da soli.",
      opts:["di","da","niente","a"], correct:2, accept:NIENTE,
-     note:"Giudizio generale, soggetto nessuno in particolare: nessuna preposizione."},
+     note:"Giudizio generale, il soggetto è l'infinito («viaggiare da soli»): nessuna preposizione."},
     {cat:"generale", type:"blank", q:"È facile <span class=\"blank\">___</span> sbagliare quando si è stanchi.",
      opts:["niente","da","di","a"], correct:0, accept:NIENTE,
      note:"Giudizio generale: «è facile sbagliare», senza preposizione."},
@@ -487,7 +487,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"Soggetto cosa precisa («questo film»): serve «da»."},
     {cat:"cosa", type:"full", q:"Una sola di queste due è giusta. Quale?",
      opts:["È difficile capire questo accento.","È difficile da capire questo accento."], correct:0,
-     note:"Qui il soggetto vero è «capire questo accento», non una cosa precisa: quindi nessuna preposizione. Con «questo accento è difficile da capire» invece «da» ci vuole."},
+     note:"Qui il soggetto vero è «capire questo accento», non una cosa precisa: quindi nessuna preposizione. Con «questo accento è difficile da capire» invece «da» ci vuole. Nel parlato si sente anche «è difficile da capire, questo accento», con una pausa: è «questo accento è difficile da capire» con la cosa spostata in fondo."},
 
     /* ---------------- 3. STATO D'ANIMO, PERSONA: DI ---------------- */
     {cat:"animo", type:"blank", q:"Sono contenta <span class=\"blank\">___</span> vederti dopo tanto tempo.",
@@ -529,14 +529,14 @@ h1 em{ font-style:normal; color:var(--rosso); }
      opts:["a","di","da","niente"], correct:0, accept:["a"],
      note:"Abitudine con soggetto persona: «abituato/a a»."},
     {cat:"disposizione", type:"blank", q:"Sono disposta <span class=\"blank\">___</span> aiutarti, se serve.",
-     opts:["da","niente","a","di"], correct:2, accept:["a"],
-     note:"Disponibilità con soggetto persona: «disposto/a a»."},
+     opts:["da","niente","a","di"], correct:2, accept:["a","ad"],
+     note:"Disponibilità con soggetto persona: «disposto/a a». Davanti a un'altra «a» si scrive «ad»: «disposta ad aiutarti»."},
     {cat:"disposizione", type:"blank", q:"Sono decisa <span class=\"blank\">___</span> cambiare lavoro il prossimo anno.",
      opts:["a","di","niente","da"], correct:0, accept:["a"],
      note:"Determinazione con soggetto persona: «deciso/a a»."},
     {cat:"disposizione", type:"blank", q:"È stato il primo <span class=\"blank\">___</span> arrivare alla festa.",
-     opts:["di","da","niente","a"], correct:3, accept:["a"],
-     note:"«Il primo / l'ultimo / l'unico a» + infinito."},
+     opts:["di","da","niente","a"], correct:3, accept:["a","ad"],
+     note:"«Il primo / l'ultimo / l'unico a» + infinito. Davanti a un'altra «a» si scrive «ad»: «il primo ad arrivare»."},
     {cat:"disposizione", type:"blank", q:"È sempre stata brava <span class=\"blank\">___</span> raccontare storie.",
      opts:["niente","di","da","a"], correct:3, accept:["a"],
      note:"Attitudine con soggetto persona: «bravo/a a»."},
@@ -544,8 +544,8 @@ h1 em{ font-style:normal; color:var(--rosso); }
      opts:["a","da","di","niente"], correct:0, accept:["a"],
      note:"Modo di fare con soggetto persona: «lento a», come «veloce a», «pronto a»."},
     {cat:"disposizione", type:"blank", q:"Siamo gli unici <span class=\"blank\">___</span> essere arrivati in orario.",
-     opts:["di","a","da","niente"], correct:1, accept:["a"],
-     note:"«L'unico a» + infinito, come «il primo a»."},
+     opts:["di","a","da","niente"], correct:1, accept:["a","ad"],
+     note:"«L'unico a» + infinito, come «il primo a». Davanti a vocale si scrive spesso «ad»: «gli unici ad essere arrivati»."},
     {cat:"disposizione", type:"full", q:"Quale frase è corretta?",
      opts:["Sono pronta di partire.","Sono pronta partire.","Sono pronta da partire.","Sono pronta a partire."], correct:3,
      note:"Disposizione con soggetto persona: serve «a» prima dell'infinito."},
@@ -799,10 +799,11 @@ h1 em{ font-style:normal; color:var(--rosso); }
     if(!q){ showFinal(); return; }
     if(kind !== "sfida") markNow(idx);
 
-    var cat = CATS[q.cat];
+    /* L'etichetta del gruppo conteneva la risposta ("Stato d'animo · DI"):
+       durante la domanda resta neutra, il gruppo si vede nel riscontro. */
     var catEl = $("#qcat");
-    catEl.textContent = cat.label;
-    catEl.style.setProperty("--c", cat.color);
+    catEl.textContent = "di, da, a o niente?";
+    catEl.style.setProperty("--c", "var(--ink-soft)");
 
     $("#qtext").innerHTML = q.q;
 
@@ -856,6 +857,9 @@ h1 em{ font-style:normal; color:var(--rosso); }
 
   function feedback(ok, q, extra){
     var fb = $("#feedback");
+    var catEl = $("#qcat");
+    catEl.textContent = CATS[q.cat].label;
+    catEl.style.setProperty("--c", CATS[q.cat].color);
     fb.className = "feedback " + (ok ? "ok" : "bad");
     var verdict = ok ? "Giusto!" : (extra || ("Quasi &middot; era «" + q.opts[q.correct] + "»."));
     fb.innerHTML = '<span class="verdict">' + verdict + '</span> ' + q.note +

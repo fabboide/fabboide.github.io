@@ -125,10 +125,10 @@ cosa che mi manca.</p>
   }
 
   function stato(){
-    if(!SS) return { p:false, q:false, s:false, testo:"speechSynthesis non c'e'" };
+    if(!SS) return { p:false, q:false, s:false, testo:"speechSynthesis non c'è" };
     var o = { p: !!SS.paused, q: !!SS.pending, s: !!SS.speaking };
-    o.testo = "in pausa: " + (o.p ? "SI" : "no") + " · in coda: " + (o.q ? "SI" : "no") +
-              " · parla: " + (o.s ? "SI" : "no");
+    o.testo = "in pausa: " + (o.p ? "SÌ" : "no") + " · in coda: " + (o.q ? "SÌ" : "no") +
+              " · parla: " + (o.s ? "SÌ" : "no");
     return o;
   }
 
@@ -136,9 +136,9 @@ cosa che mi manca.</p>
     var o = stato();
     $("stato").innerHTML =
       "<span>motore vocale</span>" +
-      "<span>in pausa <b class='" + (o.p ? "male" : "sp") + "'>" + (o.p ? "SI" : "no") + "</b></span>" +
-      "<span>in coda <b class='" + (o.q ? "male" : "sp") + "'>" + (o.q ? "SI" : "no") + "</b></span>" +
-      "<span>parla <b class='" + (o.s ? "sp" : "male") + "'>" + (o.s ? "SI" : "no") + "</b></span>";
+      "<span>in pausa <b class='" + (o.p ? "male" : "sp") + "'>" + (o.p ? "SÌ" : "no") + "</b></span>" +
+      "<span>in coda <b class='" + (o.q ? "male" : "sp") + "'>" + (o.q ? "SÌ" : "no") + "</b></span>" +
+      "<span>parla <b class='" + (o.s ? "sp" : "male") + "'>" + (o.s ? "SÌ" : "no") + "</b></span>";
   }
   setInterval(dipingiStato, 400); dipingiStato();
 
@@ -167,7 +167,7 @@ cosa che mi manca.</p>
     try{ tutte = SS ? (SS.getVoices() || []) : []; }catch(e){}
     var it = vociIT();
     var h = "<b>Il browser che stai usando</b><div class='ua'>" + navigator.userAgent + "</div>" +
-      "<div style='margin-top:9px'>speechSynthesis: " + (SS ? "c'e'" : "<b style='color:#C4312B'>non c'e'</b>") +
+      "<div style='margin-top:9px'>speechSynthesis: " + (SS ? "c'è" : "<b style='color:#C4312B'>non c'è</b>") +
       " · voci in tutto: " + tutte.length + " · italiane: <b>" + it.length + "</b>" +
       " · pagina da <code>" + location.protocol + "</code></div>";
     if(it.length){
@@ -197,22 +197,22 @@ cosa che mi manca.</p>
     { t:"Solo la lingua", d:"<code>lang = it-IT</code>, la voce la sceglie il browser.",
       fai:function(){ var u=new UT(FRASE); u.lang="it-IT"; return u; } },
 
-    { t:"Lingua e voce", d:"Come faceva il sito: lingua, voce italiana, velocita' 0,95.",
+    { t:"Lingua e voce", d:"Come faceva il sito: lingua, voce italiana, velocità 0,95.",
       fai:function(){ var u=new UT(FRASE); u.lang="it-IT"; u.voice=vociIT()[0]||null; u.rate=0.95; return u; } },
 
     { t:"Sveglia prima, poi parla",
-      d:"Chiamo <code>resume()</code> <b>prima</b> di <code>speak()</code>. Se il motore era in pausa, e' questo che lo sblocca.",
+      d:"Chiamo <code>resume()</code> <b>prima</b> di <code>speak()</code>. Se il motore era in pausa, è questo che lo sblocca.",
       prima:function(){ try{ SS.resume(); }catch(e){} },
       fai:function(){ var u=new UT(FRASE); u.lang="it-IT"; u.voice=vociIT()[0]||null; return u; } },
 
     { t:"Svuota la coda e riparti",
-      d:"<code>cancel()</code>, mezzo secondo di pausa, poi parla. Serve quando la coda e' rimasta intasata.",
+      d:"<code>cancel()</code>, mezzo secondo di pausa, poi parla. Serve quando la coda è rimasta intasata.",
       prima:function(){ try{ SS.cancel(); }catch(e){} },
       ritardo:500,
       fai:function(){ var u=new UT(FRASE); u.lang="it-IT"; u.voice=vociIT()[0]||null; return u; } },
 
     { t:"Con il riferimento tenuto",
-      d:"Tengo l'oggetto in una variabile che non sparisce: su alcuni browser e' il garbage collector che se lo porta via prima che parli.",
+      d:"Tengo l'oggetto in una variabile che non sparisce: su alcuni browser è il garbage collector che se lo porta via prima che parli.",
       tieni:true,
       fai:function(){ var u=new UT(FRASE); u.lang="it-IT"; u.voice=vociIT()[0]||null; return u; } },
 
@@ -223,7 +223,7 @@ cosa che mi manca.</p>
       fai:function(){ var u=new UT(FRASE); u.lang="it-IT"; u.voice=vociIT()[0]||null; return u; } },
 
     { t:"Una parola sola",
-      d:"Solo <i>ciao</i>. Le frasi lunghe hanno piu' modi di incepparsi.",
+      d:"Solo <i>ciao</i>. Le frasi lunghe hanno più modi di incepparsi.",
       tieni:true,
       fai:function(){ var u=new UT("ciao"); u.lang="it-IT"; u.voice=vociIT()[0]||null; return u; } }
   ];
@@ -231,7 +231,7 @@ cosa che mi manca.</p>
   function lancia(cfg, el, nome){
     if(!SS || !UT){ nota(nome + ": impossibile, manca speechSynthesis"); return; }
     el.className = "esito att"; el.textContent = "provo...";
-    try{ if(cfg.prima) cfg.prima(); }catch(e){ nota(nome + ": il passo preparatorio e' fallito -> " + e.message); }
+    try{ if(cfg.prima) cfg.prima(); }catch(e){ nota(nome + ": il passo preparatorio è fallito -> " + e.message); }
 
     setTimeout(function(){
       var ev = { start:false, end:false, err:null };
@@ -254,8 +254,8 @@ cosa che mi manca.</p>
         var s = stato();
         if(ev.err){ el.className="esito no"; el.textContent = "errore: " + ev.err; }
         else if(ev.start){ el.className="esito si"; el.textContent = "È PARTITA — l'hai sentita?"; }
-        else if(s.q){ el.className="esito no"; el.textContent = "ferma in coda, non parte"; nota(nome + ": dopo 3s e' ancora IN CODA. " + s.testo); }
-        else { el.className="esito no"; el.textContent = "sparita senza dire niente"; nota(nome + ": dopo 3s nessun evento e la coda e' vuota. " + s.testo); }
+        else if(s.q){ el.className="esito no"; el.textContent = "ferma in coda, non parte"; nota(nome + ": dopo 3s è ancora IN CODA. " + s.testo); }
+        else { el.className="esito no"; el.textContent = "sparita senza dire niente"; nota(nome + ": dopo 3s nessun evento e la coda è vuota. " + s.testo); }
       }, 3000);
     }, cfg.ritardo || 0);
   }
@@ -297,30 +297,30 @@ cosa che mi manca.</p>
     var h;
     if(ERRORI.length){
       h = "<div class='avviso'><b>Il browser ha risposto con un errore, " + ERRORI.length + " volte.</b> " +
-          "Il piu' frequente e' <code>synthesis-failed</code>, e vuol dire che il motore vocale del " +
-          "sistema non ha potuto produrre l'audio: non e' il sito, e' lo strato sotto." +
+          "Il più frequente è <code>synthesis-failed</code>, e vuol dire che il motore vocale del " +
+          "sistema non ha potuto produrre l'audio: non è il sito, è lo strato sotto." +
           "<ol style='margin:8px 0 0;padding-left:20px'>" +
           "<li><b>chiudi il browser del tutto</b> con cmd+Q e riaprilo</li>" +
-          "<li>Impostazioni di sistema &rarr; Accessibilita' &rarr; <b>Contenuto parlato</b>: metti la " +
-          "voce su italiano e premi ascolta. Se non parla nemmeno li', il browser non c'entra</li>" +
-          "<li>se la voce italiana risulta <b>da scaricare</b>, scaricala: finche' manca il file, il " +
-          "browser la elenca ma non puo' usarla</li>" +
+          "<li>Impostazioni di sistema &rarr; Accessibilità &rarr; <b>Contenuto parlato</b>: metti la " +
+          "voce su italiano e premi ascolta. Se non parla nemmeno lì, il browser non c'entra</li>" +
+          "<li>se la voce italiana risulta <b>da scaricare</b>, scaricala: finché manca il file, il " +
+          "browser la elenca ma non può usarla</li>" +
           "</ol></div>" +
           "<div class='riquadro'>Gli errori esatti:<br>" + ERRORI.join("<br>") + "</div>";
     } else if(s.q){
-      h = "<div class='avviso'><b>Il motore e' bloccato, non e' muto.</b> Le frasi entrano in coda e " +
+      h = "<div class='avviso'><b>Il motore è bloccato, non è muto.</b> Le frasi entrano in coda e " +
           "non partono mai. In ordine di fatica:<ol style='margin:8px 0 0;padding-left:20px'>" +
           "<li><b>chiudi il browser del tutto</b> con cmd+Q e riaprilo</li>" +
-          "<li>prova <b>un altro browser</b>: se li' parla, e' lo stato di quello di prima</li>" +
-          "<li>Impostazioni di sistema &rarr; Accessibilita' &rarr; <b>Contenuto parlato</b>: fai dire " +
-          "qualcosa al Mac da li'. Se non parla nemmeno il sistema, il problema e' sotto al browser</li>" +
+          "<li>prova <b>un altro browser</b>: se lì parla, è lo stato di quello di prima</li>" +
+          "<li>Impostazioni di sistema &rarr; Accessibilità &rarr; <b>Contenuto parlato</b>: fai dire " +
+          "qualcosa al Mac da lì. Se non parla nemmeno il sistema, il problema è sotto al browser</li>" +
           "</ol></div>";
     } else {
       h = "<div class='avviso'><b>Allora il suono si ferma dopo il browser.</b> " +
           "Le frasi partono e finiscono regolarmente, quindi il browser sta parlando: non lo senti tu." +
           "<ol style='margin:8px 0 0;padding-left:20px'>" +
-          "<li>la <b>scheda e' muta</b>: tasto destro sulla linguetta, riattiva l'audio</li>" +
-          "<li>l'<b>uscita audio</b> del Mac e' su una cassa spenta o su un altro dispositivo</li>" +
+          "<li>la <b>scheda è muta</b>: tasto destro sulla linguetta, riattiva l'audio</li>" +
+          "<li>l'<b>uscita audio</b> del Mac è su una cassa spenta o su un altro dispositivo</li>" +
           "<li>il <b>volume</b>, e il mixer per singola app</li>" +
           "</ol></div>";
     }

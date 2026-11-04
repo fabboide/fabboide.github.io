@@ -629,9 +629,15 @@ function tutteLeDomande(){
 }
 
 function testoDomanda(d){ return cap(d.aff) + "?"; }
-function rispostaSi(d){ return "Sì, " + d.aff + "."; }
-function rispostaNo(d){
-  var a = d.aff;
+/* La domanda resta al maschile generico ("È anziano?"), la risposta si
+   accorda con la persona segreta: se è una donna, "Sì, è anziana." */
+function accordaAff(a, p){
+  if(!p || p.uomo) return a;
+  return a.replace(/^è (calv|anzian|magr|robust)o$/, "è $1a");
+}
+function rispostaSi(d, p){ return "Sì, " + accordaAff(d.aff, p) + "."; }
+function rispostaNo(d, p){
+  var a = accordaAff(d.aff, p);
   var neg = a.replace(/^(ha|porta|è) /, function(m, v0){ return "non " + v0 + " "; });
   return "No, " + neg + ".";
 }
@@ -658,7 +664,7 @@ function descrizione(p){
   pezzi.push("È " + chi + ".");
 
   if(p.capelli === "calvo") pezzi.push((p.uomo ? "È calvo" : "È calva") + ".");
-  else pezzi.push("Ha i capelli " + p.capelli + " e " + p.forma + ", " + p.colore + ".");
+  else pezzi.push("Ha i capelli " + p.colore + ", " + p.capelli + " e " + p.forma + ".");
 
   pezzi.push("Ha gli occhi " + p.iride + " e la pelle " + p.carnagione + ".");
 
@@ -1051,7 +1057,7 @@ function riconosciDomanda(testo, domande, testoDi){
     $("rispSn").classList.remove("hidden");
     $("rispSn").textContent = si ? "Sì" : "No";
     $("rispMod").classList.remove("hidden");
-    $("rispMod").textContent = si ? rispostaSi(d) : rispostaNo(d);
+    $("rispMod").textContent = si ? rispostaSi(d, seg) : rispostaNo(d, seg);
 
     gioco.gente.forEach(function(p, k){
       if(d.test(p) !== si) gioco.fuori[k] = true;
@@ -1076,7 +1082,7 @@ function riconosciDomanda(testo, domande, testoDi){
       aggiornaBoard(); aggiornaConta();
       $("annullaBtn").classList.add("hidden");
       $("guessBtn").classList.remove("hidden");
-      toast("Non è lei: continua a chiedere");
+      toast("Non è " + (gioco.gente[i].uomo ? "lui" : "lei") + ": continua a chiedere");
       return;
     }
 
@@ -1094,6 +1100,7 @@ function riconosciDomanda(testo, domande, testoDi){
     $("vSotto").textContent = "This is how you say it with every ending agreeing. Read it out loud once.";
 
     gioco.descrizione = p;
+    $("cTit").textContent = "Descrivi" + (p.uomo ? "lo" : "la") + " tu, in tre frasi.";
     $("cTesto").value = "";
     $("cEsito").innerHTML = "";
     $("cSpiega").innerHTML = "Scrivi tre frasi su " + p.nome + ". Controllo <b>le parole che usi e le finali</b>, non tutta la frase: il resto lo guardiamo a lezione.";
@@ -1236,7 +1243,7 @@ function riconosciDomanda(testo, domande, testoDi){
     var perc = Math.round(detti.length / tratti.length * 100);
     var h = "<div class='barra'><i style='width:" + perc + "%'></i></div>" +
       "<p style='margin:0'><b>" + detti.length + " cose su " + tratti.length + ".</b> " +
-      (perc >= 70 ? "Buona descrizione." : perc >= 40 ? "Si può dire di più." : "Guardala ancora e aggiungi.") +
+      (perc >= 70 ? "Buona descrizione." : perc >= 40 ? "Si può dire di più." : (p.uomo ? "Guardalo" : "Guardala") + " ancora e aggiungi.") +
       "<br><span class='en'>" + detti.length + " of the " + tratti.length + " things you could have said.</span></p>";
 
     if(falsi.length){

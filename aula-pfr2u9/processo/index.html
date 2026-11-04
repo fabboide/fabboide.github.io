@@ -360,14 +360,14 @@ h1 em{ font-style:normal; color:var(--accent); }
     testimoni:[
       {t:"Un testimone giura di averti vista al ristorante quella sera. Contraddicilo con i dettagli.", p:"Il testimone sembra molto sicuro.", h:"Usa: <b>non ero io, il testimone si sbaglia, io ero</b>"},
       {t:"Interroga il finto testimone, cioè me: fammi tre domande per trovare una contraddizione.", p:"", h:"Domande: <b>dove, quando, con chi, a che ora</b>"},
-      {t:"Un vicino di casa racconta di aver sentito rumori strani. Spiega cosa stava succedendo davvero.", p:"È un po' strano, non trova?", h:"Usa: <b>quei rumori erano, stavo semplicemente</b>"},
-      {t:"Un cameriere giura di averti visto litigare con qualcuno. Racconta la tua versione.", p:"Interessante versione dei fatti.", h:"Usa: <b>non era una lite, stavamo solo, ha capito male</b>"},
+      {t:"Un vicino di casa racconta di aver sentito rumori strani. Spiega cosa stava succedendo davvero.", p:"È un po' strano, non trovi?", h:"Usa: <b>quei rumori erano, stavo semplicemente</b>"},
+      {t:"Un cameriere giura di averti vista litigare con qualcuno. Racconta la tua versione.", p:"Interessante versione dei fatti.", h:"Usa: <b>non era una lite, stavamo solo, ha capito male</b>"},
       {t:"Il testimone chiave è tuo fratello e non ricorda niente. Convincilo a ricordare, davanti a tutti.", p:"La memoria è una cosa strana.", h:"Usa: <b>ti ricordi quando, eravamo, prova a pensare</b>"}
     ],
     alibi:[
       {t:"Hai trenta secondi per inventare un alibi perfetto per la sera del misfatto. Vai!", p:"Vediamo se regge sotto pressione.", h:"Al passato: <b>ero a, stavo con, abbiamo fatto</b>"},
-      {t:"Racconta rapidissimamente tutta la tua giornata di quel giorno, minuto per minuto.", p:"Molto dettagliato... troppo?", h:"Sequenza: <b>alle 8, poi, dopo, alla fine</b>"},
-      {t:"Chi può confermare il tuo alibi? Nomina tre persone e cosa stavate facendo insieme.", p:"Chiameremo tutti e tre, lo sa vero?", h:"Usa: <b>ero con, potete chiedere a, stavamo</b>"},
+      {t:"Racconta rapidissimamente tutta quella giornata, minuto per minuto.", p:"Molto dettagliato... troppo?", h:"Sequenza: <b>alle 8, poi, dopo, alla fine</b>"},
+      {t:"Chi può confermare il tuo alibi? Nomina tre persone e cosa stavate facendo insieme.", p:"Chiameremo tutti e tre, lo sai, vero?", h:"Usa: <b>ero con, potete chiedere a, stavamo</b>"},
       {t:"In venti secondi, cinque posti dove non eri quella sera. Veloce!", p:"", h:"Corsa contro il tempo &middot; <b>non ero a...</b>"},
       {t:"Ripeti adesso l'alibi che hai dato dieci minuti fa, identico. Una parola diversa e sei rovinata.", p:"La corte confronterà le due versioni.", h:"Usa le stesse parole: <b>ero, stavo, poi</b>"}
     ],
@@ -376,7 +376,7 @@ h1 em{ font-style:normal; color:var(--accent); }
       {t:"Convinci la giuria che l'accusa non ha nessuna prova vera contro di te.", p:"Le prove ci sono, eccome.", h:"Usa: <b>non c'è nessuna prova, come fate a sapere, dimostratelo</b>"},
       {t:"Accusa un'altra persona, inventala tu, di essere la vera colpevole.", p:"Una difesa creativa, non c'è che dire.", h:"Usa: <b>secondo me è stato/a, aveva un motivo</b>"},
       {t:"Fai il discorso finale, quaranta secondi, per convincere la giuria della tua innocenza.", p:"L'ultima parola prima del verdetto.", h:"Riassumi tutto: <b>come ho detto, quindi, per questo</b>"},
-      {t:"Chiedi scusa senza mai ammettere la colpa. È più difficile di quanto sembri.", p:"Le scuse non sono una confessione, lo so bene.", h:"Usa: <b>mi dispiace se, capisco che, però io</b>"}
+      {t:"Chiedi scusa senza mai ammettere la colpa. È più difficile di quanto sembri.", p:"Le scuse non bastano: qui serve una confessione.", h:"Usa: <b>mi dispiace se, capisco che, però io</b>"}
     ]
   };
 
@@ -406,7 +406,8 @@ h1 em{ font-style:normal; color:var(--accent); }
     "Campionessa":"Campione","campionessa":"campione","vincitrice":"vincitore","Vincitrice":"Vincitore",
     "Viaggiatrice":"Viaggiatore","Esploratrice":"Esploratore","concorrente":"concorrente",
     "brava":"bravo","Brava":"Bravo","bravissima":"bravissimo","Bravissima":"Bravissimo",
-    "creativa":"creativo","sorpresa":"sorpresa"
+    "sorpresa":"sorpresa",
+    "italiana":"italiano","rovinata":"rovinato","Assolta":"Assolto"
   };
   var M_RE = new RegExp("\\b(" + Object.keys(M).join("|") + ")\\b", "g");
   function gtext(s){
@@ -443,7 +444,7 @@ h1 em{ font-style:normal; color:var(--accent); }
     clearTimeout(t._id); t._id = setTimeout(function(){ t.classList.remove("show"); }, 1600);
   }
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-  function nameOf(i){ return state.players[i].name || (LAB.player + " " + (i+1)); }
+  function nameOf(i){ return state.players[i].name || (gtext(LAB.player) + " " + (i+1)); }
   function duo(){ return state.count === 2; }
 
   /* ---------------- scelte iniziali ---------------- */
@@ -504,7 +505,7 @@ h1 em{ font-style:normal; color:var(--accent); }
       (function(i){
         var d = document.createElement("div");
         d.className = "pcard" + ((duo() && state.turn === i) || !duo() ? " on" : "");
-        d.innerHTML = '<span><span class="lab">' + (duo() ? (state.turn===i ? "tocca a" : "in attesa") : LAB.player) + '</span>' +
+        d.innerHTML = '<span><span class="lab">' + (duo() ? (state.turn===i ? "tocca a" : "in attesa") : gtext(LAB.player)) + '</span>' +
                       '<br><span class="nm">' + esc(nameOf(i)) + '</span></span>' +
                       '<span class="pts">' + state.players[i].score + '</span>';
         if(duo()){

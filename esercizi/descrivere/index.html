@@ -605,7 +605,7 @@ var THEMES = [
 
 var WORDS = [
   /* ---------------- I CAPELLI ---------------- */
-  {t:"capelli", w:"i capelli", en:"hair (always plural in Italian)", pos:"n", ex:"Marta ha i capelli lunghi.", exEn:"Marta has long hair.", face:{capelli:"lunghi"}},
+  {t:"capelli", w:"i capelli", en:"hair (plural in Italian)", pos:"n", ex:"Marta ha i capelli lunghi.", exEn:"Marta has long hair.", face:{capelli:"lunghi"}},
   {t:"capelli", w:"lungo", en:"long", pos:"a", ex:"Ha i capelli lunghi fino alle spalle.", exEn:"Her hair is long, down to her shoulders.", face:{capelli:"lunghi"}},
   {t:"capelli", w:"corto", en:"short (of hair, not of people)", pos:"a", ex:"D'estate porto i capelli corti.", exEn:"In summer I wear my hair short.", face:{capelli:"corti"}},
   {t:"capelli", w:"liscio", en:"straight", pos:"a", ex:"Ha i capelli lisci e neri.", exEn:"She has straight black hair.", face:{capelli:"lunghi", colore:"neri"}},
@@ -622,7 +622,7 @@ var WORDS = [
   {t:"capelli", w:"la coda", en:"ponytail (also: tail, queue)", pos:"n", ex:"In palestra porto sempre la coda.", exEn:"At the gym I always wear a ponytail."},
   {t:"capelli", w:"tinto", en:"dyed", pos:"a", ex:"Ha i capelli tinti di rosso.", exEn:"Her hair is dyed red."},
   /* ---------------- IL VISO ---------------- */
-  {t:"viso", w:"il viso", en:"face", pos:"n", ex:"Ha un viso dolce.", exEn:"She has a gentle face."},
+  {t:"viso", w:"il viso", en:"face", pos:"n", alt:["la faccia"], ex:"Ha un viso dolce.", exEn:"She has a gentle face."},
   {t:"viso", w:"la faccia", en:"face (more everyday than viso)", pos:"n", ex:"Fai una faccia strana, cosa c'è?", exEn:"You're pulling a funny face, what's wrong?"},
   {t:"viso", w:"gli occhi", en:"eyes (one eye: l'occhio)", pos:"n", ex:"Di che colore ha gli occhi?", exEn:"What colour are his eyes?"},
   {t:"viso", w:"azzurro", en:"blue (of eyes and sky)", pos:"a", ex:"Ha gli occhi azzurri come sua madre.", exEn:"He has blue eyes like his mother.", face:{occhi:"chiari"}},
@@ -640,10 +640,10 @@ var WORDS = [
   /* ---------------- IL CORPO ---------------- */
   {t:"corpo", w:"alto", en:"tall", pos:"a", ex:"Mio fratello è più alto di me.", exEn:"My brother is taller than me."},
   {t:"corpo", w:"basso", en:"short (of people)", pos:"a", ex:"Sono bassa, un metro e sessanta.", exEn:"I'm short, one metre sixty."},
-  {t:"corpo", w:"magro", en:"thin, slim", pos:"a", ex:"È magro perché corre tutti i giorni.", exEn:"He's thin because he runs every day.", face:{corpo:"magro"}},
+  {t:"corpo", w:"magro", en:"thin, slim", pos:"a", alt:["snello"], ex:"È magro perché corre tutti i giorni.", exEn:"He's thin because he runs every day.", face:{corpo:"magro"}},
   {t:"corpo", w:"snello", en:"slender (kinder than magro)", pos:"a", ex:"È alta e snella.", exEn:"She's tall and slender."},
   {t:"corpo", w:"robusto", en:"heavy-set, well-built", pos:"a", ex:"Un uomo robusto, con le spalle larghe.", exEn:"A well-built man with broad shoulders.", face:{corpo:"robusto"}},
-  {t:"corpo", w:"grasso", en:"fat (blunt: Italians usually say robusto)", pos:"a", ex:"Non si dice grasso, si dice robusto.", exEn:"You don't say 'grasso', you say 'robusto'."},
+  {t:"corpo", w:"grasso", en:"fat (blunt when said of people)", pos:"a", ex:"Non è grasso, è solo un po' robusto.", exEn:"He isn't fat, he's just a bit heavy-set."},
   {t:"corpo", w:"in forma", en:"in shape, fit", pos:"a", ex:"A sessant'anni è ancora in forma.", exEn:"At sixty he's still in shape."},
   {t:"corpo", w:"sportivo", en:"sporty, athletic", pos:"a", ex:"È un tipo sportivo.", exEn:"He's the sporty type."},
   {t:"corpo", w:"di media statura", en:"of medium height", pos:"a", ex:"Né alto né basso: di media statura.", exEn:"Neither tall nor short: of medium height."},
@@ -653,13 +653,13 @@ var WORDS = [
   /* ---------------- L'ETÀ ---------------- */
   {t:"eta", w:"giovane", en:"young", pos:"a", ex:"È troppo giovane per guidare.", exEn:"He's too young to drive.", face:{eta:"giovane"}},
   {t:"eta", w:"anziano", en:"elderly (the polite word for old people)", pos:"a", ex:"Una signora anziana, molto elegante.", exEn:"An elderly lady, very elegant.", face:{eta:"anziano", colore:"grigi"}},
-  {t:"eta", w:"vecchio", en:"old (fine for things, rude for people)", pos:"a", ex:"Questa macchina è vecchia.", exEn:"This car is old."},
+  {t:"eta", w:"vecchio", en:"old (can sound blunt for people)", pos:"a", ex:"Questa macchina è vecchia.", exEn:"This car is old."},
   {t:"eta", w:"di mezza età", en:"middle-aged", pos:"a", ex:"Un uomo di mezza età con gli occhiali.", exEn:"A middle-aged man with glasses."},
   {t:"eta", w:"il ragazzo", en:"boy, young man; boyfriend", pos:"n", ex:"Quel ragazzo con la maglietta rossa.", exEn:"That boy in the red t-shirt."},
   {t:"eta", w:"la ragazza", en:"girl, young woman; girlfriend", pos:"n", ex:"La ragazza con i capelli ricci.", exEn:"The girl with the curly hair."},
   {t:"eta", w:"il signore", en:"gentleman, man (polite)", pos:"n", ex:"Quel signore con il cappello.", exEn:"That gentleman with the hat.", face:{cappello:1}},
-  {t:"eta", w:"la signora", en:"lady, woman (polite)", pos:"n", ex:"La signora dei piani di sopra.", exEn:"The lady from upstairs."},
-  {t:"eta", w:"il bambino", en:"child, little boy", pos:"n", ex:"Un bambino di sei anni.", exEn:"A six-year-old boy."},
+  {t:"eta", w:"la signora", en:"lady, woman (polite)", pos:"n", ex:"La signora del piano di sopra.", exEn:"The lady from upstairs."},
+  {t:"eta", w:"il bambino", en:"child, little boy", pos:"n", alt:["la bambina"], ex:"Un bambino di sei anni.", exEn:"A six-year-old boy."},
   {t:"eta", w:"avere trent'anni", en:"to be thirty (Italians have years, not are)", pos:"f", ex:"Ha trent'anni ma ne dimostra venti.", exEn:"He's thirty but he looks twenty."},
   /* ---------------- ADDOSSO ---------------- */
   {t:"vestiti", w:"gli occhiali", en:"glasses (plural in Italian)", pos:"n", ex:"Porta gli occhiali da quando era piccolo.", exEn:"He's worn glasses since he was little.", face:{occhiali:1}},
@@ -681,7 +681,7 @@ var WORDS = [
   {t:"carattere", w:"timido", en:"shy", pos:"a", ex:"Da piccola ero molto timida.", exEn:"As a little girl I was very shy."},
   {t:"carattere", w:"allegro", en:"cheerful", pos:"a", ex:"È sempre allegra, anche il lunedì.", exEn:"She's always cheerful, even on Mondays."},
   {t:"carattere", w:"tranquillo", en:"calm, easy-going", pos:"a", ex:"È un bambino tranquillo.", exEn:"He's an easy-going child."},
-  {t:"carattere", w:"nervoso", en:"tense, edgy (not 'nervous' about something)", pos:"a", ex:"Quando guida diventa nervoso.", exEn:"He gets edgy when he drives."},
+  {t:"carattere", w:"nervoso", en:"edgy, irritable; also nervous", pos:"a", ex:"Quando guida diventa nervoso.", exEn:"He gets edgy when he drives."},
   {t:"carattere", w:"socievole", en:"sociable", pos:"a", ex:"È socievole, parla con tutti.", exEn:"She's sociable, she talks to everyone."},
   {t:"carattere", w:"generoso", en:"generous", pos:"a", ex:"È generoso, offre sempre lui.", exEn:"He's generous, he always pays."},
   {t:"carattere", w:"egoista", en:"selfish (same form for men and women)", pos:"a", ex:"Non essere egoista!", exEn:"Don't be selfish!"},
@@ -694,14 +694,14 @@ var WORDS = [
   {t:"carattere", w:"il carattere", en:"personality, nature", pos:"n", ex:"Ha un bel carattere.", exEn:"He has a nice personality."},
   /* ---------------- LE FRASI CHE SERVONO ---------------- */
   {t:"frasi", w:"Com'è?", en:"What's he like? What does she look like?", pos:"f", ex:"Com'è il tuo nuovo collega?", exEn:"What's your new colleague like?"},
-  {t:"frasi", w:"Che aspetto ha?", en:"What does he look like?", pos:"f", ex:"Non l'ho mai visto: che aspetto ha?", exEn:"I've never seen him: what does he look like?"},
-  {t:"frasi", w:"avere i capelli", en:"to have ... hair (with the article, always)", pos:"f", ex:"Ho i capelli corti, non ho capelli corti.", exEn:"It's 'ho i capelli corti', never without the article.", face:{capelli:"corti"}},
-  {t:"frasi", w:"portare gli occhiali", en:"to wear glasses (portare, not indossare)", pos:"f", ex:"Mia madre porta gli occhiali per leggere.", exEn:"My mother wears glasses for reading.", face:{occhiali:1}},
+  {t:"frasi", w:"Che aspetto ha?", en:"What does he look like?", pos:"f", alt:["Com'è?"], ex:"Non l'ho mai visto: che aspetto ha?", exEn:"I've never seen him: what does he look like?"},
+  {t:"frasi", w:"avere i capelli", en:"to have ... hair (with the article)", pos:"f", ex:"Ho i capelli corti e castani.", exEn:"I have short brown hair.", face:{capelli:"corti"}},
+  {t:"frasi", w:"portare gli occhiali", en:"to wear glasses (portare is more usual than indossare)", pos:"f", ex:"Mia madre porta gli occhiali per leggere.", exEn:"My mother wears glasses for reading.", face:{occhiali:1}},
   {t:"frasi", w:"assomigliare a", en:"to look like, to take after", pos:"v", ex:"Assomiglio a mio padre.", exEn:"I take after my father."},
   {t:"frasi", w:"sembrare", en:"to seem, to look", pos:"v", ex:"Sembra stanco oggi.", exEn:"He looks tired today."},
   {t:"frasi", w:"Di che colore ha gli occhi?", en:"What colour are his eyes?", pos:"f", ex:"Di che colore ha gli occhi tua sorella?", exEn:"What colour are your sister's eyes?"},
   {t:"frasi", w:"Quanti anni ha?", en:"How old is he?", pos:"f", ex:"Quanti anni ha tuo fratello?", exEn:"How old is your brother?"},
-  {t:"frasi", w:"Com'è di carattere?", en:"What's he like as a person?", pos:"f", ex:"Bello lo è, ma com'è di carattere?", exEn:"Good-looking he is, but what's he like as a person?"},
+  {t:"frasi", w:"Com'è di carattere?", en:"What's he like as a person?", pos:"f", alt:["Com'è?"], ex:"Bello lo è, ma com'è di carattere?", exEn:"Good-looking he is, but what's he like as a person?"},
   {t:"frasi", w:"è quello con", en:"he's the one with", pos:"f", ex:"È quello con la barba, là in fondo.", exEn:"He's the one with the beard, over at the back.", face:{barba:1}},
   {t:"frasi", w:"ha un'aria simpatica", en:"he looks nice, he has a friendly air", pos:"f", ex:"Non lo conosco, ma ha un'aria simpatica.", exEn:"I don't know him, but he looks nice."},
   {t:"frasi", w:"più alto di", en:"taller than", pos:"f", ex:"Sono più alta di mia madre.", exEn:"I'm taller than my mother."}
@@ -869,6 +869,10 @@ var WORDS = [
   /* La parola senza articolo: serve per accettare "casa" quando la
      risposta giusta e "la casa", e poi far notare l'articolo. */
   function bare(w){ return w.replace(/^(l'|un'|dell')/i,"").replace(/^(il|lo|la|i|gli|le|un|uno|una)\s+/i,""); }
+  /* Le varianti giuste di una parola (campo alt, facoltativo): nello
+     Scrivi valgono come la risposta principale e nelle prove non escono
+     mai come distrattori, se no ci sarebbero due risposte giuste. */
+  function simili(a, b){ return (a.alt||[]).indexOf(b.w)!==-1 || (b.alt||[]).indexOf(a.w)!==-1; }
   var POS_IT = {n:"nome", v:"verbo", a:"aggettivo", avv:"avverbio", f:"frase"};
   var POS_EN = {n:"noun", v:"verb", a:"adjective", avv:"adverb", f:"phrase"};
   function themeOf(k){ for(var i=0;i<THEMES.length;i++){ if(THEMES[i].k===k) return THEMES[i]; } return null; }
@@ -1061,9 +1065,9 @@ var WORDS = [
       h += '<p class="today-txt">Per oggi hai finito. Torna domani e le carte si riaprono da sole.<br><span class="en">All caught up. Come back tomorrow.</span></p>';
     } else {
       h += '<b>'+s.giro+'</b>';
-      h += '<p class="today-txt">carte per oggi &middot; <span class="en">cards for today</span></p>';
+      h += '<p class="today-txt">'+(s.giro===1 ? 'carta per oggi &middot; <span class="en">card for today</span>' : 'carte per oggi &middot; <span class="en">cards for today</span>')+'</p>';
       if(s.due) h += '<span class="pill hot">'+s.due+' da ripassare</span>';
-      if(s.nuoveOggi) h += '<span class="pill">'+s.nuoveOggi+' parole nuove</span>';
+      if(s.nuoveOggi) h += '<span class="pill">'+s.nuoveOggi+(s.nuoveOggi===1 ? ' parola nuova' : ' parole nuove')+'</span>';
       else if(s.nuove) h += '<span class="pill">'+s.nuove+' ancora da scoprire</span>';
       if(s.sapute) h += '<span class="pill done">'+s.sapute+' in cassaforte</span>';
       h += '<button class="btn" data-action="open" data-mode="carte">Comincia <span class="sub">go</span></button>';
@@ -1105,7 +1109,7 @@ var WORDS = [
     h+='<div class="deck-bar"><i style="width:'+pct+'%"></i></div>';
     h+='<div class="deck-nums"><span><b>'+s.n+'</b> carte</span>';
     if(s.due) h+='<span class="due"><b>'+s.due+'</b> da ripassare</span>';
-    if(s.nuove) h+='<span><b>'+s.nuove+'</b> nuove</span>';
+    if(s.nuove) h+='<span><b>'+s.nuove+'</b>'+(s.nuove===1 ? ' nuova' : ' nuove')+'</span>';
     if(!s.due && !s.nuove) h+='<span>tutto a posto</span>';
     h+='</div></button>';
     return h;
@@ -1239,14 +1243,16 @@ var WORDS = [
     var h='<div class="results" style="--mode:'+MODES.carte.color+'">';
     h+='<p class="eyebrow">giro finito &middot; round done</p>';
     h+='<div class="res-score">'+state.seen+'</div>';
-    h+='<p class="res-sub">carte viste, '+state.known+' sapute al primo colpo<br><span class="en">cards seen, '+state.known+' known first time</span></p>';
+    h+='<p class="res-sub">'+(state.seen===1 ? 'carta vista' : 'carte viste')+', '+state.known+(state.known===1 ? ' saputa' : ' sapute')+' al primo colpo<br><span class="en">'+(state.seen===1 ? 'card seen' : 'cards seen')+', '+state.known+' known first time</span></p>';
     if(state.freeRun){
       h+='<div class="res-badge quiet">giro libero: le scadenze non sono cambiate</div>';
     } else {
-      h+='<div class="res-badge">&#9733; '+s.sapute+' parole in cassaforte su '+s.n+'</div>';
+      h+='<div class="res-badge">&#9733; '+s.sapute+(s.sapute===1 ? ' parola' : ' parole')+' in cassaforte su '+s.n+'</div>';
     }
     h+='<p class="res-msg">'+(domani
-        ? 'Domani ti aspettano '+domani+' carte. Cinque minuti e sono fatte.<br><span class="en" style="font-size:.92rem">'+domani+' cards are waiting for you tomorrow.</span>'
+        ? (domani===1
+            ? 'Domani ti aspetta 1 carta.<br><span class="en" style="font-size:.92rem">1 card is waiting for you tomorrow.</span>'
+            : 'Domani ti aspettano '+domani+' carte. Cinque minuti e sono fatte.<br><span class="en" style="font-size:.92rem">'+domani+' cards are waiting for you tomorrow.</span>')
         : 'Le prossime carte torneranno fra qualche giorno: è così che restano.<br><span class="en" style="font-size:.92rem">The next cards come back in a few days. That is what makes them stick.</span>')+'</p>';
     h+='<div class="res-actions">';
     h+='<button class="btn" data-action="retry">Un altro giro <span class="sub">again</span></button>';
@@ -1318,7 +1324,7 @@ var WORDS = [
       /* Al contrario: la domanda e in inglese e le opzioni sono le parole
          italiane. Stessi criteri per i distrattori: stesso tema, stessa
          parte del discorso, se no si indovina senza sapere niente. */
-      var temaEn = WORDS.filter(function(x){ return x.t===w.t && x.w!==w.w; });
+      var temaEn = WORDS.filter(function(x){ return x.t===w.t && x.w!==w.w && !simili(w,x); });
       var stessiEn = temaEn.filter(function(x){ return x.pos===w.pos; });
       var baseEn = stessiEn.length>=3 ? stessiEn : (temaEn.length ? temaEn : WORDS);
       var sameEn = shuffle(baseEn).slice(0,3);
@@ -1327,7 +1333,7 @@ var WORDS = [
       var kEn=0;
       while(sameEn.length<3 && kEn<altriEn.length){
         var exEn=altriEn[kEn++];
-        if(exEn.w!==w.w && sameEn.map(function(x){return x.w;}).indexOf(exEn.w)===-1) sameEn.push(exEn);
+        if(exEn.w!==w.w && !simili(w,exEn) && sameEn.map(function(x){return x.w;}).indexOf(exEn.w)===-1) sameEn.push(exEn);
       }
       it.prompt=w.en; it.promptPos=POS_EN[w.pos];
       it.correct=w.w;
@@ -1340,7 +1346,7 @@ var WORDS = [
       var conParentesi = /\(/.test(w.en);
       function stessaForma(x){ return /\(/.test(x.en)===conParentesi; }
       function stessoTipo(x){ return x.pos===w.pos; }
-      var tema = WORDS.filter(function(x){ return x.t===w.t && x.en!==w.en; });
+      var tema = WORDS.filter(function(x){ return x.t===w.t && x.en!==w.en && !simili(w,x); });
       /* Meglio: stesso tema, stessa parte del discorso, stessa forma.
          Se non bastano scendo di un gradino alla volta. In un tema misto
          un aggettivo in mezzo a tre nomi si riconosce senza saperlo. */
@@ -1354,7 +1360,7 @@ var WORDS = [
       var k=0;
       while(same.length<3 && k<altri.length){
         var extra=altri[k++];
-        if(extra.en!==w.en && same.map(function(x){return x.en;}).indexOf(extra.en)===-1) same.push(extra);
+        if(extra.en!==w.en && !simili(w,extra) && same.map(function(x){return x.en;}).indexOf(extra.en)===-1) same.push(extra);
       }
       it.prompt=w.w; it.promptPos=POS_IT[w.pos]+" &middot; "+POS_EN[w.pos];
       it.correct=w.en;
@@ -1471,10 +1477,13 @@ var WORDS = [
         else if(b===tile) b.classList.add("no");
       });
     } else {
-      var full=norm(it.correct), nude=norm(bare(it.correct));
-      ok = norm(given)===full || norm(given)===nude;
-      if(ok && norm(given)===nude && full!==nude){
-        note=" Manca solo l'articolo: si dice <b>"+esc(it.correct)+"</b>.";
+      var dato=norm(given), presa=null;
+      [it.correct].concat(w.alt||[]).forEach(function(f){
+        if(!presa && (dato===norm(f) || dato===norm(bare(f)))) presa=f;
+      });
+      ok = !!presa;
+      if(ok && dato===norm(bare(presa)) && norm(presa)!==norm(bare(presa))){
+        note=" Manca solo l'articolo: si dice <b>"+esc(presa)+"</b>.";
       }
       var inp=document.getElementById("typed");
       if(inp){ inp.classList.add(ok?"ok":"no"); inp.disabled=true; }

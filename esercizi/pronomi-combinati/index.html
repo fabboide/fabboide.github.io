@@ -290,12 +290,12 @@ h1 em{ font-style:normal; color:var(--rosso); }
   <div class="rules">
     <article class="rulecard" style="--c:var(--rosso)">
       <h2>Prima la persona, poi la cosa</h2>
-      <p>L'ordine è sempre questo: a chi, poi che cosa. <b>Te lo</b> presto, non «lo ti presto».</p>
+      <p>L'ordine è sempre questo: prima mi, ti, ci, vi, si (o glie-), poi lo, la, li, le, ne. <b>Te lo</b> presto, non «lo ti presto».</p>
       <span class="ex">Mi presti il libro? Te lo presto.</span>
     </article>
     <article class="rulecard" style="--c:var(--saffron)">
       <h2>mi, ti, ci, vi cambiano</h2>
-      <p>Davanti a un altro pronome diventano <b>me, te, ce, ve</b>.</p>
+      <p>Davanti a lo, la, li, le e ne diventano <b>me, te, ce, ve</b>.</p>
       <span class="ex">Me lo dai? Ve la spiego.</span>
     </article>
     <article class="rulecard" style="--c:var(--verde)">
@@ -342,7 +342,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
 
   <div class="nextstep">
     Se qui ti perdi, torna un attimo indietro: <a href="../pronomi/">ne, ci e i pronomi singoli</a>,
-    213 frasi sullo stesso motore.
+    191 frasi sullo stesso motore.
   </div>
 </section>
 
@@ -462,7 +462,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
      tr:"Do you have the keys? Yes, I have them in my pocket."},
 
     {cat:"comb_fisse", type:"blank", q:"– Hai il biglietto?<br>– Sì, <span class=\"blank\">___</span>ho qui.",
-     opts:["ce l'", "ci l'", "ce lo", "celo"], correct:0, accept:["ce l'", "ce l", "ce lo"],
+     opts:["ce l'", "ci l'", "ce lo", "celo"], correct:0, accept:["ce l'", "ce l"],
      note:"«Ce l'ho» è la forma di tutti i giorni: ce + lo, con l'apostrofo davanti a «ho».",
      tr:"Do you have the ticket? Yes, I have it here."},
 
@@ -474,7 +474,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
     {cat:"comb_fisse", type:"blank", q:"– Marco va via presto?<br>– Sì, <span class=\"blank\">___</span> va alle sei.",
      opts:["si ne", "se ne", "se lo", "ci si"], correct:1, accept:["se ne"],
      note:"<b>Andarsene</b>: si + ne = se ne va.",
-     tr:"Is Marco leaving already? Yes, he's leaving at six."},
+     tr:"Is Marco leaving early? Yes, he's leaving at six."},
 
     {cat:"comb_fisse", type:"blank", q:"– Ti importa di quello che dicono?<br>– No, non <span class=\"blank\">___</span> importa niente.",
      opts:["mi ne", "me ne", "me lo", "ce ne"], correct:1, accept:["me ne"],
@@ -516,7 +516,7 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"Con «gli» e «le» il pronome diventa <b>glie-</b> e si scrive attaccato: glielo, gliela, glieli, gliele, gliene.",
      tr:"gli/le + lo become «glielo», written as one word."},
 
-    {cat:"comb_diretto", type:"full", q:"Quale frase è giusta? <span class=\"qtag\">i combinati</span>",
+    {cat:"comb_ne", type:"full", q:"Quale frase è giusta? <span class=\"qtag\">i combinati</span>",
      opts:["Me ne ha parlato ieri.", "Mi ne ha parlato ieri.", "Me lo ha parlato ieri.", "Ne mi ha parlato ieri."], correct:0, accept:["Me ne ha parlato ieri."],
      note:"Davanti a «ne» il pronome «mi» diventa <b>me</b>: me ne ha parlato.",
      tr:"Before «ne», «mi» becomes «me»."},
@@ -526,9 +526,9 @@ h1 em{ font-style:normal; color:var(--rosso); }
      note:"ti + lo = <b>te lo</b> compro io.",
      tr:"Will you buy me the ticket? Yes, I'll buy it for you."},
 
-    {cat:"comb_diretto", type:"blank", q:"– Hai dato la mancia al cameriere?<br>– Sì, <span class=\"blank\">___</span> ho data io.",
-     opts:["gli la", "gliela", "la gli", "gliele"], correct:1, accept:["gliela"],
-     note:"gli + la = <b>gliela</b>, e il participio si accorda: gliela ho data, cioè gliel'ho data.",
+    {cat:"comb_diretto", type:"blank", q:"– Hai dato la mancia al cameriere?<br>– Sì, <span class=\"blank\">___</span>ho data io.",
+     opts:["gli l'", "gliel'", "la gli", "gliele"], correct:1, accept:["gliel'", "gliel"],
+     note:"gli + la = <b>gliela</b>, che davanti a «ho» si apostrofa: <b>gliel'ho</b> data, come «ce l'ho». Il participio si accorda con la mancia: data.",
      tr:"Did you tip the waiter? Yes, I gave it to him."},
 
     {cat:"comb_diretto", type:"blank", q:"– Chi vi porta i bambini a scuola?<br>– <span class=\"blank\">___</span> porta mio padre.",

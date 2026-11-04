@@ -412,7 +412,7 @@ a{ color:inherit; }
       <p class="lede">
         Il mio telefono, la tua borsa, i suoi amici. In italiano il possessivo
         si accorda con la <b>cosa</b>, non con la persona, e di solito vuole l'articolo.
-        Tra parentesi trovi sempre chi &egrave; il possessore. Scalda con il Livello 1 e sali fino alla sfida a tempo.
+        Tra parentesi trovi sempre chi &egrave; il possessore. Scaldati con il Livello 1 e sali fino alla sfida a tempo.
       </p>
       <p class="lede en">
         My phone, your bag, his friends. In Italian the possessive agrees with the <b>thing</b>,
@@ -652,7 +652,7 @@ a{ color:inherit; }
   var LIVELLI = [
     {num:1, name:"Riscaldamento", nameEn:"Warm-up", desc:"Scelta multipla, con spiegazione. Nessun limite di tempo.", descEn:"Multiple choice with explanations. Untimed.", mode:"mc", count:10, timed:false, icon:ICON_PENCIL},
     {num:2, name:"Allenamento", nameEn:"Workout", desc:"Scrivi il possessivo a memoria. Nessun limite di tempo.", descEn:"Type the possessive from memory. Untimed.", mode:"type", count:10, timed:false, icon:ICON_WRITE},
-    {num:3, name:"Sfida a tempo", nameEn:"Timed challenge", desc:"60 secondi, il più possibile corrette. Batti il tuo record.", descEn:"60 seconds, as many as you can. Beat your record.", mode:"mc", timed:true, icon:ICON_CLOCK}
+    {num:3, name:"Sfida a tempo", nameEn:"Timed challenge", desc:"60 secondi, più risposte corrette possibile. Batti il tuo record.", descEn:"60 seconds, as many as you can. Beat your record.", mode:"mc", timed:true, icon:ICON_CLOCK}
   ];
 
   var MODES = {
@@ -680,8 +680,8 @@ a{ color:inherit; }
         {k:"l'articolo", it:"Davanti al possessivo c'&egrave; quasi sempre l'articolo: <b>il</b> mio, <b>la</b> tua, <b>i</b> suoi, <b>le</b> nostre.",
          en:"The possessive almost always comes with the article in front: il mio, la tua, i suoi, le nostre.",
          ex:"Dove sono le mie chiavi?"},
-        {k:"la famiglia", it:"Con i nomi di famiglia al <b>singolare</b> l'articolo cade. Al plurale e con <b>loro</b> resta.",
-         en:"Singular family nouns drop the article. In the plural, and with loro, it stays.",
+        {k:"la famiglia", it:"Con i nomi di famiglia al <b>singolare</b> l'articolo di solito cade. Al plurale e con <b>loro</b> resta. Lo tengono anche mamma, papà e le forme affettuose: la mia mamma, il mio papà, la mia sorellina.",
+         en:"Singular family nouns usually drop the article. In the plural, and with loro, it stays. Mamma, papà and pet forms keep it too: la mia mamma, il mio papà, la mia sorellina.",
          ex:"mia madre &middot; i miei fratelli &middot; la loro madre"}
       ],
       gen: genAccordo, levels: LIVELLI
@@ -916,7 +916,8 @@ a{ color:inherit; }
     var ok = norm(raw) === norm(it.correct);
 
     var blank = document.getElementById("blank");
-    blank.textContent = it.correct;
+    /* con i nomi di famiglia la frase può cominciare dal possessivo: maiuscola */
+    blank.textContent = it.before ? it.correct : cap(it.correct);
     blank.classList.add(ok ? "ok" : "no");
 
     if(state.level.mode==="mc"){

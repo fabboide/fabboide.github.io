@@ -354,9 +354,10 @@ body.senza-voce .vocerow{ display:none !important; }
       <p class="eyebrow">A2 &middot; il mazzo che viene dopo</p>
       <h1>Altre trecento, e cominci a dire quello che pensi.</h1>
       <p class="lede">
-        Trecento parole nuove, in quattordici temi: il lavoro, i soldi, la salute,
-        i sentimenti, le parole che legano una frase all'altra. Nessuna di queste
-        sta nel mazzo delle prime centottantasei.
+        Trecento parole, in quattordici temi: il lavoro, i soldi, la salute,
+        i sentimenti, le parole che legano una frase all'altra. Sono tutte nuove
+        rispetto al mazzo delle prime centonovanta, tranne le quattro stagioni,
+        che qui tornano con frasi diverse.
       </p>
       <p class="lede en">
         The A2 deck, from the official A2 list: the words that turn short answers into real
@@ -390,7 +391,7 @@ body.senza-voce .vocerow{ display:none !important; }
         <button class="btn" data-action="open" data-mode="scrivi">Inizia <span class="sub">start</span></button>
       </article>
     </div>
-    <p class="cross">Non hai ancora fatto <a href="../parole-a1/">le prime centottantasei</a>? Comincia da lì.
+    <p class="cross">Non hai ancora fatto <a href="../parole-a1/">le prime centonovanta</a>? Comincia da lì.
       <span class="en">Haven't done the first 190 yet? Start there.</span></p>
   </section>
 
@@ -443,14 +444,14 @@ var THEMES = [
 var WORDS = [
   /* ---------------- IL LAVORO E LA SCUOLA ---------------- */
   {t:"lavoro", w:"il capo", en:"boss", pos:"n", ex:"Il mio capo è arrivato tardi.", exEn:"My boss arrived late."},
-  {t:"lavoro", w:"il collega", en:"colleague", pos:"n", ex:"Un collega mi ha aiutato.", exEn:"A colleague helped me."},
+  {t:"lavoro", w:"il collega", en:"colleague", pos:"n", alt:["la collega"], ex:"Un collega mi ha aiutato.", exEn:"A colleague helped me."},
   {t:"lavoro", w:"la riunione", en:"meeting", pos:"n", ex:"La riunione è alle tre.", exEn:"The meeting is at three."},
   {t:"lavoro", w:"il contratto", en:"contract", pos:"n", ex:"Ho firmato il contratto ieri.", exEn:"I signed the contract yesterday."},
   {t:"lavoro", w:"lo stipendio", en:"salary", pos:"n", ex:"Lo stipendio arriva il ventisette.", exEn:"The salary arrives on the twenty-seventh."},
-  {t:"lavoro", w:"l'orario", en:"timetable, working hours", pos:"n", ex:"Il mio orario finisce alle sei.", exEn:"My working hours end at six."},
+  {t:"lavoro", w:"l'orario", en:"timetable, working hours", pos:"n", ex:"Il mio orario di lavoro è dalle nove alle sei.", exEn:"My working hours are from nine to six."},
   {t:"lavoro", w:"la pausa", en:"break", pos:"n", ex:"Facciamo una pausa di dieci minuti.", exEn:"Let's take a ten-minute break."},
   {t:"lavoro", w:"la ditta", en:"firm, company", pos:"n", ex:"Lavora in una ditta piccola.", exEn:"He works for a small firm."},
-  {t:"lavoro", w:"il cliente", en:"customer", pos:"n", ex:"Il cliente aspetta una risposta.", exEn:"The customer is waiting for an answer."},
+  {t:"lavoro", w:"il cliente", en:"customer", pos:"n", alt:["la cliente"], ex:"Il cliente aspetta una risposta.", exEn:"The customer is waiting for an answer."},
   {t:"lavoro", w:"il progetto", en:"project", pos:"n", ex:"Il progetto finisce a giugno.", exEn:"The project ends in June."},
   {t:"lavoro", w:"la scrivania", en:"desk", pos:"n", ex:"Ho la scrivania piena di carte.", exEn:"My desk is covered in papers."},
   {t:"lavoro", w:"il colloquio", en:"job interview", pos:"n", ex:"Domani ho un colloquio.", exEn:"Tomorrow I have a job interview."},
@@ -462,7 +463,7 @@ var WORDS = [
   {t:"lavoro", w:"la lezione", en:"lesson", pos:"n", ex:"La lezione dura un'ora.", exEn:"The lesson lasts an hour."},
   {t:"lavoro", w:"il corso", en:"course", pos:"n", ex:"Mi sono iscritto a un corso di italiano.", exEn:"I signed up for an Italian course."},
   {t:"lavoro", w:"l'insegnante", en:"teacher", pos:"n", ex:"L'insegnante spiega la regola.", exEn:"The teacher explains the rule."},
-  {t:"lavoro", w:"lo studente", en:"student", pos:"n", ex:"Sono studente di medicina.", exEn:"I'm a medical student."},
+  {t:"lavoro", w:"lo studente", en:"student", pos:"n", alt:["la studentessa"], ex:"Sono studente di medicina.", exEn:"I'm a medical student."},
   {t:"lavoro", w:"l'aula", en:"classroom", pos:"n", ex:"L'aula è al primo piano.", exEn:"The classroom is on the first floor."},
   {t:"lavoro", w:"il diploma", en:"school-leaving certificate", pos:"n", ex:"Ho preso il diploma nel duemiladieci.", exEn:"I got my school-leaving certificate in 2010."},
   {t:"lavoro", w:"la laurea", en:"university degree", pos:"n", ex:"Mia sorella ha una laurea in chimica.", exEn:"My sister has a degree in chemistry."},
@@ -475,9 +476,9 @@ var WORDS = [
   {t:"soldi", w:"lo scontrino", en:"receipt", pos:"n", ex:"Tieni lo scontrino.", exEn:"Keep the receipt."},
   {t:"soldi", w:"il resto", en:"change, money back", pos:"n", ex:"Mi ha dato il resto sbagliato.", exEn:"He gave me the wrong change."},
   {t:"soldi", w:"la carta di credito", en:"credit card", pos:"n", ex:"Accettate la carta di credito?", exEn:"Do you take credit cards?"},
-  {t:"soldi", w:"il contante", en:"cash", pos:"n", ex:"Preferisco pagare in contanti.", exEn:"I prefer to pay cash."},
+  {t:"soldi", w:"i contanti", en:"cash", pos:"n", ex:"Preferisco pagare in contanti.", exEn:"I prefer to pay cash."},
   {t:"soldi", w:"il bancomat", en:"ATM", pos:"n", ex:"Prendo dei soldi al bancomat.", exEn:"I'll get some money from the ATM."},
-  {t:"soldi", w:"il commesso", en:"shop assistant", pos:"n", ex:"Il commesso è stato gentile.", exEn:"The shop assistant was kind."},
+  {t:"soldi", w:"il commesso", en:"shop assistant", pos:"n", alt:["la commessa"], ex:"Il commesso è stato gentile.", exEn:"The shop assistant was kind."},
   {t:"soldi", w:"la spesa", en:"the food shopping", pos:"n", ex:"Faccio la spesa il sabato.", exEn:"I do the food shopping on Saturdays."},
   {t:"soldi", w:"il supermercato", en:"supermarket", pos:"n", ex:"Il supermercato chiude alle nove.", exEn:"The supermarket closes at nine."},
   {t:"soldi", w:"il carrello", en:"trolley", pos:"n", ex:"Il carrello è già pieno.", exEn:"The trolley is already full."},
@@ -501,11 +502,11 @@ var WORDS = [
   {t:"salute", w:"il mal di testa", en:"headache", pos:"n", ex:"Ho un mal di testa forte.", exEn:"I have a bad headache."},
   {t:"salute", w:"la ricetta", en:"prescription; recipe", pos:"n", ex:"Serve la ricetta del medico.", exEn:"You need a doctor's prescription."},
   {t:"salute", w:"il dente", en:"tooth", pos:"n", ex:"Mi fa male un dente.", exEn:"One of my teeth hurts."},
-  {t:"salute", w:"la schiena", en:"back", pos:"n", ex:"Dormo male e mi sveglio con la schiena dura.", exEn:"I sleep badly and wake up with a stiff back."},
+  {t:"salute", w:"la schiena", en:"back", pos:"n", ex:"Dormo male e mi sveglio con la schiena rigida.", exEn:"I sleep badly and wake up with a stiff back."},
   {t:"salute", w:"lo stomaco", en:"stomach", pos:"n", ex:"Ho mangiato troppo e mi fa male lo stomaco.", exEn:"I ate too much and my stomach hurts."},
   {t:"salute", w:"il cuore", en:"heart", pos:"n", ex:"Dopo la corsa il cuore batte forte.", exEn:"After a run your heart beats fast."},
   {t:"salute", w:"la pelle", en:"skin", pos:"n", ex:"Ha la pelle chiara.", exEn:"She has fair skin."},
-  {t:"salute", w:"l'orecchio", en:"ear", pos:"n", ex:"Con questa musica non sento da un orecchio.", exEn:"With this music I can't hear out of one ear."},
+  {t:"salute", w:"l'orecchio", en:"ear", pos:"n", ex:"Dopo il concerto non sento da un orecchio.", exEn:"After the concert I can't hear out of one ear."},
   {t:"salute", w:"il naso", en:"nose", pos:"n", ex:"Ha il naso rosso dal freddo.", exEn:"His nose is red from the cold."},
   {t:"salute", w:"la visita", en:"medical appointment", pos:"n", ex:"Ho una visita giovedì mattina.", exEn:"I have a medical appointment on Thursday morning."},
   /* ---------------- IL TEMPO LIBERO ---------------- */
@@ -526,7 +527,7 @@ var WORDS = [
   {t:"libero", w:"la rivista", en:"magazine", pos:"n", ex:"In sala d'attesa c'era una rivista vecchia.", exEn:"There was an old magazine in the waiting room."},
   {t:"libero", w:"la festa", en:"party", pos:"n", ex:"La festa finisce tardi.", exEn:"The party finishes late."},
   {t:"libero", w:"il regalo", en:"present, gift", pos:"n", ex:"Ho comprato un regalo per mia madre.", exEn:"I bought a present for my mother."},
-  {t:"libero", w:"la vacanza", en:"holiday", pos:"n", ex:"Le vacanze cominciano venerdì.", exEn:"The holidays start on Friday."},
+  {t:"libero", w:"la vacanza", en:"holiday", pos:"n", alt:["le vacanze"], ex:"Le vacanze cominciano venerdì.", exEn:"The holidays start on Friday."},
   {t:"libero", w:"il gioco", en:"game", pos:"n", ex:"È un gioco per bambini.", exEn:"It's a game for children."},
   {t:"libero", w:"la foto", en:"photo", pos:"n", ex:"Ti mando una foto.", exEn:"I'll send you a photo."},
   {t:"libero", w:"il quadro", en:"painting", pos:"n", ex:"In salotto c'è un quadro grande.", exEn:"There's a big painting in the living room."},
@@ -540,7 +541,7 @@ var WORDS = [
   {t:"casa2", w:"l'ascensore", en:"lift", pos:"n", ex:"L'ascensore non funziona.", exEn:"The lift isn't working."},
   {t:"casa2", w:"le scale", en:"stairs", pos:"n", ex:"Prendo le scale, non l'ascensore.", exEn:"I take the stairs, not the lift."},
   {t:"casa2", w:"il muro", en:"wall", pos:"n", ex:"Il muro è bianco.", exEn:"The wall is white."},
-  {t:"casa2", w:"il pavimento", en:"floor", pos:"n", ex:"Il pavimento è freddo.", exEn:"The floor is cold."},
+  {t:"casa2", w:"il pavimento", en:"floor (the surface you walk on)", pos:"n", ex:"Il pavimento è freddo.", exEn:"The floor is cold."},
   {t:"casa2", w:"il tetto", en:"roof", pos:"n", ex:"Il tetto perde acqua.", exEn:"The roof is leaking."},
   {t:"casa2", w:"l'armadio", en:"wardrobe", pos:"n", ex:"L'armadio è pieno di roba.", exEn:"The wardrobe is full of stuff."},
   {t:"casa2", w:"il divano", en:"sofa", pos:"n", ex:"Il divano è nuovo.", exEn:"The sofa is new."},
@@ -604,10 +605,10 @@ var WORDS = [
   /* ---------------- I RAPPORTI ---------------- */
   {t:"persone2", w:"lo zio", en:"uncle", pos:"n", ex:"Mio zio abita in Germania.", exEn:"My uncle lives in Germany."},
   {t:"persone2", w:"la zia", en:"aunt", pos:"n", ex:"La zia porta sempre i dolci.", exEn:"My aunt always brings cakes."},
-  {t:"persone2", w:"il cugino", en:"cousin", pos:"n", ex:"Ho tanti cugini.", exEn:"I have lots of cousins."},
+  {t:"persone2", w:"il cugino", en:"cousin", pos:"n", alt:["la cugina"], ex:"Ho tanti cugini.", exEn:"I have lots of cousins."},
   {t:"persone2", w:"il nipote", en:"nephew, grandson", pos:"n", ex:"Mio nipote ha appena imparato a camminare.", exEn:"My nephew has just learnt to walk."},
   {t:"persone2", w:"i genitori", en:"parents", pos:"n", ex:"I miei genitori abitano ancora lì.", exEn:"My parents still live there."},
-  {t:"persone2", w:"il vicino", en:"neighbour", pos:"n", ex:"Il vicino fa rumore la sera.", exEn:"The neighbour makes noise in the evening."},
+  {t:"persone2", w:"il vicino", en:"neighbour", pos:"n", alt:["la vicina"], ex:"Il vicino fa rumore la sera.", exEn:"The neighbour makes noise in the evening."},
   {t:"persone2", w:"il fidanzato", en:"boyfriend, partner", pos:"n", ex:"Il suo fidanzato è spagnolo.", exEn:"Her boyfriend is Spanish."},
   {t:"persone2", w:"il matrimonio", en:"wedding", pos:"n", ex:"Il matrimonio è a settembre.", exEn:"The wedding is in September."},
   {t:"persone2", w:"il compleanno", en:"birthday", pos:"n", ex:"Il mio compleanno è a marzo.", exEn:"My birthday is in March."},
@@ -730,7 +731,7 @@ var WORDS = [
   {t:"aggettivi2", w:"pieno", en:"full", pos:"a", ex:"Il bicchiere è pieno.", exEn:"The glass is full."},
   {t:"aggettivi2", w:"vuoto", en:"empty", pos:"a", ex:"La strada era vuota.", exEn:"The street was empty."},
   {t:"aggettivi2", w:"pesante", en:"heavy", pos:"a", ex:"La valigia è pesante.", exEn:"The suitcase is heavy."},
-  {t:"aggettivi2", w:"leggero", en:"light in weight", pos:"a", ex:"Preferisco una cena leggera.", exEn:"I prefer a light dinner."},
+  {t:"aggettivi2", w:"leggero", en:"light in weight", pos:"a", ex:"Questa borsa è leggera.", exEn:"This bag is light."},
   {t:"aggettivi2", w:"veloce", en:"fast", pos:"a", ex:"Questa macchina è veloce.", exEn:"This car is fast."},
   {t:"aggettivi2", w:"lento", en:"slow", pos:"a", ex:"Il servizio è lento.", exEn:"The service is slow."},
   {t:"aggettivi2", w:"forte", en:"strong; loud", pos:"a", ex:"Il caffè è troppo forte.", exEn:"The coffee is too strong."},
@@ -916,6 +917,10 @@ var WORDS = [
   /* La parola senza articolo: serve per accettare "casa" quando la
      risposta giusta e "la casa", e poi far notare l'articolo. */
   function bare(w){ return w.replace(/^(l'|un'|dell')/i,"").replace(/^(il|lo|la|i|gli|le|un|uno|una)\s+/i,""); }
+  /* Le varianti giuste di una parola (campo alt, facoltativo): nello
+     Scrivi valgono come la risposta principale e nelle prove non escono
+     mai come distrattori, se no ci sarebbero due risposte giuste. */
+  function simili(a, b){ return (a.alt||[]).indexOf(b.w)!==-1 || (b.alt||[]).indexOf(a.w)!==-1; }
   var POS_IT = {n:"nome", v:"verbo", a:"aggettivo", avv:"avverbio"};
   var POS_EN = {n:"noun", v:"verb", a:"adjective", avv:"adverb"};
   function themeOf(k){ for(var i=0;i<THEMES.length;i++){ if(THEMES[i].k===k) return THEMES[i]; } return null; }
@@ -1110,9 +1115,9 @@ var WORDS = [
       h += '<p class="today-txt">Per oggi hai finito. Torna domani e le carte si riaprono da sole.<br><span class="en">All caught up. Come back tomorrow.</span></p>';
     } else {
       h += '<b>'+s.giro+'</b>';
-      h += '<p class="today-txt">carte per oggi &middot; <span class="en">cards for today</span></p>';
+      h += '<p class="today-txt">'+(s.giro===1 ? 'carta per oggi &middot; <span class="en">card for today</span>' : 'carte per oggi &middot; <span class="en">cards for today</span>')+'</p>';
       if(s.due) h += '<span class="pill hot">'+s.due+' da ripassare</span>';
-      if(s.nuoveOggi) h += '<span class="pill">'+s.nuoveOggi+' parole nuove</span>';
+      if(s.nuoveOggi) h += '<span class="pill">'+s.nuoveOggi+(s.nuoveOggi===1 ? ' parola nuova' : ' parole nuove')+'</span>';
       else if(s.nuove) h += '<span class="pill">'+s.nuove+' ancora da scoprire</span>';
       if(s.sapute) h += '<span class="pill done">'+s.sapute+' in cassaforte</span>';
       h += '<button class="btn" data-action="open" data-mode="carte">Comincia <span class="sub">go</span></button>';
@@ -1154,7 +1159,7 @@ var WORDS = [
     h+='<div class="deck-bar"><i style="width:'+pct+'%"></i></div>';
     h+='<div class="deck-nums"><span><b>'+s.n+'</b> carte</span>';
     if(s.due) h+='<span class="due"><b>'+s.due+'</b> da ripassare</span>';
-    if(s.nuove) h+='<span><b>'+s.nuove+'</b> nuove</span>';
+    if(s.nuove) h+='<span><b>'+s.nuove+'</b>'+(s.nuove===1 ? ' nuova' : ' nuove')+'</span>';
     if(!s.due && !s.nuove) h+='<span>tutto a posto</span>';
     h+='</div></button>';
     return h;
@@ -1287,14 +1292,16 @@ var WORDS = [
     var h='<div class="results" style="--mode:'+MODES.carte.color+'">';
     h+='<p class="eyebrow">giro finito &middot; round done</p>';
     h+='<div class="res-score">'+state.seen+'</div>';
-    h+='<p class="res-sub">carte viste, '+state.known+' sapute al primo colpo<br><span class="en">cards seen, '+state.known+' known first time</span></p>';
+    h+='<p class="res-sub">'+(state.seen===1 ? 'carta vista' : 'carte viste')+', '+state.known+(state.known===1 ? ' saputa' : ' sapute')+' al primo colpo<br><span class="en">'+(state.seen===1 ? 'card seen' : 'cards seen')+', '+state.known+' known first time</span></p>';
     if(state.freeRun){
       h+='<div class="res-badge quiet">giro libero: le scadenze non sono cambiate</div>';
     } else {
-      h+='<div class="res-badge">&#9733; '+s.sapute+' parole in cassaforte su '+s.n+'</div>';
+      h+='<div class="res-badge">&#9733; '+s.sapute+(s.sapute===1 ? ' parola' : ' parole')+' in cassaforte su '+s.n+'</div>';
     }
     h+='<p class="res-msg">'+(domani
-        ? 'Domani ti aspettano '+domani+' carte. Cinque minuti e sono fatte.<br><span class="en" style="font-size:.92rem">'+domani+' cards are waiting for you tomorrow.</span>'
+        ? (domani===1
+            ? 'Domani ti aspetta 1 carta.<br><span class="en" style="font-size:.92rem">1 card is waiting for you tomorrow.</span>'
+            : 'Domani ti aspettano '+domani+' carte. Cinque minuti e sono fatte.<br><span class="en" style="font-size:.92rem">'+domani+' cards are waiting for you tomorrow.</span>')
         : 'Le prossime carte torneranno fra qualche giorno: è così che restano.<br><span class="en" style="font-size:.92rem">The next cards come back in a few days. That is what makes them stick.</span>')+'</p>';
     h+='<div class="res-actions">';
     h+='<button class="btn" data-action="retry">Un altro giro <span class="sub">again</span></button>';
@@ -1366,7 +1373,7 @@ var WORDS = [
       /* Al contrario: la domanda e in inglese e le opzioni sono le parole
          italiane. Stessi criteri per i distrattori: stesso tema, stessa
          parte del discorso, se no si indovina senza sapere niente. */
-      var temaEn = WORDS.filter(function(x){ return x.t===w.t && x.w!==w.w; });
+      var temaEn = WORDS.filter(function(x){ return x.t===w.t && x.w!==w.w && !simili(w,x); });
       var stessiEn = temaEn.filter(function(x){ return x.pos===w.pos; });
       var baseEn = stessiEn.length>=3 ? stessiEn : (temaEn.length ? temaEn : WORDS);
       var sameEn = shuffle(baseEn).slice(0,3);
@@ -1375,7 +1382,7 @@ var WORDS = [
       var kEn=0;
       while(sameEn.length<3 && kEn<altriEn.length){
         var exEn=altriEn[kEn++];
-        if(exEn.w!==w.w && sameEn.map(function(x){return x.w;}).indexOf(exEn.w)===-1) sameEn.push(exEn);
+        if(exEn.w!==w.w && !simili(w,exEn) && sameEn.map(function(x){return x.w;}).indexOf(exEn.w)===-1) sameEn.push(exEn);
       }
       it.prompt=w.en; it.promptPos=POS_EN[w.pos];
       it.correct=w.w;
@@ -1388,7 +1395,7 @@ var WORDS = [
       var conParentesi = /\(/.test(w.en);
       function stessaForma(x){ return /\(/.test(x.en)===conParentesi; }
       function stessoTipo(x){ return x.pos===w.pos; }
-      var tema = WORDS.filter(function(x){ return x.t===w.t && x.en!==w.en; });
+      var tema = WORDS.filter(function(x){ return x.t===w.t && x.en!==w.en && !simili(w,x); });
       /* Meglio: stesso tema, stessa parte del discorso, stessa forma.
          Se non bastano scendo di un gradino alla volta. In un tema misto
          un aggettivo in mezzo a tre nomi si riconosce senza saperlo. */
@@ -1402,7 +1409,7 @@ var WORDS = [
       var k=0;
       while(same.length<3 && k<altri.length){
         var extra=altri[k++];
-        if(extra.en!==w.en && same.map(function(x){return x.en;}).indexOf(extra.en)===-1) same.push(extra);
+        if(extra.en!==w.en && !simili(w,extra) && same.map(function(x){return x.en;}).indexOf(extra.en)===-1) same.push(extra);
       }
       it.prompt=w.w; it.promptPos=POS_IT[w.pos]+" &middot; "+POS_EN[w.pos];
       it.correct=w.en;
@@ -1519,10 +1526,13 @@ var WORDS = [
         else if(b===tile) b.classList.add("no");
       });
     } else {
-      var full=norm(it.correct), nude=norm(bare(it.correct));
-      ok = norm(given)===full || norm(given)===nude;
-      if(ok && norm(given)===nude && full!==nude){
-        note=" Manca solo l'articolo: si dice <b>"+esc(it.correct)+"</b>.";
+      var dato=norm(given), presa=null;
+      [it.correct].concat(w.alt||[]).forEach(function(f){
+        if(!presa && (dato===norm(f) || dato===norm(bare(f)))) presa=f;
+      });
+      ok = !!presa;
+      if(ok && dato===norm(bare(presa)) && norm(presa)!==norm(bare(presa))){
+        note=" Manca solo l'articolo: si dice <b>"+esc(presa)+"</b>.";
       }
       var inp=document.getElementById("typed");
       if(inp){ inp.classList.add(ok?"ok":"no"); inp.disabled=true; }
