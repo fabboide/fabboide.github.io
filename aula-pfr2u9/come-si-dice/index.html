@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Come si dice? · Talk with Fabio</title>
+<meta name="description" content="Parlare sempre in italiano anche quando manca una parola: descriverla, i tre jolly per l'inglese, le mie parole.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+
+
+/* Come si dice? */
+.mini{font-size:.9rem;color:var(--muted);margin:10px 0 0}
+.regola{border-left:4px solid var(--tomato);background:#FBF0EE;border-radius:0 12px 12px 0;padding:10px 14px;margin:0 0 14px;font-size:1.02rem}
+.regola b{font-family:var(--display)}
+.btn.giallo{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+.btn.grande{font-size:1.1rem;padding:12px 22px}
+#p1 .grid2>*,#p2 .grid2>*,#p3 .grid2>*{min-width:0}
+
+/* Il kit: la striscia di frasi che si tocca quando le usa */
+.kit{background:var(--paper);border:2px dashed var(--basil);border-radius:16px;padding:12px 14px;margin-top:14px}
+.kit h3{margin:0 0 4px;color:var(--basil)}
+.kit .gr{font-family:var(--display);font-size:.72rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:10px 0 4px}
+.kit .frasi{display:flex;flex-wrap:wrap;gap:6px}
+.kit .frasi button{font-family:var(--text);font-size:1rem;border:1px solid #CBDDD2;background:var(--bubble);border-radius:999px;padding:4px 12px;text-align:left}
+.kit .frasi button small{font-style:italic;color:var(--muted);font-size:.82em;margin-left:4px}
+.kit .frasi button.tocca{animation:tocca .45s ease}
+@keyframes tocca{0%{transform:scale(1)}40%{transform:scale(1.08);background:var(--lemon)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.kit .frasi button.tocca{animation:none}}
+
+/* Punteggi */
+.punteggi{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--display);font-weight:700;margin:12px 0 0}
+.punteggi span{display:block;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.punteggi b{font-size:1.7rem}
+.punteggi .verde b{color:var(--basil)}
+.punteggi .rosso b{color:var(--tomato)}
+
+/* Fase 1: la parola che manca */
+.carta{border:2px solid var(--ink);border-radius:20px;background:var(--paper);padding:20px;text-align:center}
+.carta .cat{font-family:var(--display);font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.carta .em{font-size:3rem;line-height:1.1;margin-top:6px}
+.carta .en-w{font-family:var(--display);font-weight:800;font-size:clamp(2rem,7vw,3rem);line-height:1.1;margin:4px 0}
+.carta .en-w small{display:block;font-family:var(--hand);font-weight:400;font-size:1.25rem;color:var(--muted)}
+.carta .aiuto{font-family:var(--hand);font-size:1.45rem;color:var(--basil);margin:8px 0 0}
+.carta .it-w{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}
+.carta .it-w.show{display:block}
+.carta .it-w b{font-family:var(--display);font-size:1.8rem;color:var(--tomato)}
+.carta .it-w p{margin:4px 0 0;font-size:1.1rem}
+.barra{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:14px 0 0}
+.barra i{display:block;height:100%;width:100%;background:var(--basil);transition:width .25s linear}
+.barra.poco i{background:var(--lemon)}
+.barra.zero i{background:var(--tomato)}
+
+/* Fase 2: tre jolly */
+.tema-card{font-family:var(--display);font-weight:800;font-size:1.5rem;padding:14px 18px;border:2px solid var(--ink);border-radius:16px;background:var(--paper)}
+.tema-card small{display:block;font-family:var(--hand);font-weight:400;font-size:1.2rem;color:var(--tomato)}
+.jolly{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0 0;font-family:var(--display);font-weight:700}
+.jolly i{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;border:2px solid var(--ink);background:var(--lemon);font-style:normal;font-size:1.1rem}
+.jolly i.usato{background:var(--line);border-color:var(--line);color:var(--muted);text-decoration:line-through}
+.jolly .finiti{flex-basis:100%;font-family:var(--hand);font-size:1.35rem;color:var(--tomato);font-weight:400}
+.utili{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:8px 0 0;padding:0;list-style:none}
+.utili li{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:1.02rem}
+.utili li span{display:block;font-size:.82rem;font-style:italic;color:var(--muted)}
+.utili.coperte li span{visibility:hidden}
+.attacchi{margin:8px 0 0;padding-left:20px}
+.attacchi li{font-size:1.08rem}
+.curiosa{margin:0;padding-left:22px}
+.curiosa li{margin-bottom:6px;font-size:1.1rem}
+.curiosa li.chiesta{color:var(--muted);text-decoration:line-through}
+.curiosa li button{border:0;background:none;padding:0;text-align:left;font:inherit;color:inherit}
+.salva-parola{display:none;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px;background:#FDF0D8;border:1px solid var(--lemon);border-radius:12px;padding:10px}
+.salva-parola.show{display:flex}
+.salva-parola input{flex:1 1 130px;min-width:0;border:1px solid var(--line);border-radius:999px;padding:7px 12px;background:var(--paper)}
+.fase-label{font-family:var(--hand);font-size:1.4rem;color:var(--tomato);min-height:1.5em}
+.giri{width:100%;border-collapse:collapse;font-size:.95rem;margin-top:8px}
+.giri th,.giri td{border-bottom:1px solid var(--line);padding:5px 4px;text-align:center}
+.giri th:first-child,.giri td:first-child{text-align:left}
+
+/* Fase 3: le mie parole */
+.lista-parole{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.lista-parole li{display:flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:8px 12px}
+.lista-parole li .w{flex:1;min-width:0}
+.lista-parole li .w b{font-family:var(--display)}
+.lista-parole li .w span{color:var(--muted);font-style:italic;margin-left:6px}
+.lista-parole li .ok{font-family:var(--display);font-weight:800;color:var(--basil);font-size:.85rem}
+.lista-parole li button{border:0;background:none;color:var(--muted);font-size:1.2rem;padding:0 4px}
+.aggiungi{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.aggiungi input{flex:1 1 130px;min-width:0;border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:var(--paper)}
+kbd{font-family:var(--display);font-size:.8rem;font-weight:700;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 7px;background:var(--paper)}
+/* Comuni presi da Che mi racconti? */
+.nota-gram{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin-top:10px}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.vuoto{color:var(--muted);text-align:center;padding:26px 10px}
+/* Appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.appunti .riga{justify-content:space-between}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+/* Frasi utili */
+dialog{border:0;border-radius:16px;padding:0;max-width:660px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.5rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:54%}
+.dlg-body h3{margin:18px 0 4px;color:var(--basil);font-size:1.12rem}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Come si dice?</h1>
+    <p>Quando manca una parola non si passa all'inglese: si gira intorno, si chiede, si va avanti. Tre giochi per parlare sempre in italiano, anche con le parole che non hai. <span class="en">When a word is missing, don't switch to English: go around it.</span></p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Giochi">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>La parola che manca</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>Tre jolly</button>
+    <button role="tab" aria-selected="false" data-phase="p3"><span class="n">3</span>Le mie parole <span class="count" id="nParole"></span></button>
+  </nav>
+
+  <!-- 1 · LA PAROLA CHE MANCA -->
+  <section class="phase active" id="p1">
+    <h2>La parola che manca</h2>
+    <p class="regola"><b>La regola:</b> la parola è in inglese perché in italiano non la sai ancora. Spiegala in italiano finché indovino, con le frasi del kit. Se dici la parola in inglese, perdi la carta. <span class="en">The word is in English because you don't know it in Italian yet. Explain it in Italian until I guess.</span></p>
+    <div class="toolbar">
+      <div class="chips" id="c1Cat"></div>
+      <div class="chips" id="c1Sec"></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="carta">
+          <div class="cat" id="c1Tipo">una cosa</div>
+          <div class="em" id="c1Em" aria-hidden="true"></div>
+          <div class="en-w" id="c1En"></div>
+          <p class="aiuto" id="c1Aiuto"></p>
+          <div class="barra" id="c1Barra"><i></i></div>
+          <div class="it-w" id="c1It"><b id="c1ItW"></b><p id="c1Es"></p></div>
+        </div>
+        <div class="riga">
+          <button class="btn green grande" id="c1Si" type="button">Indovinato!</button>
+          <button class="btn red" id="c1Ing" type="button">Ha detto l'inglese</button>
+          <button class="btn ghost" id="c1Passo" type="button">Passo</button>
+          <button class="btn" id="c1Next" type="button" hidden>Un'altra &rarr;</button>
+        </div>
+        <div class="punteggi">
+          <div class="verde"><span>indovinate</span><b id="c1Ok">0</b></div>
+          <div><span>frasi del kit</span><b id="c1Kit">0</b></div>
+          <div class="rosso"><span>inglese</span><b id="c1No">0</b></div>
+        </div>
+        <div class="kit" id="kit1"></div>
+      </div>
+      <aside class="panel">
+        <h3>Come si gioca</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>lei vede la parola inglese, io no: giro lo schermo o guardo altrove</li>
+          <li>ogni volta che usa una frase del kit la tocco: diventa un punto</li>
+          <li>indovino solo dopo <b>almeno due frasi</b>, anche se ho capito prima</li>
+          <li>poi scopro la parola italiana, la ripete e la usa in una frase sua</li>
+          <li>le carte passate o perse finiscono in «Le mie parole»</li>
+        </ul>
+        <p class="mini">Prima le cose, che sono più facili («si usa per...»), poi i posti e le persone, alla fine le azioni.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2 · TRE JOLLY -->
+  <section class="phase" id="p2">
+    <h2>Tre jolly</h2>
+    <p class="regola"><b>La regola:</b> parliamo di un tema per tre minuti. Hai <b>tre jolly</b>: puoi dire una parola in inglese tre volte, non di più. Ogni volta io ti do la parola italiana e la ripeti. Finiti i jolly, se ti scappa l'inglese ricominci la frase con il kit. <span class="en">Three English jokers per round. After that, rephrase in Italian.</span></p>
+    <div class="toolbar">
+      <button class="btn ghost" id="j2Tema" type="button">Cambia tema</button>
+      <button class="btn giallo" id="j2Prep" type="button">Prepara: 1 minuto</button>
+      <button class="btn red" id="j2Via" type="button">Via! 3 minuti</button>
+      <div class="timer" id="j2Timer"><output id="j2Clock">3:00</output></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="tema-card" id="j2Card"></div>
+        <p class="fase-label" id="j2Fase"></p>
+        <div class="panel">
+          <h3>Parole utili <button class="btn ghost" id="j2Copri" type="button" style="padding:3px 12px;font-size:.82rem;margin-left:6px">Copri l'inglese</button></h3>
+          <ul class="utili" id="j2Utili"></ul>
+          <h3 style="margin-top:14px">Per cominciare</h3>
+          <ul class="attacchi" id="j2Attacchi"></ul>
+        </div>
+        <div class="jolly" id="j2Jolly" aria-live="polite"></div>
+        <div class="riga">
+          <button class="btn red" id="j2Ing" type="button">Inglese!</button>
+          <button class="btn green" id="j2Dom" type="button">+1 domanda a me</button>
+        </div>
+        <div class="salva-parola" id="j2Salva">
+          <input id="j2En" type="text" placeholder="in inglese" autocomplete="off" aria-label="La parola in inglese">
+          <input id="j2It" type="text" placeholder="in italiano" autocomplete="off" aria-label="La parola in italiano">
+          <button class="btn" id="j2Ok" type="button">Salva</button>
+          <button class="btn ghost" id="j2Chiudi" type="button">Non serve</button>
+        </div>
+        <div class="punteggi">
+          <div class="verde"><span>frasi del kit</span><b id="j2Kit">0</b></div>
+          <div><span>domande a me</span><b id="j2Dn">0</b></div>
+          <div class="rosso"><span>jolly usati</span><b id="j2Usati">0</b></div>
+        </div>
+        <div class="kit" id="kit2"></div>
+      </div>
+      <aside class="panel">
+        <h3>Le mie domande</h3>
+        <ol class="curiosa" id="j2Domande"></ol>
+        <p class="mini">Tocca la domanda quando è fatta. Ne aggiungo altre partendo da quello che racconta.</p>
+        <h3 style="margin-top:16px">Come si gioca</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li><b>Prepara:</b> un minuto per guardare le parole utili, senza scrivere frasi</li>
+          <li><b>Via:</b> parla lei, io chiedo e rilancio. Vale anche farmi domande</li>
+          <li><b>Inglese!</b> toglie un jolly e apre la riga per salvare la parola</li>
+          <li><b>Secondo giro:</b> stesso tema, due minuti, jolly di nuovo pieni. Deve andare meglio</li>
+        </ul>
+        <table class="giri" id="j2Giri" hidden><thead><tr><th>giro</th><th>kit</th><th>domande</th><th>jolly</th></tr></thead><tbody></tbody></table>
+        <div class="riga"><button class="btn" id="j2Secondo" type="button" hidden>Secondo giro &rarr;</button></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 3 · LE MIE PAROLE -->
+  <section class="phase" id="p3">
+    <h2>Le mie parole</h2>
+    <p class="regola"><b>La regola:</b> sono le parole che ti sono mancate oggi. Vedi l'inglese: dimmi la parola italiana <b>e una frase vera su di te</b> con quella parola. <span class="en">The words you were missing. Say the Italian word and a true sentence about you.</span></p>
+    <div class="grid2">
+      <div>
+        <div class="carta" id="m3Carta">
+          <div class="cat">la parola</div>
+          <div class="en-w" id="m3En"></div>
+          <div class="it-w" id="m3It"><b id="m3ItW"></b></div>
+        </div>
+        <div class="riga">
+          <button class="btn ghost" id="m3Scopri" type="button">Scopri</button>
+          <button class="btn green" id="m3So" type="button">La so!</button>
+          <button class="btn red" id="m3Ancora" type="button">Ancora</button>
+        </div>
+        <p class="mini" id="m3Stato"></p>
+      </div>
+      <aside class="panel">
+        <h3>La lista</h3>
+        <ul class="lista-parole" id="m3Lista"></ul>
+        <div class="aggiungi">
+          <input id="m3En2" type="text" placeholder="in inglese" autocomplete="off" aria-label="Parola in inglese">
+          <input id="m3It2" type="text" placeholder="in italiano" autocomplete="off" aria-label="Parola in italiano">
+          <button class="btn" id="m3Add" type="button">Aggiungi</button>
+        </div>
+        <div class="riga">
+          <button class="btn ghost" id="m3Copia" type="button">Copia la lista</button>
+          <button class="btn ghost" id="m3Svuota" type="button">Svuota</button>
+        </div>
+        <p class="mini">La lista resta su questo computer anche alla lezione dopo. «Copia la lista» la mette negli appunti, pronta da incollare.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- APPUNTI -->
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Gli errori li scrivo qui, non li correggo mentre parla. Tre al massimo alla fine.</p>
+    <textarea id="note" placeholder="Es. «sono andato» → sono andata · «la problema» → il problema"></textarea>
+    <div class="riga">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera i punti)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  function $(id){ return document.getElementById(id); }
+  function pesca(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function mescola(a){ a = a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function orologio(s){ s = Math.max(0, s); return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
+
+  /* ============ IL KIT ============
+     Le frasi per non passare all'inglese. Toccarle vale un punto. */
+  var KIT = [
+    {g:"Descrivo", f:[
+      ["È una cosa che si usa per...", "it's a thing you use to..."],
+      ["È un posto dove...", "it's a place where..."],
+      ["È una persona che...", "it's a person who..."],
+      ["È quando...", "it's when..."],
+      ["È come..., ma...", "it's like..., but..."],
+      ["È il contrario di...", "it's the opposite of..."],
+      ["È grande, piccolo, di plastica...", "it's big, small, made of plastic..."]
+    ]},
+    {g:"Prendo tempo", f:[
+      ["Allora...", "so..."],
+      ["Aspetta...", "wait..."],
+      ["Come posso dire...", "how can I say..."],
+      ["Cioè...", "I mean..."]
+    ]},
+    {g:"Chiedo", f:[
+      ["Come si dice... in italiano?", "how do you say...?"],
+      ["Non mi viene la parola.", "the word won't come"],
+      ["Si dice così?", "is that right?"],
+      ["Puoi ripetere?", "can you repeat?"]
+    ]}
+  ];
+
+  /* ============ FASE 1: le parole che mancano ============ */
+  var TIPI = {
+    cosa:{l:"una cosa", a:"È una cosa che si usa per..."},
+    posto:{l:"un posto", a:"È un posto dove..."},
+    persona:{l:"una persona", a:"È una persona che..."},
+    azione:{l:"un'azione", a:"È quando... / Lo fai quando..."}
+  };
+  var PAROLE = [
+    {c:"cosa", en:"kettle", it:"il bollitore", em:"🫖", es:"Uso il bollitore per fare il tè."},
+    {c:"cosa", en:"corkscrew", it:"il cavatappi", em:"🍷", es:"Non trovo il cavatappi: come apriamo il vino?"},
+    {c:"cosa", en:"phone charger", it:"il caricabatterie", em:"🔌", es:"Mi presti il caricabatterie? Ho il telefono scarico."},
+    {c:"cosa", en:"toothbrush", it:"lo spazzolino", em:"🪥", es:"Ho dimenticato lo spazzolino a casa."},
+    {c:"cosa", en:"wallet", it:"il portafoglio", em:"👛", es:"Ho perso il portafoglio al mercato."},
+    {c:"cosa", en:"scissors", it:"le forbici", em:"✂️", es:"Dove sono le forbici?"},
+    {c:"cosa", en:"pillow", it:"il cuscino", em:"🛏️", es:"Dormo con due cuscini."},
+    {c:"cosa", en:"blanket", it:"la coperta", em:"🛋️", es:"Fa freddo: mi dai una coperta?"},
+    {c:"cosa", en:"hairdryer", it:"il phon", em:"💨", es:"Il phon dell'albergo non funziona."},
+    {c:"cosa", en:"ladder", it:"la scala", em:"🪜", es:"Per cambiare la lampadina serve una scala."},
+    {c:"cosa", en:"broom", it:"la scopa", em:"🧹", es:"Passo la scopa in cucina."},
+    {c:"cosa", en:"sink", it:"il lavandino", em:"🚰", es:"I piatti sporchi sono nel lavandino."},
+    {c:"cosa", en:"mirror", it:"lo specchio", em:"🪞", es:"Mi guardo allo specchio prima di uscire."},
+    {c:"cosa", en:"sunscreen", it:"la crema solare", em:"🧴", es:"Al mare metto sempre la crema solare."},
+    {c:"cosa", en:"receipt", it:"lo scontrino", em:"🧾", es:"Mi dà lo scontrino, per favore?"},
+    {c:"cosa", en:"light bulb", it:"la lampadina", em:"💡", es:"In cucina c'è una lampadina rotta."},
+    {c:"cosa", en:"backpack", it:"lo zaino", em:"🎒", es:"Nello zaino ho il computer e l'acqua."},
+    {c:"cosa", en:"umbrella", it:"l'ombrello", em:"☂️", es:"Piove: hai l'ombrello?"},
+    {c:"cosa", en:"rubbish bin", it:"il cestino", em:"🗑️", es:"Butto la carta nel cestino."},
+    {c:"cosa", en:"oven", it:"il forno", em:"🍕", es:"La pizza è nel forno, ancora cinque minuti."},
+
+    {c:"posto", en:"pharmacy", it:"la farmacia", em:"💊", es:"Ho mal di testa: vado in farmacia."},
+    {c:"posto", en:"bakery", it:"il panificio", em:"🥖", es:"Compro il pane al panificio sotto casa."},
+    {c:"posto", en:"post office", it:"l'ufficio postale", em:"📮", es:"Devo spedire un pacco: vado all'ufficio postale."},
+    {c:"posto", en:"petrol station", it:"il distributore", em:"⛽", es:"Mi fermo al distributore a fare benzina."},
+    {c:"posto", en:"library", it:"la biblioteca", em:"📚", es:"Studio in biblioteca. Attenzione: in libreria i libri si comprano!"},
+    {c:"posto", en:"hairdresser's", it:"il parrucchiere", em:"💇", es:"Domani vado dal parrucchiere."},
+    {c:"posto", en:"playground", it:"il parco giochi", em:"🛝", es:"I bambini giocano al parco giochi."},
+    {c:"posto", en:"laundromat", it:"la lavanderia", em:"🧺", es:"Porto le camicie in lavanderia."},
+    {c:"posto", en:"town hall", it:"il comune", em:"🏛️", es:"Per i documenti devo andare in comune."},
+    {c:"posto", en:"butcher's", it:"la macelleria", em:"🥩", es:"In macelleria compro il pollo."},
+    {c:"posto", en:"bus stop", it:"la fermata dell'autobus", em:"🚏", es:"Ti aspetto alla fermata dell'autobus."},
+
+    {c:"persona", en:"plumber", it:"l'idraulico", em:"🔧", es:"Il bagno perde acqua: chiamo l'idraulico."},
+    {c:"persona", en:"landlord", it:"il padrone di casa", em:"🏠", es:"Pago l'affitto al padrone di casa."},
+    {c:"persona", en:"neighbour", it:"il vicino, la vicina", em:"🚪", es:"La mia vicina ha tre gatti."},
+    {c:"persona", en:"waiter", it:"il cameriere, la cameriera", em:"🍽️", es:"Il cameriere ci porta il conto."},
+    {c:"persona", en:"nurse", it:"l'infermiere, l'infermiera", em:"🩺", es:"Mia cugina fa l'infermiera in ospedale."},
+    {c:"persona", en:"mechanic", it:"il meccanico", em:"🚗", es:"La macchina non parte: la porto dal meccanico."},
+    {c:"persona", en:"mother-in-law", it:"la suocera", em:"👵", es:"La domenica pranziamo dalla suocera."},
+    {c:"persona", en:"boss", it:"il capo, la capa", em:"💼", es:"Il mio capo è molto simpatico."},
+    {c:"persona", en:"flatmate", it:"il coinquilino, la coinquilina", em:"🛋️", es:"Vivo con due coinquilini."},
+    {c:"persona", en:"tour guide", it:"la guida", em:"🗺️", es:"La guida ci racconta la storia della città."},
+
+    {c:"azione", en:"to iron", it:"stirare", em:"👔", es:"Odio stirare le camicie."},
+    {c:"azione", en:"to borrow", it:"prendere in prestito", em:"🤝", es:"Posso prendere in prestito il tuo libro?"},
+    {c:"azione", en:"to fall asleep", it:"addormentarsi", em:"😴", es:"Mi addormento sempre sul divano."},
+    {c:"azione", en:"to get lost", it:"perdersi", em:"🧭", es:"A Venezia mi perdo sempre."},
+    {c:"azione", en:"to sneeze", it:"starnutire", em:"🤧", es:"Quando starnutisci, gli italiani dicono «Salute!»."},
+    {c:"azione", en:"to queue", it:"fare la fila", em:"🚶", es:"In posta ho fatto la fila per mezz'ora."},
+    {c:"azione", en:"to book", it:"prenotare", em:"📅", es:"Ho prenotato un tavolo per le otto."},
+    {c:"azione", en:"to rent", it:"affittare", em:"🔑", es:"Abbiamo affittato una casa al mare."},
+    {c:"azione", en:"to try on", it:"provare", em:"👗", es:"Posso provare questa giacca?"},
+    {c:"azione", en:"to tidy up", it:"mettere in ordine", em:"🧸", es:"La domenica metto in ordine la casa."},
+    {c:"azione", en:"to complain", it:"lamentarsi", em:"😤", es:"Mio fratello si lamenta sempre del tempo."},
+    {c:"azione", en:"to miss someone", it:"mi manca, mi mancano", em:"💭", es:"Mi manca la mia famiglia. Mi mancano i miei amici."}
+  ];
+
+  /* ============ FASE 2: i temi ============ */
+  var TEMI = [
+    {t:"La mia casa", u:[["il soggiorno","living room"],["la camera da letto","bedroom"],["il bagno","bathroom"],["il balcone","balcony"],["il quartiere","neighbourhood"],["l'affitto","rent"],["i vicini","neighbours"],["tranquillo","quiet"]],
+      a:["Abito in un appartamento...","Nella mia casa c'è...","La stanza che preferisco è..."],
+      d:["Dove abiti?","Com'è la tua casa? Quante stanze ci sono?","Qual è la tua stanza preferita? Perché?","Com'è il tuo quartiere?","Come sono i tuoi vicini?","Cosa vuoi cambiare nella tua casa?"]},
+    {t:"La mia giornata", u:[["svegliarsi","to wake up"],["fare colazione","to have breakfast"],["di solito","usually"],["prima","first"],["poi","then"],["la sera","in the evening"],["stanca","tired"],["il pranzo","lunch"]],
+      a:["Di solito mi sveglio alle...","La mattina...","Poi..."],
+      d:["A che ora ti svegli?","Cosa mangi a colazione?","Cosa fai la mattina?","Dove pranzi? Con chi?","Cosa fai la sera?","Qual è il momento più bello della giornata?"]},
+    {t:"Il weekend", u:[["sabato","Saturday"],["domenica","Sunday"],["uscire","to go out"],["riposarsi","to rest"],["una passeggiata","a walk"],["gli amici","friends"],["è stato","it was"],["divertente","fun"]],
+      a:["Sabato sono andata...","Domenica ho...","È stato bello perché..."],
+      d:["Cosa hai fatto sabato?","Sei uscita? Dove sei andata?","Con chi eri?","Cosa hai mangiato?","E domenica, cosa hai fatto?","Cosa fai il prossimo weekend?"]},
+    {t:"Il cibo", u:[["la verdura","vegetables"],["la frutta","fruit"],["cucinare","to cook"],["la ricetta","recipe"],["piccante","spicy"],["dolce","sweet"],["il piatto","dish"],["fare la spesa","to do the shopping"]],
+      a:["Mi piace molto...","Non mi piace per niente...","Di solito cucino..."],
+      d:["Cosa ti piace mangiare?","Sai cucinare? Cosa cucini?","Qual è un piatto tipico del tuo paese?","Dove fai la spesa?","Cosa hai mangiato ieri sera?","Qual è il tuo piatto italiano preferito?"]},
+    {t:"La famiglia", u:[["i genitori","parents"],["il fratello","brother"],["la sorella","sister"],["i nonni","grandparents"],["il cugino, la cugina","cousin"],["sposato, sposata","married"],["assomigliare a","to look like"],["vivere","to live"]],
+      a:["La mia famiglia è...","Ho un fratello che...","Assomiglio a..."],
+      d:["Com'è la tua famiglia?","Hai fratelli o sorelle? Come si chiamano?","Dove vivono i tuoi genitori?","A chi assomigli?","Quando vedi la tua famiglia?","Cosa fate insieme?"]},
+    {t:"Il lavoro", u:[["il lavoro","job"],["l'ufficio","office"],["i colleghi","colleagues"],["il capo","boss"],["lavorare da casa","to work from home"],["la riunione","meeting"],["l'orario","working hours"],["la pausa","break"]],
+      a:["Lavoro come...","Di solito al lavoro...","La cosa che mi piace di più è..."],
+      d:["Che lavoro fai?","Dove lavori? Come ci vai?","Com'è una giornata di lavoro?","Come sono i tuoi colleghi?","Lavori anche da casa?","Cosa ti piace del tuo lavoro? Cosa no?"]},
+    {t:"Le vacanze", u:[["il viaggio","trip"],["il mare","the sea"],["la montagna","the mountains"],["l'albergo","hotel"],["la valigia","suitcase"],["prenotare","to book"],["visitare","to visit"],["il volo","flight"]],
+      a:["L'ultima vacanza sono andata...","Mi piace di più...","Il prossimo viaggio..."],
+      d:["Preferisci il mare o la montagna?","Dove sei andata l'ultima volta in vacanza?","Con chi sei andata?","Cosa hai visto?","Cosa metti sempre in valigia?","Dove vuoi andare il prossimo anno?"]},
+    {t:"La mia città", u:[["il centro","city centre"],["la piazza","square"],["il traffico","traffic"],["i negozi","shops"],["la gente","people"],["vivace","lively"],["tranquilla","quiet"],["la stazione","station"]],
+      a:["Abito a...","La mia città è...","Il posto più bello è..."],
+      d:["Dove abiti? Com'è la tua città?","Quanta gente ci vive?","C'è molto traffico?","Qual è il posto più bello?","Dove porti un amico che viene a trovarti?","Cosa manca nella tua città?"]},
+    {t:"Il tempo libero", u:[["suonare","to play an instrument"],["ballare","to dance"],["leggere","to read"],["la palestra","gym"],["la serie tv","TV series"],["camminare","to walk"],["giocare","to play a game"],["rilassarsi","to relax"]],
+      a:["Nel tempo libero...","Mi piace tanto...","Da poco ho cominciato a..."],
+      d:["Cosa fai nel tempo libero?","Fai sport? Quale?","Leggi? Cosa stai leggendo?","Guardi delle serie tv? Quale mi consigli?","Suoni uno strumento?","Cosa vuoi imparare a fare?"]},
+    {t:"Lo shopping", u:[["i vestiti","clothes"],["la taglia","size"],["costa","it costs"],["caro","expensive"],["economico","cheap"],["i saldi","the sales"],["provare","to try on"],["online","online"]],
+      a:["Di solito compro...","Non mi piace...","L'ultima cosa che ho comprato è..."],
+      d:["Ti piace fare shopping?","Dove compri i vestiti?","Compri online?","Qual è l'ultima cosa che hai comprato?","Hai comprato qualcosa di troppo caro?","Cosa vuoi comprare adesso?"]},
+    {t:"Gli animali", u:[["il cane","dog"],["il gatto","cat"],["portare a spasso","to walk (the dog)"],["il veterinario","vet"],["carino","cute"],["avere paura di","to be afraid of"],["il giardino","garden"],["la campagna","countryside"]],
+      a:["Ho un...","Il mio animale preferito è...","Ho paura di..."],
+      d:["Hai un animale? Come si chiama?","Com'è? Cosa fa tutto il giorno?","Da piccola avevi un animale?","Preferisci i cani o i gatti? Perché?","Di quale animale hai paura?","Quale animale vuoi avere?"]},
+    {t:"Il tempo e le stagioni", u:[["fa caldo","it's hot"],["fa freddo","it's cold"],["piove","it's raining"],["la neve","snow"],["il sole","sun"],["l'estate","summer"],["l'inverno","winter"],["la stagione","season"]],
+      a:["Oggi fa...","La mia stagione preferita è...","Quando piove..."],
+      d:["Che tempo fa oggi da te?","Qual è la tua stagione preferita? Perché?","Cosa fai quando piove?","Ti piace la neve?","Com'è l'estate nel tuo paese?","Cosa fai quando fa molto caldo?"]},
+    {t:"Perché l'italiano?", u:[["imparare","to learn"],["la lingua","language"],["difficile","difficult"],["facile","easy"],["il motivo","reason"],["viaggiare","to travel"],["il sogno","dream"],["capire","to understand"]],
+      a:["Studio italiano perché...","La cosa più difficile è...","Il mio sogno è..."],
+      d:["Perché studi italiano?","Quando hai cominciato?","Cosa è facile per te? Cosa è difficile?","Quante lingue parli?","Sei mai stata in Italia? Dove?","Cosa vuoi fare in italiano tra un anno?"]},
+    {t:"La musica e i film", u:[["la canzone","song"],["il cantante","singer"],["il concerto","concert"],["il film","film"],["l'attore, l'attrice","actor, actress"],["ascoltare","to listen"],["guardare","to watch"],["preferito","favourite"]],
+      a:["Ascolto soprattutto...","Il mio film preferito è...","L'ultimo concerto..."],
+      d:["Che musica ascolti?","Hai un cantante preferito?","Sei mai andata a un concerto? Com'era?","Qual è il tuo film preferito?","Guardi film in italiano?","Cosa hai visto di recente?"]}
+  ];
+
+  /* ============ MEMORIA ============ */
+  var CHIAVE = "icf-come-si-dice";
+  var mem = { parole:[], note:"", sec:60, cat:"tutte" };
+  try{
+    var m0 = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(m0 && typeof m0 === "object"){ for(var k in mem){ if(m0[k] !== undefined) mem[k] = m0[k]; } }
+  }catch(e){}
+  if(!Array.isArray(mem.parole)) mem.parole = [];
+  var salvaT = null;
+  function salva(){
+    clearTimeout(salvaT);
+    salvaT = setTimeout(function(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(mem)); }catch(e){} }, 250);
+  }
+  function aggiungiParola(en, it){
+    en = String(en || "").trim(); it = String(it || "").trim();
+    if(!en && !it) return false;
+    var dup = mem.parole.some(function(p){ return p.en.toLowerCase() === en.toLowerCase() && p.it.toLowerCase() === it.toLowerCase(); });
+    if(dup) return false;
+    mem.parole.push({en:en, it:it, ok:0});
+    salva(); disegna3();
+    return true;
+  }
+
+  /* Linguette */
+  var faseAttiva = "p1";
+  var tabs = document.querySelectorAll("nav.steps button[data-phase]");
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){
+      faseAttiva = t.getAttribute("data-phase");
+      Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(s){
+        s.classList.toggle("active", s.id === faseAttiva);
+      });
+      if(faseAttiva !== "p1") ferma1();
+      if(faseAttiva === "p3") nuovoMazzo3();
+    });
+  });
+
+  /* Il kit: due strisce, una per gioco. Toccare una frase = un punto. */
+  var puntiKit = {kit1:0, kit2:0};
+  function disegnaKit(id, gruppi, uscita){
+    var box = $(id);
+    var h = "<h3>Il kit: niente inglese</h3><p class=\"mini\" style=\"margin:0\">Quando le usa, tocco la frase.</p>";
+    KIT.forEach(function(g){
+      if(gruppi.indexOf(g.g) < 0) return;
+      h += "<div class=\"gr\">" + esc(g.g) + "</div><div class=\"frasi\">";
+      g.f.forEach(function(f){ h += "<button type=\"button\">" + esc(f[0]) + "<small>" + esc(f[1]) + "</small></button>"; });
+      h += "</div>";
+    });
+    box.innerHTML = h;
+    Array.prototype.forEach.call(box.querySelectorAll(".frasi button"), function(b){
+      b.addEventListener("click", function(){
+        puntiKit[id]++; $(uscita).textContent = puntiKit[id];
+        b.classList.remove("tocca"); void b.offsetWidth; b.classList.add("tocca");
+      });
+    });
+  }
+  disegnaKit("kit1", ["Descrivo","Prendo tempo"], "c1Kit");
+  disegnaKit("kit2", ["Descrivo","Prendo tempo","Chiedo"], "j2Kit");
+
+  /* ============ FASE 1 ============ */
+  var mazzo1 = [], i1 = 0, ok1 = 0, no1 = 0, timer1 = null, resta1 = 0, girata = false;
+  function nuovoMazzo1(){
+    mazzo1 = mescola(PAROLE.filter(function(p){ return mem.cat === "tutte" || p.c === mem.cat; }));
+    i1 = 0;
+  }
+  function ferma1(){ clearInterval(timer1); timer1 = null; }
+  function parti1(){
+    ferma1();
+    var barra = $("c1Barra");
+    barra.className = "barra";
+    if(!mem.sec){ barra.style.display = "none"; return; }
+    barra.style.display = "";
+    var tot = mem.sec * 4; resta1 = tot;
+    barra.firstChild.style.width = "100%";
+    timer1 = setInterval(function(){
+      resta1--;
+      barra.firstChild.style.width = Math.max(0, resta1 / tot * 100) + "%";
+      if(resta1 <= tot / 4) barra.className = "barra poco";
+      if(resta1 <= 0){ barra.className = "barra zero"; ferma1(); }
+    }, 250);
+  }
+  function mostra1(){
+    if(i1 >= mazzo1.length) nuovoMazzo1();
+    var p = mazzo1[i1];
+    girata = false;
+    $("c1Tipo").textContent = TIPI[p.c].l;
+    $("c1Em").textContent = p.em;
+    $("c1En").innerHTML = esc(p.en) + "<small>come lo spieghi in italiano?</small>";
+    $("c1Aiuto").textContent = TIPI[p.c].a;
+    $("c1It").classList.remove("show");
+    $("c1ItW").textContent = p.it;
+    $("c1Es").textContent = p.es;
+    $("c1Si").hidden = false; $("c1Ing").hidden = false; $("c1Passo").hidden = false; $("c1Next").hidden = true;
+    parti1();
+  }
+  function gira1(esito){
+    if(girata) return;
+    girata = true; ferma1();
+    var p = mazzo1[i1];
+    if(esito === "si"){ ok1++; $("c1Ok").textContent = ok1; }
+    else {
+      if(esito === "ing"){ no1++; $("c1No").textContent = no1; }
+      aggiungiParola(p.en, p.it);
+    }
+    $("c1It").classList.add("show");
+    $("c1Si").hidden = true; $("c1Ing").hidden = true; $("c1Passo").hidden = true; $("c1Next").hidden = false;
+    $("c1Next").focus();
+  }
+  $("c1Si").addEventListener("click", function(){ gira1("si"); });
+  $("c1Ing").addEventListener("click", function(){ gira1("ing"); });
+  $("c1Passo").addEventListener("click", function(){ gira1("passo"); });
+  $("c1Next").addEventListener("click", function(){ i1++; mostra1(); });
+
+  [{k:"tutte", l:"Tutte"},{k:"cosa", l:"Cose"},{k:"posto", l:"Posti"},{k:"persona", l:"Persone"},{k:"azione", l:"Azioni"}].forEach(function(o){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = o.l;
+    b.setAttribute("aria-pressed", String(mem.cat === o.k));
+    b.addEventListener("click", function(){
+      mem.cat = o.k; salva();
+      Array.prototype.forEach.call($("c1Cat").children, function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+      nuovoMazzo1(); mostra1();
+    });
+    $("c1Cat").appendChild(b);
+  });
+  [{s:45, l:"45 s"},{s:60, l:"60 s"},{s:0, l:"Senza tempo"}].forEach(function(o){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = o.l;
+    b.setAttribute("aria-pressed", String(mem.sec === o.s));
+    b.addEventListener("click", function(){
+      mem.sec = o.s; salva();
+      Array.prototype.forEach.call($("c1Sec").children, function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+      if(!girata) parti1();
+    });
+    $("c1Sec").appendChild(b);
+  });
+  nuovoMazzo1(); mostra1();
+
+  /* ============ FASE 2 ============ */
+  var tema = null, giro = 0, timer2 = null, resta2 = 180, jolly = 3, usati = 0, domande = 0, inCorso = false;
+  function nuovoTema(){
+    tema = pesca(TEMI.filter(function(x){ return x !== tema; }));
+    giro = 0;
+    $("j2Card").innerHTML = "<small>Parliamo di</small>" + esc(tema.t);
+    $("j2Utili").innerHTML = tema.u.map(function(u){ return "<li>" + esc(u[0]) + "<span>" + esc(u[1]) + "</span></li>"; }).join("");
+    $("j2Attacchi").innerHTML = tema.a.map(function(a){ return "<li>" + esc(a) + "</li>"; }).join("");
+    var ol = $("j2Domande"); ol.innerHTML = "";
+    tema.d.forEach(function(d){
+      var li = document.createElement("li"), b = document.createElement("button");
+      b.type = "button"; b.textContent = d;
+      b.addEventListener("click", function(){ li.classList.toggle("chiesta"); });
+      li.appendChild(b); ol.appendChild(li);
+    });
+    $("j2Giri").hidden = true; $("j2Giri").tBodies[0].innerHTML = "";
+    $("j2Secondo").hidden = true;
+    ferma2(); azzera2(); $("j2Clock").textContent = "3:00"; $("j2Fase").textContent = "";
+  }
+  function azzera2(){
+    jolly = 3; usati = 0; domande = 0; puntiKit.kit2 = 0;
+    $("j2Kit").textContent = "0"; $("j2Dn").textContent = "0"; $("j2Usati").textContent = "0";
+    disegnaJolly();
+  }
+  function disegnaJolly(){
+    var h = "<span>Jolly:</span>";
+    for(var i=0;i<3;i++) h += "<i class=\"" + (i < jolly ? "" : "usato") + "\" aria-hidden=\"true\">EN</i>";
+    h += "<span class=\"en\">" + jolly + " " + (jolly === 1 ? "rimasto" : "rimasti") + "</span>";
+    if(!jolly) h += "<span class=\"finiti\">finiti: si rifà la frase in italiano!</span>";
+    $("j2Jolly").innerHTML = h;
+  }
+  function ferma2(){ clearInterval(timer2); timer2 = null; inCorso = false; $("j2Timer").classList.remove("zero"); }
+  function conto(sec, etichetta, fine){
+    ferma2(); resta2 = sec;
+    $("j2Clock").textContent = orologio(resta2);
+    $("j2Fase").textContent = etichetta;
+    timer2 = setInterval(function(){
+      resta2--; $("j2Clock").textContent = orologio(resta2);
+      if(resta2 <= 0){ clearInterval(timer2); timer2 = null; $("j2Timer").classList.add("zero"); fine(); }
+    }, 1000);
+  }
+  $("j2Prep").addEventListener("click", function(){
+    $("j2Utili").classList.remove("coperte");
+    conto(60, "Prepara: guarda le parole, pensa a cosa dire, niente frasi scritte.", function(){ $("j2Fase").textContent = "Tempo! Adesso si parla."; });
+  });
+  function via(){
+    giro++;
+    azzera2();
+    var sec = giro === 1 ? 180 : 120;
+    inCorso = true;
+    conto(sec, giro === 1 ? "Si parla! Tre jolly per l'inglese." : "Giro " + giro + ": stesso tema, meno tempo. Deve andare meglio!", fineGiro);
+    inCorso = true;
+    $("j2Secondo").hidden = true;
+  }
+  function fineGiro(){
+    inCorso = false;
+    $("j2Fase").textContent = "Fine! " + (usati <= 3 ? "Bravissima." : "Il prossimo giro con meno inglese.");
+    var tr = document.createElement("tr");
+    tr.innerHTML = "<td>" + giro + "° (" + (giro === 1 ? "3:00" : "2:00") + ")</td><td>" + puntiKit.kit2 + "</td><td>" + domande + "</td><td>" + usati + "</td>";
+    $("j2Giri").tBodies[0].appendChild(tr); $("j2Giri").hidden = false;
+    $("j2Secondo").hidden = false;
+  }
+  $("j2Via").addEventListener("click", function(){ giro = 0; $("j2Giri").tBodies[0].innerHTML = ""; $("j2Giri").hidden = true; via(); });
+  $("j2Secondo").addEventListener("click", via);
+  $("j2Tema").addEventListener("click", nuovoTema);
+  $("j2Copri").addEventListener("click", function(){
+    var c = $("j2Utili").classList.toggle("coperte");
+    $("j2Copri").textContent = c ? "Mostra l'inglese" : "Copri l'inglese";
+  });
+  $("j2Ing").addEventListener("click", function(){
+    usati++; $("j2Usati").textContent = usati;
+    if(jolly > 0){ jolly--; }
+    else $("j2Fase").textContent = "Jolly finiti: rifai la frase con il kit!";
+    disegnaJolly();
+    $("j2Salva").classList.add("show");
+    $("j2En").value = ""; $("j2It").value = "";
+    $("j2En").focus();
+  });
+  $("j2Dom").addEventListener("click", function(){ domande++; $("j2Dn").textContent = domande; });
+  function chiudiSalva(){ $("j2Salva").classList.remove("show"); }
+  $("j2Ok").addEventListener("click", function(){ aggiungiParola($("j2En").value, $("j2It").value); chiudiSalva(); });
+  $("j2Chiudi").addEventListener("click", chiudiSalva);
+  [$("j2En"), $("j2It")].forEach(function(inp){
+    inp.addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); if(inp.id === "j2En") $("j2It").focus(); else $("j2Ok").click(); } });
+  });
+  nuovoTema();
+
+  /* ============ FASE 3 ============ */
+  var mazzo3 = [], i3 = 0;
+  function disegna3(){
+    var n = mem.parole.length;
+    $("nParole").textContent = n ? "(" + n + ")" : "";
+    var ul = $("m3Lista");
+    if(!n){ ul.innerHTML = "<li class=\"vuoto\" style=\"display:block\">Ancora niente: le parole arrivano dai giochi 1 e 2.</li>"; return; }
+    ul.innerHTML = "";
+    mem.parole.forEach(function(p, i){
+      var li = document.createElement("li");
+      li.innerHTML = "<div class=\"w\"><b>" + esc(p.it || "?") + "</b><span>" + esc(p.en) + "</span></div>" + (p.ok ? "<span class=\"ok\">✓ " + p.ok + "</span>" : "");
+      var x = document.createElement("button");
+      x.type = "button"; x.setAttribute("aria-label", "Togli " + (p.it || p.en)); x.textContent = "×";
+      x.addEventListener("click", function(){ mem.parole.splice(i, 1); salva(); disegna3(); nuovoMazzo3(); });
+      li.appendChild(x); ul.appendChild(li);
+    });
+  }
+  function nuovoMazzo3(){
+    mazzo3 = mescola(mem.parole.filter(function(p){ return p.it; }));
+    i3 = 0; mostra3();
+  }
+  function mostra3(){
+    var vuoto = !mazzo3.length;
+    $("m3Scopri").disabled = vuoto; $("m3So").disabled = vuoto; $("m3Ancora").disabled = vuoto;
+    $("m3It").classList.remove("show");
+    if(vuoto){ $("m3En").textContent = "Nessuna parola"; $("m3Stato").textContent = ""; return; }
+    if(i3 >= mazzo3.length){ $("m3En").textContent = "Finite!"; $("m3Stato").textContent = "Giro completo. Tocca «Le mie parole» per ricominciare."; $("m3Scopri").disabled = true; $("m3So").disabled = true; $("m3Ancora").disabled = true; return; }
+    var p = mazzo3[i3];
+    $("m3En").textContent = p.en || "?";
+    $("m3ItW").textContent = p.it;
+    $("m3Stato").textContent = (i3 + 1) + " di " + mazzo3.length + ". La parola italiana e una frase vera su di te.";
+  }
+  $("m3Scopri").addEventListener("click", function(){ $("m3It").classList.add("show"); });
+  $("m3So").addEventListener("click", function(){
+    var p = mazzo3[i3]; if(!p) return;
+    p.ok = (p.ok || 0) + 1; salva(); disegna3();
+    i3++; mostra3();
+  });
+  $("m3Ancora").addEventListener("click", function(){
+    var p = mazzo3[i3]; if(!p) return;
+    mazzo3.splice(Math.min(mazzo3.length, i3 + 3), 0, p);
+    i3++; mostra3();
+  });
+  $("m3Add").addEventListener("click", function(){
+    if(aggiungiParola($("m3En2").value, $("m3It2").value)){ $("m3En2").value = ""; $("m3It2").value = ""; nuovoMazzo3(); }
+  });
+  $("m3It2").addEventListener("keydown", function(e){ if(e.key === "Enter") $("m3Add").click(); });
+  $("m3Copia").addEventListener("click", function(){
+    var testo = mem.parole.map(function(p){ return p.it + " = " + p.en; }).join("\n");
+    var fatto = function(){ $("m3Copia").textContent = "Copiata!"; setTimeout(function(){ $("m3Copia").textContent = "Copia la lista"; }, 1500); };
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(testo).then(fatto, function(){}); }
+    else {
+      var ta = document.createElement("textarea"); ta.value = testo; document.body.appendChild(ta); ta.select();
+      try{ document.execCommand("copy"); fatto(); }catch(e){}
+      document.body.removeChild(ta);
+    }
+  });
+  var sicuro = false;
+  $("m3Svuota").addEventListener("click", function(){
+    if(!sicuro){ sicuro = true; $("m3Svuota").textContent = "Sicuro? Tocca ancora"; setTimeout(function(){ sicuro = false; $("m3Svuota").textContent = "Svuota"; }, 3000); return; }
+    mem.parole = []; salva(); disegna3(); nuovoMazzo3();
+    sicuro = false; $("m3Svuota").textContent = "Svuota";
+  });
+  disegna3(); nuovoMazzo3();
+
+  /* ============ APPUNTI ============ */
+  var note = $("note");
+  note.value = mem.note || "";
+  note.addEventListener("input", function(){
+    mem.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("reset").addEventListener("click", function(){
+    mem.note = ""; note.value = "";
+    try{ localStorage.setItem(CHIAVE, JSON.stringify(mem)); }catch(e){}
+    location.reload();
+  });
+})();
+</script>
+</body>
+</html>

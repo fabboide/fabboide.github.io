@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "3 novembre 2026, 11:02";
+var PIANO_AGGIORNATO = "4 novembre 2026, 12:32";
 
 var PIANO = {
 
@@ -373,36 +373,40 @@ var PIANO = {
 
   "rafaela-yrd": {
     "nome": "Rafaela",
-    "aggiornato": "3 novembre 2026",
+    "aggiornato": "4 novembre 2026",
     "ultima": {
-      "quando": "2026-10-30T09:30:00+01:00",
+      "quando": "2026-11-04T10:00:00+01:00",
       "fatto": [
-        "Conversation",
-        "The past: passato prossimo"
+        "We decided: the next two lessons are all conversation"
       ]
     },
     "prossima": {
-      "quando": "2026-11-03T09:30:00+01:00",
-      "obiettivo": "We keep going with the past: what you did, where you went, with essere or avere.",
+      "quando": "2026-11-05T09:30:00+01:00",
+      "obiettivo": "Speak only Italian, even when a word is missing: describe it, ask for it, keep going.",
       "attivita": [
         {
-          "titolo": "Verb roulette",
+          "titolo": "How do you say it?",
           "href": "",
-          "nota": "Ten minutes in the past: sono andata, ho mangiato..."
+          "nota": "Explain an English word in Italian until I guess it"
         },
         {
-          "titolo": "What was the question?",
+          "titolo": "Three jokers",
           "href": "",
-          "nota": "Questions in the past: Dove sei andata? Cosa hai fatto?"
+          "nota": "Three minutes on a topic, only three English words allowed"
         },
         {
-          "titolo": "Conversation",
+          "titolo": "My words",
           "href": "",
-          "nota": "Your weekend, in the past, and three questions back to me"
+          "nota": "On Friday we bring back the words you were missing"
         }
       ]
     },
     "compiti": [
+      {
+        "titolo": "The first 190 words",
+        "href": "https://talkwithfabio.com/esercizi/parole-a1/",
+        "nota": "Ten minutes a day: more words, less English"
+      },
       {
         "titolo": "Passato prossimo 1: essere or avere?",
         "href": "https://talkwithfabio.com/esercizi/passato-prossimo/?mode=aux",
@@ -510,34 +514,27 @@ var PIANO = {
 
   "sophie-6zk": {
     "nome": "Sophie",
-    "aggiornato": "30 ottobre 2026",
+    "aggiornato": "3 novembre 2026",
     "ultima": {
-      "quando": "2026-10-30T10:30:00+01:00",
+      "quando": "2026-11-03T11:30:00+01:00",
       "fatto": [
-        "Ne, ci e i pronomi",
-        "Il congiuntivo vivo",
-        "Se vincessi la lotteria, comprerei...: congiuntivo e condizionale",
-        "Il caso: un enigma da risolvere con le domande"
+        "Senza ripetere: ne, ci e i pronomi dentro il discorso",
+        "Rispondi al volo, il racconto e l'amica curiosa"
       ]
     },
     "prossima": {
-      "quando": "2026-11-02T16:00:00+01:00",
-      "obiettivo": "Continuare con ne, ci e i pronomi, e usare insieme congiuntivo e condizionale: se potessi, farei.",
+      "quando": "2026-11-10T10:30:00+01:00",
+      "obiettivo": "Ne, ci e i pronomi sempre più dentro il parlato, anche due insieme: glielo, ce l'ho, me ne ricordo.",
       "attivita": [
         {
           "titolo": "Senza ripetere",
           "href": "",
-          "nota": "Ne, ci e i pronomi dentro il discorso"
+          "nota": "Domande nuove, i pronomi doppi, racconti e temi nuovi"
         },
         {
-          "titolo": "Il congiuntivo vivo",
+          "titolo": "Paroline in gioco",
           "href": "",
-          "nota": "Andiamo avanti dalle fasi che mancano"
-        },
-        {
-          "titolo": "E se...?",
-          "href": "",
-          "nota": "La catena del se, i dilemmi e «mi sentirei... se...»"
+          "nota": "Il segreto, l'eredità della zia e passa la palla"
         }
       ]
     },
@@ -545,12 +542,12 @@ var PIANO = {
       {
         "titolo": "Ne, ci e i pronomi",
         "href": "https://talkwithfabio.com/esercizi/pronomi/",
-        "nota": "Ci vado spesso, ne ho bisogno, se ce n'è bisogno"
+        "nota": "Ci vado spesso, ne ho due, la chiamo, le scrivo"
       },
       {
-        "titolo": "Aggettivo + infinito: di, da, a o niente",
-        "href": "https://talkwithfabio.com/esercizi/aggettivo-infinito/",
-        "nota": "È bello partire, sono pronta a partire, è facile da dire"
+        "titolo": "Due pronomi insieme",
+        "href": "https://talkwithfabio.com/esercizi/pronomi-combinati/",
+        "nota": "Glielo do, me l'ha detto, ce n'è ancora"
       }
     ]
   }
