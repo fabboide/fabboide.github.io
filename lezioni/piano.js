@@ -9,51 +9,45 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "4 novembre 2026, 12:32";
+var PIANO_AGGIORNATO = "5 novembre 2026, 01:20";
 
 var PIANO = {
 
   "ari-p49": {
     "nome": "Ari",
-    "aggiornato": "2 novembre 2026",
+    "aggiornato": "4 novembre 2026",
     "ultima": {
-      "quando": "2026-11-02T22:00:00+01:00",
+      "quando": "2026-11-04T22:00:00+01:00",
       "fatto": [
-        "Senza ripetere: rispondi al volo",
-        "Senza ripetere: il racconto. Bravissima!"
+        "Senza ripetere: ne, ci e i pronomi parlando"
       ]
     },
     "prossima": {
-      "quando": "2026-11-04T22:00:00+01:00",
-      "obiettivo": "Usare ne, ci e i pronomi parlando, sempre di più senza pensarci.",
+      "quando": "2026-11-09T22:00:00+01:00",
+      "obiettivo": "Un piccolo ripasso dei pronomi, poi un argomento nuovo: l'imperativo con i pronomi. Chiamala! Dimmelo! Non farlo!",
       "attivita": [
         {
-          "titolo": "Rispondi al volo",
+          "titolo": "Senza ripetere",
           "href": "",
-          "nota": "Più veloce di oggi"
+          "nota": "Dieci minuti di ripasso al volo"
         },
         {
-          "titolo": "Il racconto",
+          "titolo": "Dimmelo!",
           "href": "",
-          "nota": "Gli ultimi due"
-        },
-        {
-          "titolo": "L'amica curiosa",
-          "href": "",
-          "nota": "Tre minuti, cinque paroline, senza ripetere"
+          "nota": "A chi parla? Posso? Le istruzioni e i consigli"
         }
       ]
     },
     "compiti": [
       {
+        "titolo": "Due pronomi insieme",
+        "href": "https://talkwithfabio.com/esercizi/pronomi-combinati/",
+        "nota": "Glielo, me ne, ce l'ho: servono anche nell'imperativo"
+      },
+      {
         "titolo": "Ne, ci e i pronomi",
         "href": "https://talkwithfabio.com/esercizi/pronomi/",
         "nota": "La sfida da 60 secondi: batti il tuo record"
-      },
-      {
-        "titolo": "Due pronomi insieme",
-        "href": "https://talkwithfabio.com/esercizi/pronomi-combinati/",
-        "nota": "Glielo, me ne, ce l'ho"
       }
     ]
   },
