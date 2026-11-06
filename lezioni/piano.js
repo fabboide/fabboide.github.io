@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "6 novembre 2026, 03:22";
+var PIANO_AGGIORNATO = "6 novembre 2026, 18:26";
 
 var PIANO = {
 
@@ -93,6 +93,45 @@ var PIANO = {
         "titolo": "Chi è? Guess who, on your own",
         "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
         "nota": "Try level 2: you write the questions"
+      }
+    ]
+  },
+
+  "elena-8qw": {
+    "nome": "Elena",
+    "aggiornato": "6 novembre 2026",
+    "ultima": {
+      "quando": "2026-11-06T17:30:00+01:00",
+      "fatto": [
+        "Senza ripetere: ne, ci e i pronomi parlando"
+      ]
+    },
+    "prossima": {
+      "quando": "2026-11-13T17:00:00+01:00",
+      "obiettivo": "Andiamo avanti con ne, ci e i pronomi: prima le tue domande sulla grammatica, poi tutto a voce.",
+      "attivita": [
+        {
+          "titolo": "Le tue domande sulla guida «Le paroline»",
+          "href": "",
+          "nota": "Partiamo da quello che non ti torna"
+        },
+        {
+          "titolo": "Senza ripetere",
+          "href": "",
+          "nota": "Più veloce, anche con due paroline insieme"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "Ne, ci e i pronomi",
+        "href": "https://talkwithfabio.com/esercizi/pronomi/",
+        "nota": "Allenamento e sfida da 60 secondi"
+      },
+      {
+        "titolo": "Due pronomi insieme",
+        "href": "https://talkwithfabio.com/esercizi/pronomi-combinati/",
+        "nota": "Glielo, me ne, ce l'ho"
       }
     ]
   },

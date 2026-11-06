@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La mappa del C1 · Talk with Fabio</title>
+<meta name="description" content="Analisi dei bisogni per chi entra nel C1: le aree della vita in italiano, le competenze C1 con la prova al volo, e la bussola che ne tira fuori il percorso.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D; --kraft:#D9BC8C;
+  --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
+  --azzurro:#3D6E8F;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.55}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+a{color:var(--azzurro)}
+
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:980px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700;font-size:.95rem}
+.logo-mark{width:19px;height:19px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.88rem;color:inherit}
+.nastro{height:8px;background:linear-gradient(90deg,var(--basil) 0 33%,var(--lemon) 33% 66%,var(--tomato) 66% 100%)}
+.wrap{max-width:980px;margin:0 auto;padding:0 18px 70px}
+
+header.sign{padding:28px 0 2px}
+.kicker{display:inline-block;font-family:var(--display);font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--tomato);border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:5px 13px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,6vw,3.3rem);line-height:1;margin:10px 0 0}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:68ch}
+.chi{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;font-family:var(--display);font-weight:700;font-size:.9rem}
+.chi input{border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:var(--paper);width:180px}
+
+.fasi{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0;position:sticky;top:0;z-index:5;background:var(--stone);padding:10px 0}
+.fasi button{font-family:var(--display);font-size:.92rem;font-weight:700;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 15px}
+.fasi button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.fasi .n{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--lemon);color:var(--ink);font-size:.75rem;margin-right:6px}
+
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:10px 18px}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.giallo{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.small{padding:6px 12px;font-size:.85rem}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.consegna{font-family:var(--hand);font-size:1.35rem;color:var(--muted);margin:14px 0 0;line-height:1.25}
+
+/* fase 1: aree */
+.griglia{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:16px}
+.area{border:1px solid var(--line);background:var(--paper);border-radius:16px;padding:14px 12px;text-align:left;position:relative;min-height:96px;display:flex;flex-direction:column;gap:4px}
+.area .em{font-size:1.6rem;line-height:1}
+.area .nome{font-family:var(--display);font-weight:800;font-size:.98rem;line-height:1.2}
+.area .stato{font-family:var(--display);font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.area.fatta{border-color:var(--basil);box-shadow:inset 0 0 0 1px var(--basil)}
+.area.fatta .stato{color:var(--basil)}
+.area[aria-current="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink);background:#FFF8E9}
+.scheda{margin-top:16px;border:1px solid var(--line);background:var(--paper);border-radius:20px;padding:22px 22px 18px;position:relative;overflow:hidden}
+.scheda::before{content:"";position:absolute;right:-90px;top:-120px;width:300px;height:260px;background:radial-gradient(ellipse at center,rgba(232,163,61,.25),transparent 70%);pointer-events:none}
+.scheda h2{font-family:var(--display);font-weight:800;margin:0;font-size:1.5rem;position:relative}
+.domanda{font-family:var(--display);font-weight:700;font-size:clamp(1.15rem,2.8vw,1.5rem);line-height:1.35;margin:12px 0 0;max-width:40ch;position:relative}
+.rilancio{font-family:var(--hand);font-size:1.3rem;color:var(--muted);margin-top:6px}
+.scala{margin-top:16px}
+.scala .lab{font-family:var(--display);font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pallini{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.pallini button{border:2px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 13px;font-family:var(--display);font-weight:700;font-size:.88rem}
+.pallini button[aria-pressed="true"]{background:var(--basil);border-color:var(--basil);color:var(--paper)}
+.pallini.serve button[aria-pressed="true"]{background:var(--tomato);border-color:var(--tomato)}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--paper);resize:vertical;font-family:var(--text);margin-top:6px}
+.vuota{color:var(--muted);font-style:italic;text-align:center;padding:26px 10px}
+
+/* fase 2: competenze */
+.gruppi{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.gruppi button{font-family:var(--display);font-size:.88rem;font-weight:700;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 13px}
+.gruppi button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.gruppi .conta{font-weight:600;opacity:.7;margin-left:4px}
+.voce{border:1px solid var(--line);background:var(--paper);border-radius:16px;padding:14px 16px;margin-top:10px}
+.voce .so{font-family:var(--display);font-weight:700;font-size:1.02rem;line-height:1.35}
+.voce .riga{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-top:10px}
+.tre{display:flex;flex-wrap:wrap;gap:6px}
+.tre button{border:2px solid var(--line);background:var(--paper);border-radius:999px;padding:5px 12px;font-family:var(--display);font-weight:700;font-size:.84rem}
+.tre button.ok[aria-pressed="true"]{background:var(--basil);border-color:var(--basil);color:var(--paper)}
+.tre button.quasi[aria-pressed="true"]{background:var(--lemon);border-color:var(--lemon)}
+.tre button.no[aria-pressed="true"]{background:var(--tomato);border-color:var(--tomato);color:var(--paper)}
+.prova{display:none;margin-top:10px;background:#FBF4E4;border:1px dashed var(--lemon);border-radius:12px;padding:10px 14px}
+.prova b{font-family:var(--display);color:#9A6411}
+.voce.aperta .prova{display:block}
+.voce.s-ok{border-left:6px solid var(--basil)}
+.voce.s-quasi{border-left:6px solid var(--lemon)}
+.voce.s-no{border-left:6px solid var(--tomato)}
+
+/* fase 3: bussola */
+.blocco{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin-top:16px}
+.blocco h2{font-family:var(--display);font-weight:800;font-size:1.25rem;margin:0 0 10px}
+.barre{list-style:none;margin:0;padding:0}
+.barre li{display:grid;grid-template-columns:minmax(120px,190px) 1fr 34px;gap:10px;align-items:center;padding:5px 0;font-family:var(--display);font-weight:700;font-size:.92rem}
+.barre .b{height:14px;border-radius:999px;background:var(--line);overflow:hidden}
+.barre .b i{display:block;height:100%;border-radius:999px;background:var(--lemon)}
+.barre li.top .b i{background:var(--tomato)}
+.barre .v{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.liste{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.liste h3{font-family:var(--display);font-size:.95rem;margin:0 0 6px}
+.liste ul{margin:0;padding-left:18px}
+.liste li{margin-bottom:4px}
+.tappa{border-left:4px solid var(--ink);padding:4px 0 4px 14px;margin-top:14px}
+.tappa .t{font-family:var(--display);font-weight:800;font-size:1.05rem}
+.tappa .sub{font-family:var(--display);font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--tomato)}
+.tappa p{margin:4px 0}
+.tappa .mat a{display:inline-block;margin:3px 6px 0 0;font-family:var(--display);font-weight:700;font-size:.85rem;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 10px;background:var(--stone);color:var(--ink)}
+.finale{background:#20304F;color:#FFFDF8;border-radius:18px;padding:18px 22px;margin-top:16px}
+.finale h2{font-family:var(--display);color:var(--lemon);margin:0 0 6px;font-size:1.2rem}
+.finale p{margin:0}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+.nascosto{display:none}
+@media (max-width:640px){
+  .liste{grid-template-columns:1fr}
+  .barre li{grid-template-columns:110px 1fr 28px}
+  .scheda{padding:18px 16px}
+}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-in">
+  <a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a>
+  <a class="back-link" href="../">&larr; La mia aula</a>
+</div></header>
+<div class="nastro" aria-hidden="true"></div>
+
+<div class="wrap">
+  <header class="sign">
+    <span class="kicker">analisi dei bisogni · dal B2 al C1</span>
+    <h1>La mappa del C1</h1>
+    <p>Dove ti serve l'italiano, dove ti senti a casa e dove no. Prima giriamo per le aree della tua vita, poi mettiamo alla prova le competenze del C1, e alla fine la bussola ci dice da dove partire.</p>
+    <div class="chi"><label for="nome">Studente</label><input id="nome" type="text" value="Elena" autocomplete="off"><button class="btn ghost small" id="azzera" type="button">Ricomincia da zero</button><span class="salvato" id="salvato"></span></div>
+  </header>
+
+  <nav class="fasi" id="fasi" aria-label="Fasi">
+    <button type="button" data-f="1" aria-pressed="true"><span class="n">1</span>La tua vita in italiano</button>
+    <button type="button" data-f="2" aria-pressed="false"><span class="n">2</span>Cosa sai già fare</button>
+    <button type="button" data-f="3" aria-pressed="false"><span class="n">3</span>La bussola</button>
+  </nav>
+
+  <!-- FASE 1 -->
+  <section id="f1">
+    <p class="consegna">Scegli un'area e rispondi alla domanda. Poi due voti: quanto ti serve, come ti senti. Non serve farle tutte: bastano quelle che contano.</p>
+    <div class="griglia" id="griglia"></div>
+    <div class="toolbar">
+      <input id="nuovaArea" type="text" placeholder="Un'area tua (es. lo sport, il volontariato)" style="flex:1;min-width:200px;border:1px solid var(--line);border-radius:999px;padding:9px 14px;background:var(--paper)">
+      <button class="btn ghost" id="aggiungi" type="button">Aggiungi</button>
+    </div>
+    <div class="scheda" id="scheda"><p class="vuota">Tocca un'area per cominciare.</p></div>
+  </section>
+
+  <!-- FASE 2 -->
+  <section id="f2" class="nascosto">
+    <p class="consegna">Leggi la frase e decidi: ce l'ho, quasi, da lavorare. Se hai un dubbio, apri la prova e fallo dal vivo: decide la prova, non la sensazione.</p>
+    <div class="gruppi" id="gruppi"></div>
+    <div id="voci"></div>
+  </section>
+
+  <!-- FASE 3 -->
+  <section id="f3" class="nascosto">
+    <div class="blocco">
+      <h2>Le aree da cui partire</h2>
+      <p class="consegna" style="margin-top:0">priorità = quanto ti serve × quanto ti manca</p>
+      <ul class="barre" id="barre"></ul>
+    </div>
+    <div class="blocco">
+      <h2>Le competenze</h2>
+      <div class="liste">
+        <div><h3 style="color:var(--tomato)">Da lavorare</h3><ul id="listaNo"></ul></div>
+        <div><h3 style="color:#9A6411">Quasi</h3><ul id="listaQuasi"></ul></div>
+      </div>
+    </div>
+    <div class="blocco">
+      <h2>I tuoi argomenti</h2>
+      <p style="margin:0;color:var(--muted)">Temi, testi, situazioni che vuoi portare tu.</p>
+      <textarea id="argomenti" placeholder="Es. leggere un romanzo insieme, preparare un colloquio, il lessico della medicina..."></textarea>
+    </div>
+    <div class="blocco">
+      <h2>Il percorso proposto</h2>
+      <p style="margin:0;color:var(--muted)">Tre tappe da 4 lezioni circa. In ogni tappa un compito vero della tua vita e la lingua che serve per farlo bene.</p>
+      <div id="percorso"></div>
+    </div>
+    <div class="finale">
+      <h2>Per chiudere</h2>
+      <p>Siamo d'accordo sulla prima tappa? Cosa cambieresti? Tra un mese rifacciamo la mappa e vediamo cosa si è spostato.</p>
+    </div>
+    <div class="toolbar">
+      <button class="btn giallo" id="copia" type="button">Copia il riepilogo</button>
+      <span class="salvato" id="copiato"></span>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+"use strict";
+var AREE = [
+  {id:"lavoro", em:"💼", nome:"Il lavoro",
+   d:["Se domani dovessi fare una riunione tutta in italiano, cosa ti preoccuperebbe di più?","Raccontami una situazione di lavoro in cui l'italiano ti è mancato."],
+   r:"e con i colleghi, tu o Lei?",
+   compito:"Presentare un progetto in una riunione simulata e rispondere alle obiezioni."},
+  {id:"burocrazia", em:"🏛️", nome:"Uffici e burocrazia",
+   d:["Qual è stata la tua ultima battaglia con un ufficio? Com'è finita?","Al telefono con un ufficio ti senti sicura o rimandi la telefonata?"],
+   r:"cosa avresti voluto saper dire?",
+   compito:"Una telefonata difficile a un ufficio e una mail di reclamo, con il Lei e le formule giuste."},
+  {id:"salute", em:"🩺", nome:"Medici e salute",
+   d:["Riusciresti a spiegare a un medico un problema strano, con precisione?","Quando il medico ti spiega una cura, capisci tutto o annuisci?"],
+   r:"quali parole ti mancherebbero?",
+   compito:"Spiegare un problema al medico o in farmacia e riformulare le istruzioni ricevute."},
+  {id:"casa", em:"🏠", nome:"Casa, vicini, artigiani",
+   d:["Ti si rompe la caldaia: chiami il tecnico. Cosa gli dici?","Hai mai dovuto lamentarti con un vicino o col padrone di casa?"],
+   r:"e se lui fa finta di non capire?",
+   compito:"Trattare con il tecnico o il padrone di casa: spiegare, lamentarsi, negoziare."},
+  {id:"amici", em:"🍷", nome:"Amici e vita sociale",
+   d:["A cena con quattro italiani che parlano insieme, segui tutto?","Quando c'è una battuta, ridi subito o un secondo dopo?"],
+   r:"cosa ti fa perdere il filo?",
+   compito:"Una cena simulata: tenere il filo in una conversazione veloce, entrare nel discorso, battute comprese."},
+  {id:"famiglia", em:"❤️", nome:"Famiglia e affetti",
+   d:["Ci sono persone importanti con cui parli in italiano?","C'è qualcosa che vorresti saper dire meglio a qualcuno, in italiano?"],
+   r:"è una questione di parole o di tono?",
+   compito:"Raccontare una storia di famiglia e dire cose delicate con il tono giusto."},
+  {id:"media", em:"📺", nome:"Serie, film, podcast",
+   d:["Cosa guardi o ascolti in italiano? Con o senza sottotitoli?","Qual è l'ultima cosa che hai visto in italiano e quanto hai capito, in percentuale?"],
+   r:"cosa ti sfugge: la velocità, l'accento, lo slang?",
+   compito:"Guardare una scena o ascoltare un podcast e discuterne: cosa si è detto e cosa si è lasciato intendere."},
+  {id:"lettura", em:"📚", nome:"Libri e giornali",
+   d:["Qual è l'ultima cosa che hai letto in italiano? Che fatica, da 1 a 10?","Leggi le notizie in italiano? Dove?"],
+   r:"ti piacerebbe leggere un libro insieme?",
+   compito:"Leggere un articolo o un racconto e parlarne da critica: tesi, tono, opinione."},
+  {id:"scrittura", em:"✍️", nome:"Scrivere",
+   d:["Una mail formale in italiano: la scrivi da sola o chiedi aiuto?","Quando scrivi un messaggio lungo, ti rileggi? Cosa correggi?"],
+   r:"che testi scrivi davvero nella tua vita?",
+   compito:"Scrivere un testo vero della sua vita (mail, post, lettera) e riscriverlo dopo il riscontro."},
+  {id:"opinioni", em:"🗣️", nome:"Discutere, dire la tua",
+   d:["Su che tema ti piacerebbe discutere con un italiano che la pensa al contrario?","Quando non sei d'accordo, riesci a dirlo con garbo in italiano?"],
+   r:"e se ti interrompe?",
+   compito:"Un dibattito su un tema scelto da lei: tesi, difesa, contrattacco, concessione."},
+  {id:"viaggi", em:"🧭", nome:"Viaggi e regioni",
+   d:["Ti è capitato di non capire un accento? Dove?","C'è una regione che vorresti conoscere meglio, anche come lingua?"],
+   r:"cosa ti ha sorpreso?",
+   compito:"Preparare un viaggio in una regione: parlato locale, espressioni, cultura."},
+  {id:"cultura", em:"🎭", nome:"Cultura e società",
+   d:["C'è un aspetto dell'Italia che vorresti capire meglio: storia, politica, abitudini?","Cosa ti fa ancora dire «ma perché gli italiani fanno così»?"],
+   r:"e nel tuo paese com'è?",
+   compito:"Approfondire un tema di società e presentarlo in cinque minuti, con domande alla fine."}
+];
+var SERVE = ["poco","un po'","molto","tantissimo"];
+var AGIO = ["mi perdo","così così","bene","come a casa"];
+
+var GRUPPI = [
+  {id:"capire", nome:"Capire",
+   mat:[["Scusi, può ripetere?","https://talkwithfabio.com/aula-pfr2u9/capire/"],["I segnali discorsivi (C1)","https://talkwithfabio.com/esercizi/segnali/"]],
+   voci:[
+    ["Seguo un film o una serie senza sottotitoli, anche quando parlano veloce.","Fabio racconta un aneddoto a velocità vera per trenta secondi. Riassumilo in due frasi e dimmi cosa pensava lui."],
+    ["Colgo l'ironia, i sottintesi e il tono di chi parla.","«Bravo, bel lavoro davvero.» Te lo dice un collega dopo un tuo errore. Cosa intende? Come lo diresti in modo neutro?"],
+    ["Capisco un articolo d'opinione e vedo come argomenta l'autore.","Fabio legge un titolo di giornale: indovina la tesi dell'articolo e due argomenti che userà."],
+    ["Capisco il parlato informale e un po' di accenti regionali.","Cosa vuol dire: «Ma che ne so, fai un po' te» e «Mo' arrivo»? Chi lo direbbe?"]
+   ]},
+  {id:"parlare", nome:"Parlare",
+   mat:[["La sedia calda","https://talkwithfabio.com/aula-pfr2u9/sedia-calda/"],["Il Processo","https://talkwithfabio.com/aula-pfr2u9/processo/"],["Fluenza","https://talkwithfabio.com/aula-pfr2u9/fluenza/"],["Say it without the word (C1)","https://talkwithfabio.com/esercizi/giro-di-parole/"]],
+   voci:[
+    ["Argomento una tesi con ordine: premessa, esempi, obiezione, conclusione.","Novanta secondi: il lavoro da remoto è meglio? Dentro ci vanno «innanzitutto», «d'altra parte» e «insomma»."],
+    ["Cambio registro: passo dal tu al Lei, dal colloquiale al formale.","Di' la stessa cosa a un'amica e al direttore: «Domani non posso venire, ho un problema.»"],
+    ["Racconto un aneddoto in modo vivo, con i tempi del passato giusti.","Un minuto: la volta che hai fatto una figuraccia."],
+    ["Se mi manca una parola la giro senza fermarmi.","Spiega senza dirle: il cavatappi, la ricevuta, lo sfratto."],
+    ["Uso i segnali discorsivi: cioè, insomma, comunque, tra l'altro, anzi.","«Com'è andato il weekend?» Rispondi usando anzi, tra l'altro e comunque."]
+   ]},
+  {id:"scrivere", nome:"Scrivere",
+   mat:[],
+   voci:[
+    ["Scrivo una mail formale (reclamo, richiesta) senza aiuto.","Detta a voce la prima e l'ultima frase di una mail di reclamo a una compagnia aerea."],
+    ["Scrivo un testo argomentativo ben collegato.","Tre connettivi per aggiungere, tre per opporre, due per concludere. Via."],
+    ["Riassumo e riformulo un testo con parole mie.","Riformula in modo semplice: «Nonostante le premesse, il progetto si è arenato.»"]
+   ]},
+  {id:"grammatica", nome:"Grammatica",
+   mat:[["Il congiuntivo vivo","https://talkwithfabio.com/aula-pfr2u9/congiuntivo-vivo/"],["Un pomeriggio a Berlino","https://talkwithfabio.com/aula-pfr2u9/berlino/"],["E se...?","https://talkwithfabio.com/aula-pfr2u9/e-se/"],["Senza ripetere","https://talkwithfabio.com/aula-pfr2u9/senza-ripetere/"],["Esercizi: congiuntivo","https://talkwithfabio.com/esercizi/congiuntivo/"],["Esercizi: pronomi doppi","https://talkwithfabio.com/esercizi/pronomi-combinati/"]],
+   voci:[
+    ["Uso il congiuntivo presente e passato senza pensarci.","Completa al volo: Penso che... · Mi sembra strano che... · Benché... · Prima che..."],
+    ["Uso congiuntivo imperfetto e trapassato, con la concordanza dei tempi.","Completa: Volevo che tu... · Non sapevo che lui... · Magari...!"],
+    ["Uso il periodo ipotetico anche nel passato.","Una cosa che avresti fatto diversamente: «Se avessi... avrei...». Poi la versione misto: «Se avessi..., adesso...»."],
+    ["Uso pronomi combinati, ne e ci dentro il discorso.","«Hai detto a Marta della festa?» Rispondi senza ripetere niente. Poi: «Quanti caffè bevi al giorno?»"],
+    ["Riconosco e capisco il passato remoto quando leggo.","Che verbi sono: nacque, ebbe, disse, vollero, giunse?"],
+    ["Uso le forme implicite: gerundio, participio, infinito passato.","Trasforma in tre modi: «Dopo che ho finito il lavoro, sono uscita.»"],
+    ["Uso il discorso indiretto con i tempi giusti.","Riferisci: Luca ieri ha detto: «Domani verrò, se avrò tempo.»"]
+   ]},
+  {id:"lessico", nome:"Lessico",
+   mat:[["Say it without the word (C1)","https://talkwithfabio.com/esercizi/giro-di-parole/"],["The little words (C1)","https://talkwithfabio.com/esercizi/segnali/"],["Esercizi: aggettivo + infinito","https://talkwithfabio.com/esercizi/aggettivo-infinito/"]],
+   voci:[
+    ["Ho un lessico preciso: non uso sempre fare, cosa, bello.","Tre modi più precisi di «bello» per: un film, un panorama, un'idea."],
+    ["Uso le collocazioni giuste.","Che verbo ci va? ... una decisione · ... una domanda · ... un rischio · ... attenzione · ... un errore"],
+    ["Uso modi di dire nel momento giusto.","Cosa vogliono dire e quando li useresti: fare orecchie da mercante · non avere peli sulla lingua · avere le mani in pasta · essere al verde"],
+    ["Ho il lessico del mio settore e dei miei interessi.","Spiegami una cosa del tuo lavoro o della tua passione come a un collega italiano, con i termini tecnici."]
+   ]},
+  {id:"pronuncia", nome:"Pronuncia",
+   mat:[["Dove cade l'accento?","https://talkwithfabio.com/aula-pfr2u9/accento/"]],
+   voci:[
+    ["Ho un'intonazione naturale, anche nelle emozioni.","Di' «Ah, sei arrivato» in tre modi: sorpresa, fastidio, sollievo."],
+    ["Doppie e accenti non mi tradiscono.","Leggi veloce: «Alle sette avevo sete, la nonna è la nona, il papa mangia la pappa.»"]
+   ]}
+];
+
+// stato
+var S = {aree:{}, extra:[], voci:{}, argomenti:""};
+var areaCorrente = null, gruppoCorrente = GRUPPI[0].id, domIdx = {};
+function chiave(){ return "mappa-c1:" + (document.getElementById("nome").value.trim().toLowerCase() || "studente"); }
+function salva(){
+  try { localStorage.setItem(chiave(), JSON.stringify(S)); var el=document.getElementById("salvato"); el.textContent="salvato"; clearTimeout(salva.t); salva.t=setTimeout(function(){el.textContent="";},1200);} catch(e){}
+}
+function carica(){
+  S = {aree:{}, extra:[], voci:{}, argomenti:""};
+  try { var x = JSON.parse(localStorage.getItem(chiave())||"null"); if(x){ S.aree=x.aree||{}; S.extra=x.extra||[]; S.voci=x.voci||{}; S.argomenti=x.argomenti||""; } } catch(e){}
+  areaCorrente=null;
+}
+function tutteAree(){ return AREE.concat(S.extra.map(function(e){ return {id:e.id, em:"⭐", nome:e.nome, d:["Raccontami: perché quest'area è importante per te?","Cosa riesci già a fare qui in italiano, e cosa no?"], r:"fammi un esempio concreto", compito:"Un compito su misura da decidere insieme: " + e.nome.toLowerCase() + "."}; })); }
+function trovaArea(id){ var a=tutteAree(); for(var i=0;i<a.length;i++) if(a[i].id===id) return a[i]; return null; }
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+// FASE 1
+function disegnaGriglia(){
+  var g=document.getElementById("griglia"); g.innerHTML="";
+  tutteAree().forEach(function(a){
+    var st=S.aree[a.id]||{}, fatta=st.serve&&st.agio;
+    var b=document.createElement("button"); b.type="button"; b.className="area"+(fatta?" fatta":"");
+    if(areaCorrente===a.id) b.setAttribute("aria-current","true");
+    b.innerHTML='<span class="em" aria-hidden="true">'+a.em+'</span><span class="nome">'+esc(a.nome)+'</span><span class="stato">'+(fatta?("serve "+SERVE[st.serve-1]+" · "+AGIO[st.agio-1]):"da fare")+'</span>';
+    b.addEventListener("click",function(){ areaCorrente=a.id; disegnaGriglia(); disegnaScheda(); document.getElementById("scheda").scrollIntoView({behavior:"smooth",block:"nearest"}); });
+    g.appendChild(b);
+  });
+}
+function scala(lab, cls, nomi, campo, a){
+  var st=S.aree[a.id]=S.aree[a.id]||{};
+  var h='<div class="scala"><div class="lab">'+lab+'</div><div class="pallini '+cls+'">';
+  nomi.forEach(function(n,i){ h+='<button type="button" data-campo="'+campo+'" data-v="'+(i+1)+'" aria-pressed="'+(st[campo]===i+1)+'">'+n+'</button>'; });
+  return h+'</div></div>';
+}
+function disegnaScheda(){
+  var box=document.getElementById("scheda"), a=trovaArea(areaCorrente);
+  if(!a){ box.innerHTML='<p class="vuota">Tocca un\'area per cominciare.</p>'; return; }
+  var i=domIdx[a.id]||0, st=S.aree[a.id]=S.aree[a.id]||{};
+  box.innerHTML='<h2>'+a.em+' '+esc(a.nome)+'</h2>'+
+    '<p class="domanda">'+esc(a.d[i%a.d.length])+'</p>'+
+    '<p class="rilancio">rilancio: '+esc(a.r)+'</p>'+
+    '<div class="toolbar"><button class="btn ghost small" type="button" id="altraDom">Altra domanda</button></div>'+
+    scala("Quanto ti serve?","serve",SERVE,"serve",a)+
+    scala("Come ti senti?","",AGIO,"agio",a)+
+    '<div class="scala"><div class="lab">Appunti (situazioni, parole che mancano)</div><textarea id="notaArea">'+esc(st.nota||"")+'</textarea></div>'+
+    '<div class="toolbar"><button class="btn green" type="button" id="prossima">Prossima area</button></div>';
+  box.querySelectorAll(".pallini button").forEach(function(b){
+    b.addEventListener("click",function(){ st[b.dataset.campo]=+b.dataset.v; salva(); disegnaGriglia(); disegnaScheda(); });
+  });
+  document.getElementById("altraDom").addEventListener("click",function(){ domIdx[a.id]=i+1; disegnaScheda(); });
+  document.getElementById("notaArea").addEventListener("input",function(e){ st.nota=e.target.value; salva(); });
+  document.getElementById("prossima").addEventListener("click",function(){
+    var tutte=tutteAree(), k=0; for(;k<tutte.length;k++) if(tutte[k].id===a.id) break;
+    for(var j=1;j<=tutte.length;j++){ var c=tutte[(k+j)%tutte.length], s=S.aree[c.id]||{}; if(!(s.serve&&s.agio)){ areaCorrente=c.id; break; } if(j===tutte.length) areaCorrente=null; }
+    if(!areaCorrente){ mostraFase(3); return; }
+    disegnaGriglia(); disegnaScheda();
+  });
+}
+document.getElementById("aggiungi").addEventListener("click",function(){
+  var inp=document.getElementById("nuovaArea"), n=inp.value.trim(); if(!n) return;
+  var id="extra-"+Date.now().toString(36); S.extra.push({id:id,nome:n}); inp.value=""; areaCorrente=id; salva(); disegnaGriglia(); disegnaScheda();
+});
+document.getElementById("nuovaArea").addEventListener("keydown",function(e){ if(e.key==="Enter") document.getElementById("aggiungi").click(); });
+
+// FASE 2
+function idVoce(g,i){ return g+"-"+i; }
+function disegnaGruppi(){
+  var box=document.getElementById("gruppi"); box.innerHTML="";
+  GRUPPI.forEach(function(g){
+    var fatte=g.voci.filter(function(v,i){ return S.voci[idVoce(g.id,i)]; }).length;
+    var b=document.createElement("button"); b.type="button"; b.setAttribute("aria-pressed", g.id===gruppoCorrente);
+    b.innerHTML=esc(g.nome)+'<span class="conta">'+fatte+'/'+g.voci.length+'</span>';
+    b.addEventListener("click",function(){ gruppoCorrente=g.id; disegnaGruppi(); disegnaVoci(); });
+    box.appendChild(b);
+  });
+}
+function disegnaVoci(){
+  var g=GRUPPI.filter(function(x){return x.id===gruppoCorrente;})[0], box=document.getElementById("voci"); box.innerHTML="";
+  g.voci.forEach(function(v,i){
+    var id=idVoce(g.id,i), st=S.voci[id]||"";
+    var d=document.createElement("div"); d.className="voce"+(st?" s-"+st:"");
+    d.innerHTML='<div class="so">'+esc(v[0])+'</div><div class="riga"><div class="tre">'+
+      '<button type="button" class="ok" data-s="ok" aria-pressed="'+(st==="ok")+'">Ce l\'ho</button>'+
+      '<button type="button" class="quasi" data-s="quasi" aria-pressed="'+(st==="quasi")+'">Quasi</button>'+
+      '<button type="button" class="no" data-s="no" aria-pressed="'+(st==="no")+'">Da lavorare</button></div>'+
+      '<button type="button" class="btn ghost small apri">La prova</button></div>'+
+      '<div class="prova"><b>Prova al volo:</b> '+esc(v[1])+'</div>';
+    d.querySelectorAll(".tre button").forEach(function(b){
+      b.addEventListener("click",function(){ S.voci[id]=(S.voci[id]===b.dataset.s)?"":b.dataset.s; salva(); disegnaGruppi(); disegnaVoci(); });
+    });
+    d.querySelector(".apri").addEventListener("click",function(){ d.classList.toggle("aperta"); });
+    box.appendChild(d);
+  });
+  var idx=GRUPPI.indexOf(g);
+  var nav=document.createElement("div"); nav.className="toolbar";
+  var nb=document.createElement("button"); nb.type="button"; nb.className="btn green";
+  nb.textContent= idx<GRUPPI.length-1 ? "Avanti: "+GRUPPI[idx+1].nome : "Vai alla bussola";
+  nb.addEventListener("click",function(){ if(idx<GRUPPI.length-1){ gruppoCorrente=GRUPPI[idx+1].id; disegnaGruppi(); disegnaVoci(); window.scrollTo({top:document.getElementById("f2").offsetTop-60,behavior:"smooth"}); } else mostraFase(3); });
+  nav.appendChild(nb); box.appendChild(nav);
+}
+
+// FASE 3
+function prioritaAree(){
+  return tutteAree().map(function(a){ var s=S.aree[a.id]||{}; return {a:a, p:(s.serve&&s.agio)? s.serve*(5-s.agio) : 0, s:s}; })
+    .filter(function(x){ return x.p>0; }).sort(function(x,y){ return y.p-x.p; });
+}
+function deboli(){
+  return GRUPPI.map(function(g){
+    var no=[],quasi=[]; g.voci.forEach(function(v,i){ var s=S.voci[idVoce(g.id,i)]; if(s==="no") no.push(v[0]); if(s==="quasi") quasi.push(v[0]); });
+    return {g:g, no:no, quasi:quasi, peso:no.length*2+quasi.length};
+  }).sort(function(x,y){ return y.peso-x.peso; });
+}
+function disegnaBussola(){
+  var pa=prioritaAree(), ul=document.getElementById("barre"); ul.innerHTML="";
+  if(!pa.length) ul.innerHTML='<li style="display:block;color:var(--muted);font-weight:400">Ancora nessuna area votata: torna alla fase 1.</li>';
+  pa.forEach(function(x,i){
+    var li=document.createElement("li"); if(i<3) li.className="top";
+    li.innerHTML='<span>'+x.a.em+' '+esc(x.a.nome)+'</span><span class="b"><i style="width:'+(x.p/16*100)+'%"></i></span><span class="v">'+x.p+'</span>';
+    ul.appendChild(li);
+  });
+  var db=deboli(), lno=document.getElementById("listaNo"), lq=document.getElementById("listaQuasi"); lno.innerHTML=""; lq.innerHTML="";
+  db.forEach(function(d){
+    d.no.forEach(function(t){ lno.insertAdjacentHTML("beforeend","<li><b>"+esc(d.g.nome)+":</b> "+esc(t)+"</li>"); });
+    d.quasi.forEach(function(t){ lq.insertAdjacentHTML("beforeend","<li><b>"+esc(d.g.nome)+":</b> "+esc(t)+"</li>"); });
+  });
+  if(!lno.children.length) lno.innerHTML='<li style="color:var(--muted)">niente per ora</li>';
+  if(!lq.children.length) lq.innerHTML='<li style="color:var(--muted)">niente per ora</li>';
+  var arg=document.getElementById("argomenti"); if(document.activeElement!==arg) arg.value=S.argomenti;
+  var per=document.getElementById("percorso"); per.innerHTML="";
+  var conDeboli=db.filter(function(d){ return d.peso>0; });
+  var tappe=Math.max(Math.min(3,pa.length), conDeboli.length?1:0);
+  if(!tappe){ per.innerHTML='<p class="vuota">Il percorso compare quando ci sono aree votate o competenze segnate.</p>'; return; }
+  for(var t=0;t<tappe;t++){
+    var area=pa[t]?pa[t].a:null, gr=conDeboli.length?conDeboli[t%conDeboli.length]:null;
+    var lingua = gr ? (gr.no.concat(gr.quasi).slice(0,3).map(function(s){return s.replace(/\.$/,"");}).join("; ")) : "da decidere insieme";
+    var mat = gr && gr.g.mat.length ? gr.g.mat.map(function(m){ return '<a href="'+m[1]+'" target="_blank" rel="noopener">'+esc(m[0])+'</a>'; }).join("") : '<span style="color:var(--muted)">materiali da costruire su misura</span>';
+    per.insertAdjacentHTML("beforeend",
+      '<div class="tappa"><div class="sub">Tappa '+(t+1)+' · lezioni '+(t*4+1)+'-'+(t*4+4)+'</div>'+
+      '<div class="t">'+(area?area.em+" "+esc(area.nome):"Lavoro sulla lingua")+(gr?" + "+esc(gr.g.nome):"")+'</div>'+
+      (area?'<p><b>Compito vero:</b> '+esc(area.compito)+'</p>':'')+
+      '<p><b>Lingua:</b> '+esc(lingua)+'</p>'+
+      '<div class="mat">'+mat+'</div></div>');
+  }
+}
+document.getElementById("argomenti").addEventListener("input",function(e){ S.argomenti=e.target.value; salva(); });
+
+function riepilogo(){
+  var nome=document.getElementById("nome").value.trim()||"Studente", r=["La mappa del C1: "+nome,""];
+  r.push("AREE (priorità = serve × manca)");
+  prioritaAree().forEach(function(x){ r.push("- "+x.a.nome+": serve "+SERVE[x.s.serve-1]+", si sente "+AGIO[x.s.agio-1]+" ("+x.p+")"+(x.s.nota?". Note: "+x.s.nota.replace(/\s+/g," "):"")); });
+  var db=deboli();
+  r.push("","DA LAVORARE"); db.forEach(function(d){ d.no.forEach(function(t){ r.push("- "+d.g.nome+": "+t); }); });
+  r.push("","QUASI"); db.forEach(function(d){ d.quasi.forEach(function(t){ r.push("- "+d.g.nome+": "+t); }); });
+  if(S.argomenti.trim()) r.push("","SUOI ARGOMENTI",S.argomenti.trim());
+  r.push("","PERCORSO");
+  document.querySelectorAll("#percorso .tappa").forEach(function(t){ r.push("- "+t.innerText.replace(/\n+/g," · ")); });
+  return r.join("\n");
+}
+document.getElementById("copia").addEventListener("click",function(){
+  var txt=riepilogo(), el=document.getElementById("copiato");
+  function fatto(){ el.textContent="copiato"; setTimeout(function(){el.textContent="";},1500); }
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(fatto,function(){ fallback(txt); fatto(); }); } else { fallback(txt); fatto(); }
+});
+function fallback(txt){ var t=document.createElement("textarea"); t.value=txt; document.body.appendChild(t); t.select(); try{document.execCommand("copy");}catch(e){} document.body.removeChild(t); }
+
+// fasi
+function mostraFase(n){
+  [1,2,3].forEach(function(k){ document.getElementById("f"+k).classList.toggle("nascosto",k!==n); });
+  document.querySelectorAll("#fasi button").forEach(function(b){ b.setAttribute("aria-pressed", +b.dataset.f===n); });
+  if(n===2){ disegnaGruppi(); disegnaVoci(); }
+  if(n===3) disegnaBussola();
+  window.scrollTo({top:document.getElementById("fasi").offsetTop-4,behavior:"smooth"});
+}
+document.querySelectorAll("#fasi button").forEach(function(b){ b.addEventListener("click",function(){ mostraFase(+b.dataset.f); }); });
+document.getElementById("nome").addEventListener("change",function(){ carica(); disegnaGriglia(); disegnaScheda(); mostraFase(1); });
+document.getElementById("azzera").addEventListener("click",function(){
+  if(!confirm("Cancello tutte le risposte di questo studente?")) return;
+  try{ localStorage.removeItem(chiave()); }catch(e){}
+  carica(); disegnaGriglia(); disegnaScheda(); mostraFase(1);
+});
+
+carica(); disegnaGriglia(); disegnaScheda();
+})();
+</script>
+</body>
+</html>
