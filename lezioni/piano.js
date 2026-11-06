@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "5 novembre 2026, 01:20";
+var PIANO_AGGIORNATO = "6 novembre 2026, 03:22";
 
 var PIANO = {
 
@@ -367,15 +367,15 @@ var PIANO = {
 
   "rafaela-yrd": {
     "nome": "Rafaela",
-    "aggiornato": "4 novembre 2026",
+    "aggiornato": "5 novembre 2026",
     "ultima": {
-      "quando": "2026-11-04T10:00:00+01:00",
+      "quando": "2026-11-05T09:30:00+01:00",
       "fatto": [
-        "We decided: the next two lessons are all conversation"
+        "We talked in Italian"
       ]
     },
     "prossima": {
-      "quando": "2026-11-05T09:30:00+01:00",
+      "quando": "2026-11-06T09:00:00+01:00",
       "obiettivo": "Speak only Italian, even when a word is missing: describe it, ask for it, keep going.",
       "attivita": [
         {
@@ -391,7 +391,7 @@ var PIANO = {
         {
           "titolo": "My words",
           "href": "",
-          "nota": "On Friday we bring back the words you were missing"
+          "nota": "The words you were missing come back next time"
         }
       ]
     },
@@ -405,6 +405,45 @@ var PIANO = {
         "titolo": "Passato prossimo 1: essere or avere?",
         "href": "https://talkwithfabio.com/esercizi/passato-prossimo/?mode=aux",
         "nota": "A few minutes every day"
+      }
+    ]
+  },
+
+  "robert-zll": {
+    "nome": "Robert",
+    "aggiornato": "5 novembre 2026",
+    "ultima": {
+      "quando": "2026-11-05T18:00:00+01:00",
+      "fatto": [
+        "Describing people: hair and eyes"
+      ]
+    },
+    "prossima": {
+      "quando": "2026-11-11T19:00:00+01:00",
+      "obiettivo": "Describe a person from head to toe: face, height, build, age, beard and glasses. The last step before A2!",
+      "attivita": [
+        {
+          "titolo": "Identikit",
+          "href": "",
+          "nota": "Find the mystery person by asking questions, first with help, then on your own"
+        },
+        {
+          "titolo": "Your description",
+          "href": "",
+          "nota": "At the end you describe a person by yourself"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "Describing people",
+        "href": "https://talkwithfabio.com/esercizi/descrivere/",
+        "nota": "Flashcards: hair, face, build, age"
+      },
+      {
+        "titolo": "Guess who, in Italian",
+        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
+        "nota": "Practise the questions before Wednesday"
       }
     ]
   },
