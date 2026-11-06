@@ -54,7 +54,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "5 novembre 2026, 13:19";
+var SALDI_AGGIORNATO = "6 novembre 2026, 13:06";
 
 var SALDI = {
 
