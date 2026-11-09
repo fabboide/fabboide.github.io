@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "6 novembre 2026, 18:26";
+var PIANO_AGGIORNATO = "9 novembre 2026, 10:40";
 
 var PIANO = {
 
@@ -406,31 +406,31 @@ var PIANO = {
 
   "rafaela-yrd": {
     "nome": "Rafaela",
-    "aggiornato": "5 novembre 2026",
+    "aggiornato": "9 novembre 2026",
     "ultima": {
-      "quando": "2026-11-05T09:30:00+01:00",
+      "quando": "2026-11-09T09:00:00+01:00",
       "fatto": [
-        "We talked in Italian"
+        "How do you say it? Talking only in Italian, even when a word is missing"
       ]
     },
     "prossima": {
-      "quando": "2026-11-06T09:00:00+01:00",
-      "obiettivo": "Speak only Italian, even when a word is missing: describe it, ask for it, keep going.",
+      "quando": "2026-11-10T09:30:00+01:00",
+      "obiettivo": "Talk, talk, talk: only Italian, as much as you can.",
       "attivita": [
         {
-          "titolo": "How do you say it?",
+          "titolo": "My words",
           "href": "",
-          "nota": "Explain an English word in Italian until I guess it"
+          "nota": "The words you were missing today come back"
         },
         {
           "titolo": "Three jokers",
           "href": "",
-          "nota": "Three minutes on a topic, only three English words allowed"
+          "nota": "Two topics, only three English words allowed"
         },
         {
-          "titolo": "My words",
+          "titolo": "How do you say it?",
           "href": "",
-          "nota": "The words you were missing come back next time"
+          "nota": "Explain places, people and actions in Italian"
         }
       ]
     },
