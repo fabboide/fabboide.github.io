@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "9 novembre 2026, 19:49";
+var PIANO_AGGIORNATO = "9 novembre 2026, 22:07";
 
 var PIANO = {
 
@@ -377,33 +377,31 @@ var PIANO = {
 
   "luana-zqy": {
     "nome": "Luana",
-    "aggiornato": "26 ottobre 2026",
+    "aggiornato": "9 novembre 2026",
     "ultima": {
-      "quando": "2026-10-26T20:00:00+01:00",
+      "quando": "2026-11-09T20:30:00+01:00",
       "fatto": [
-        "Verbs: very good!",
-        "Guess who?",
-        "You described a friend"
+        "Fluency with Il filo: one story, told without stopping"
       ]
     },
     "prossima": {
-      "quando": "2026-11-09T20:30:00+01:00",
-      "obiettivo": "Describe people with confidence, then lots of conversation.",
+      "quando": "2026-11-18T20:30:00+01:00",
+      "obiettivo": "Talk about what you did: yesterday, last weekend, your last shopping trip. Just conversation.",
       "attivita": [
         {
-          "titolo": "Guess who?, two games: 12 and 24 faces",
+          "titolo": "Warm-up: what did you do at the weekend?",
           "href": "",
-          "nota": "We play it together"
+          "nota": "Free chat"
         },
         {
-          "titolo": "Your turn: describe someone and I guess",
+          "titolo": "Verbi in tasca: yesterday",
           "href": "",
-          "nota": "A friend or a famous person"
+          "nota": "I ask, you answer, then you ask me back"
         },
         {
-          "titolo": "Conversation",
+          "titolo": "Your last shopping trip",
           "href": "",
-          "nota": "The main part of the lesson"
+          "nota": "Clothes, shoes or a perfume: tell me everything!"
         }
       ]
     },
