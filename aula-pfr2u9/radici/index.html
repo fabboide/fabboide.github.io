@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radici · Talk with Fabio</title>
+<meta name="description" content="Lezione di prova per chi ha l'italiano in famiglia: da dove vieni, la mappa, un ricordo, il tuo piano.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+
+
+
+/* Radici */
+.mini{font-size:.9rem;color:var(--muted);margin:10px 0 0}
+.regola{border-left:4px solid var(--tomato);background:#FBF0EE;border-radius:0 12px 12px 0;padding:10px 14px;margin:0 0 14px;font-size:1.02rem}
+.regola b{font-family:var(--display)}
+.btn.giallo{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+.btn.grande{font-size:1.1rem;padding:12px 22px}
+.grid2>*{min-width:0}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.tempo{display:inline-block;font-family:var(--hand);font-size:1.25rem;color:var(--basil);margin-left:6px;font-weight:400}
+.nome-box{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin:0 0 6px}
+.nome-box label{font-family:var(--display);font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.nome-box input{flex:1;min-width:140px;border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:var(--stone);font-family:var(--display);font-weight:700}
+
+/* 1 · benvenuta */
+.domande{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.domande li{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 14px}
+.domande li b{font-family:var(--display);font-size:1.12rem;font-weight:700}
+.domande li span{display:block;color:var(--muted);font-style:italic;font-size:.9rem}
+.domande li button{border:1px solid var(--line);background:var(--stone);border-radius:999px;padding:4px 12px;font-family:var(--display);font-weight:700;font-size:.85rem}
+.domande li.fatta{background:#E7F0EA;border-color:#CBDDD2}
+.domande li.fatta button{background:var(--basil);color:var(--paper);border-color:var(--basil)}
+
+/* 2 · la mappa */
+.aree{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.aree span{font-family:var(--display);font-weight:700;font-size:.8rem;border:1px solid var(--line);border-radius:999px;padding:3px 10px;background:var(--paper);color:var(--muted)}
+.aree span.ora{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.aree span.fatto{border-color:var(--basil);color:var(--basil)}
+.carta{border:2px solid var(--ink);border-radius:20px;background:var(--paper);padding:22px 20px;text-align:center}
+.carta .et{font-family:var(--display);font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.carta .frase{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,4.6vw,2.1rem);line-height:1.25;margin:10px 0 4px}
+.carta .en2{color:var(--muted);font-style:italic;margin:0}
+.voti{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.voti button{border:2px solid var(--line);background:var(--paper);border-radius:14px;padding:10px 6px;font-family:var(--display);font-weight:700;font-size:.98rem;line-height:1.2}
+.voti button small{display:block;font-weight:600;color:var(--muted);font-size:.75rem}
+.voti .v2{border-color:var(--basil)}
+.voti .v1{border-color:var(--lemon)}
+.voti .v0{border-color:var(--tomato)}
+@media (max-width:420px){.voti button{font-size:.88rem}}
+.ascolta{display:none;text-align:left;margin:12px 0 0;border-top:1px dashed var(--line);padding-top:10px;font-size:1rem}
+.ascolta.show{display:block}
+.ascolta b{color:var(--tomato);font-family:var(--display)}
+
+/* barre del profilo, usate nella fase 2 e nel piano */
+.barre{display:grid;gap:9px}
+.barra-r{display:grid;grid-template-columns:minmax(110px,38%) 1fr 34px;gap:10px;align-items:center;font-size:.95rem}
+.barra-r .lab{font-family:var(--display);font-weight:700;line-height:1.2}
+.barra-r .tr{height:12px;background:var(--line);border-radius:999px;overflow:hidden}
+.barra-r .tr i{display:block;height:100%;border-radius:999px;background:var(--basil);transition:width .4s ease}
+.barra-r.medio .tr i{background:var(--lemon)}
+.barra-r.basso .tr i{background:var(--tomato)}
+.barra-r.nv .tr i{width:0 !important}
+.barra-r .num{font-family:var(--display);font-weight:700;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+
+/* 3 · il ricordo */
+.ricordo{background:var(--bubble);border:1px solid #CBDDD2;border-radius:18px 18px 18px 4px;padding:18px 20px}
+.ricordo .tit{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,4.5vw,1.9rem);line-height:1.2;margin:0}
+.ricordo .en2{color:var(--muted);font-style:italic;margin:4px 0 0}
+.appigli{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.appigli span{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.98rem}
+.parole-in{display:flex;gap:8px;margin-top:10px}
+.parole-in input{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--paper)}
+.parole{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.parole span{background:var(--paper);border:1px dashed var(--tomato);border-radius:999px;padding:3px 6px 3px 12px;font-size:.98rem;display:inline-flex;align-items:center;gap:6px}
+.parole span button{border:0;background:none;color:var(--muted);font-size:1rem;line-height:1;padding:0 4px}
+.timer.big output{font-size:1.5rem}
+
+/* 4 · il piano */
+.piano-head{border:2px solid var(--ink);border-radius:20px;background:var(--paper);padding:20px}
+.piano-head h3{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,5vw,2.2rem);line-height:1.15;margin:0 0 4px;color:var(--tomato)}
+.piano-head p{margin:0;color:var(--muted)}
+.forti{margin:14px 0 0;padding:12px 14px;border-radius:14px;background:#E7F0EA;color:var(--basil);font-size:1.02rem}
+.forti b{font-family:var(--display)}
+.lezioni{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;counter-reset:lez}
+.lezioni li{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 16px;position:relative}
+.lezioni li::before{counter-increment:lez;content:"Lezione " counter(lez);display:block;font-family:var(--hand);font-size:1.25rem;color:var(--tomato)}
+.lezioni li b{display:block;font-family:var(--display);font-size:1.08rem;line-height:1.25;margin:2px 0 4px}
+.lezioni li span{display:block;font-size:.95rem;color:var(--muted)}
+.lezioni li em{display:block;font-style:normal;font-size:.85rem;margin-top:6px;color:var(--basil);font-family:var(--display);font-weight:600}
+.interessi{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.interessi button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.interessi button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.vuoto{color:var(--muted);text-align:center;padding:20px 10px}
+/* Comuni presi da Che mi racconti? */
+.nota-gram{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin-top:10px}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.vuoto{color:var(--muted);text-align:center;padding:26px 10px}
+/* Appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.appunti .riga{justify-content:space-between}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+/* Frasi utili */
+dialog{border:0;border-radius:16px;padding:0;max-width:660px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.5rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:54%}
+.dlg-body h3{margin:18px 0 4px;color:var(--basil);font-size:1.12rem}
+</style>
+</head>
+
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Radici</h1>
+    <p>L'italiano di casa: lo capisci quasi tutto, ma quando devi parlarlo si blocca. In questa lezione lo facciamo uscire, vediamo dove si inceppa e costruiamo il tuo piano. <span class="en">The Italian you grew up with: you understand it, now let's get it out. In 25 minutes we find where it gets stuck and build your plan.</span></p>
+  </header>
+
+  <div class="nome-box">
+    <label for="nome">Il tuo nome</label>
+    <input id="nome" type="text" maxlength="24" placeholder="Nome" autocomplete="off">
+  </div>
+
+  <nav class="steps" role="tablist" aria-label="Fasi">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>Da dove vieni</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>La mappa</button>
+    <button role="tab" aria-selected="false" data-phase="p3"><span class="n">3</span>Un ricordo</button>
+    <button role="tab" aria-selected="false" data-phase="p4"><span class="n">4</span>Il tuo piano</button>
+  </nav>
+
+  <!-- 1 · DA DOVE VIENI -->
+  <section class="phase active" id="p1">
+    <h2>Da dove vieni <span class="tempo">4 minuti</span></h2>
+    <p class="regola"><b>Parliamo e basta.</b> Nessun esercizio: qualche domanda per conoscerci. Rispondi come vuoi, anche con errori, anche lentamente. Se ti manca una parola, dilla in inglese e andiamo avanti. <span class="en">Just talking. Mistakes are welcome; if a word is missing, say it in English and keep going.</span></p>
+    <div class="grid2">
+      <ul class="domande" id="a1Lista"></ul>
+      <aside class="panel">
+        <h3>Per me</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>tono da chiacchiera, non da esame: rispondo anch'io a ogni domanda</li>
+          <li>le parole che dice in inglese le scrivo nella fase 3, in «Le tue parole»</li>
+          <li>ascolto già: tu o Lei? passato prossimo o imperfetto? dialetto?</li>
+          <li>quattro domande bastano, poi si passa alla mappa</li>
+        </ul>
+        <p class="mini">Con chi è cresciuto all'estero il punto di partenza vero è la sua storia: la motivazione sta lì.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2 · LA MAPPA -->
+  <section class="phase" id="p2">
+    <h2>La mappa <span class="tempo">8 minuti</span></h2>
+    <p class="regola"><b>Sei situazioni, una alla volta.</b> Ti faccio una domanda o ti metto in una scena, tu rispondi a voce. Non è un test: serve a vedere dove l'italiano scorre e dove si inceppa. <span class="en">Six quick situations. Not a test: we're mapping where your Italian flows and where it gets stuck.</span></p>
+    <div class="aree" id="b2Aree"></div>
+    <div class="grid2">
+      <div>
+        <div class="carta">
+          <div class="et" id="b2Et">area</div>
+          <p class="frase" id="b2Q"></p>
+          <p class="en2" id="b2En"></p>
+          <div class="ascolta" id="b2Asc"></div>
+        </div>
+        <div class="voti">
+          <button class="v2" type="button" data-v="2">Scorre<small>it flows</small></button>
+          <button class="v1" type="button" data-v="1">Con fatica<small>with effort</small></button>
+          <button class="v0" type="button" data-v="0">Da allenare<small>to work on</small></button>
+        </div>
+        <div class="riga">
+          <button class="btn ghost" id="b2Altra" type="button">Un'altra domanda, stessa area</button>
+          <button class="btn ghost" id="b2Cosa" type="button">Cosa ascolto</button>
+          <button class="btn ghost" id="b2Rifai" type="button">Ricomincia la mappa</button>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>La mappa, in diretta</h3>
+        <div class="barre" id="b2Barre"></div>
+        <p class="mini">Un voto per area, poi si passa da soli alla prossima. Se la domanda non le dice niente, «Un'altra domanda» la cambia prima di votare. Voto quello che sento, non quello che sa: chi ha l'italiano in famiglia capisce molto più di quanto produce. «Cosa ascolto» mi dice l'errore tipico di quell'area.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 3 · UN RICORDO -->
+  <section class="phase" id="p3">
+    <h2>Un ricordo <span class="tempo">8 minuti</span></h2>
+    <p class="regola"><b>Raccontami una storia vera.</b> Scegli un ricordo: lo racconti in due minuti, io ti faccio qualche domanda, poi lo racconti di nuovo in un minuto e mezzo. La seconda volta viene sempre meglio. <span class="en">Tell me a real memory. Then tell it again, shorter: the second time is always better.</span></p>
+    <div class="toolbar">
+      <button class="btn ghost" id="c3Altro" type="button">Un altro ricordo</button>
+      <button class="btn red" id="c3Via" type="button">Via! 2 minuti</button>
+      <button class="btn giallo" id="c3Bis" type="button">Di nuovo: 1:30</button>
+      <div class="timer big" id="c3Timer"><output id="c3Clock">2:00</output></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="ricordo">
+          <p class="tit" id="c3Tit"></p>
+          <p class="en2" id="c3En"></p>
+          <div class="appigli" id="c3App"></div>
+        </div>
+        <h3 style="margin-top:16px">Le tue parole <span class="en">the words you reached for</span></h3>
+        <div class="parole-in">
+          <input id="c3Parola" type="text" maxlength="60" placeholder="es. sidewalk → il marciapiede" autocomplete="off">
+          <button class="btn green" id="c3Agg" type="button">Aggiungi</button>
+        </div>
+        <div class="parole" id="c3Parole"></div>
+      </div>
+      <aside class="panel">
+        <h3>Per me</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>il primo giro lo ascolto e basta, senza correggere</li>
+          <li>poi tre domande vere: «E com'era la casa?», «Chi c'era?», «E poi?»</li>
+          <li>il secondo giro più corto: è lì che si vede quanto migliora in un minuto</li>
+          <li>ogni parola che dice in inglese la scrivo qui sotto, in italiano: finisce nel piano</li>
+        </ul>
+        <p class="mini">I ricordi d'infanzia chiedono l'imperfetto da soli («c'era», «andavamo»): la mappa del passato si conferma qui.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 4 · IL TUO PIANO -->
+  <section class="phase" id="p4">
+    <h2>Il tuo piano <span class="tempo">5 minuti</span></h2>
+    <p class="regola"><b>Quello che abbiamo visto oggi, e da dove partiamo.</b> I punti forti, le tre cose che faranno la differenza e le prime quattro lezioni, costruite sui tuoi interessi. <span class="en">What we saw today, and where we start: your strengths, three priorities, your first four lessons.</span></p>
+    <div class="interessi" id="d4Int"></div>
+    <div class="piano-head">
+      <h3 id="d4Tit">Il tuo italiano oggi</h3>
+      <p id="d4Sotto"></p>
+      <div class="barre" id="d4Barre" style="margin-top:14px"></div>
+      <p class="forti" id="d4Forti"></p>
+    </div>
+    <ol class="lezioni" id="d4Lez"></ol>
+    <div id="d4Parole" style="margin-top:16px"></div>
+    <p class="mini">Le lezioni si scelgono dalle tre aree più basse della mappa e prendono il tema dagli interessi accesi qui sopra. Se un'area non è stata votata, non entra.</p>
+  </section>
+
+  <!-- APPUNTI -->
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Gli errori da riprendere, le cose da ricordare di lei.</p>
+    <textarea id="note" placeholder="Es. «ho andato» → sono andata · usa sempre il tu · nonna di Bari"></textarea>
+    <div class="riga">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function ev(s){ return esc(s).replace(/\[([^\]]+)\]/g, "<b>$1</b>"); }
+  function orologio(s){ s = Math.max(0, s); return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
+  function mescola(a){ a = a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+
+  /* ============ 1 · DA DOVE VIENI ============ */
+  var DOMANDE = [
+    {q:"In che parte d'Italia hai le tue radici?", en:"Where in Italy are your roots?"},
+    {q:"Quando hai lasciato l'Italia, quanti anni avevi?", en:"How old were you when you left?"},
+    {q:"Chi parla italiano nella tua famiglia? Con chi lo parli?", en:"Who speaks Italian in your family?"},
+    {q:"Che cosa ti ricordi dell'Italia?", en:"What do you remember about Italy?"},
+    {q:"Quando è stata l'ultima volta in Italia?", en:"When were you last in Italy?"},
+    {q:"Che cosa guardi in italiano? Film, serie, YouTube?", en:"What do you watch in Italian?"},
+    {q:"C'è un piatto di famiglia che sai cucinare?", en:"Is there a family dish you can cook?"},
+    {q:"Perché vuoi parlarlo meglio, proprio adesso?", en:"Why do you want to speak it better, right now?"}
+  ];
+
+  /* ============ 2 · LA MAPPA ============
+     Sei aree. Per ognuna: tre situazioni, cosa ascoltare, e la lezione che
+     entra nel piano se l'area è fra le più basse (con il tema per interesse). */
+  var AREE = [
+    {k:"passato", nome:"Raccontare al passato",
+     d:[{q:"Com'era la casa della tua infanzia? Descrivimela.", en:"What was your childhood home like?"},
+        {q:"Cosa hai fatto lo scorso weekend? Dimmi tre cose.", en:"What did you do last weekend? Three things."},
+        {q:"Racconta il tuo ultimo viaggio: dove, con chi, cosa avete fatto.", en:"Tell me about your last trip."}],
+     asc:"L'ausiliare: [sono andata], non «ho andato». L'imperfetto per descrivere ([c'era], [era], [andavamo]) e il passato prossimo per i fatti. Chi ha l'italiano di casa spesso usa solo uno dei due.",
+     lez:{t:"Racconti di famiglia", s:"Passato prossimo e imperfetto: raccontare un ricordo come una storia, senza fermarsi.",
+          temi:{cinema:"la scena di un film che ti ha segnato", viaggi:"il diario di un viaggio in Italia", cibo:"la ricetta di famiglia e chi la cucinava", cultura:"una festa del paese, com'era una volta"}}},
+    {k:"accordi", nome:"Articoli e accordi",
+     d:[{q:"Cosa c'è nel tuo frigorifero adesso?", en:"What's in your fridge right now?"},
+        {q:"Descrivi i vestiti che porti oggi, con i colori.", en:"Describe what you're wearing, with colours."},
+        {q:"Le tre cose che metti sempre in valigia, e perché.", en:"Three things always in your suitcase."}],
+     asc:"[il / lo / la / i / gli / le] e l'aggettivo che si accorda: [le scarpe nere], [gli occhiali nuovi]. Chi ha imparato a orecchio sbaglia soprattutto [lo] e [gli].",
+     lez:{t:"Le paroline che tradiscono", s:"Articoli, plurali e accordi: le cose piccole che fanno sembrare l'italiano «di casa» un italiano sicuro.",
+          temi:{cinema:"i personaggi della tua serie preferita", viaggi:"fare la valigia e il check-in", cibo:"la spesa al mercato, a etti e chili", cultura:"descrivere un quadro o una piazza"}}},
+    {k:"prep", nome:"Le preposizioni",
+     d:[{q:"Dove vai quando sei in Italia? E nel weekend, a casa?", en:"Where do you go in Italy? And at weekends?"},
+        {q:"Dove tieni le chiavi, il telefono e il portafoglio?", en:"Where do you keep your keys, phone and wallet?"},
+        {q:"Da quanto tempo vivi nella città dove abiti adesso?", en:"How long have you lived in your city?"}],
+     asc:"[a / in / da] con i luoghi ([in Italia], [a Roma], [dai nonni]) e le articolate: [al], [nel], [sul], [dal]. «Da» per il tempo: [vivo qui da dieci anni], non «per dieci anni».",
+     lez:{t:"Al, nel, dal", s:"Le preposizioni dove servono davvero: muoversi, cercare, chiedere.",
+          temi:{cinema:"raccontare dove è girato un film", viaggi:"un itinerario in treno, città per città", cibo:"dove si compra e dove si mangia cosa", cultura:"una passeggiata in una città d'arte"}}},
+    {k:"lei", nome:"Tu e Lei",
+     d:[{q:"Sono un cameriere a Roma. Ordina un caffè e un cornetto, poi chiedi il conto. Dammi del Lei!", en:"I'm a waiter in Rome. Order, then ask for the bill. Use the formal Lei!"},
+        {q:"Sono un signore per strada. Fermami e chiedimi dov'è la stazione.", en:"Stop me in the street and ask for the station."},
+        {q:"Sono il receptionist dell'albergo e la tua camera ha un problema. Lamentati, con gentilezza.", en:"Complain politely to the hotel receptionist."}],
+     asc:"Chi ha l'italiano di famiglia conosce quasi solo il tu. Ascolto [Scusi], [mi può dire], [vorrei], [Lei ha...], e se a metà torna al tu.",
+     lez:{t:"Il Lei, con naturalezza", s:"Ordinare, chiedere, lamentarsi con garbo: l'italiano fuori dalla famiglia.",
+          temi:{cinema:"al botteghino e in una scena da recitare", viaggi:"albergo, stazione, noleggio auto", cibo:"al ristorante: ordinare, chiedere, protestare", cultura:"al museo e in biglietteria"}}},
+    {k:"opinioni", nome:"Dire la tua",
+     d:[{q:"Secondo te, si mangia meglio in Italia o dove vivi adesso? Comincia con «Penso che...».", en:"Where's the food better? Start with «Penso che...»"},
+        {q:"Se potessi vivere un anno in una città italiana, quale sceglieresti e perché?", en:"If you could live a year in an Italian city, which one?"},
+        {q:"Qual è una cosa degli italiani che non capisci? E una che ti manca?", en:"Something about Italians you don't get, and something you miss."}],
+     asc:"[Penso che] + congiuntivo ([sia], [abbia]); [se potessi] + condizionale ([vivrei]). Va bene anche se lo evita: conta se riesce ad argomentare, con un perché e un esempio.",
+     lez:{t:"Dire la tua", s:"Opinioni, ipotesi, sfumature: penso che, se fossi, secondo me. L'italiano da grandi, non da bambini.",
+          temi:{cinema:"discutere un film italiano visto insieme", viaggi:"la città italiana dove vivresti, e perché", cibo:"la cucina italiana in America: vera o falsa?", cultura:"che cosa è «italiano», per te"}}},
+    {k:"lessico", nome:"Oltre la cucina",
+     d:[{q:"Spiegami il tuo lavoro, o quello che studi, in un minuto.", en:"Explain your job or studies in one minute."},
+        {q:"Racconta la trama di un film o di una serie che ti è piaciuta.", en:"Tell me the plot of a film or show you liked."},
+        {q:"Che cosa succede in questo periodo nella tua città? Una notizia.", en:"What's happening in your city lately? One piece of news."}],
+     asc:"L'italiano di casa ha tante parole per il cibo e la famiglia e poche per il lavoro, le notizie, le idee. Conto quante volte passa all'inglese.",
+     lez:{t:"Le parole che a casa non si dicevano", s:"Il lessico adulto: lavoro, notizie, idee. Le parole che mancano diventano le tue.",
+          temi:{cinema:"recensire una serie come un critico", viaggi:"raccontare una città a chi non c'è mai stato", cibo:"il cibo come cultura e come mestiere", cultura:"una notizia italiana della settimana"}}}
+  ];
+  var FINALE = {t:"Tutto insieme: una conversazione vera", s:"Un compito con uno scopo, dall'inizio alla fine, usando tutto quello delle tre lezioni prima.",
+    temi:{cinema:"preparare insieme una serata cinema italiana", viaggi:"organizzare al telefono un viaggio in Italia", cibo:"una cena da organizzare, dal menu alla spesa", cultura:"intervistare un italiano su una tradizione"}};
+  var INTERESSI = [["cinema","Film e serie"],["viaggi","Viaggi"],["cibo","Cibo"],["cultura","Cultura"]];
+
+  /* ============ 3 · UN RICORDO ============ */
+  var RICORDI = [
+    {t:"La casa dei nonni", en:"Your grandparents' home", a:["chi c'era","le stanze","gli odori","cosa si mangiava","un oggetto"]},
+    {t:"Un'estate in Italia", en:"A summer in Italy", a:["dove","con chi","il mare o la montagna","una giornata tipo","una cosa successa"]},
+    {t:"Un piatto di famiglia", en:"A family dish", a:["chi lo cucinava","quando","gli ingredienti","il profumo","l'ultima volta"]},
+    {t:"Il giorno della partenza", en:"The day you left", a:["quanti anni avevi","cosa ricordi","chi ti ha salutato","il viaggio","il primo giorno nel posto nuovo"]},
+    {t:"Una festa in famiglia", en:"A family celebration", a:["Natale, un matrimonio, un compleanno","chi c'era","cosa avete mangiato","la musica","un momento buffo"]},
+    {t:"Una parola che si diceva solo a casa", en:"A word you only said at home", a:["chi la diceva","cosa vuol dire","quando si usava","è dialetto?","la usi ancora?"]},
+    {t:"Un film o una canzone italiana dell'infanzia", en:"An Italian film or song from your childhood", a:["dove lo vedevi","con chi","perché ti piaceva","la scena o il ritornello","oggi"]},
+    {t:"I giochi dell'infanzia", en:"Childhood games", a:["dove giocavi","con chi","il gioco preferito","le regole","chi vinceva"]}
+  ];
+
+  /* ============ MEMORIA ============ */
+  var CHIAVE = "icf-radici";
+  var mem = { nome:"", fatte:[], voti:{}, interessi:["cinema","viaggi","cibo","cultura"], parole:[], note:"" };
+  try{
+    var m0 = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(m0 && typeof m0 === "object"){ for(var k in mem){ if(m0[k] !== undefined) mem[k] = m0[k]; } }
+  }catch(e){}
+  if(!Array.isArray(mem.fatte)) mem.fatte = [];
+  if(!mem.voti || typeof mem.voti !== "object") mem.voti = {};
+  if(!Array.isArray(mem.interessi)) mem.interessi = [];
+  if(!Array.isArray(mem.parole)) mem.parole = [];
+  var salvaT = null;
+  function salva(){
+    clearTimeout(salvaT);
+    salvaT = setTimeout(function(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(mem)); }catch(e){} }, 250);
+  }
+
+  $("nome").value = mem.nome;
+  $("nome").addEventListener("input", function(){ mem.nome = this.value; salva(); piano(); });
+
+  /* Linguette */
+  var tabs = document.querySelectorAll("nav.steps button[data-phase]");
+  function vaiA(f){
+    Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", x.getAttribute("data-phase") === f ? "true" : "false"); });
+    Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(s){ s.classList.toggle("active", s.id === f); });
+    if(f === "p4") piano();
+  }
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){ vaiA(t.getAttribute("data-phase")); });
+  });
+
+  /* ============ 1 ============ */
+  $("a1Lista").innerHTML = DOMANDE.map(function(d, i){
+    return '<li data-i="' + i + '"><div><b>' + esc(d.q) + '</b><span>' + esc(d.en) + '</span></div><button type="button">fatta</button></li>';
+  }).join("");
+  function segna1(){
+    Array.prototype.forEach.call($("a1Lista").querySelectorAll("li"), function(li){
+      li.classList.toggle("fatta", mem.fatte.indexOf(+li.getAttribute("data-i")) !== -1);
+    });
+  }
+  Array.prototype.forEach.call($("a1Lista").querySelectorAll("li button"), function(b){
+    b.addEventListener("click", function(){
+      var i = +b.parentNode.getAttribute("data-i"), p = mem.fatte.indexOf(i);
+      if(p === -1) mem.fatte.push(i); else mem.fatte.splice(p, 1);
+      salva(); segna1();
+    });
+  });
+  segna1();
+
+  /* ============ 2 ============ */
+  var area = 0, giro = {};
+  AREE.forEach(function(a){ giro[a.k] = mescola([0,1,2]); });
+  function media(k){
+    var v = mem.voti[k];
+    if(!Array.isArray(v) || !v.length) return null;
+    var s = 0; v.forEach(function(x){ s += x; });
+    return Math.round(s / (v.length * 2) * 100);
+  }
+  function barreHtml(){
+    return AREE.map(function(a){
+      var p = media(a.k), cl = p === null ? "nv" : p >= 75 ? "" : p >= 40 ? "medio" : "basso";
+      return '<div class="barra-r ' + cl + '"><span class="lab">' + esc(a.nome) + '</span><span class="tr"><i style="width:' + (p === null ? 0 : Math.max(6, p)) + '%"></i></span><span class="num">' + (p === null ? "&middot;" : p) + "</span></div>";
+    }).join("");
+  }
+  function mostra2(){
+    var a = AREE[area];
+    var d = a.d[giro[a.k][0]];
+    $("b2Et").textContent = (area + 1) + " di " + AREE.length + " · " + a.nome;
+    $("b2Q").textContent = d.q;
+    $("b2En").textContent = d.en;
+    $("b2Asc").innerHTML = ev(a.asc);
+    $("b2Asc").classList.remove("show"); $("b2Cosa").textContent = "Cosa ascolto";
+    $("b2Aree").innerHTML = AREE.map(function(x, i){
+      var cl = i === area ? "ora" : (media(x.k) !== null ? "fatto" : "");
+      return '<span class="' + cl + '">' + esc(x.nome) + "</span>";
+    }).join("");
+    $("b2Barre").innerHTML = barreHtml();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".voti button"), function(b){
+    b.addEventListener("click", function(){
+      var k = AREE[area].k;
+      if(!Array.isArray(mem.voti[k])) mem.voti[k] = [];
+      mem.voti[k].push(+b.getAttribute("data-v"));
+      salva();
+      giro[k].push(giro[k].shift());
+      if(area < AREE.length - 1){ area++; mostra2(); }
+      else { mostra2(); vaiA("p3"); }
+    });
+  });
+  $("b2Altra").addEventListener("click", function(){
+    var k = AREE[area].k; giro[k].push(giro[k].shift()); mostra2();
+  });
+  $("b2Cosa").addEventListener("click", function(){
+    var s = $("b2Asc").classList.toggle("show");
+    $("b2Cosa").textContent = s ? "Nascondi" : "Cosa ascolto";
+  });
+  $("b2Rifai").addEventListener("click", function(){ mem.voti = {}; salva(); area = 0; mostra2(); });
+  mostra2();
+
+  /* ============ 3 ============ */
+  var mazzo3 = mescola(RICORDI), i3 = 0, t3 = null, resta3 = 120;
+  function mostra3(){
+    var r = mazzo3[i3];
+    $("c3Tit").textContent = r.t; $("c3En").textContent = r.en;
+    $("c3App").innerHTML = r.a.map(function(x){ return "<span>" + esc(x) + "</span>"; }).join("");
+    ferma3(120);
+  }
+  function ferma3(s){ clearInterval(t3); t3 = null; resta3 = s; $("c3Clock").textContent = orologio(s); $("c3Timer").classList.remove("zero"); }
+  function via3(s){
+    ferma3(s);
+    t3 = setInterval(function(){
+      resta3--; $("c3Clock").textContent = orologio(resta3);
+      if(resta3 <= 0){ clearInterval(t3); t3 = null; $("c3Timer").classList.add("zero"); }
+    }, 1000);
+  }
+  $("c3Altro").addEventListener("click", function(){ i3 = (i3 + 1) % mazzo3.length; mostra3(); });
+  $("c3Via").addEventListener("click", function(){ via3(120); });
+  $("c3Bis").addEventListener("click", function(){ via3(90); });
+  function parole3(){
+    $("c3Parole").innerHTML = mem.parole.map(function(p, i){
+      return '<span>' + esc(p) + '<button type="button" data-i="' + i + '" aria-label="Togli">&times;</button></span>';
+    }).join("");
+    Array.prototype.forEach.call($("c3Parole").querySelectorAll("button"), function(b){
+      b.addEventListener("click", function(){ mem.parole.splice(+b.getAttribute("data-i"), 1); salva(); parole3(); });
+    });
+  }
+  function aggiungi(){
+    var v = $("c3Parola").value.trim();
+    if(!v) return;
+    mem.parole.push(v); $("c3Parola").value = ""; salva(); parole3();
+  }
+  $("c3Agg").addEventListener("click", aggiungi);
+  $("c3Parola").addEventListener("keydown", function(e){ if(e.key === "Enter") aggiungi(); });
+  mostra3(); parole3();
+
+  /* ============ 4 · IL PIANO ============ */
+  $("d4Int").innerHTML = INTERESSI.map(function(x){ return '<button type="button" data-k="' + x[0] + '">' + esc(x[1]) + "</button>"; }).join("");
+  function segnaInt(){
+    Array.prototype.forEach.call($("d4Int").querySelectorAll("button"), function(b){
+      b.setAttribute("aria-pressed", mem.interessi.indexOf(b.getAttribute("data-k")) !== -1 ? "true" : "false");
+    });
+  }
+  Array.prototype.forEach.call($("d4Int").querySelectorAll("button"), function(b){
+    b.addEventListener("click", function(){
+      var k = b.getAttribute("data-k"), p = mem.interessi.indexOf(k);
+      if(p === -1) mem.interessi.push(k); else mem.interessi.splice(p, 1);
+      salva(); segnaInt(); piano();
+    });
+  });
+  function piano(){
+    var nome = mem.nome.trim();
+    $("d4Tit").textContent = nome ? "Il piano di " + nome : "Il tuo piano";
+    var votate = AREE.filter(function(a){ return media(a.k) !== null; });
+    $("d4Barre").innerHTML = barreHtml();
+    if(!votate.length){
+      $("d4Sotto").textContent = "La mappa è ancora vuota: prima la fase 2.";
+      $("d4Forti").innerHTML = "<b>Il punto di partenza:</b> capisci quasi tutto. È il vantaggio più grande che si possa avere.";
+      $("d4Lez").innerHTML = '<li class="vuoto" style="grid-column:1/-1">Le lezioni compaiono quando la mappa ha almeno un voto.</li>';
+      $("d4Parole").innerHTML = paroleHtml();
+      return;
+    }
+    $("d4Sotto").textContent = "Come scorre il tuo italiano, area per area, nelle situazioni di oggi.";
+    var forti = votate.filter(function(a){ return media(a.k) >= 75; }).map(function(a){ return a.nome.toLowerCase(); });
+    $("d4Forti").innerHTML = "<b>Punti forti:</b> capisci quasi tutto, ed è il vantaggio più grande che si possa avere" +
+      (forti.length ? "; e già oggi scorrono bene: " + esc(forti.join(", ")) + "." : ".");
+    var ordine = votate.slice().sort(function(a, b){ return media(a.k) - media(b.k); });
+    var scelte = ordine.slice(0, 3);
+    var temi = mem.interessi.length ? mem.interessi : ["viaggi"];
+    var lez = scelte.map(function(a){ return {t:a.lez.t, s:a.lez.s, temi:a.lez.temi, area:a.nome}; });
+    lez.push({t:FINALE.t, s:FINALE.s, temi:FINALE.temi, area:""});
+    $("d4Lez").innerHTML = lez.map(function(l, i){
+      var tema = temi[i % temi.length];
+      return "<li><b>" + esc(l.t) + "</b><span>" + esc(l.s) + "</span><em>Il tema: " + esc(l.temi[tema]) + "</em></li>";
+    }).join("");
+    $("d4Parole").innerHTML = paroleHtml();
+  }
+  function paroleHtml(){
+    if(!mem.parole.length) return "";
+    return '<h3>Le tue parole di oggi <span class="en">they come back next time</span></h3><div class="parole">' +
+      mem.parole.map(function(p){ return "<span>" + esc(p) + "</span>"; }).join("") + "</div>";
+  }
+  segnaInt(); piano();
+
+  /* ============ APPUNTI ============ */
+  var note = $("note");
+  note.value = mem.note || "";
+  note.addEventListener("input", function(){
+    mem.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("reset").addEventListener("click", function(){
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+})();
+</script>
+</body>
+</html>

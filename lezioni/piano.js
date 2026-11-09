@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "9 novembre 2026, 14:49";
+var PIANO_AGGIORNATO = "9 novembre 2026, 17:18";
 
 var PIANO = {
 
@@ -54,32 +54,31 @@ var PIANO = {
 
   "bianca-hco": {
     "nome": "Bianca",
-    "aggiornato": "2 novembre 2026",
+    "aggiornato": "9 novembre 2026",
     "ultima": {
-      "quando": "2026-11-02T15:00:00+01:00",
+      "quando": "2026-11-09T15:00:00+01:00",
       "fatto": [
-        "Describing people: quick review",
-        "Clothes and colours with Il guardaroba. Very good!"
+        "Fluency with Il filo: one story, told three times, without stopping. Very useful!"
       ]
     },
     "prossima": {
-      "quando": "2026-11-09T15:00:00+01:00",
-      "obiettivo": "A whole lesson on fluency: keep talking without stopping, even when a word is missing.",
+      "quando": "2026-11-16T15:00:00+01:00",
+      "obiettivo": "Real conversation: start your sentences easily, ask questions back, and get what you need in a role-play.",
       "attivita": [
         {
-          "titolo": "Warm-up: what are you wearing today?",
+          "titolo": "Warm-up: what did you do at the weekend?",
           "href": "",
-          "nota": "Start from what you already know"
+          "nota": "Use the bridge phrases from last time"
         },
         {
-          "titolo": "The story ladder",
+          "titolo": "Attacca e rilancia",
           "href": "",
-          "nota": "One story, three times: less time and less help each round"
+          "nota": "Start with allora, beh, secondo me... and always ask something back"
         },
         {
-          "titolo": "Non mi fermo",
-          "href": "",
-          "nota": "Describe a word without saying it. Missing a word? Use a bridge phrase"
+          "titolo": "Missioni in Italia",
+          "href": "https://talkwithfabio.com/missioni/",
+          "nota": "Two missions: the bar and the station. I play the barista!"
         }
       ]
     },
@@ -90,11 +89,34 @@ var PIANO = {
         "nota": "Read aloud, then hide your lines and say them again"
       },
       {
-        "titolo": "Chi è? Guess who, on your own",
-        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
-        "nota": "Try level 2: you write the questions"
+        "titolo": "Missioni in Italia",
+        "href": "https://talkwithfabio.com/missioni/",
+        "nota": "After the lesson: try another mission on your own"
       }
     ]
+  },
+
+  "catherina-d4h": {
+    "nome": "Catherina & Nunzio",
+    "aggiornato": "9 novembre 2026",
+    "ultima": {
+      "quando": "2026-11-09T12:30:00+01:00",
+      "fatto": [
+        "Conversation practice"
+      ]
+    },
+    "prossima": {
+      "quando": "2026-11-10T11:00:00+01:00",
+      "obiettivo": "Talk to each other in Italian, not just to the teacher.",
+      "attivita": [
+        {
+          "titolo": "Noi due: conversation games for two",
+          "href": "",
+          "nota": "We play it together"
+        }
+      ]
+    },
+    "compiti": []
   },
 
   "elena-8qw": {

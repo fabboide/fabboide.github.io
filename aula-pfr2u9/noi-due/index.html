@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noi due · Talk with Fabio</title>
+<meta name="description" content="Conversazione per due studenti insieme: chi di voi due, indovina l'altro, raccontiamo insieme, decidiamo.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+
+
+
+/* Noi due */
+.mini{font-size:.9rem;color:var(--muted);margin:10px 0 0}
+.regola{border-left:4px solid var(--tomato);background:#FBF0EE;border-radius:0 12px 12px 0;padding:10px 14px;margin:0 0 14px;font-size:1.02rem}
+.regola b{font-family:var(--display)}
+.btn.giallo{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+.btn.grande{font-size:1.1rem;padding:12px 22px}
+.grid2>*{min-width:0}
+.punteggi{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--display);font-weight:700;margin:12px 0 0}
+.punteggi span{display:block;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.punteggi b{font-size:1.7rem}
+.punteggi .verde b{color:var(--basil)}
+.punteggi .rosso b{color:var(--tomato)}
+.punteggi .giallo b{color:var(--lemon)}
+.carta{border:2px solid var(--ink);border-radius:20px;background:var(--paper);padding:22px 20px;text-align:center}
+.carta .et{font-family:var(--display);font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.carta .frase{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,5.5vw,2.4rem);line-height:1.2;margin:10px 0}
+.carta .aiuto{display:none;margin:10px 0 0;font-size:1.08rem;border-top:1px dashed var(--line);padding-top:10px;text-align:left}
+.carta .aiuto.show{display:block}
+.carta .aiuto b{color:var(--tomato);font-family:var(--display)}
+.carta .aiuto p{margin:2px 0}
+.via{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,8vw,3.4rem);color:var(--tomato);min-height:1.2em;line-height:1.2;margin:4px 0 0}
+
+/* I due nomi */
+.coppia{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 16px}
+.coppia label{display:block;font-family:var(--display);font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.coppia .pers{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.coppia input{width:100%;border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:var(--stone);font-family:var(--display);font-weight:700}
+.coppia .gen{display:flex;gap:6px;margin-top:8px}
+.coppia .gen button{flex:1;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:4px 8px;font-family:var(--display);font-weight:600;font-size:.85rem}
+.coppia .gen button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+@media (max-width:420px){.coppia{grid-template-columns:1fr}}
+
+/* Fase 2: a chi tocca */
+.turno{display:inline-block;font-family:var(--hand);font-size:1.35rem;color:var(--basil);margin:0}
+.tabellone{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.tabellone div{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:8px 12px;font-family:var(--display);font-weight:700}
+.tabellone span{display:block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tabellone b{font-size:1.7rem;color:var(--basil)}
+.tabellone div.ora{border-color:var(--basil);box-shadow:0 0 0 2px var(--basil) inset}
+
+/* Fase 3: la staffetta */
+.storia{border:2px solid var(--ink);border-radius:20px;background:var(--paper);padding:16px 18px}
+.storia .tit{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,4.5vw,1.9rem);line-height:1.2;margin:0}
+.storia .spunti{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.storia .spunti span{border:1px solid var(--line);background:var(--stone);border-radius:999px;padding:3px 12px;font-size:.98rem}
+.connettivi{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.connettivi button{border:2px solid var(--line);background:var(--paper);border-radius:12px;padding:6px 12px;font-family:var(--display);font-weight:700}
+.connettivi button.usato{border-color:var(--basil);background:#E7F0EA;color:var(--basil);text-decoration:line-through}
+
+/* Fase 4: decidiamo */
+.compito{background:var(--bubble);border:1px solid #CBDDD2;border-radius:18px 18px 18px 4px;padding:16px 18px}
+.compito .tit{font-family:var(--display);font-weight:800;font-size:1.45rem;margin:0}
+.compito .vinc{margin:6px 0 0;font-size:1.08rem}
+.opzioni{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.opzioni li{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:7px 10px;font-size:1rem;display:flex;justify-content:space-between;gap:8px}
+.opzioni li em{font-style:normal;font-family:var(--display);font-weight:700;color:var(--tomato);white-space:nowrap}
+.kit{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.kit span{background:var(--paper);border:1px dashed var(--basil);border-radius:999px;padding:3px 11px;font-size:.98rem}
+/* Comuni presi da Che mi racconti? */
+.nota-gram{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin-top:10px}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.vuoto{color:var(--muted);text-align:center;padding:26px 10px}
+/* Appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.appunti .riga{justify-content:space-between}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+/* Frasi utili */
+dialog{border:0;border-radius:16px;padding:0;max-width:660px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.5rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:54%}
+.dlg-body h3{margin:18px 0 4px;color:var(--basil);font-size:1.12rem}
+</style>
+</head>
+
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Noi due</h1>
+    <p>Conversazione per chi studia in coppia: parlano fra loro, non solo con me. Si confrontano, indovinano le risposte dell'altro, raccontano una storia insieme e prendono una decisione vera. <span class="en">Conversation for two learners: they talk to each other, not just to the teacher.</span></p>
+  </header>
+
+  <div class="coppia" aria-label="I due studenti">
+    <div class="pers">
+      <label for="nomeA">Prima persona</label>
+      <input id="nomeA" type="text" maxlength="20" placeholder="Nome" autocomplete="off">
+      <div class="gen" data-chi="A"><button type="button" data-g="o">lui</button><button type="button" data-g="a">lei</button></div>
+    </div>
+    <div class="pers">
+      <label for="nomeB">Seconda persona</label>
+      <input id="nomeB" type="text" maxlength="20" placeholder="Nome" autocomplete="off">
+      <div class="gen" data-chi="B"><button type="button" data-g="o">lui</button><button type="button" data-g="a">lei</button></div>
+    </div>
+  </div>
+
+  <nav class="steps" role="tablist" aria-label="Fasi">
+    <button role="tab" aria-selected="true" data-phase="p1"><span class="n">1</span>Chi di voi due?</button>
+    <button role="tab" aria-selected="false" data-phase="p2"><span class="n">2</span>Indovina l'altro</button>
+    <button role="tab" aria-selected="false" data-phase="p3"><span class="n">3</span>Raccontiamo insieme</button>
+    <button role="tab" aria-selected="false" data-phase="p4"><span class="n">4</span>Decidiamo</button>
+    <button class="side" id="apriProm" type="button">Frasi utili</button>
+  </nav>
+
+  <!-- 1 · CHI DI VOI DUE? -->
+  <section class="phase active" id="p1">
+    <h2>Chi di voi due?</h2>
+    <p class="regola"><b>La regola:</b> leggo la domanda, conto fino a tre e tutti e due indicate la persona giusta, nello stesso momento. Se siete d'accordo, ognuno dice <b>una frase con il perché</b>. Se non siete d'accordo, è un litigio: 40 secondi per convincere l'altro. <span class="en">Point at the same time. Agree: explain why. Disagree: argue it out.</span></p>
+    <div class="grid2">
+      <div>
+        <div class="carta">
+          <div class="et" id="a1Et">domanda</div>
+          <p class="frase" id="a1Q"></p>
+          <p class="via" id="a1Via" aria-live="polite"></p>
+          <div class="aiuto" id="a1Aiuto"></div>
+        </div>
+        <div class="riga">
+          <button class="btn red grande" id="a1Tre" type="button">1, 2, 3... indicate!</button>
+          <button class="btn green" id="a1Si" type="button">D'accordo</button>
+          <button class="btn giallo" id="a1No" type="button">Litigio! 40 s</button>
+          <button class="btn ghost" id="a1Help" type="button">Come si risponde</button>
+          <button class="btn ghost" id="a1Next" type="button">Un'altra &rarr;</button>
+        </div>
+        <div class="punteggi">
+          <div class="verde"><span>d'accordo</span><b id="a1Ok">0</b></div>
+          <div class="giallo"><span>litigi</span><b id="a1Lit">0</b></div>
+          <div><span>domande</span><b id="a1Tot">0</b></div>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Come si gioca</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>vale la frase intera: «Cucina meglio lui, perché io brucio sempre tutto»</li>
+          <li>il punto vero è il verbo: <b>lui cucina</b>, <b>io cucino</b>, <b>cuciniamo</b> tutti e due</li>
+          <li>nel litigio parlano fra loro, io faccio l'arbitro e alla fine decido chi ha convinto</li>
+          <li>ogni tanto chiedo: «E tu cosa pensi di lui?»</li>
+        </ul>
+        <p class="mini">«Come si risponde» mostra le tre forme del verbo: aprilo solo se si bloccano.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2 · INDOVINA L'ALTRO -->
+  <section class="phase" id="p2">
+    <h2>Indovina l'altro</h2>
+    <p class="regola"><b>La regola:</b> la domanda è <b>sull'altra persona</b>. Chi risponde prova a indovinare: «Secondo me lui mangia...». Poi l'altro dice se è vero, con l'io: «Sì, io mangio...» oppure «No! Io mangio...». Un punto per ogni risposta indovinata. <span class="en">Guess your partner's answer, then they confirm or correct it.</span></p>
+    <div class="toolbar">
+      <div class="chips" id="b2Tempo"></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="carta">
+          <p class="turno" id="b2Turno"></p>
+          <p class="frase" id="b2Q"></p>
+          <div class="aiuto" id="b2Aiuto"></div>
+        </div>
+        <div class="riga">
+          <button class="btn green grande" id="b2Si" type="button">Indovinato!</button>
+          <button class="btn red" id="b2No" type="button">Sbagliato</button>
+          <button class="btn ghost" id="b2Help" type="button">Come si risponde</button>
+          <button class="btn ghost" id="b2Salta" type="button">Salta</button>
+        </div>
+        <div class="tabellone">
+          <div id="b2TA"><span id="b2NA">A</span><b id="b2PA">0</b></div>
+          <div id="b2TB"><span id="b2NB">B</span><b id="b2PB">0</b></div>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Come si gioca</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>la domanda la leggo io, rivolta a chi indovina</li>
+          <li>chi indovina parla <b>in terza persona</b>, chi conferma <b>in prima</b>: è lì che si sbaglia</li>
+          <li>dopo il «no» l'altro deve dire la verità con una frase intera</li>
+          <li>poi faccio una domanda in più: «Davvero? E perché?»</li>
+        </ul>
+        <p class="mini">Con il passato prossimo occhio all'accordo: <i>è andato</i>, <i>è andata</i>. Lui o lei si sceglie in alto, vicino al nome.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 3 · RACCONTIAMO INSIEME -->
+  <section class="phase" id="p3">
+    <h2>Raccontiamo insieme</h2>
+    <p class="regola"><b>La regola:</b> una storia vera vostra, raccontata a staffetta: <b>una frase a testa</b>, poi passa all'altro. Ogni frase comincia con una parola diversa della lista, e quando la usate la togliete. Quando le parole finiscono, la storia è finita. <span class="en">Tell a shared story, one sentence each, each starting with a new linking word.</span></p>
+    <div class="toolbar">
+      <button class="btn ghost" id="c3Altra" type="button">Un'altra storia</button>
+      <button class="btn red" id="c3Via" type="button">Via! 4 minuti</button>
+      <div class="timer" id="c3Timer"><output id="c3Clock">4:00</output></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="storia">
+          <p class="tit" id="c3Tit"></p>
+          <div class="spunti" id="c3Spunti"></div>
+        </div>
+        <div class="connettivi" id="c3Conn"></div>
+        <div class="punteggi">
+          <div class="verde"><span>frasi</span><b id="c3N">0</b></div>
+          <div><span>parole rimaste</span><b id="c3Rim">0</b></div>
+        </div>
+        <div class="riga"><button class="btn green" id="c3Piu" type="button">+1 frase</button></div>
+      </div>
+      <aside class="panel">
+        <h3>Come si gioca</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>al passato prossimo: «Prima <b>siamo partiti</b>, poi <b>abbiamo perso</b> il treno»</li>
+          <li>si usa il <b>noi</b>: è una storia di tutti e due</li>
+          <li>se l'altro sbaglia un dettaglio, si può correggere: «No, non era sabato, era domenica!»</li>
+          <li>alla fine faccio io tre domande sulla storia</li>
+        </ul>
+        <p class="mini">Gli spunti sono parole, non frasi. Se una storia non c'è (non hanno mai traslocato), passa alla prossima.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 4 · DECIDIAMO -->
+  <section class="phase" id="p4">
+    <h2>Decidiamo</h2>
+    <p class="regola"><b>La regola:</b> c'è un problema da risolvere insieme, con dei limiti. Avete 4 minuti per mettervi d'accordo, <b>solo in italiano</b>. Poi mi presentate la decisione: «Abbiamo deciso di... perché...». <span class="en">Solve a problem together in Italian, then present your decision.</span></p>
+    <div class="toolbar">
+      <button class="btn ghost" id="d4Altro" type="button">Un altro problema</button>
+      <button class="btn red" id="d4Via" type="button">Via! 4 minuti</button>
+      <div class="timer" id="d4Timer"><output id="d4Clock">4:00</output></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="compito">
+          <p class="tit" id="d4Tit"></p>
+          <p class="vinc" id="d4Vinc"></p>
+          <ul class="opzioni" id="d4Opz"></ul>
+        </div>
+        <h3 style="margin-top:14px">Per mettersi d'accordo</h3>
+        <div class="kit" id="d4Kit"></div>
+        <div class="punteggi">
+          <div class="rosso"><span>parole in inglese</span><b id="d4Ing">0</b></div>
+          <div class="verde"><span>problemi risolti</span><b id="d4Fatti">0</b></div>
+        </div>
+        <div class="riga">
+          <button class="btn giallo" id="d4IngPiu" type="button">+1 inglese</button>
+          <button class="btn green" id="d4Ok" type="button">Deciso!</button>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Come si gioca</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>io sto zitto e ascolto: è la loro conversazione</li>
+          <li>ogni parola in inglese, un tocco su «+1 inglese» (ridendo)</li>
+          <li>alla presentazione faccio il cliente difficile: «E se piove?», «Costa troppo!»</li>
+          <li>gli errori li scrivo negli appunti e li vediamo alla fine</li>
+        </ul>
+        <p class="mini">Funziona perché c'è un risultato da raggiungere: parlano per decidere, non per fare l'esercizio.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- APPUNTI -->
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">Io o lui? L'ausiliare, l'accordo, le parole in inglese.</p>
+    <textarea id="note" placeholder="Es. «lui cucino» → lui cucina · «abbiamo andato» → siamo andati"></textarea>
+    <div class="riga">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="reset" type="button">Nuova lezione (azzera tutto)</button>
+    </div>
+  </div>
+</div>
+
+<dialog id="prom" aria-labelledby="promT">
+  <div class="dlg-head"><h2 id="promT">Frasi utili</h2><button class="btn ghost" id="chiudiProm" type="button">Chiudi</button></div>
+  <div class="dlg-body">
+    <h3>Io, lui, noi</h3>
+    <table>
+      <tr><td>io</td><td>cucin<b>o</b> · prend<b>o</b> · dorm<b>o</b> · <b>sono</b> · <b>ho</b></td></tr>
+      <tr><td>lui, lei</td><td>cucin<b>a</b> · prend<b>e</b> · dorm<b>e</b> · <b>è</b> · <b>ha</b></td></tr>
+      <tr><td>noi</td><td>cucin<b>iamo</b> · prend<b>iamo</b> · dorm<b>iamo</b> · <b>siamo</b> · <b>abbiamo</b></td></tr>
+    </table>
+    <h3>Confrontare</h3>
+    <table>
+      <tr><td>Lui cucina meglio.</td><td>meglio, peggio, di più, di meno</td></tr>
+      <tr><td>Lei è più ordinata di me.</td><td>più ... di, meno ... di</td></tr>
+      <tr><td>Tutti e due!</td><td>Nessuno dei due!</td></tr>
+    </table>
+    <h3>D'accordo o no</h3>
+    <table>
+      <tr><td>Secondo me... / Per me...</td><td>Sono d'accordo. Hai ragione.</td></tr>
+      <tr><td>Non sono d'accordo!</td><td>Ma no! Non è vero!</td></tr>
+      <tr><td>Perché non...?</td><td>Dai! Va bene, allora...</td></tr>
+    </table>
+    <h3>Raccontare</h3>
+    <table>
+      <tr><td>prima, poi, dopo</td><td>allora, però, alla fine</td></tr>
+      <tr><td>per fortuna, purtroppo</td><td>all'improvviso, mentre</td></tr>
+      <tr><td>siamo andati, siamo arrivati</td><td>abbiamo mangiato, abbiamo visto</td></tr>
+    </table>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+
+  function $(id){ return document.getElementById(id); }
+  function mescola(a){ a = a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function ev(s){ return esc(s).replace(/\[([^\]]+)\]/g, "<b>$1</b>"); }
+  function orologio(s){ s = Math.max(0, s); return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
+
+  /* ============ FASE 1: chi di voi due? ============
+     q: la domanda; lui, io, noi: le tre risposte modello, il verbo fra [ ] */
+  var CHI = [
+    {q:"Chi cucina meglio?", lui:"[Cucina] meglio lui / lei.", io:"[Cucino] meglio io.", noi:"[Cuciniamo] bene tutti e due."},
+    {q:"Chi si alza prima la mattina?", lui:"[Si alza] prima lui / lei.", io:"[Mi alzo] prima io.", noi:"[Ci alziamo] alla stessa ora."},
+    {q:"Chi parla di più?", lui:"[Parla] di più lui / lei.", io:"[Parlo] di più io.", noi:"[Parliamo] tanto tutti e due."},
+    {q:"Chi guida meglio?", lui:"[Guida] meglio lui / lei.", io:"[Guido] meglio io.", noi:"[Guidiamo] male tutti e due!"},
+    {q:"Chi spende di più?", lui:"[Spende] di più lui / lei.", io:"[Spendo] di più io.", noi:"[Spendiamo] troppo tutti e due."},
+    {q:"Chi dorme di più?", lui:"[Dorme] di più lui / lei.", io:"[Dormo] di più io.", noi:"[Dormiamo] poco tutti e due."},
+    {q:"Chi è più ordinato?", lui:"Lui / Lei [è] più ordinato / ordinata.", io:"Io [sono] più ordinato / ordinata.", noi:"Non [siamo] ordinati, nessuno dei due."},
+    {q:"Chi arriva sempre in ritardo?", lui:"[Arriva] sempre in ritardo lui / lei.", io:"[Arrivo] sempre in ritardo io.", noi:"[Arriviamo] sempre puntuali!"},
+    {q:"Chi beve più caffè?", lui:"[Beve] più caffè lui / lei.", io:"[Bevo] più caffè io.", noi:"Non [beviamo] caffè."},
+    {q:"Chi guarda più serie TV?", lui:"[Guarda] più serie lui / lei.", io:"[Guardo] più serie io.", noi:"Le [guardiamo] insieme."},
+    {q:"Chi canta sotto la doccia?", lui:"[Canta] lui / lei.", io:"[Canto] io.", noi:"[Cantiamo] tutti e due."},
+    {q:"Chi usa di più il telefono?", lui:"Lo [usa] di più lui / lei.", io:"Lo [uso] di più io.", noi:"Lo [usiamo] troppo tutti e due."},
+    {q:"Chi fa più sport?", lui:"[Fa] più sport lui / lei.", io:"[Faccio] più sport io.", noi:"Non [facciamo] sport!"},
+    {q:"Chi si ricorda i compleanni?", lui:"Se li [ricorda] lui / lei.", io:"Me li [ricordo] io.", noi:"Non ce li [ricordiamo] mai."},
+    {q:"Chi perde sempre le chiavi?", lui:"Le [perde] sempre lui / lei.", io:"Le [perdo] sempre io.", noi:"Le [perdiamo] tutti e due."},
+    {q:"Chi parla meglio italiano?", lui:"Lo [parla] meglio lui / lei.", io:"Lo [parlo] meglio io.", noi:"Lo [parliamo] uguale."},
+    {q:"Chi ha più pazienza?", lui:"[Ha] più pazienza lui / lei.", io:"[Ho] più pazienza io.", noi:"Non [abbiamo] pazienza!"},
+    {q:"Chi fa la spesa?", lui:"La [fa] lui / lei.", io:"La [faccio] io.", noi:"La [facciamo] insieme."},
+    {q:"Chi lava i piatti?", lui:"Li [lava] lui / lei.", io:"Li [lavo] io.", noi:"Li [lava] la lavastoviglie!"},
+    {q:"Chi sceglie il ristorante?", lui:"Lo [sceglie] lui / lei.", io:"Lo [scelgo] io.", noi:"Lo [scegliamo] insieme."},
+    {q:"Chi legge di più?", lui:"[Legge] di più lui / lei.", io:"[Leggo] di più io.", noi:"[Leggiamo] tanto tutti e due."},
+    {q:"Chi ride di più?", lui:"[Ride] di più lui / lei.", io:"[Rido] di più io.", noi:"[Ridiamo] sempre."},
+    {q:"Chi è più goloso?", lui:"Lui / Lei [è] più goloso / golosa.", io:"Io [sono] più goloso / golosa.", noi:"[Siamo] golosi tutti e due."},
+    {q:"Chi ha più vestiti?", lui:"[Ha] più vestiti lui / lei.", io:"[Ho] più vestiti io.", noi:"[Abbiamo] troppi vestiti."},
+    {q:"Chi si arrabbia più facilmente?", lui:"[Si arrabbia] di più lui / lei.", io:"[Mi arrabbio] di più io.", noi:"Non [ci arrabbiamo] mai!"},
+    {q:"Chi organizza i viaggi?", lui:"Li [organizza] lui / lei.", io:"Li [organizzo] io.", noi:"Li [organizziamo] insieme."},
+    {q:"Chi fa le foto in vacanza?", lui:"Le [fa] lui / lei.", io:"Le [faccio] io.", noi:"Le [facciamo] tutti e due."},
+    {q:"Chi balla meglio?", lui:"[Balla] meglio lui / lei.", io:"[Ballo] meglio io.", noi:"Non [balliamo] mai!"},
+    {q:"Chi mangia più veloce?", lui:"[Mangia] più veloce lui / lei.", io:"[Mangio] più veloce io.", noi:"[Mangiamo] piano tutti e due."},
+    {q:"Chi va a letto più tardi?", lui:"[Va] a letto più tardi lui / lei.", io:"[Vado] a letto più tardi io.", noi:"[Andiamo] a letto insieme."},
+    {q:"Chi ha paura dei ragni?", lui:"[Ha] paura lui / lei.", io:"[Ho] paura io.", noi:"[Abbiamo] paura tutti e due!"},
+    {q:"Chi chiede la strada quando vi perdete?", lui:"La [chiede] lui / lei.", io:"La [chiedo] io.", noi:"[Usiamo] il telefono."},
+    {q:"Chi studia di più l'italiano?", lui:"Lo [studia] di più lui / lei.", io:"Lo [studio] di più io.", noi:"Lo [studiamo] insieme."},
+    {q:"Chi cambia sempre idea?", lui:"[Cambia] idea lui / lei.", io:"[Cambio] idea io.", noi:"[Cambiamo] idea tutti e due."},
+    {q:"Chi fa i regali più belli?", lui:"Li [fa] lui / lei.", io:"Li [faccio] io.", noi:"Li [facciamo] belli tutti e due."},
+    {q:"Chi porta la valigia più grande?", lui:"La [porta] lui / lei.", io:"La [porto] io.", noi:"[Portiamo] solo uno zaino."},
+    {q:"Chi parla con gli sconosciuti?", lui:"Ci [parla] lui / lei.", io:"Ci [parlo] io.", noi:"Ci [parliamo] tutti e due."},
+    {q:"Chi sa fare la pasta al dente?", lui:"La [sa] fare lui / lei.", io:"La [so] fare io.", noi:"La [sappiamo] fare tutti e due."},
+    {q:"Chi tiene la casa più calda d'inverno?", lui:"La [vuole] calda lui / lei.", io:"La [voglio] calda io.", noi:"[Abbiamo] sempre freddo!"},
+    {q:"Chi si addormenta davanti alla TV?", lui:"[Si addormenta] lui / lei.", io:"[Mi addormento] io.", noi:"[Ci addormentiamo] tutti e due."}
+  ];
+
+  /* ============ FASE 2: indovina l'altro ============
+     {N} il nome della persona di cui si parla, {o} la sua vocale (o / a) */
+  var IND = {
+    presente: [
+      {q:"Che cosa mangia {N} a colazione?", lui:"Secondo me {N} [mangia]...", io:"Sì / No, io [mangio]..."},
+      {q:"A che ora si sveglia {N} la domenica?", lui:"Secondo me [si sveglia] alle...", io:"Io [mi sveglio] alle..."},
+      {q:"Qual è il colore preferito di {N}?", lui:"Secondo me il [suo] colore preferito è...", io:"Il [mio] colore preferito è..."},
+      {q:"Che musica ascolta {N} in macchina?", lui:"Secondo me [ascolta]...", io:"Io [ascolto]..."},
+      {q:"Che cosa fa {N} la sera dopo cena?", lui:"Secondo me di solito {N} [guarda / legge]...", io:"Di solito io [guardo / leggo]..."},
+      {q:"Che cosa non mangia mai {N}?", lui:"Secondo me {N} non [mangia] mai...", io:"Io non [mangio] mai..."},
+      {q:"Quante ore dorme {N} di notte?", lui:"Secondo me [dorme]... ore.", io:"Io [dormo]... ore."},
+      {q:"Qual è la città preferita di {N}?", lui:"Secondo me la [sua] città preferita è...", io:"La [mia] città preferita è..."},
+      {q:"Che cosa prende {N} al bar?", lui:"Secondo me [prende]...", io:"Io [prendo]..."},
+      {q:"Di che cosa ha paura {N}?", lui:"Secondo me [ha] paura di...", io:"Io [ho] paura di..."},
+      {q:"Che cosa porta sempre {N} in tasca o in borsa?", lui:"Secondo me [porta] sempre...", io:"Io [porto] sempre..."},
+      {q:"Qual è la stagione preferita di {N}? Perché?", lui:"Secondo me [preferisce]... perché...", io:"Io [preferisco]... perché..."},
+      {q:"Che cosa fa {N} quando è stanc{o}?", lui:"Quando [è] stanc{o}, {N} [fa]...", io:"Quando [sono] stanc{o}, io [faccio]..."},
+      {q:"Che cosa compra sempre {N} al supermercato?", lui:"Secondo me [compra] sempre...", io:"Io [compro] sempre..."},
+      {q:"Quale app usa di più {N}?", lui:"Secondo me [usa] di più...", io:"Io [uso] di più..."},
+      {q:"Qual è il piatto che {N} cucina meglio?", lui:"Secondo me [cucina] benissimo...", io:"Io [cucino] benissimo..."},
+      {q:"Dove vuole andare {N} in vacanza quest'anno?", lui:"Secondo me [vuole] andare...", io:"Io [voglio] andare..."},
+      {q:"Che cosa odia fare {N} in casa?", lui:"Secondo me [odia]...", io:"Io [odio]..."},
+      {q:"Che cosa fa {N} per rilassarsi?", lui:"Per [rilassarsi], {N}...", io:"Per [rilassarmi], io..."},
+      {q:"Che cosa vuole imparare {N} quest'anno?", lui:"Secondo me [vuole] imparare...", io:"Io [voglio] imparare..."}
+    ],
+    passato: [
+      {q:"Che cosa ha mangiato {N} ieri a pranzo?", lui:"Secondo me [ha mangiato]...", io:"Io [ho mangiato]..."},
+      {q:"A che ora è andat{o} a letto {N} ieri sera?", lui:"Secondo me [è andat{o}] a letto alle...", io:"Io [sono andat{o}] a letto alle..."},
+      {q:"Dove è andat{o} {N} in vacanza l'ultima volta?", lui:"Secondo me [è andat{o}] a...", io:"Io [sono andat{o}] a..."},
+      {q:"Che cosa ha comprato {N} l'ultima volta online?", lui:"Secondo me [ha comprato]...", io:"Io [ho comprato]..."},
+      {q:"Chi ha chiamato {N} ieri?", lui:"Secondo me [ha chiamato]...", io:"Io [ho chiamato]..."},
+      {q:"Quale film o serie ha visto {N} l'ultima volta?", lui:"Secondo me [ha visto]...", io:"Io [ho visto]..."},
+      {q:"Che cosa ha fatto {N} sabato scorso?", lui:"Secondo me sabato {N} [ha fatto / è andat{o}]...", io:"Sabato io [ho fatto / sono andat{o}]..."},
+      {q:"Che cosa ha bevuto {N} stamattina?", lui:"Secondo me [ha bevuto]...", io:"Io [ho bevuto]..."},
+      {q:"Quando è stat{o} in Italia {N} la prima volta?", lui:"Secondo me [è stat{o}] in Italia nel...", io:"Io [sono stat{o}] in Italia nel..."},
+      {q:"Che cosa ha dimenticato {N} l'ultima volta?", lui:"Secondo me [ha dimenticato]...", io:"Io [ho dimenticato]..."},
+      {q:"A che ora si è svegliat{o} {N} stamattina?", lui:"Secondo me [si è svegliat{o}] alle...", io:"Io [mi sono svegliat{o}] alle..."},
+      {q:"Che cosa ha cucinato {N} l'ultima volta per gli amici?", lui:"Secondo me [ha cucinato]...", io:"Io [ho cucinato]..."},
+      {q:"Qual è l'ultimo libro che ha letto {N}?", lui:"Secondo me [ha letto]...", io:"Io [ho letto]..."},
+      {q:"Dove ha cenato {N} l'ultima volta fuori casa?", lui:"Secondo me [ha cenato] a / da...", io:"Io [ho cenato] a / da..."},
+      {q:"Che cosa ha perso {N} l'ultima volta?", lui:"Secondo me [ha perso]...", io:"Io [ho perso]..."},
+      {q:"Che regalo ha ricevuto {N} l'ultima volta?", lui:"Secondo me [ha ricevuto]...", io:"Io [ho ricevuto]..."},
+      {q:"Dove è nat{o} {N}? E dove è cresciut{o}?", lui:"Secondo me [è nat{o}] a... e [è cresciut{o}] a...", io:"Io [sono nat{o}] a... e [sono cresciut{o}] a..."},
+      {q:"A che età ha imparato a guidare {N}?", lui:"Secondo me [ha imparato] a... anni.", io:"Io [ho imparato] a... anni."}
+    ]
+  };
+
+  /* ============ FASE 3: raccontiamo insieme ============ */
+  var STORIE = [
+    {t:"Il nostro ultimo viaggio insieme", s:["partire","arrivare","l'albergo","il tempo","mangiare","tornare"]},
+    {t:"Una giornata in cui è andato tutto storto", s:["svegliarsi tardi","il treno","la pioggia","perdere","arrabbiarsi"]},
+    {t:"La prima volta in Italia", s:["l'aereo","la città","il primo caffè","capire","sorprendere"]},
+    {t:"Una cena che non dimentichiamo", s:["il ristorante","ordinare","il cameriere","il conto","ridere"]},
+    {t:"Come ci siamo conosciuti", s:["dove","quando","la prima parola","pensare","rivedersi"]},
+    {t:"Il weekend scorso", s:["sabato","domenica","uscire","gli amici","riposarsi"]},
+    {t:"Una festa speciale", s:["gli invitati","la torta","il regalo","ballare","tornare a casa"]},
+    {t:"Una volta che ci siamo persi", s:["la mappa","chiedere","la strada","camminare","trovare"]},
+    {t:"Un trasloco o un grande cambiamento", s:["le scatole","decidere","la casa nuova","i vicini","stancarsi"]},
+    {t:"Una sorpresa", s:["organizzare","il segreto","arrivare","piangere","ringraziare"]},
+    {t:"Un acquisto sbagliato", s:["il negozio","comprare","provare","rompersi","riportare"]},
+    {t:"Il giorno più freddo (o più caldo) della nostra vita", s:["la neve / il sole","i vestiti","uscire","bere","non dimenticare"]},
+    {t:"Un'avventura con un animale", s:["il cane / il gatto","scappare","cercare","trovare","spaventarsi"]},
+    {t:"La nostra prima lezione di italiano", s:["iniziare","le prime parole","difficile","ridere","imparare"]}
+  ];
+  var CONN = ["Prima","Poi","Dopo","Allora","Però","Per fortuna","Purtroppo","All'improvviso","Alla fine"];
+
+  /* ============ FASE 4: decidiamo ============
+     o: le opzioni, con il prezzo o un dettaglio */
+  var COMPITI = [
+    {t:"Un weekend a Roma", v:"Avete 300 euro in due per un fine settimana. Serve un posto per dormire e tre cose da fare.", o:[["Albergo in centro, 1 notte","140 €"],["B&B fuori centro, 1 notte","80 €"],["Colosseo e Fori, 2 biglietti","36 €"],["Musei Vaticani, 2 biglietti","50 €"],["Cena a Trastevere","70 €"],["Giro in Vespa con guida","120 €"],["Lezione di cucina: la carbonara","90 €"],["Gelato e passeggiata","10 €"]]},
+    {t:"Una cena per sei amici", v:"Sabato sera arrivano sei amici. Uno è vegetariano, una non mangia glutine. Scegliete antipasto, primo, secondo e dolce.", o:[["Bruschette","pane"],["Prosciutto e melone","carne"],["Lasagne","pasta"],["Risotto ai funghi","riso"],["Pollo arrosto","carne"],["Parmigiana di melanzane","verdura"],["Tiramisù","biscotti"],["Panna cotta","senza glutine"]]},
+    {t:"Un regalo per un amico italiano", v:"Il vostro amico Marco compie 40 anni. Avete 60 euro. Lui ama la cucina, il calcio e la montagna.", o:[["Un libro di ricette","25 €"],["La maglia della sua squadra","70 €"],["Una bottiglia di vino buono","30 €"],["Una pianta","20 €"],["Un buono per una cena","60 €"],["Uno zaino da montagna","55 €"],["Una torta fatta da voi","10 €"]]},
+    {t:"Piove a Firenze", v:"Avete un pomeriggio libero a Firenze, dalle 14 alle 19, e piove tantissimo. Decidete cosa fare.", o:[["Galleria degli Uffizi","3 ore di fila?"],["Un caffè lungo al bar","sempre aperto"],["Mercato di San Lorenzo","coperto"],["Cinema","film in italiano"],["Corso di pasta fresca","2 ore, 60 €"],["Tornare in albergo a dormire","gratis"],["Shopping in via dei Calzaiuoli","con l'ombrello"]]},
+    {t:"La casa nuova", v:"Avete 500 euro per la casa nuova. Comprate tre cose, non di più.", o:[["Un divano","400 €"],["Una lampada","60 €"],["Una pianta grande","40 €"],["Un tappeto","150 €"],["Un quadro","80 €"],["Una macchina del caffè","120 €"],["Una televisione","350 €"],["Una libreria","110 €"]]},
+    {t:"Una settimana in Italia", v:"Avete sette giorni a giugno. Mare, montagna o città d'arte? Scegliete e dite cosa fate ogni giorno.", o:[["Sicilia: mare e cibo","caldo"],["Dolomiti: camminate","fresco"],["Venezia, Firenze, Roma","treno"],["Puglia in macchina","masserie"],["Lago di Como","barca"],["Torino e le Langhe","vino"]]},
+    {t:"Il sabato perfetto", v:"Un sabato intero libero: tre attività, una scelta da ognuno e una insieme.", o:[["Dormire fino a tardi",""],["Mercato la mattina",""],["Bicicletta",""],["Museo",""],["Cucinare per gli amici",""],["Cinema",""],["Concerto",""],["Non fare niente",""]]},
+    {t:"Un animale in casa?", v:"Un'amica parte per sei mesi e vi chiede di tenere il suo animale. Quale accettate, e perché? Potete anche dire di no.", o:[["Un cane grande","passeggiate"],["Un gatto","indipendente"],["Due pesci rossi","facile"],["Un pappagallo che parla","rumoroso"],["Un coniglio","carino"],["Nessuno","libertà"]]},
+    {t:"La festa a sorpresa", v:"Fra due settimane è il compleanno della vostra migliore amica. Organizzate la festa: dove, chi invitare, cosa mangiare, la sorpresa.", o:[["A casa vostra","gratis"],["In un ristorante","40 € a testa"],["Al parco","se c'è il sole"],["Musica dal vivo","200 €"],["Torta fatta in casa",""],["Un video con gli amici",""]]}
+  ];
+  var KIT = ["Secondo me...","Per me è meglio...","Perché non...?","Sono d'accordo.","Non sono d'accordo.","Hai ragione.","Dai!","Costa troppo.","Va bene, allora...","Abbiamo deciso di..."];
+
+  /* ============ MEMORIA ============ */
+  var CHIAVE = "icf-noi-due";
+  var mem = { nomeA:"", nomeB:"", genA:"o", genB:"a", tempo:"presente", note:"" };
+  try{
+    var m0 = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(m0 && typeof m0 === "object"){ for(var k in mem){ if(m0[k] !== undefined) mem[k] = m0[k]; } }
+  }catch(e){}
+  if(!IND[mem.tempo]) mem.tempo = "presente";
+  var salvaT = null;
+  function salva(){
+    clearTimeout(salvaT);
+    salvaT = setTimeout(function(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(mem)); }catch(e){} }, 250);
+  }
+
+  /* I due nomi: servono alla fase 2 */
+  function nome(chi){ var n = (chi === "A" ? mem.nomeA : mem.nomeB).trim(); return n || (chi === "A" ? "la prima persona" : "la seconda persona"); }
+  function etichetta(chi){ var n = (chi === "A" ? mem.nomeA : mem.nomeB).trim(); return n || (chi === "A" ? "Prima persona" : "Seconda persona"); }
+  $("nomeA").value = mem.nomeA; $("nomeB").value = mem.nomeB;
+  function genButtons(){
+    Array.prototype.forEach.call(document.querySelectorAll(".gen"), function(g){
+      var chi = g.getAttribute("data-chi");
+      Array.prototype.forEach.call(g.querySelectorAll("button"), function(b){
+        b.setAttribute("aria-pressed", b.getAttribute("data-g") === mem["gen" + chi] ? "true" : "false");
+      });
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".gen button"), function(b){
+    b.addEventListener("click", function(){
+      mem["gen" + b.parentNode.getAttribute("data-chi")] = b.getAttribute("data-g");
+      salva(); genButtons(); mostra2();
+    });
+  });
+  ["A","B"].forEach(function(chi){
+    $("nome" + chi).addEventListener("input", function(){ mem["nome" + chi] = this.value; salva(); mostra2(); });
+  });
+  genButtons();
+
+  /* Linguette */
+  var tabs = document.querySelectorAll("nav.steps button[data-phase]");
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){
+      var f = t.getAttribute("data-phase");
+      Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(s){ s.classList.toggle("active", s.id === f); });
+    });
+  });
+  var dlg = $("prom");
+  $("apriProm").addEventListener("click", function(){ if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", ""); });
+  $("chiudiProm").addEventListener("click", function(){ if(dlg.close) dlg.close(); else dlg.removeAttribute("open"); });
+
+  /* Un cronometro riusabile */
+  function Cronometro(idClock, idBox, secondi){
+    var resta = secondi, t = null;
+    function scrivi(){ $(idClock).textContent = orologio(resta); $(idBox).classList.toggle("zero", resta <= 0); }
+    return {
+      via: function(fine){
+        clearInterval(t); resta = secondi; scrivi();
+        t = setInterval(function(){ resta--; scrivi(); if(resta <= 0){ clearInterval(t); t = null; if(fine) fine(); } }, 1000);
+      },
+      ferma: function(){ clearInterval(t); t = null; resta = secondi; scrivi(); }
+    };
+  }
+
+  /* ============ FASE 1 ============ */
+  var mazzo1 = mescola(CHI), i1 = -1, ok1 = 0, lit1 = 0, tot1 = 0, conto1 = null;
+  function prossima1(){
+    clearInterval(conto1);
+    i1++; if(i1 >= mazzo1.length){ mazzo1 = mescola(CHI); i1 = 0; }
+    var c = mazzo1[i1];
+    tot1++;
+    $("a1Q").textContent = c.q;
+    $("a1Via").textContent = "";
+    $("a1Et").textContent = "domanda " + tot1;
+    $("a1Aiuto").innerHTML = "<p>" + ev(c.lui) + "</p><p>" + ev(c.io) + "</p><p>" + ev(c.noi) + "</p>";
+    $("a1Aiuto").classList.remove("show"); $("a1Help").textContent = "Come si risponde";
+    conta1();
+  }
+  function conta1(){ $("a1Ok").textContent = ok1; $("a1Lit").textContent = lit1; $("a1Tot").textContent = tot1; }
+  $("a1Tre").addEventListener("click", function(){
+    clearInterval(conto1);
+    var n = 3; $("a1Via").textContent = n;
+    conto1 = setInterval(function(){
+      n--;
+      if(n > 0){ $("a1Via").textContent = n; }
+      else { clearInterval(conto1); $("a1Via").textContent = "Indicate!"; }
+    }, 800);
+  });
+  $("a1Si").addEventListener("click", function(){ ok1++; conta1(); $("a1Via").textContent = "Perché?"; });
+  $("a1No").addEventListener("click", function(){
+    clearInterval(conto1);
+    lit1++; conta1();
+    var s = 40; $("a1Via").textContent = "Litigio! " + s;
+    conto1 = setInterval(function(){
+      s--;
+      $("a1Via").textContent = s > 0 ? "Litigio! " + s : "Chi ha vinto?";
+      if(s <= 0) clearInterval(conto1);
+    }, 1000);
+  });
+  $("a1Help").addEventListener("click", function(){
+    var s = $("a1Aiuto").classList.toggle("show");
+    $("a1Help").textContent = s ? "Nascondi" : "Come si risponde";
+  });
+  $("a1Next").addEventListener("click", prossima1);
+  prossima1();
+
+  /* ============ FASE 2 ============
+     A turno: chi indovina, e su chi. Si alterna a ogni carta. */
+  var mazzo2 = null, i2 = 0, turno = "A", punti = { A:0, B:0 };
+  function nuovoMazzo2(){ mazzo2 = mescola(IND[mem.tempo]); i2 = 0; }
+  function riempi(s, chi){
+    return s.replace(/\{N\}/g, nome(chi)).replace(/\{o\}/g, mem["gen" + chi] === "a" ? "a" : "o");
+  }
+  function mostra2(){
+    if(!mazzo2) nuovoMazzo2();
+    var altro = turno === "A" ? "B" : "A";
+    var c = mazzo2[i2];
+    $("b2Turno").textContent = "Indovina: " + etichetta(turno);
+    $("b2Q").textContent = riempi(c.q, altro);
+    $("b2Aiuto").innerHTML = "<p>" + ev(riempi(c.lui, altro)) + "</p><p>" + ev(riempi(c.io, altro)) + "</p>";
+    $("b2Aiuto").classList.remove("show"); $("b2Help").textContent = "Come si risponde";
+    $("b2NA").textContent = etichetta("A"); $("b2NB").textContent = etichetta("B");
+    $("b2PA").textContent = punti.A; $("b2PB").textContent = punti.B;
+    $("b2TA").classList.toggle("ora", turno === "A"); $("b2TB").classList.toggle("ora", turno === "B");
+  }
+  function avanti2(){
+    i2++; if(i2 >= mazzo2.length) nuovoMazzo2();
+    turno = turno === "A" ? "B" : "A";
+    mostra2();
+  }
+  var tempi = [["presente","Presente"],["passato","Passato prossimo"]];
+  $("b2Tempo").innerHTML = tempi.map(function(t){ return '<button type="button" data-t="' + t[0] + '">' + t[1] + "</button>"; }).join("");
+  function chipTempo(){
+    Array.prototype.forEach.call($("b2Tempo").querySelectorAll("button"), function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-t") === mem.tempo ? "true" : "false"); });
+  }
+  Array.prototype.forEach.call($("b2Tempo").querySelectorAll("button"), function(b){
+    b.addEventListener("click", function(){ mem.tempo = b.getAttribute("data-t"); salva(); chipTempo(); nuovoMazzo2(); mostra2(); });
+  });
+  $("b2Si").addEventListener("click", function(){ punti[turno]++; avanti2(); });
+  $("b2No").addEventListener("click", avanti2);
+  $("b2Salta").addEventListener("click", function(){ i2++; if(i2 >= mazzo2.length) nuovoMazzo2(); mostra2(); });
+  $("b2Help").addEventListener("click", function(){
+    var s = $("b2Aiuto").classList.toggle("show");
+    $("b2Help").textContent = s ? "Nascondi" : "Come si risponde";
+  });
+  chipTempo(); mostra2();
+
+  /* ============ FASE 3 ============ */
+  var mazzo3 = mescola(STORIE), i3 = -1, frasi3 = 0;
+  var crono3 = Cronometro("c3Clock", "c3Timer", 240);
+  function rimaste3(){ return $("c3Conn").querySelectorAll("button:not(.usato)").length; }
+  function prossima3(){
+    i3++; if(i3 >= mazzo3.length){ mazzo3 = mescola(STORIE); i3 = 0; }
+    var st = mazzo3[i3];
+    frasi3 = 0; crono3.ferma();
+    $("c3Tit").textContent = st.t;
+    $("c3Spunti").innerHTML = st.s.map(function(x){ return "<span>" + esc(x) + "</span>"; }).join("");
+    $("c3Conn").innerHTML = CONN.map(function(c){ return '<button type="button">' + esc(c) + "</button>"; }).join("");
+    Array.prototype.forEach.call($("c3Conn").querySelectorAll("button"), function(b){
+      b.addEventListener("click", function(){
+        var era = b.classList.contains("usato");
+        b.classList.toggle("usato");
+        frasi3 += era ? -1 : 1;
+        conta3();
+      });
+    });
+    conta3();
+  }
+  function conta3(){ $("c3N").textContent = Math.max(0, frasi3); $("c3Rim").textContent = rimaste3(); }
+  $("c3Altra").addEventListener("click", prossima3);
+  $("c3Piu").addEventListener("click", function(){ frasi3++; conta3(); });
+  $("c3Via").addEventListener("click", function(){ crono3.via(); });
+  prossima3();
+
+  /* ============ FASE 4 ============ */
+  var mazzo4 = mescola(COMPITI), i4 = -1, ing4 = 0, fatti4 = 0;
+  var crono4 = Cronometro("d4Clock", "d4Timer", 240);
+  $("d4Kit").innerHTML = KIT.map(function(k){ return "<span>" + esc(k) + "</span>"; }).join("");
+  function prossimo4(){
+    i4++; if(i4 >= mazzo4.length){ mazzo4 = mescola(COMPITI); i4 = 0; }
+    var c = mazzo4[i4];
+    ing4 = 0; crono4.ferma();
+    $("d4Tit").textContent = c.t;
+    $("d4Vinc").textContent = c.v;
+    $("d4Opz").innerHTML = c.o.map(function(o){ return "<li><span>" + esc(o[0]) + "</span>" + (o[1] ? "<em>" + esc(o[1]) + "</em>" : "") + "</li>"; }).join("");
+    conta4();
+  }
+  function conta4(){ $("d4Ing").textContent = ing4; $("d4Fatti").textContent = fatti4; }
+  $("d4Altro").addEventListener("click", prossimo4);
+  $("d4Via").addEventListener("click", function(){ crono4.via(); });
+  $("d4IngPiu").addEventListener("click", function(){ ing4++; conta4(); });
+  $("d4Ok").addEventListener("click", function(){ fatti4++; crono4.ferma(); conta4(); });
+  prossimo4();
+
+  /* ============ APPUNTI ============ */
+  var note = $("note");
+  note.value = mem.note || "";
+  note.addEventListener("input", function(){
+    mem.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("reset").addEventListener("click", function(){
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+})();
+</script>
+</body>
+</html>
