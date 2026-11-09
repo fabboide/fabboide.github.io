@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verbi in tasca · Talk with Fabio</title>
+<meta name="description" content="I verbi senza tabelle: frasi pronte da usare in conversazione, domanda e risposta.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+
+
+
+/* Verbi in tasca */
+.mini{font-size:.9rem;color:var(--muted);margin:10px 0 0}
+.regola{border-left:4px solid var(--tomato);background:#FBF0EE;border-radius:0 12px 12px 0;padding:10px 14px;margin:0 0 14px;font-size:1.02rem}
+.regola b{font-family:var(--display)}
+.btn.giallo{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+.btn.grande{font-size:1.1rem;padding:12px 22px}
+.grid2>*{min-width:0}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.gen{display:flex;gap:6px;align-items:center;font-family:var(--display);font-weight:700;font-size:.85rem;color:var(--muted)}
+.gen button{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:4px 12px;font-family:var(--display);font-weight:600;font-size:.85rem}
+.gen button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.carta{border:2px solid var(--ink);border-radius:20px;background:var(--paper);padding:22px 20px;text-align:center}
+.carta .et{font-family:var(--display);font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.carta .frase{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,6vw,2.6rem);line-height:1.2;margin:10px 0 4px}
+.carta .en2{color:var(--muted);font-style:italic;margin:0}
+.aiuto{display:none;margin:14px 0 0;border-top:1px dashed var(--line);padding-top:12px;text-align:left}
+.aiuto.show{display:block}
+.aiuto p{margin:4px 0;font-size:1.2rem}
+.aiuto p span{display:inline-block;min-width:5.2em;font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+.aiuto b{color:var(--tomato);font-family:var(--display)}
+.tasca{display:inline-block;margin-top:10px;font-family:var(--hand);font-size:1.2rem;color:var(--basil)}
+.punteggi{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--display);font-weight:700;margin:12px 0 0}
+.punteggi span{display:block;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.punteggi b{font-size:1.7rem}
+.punteggi .verde b{color:var(--basil)}
+.punteggi .giallo b{color:var(--lemon)}
+.prog{height:12px;border-radius:999px;background:var(--line);overflow:hidden;margin:6px 0 4px}
+.prog i{display:block;height:100%;background:var(--basil);border-radius:999px;transition:width .3s ease}
+.mie{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px;max-height:320px;overflow:auto}
+.mie li{background:#E7F0EA;border:1px solid #CBDDD2;border-radius:999px;padding:3px 12px;font-size:.98rem}
+.mie li b{color:var(--basil);font-family:var(--display)}
+/* Comuni presi da Che mi racconti? */
+.nota-gram{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin-top:10px}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.vuoto{color:var(--muted);text-align:center;padding:26px 10px}
+/* Appunti */
+.appunti{margin-top:26px}
+.appunti textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);resize:vertical;font-family:var(--text)}
+.appunti .riga{justify-content:space-between}
+.salvato{font-family:var(--hand);font-size:1.15rem;color:var(--basil)}
+
+/* Frasi utili */
+dialog{border:0;border-radius:16px;padding:0;max-width:660px;width:calc(100% - 28px);background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(10,20,15,.55)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dlg-head h2{margin:0;font-size:1.5rem}
+.dlg-body{padding:12px 20px 22px;max-height:72vh;overflow:auto}
+.dlg-body table{width:100%;border-collapse:collapse;font-size:.97rem}
+.dlg-body td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dlg-body td:first-child{font-weight:700;width:54%}
+.dlg-body h3{margin:18px 0 4px;color:var(--basil);font-size:1.12rem}
+</style>
+</head>
+
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; La mia aula</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Verbi in tasca</h1>
+    <p>I verbi senza tabelle: frasi pronte da usare subito in una conversazione vera. Ti faccio una domanda, rispondi con la frase, poi la domanda la fai tu a me. Quando una frase ti viene da sola due volte, è in tasca. <span class="en">Verbs without tables: ready-made phrases you use right away. Answer, then ask me back. Say it right twice and it's yours.</span></p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Mazzi">
+    <button role="tab" aria-selected="true" data-mazzo="presente"><span class="n">1</span>Oggi</button>
+    <button role="tab" aria-selected="false" data-mazzo="passato"><span class="n">2</span>Ieri</button>
+    <button role="tab" aria-selected="false" data-mazzo="modali"><span class="n">3</span>Mi piace, vorrei</button>
+    <button role="tab" aria-selected="false" data-mazzo="mix"><span class="n">4</span>Tutto</button>
+  </nav>
+
+  <section class="phase active" id="p1">
+    <p class="regola" id="regola"></p>
+    <div class="grid2">
+      <div>
+        <div class="carta">
+          <div class="et" id="et">domanda</div>
+          <p class="frase" id="q"></p>
+          <div class="aiuto" id="aiuto"></div>
+          <span class="tasca" id="tascaCarta"></span>
+        </div>
+        <div class="riga">
+          <button class="btn green grande" id="si" type="button">Detta!</button>
+          <button class="btn giallo" id="ancora" type="button">Ancora</button>
+          <button class="btn ghost" id="etu" type="button">+ E tu?</button>
+          <button class="btn ghost" id="help" type="button">La frase</button>
+          <button class="btn ghost" id="salta" type="button">Salta</button>
+        </div>
+        <div class="punteggi">
+          <div class="verde"><span>dette oggi</span><b id="nSi">0</b></div>
+          <div class="giallo"><span>ancora</span><b id="nNo">0</b></div>
+          <div><span>domande sue</span><b id="nTu">0</b></div>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>In tasca <span class="count" id="nTasca">0</span> <span class="en">di <span id="nTot">0</span></span></h3>
+        <div class="prog"><i id="prog" style="width:0%"></i></div>
+        <ul class="mie" id="mie"></ul>
+        <p class="mini" id="vuoto">Le frasi dette bene due volte compaiono qui, e restano anche la prossima lezione.</p>
+        <h3 style="margin-top:16px">Come si gioca</h3>
+        <ul style="margin:0;padding-left:20px">
+          <li>leggo la domanda come in una chiacchierata vera, e rispondo anch'io</li>
+          <li>vale la frase intera, anche corta: «Vado in Toscana»</li>
+          <li>se sbaglia il verbo non spiego la regola: dico la frase giusta, la ripete e torna fra tre carte</li>
+          <li>«+ E tu?» quando mi rifà la domanda: è lì che impara il tu</li>
+        </ul>
+        <div class="gen" style="margin-top:12px">Lei è <button type="button" data-g="a">lei</button><button type="button" data-g="o">lui</button></div>
+        <p class="mini">«La frase» mostra la risposta e la domanda da fare a me: solo se si blocca. Le frasi in tasca: uno screenshot e glielo mando dopo la lezione.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- APPUNTI -->
+  <div class="panel appunti">
+    <h3>Appunti della lezione</h3>
+    <p class="en" style="margin:0 0 8px">I verbi che sbaglia, le frasi che le servono, le sue storie.</p>
+    <textarea id="note" placeholder="Es. «io va» → io vado · «ho andato» → sono andata"></textarea>
+    <div class="riga">
+      <span class="salvato" id="salvato">Si salva da solo su questo computer.</span>
+      <button class="btn ghost" id="azzeraOggi" type="button">Nuova lezione (tieni le frasi in tasca)</button>
+      <button class="btn ghost" id="reset" type="button">Azzera tutto</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function ev(s){ return esc(s).replace(/\[([^\]]+)\]/g, "<b>$1</b>"); }
+  function mescola(a){ a = a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+
+  /* Le carte. q: la domanda che faccio io; r: la risposta pronta; t: la stessa
+     domanda che lei rifà a me (io sono un uomo: "andato"). {o} = la sua vocale. */
+  var MAZZI = {
+    presente: {nome:"Oggi", regola:"<b>Oggi:</b> rispondi con <b>io</b>, poi chiedi a me con <b>tu</b>. «Vado in Toscana. E tu, dove vai?» <span class=\"en\">Answer with «io», then ask me back with «tu».</span>", carte:[
+      {id:"p1", q:"Dove abiti?", r:"[Abito] a...", t:"E tu, dove [abiti]?"},
+      {id:"p2", q:"Che lavoro fai?", r:"[Faccio] la... / [Lavoro] in...", t:"E tu, che lavoro [fai]?"},
+      {id:"p3", q:"Dove vai d'estate?", r:"[Vado] in Toscana.", t:"E tu, dove [vai]?"},
+      {id:"p4", q:"Cosa mangi a colazione?", r:"[Mangio]...", t:"E tu, cosa [mangi]?"},
+      {id:"p5", q:"Cosa bevi la mattina?", r:"[Bevo] un caffè.", t:"E tu, cosa [bevi]?"},
+      {id:"p6", q:"A che ora ti svegli?", r:"[Mi sveglio] alle...", t:"E tu, a che ora [ti svegli]?"},
+      {id:"p7", q:"Cosa fai nel weekend?", r:"[Faccio]... / [Vado]...", t:"E tu, cosa [fai]?"},
+      {id:"p8", q:"Quante lingue parli?", r:"[Parlo] inglese e...", t:"E tu, quante lingue [parli]?"},
+      {id:"p9", q:"Hai fratelli o sorelle?", r:"[Ho] un fratello... / Non [ho]...", t:"E tu, [hai] fratelli?"},
+      {id:"p10", q:"Di dove sei?", r:"[Sono] di... ma [vivo] in...", t:"E tu, di dove [sei]?"},
+      {id:"p11", q:"Cosa guardi in TV?", r:"[Guardo]...", t:"E tu, cosa [guardi]?"},
+      {id:"p12", q:"Che musica ascolti?", r:"[Ascolto]...", t:"E tu, che musica [ascolti]?"},
+      {id:"p13", q:"Capisci il toscano?", r:"Sì, lo [capisco] un po'.", t:"E tu, [capisci] l'inglese?"},
+      {id:"p14", q:"Esci spesso la sera?", r:"Sì, [esco]... / No, [sto] a casa.", t:"E tu, [esci] spesso?"},
+      {id:"p15", q:"Leggi libri?", r:"Sì, [leggo]... / No, non [leggo] molto.", t:"E tu, cosa [leggi]?"},
+      {id:"p16", q:"Sai cucinare?", r:"Sì, [so] fare la pasta.", t:"E tu, cosa [sai] fare?"},
+      {id:"p17", q:"Prendi il caffè con lo zucchero?", r:"Sì, lo [prendo] con... / No, lo [prendo] amaro.", t:"E tu, come lo [prendi]?"},
+      {id:"p18", q:"Che sport fai?", r:"[Faccio] yoga. / [Gioco] a tennis.", t:"E tu, che sport [fai]?"},
+      {id:"p19", q:"Con chi parli italiano?", r:"[Parlo] italiano con...", t:"E tu, con chi [parli] inglese?"},
+      {id:"p20", q:"Come stai oggi?", r:"[Sto] bene, grazie. / [Sono] stanc{o}.", t:"E tu, come [stai]?"}
+    ]},
+    passato: {nome:"Ieri", regola:"<b>Ieri:</b> le frasi del passato, già fatte. Non pensare alla regola: «ho mangiato», «sono andat{o}» si dicono così e basta. <span class=\"en\">Past phrases, ready-made. Don't think about rules.</span>", carte:[
+      {id:"s1", q:"Cosa hai fatto ieri sera?", r:"[Ho guardato] un film. / [Sono uscit{o}].", t:"E tu, cosa [hai fatto]?"},
+      {id:"s2", q:"Cosa hai mangiato a pranzo?", r:"[Ho mangiato]...", t:"E tu, cosa [hai mangiato]?"},
+      {id:"s3", q:"Dove sei andat{o} l'estate scorsa?", r:"[Sono andat{o}] in Toscana.", t:"E tu, dove [sei andato]?"},
+      {id:"s4", q:"A che ora ti sei svegliat{o} oggi?", r:"[Mi sono svegliat{o}] alle...", t:"E tu, a che ora [ti sei svegliato]?"},
+      {id:"s5", q:"Hai visto un film questa settimana?", r:"Sì, [ho visto]... / No, non [ho visto] niente.", t:"E tu, [hai visto] qualcosa?"},
+      {id:"s6", q:"Con chi hai parlato oggi?", r:"[Ho parlato] con...", t:"E tu, con chi [hai parlato]?"},
+      {id:"s7", q:"Cosa hai comprato l'ultima volta?", r:"[Ho comprato]...", t:"E tu, cosa [hai comprato]?"},
+      {id:"s8", q:"Quando sei stat{o} in Italia l'ultima volta?", r:"[Sono stat{o}] in Italia a...", t:"E tu, quando [sei stato] in America?"},
+      {id:"s9", q:"Hai dormito bene stanotte?", r:"Sì, [ho dormito] bene. / No, [ho dormito] poco.", t:"E tu, [hai dormito] bene?"},
+      {id:"s10", q:"Cosa hai bevuto stamattina?", r:"[Ho bevuto]...", t:"E tu, cosa [hai bevuto]?"},
+      {id:"s11", q:"Hai cucinato ieri? Cosa?", r:"Sì, [ho cucinato]... / No, [ho ordinato] una pizza.", t:"E tu, [hai cucinato]?"},
+      {id:"s12", q:"Sei uscit{o} sabato sera?", r:"Sì, [sono uscit{o}] con... / No, [sono restat{o}] a casa.", t:"E tu, [sei uscito]?"},
+      {id:"s13", q:"Hai lavorato oggi?", r:"Sì, [ho lavorato] tutto il giorno.", t:"E tu, [hai lavorato]?"},
+      {id:"s14", q:"Hai chiamato qualcuno in Italia questa settimana?", r:"Sì, [ho chiamato]...", t:"E tu, chi [hai chiamato]?"},
+      {id:"s15", q:"A che ora sei tornat{o} a casa ieri?", r:"[Sono tornat{o}] alle...", t:"E tu, a che ora [sei tornato]?"},
+      {id:"s16", q:"Cosa hai fatto l'ultima estate in Italia?", r:"[Sono andat{o}] al mare, [ho mangiato]...", t:"E tu, cosa [hai fatto]?"}
+    ]},
+    modali: {nome:"Mi piace, vorrei", regola:"<b>Mi piace, vorrei, devo, posso:</b> le frasi che servono di più al bar, in viaggio, con la famiglia. <span class=\"en\">The phrases you need most: at the café, travelling, with family.</span>", carte:[
+      {id:"m1", q:"Cosa ti piace mangiare in Italia?", r:"[Mi piace] la... / [Mi piacciono] i...", t:"E a te, cosa [ti piace]?"},
+      {id:"m2", q:"Cosa non ti piace fare?", r:"Non [mi piace]...", t:"E a te, cosa non [ti piace]?"},
+      {id:"m3", q:"Siamo al bar. Cosa prendi?", r:"[Vorrei] un cappuccino, per favore.", t:"E tu, cosa [prendi]?"},
+      {id:"m4", q:"Cosa devi fare domani?", r:"Domani [devo]...", t:"E tu, cosa [devi] fare?"},
+      {id:"m5", q:"Cosa vuoi fare la prossima estate?", r:"[Voglio] andare...", t:"E tu, cosa [vuoi] fare?"},
+      {id:"m6", q:"Puoi venire a cena sabato?", r:"Sì, [posso]! / No, non [posso], [devo]...", t:"E tu, [puoi] venire?"},
+      {id:"m7", q:"Ti piacciono i film italiani?", r:"Sì, [mi piacciono] molto.", t:"E a te, [piacciono] i film americani?"},
+      {id:"m8", q:"Cosa vorresti vedere in Italia?", r:"[Vorrei] vedere...", t:"E tu, cosa [vorresti] vedere?"},
+      {id:"m9", q:"Devi lavorare nel weekend?", r:"Sì, [devo] lavorare. / No, non [devo].", t:"E tu, [devi] lavorare?"},
+      {id:"m10", q:"Sai nuotare?", r:"Sì, [so] nuotare.", t:"E tu, [sai] nuotare?"},
+      {id:"m11", q:"Parlo troppo veloce. Cosa mi dici?", r:"[Puoi] parlare più piano, per favore?", t:""},
+      {id:"m12", q:"Non capisci una parola. Cosa mi chiedi?", r:"Cosa [vuol dire]...?", t:""},
+      {id:"m13", q:"Al ristorante: vuoi il conto.", r:"Il conto, per favore. / [Posso] avere il conto?", t:""},
+      {id:"m14", q:"Ti piace di più il mare o la montagna?", r:"[Mi piace] di più il mare.", t:"E a te, cosa [piace] di più?"},
+      {id:"m15", q:"Cosa ti piacerebbe imparare quest'anno?", r:"[Mi piacerebbe] imparare...", t:"E a te?"},
+      {id:"m16", q:"Hai fame? Cosa vuoi mangiare stasera?", r:"Sì, [ho] fame! [Voglio] mangiare...", t:"E tu, cosa [vuoi] mangiare?"}
+    ]}
+  };
+  var TUTTE = [].concat(MAZZI.presente.carte, MAZZI.passato.carte, MAZZI.modali.carte);
+
+  /* ============ MEMORIA ============
+     tasca: id -> volte dette bene (2 = in tasca), resta da una lezione all'altra */
+  var CHIAVE = "icf-verbi-tasca";
+  var mem = { gen:"a", tasca:{}, note:"" };
+  try{
+    var m0 = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+    if(m0 && typeof m0 === "object"){ for(var k in mem){ if(m0[k] !== undefined) mem[k] = m0[k]; } }
+  }catch(e){}
+  if(!mem.tasca || typeof mem.tasca !== "object") mem.tasca = {};
+  var salvaT = null;
+  function salva(){
+    clearTimeout(salvaT);
+    salvaT = setTimeout(function(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(mem)); }catch(e){} }, 250);
+  }
+  window.addEventListener("pagehide", function(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(mem)); }catch(e){} });
+  function g(s){ return String(s).replace(/\{o\}/g, mem.gen === "o" ? "o" : "a"); }
+
+  /* ============ IL GIOCO ============ */
+  var mazzo = "presente", coda = [], nSi = 0, nNo = 0, nTu = 0;
+  function nuovaCoda(){
+    var base = mazzo === "mix" ? TUTTE : MAZZI[mazzo].carte;
+    /* prima quelle non ancora in tasca, poi le altre */
+    var fuori = base.filter(function(c){ return (mem.tasca[c.id] || 0) < 2; });
+    var dentro = base.filter(function(c){ return (mem.tasca[c.id] || 0) >= 2; });
+    coda = mescola(fuori).concat(mescola(dentro));
+  }
+  function regola(){
+    if(mazzo === "mix") return "<b>Tutto:</b> oggi, ieri, mi piace e vorrei, mescolati come in una conversazione vera. <span class=\"en\">Everything mixed, like a real conversation.</span>";
+    return g(MAZZI[mazzo].regola);
+  }
+  function mostra(){
+    if(!coda.length) nuovaCoda();
+    var c = coda[0];
+    $("regola").innerHTML = regola();
+    $("et").textContent = mazzo === "mix" ? "tutto" : MAZZI[mazzo].nome;
+    $("q").textContent = g(c.q);
+    $("aiuto").innerHTML = '<p><span>tu dici</span>' + ev(g(c.r)) + "</p>" + (c.t ? '<p><span>poi chiedi</span>' + ev(g(c.t)) + "</p>" : "");
+    $("aiuto").classList.remove("show"); $("help").textContent = "La frase";
+    var v = mem.tasca[c.id] || 0;
+    $("tascaCarta").textContent = v >= 2 ? "già in tasca" : v === 1 ? "ancora una volta e va in tasca" : "";
+    $("etu").disabled = !c.t;
+    conta();
+  }
+  function conta(){
+    $("nSi").textContent = nSi; $("nNo").textContent = nNo; $("nTu").textContent = nTu;
+    var dentro = TUTTE.filter(function(c){ return (mem.tasca[c.id] || 0) >= 2; });
+    $("nTasca").textContent = dentro.length; $("nTot").textContent = TUTTE.length;
+    $("prog").style.width = Math.round(dentro.length / TUTTE.length * 100) + "%";
+    $("mie").innerHTML = dentro.map(function(c){
+      return "<li>" + ev(g(c.r).replace(/\s*\/.*$/, "")) + "</li>";
+    }).join("");
+    $("vuoto").style.display = dentro.length ? "none" : "";
+  }
+  $("si").addEventListener("click", function(){
+    var c = coda.shift();
+    mem.tasca[c.id] = Math.min(2, (mem.tasca[c.id] || 0) + 1); salva();
+    nSi++; coda.push(c); mostra();
+  });
+  $("ancora").addEventListener("click", function(){
+    /* torna fra tre carte */
+    var c = coda.shift();
+    coda.splice(Math.min(3, coda.length), 0, c);
+    nNo++; mostra();
+  });
+  $("salta").addEventListener("click", function(){ coda.push(coda.shift()); mostra(); });
+  $("etu").addEventListener("click", function(){ nTu++; conta(); });
+  $("help").addEventListener("click", function(){
+    var s = $("aiuto").classList.toggle("show");
+    $("help").textContent = s ? "Nascondi" : "La frase";
+  });
+
+  /* Linguette dei mazzi */
+  var tabs = document.querySelectorAll("nav.steps button[data-mazzo]");
+  Array.prototype.forEach.call(tabs, function(t){
+    t.addEventListener("click", function(){
+      mazzo = t.getAttribute("data-mazzo");
+      Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      nuovaCoda(); mostra();
+    });
+  });
+
+  /* lei / lui */
+  function segnaGen(){
+    Array.prototype.forEach.call(document.querySelectorAll(".gen button"), function(b){
+      b.setAttribute("aria-pressed", b.getAttribute("data-g") === mem.gen ? "true" : "false");
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".gen button"), function(b){
+    b.addEventListener("click", function(){ mem.gen = b.getAttribute("data-g"); salva(); segnaGen(); mostra(); });
+  });
+  segnaGen();
+  nuovaCoda(); mostra();
+
+  /* ============ APPUNTI ============ */
+  var note = $("note");
+  note.value = mem.note || "";
+  note.addEventListener("input", function(){
+    mem.note = note.value; salva();
+    $("salvato").textContent = "Appunti salvati.";
+  });
+  $("azzeraOggi").addEventListener("click", function(){
+    mem.note = ""; salva(); setTimeout(function(){ location.reload(); }, 300);
+  });
+  $("reset").addEventListener("click", function(){
+    try{ localStorage.removeItem(CHIAVE); }catch(e){}
+    location.reload();
+  });
+})();
+</script>
+</body>
+</html>

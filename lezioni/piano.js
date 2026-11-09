@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "9 novembre 2026, 17:18";
+var PIANO_AGGIORNATO = "9 novembre 2026, 19:49";
 
 var PIANO = {
 
@@ -336,6 +336,41 @@ var PIANO = {
         "titolo": "Ready-made phrases, out loud",
         "href": "https://talkwithfabio.com/esercizi/prime-frasi/",
         "nota": "The same idea as our chunks. Say them out loud, do not just read them"
+      }
+    ]
+  },
+
+  "jasmine-jo9": {
+    "nome": "Jasmine",
+    "aggiornato": "9 novembre 2026",
+    "ultima": {
+      "quando": "2026-11-09T19:00:00+01:00",
+      "fatto": [
+        "Getting to know each other: your Italian roots and your summers in Tuscany",
+        "A first look at where your Italian flows and where it gets stuck"
+      ]
+    },
+    "prossima": {
+      "quando": "2026-11-18T19:00:00+01:00",
+      "obiettivo": "Talk about your day and your summers in Italy, with the verbs coming out on their own. No grammar tables, just conversation.",
+      "attivita": [
+        {
+          "titolo": "Verbi in tasca: ready-made phrases",
+          "href": "",
+          "nota": "I ask, you answer, then you ask me back"
+        },
+        {
+          "titolo": "Small talk about your week",
+          "href": "",
+          "nota": "Just chatting, in Italian"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "First phrases",
+        "href": "https://talkwithfabio.com/esercizi/prime-frasi/",
+        "nota": "Five minutes, no studying: listen and repeat"
       }
     ]
   },
