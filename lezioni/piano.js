@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "9 novembre 2026, 10:40";
+var PIANO_AGGIORNATO = "9 novembre 2026, 14:49";
 
 var PIANO = {
 
@@ -489,50 +489,44 @@ var PIANO = {
 
   "robmarie-7vc": {
     "nome": "Rob & Marie",
-    "aggiornato": "2 novembre 2026",
+    "aggiornato": "9 novembre 2026",
     "ultima": {
-      "quando": "2026-11-02T10:00:00+01:00",
+      "quando": "2026-11-09T10:00:00+01:00",
       "fatto": [
-        "Describing people: eyes, height, build, age, beard and glasses",
-        "Ha + capelli, occhi, barba / è + alto, magro, giovane"
+        "Parliamo! A whole lesson of speaking. Well done!"
       ]
     },
     "prossima": {
-      "quando": "2026-11-09T10:00:00+01:00",
-      "obiettivo": "A whole lesson of speaking. No new grammar: just getting the words out, with each other.",
+      "quando": "2026-11-11T13:00:00+01:00",
+      "obiettivo": "More conversation: your topic first, then new games where only you two talk.",
       "attivita": [
         {
-          "titolo": "Verb roulette",
+          "titolo": "Your topic",
           "href": "",
-          "nota": "Five minutes, and every sentence true for you"
+          "nota": "Tell me the topic you chose at home and say it without the screen"
         },
         {
-          "titolo": "The vanishing dialogue",
+          "titolo": "Parliamo!",
           "href": "",
-          "nota": "Read it together, then say it with fewer and fewer words on screen"
+          "nota": "Two plus one and Who are you today?"
         },
         {
-          "titolo": "Two plus one",
+          "titolo": "Three jokers",
           "href": "",
-          "nota": "Answer with two pieces of information, then ask one question back: E tu?"
-        },
-        {
-          "titolo": "Who are you today?",
-          "href": "",
-          "nota": "A new identity, a three minute meeting, then what did you learn about the other?"
+          "nota": "Three minutes on a topic, only three English words allowed"
         }
       ]
     },
     "compiti": [
       {
-        "titolo": "Dialogues to repeat",
-        "href": "https://talkwithfabio.com/dialoghi/",
-        "nota": "The dialogue Conoscersi: read it in two voices, then hide your lines"
+        "titolo": "Parliamo! at home",
+        "href": "https://talkwithfabio.com/aula-pfr2u9/parliamo/",
+        "nota": "Choose a topic, 10 to 15 minutes: the instructions are in my email"
       },
       {
-        "titolo": "Guess who, on your own",
-        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
-        "nota": "To keep describing people fresh"
+        "titolo": "Dialogues to repeat",
+        "href": "https://talkwithfabio.com/dialoghi/",
+        "nota": "Read in two voices, then hide your lines"
       }
     ]
   },
