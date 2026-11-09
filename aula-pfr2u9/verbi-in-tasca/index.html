@@ -104,6 +104,10 @@ h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
 .mie{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px;max-height:320px;overflow:auto}
 .mie li{background:#E7F0EA;border:1px solid #CBDDD2;border-radius:999px;padding:3px 12px;font-size:.98rem}
 .mie li b{color:var(--basil);font-family:var(--display)}
+.nome-box{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin:18px 0 0}
+.nome-box label{font-family:var(--display);font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.nome-box input{flex:1;min-width:140px;border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:var(--stone);font-family:var(--display);font-weight:700}
+.nome-box span{font-size:.85rem;color:var(--muted);font-style:italic}
 /* Comuni presi da Che mi racconti? */
 .nota-gram{font-family:var(--hand);font-size:1.22rem;color:var(--tomato);margin-top:10px}
 .riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
@@ -135,6 +139,13 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     <h1>Verbi in tasca</h1>
     <p>I verbi senza tabelle: frasi pronte da usare subito in una conversazione vera. Ti faccio una domanda, rispondi con la frase, poi la domanda la fai tu a me. Quando una frase ti viene da sola due volte, è in tasca. <span class="en">Verbs without tables: ready-made phrases you use right away. Answer, then ask me back. Say it right twice and it's yours.</span></p>
   </header>
+
+  <div class="nome-box">
+    <label for="chi">Studente</label>
+    <input id="chi" type="text" maxlength="24" placeholder="Nome" autocomplete="off" list="chiLista">
+    <datalist id="chiLista"></datalist>
+    <span>ognuno ha le sue frasi in tasca</span>
+  </div>
 
   <nav class="steps" role="tablist" aria-label="Mazzi">
     <button role="tab" aria-selected="true" data-mazzo="presente"><span class="n">1</span>Oggi</button>
@@ -272,18 +283,38 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
 
   /* ============ MEMORIA ============
      tasca: id -> volte dette bene (2 = in tasca), resta da una lezione all'altra */
-  var CHIAVE = "icf-verbi-tasca";
-  var mem = { gen:"a", tasca:{}, note:"" };
-  try{
-    var m0 = JSON.parse(localStorage.getItem(CHIAVE) || "null");
+  /* Una memoria per studente: icf-verbi-tasca:<nome>. Senza nome, quella di base. */
+  var BASE = "icf-verbi-tasca", CHI = BASE + "-chi", ELENCO = BASE + "-elenco";
+  function leggi(k, d){ try{ var v = JSON.parse(localStorage.getItem(k) || "null"); return v === null ? d : v; }catch(e){ return d; } }
+  function scrivi(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+  function slug(n){ return String(n || "").trim().toLowerCase(); }
+  var chi = leggi(CHI, "");
+  var CHIAVE, mem;
+  function carica(){
+    CHIAVE = slug(chi) ? BASE + ":" + slug(chi) : BASE;
+    mem = { gen:"a", tasca:{}, note:"" };
+    var m0 = leggi(CHIAVE, null);
     if(m0 && typeof m0 === "object"){ for(var k in mem){ if(m0[k] !== undefined) mem[k] = m0[k]; } }
-  }catch(e){}
-  if(!mem.tasca || typeof mem.tasca !== "object") mem.tasca = {};
+    if(!mem.tasca || typeof mem.tasca !== "object") mem.tasca = {};
+  }
+  carica();
   var salvaT = null;
   function salva(){
     clearTimeout(salvaT);
     salvaT = setTimeout(function(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(mem)); }catch(e){} }, 250);
   }
+  function elencoNomi(){
+    var l = leggi(ELENCO, []);
+    $("chiLista").innerHTML = l.map(function(n){ return '<option value="' + esc(n) + '">'; }).join("");
+  }
+  $("chi").value = chi; elencoNomi();
+  $("chi").addEventListener("change", function(){
+    scrivi(CHIAVE, mem);
+    chi = this.value.trim(); scrivi(CHI, chi);
+    if(chi){ var l = leggi(ELENCO, []); if(l.indexOf(chi) === -1){ l.push(chi); scrivi(ELENCO, l); } }
+    elencoNomi(); carica();
+    $("note").value = mem.note || ""; segnaGen(); nSi = nNo = nTu = 0; nuovaCoda(); mostra();
+  });
   window.addEventListener("pagehide", function(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(mem)); }catch(e){} });
   function g(s){ return String(s).replace(/\{o\}/g, mem.gen === "o" ? "o" : "a"); }
 
@@ -374,6 +405,7 @@ dialog::backdrop{background:rgba(10,20,15,.55)}
     mem.note = ""; salva(); setTimeout(function(){ location.reload(); }, 300);
   });
   $("reset").addEventListener("click", function(){
+    if(!confirm("Azzero le frasi in tasca di " + (chi || "questo computer") + "?")) return;
     try{ localStorage.removeItem(CHIAVE); }catch(e){}
     location.reload();
   });
