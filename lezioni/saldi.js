@@ -166,6 +166,18 @@ var SALDI = {
     prossime: []
   },
 
+  "catherina-d4h": {
+    nome: "Catherina & Nunzio",
+    pacchetto: 4,
+    inizio: "2026-11-09",
+    fatte_prima: 0,
+    fatte: 0,
+    prenotate: 0,
+    rimaste: 4,
+    passate: [],
+    prossime: []
+  },
+
   "ellie-3mw": {
     nome: "Ellie",
     pacchetto: 1,
