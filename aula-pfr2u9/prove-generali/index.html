@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Prove generali · La mia aula</title>
+<link rel="icon" href="../../favicon.svg">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D; --kraft:#D9BC8C;
+  --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --serif:"Newsreader",Georgia,serif;
+  --pen:"Caveat",cursive;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--stone);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.55}
+.nastro{height:6px;background:linear-gradient(90deg,var(--tomato) 0 25%,var(--lemon) 25% 50%,var(--basil) 50% 75%,var(--kraft) 75% 100%)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding:12px 20px;border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar a{color:var(--muted);text-decoration:none;font-family:var(--display);font-size:.9rem}
+.topbar .marchio{font-family:var(--display);font-weight:800;letter-spacing:-.01em}
+.wrap{max-width:820px;margin:0 auto;padding:22px 20px 90px}
+h1{font-family:var(--display);font-weight:800;font-size:2.05rem;letter-spacing:-.025em;margin:8px 0 4px}
+h3{font-family:var(--display);font-size:1.03rem;margin:0 0 6px}
+.lede{color:var(--muted);margin:0 0 6px}
+.pen{font-family:var(--pen);font-size:1.25rem;color:var(--basil);margin:6px 0 0}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:12px 0}
+.btn{font-family:var(--display);font-weight:700;font-size:.94rem;border:1px solid var(--ink);
+  background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 17px;cursor:pointer}
+.btn.verde{background:var(--basil);border-color:var(--basil)}
+.btn.rosso{background:var(--tomato);border-color:var(--tomato)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.riga{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.kbd{font-size:.72em;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin-left:7px}
+@media (hover:none){.kbd{display:none}}
+#fasi{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 14px}
+#fasi button{font-family:var(--display);font-weight:700;font-size:.9rem;border:1px solid var(--line);
+  background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
+#fasi button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+#fasi button .n{color:var(--lemon);margin-right:6px}
+.sez{display:none}
+.sez.on{display:block}
+.tipino{display:inline-block;font-family:var(--display);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 9px;margin-bottom:8px}
+.grande{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.01em;line-height:1.35;margin:4px 0}
+.svela{margin-top:12px;min-height:30px}
+.perche{color:var(--muted);font-size:.96rem;margin:4px 0 0}
+.conti{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0 4px;align-items:baseline}
+.conti div{display:flex;gap:7px;align-items:baseline}
+.conti b{font-family:var(--display);font-weight:800;font-size:1.45rem}
+.conti .g b{color:var(--basil)} .conti .s b{color:var(--tomato)}
+.conti span{font-family:var(--display);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.scuro{background:var(--ink);color:var(--paper);border-radius:18px;padding:20px;margin:12px 0}
+.scuro .spia{font-family:var(--display);font-weight:800;font-size:1.7rem;color:var(--lemon);letter-spacing:-.01em}
+.scuro .chi{font-family:var(--display);font-weight:700;font-size:1.25rem;margin-top:6px}
+.scuro .chi i{font-family:var(--serif);font-weight:400;color:var(--kraft)}
+.scuro .svela .grande{color:var(--paper);font-size:1.3rem}
+.scuro .svela b{color:var(--lemon)}
+.scuro .perche{color:var(--kraft)}
+.crono{font-family:var(--display);font-weight:800;font-size:2rem;font-variant-numeric:tabular-nums}
+.crono.poco{color:var(--tomato)}
+/* catena */
+.anelli{display:flex;flex-direction:column;gap:6px;margin:12px 0 0;padding:0;list-style:none;counter-reset:a}
+.anelli li{counter-increment:a;background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--basil);border-radius:12px;padding:8px 12px;font-size:1.02rem}
+.anelli li::before{content:counter(a)". ";font-family:var(--display);font-weight:800;color:var(--basil)}
+.anelli li.vuoto{color:var(--muted);font-style:italic}
+input[type=text]{flex:1 1 240px;font-family:var(--serif);font-size:1.05rem;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--paper);color:var(--ink)}
+/* dilemmi */
+.dilemma{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch;margin:10px 0}
+.dilemma .op{background:var(--paper);border:2px solid var(--ink);border-radius:16px;padding:16px;font-family:var(--display);font-weight:700;font-size:1.2rem;line-height:1.3;display:flex;align-items:center}
+.dilemma .o{display:flex;align-items:center;font-family:var(--pen);font-size:1.8rem;color:var(--tomato)}
+@media (max-width:560px){.dilemma{grid-template-columns:1fr}.dilemma .o{justify-content:center}}
+.twist{font-family:var(--pen);font-size:1.6rem;color:var(--tomato);min-height:36px;margin-top:6px}
+.formula{font-family:var(--display);font-size:.95rem;color:var(--muted);border:1px dashed var(--line);border-radius:12px;padding:8px 12px;margin-top:10px}
+.formula b{color:var(--ink)}
+.emozione{display:inline-block;font-family:var(--pen);font-size:2rem;color:var(--tomato);transform:rotate(-2deg)}
+@media (max-width:480px){h1{font-size:1.7rem}.grande{font-size:1.25rem}.scuro .spia{font-size:1.4rem}}
+/* prove generali */
+.filtri{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.filtri button{font-family:var(--display);font-weight:700;font-size:.82rem;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.filtri button.on{background:var(--basil);border-color:var(--basil);color:var(--paper)}
+.due{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+@media (max-width:600px){.due{grid-template-columns:1fr}}
+.voce{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.voce .a{font-family:var(--display);font-weight:800;font-size:1.05rem}
+.voce .reg{font-family:var(--pen);font-size:1.2rem;color:var(--tomato)}
+.voce .mod{margin-top:8px;min-height:24px;font-style:italic}
+.voce.tu{border-top:5px solid var(--lemon)} .voce.lei{border-top:5px solid var(--ink)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.chips button{font-family:var(--display);font-weight:700;font-size:.95rem;border:2px dashed var(--kraft);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer}
+.chips button .g{display:block;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.chips button.usata{border-style:solid;border-color:var(--basil);background:var(--basil);color:var(--paper)}
+.chips button.usata .g{color:var(--kraft)}
+.lato{display:inline-block;font-family:var(--display);font-weight:800;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:4px 12px;margin-bottom:6px}
+.lato.pro{background:var(--basil);color:var(--paper)} .lato.contro{background:var(--tomato);color:var(--paper)}
+.obiez{font-family:var(--pen);font-size:1.55rem;color:#F4A79F;min-height:30px;margin-top:8px;line-height:1.2}
+.barrata{text-decoration:line-through;text-decoration-color:var(--tomato);opacity:.8}
+.etich{font-family:var(--display);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--kraft)}
+.rivedi{margin:8px 0 0;padding-left:20px;color:var(--muted);font-size:.95rem}
+select{font-family:var(--display);font-size:.9rem;border:1px solid var(--line);border-radius:999px;padding:5px 10px;background:var(--paper);color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="nastro"></div>
+<div class="topbar">
+  <a href="../">← La mia aula</a>
+  <span class="marchio">Prove generali</span>
+</div>
+
+<div class="wrap">
+  <h1>Prove generali</h1>
+  <p class="lede">Dal B2 al C1, quattro scene. Non si studia, si recita: la stessa cosa detta a due persone diverse,
+    la parola esatta al posto di quella generica, una tesi da difendere anche se non è la tua,
+    e le frasi rifatte in forma compatta, come parla e scrive chi l'italiano lo padroneggia.</p>
+  <p class="pen">Al C1 non basta dire le cose: bisogna dirle nel modo giusto, alla persona giusta.</p>
+
+  <div id="fasi"></div>
+
+  <!-- 1 -->
+  <section class="sez" data-fase="1" data-nome="Due registri">
+    <p class="lede">Una situazione, due persone. Lei la dice prima <b>all'amica</b> (tu, colloquiale), poi
+      <b>alla persona formale</b> (Lei, cortesia). Se vuoi la versione scritta, scegli <b>mail</b>: per la persona formale
+      deve dettarti una mail vera, con apertura e chiusura.</p>
+    <div class="riga"><label class="lede" style="margin:0">Modo: <select id="rModo"><option value="voce">a voce</option><option value="mail">per iscritto: messaggio e mail</option></select></label></div>
+    <div class="scuro">
+      <span class="etich">la situazione</span>
+      <div class="spia" id="rSit"></div>
+    </div>
+    <div class="due">
+      <div class="voce tu"><div class="reg" id="rRegTu">all'amica, col tu</div><div class="a" id="rTu"></div><div class="mod" id="rModTu"></div></div>
+      <div class="voce lei"><div class="reg" id="rRegLei">con il Lei</div><div class="a" id="rLei"></div><div class="mod" id="rModLei"></div></div>
+    </div>
+    <div class="riga">
+      <button class="btn ghost" id="rSvTu" type="button">Un esempio col tu</button>
+      <button class="btn ghost" id="rSvLei" type="button">Un esempio col Lei</button>
+      <button class="btn" id="rAvanti" type="button">Un'altra<span class="kbd">spazio</span></button>
+    </div>
+    <div class="formula" id="rFormula"></div>
+  </section>
+
+  <!-- 2 -->
+  <section class="sez" data-fase="2" data-nome="La parola giusta">
+    <p class="lede">Una frase che si capisce ma non è da C1: un verbo generico, un calco, la preposizione sbagliata.
+      Lei la ridice <b>meglio, a voce</b>, poi la usa in una frase sua. Le carte sbagliate tornano dopo tre.</p>
+    <div class="filtri" id="pFiltri"></div>
+    <div class="scuro">
+      <div class="riga" style="justify-content:space-between"><span class="etich" id="pTipo"></span><span class="etich" id="pResto"></span></div>
+      <div class="chi" id="pFrase"></div>
+      <div class="svela" id="pSvela"></div>
+    </div>
+    <div class="riga">
+      <button class="btn" id="pGira" type="button">Svela<span class="kbd">spazio</span></button>
+      <button class="btn verde" id="pOk" type="button">Giusta</button>
+      <button class="btn rosso" id="pNo" type="button">Da rifare</button>
+    </div>
+    <div class="conti"><div class="g"><b id="pG">0</b><span>giuste</span></div><div class="s"><b id="pS">0</b><span>da rifare</span></div><div><b id="pSerie">0</b><span>di fila</span></div></div>
+    <ul class="rivedi" id="pRivedi"></ul>
+  </section>
+
+  <!-- 3 -->
+  <section class="sez" data-fase="3" data-nome="Ho ragione io">
+    <p class="lede">Esce una tesi e <b>il lato da difendere</b>, che non è per forza il suo: un'attrice sa difendere qualsiasi parte.
+      Un minuto e mezzo, con dentro i quattro connettivi sotto (li tocchi quando li usa).
+      A metà premi <b>Obiezione!</b> e la leggi tu: lei concede e contrattacca.</p>
+    <div class="riga"><label class="lede" style="margin:0">Secondi: <select id="aSec"><option>60</option><option selected>90</option><option>120</option><option value="0">senza tempo</option></select></label></div>
+    <div class="scuro">
+      <div class="riga" style="justify-content:space-between"><span class="lato" id="aLato"></span><span class="crono" id="aCrono"></span></div>
+      <div class="spia" id="aTesi"></div>
+      <div class="obiez" id="aObiez"></div>
+    </div>
+    <div class="chips" id="aChips"></div>
+    <div class="riga">
+      <button class="btn verde" id="aVia" type="button">Via!</button>
+      <button class="btn rosso" id="aObj" type="button">Obiezione!<span class="kbd">o</span></button>
+      <button class="btn ghost" id="aCambia" type="button">Cambia lato</button>
+      <button class="btn" id="aAvanti" type="button">Un'altra tesi<span class="kbd">spazio</span></button>
+    </div>
+    <div class="conti"><div class="g"><b id="aUsati">0/4</b><span>connettivi usati</span></div><div><b id="aTot">0</b><span>tesi fatte</span></div></div>
+    <div class="formula">Per concedere e contrattaccare: <b>Ammetto che..., però</b> · <b>Sarà anche vero che..., ma</b> · <b>Pur riconoscendo che..., resto convinta che</b> · <b>D'accordo, ma il punto è un altro:</b> · <b>Benché + congiuntivo</b></div>
+  </section>
+
+  <!-- 4 -->
+  <section class="sez" data-fase="4" data-nome="Detto in breve">
+    <p class="lede">Due cose da C1 che nel parlato fanno la differenza. <b>Forme implicite</b>: la stessa frase più compatta,
+      con gerundio, participio o infinito passato. <b>Discorso indiretto</b>: riferire quello che ha detto qualcuno, con i tempi
+      e le parole che si spostano (domani diventa il giorno dopo). Lei trasforma a voce, poi svela.</p>
+    <div class="filtri" id="dFiltri"></div>
+    <div class="scuro">
+      <div class="riga" style="justify-content:space-between"><span class="etich" id="dTipo"></span><span class="etich" id="dResto"></span></div>
+      <div class="chi" id="dFrase"></div>
+      <div class="perche" id="dCompito"></div>
+      <div class="svela" id="dSvela"></div>
+    </div>
+    <div class="riga">
+      <button class="btn" id="dGira" type="button">Svela<span class="kbd">spazio</span></button>
+      <button class="btn verde" id="dOk" type="button">Giusta</button>
+      <button class="btn rosso" id="dNo" type="button">Da rifare</button>
+    </div>
+    <div class="conti"><div class="g"><b id="dG">0</b><span>giuste</span></div><div class="s"><b id="dS">0</b><span>da rifare</span></div></div>
+    <ul class="rivedi" id="dRivedi"></ul>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
+  function pesca(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function mescola(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+  function mazzo(arr){ var m=[]; return function(){ if(!m.length) m=mescola(arr); return m.shift(); }; }
+  // *parola* diventa grassetto
+  function evid(s){ return esc(s).replace(/\*([^*]+)\*/g,"<b>$1</b>"); }
+
+  /* ---------- fasi ---------- */
+  var sez = Array.prototype.slice.call(document.querySelectorAll(".sez"));
+  var faseOn = 1;
+  sez.forEach(function(s){
+    var b=document.createElement("button"); b.type="button";
+    b.innerHTML='<span class="n">'+s.dataset.fase+'</span>'+esc(s.dataset.nome);
+    b.addEventListener("click", function(){ vai(+s.dataset.fase); });
+    $("fasi").appendChild(b);
+  });
+  function vai(n){
+    faseOn=n;
+    sez.forEach(function(s,i){ var on=+s.dataset.fase===n; s.classList.toggle("on",on); $("fasi").children[i].classList.toggle("on",on); });
+  }
+
+  /* ---------- 1. Due registri ---------- */
+  var REG = [
+    {s:"Arriverai in ritardo di un quarto d'ora.", tu:"l'amica che ti aspetta al bar", lei:"il regista, alla prova generale",
+     et:"Scusa, sono in un ritardo pazzesco! Arrivo tra un quarto d'ora, intanto ordina pure.",
+     el:"Mi scusi, ho avuto un imprevisto: arriverò con una quindicina di minuti di ritardo. Me ne scuso."},
+    {s:"Ti serve un passaggio domani mattina.", tu:"un'amica che abita vicino", lei:"il vicino che conosci appena",
+     et:"Senti, domani mi daresti un passaggio? Ti offro la colazione, giuro.",
+     el:"Le dispiacerebbe darmi un passaggio domani mattina? Mi farebbe davvero un grande favore."},
+    {s:"Non sei d'accordo con una decisione.", tu:"tua sorella", lei:"la direttrice del corso di teatro",
+     et:"Ma dai, secondo me è una pessima idea. Ci ripensi un attimo?",
+     el:"Capisco le sue ragioni, però mi permetta di dire che non sono del tutto d'accordo."},
+    {s:"Di notte c'è troppo rumore.", tu:"la coinquilina", lei:"l'amministratore del condominio",
+     et:"Ieri sera la musica era altissima, non ho chiuso occhio! Abbassa un po', dai.",
+     el:"Le segnalo che da alcune settimane, di notte, ci sono rumori molto forti. Le sarei grata se potesse intervenire."},
+    {s:"Devi rifiutare un invito a cena.", tu:"un'amica", lei:"un collega del tuo capo",
+     et:"Che peccato, sabato proprio non posso! Facciamo un'altra volta?",
+     el:"La ringrazio molto dell'invito: purtroppo sabato ho già un impegno. Spero che ci sarà un'altra occasione."},
+    {s:"Vuoi informazioni su un corso di jujitsu.", tu:"un amico che ci va già", lei:"la segreteria della palestra",
+     et:"Ma com'è il corso? Quanto costa? Posso venire a provare una volta?",
+     el:"Buongiorno, vorrei qualche informazione sul corso di jujitsu: è prevista una lezione di prova?"},
+    {s:"Hai rotto un vaso che non è tuo.", tu:"l'amica che ti ospita", lei:"la proprietaria dell'appartamento in affitto",
+     et:"Oddio, scusami, ti ho rotto il vaso! Te lo ricompro, promesso.",
+     el:"Purtroppo devo comunicarle che si è rotto il vaso del salotto. Naturalmente sono disposta a ripagare il danno."},
+    {s:"Ti hanno mandato la taglia sbagliata.", tu:"l'amica che ti ha consigliato il negozio", lei:"il servizio clienti",
+     et:"Ma sai che mi hanno mandato la taglia sbagliata? Che nervi!",
+     el:"Vi scrivo perché ho ricevuto un articolo diverso da quello ordinato. Vi chiedo cortesemente di sostituirlo."},
+    {s:"Vuoi fare i complimenti per uno spettacolo.", tu:"il tuo compagno del corso di recitazione", lei:"un attore famoso, all'uscita del teatro",
+     et:"Sei stato fortissimo stasera, mi hai fatto morire dal ridere!",
+     el:"Volevo farle i miei complimenti: il suo spettacolo mi ha colpita moltissimo."},
+    {s:"Non puoi più partire per Berlino.", tu:"l'amica che ti aspetta a Berlino", lei:"l'agenzia di viaggi",
+     et:"Senti, ho una brutta notizia: a Berlino non ce la faccio più a venire. Mi dispiace un sacco.",
+     el:"Le scrivo per annullare la prenotazione a mio nome per il viaggio a Berlino. Mi farebbe sapere se è previsto un rimborso?"},
+    {s:"Non hai capito e devi chiedere di ripetere.", tu:"un'amica al telefono", lei:"il medico",
+     et:"Eh? Non ho capito niente, c'è un'eco. Ripeti?",
+     el:"Mi scusi, non ho capito bene: potrebbe ripetere più lentamente?"},
+    {s:"Vuoi ringraziare per un aiuto.", tu:"tuo nipote", lei:"la professoressa che ti ha scritto una lettera di referenze",
+     et:"Grazie mille, sei un tesoro! Ti devo un gelato.",
+     el:"La ringrazio di cuore per la sua disponibilità: è stata gentilissima."},
+    {s:"Vuoi un giorno libero venerdì.", tu:"la collega con cui scambi i turni", lei:"la tua responsabile",
+     et:"Mi copri venerdì? Poi ti ricambio, giuro.",
+     el:"Volevo chiederle se fosse possibile prendere un giorno di ferie venerdì."},
+    {s:"Vuoi uno sconto.", tu:"l'amica che vende la sua bici usata", lei:"il negoziante",
+     et:"Dai, me la lasci a cento? Siamo amiche!",
+     el:"Sarebbe possibile avere uno sconto, visto che ne prendo due?"},
+    {s:"Devi dire a qualcuno che ha sbagliato.", tu:"tuo fratello", lei:"l'impiegato allo sportello",
+     et:"Guarda che ti sei sbagliato, non era giovedì, era venerdì!",
+     el:"Mi scusi, credo che ci sia un errore: l'appuntamento era venerdì, non giovedì."},
+    {s:"Ti offri di aiutare.", tu:"un'amica che trasloca", lei:"la vicina anziana con la spesa pesante",
+     et:"Ti serve una mano sabato? Porto io gli scatoloni!",
+     el:"Posso aiutarla? Le porto io le borse fino al portone."}
+  ];
+  var FORM_VOCE = 'Col Lei: <b>Le / La / Suo</b> · condizionale di cortesia: <b>vorrei, potrebbe, sarebbe possibile</b> · <b>mi permetta di</b> · <b>Le sarei grata se</b> + congiuntivo imperfetto. Col tu: <b>dai, senti, guarda che, un sacco, ce la faccio</b>.';
+  var FORM_MAIL = 'Mail formale: apertura <b>Gentile signora Rossi, / Gentile direttrice, / Spettabile ditta,</b> · <b>Le scrivo per...</b> · <b>In attesa di un suo cortese riscontro, / Resto a disposizione per qualsiasi chiarimento.</b> · <b>Cordiali saluti</b>. Messaggio all\'amica: niente formule, si va dritti al punto.';
+  var regM = mazzo(REG), regOra = null;
+  function regNuova(){
+    regOra = regM();
+    $("rSit").textContent = regOra.s;
+    var mail = $("rModo").value==="mail";
+    $("rRegTu").textContent = mail ? "messaggio, col tu" : "a voce, col tu";
+    $("rRegLei").textContent = mail ? "mail formale, col Lei" : "a voce, col Lei";
+    $("rTu").textContent = regOra.tu; $("rLei").textContent = regOra.lei;
+    $("rModTu").textContent = ""; $("rModLei").textContent = "";
+    $("rFormula").innerHTML = mail ? FORM_MAIL : FORM_VOCE;
+  }
+  $("rSvTu").addEventListener("click", function(){ $("rModTu").textContent = "«"+regOra.et+"»"; });
+  $("rSvLei").addEventListener("click", function(){ $("rModLei").textContent = "«"+regOra.el+"»"; });
+  $("rAvanti").addEventListener("click", regNuova);
+  $("rModo").addEventListener("change", regNuova);
+
+  /* ---------- carte a ripetizione (fasi 2 e 4) ---------- */
+  function giocoCarte(o){
+    var tipi = o.tipi, filtro = "tutte", coda = [], ora = null, svelata = false, g=0, s=0, serie=0, sbagliate = [];
+    tipi.unshift(["tutte","Tutte"]);
+    tipi.forEach(function(t){
+      var b=document.createElement("button"); b.type="button"; b.textContent=t[1]; b.dataset.k=t[0];
+      if(t[0]==="tutte") b.classList.add("on");
+      b.addEventListener("click", function(){ filtro=t[0]; Array.prototype.forEach.call($(o.p+"Filtri").children,function(x){ x.classList.toggle("on",x.dataset.k===filtro); }); coda=[]; nuova(); });
+      $(o.p+"Filtri").appendChild(b);
+    });
+    function riempi(){ coda = mescola(o.carte.filter(function(c){ return filtro==="tutte" || c.t===filtro; })); }
+    function nomeTipo(k){ for(var i=0;i<tipi.length;i++) if(tipi[i][0]===k) return tipi[i][1]; return k; }
+    function nuova(){
+      if(!coda.length) riempi();
+      ora = coda.shift(); svelata=false;
+      $(o.p+"Tipo").textContent = nomeTipo(ora.t);
+      $(o.p+"Resto").textContent = coda.length+" nel mazzo";
+      $(o.p+"Frase").innerHTML = evid(ora.f);
+      if(o.compito) $(o.p+"Compito").textContent = ora.c || "";
+      $(o.p+"Svela").innerHTML = "";
+      $(o.p+"Gira").firstChild.textContent = "Svela";
+    }
+    function svela(){
+      if(svelata){ nuova(); return; }
+      svelata=true;
+      $(o.p+"Svela").innerHTML = '<div class="grande">'+evid(ora.r)+'</div>'+(ora.n?'<p class="perche">'+evid(ora.n)+'</p>':'');
+      $(o.p+"Gira").firstChild.textContent = "Avanti";
+    }
+    function conta(){
+      $(o.p+"G").textContent=g; $(o.p+"S").textContent=s; if($(o.p+"Serie")) $(o.p+"Serie").textContent=serie;
+      $(o.p+"Rivedi").innerHTML = sbagliate.map(function(c){ return "<li>"+evid(c.r)+"</li>"; }).join("");
+    }
+    $(o.p+"Gira").addEventListener("click", svela);
+    $(o.p+"Ok").addEventListener("click", function(){ g++; serie++; conta(); nuova(); });
+    $(o.p+"No").addEventListener("click", function(){
+      s++; serie=0;
+      if(sbagliate.indexOf(ora)<0) sbagliate.push(ora);
+      coda.splice(Math.min(3,coda.length),0,ora);
+      conta(); nuova();
+    });
+    nuova();
+    return { svela: svela };
+  }
+
+  /* ---------- 2. La parola giusta ---------- */
+  var PAROLE = [
+    // più preciso
+    {t:"preciso", f:"Ho *fatto* un errore grave.", r:"Ho *commesso* un errore grave.", n:"Commettere un errore, un reato, un'ingiustizia."},
+    {t:"preciso", f:"Ieri sera il sindaco *ha fatto* un discorso.", r:"Ieri sera il sindaco *ha tenuto* un discorso.", n:"Tenere un discorso, una conferenza, una lezione."},
+    {t:"preciso", f:"Non *ha messo* attenzione a quello che dicevo.", r:"Non *ha prestato* attenzione a quello che dicevo.", n:"Prestare attenzione; anche fare attenzione va bene."},
+    {t:"preciso", f:"Il film era molto *bello*.", r:"Il film era *avvincente* / *commovente* / *coinvolgente*.", n:"Quale e perché? Bello non dice niente."},
+    {t:"preciso", f:"Dalla terrazza c'era un panorama *bello*.", r:"Dalla terrazza c'era un panorama *mozzafiato* / *suggestivo*.", n:"Mozzafiato non cambia mai: due panorami mozzafiato."},
+    {t:"preciso", f:"Hai avuto un'idea *bella*!", r:"Hai avuto un'idea *geniale* / *brillante*!", n:""},
+    {t:"preciso", f:"In riunione *ha detto* la sua opinione.", r:"In riunione *ha espresso* la sua opinione.", n:"Esprimere un parere, un desiderio, un dubbio."},
+    {t:"preciso", f:"Alla fine *ha detto* il segreto a tutti.", r:"Alla fine *ha rivelato* / *ha svelato* il segreto a tutti.", n:""},
+    {t:"preciso", f:"Il direttore *ha messo* una regola nuova.", r:"Il direttore *ha stabilito* / *ha imposto* una regola nuova.", n:"Imporre è più forte: nessuno è d'accordo."},
+    {t:"preciso", f:"È una *cosa* delicata, ne parliamo dopo.", r:"È una *questione* delicata, ne parliamo dopo.", n:"Questione, faccenda, argomento: mai sempre cosa."},
+    {t:"preciso", f:"Lo spettacolo *ha fatto* un grande successo.", r:"Lo spettacolo *ha avuto* un grande successo.", n:"Avere / riscuotere successo."},
+    {t:"preciso", f:"Quando le ho detto di no, *ha aumentato* la voce.", r:"Quando le ho detto di no, *ha alzato* la voce.", n:""},
+    {t:"preciso", f:"Il problema *è diventato* più grande.", r:"Il problema *si è aggravato*.", n:"Un verbo solo al posto di tre parole: aggravarsi, peggiorare, ingrandirsi."},
+    {t:"preciso", f:"Il prezzo dei biglietti *è diventato* più alto.", r:"Il prezzo dei biglietti *è aumentato* / *è salito*.", n:""},
+    {t:"preciso", f:"*Ha fatto* la parte di Amleto con grande talento.", r:"*Ha interpretato* Amleto con grande talento.", n:"Interpretare un ruolo, un personaggio."},
+    {t:"preciso", f:"Mi hanno *dato* un premio per il monologo.", r:"Mi hanno *assegnato* un premio per il monologo.", n:"Assegnare, conferire un premio. Vincere, se lo dici tu."},
+    // calchi e falsi amici
+    {t:"calchi", f:"*È diventato malato* la settimana scorsa.", r:"*Si è ammalato* la settimana scorsa.", n:"Erano parole sue (23/10)."},
+    {t:"calchi", f:"Ho *preso un rischio* enorme.", r:"Ho *corso un rischio* enorme.", n:"Correre un rischio; to take a risk."},
+    {t:"calchi", f:"Solo dopo ho *realizzato* che era tardi.", r:"Solo dopo *mi sono resa conto* che era tardi.", n:"Realizzare = fare, costruire un progetto."},
+    {t:"calchi", f:"*Attualmente* non è vero, ti sbagli.", r:"*In realtà* non è vero, ti sbagli.", n:"Attualmente = adesso, oggi."},
+    {t:"calchi", f:"Lo spettacolo *ha preso posto* al teatro Argentina.", r:"Lo spettacolo *si è svolto* / *ha avuto luogo* al teatro Argentina.", n:"To take place."},
+    {t:"calchi", f:"Nel film *gioca il ruolo* della madre.", r:"Nel film *interpreta il ruolo* / *fa la parte* della madre.", n:"Giocare solo a un gioco."},
+    {t:"calchi", f:"Corri, se no *manchi* il treno!", r:"Corri, se no *perdi* il treno!", n:"Perdere il treno, l'aereo, l'occasione."},
+    {t:"calchi", f:"Prima di uscire *prendo una doccia*.", r:"Prima di uscire *faccio la doccia*.", n:"Fare la doccia, il bagno, colazione, una pausa."},
+    {t:"calchi", f:"È un argomento molto *sensibile* per lei.", r:"È un argomento molto *delicato* per lei.", n:"Sensibile si dice delle persone."},
+    {t:"calchi", f:"È una persona molto *piacevole*, mi ha aiutata subito.", r:"È una persona molto *gentile* / *disponibile*, mi ha aiutata subito.", n:"Erano parole sue (23/10). Piacevole: una serata, un posto."},
+    {t:"calchi", f:"Posso pagare *cash*?", r:"Posso pagare *in contanti*?", n:"Erano parole sue (23/10)."},
+    {t:"calchi", f:"*Mi scusa*, non volevo. (all'amica)", r:"*Scusami*, non volevo.", n:"Mi scusi col Lei, scusami col tu. Erano parole sue."},
+    {t:"calchi", f:"A Berlino *abbiamo avuto un tempo* meraviglioso.", r:"A Berlino *ci siamo divertite un sacco* / *siamo state benissimo*.", n:"To have a great time."},
+    {t:"calchi", f:"Ho *passato* l'esame di jujitsu!", r:"Ho *superato* l'esame di jujitsu!", n:"Passato si sente, superato è più preciso."},
+    {t:"calchi", f:"Non *ho l'abitudine* della vita di città.", r:"Non *sono abituata* alla vita di città.", n:"Essere abituata a qualcosa."},
+    // preposizioni
+    {t:"prep", f:"Il mio corso è *differente di* quello di prima.", r:"Il mio corso è *diverso da* quello di prima.", n:"Erano parole sue (23/10)."},
+    {t:"prep", f:"Domani devo *prenderlo al* veterinario.", r:"Domani devo *portarlo dal* veterinario.", n:"Take to = portare. Da + persona. Erano parole sue."},
+    {t:"prep", f:"Sarebbe bello *di* cambiare casa.", r:"Sarebbe bello cambiare casa.", n:"È bello, è importante, è facile + infinito, senza di. Torna spesso!"},
+    {t:"prep", f:"Se c'è *il bisogno*, chiamami.", r:"Se *ce n'è* bisogno, chiamami.", n:"Erano parole sue (23/10)."},
+    {t:"prep", f:"Dipende *di* te.", r:"Dipende *da* te.", n:""},
+    {t:"prep", f:"Sono molto interessata *in* teatro.", r:"Sono molto interessata *al* teatro.", n:"Interessata a; appassionata di."},
+    {t:"prep", f:"Mia sorella è sposata *a* un italiano.", r:"Mia sorella è sposata *con* un italiano.", n:""},
+    {t:"prep", f:"Penso *a* partire a marzo.", r:"Penso *di* partire a marzo.", n:"Pensare di fare; pensare a qualcuno."},
+    {t:"prep", f:"Ho cominciato *di* studiare il russo.", r:"Ho cominciato *a* studiare il russo.", n:"Cominciare a, finire di, smettere di."},
+    {t:"prep", f:"Sono pronta *di* partire.", r:"Sono pronta *a* partire.", n:""},
+    {t:"prep", f:"È un libro facile *di* leggere.", r:"È un libro facile *da* leggere.", n:"Facile da, difficile da, bello da + infinito, quando la cosa subisce."},
+    {t:"prep", f:"Ho molta esperienza *in* insegnare.", r:"Ho molta esperienza *nell'*insegnamento.", n:""}
+  ];
+  var gp = giocoCarte({p:"p", carte:PAROLE, tipi:[["preciso","Più preciso"],["calchi","Calchi e falsi amici"],["prep","Preposizioni"]]});
+
+  /* ---------- 3. Ho ragione io ---------- */
+  var TESI = [
+    "Il teatro dal vivo emoziona più del cinema.",
+    "A scuola bisognerebbe insegnare un'arte marziale a tutti i bambini.",
+    "Le vacanze attive sono meglio di una settimana al mare a non fare niente.",
+    "Il telefono a tavola andrebbe vietato.",
+    "Imparare una lingua da adulti è più facile che da bambini.",
+    "Una grande città è il posto migliore per crescere dei figli.",
+    "I nonni hanno il diritto di viziare i nipoti.",
+    "Gli attori dovrebbero tenere per sé le loro opinioni politiche.",
+    "Il lavoro da remoto rende le persone più sole.",
+    "Viaggiare da soli è meglio che in compagnia.",
+    "I musei dovrebbero essere gratis per tutti.",
+    "I classici letti a scuola fanno odiare la lettura.",
+    "Il turismo di massa sta rovinando le città d'arte.",
+    "Dovremmo lavorare quattro giorni a settimana.",
+    "Le recensioni online valgono più dei consigli degli amici.",
+    "È meglio essere sinceri anche quando la verità fa male.",
+    "Lo sport agonistico fa più male che bene.",
+    "Con l'intelligenza artificiale, imparare le lingue non servirà più.",
+    "Ai bambini bisognerebbe dare la paghetta solo in cambio di lavori in casa.",
+    "Un attore può interpretare bene solo i personaggi che gli somigliano."
+  ];
+  var CONN = [
+    ["aprire",["innanzitutto","tanto per cominciare","prima di tutto"]],
+    ["aggiungere",["inoltre","per di più","tra l'altro","non solo... ma anche"]],
+    ["opporre",["tuttavia","eppure","d'altra parte","ciononostante"]],
+    ["concedere",["benché + cong.","sebbene + cong.","pur + gerundio","nonostante + cong."]],
+    ["concludere",["insomma","in definitiva","per questo","tutto sommato"]]
+  ];
+  var OBIEZ = [
+    "Sì, ma non tutti possono permetterselo.",
+    "Questo vale per te, non per la maggior parte delle persone.",
+    "Hai qualche dato o è solo un'impressione?",
+    "E i rischi? Non ne parli mai.",
+    "Forse una volta, ma oggi le cose sono cambiate.",
+    "Mi sembra una generalizzazione bella e buona.",
+    "E chi ci rimette? Ci hai pensato?",
+    "In teoria hai ragione, ma in pratica non funziona.",
+    "Scusa, ma questo contraddice quello che hai detto prima."
+  ];
+  var tesiM = mazzo(TESI), obM = mazzo(OBIEZ), lato = true, aTimer = null, aFatte = 0;
+  function aUsatiConta(){ var n=$("aChips").querySelectorAll(".usata").length; $("aUsati").textContent = n+"/"+$("aChips").children.length; }
+  function aStop(){ if(aTimer){ clearInterval(aTimer); aTimer=null; } }
+  function aLato(){ var el=$("aLato"); el.textContent = lato ? "difendi: a favore" : "difendi: contro"; el.className = "lato "+(lato?"pro":"contro"); }
+  function aNuova(){
+    aStop();
+    $("aTesi").textContent = tesiM();
+    $("aObiez").textContent = "";
+    lato = Math.random()<.5; aLato();
+    var sec=+$("aSec").value; $("aCrono").textContent = sec ? fmt(sec) : ""; $("aCrono").classList.remove("poco");
+    // quattro gruppi su cinque, uno a caso escluso (aprire o concludere restano spesso)
+    var gruppi = mescola(CONN).slice(0,4);
+    gruppi.sort(function(a,b){ return CONN.indexOf(a)-CONN.indexOf(b); });
+    $("aChips").innerHTML = "";
+    gruppi.forEach(function(gr){
+      var b=document.createElement("button"); b.type="button";
+      b.innerHTML = '<span class="g">'+esc(gr[0])+'</span>'+esc(pesca(gr[1]));
+      b.addEventListener("click", function(){ b.classList.toggle("usata"); aUsatiConta(); });
+      $("aChips").appendChild(b);
+    });
+    aUsatiConta();
+  }
+  function fmt(n){ var m=Math.floor(n/60), s=n%60; return m+":"+(s<10?"0":"")+s; }
+  $("aVia").addEventListener("click", function(){
+    aStop(); var sec=+$("aSec").value; if(!sec) return;
+    var fine = Date.now()+sec*1000;
+    aTimer = setInterval(function(){
+      var r = Math.max(0, Math.round((fine-Date.now())/1000));
+      $("aCrono").textContent = fmt(r); $("aCrono").classList.toggle("poco", r<=15);
+      if(r<=0){ aStop(); $("aCrono").textContent = "Tempo!"; aFatte++; $("aTot").textContent=aFatte; }
+    }, 250);
+  });
+  $("aObj").addEventListener("click", function(){ $("aObiez").textContent = "«"+obM()+"»"; });
+  $("aCambia").addEventListener("click", function(){ lato=!lato; aLato(); $("aObiez").textContent=""; });
+  $("aAvanti").addEventListener("click", aNuova);
+  $("aSec").addEventListener("change", function(){ aStop(); var sec=+$("aSec").value; $("aCrono").textContent = sec?fmt(sec):""; });
+
+  /* ---------- 4. Detto in breve ---------- */
+  var DETTO = [
+    // forme implicite
+    {t:"impl", f:"Dopo che ho finito le prove, sono andata a cena.", c:"Due modi: infinito passato e participio.", r:"*Dopo aver finito* le prove, sono andata a cena. / *Finite* le prove, sono andata a cena.", n:"Il participio si accorda con l'oggetto: finite le prove."},
+    {t:"impl", f:"Siccome ero stanca, sono rimasta a casa.", c:"Col gerundio.", r:"*Essendo* stanca, sono rimasta a casa.", n:""},
+    {t:"impl", f:"Mentre tornavo a casa, ho incontrato Marco.", c:"Col gerundio.", r:"*Tornando* a casa, ho incontrato Marco.", n:"Il soggetto deve essere lo stesso."},
+    {t:"impl", f:"Poiché aveva perso il treno, è arrivata tardi.", c:"Col gerundio passato.", r:"*Avendo perso* il treno, è arrivata tardi.", n:""},
+    {t:"impl", f:"Quando è arrivata a Berlino, ha chiamato l'amica.", c:"Col participio.", r:"*Arrivata* a Berlino, ha chiamato l'amica.", n:""},
+    {t:"impl", f:"Se studi un po' ogni giorno, migliori in fretta.", c:"Col gerundio.", r:"*Studiando* un po' ogni giorno, migliori in fretta.", n:"Il gerundio può fare anche il se."},
+    {t:"impl", f:"Anche se è stanca, va ad allenarsi.", c:"Con pur + gerundio.", r:"*Pur essendo* stanca, va ad allenarsi.", n:""},
+    {t:"impl", f:"Mi scuso perché sono arrivata in ritardo.", c:"Con l'infinito passato.", r:"Mi scuso *di essere arrivata* in ritardo.", n:""},
+    {t:"impl", f:"Penso che io abbia sbagliato.", c:"Stesso soggetto: niente congiuntivo.", r:"Penso *di aver sbagliato*.", n:"Stesso soggetto: di + infinito. Soggetti diversi: che + congiuntivo."},
+    {t:"impl", f:"Spero che io possa venire.", c:"Stesso soggetto.", r:"Spero *di poter* venire.", n:""},
+    {t:"impl", f:"Una volta che ha letto il copione, l'ha imparato a memoria.", c:"Col participio.", r:"*Letto* il copione, l'ha imparato a memoria.", n:""},
+    {t:"impl", f:"È uscita e non ha salutato nessuno.", c:"Con senza + infinito.", r:"È uscita *senza salutare* nessuno.", n:""},
+    {t:"impl", f:"Prima che io parta, ti chiamo.", c:"Stesso soggetto.", r:"*Prima di partire*, ti chiamo.", n:"Prima che + congiuntivo solo con soggetti diversi."},
+    {t:"impl", f:"Dopo che abbiamo visto lo spettacolo, ne abbiamo parlato per ore.", c:"Due modi.", r:"*Dopo aver visto* lo spettacolo... / *Visto* lo spettacolo, ne abbiamo parlato per ore.", n:""},
+    {t:"impl", f:"Credo che io abbia già visto questo film.", c:"Stesso soggetto.", r:"Credo *di aver già visto* questo film.", n:""},
+    // discorso indiretto
+    {t:"ind", f:"Ieri Luca: «Domani verrò, se avrò tempo.»", c:"Riferisci: Luca ha detto che...", r:"Luca ha detto che *sarebbe venuto il giorno dopo*, se *avesse avuto* tempo.", n:"Futuro → condizionale passato. Domani → il giorno dopo."},
+    {t:"ind", f:"Marta: «Sono stanca morta.»", c:"Riferisci: Marta ha detto che...", r:"Marta ha detto che *era* stanca morta.", n:"Presente → imperfetto."},
+    {t:"ind", f:"Il regista: «Abbiamo già provato questa scena tre volte.»", c:"Riferisci: Il regista ha detto che...", r:"Il regista ha detto che *avevano già provato quella* scena tre volte.", n:"Passato prossimo → trapassato. Questa → quella."},
+    {t:"ind", f:"L'amica di Berlino: «Vieni quando vuoi, ti aspetto!»", c:"Riferisci: La mia amica mi ha detto di...", r:"La mia amica mi ha detto *di andare* quando *volevo*, che mi *aspettava*.", n:"Imperativo → di + infinito. Vieni → andare: il punto di vista cambia."},
+    {t:"ind", f:"Il medico: «Prenda queste gocce per una settimana.»", c:"Riferisci: Il medico mi ha detto di...", r:"Il medico mi ha detto *di prendere quelle* gocce per una settimana.", n:""},
+    {t:"ind", f:"Mia sorella: «Ho comprato questa casa due anni fa.»", c:"Riferisci: Mia sorella ha detto che...", r:"Mia sorella ha detto che *aveva comprato quella* casa due anni *prima*.", n:"Fa → prima."},
+    {t:"ind", f:"Il maestro di jujitsu: «Se ti alleni di più, vincerai la gara.»", c:"Riferisci: Il maestro mi ha detto che...", r:"Il maestro mi ha detto che *se mi fossi allenata* di più, *avrei vinto* la gara.", n:"Il periodo ipotetico diventa del terzo tipo."},
+    {t:"ind", f:"Mio nipote: «Zia, mi porti al cinema?»", c:"Riferisci: Mio nipote mi ha chiesto se...", r:"Mio nipote mi ha chiesto *se lo portavo* al cinema.", n:"Domanda sì/no → se + imperfetto."},
+    {t:"ind", f:"La vicina: «Che cosa fai stasera?»", c:"Riferisci: La vicina mi ha chiesto...", r:"La vicina mi ha chiesto che cosa *facevo quella sera*.", n:"Stasera → quella sera."},
+    {t:"ind", f:"Il collega: «Credo che lei abbia ragione.»", c:"Riferisci: Il collega ha detto che...", r:"Il collega ha detto che *credeva* che lei *avesse* ragione.", n:"Credo → credeva. Abbia → avesse: congiuntivo imperfetto, perché le due cose sono contemporanee."},
+    {t:"ind", f:"La direttrice: «Domani qui non ci sarà nessuno.»", c:"Riferisci: La direttrice ha detto che...", r:"La direttrice ha detto che *il giorno dopo lì* non *ci sarebbe stato* nessuno.", n:"Qui → lì. Futuro → condizionale passato."},
+    {t:"ind", f:"Il mio compagno di corso: «Ieri ho visto uno spettacolo bellissimo.»", c:"Riferisci: Mi ha raccontato che...", r:"Mi ha raccontato che *il giorno prima aveva visto* uno spettacolo bellissimo.", n:"Ieri → il giorno prima."}
+  ];
+  var gd = giocoCarte({p:"d", carte:DETTO, compito:true, tipi:[["impl","Forme implicite"],["ind","Discorso indiretto"]]});
+
+  /* ---------- tastiera ---------- */
+  document.addEventListener("keydown", function(e){
+    var t = e.target.tagName; if(t==="INPUT"||t==="TEXTAREA"||t==="SELECT") return;
+    if(e.key===" "){
+      e.preventDefault();
+      if(faseOn===1) regNuova(); else if(faseOn===2) gp.svela(); else if(faseOn===3) aNuova(); else gd.svela();
+    } else if((e.key==="o"||e.key==="O") && faseOn===3){ $("aObj").click(); }
+  });
+
+  regNuova(); aNuova(); vai(1);
+})();
+</script>
+</body>
+</html>
