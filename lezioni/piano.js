@@ -9,13 +9,13 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "9 novembre 2026, 22:07";
+var PIANO_AGGIORNATO = "10 novembre 2026, 04:29";
 
 var PIANO = {
 
   "ari-p49": {
     "nome": "Ari",
-    "aggiornato": "4 novembre 2026",
+    "aggiornato": "9 novembre 2026",
     "ultima": {
       "quando": "2026-11-04T22:00:00+01:00",
       "fatto": [
@@ -23,8 +23,8 @@ var PIANO = {
       ]
     },
     "prossima": {
-      "quando": "2026-11-09T22:00:00+01:00",
-      "obiettivo": "Un piccolo ripasso dei pronomi, poi un argomento nuovo: l'imperativo con i pronomi. Chiamala! Dimmelo! Non farlo!",
+      "quando": "2026-11-11T22:00:00+01:00",
+      "obiettivo": "Ne, ci e i pronomi in gioco, poi un argomento nuovo: l'imperativo con i pronomi. Chiamala! Dimmelo! Non farlo!",
       "attivita": [
         {
           "titolo": "Senza ripetere",
@@ -32,9 +32,14 @@ var PIANO = {
           "nota": "Dieci minuti di ripasso al volo"
         },
         {
+          "titolo": "Paroline in gioco",
+          "href": "",
+          "nota": "Passa la palla, e se c'è tempo Il segreto"
+        },
+        {
           "titolo": "Dimmelo!",
           "href": "",
-          "nota": "A chi parla? Posso? Le istruzioni e i consigli"
+          "nota": "A chi parla? e Posso?"
         }
       ]
     },
