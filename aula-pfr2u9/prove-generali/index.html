@@ -102,6 +102,52 @@ input[type=text]{flex:1 1 240px;font-family:var(--serif);font-size:1.05rem;borde
 .etich{font-family:var(--display);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--kraft)}
 .rivedi{margin:8px 0 0;padding-left:20px;color:var(--muted);font-size:.95rem}
 select{font-family:var(--display);font-size:.9rem;border:1px solid var(--line);border-radius:999px;padding:5px 10px;background:var(--paper);color:var(--ink)}
+/* la parola giusta, v2 */
+.passi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.passi div{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-family:var(--display);font-size:.86rem;font-weight:600;line-height:1.3}
+.passi b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--lemon);color:var(--ink);margin-right:6px;font-size:.8rem}
+@media (max-width:560px){.passi{grid-template-columns:1fr}}
+.frase-pg{font-family:var(--display);font-weight:700;font-size:1.45rem;line-height:1.4;margin:6px 0 2px}
+.frase-pg .sbaglio{color:#F4A79F;text-decoration:underline wavy #F4A79F;text-underline-offset:5px}
+.frase-pg .giusto{color:var(--lemon)}
+.opzioni{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+@media (max-width:560px){.opzioni{grid-template-columns:1fr}}
+.opzioni button{font-family:var(--display);font-weight:700;font-size:1.05rem;border:2px solid var(--line);background:var(--paper);color:var(--ink);border-radius:14px;padding:14px 12px;cursor:pointer;min-height:56px}
+.opzioni button:hover{border-color:var(--ink)}
+.opzioni button.si{background:var(--basil);border-color:var(--basil);color:var(--paper)}
+.opzioni button.no{background:var(--tomato);border-color:var(--tomato);color:var(--paper);opacity:.85}
+.opzioni button:disabled{cursor:default}
+.ora-tu{font-family:var(--pen);font-size:1.4rem;color:var(--lemon);margin-top:8px}
+/* ho ragione io, v2: il palco */
+.palco{position:relative;border-radius:20px;overflow:hidden;margin:12px 0;background:radial-gradient(ellipse 60% 70% at 50% 0%,rgba(232,163,61,.28),transparent 70%),var(--ink);color:var(--paper);padding:34px 20px 20px}
+.palco::before{content:"";position:absolute;left:0;right:0;top:0;height:16px;background:repeating-linear-gradient(90deg,#8E1F1A 0 18px,#C4312B 18px 30px,#A82822 30px 40px);box-shadow:0 3px 8px rgba(0,0,0,.35)}
+.turni{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 14px}
+.turni span{font-family:var(--display);font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(255,255,255,.25);color:var(--kraft);border-radius:999px;padding:5px 11px}
+.turni span.on{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+.turni span.fatto{color:var(--paper);border-color:var(--basil);background:rgba(46,94,78,.5)}
+.palco-top{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+@media (max-width:560px){.palco-top{grid-template-columns:1fr}.anello{justify-self:center}}
+.palco .tesi{font-family:var(--display);font-weight:800;font-size:1.55rem;line-height:1.25;color:var(--paper);margin:6px 0 0}
+.anello{position:relative;width:118px;height:118px}
+.anello svg{transform:rotate(-90deg)}
+.anello .num{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.7rem;font-variant-numeric:tabular-nums}
+.anello .num small{display:block;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--kraft);font-weight:700;text-align:center}
+.consegna-turno{font-family:var(--pen);font-size:1.45rem;color:var(--lemon);margin:14px 0 0;line-height:1.25}
+.spunti{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media (max-width:560px){.spunti{grid-template-columns:1fr}}
+.spunti div{background:rgba(255,255,255,.07);border:1px dashed rgba(255,255,255,.25);border-radius:12px;padding:10px 12px;font-size:.98rem}
+.palco .chips button{background:transparent;color:var(--paper);border-color:rgba(255,255,255,.35)}
+.palco .chips button .g{color:var(--kraft)}
+.palco .chips button.usata{background:var(--basil);border-color:var(--basil)}
+.voti{display:grid;gap:8px;margin-top:12px}
+.voti .v{display:flex;justify-content:space-between;align-items:center;gap:10px;background:rgba(255,255,255,.07);border-radius:12px;padding:8px 12px;font-family:var(--display);font-weight:700}
+.stelle{white-space:nowrap;flex-shrink:0}
+.stelle button{background:none;border:none;font-size:1.6rem;cursor:pointer;color:rgba(255,255,255,.25);padding:0 2px;line-height:1}
+.stelle button.on{color:var(--lemon)}
+.applauso{font-family:var(--pen);font-size:1.6rem;color:var(--lemon);text-align:center;margin-top:10px;min-height:30px}
+.storico{list-style:none;padding:0;margin:8px 0 0}
+.storico li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:6px 0;font-size:.95rem}
+.storico li b{font-family:var(--display);color:#9A6411;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -114,7 +160,7 @@ select{font-family:var(--display);font-size:.9rem;border:1px solid var(--line);b
 <div class="wrap">
   <h1>Prove generali</h1>
   <p class="lede">Dal B2 al C1, quattro scene. Non si studia, si recita: la stessa cosa detta a due persone diverse,
-    la parola esatta al posto di quella generica, una tesi da difendere anche se non è la tua,
+    la parola esatta al posto di quella generica, una tesi da difendere in tribunale anche se non è la tua,
     e le frasi rifatte in forma compatta, come parla e scrive chi l'italiano lo padroneggia.</p>
   <p class="pen">Al C1 non basta dire le cose: bisogna dirle nel modo giusto, alla persona giusta.</p>
 
@@ -144,43 +190,53 @@ select{font-family:var(--display);font-size:.9rem;border:1px solid var(--line);b
 
   <!-- 2 -->
   <section class="sez" data-fase="2" data-nome="La parola giusta">
-    <p class="lede">Una frase che si capisce ma non è da C1: un verbo generico, un calco, la preposizione sbagliata.
-      Lei la ridice <b>meglio, a voce</b>, poi la usa in una frase sua. Le carte sbagliate tornano dopo tre.</p>
+    <p class="lede">Ogni frase si capisce, ma una parte <b>non è da C1</b>: un verbo troppo generico, un calco dall'inglese o dal francese, una preposizione sbagliata.</p>
+    <div class="passi">
+      <div><b>1</b>Leggi la frase ad alta voce. La parte sottolineata non va.</div>
+      <div><b>2</b>Scegli la versione giusta fra le tre. Prima prova a dirla senza guardare!</div>
+      <div><b>3</b>Dì la frase giusta intera, poi una frase tua con la stessa parola.</div>
+    </div>
     <div class="filtri" id="pFiltri"></div>
     <div class="scuro">
       <div class="riga" style="justify-content:space-between"><span class="etich" id="pTipo"></span><span class="etich" id="pResto"></span></div>
-      <div class="chi" id="pFrase"></div>
-      <div class="svela" id="pSvela"></div>
+      <div class="frase-pg" id="pFrase"></div>
+      <div id="pSvela"></div>
     </div>
+    <div class="opzioni" id="pOpz"></div>
     <div class="riga">
-      <button class="btn" id="pGira" type="button">Svela<span class="kbd">spazio</span></button>
-      <button class="btn verde" id="pOk" type="button">Giusta</button>
-      <button class="btn rosso" id="pNo" type="button">Da rifare</button>
+      <button class="btn" id="pAvanti" type="button">Un'altra<span class="kbd">spazio</span></button>
     </div>
-    <div class="conti"><div class="g"><b id="pG">0</b><span>giuste</span></div><div class="s"><b id="pS">0</b><span>da rifare</span></div><div><b id="pSerie">0</b><span>di fila</span></div></div>
+    <div class="conti"><div class="g"><b id="pG">0</b><span>al primo colpo</span></div><div class="s"><b id="pS">0</b><span>sbagliate</span></div><div><b id="pSerie">0</b><span>di fila</span></div></div>
     <ul class="rivedi" id="pRivedi"></ul>
   </section>
 
   <!-- 3 -->
   <section class="sez" data-fase="3" data-nome="Ho ragione io">
-    <p class="lede">Esce una tesi e <b>il lato da difendere</b>, che non è per forza il suo: un'attrice sa difendere qualsiasi parte.
-      Un minuto e mezzo, con dentro i quattro connettivi sotto (li tocchi quando li usa).
-      A metà premi <b>Obiezione!</b> e la leggi tu: lei concede e contrattacca.</p>
-    <div class="riga"><label class="lede" style="margin:0">Secondi: <select id="aSec"><option>60</option><option selected>90</option><option>120</option><option value="0">senza tempo</option></select></label></div>
-    <div class="scuro">
-      <div class="riga" style="justify-content:space-between"><span class="lato" id="aLato"></span><span class="crono" id="aCrono"></span></div>
-      <div class="spia" id="aTesi"></div>
-      <div class="obiez" id="aObiez"></div>
+    <p class="lede">Un piccolo processo in quattro turni. Esce una tesi e <b>il lato da difendere</b>, che non è per forza il suo:
+      un'attrice sa difendere qualsiasi parte. Tu sei il pubblico ministero e alla fine il giudice.</p>
+    <div class="palco">
+      <div class="turni" id="aTurni"></div>
+      <div class="palco-top">
+        <div>
+          <span class="lato" id="aLato"></span>
+          <div class="tesi" id="aTesi"></div>
+        </div>
+        <div class="anello">
+          <svg width="118" height="118" viewBox="0 0 118 118" aria-hidden="true"><circle cx="59" cy="59" r="52" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="9"/><circle id="aArco" cx="59" cy="59" r="52" fill="none" stroke="#E8A33D" stroke-width="9" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="0"/></svg>
+          <div class="num"><div><span id="aCrono">0:30</span><small id="aCronoLab">pronta?</small></div></div>
+        </div>
+      </div>
+      <div class="consegna-turno" id="aConsegna"></div>
+      <div id="aCorpo"></div>
     </div>
-    <div class="chips" id="aChips"></div>
     <div class="riga">
-      <button class="btn verde" id="aVia" type="button">Via!</button>
-      <button class="btn rosso" id="aObj" type="button">Obiezione!<span class="kbd">o</span></button>
+      <button class="btn verde" id="aVia" type="button">Via il tempo</button>
+      <button class="btn" id="aAvanti" type="button">Turno dopo<span class="kbd">spazio</span></button>
       <button class="btn ghost" id="aCambia" type="button">Cambia lato</button>
-      <button class="btn" id="aAvanti" type="button">Un'altra tesi<span class="kbd">spazio</span></button>
+      <button class="btn ghost" id="aNuova" type="button">Nuova tesi</button>
     </div>
-    <div class="conti"><div class="g"><b id="aUsati">0/4</b><span>connettivi usati</span></div><div><b id="aTot">0</b><span>tesi fatte</span></div></div>
-    <div class="formula">Per concedere e contrattaccare: <b>Ammetto che..., però</b> · <b>Sarà anche vero che..., ma</b> · <b>Pur riconoscendo che..., resto convinta che</b> · <b>D'accordo, ma il punto è un altro:</b> · <b>Benché + congiuntivo</b></div>
+    <h3 style="margin-top:18px">Le arringhe di oggi</h3>
+    <ul class="storico" id="aStorico"><li style="color:var(--muted)">Ancora nessuna.</li></ul>
   </section>
 
   <!-- 4 -->
@@ -344,78 +400,115 @@ select{font-family:var(--display);font-size:.9rem;border:1px solid var(--line);b
   }
 
   /* ---------- 2. La parola giusta ---------- */
+  // f: frase con *la parte che non va*; k: la versione giusta; d: due trappole; n: nota
   var PAROLE = [
-    // più preciso
-    {t:"preciso", f:"Ho *fatto* un errore grave.", r:"Ho *commesso* un errore grave.", n:"Commettere un errore, un reato, un'ingiustizia."},
-    {t:"preciso", f:"Ieri sera il sindaco *ha fatto* un discorso.", r:"Ieri sera il sindaco *ha tenuto* un discorso.", n:"Tenere un discorso, una conferenza, una lezione."},
-    {t:"preciso", f:"Non *ha messo* attenzione a quello che dicevo.", r:"Non *ha prestato* attenzione a quello che dicevo.", n:"Prestare attenzione; anche fare attenzione va bene."},
-    {t:"preciso", f:"Il film era molto *bello*.", r:"Il film era *avvincente* / *commovente* / *coinvolgente*.", n:"Quale e perché? Bello non dice niente."},
-    {t:"preciso", f:"Dalla terrazza c'era un panorama *bello*.", r:"Dalla terrazza c'era un panorama *mozzafiato* / *suggestivo*.", n:"Mozzafiato non cambia mai: due panorami mozzafiato."},
-    {t:"preciso", f:"Hai avuto un'idea *bella*!", r:"Hai avuto un'idea *geniale* / *brillante*!", n:""},
-    {t:"preciso", f:"In riunione *ha detto* la sua opinione.", r:"In riunione *ha espresso* la sua opinione.", n:"Esprimere un parere, un desiderio, un dubbio."},
-    {t:"preciso", f:"Alla fine *ha detto* il segreto a tutti.", r:"Alla fine *ha rivelato* / *ha svelato* il segreto a tutti.", n:""},
-    {t:"preciso", f:"Il direttore *ha messo* una regola nuova.", r:"Il direttore *ha stabilito* / *ha imposto* una regola nuova.", n:"Imporre è più forte: nessuno è d'accordo."},
-    {t:"preciso", f:"È una *cosa* delicata, ne parliamo dopo.", r:"È una *questione* delicata, ne parliamo dopo.", n:"Questione, faccenda, argomento: mai sempre cosa."},
-    {t:"preciso", f:"Lo spettacolo *ha fatto* un grande successo.", r:"Lo spettacolo *ha avuto* un grande successo.", n:"Avere / riscuotere successo."},
-    {t:"preciso", f:"Quando le ho detto di no, *ha aumentato* la voce.", r:"Quando le ho detto di no, *ha alzato* la voce.", n:""},
-    {t:"preciso", f:"Il problema *è diventato* più grande.", r:"Il problema *si è aggravato*.", n:"Un verbo solo al posto di tre parole: aggravarsi, peggiorare, ingrandirsi."},
-    {t:"preciso", f:"Il prezzo dei biglietti *è diventato* più alto.", r:"Il prezzo dei biglietti *è aumentato* / *è salito*.", n:""},
-    {t:"preciso", f:"*Ha fatto* la parte di Amleto con grande talento.", r:"*Ha interpretato* Amleto con grande talento.", n:"Interpretare un ruolo, un personaggio."},
-    {t:"preciso", f:"Mi hanno *dato* un premio per il monologo.", r:"Mi hanno *assegnato* un premio per il monologo.", n:"Assegnare, conferire un premio. Vincere, se lo dici tu."},
-    // calchi e falsi amici
-    {t:"calchi", f:"*È diventato malato* la settimana scorsa.", r:"*Si è ammalato* la settimana scorsa.", n:"Erano parole sue (23/10)."},
-    {t:"calchi", f:"Ho *preso un rischio* enorme.", r:"Ho *corso un rischio* enorme.", n:"Correre un rischio; to take a risk."},
-    {t:"calchi", f:"Solo dopo ho *realizzato* che era tardi.", r:"Solo dopo *mi sono resa conto* che era tardi.", n:"Realizzare = fare, costruire un progetto."},
-    {t:"calchi", f:"*Attualmente* non è vero, ti sbagli.", r:"*In realtà* non è vero, ti sbagli.", n:"Attualmente = adesso, oggi."},
-    {t:"calchi", f:"Lo spettacolo *ha preso posto* al teatro Argentina.", r:"Lo spettacolo *si è svolto* / *ha avuto luogo* al teatro Argentina.", n:"To take place."},
-    {t:"calchi", f:"Nel film *gioca il ruolo* della madre.", r:"Nel film *interpreta il ruolo* / *fa la parte* della madre.", n:"Giocare solo a un gioco."},
-    {t:"calchi", f:"Corri, se no *manchi* il treno!", r:"Corri, se no *perdi* il treno!", n:"Perdere il treno, l'aereo, l'occasione."},
-    {t:"calchi", f:"Prima di uscire *prendo una doccia*.", r:"Prima di uscire *faccio la doccia*.", n:"Fare la doccia, il bagno, colazione, una pausa."},
-    {t:"calchi", f:"È un argomento molto *sensibile* per lei.", r:"È un argomento molto *delicato* per lei.", n:"Sensibile si dice delle persone."},
-    {t:"calchi", f:"È una persona molto *piacevole*, mi ha aiutata subito.", r:"È una persona molto *gentile* / *disponibile*, mi ha aiutata subito.", n:"Erano parole sue (23/10). Piacevole: una serata, un posto."},
-    {t:"calchi", f:"Posso pagare *cash*?", r:"Posso pagare *in contanti*?", n:"Erano parole sue (23/10)."},
-    {t:"calchi", f:"*Mi scusa*, non volevo. (all'amica)", r:"*Scusami*, non volevo.", n:"Mi scusi col Lei, scusami col tu. Erano parole sue."},
-    {t:"calchi", f:"A Berlino *abbiamo avuto un tempo* meraviglioso.", r:"A Berlino *ci siamo divertite un sacco* / *siamo state benissimo*.", n:"To have a great time."},
-    {t:"calchi", f:"Ho *passato* l'esame di jujitsu!", r:"Ho *superato* l'esame di jujitsu!", n:"Passato si sente, superato è più preciso."},
-    {t:"calchi", f:"Non *ho l'abitudine* della vita di città.", r:"Non *sono abituata* alla vita di città.", n:"Essere abituata a qualcosa."},
-    // preposizioni
-    {t:"prep", f:"Il mio corso è *differente di* quello di prima.", r:"Il mio corso è *diverso da* quello di prima.", n:"Erano parole sue (23/10)."},
-    {t:"prep", f:"Domani devo *prenderlo al* veterinario.", r:"Domani devo *portarlo dal* veterinario.", n:"Take to = portare. Da + persona. Erano parole sue."},
-    {t:"prep", f:"Sarebbe bello *di* cambiare casa.", r:"Sarebbe bello cambiare casa.", n:"È bello, è importante, è facile + infinito, senza di. Torna spesso!"},
-    {t:"prep", f:"Se c'è *il bisogno*, chiamami.", r:"Se *ce n'è* bisogno, chiamami.", n:"Erano parole sue (23/10)."},
-    {t:"prep", f:"Dipende *di* te.", r:"Dipende *da* te.", n:""},
-    {t:"prep", f:"Sono molto interessata *in* teatro.", r:"Sono molto interessata *al* teatro.", n:"Interessata a; appassionata di."},
-    {t:"prep", f:"Mia sorella è sposata *a* un italiano.", r:"Mia sorella è sposata *con* un italiano.", n:""},
-    {t:"prep", f:"Penso *a* partire a marzo.", r:"Penso *di* partire a marzo.", n:"Pensare di fare; pensare a qualcuno."},
-    {t:"prep", f:"Ho cominciato *di* studiare il russo.", r:"Ho cominciato *a* studiare il russo.", n:"Cominciare a, finire di, smettere di."},
-    {t:"prep", f:"Sono pronta *di* partire.", r:"Sono pronta *a* partire.", n:""},
-    {t:"prep", f:"È un libro facile *di* leggere.", r:"È un libro facile *da* leggere.", n:"Facile da, difficile da, bello da + infinito, quando la cosa subisce."},
-    {t:"prep", f:"Ho molta esperienza *in* insegnare.", r:"Ho molta esperienza *nell'*insegnamento.", n:""}
+    {t:"preciso", f:"Ho *fatto* un errore grave.", k:"commesso", d:["dato","preso"], n:"Commettere un errore, un reato, un'ingiustizia."},
+    {t:"preciso", f:"Ieri sera il sindaco *ha fatto* un discorso.", k:"ha tenuto", d:["ha preso","ha messo"], n:"Tenere un discorso, una conferenza, una lezione."},
+    {t:"preciso", f:"Non *ha messo* attenzione a quello che dicevo.", k:"ha prestato", d:["ha dato","ha portato"], n:"Prestare attenzione (va bene anche fare attenzione)."},
+    {t:"preciso", f:"Il film era molto *bello*.", k:"avvincente", d:["spazioso","gustoso"], n:"Anche commovente, coinvolgente, divertente: quale, e perché?"},
+    {t:"preciso", f:"Dalla terrazza c'era un panorama *bello*.", k:"mozzafiato", d:["gustoso","simpatico"], n:"Mozzafiato non cambia mai: due panorami mozzafiato. Anche suggestivo."},
+    {t:"preciso", f:"Hai avuto un'idea *bella*!", k:"geniale", d:["simpatica","saporita"], n:"Anche brillante, originale."},
+    {t:"preciso", f:"In riunione *ha detto* la sua opinione.", k:"ha espresso", d:["ha parlato","ha raccontato"], n:"Esprimere un parere, un desiderio, un dubbio."},
+    {t:"preciso", f:"Alla fine *ha detto* il segreto a tutti.", k:"ha svelato", d:["ha espresso","ha tenuto"], n:"Svelare o rivelare un segreto."},
+    {t:"preciso", f:"Il direttore *ha messo* una regola nuova.", k:"ha stabilito", d:["ha preso","ha portato"], n:"Stabilire una regola; imporla, se nessuno è d'accordo."},
+    {t:"preciso", f:"È una *cosa* delicata, ne parliamo dopo.", k:"questione", d:["roba","oggetto"], n:"Questione, faccenda, argomento: non sempre cosa."},
+    {t:"preciso", f:"Lo spettacolo *ha fatto* un grande successo.", k:"ha avuto", d:["ha preso","ha dato"], n:"Avere successo, riscuotere successo."},
+    {t:"preciso", f:"Quando le ho detto di no, *ha aumentato* la voce.", k:"ha alzato", d:["ha cresciuto","ha messo su"], n:""},
+    {t:"preciso", f:"Il problema *è diventato più grande*.", k:"si è aggravato", d:["si è allungato","si è alzato"], n:"Un verbo al posto di tre parole: aggravarsi, peggiorare."},
+    {t:"preciso", f:"Il prezzo dei biglietti *è diventato più alto*.", k:"è aumentato", d:["si è ingrandito","si è allungato"], n:"Anche è salito."},
+    {t:"preciso", f:"*Ha fatto la parte di* Amleto con grande talento.", k:"Ha interpretato", d:["Ha giocato","Ha recitato di"], n:"Interpretare un ruolo, un personaggio."},
+    {t:"preciso", f:"Mi hanno *dato* un premio per il monologo.", k:"assegnato", d:["regalato","prestato"], n:"Assegnare o conferire un premio."},
+    {t:"calchi", f:"*È diventato malato* la settimana scorsa.", k:"Si è ammalato", d:["È venuto malato","Ha preso malato"], n:"Erano parole sue (23/10)."},
+    {t:"calchi", f:"Ho *preso un rischio* enorme.", k:"corso un rischio", d:["fatto un rischio","tenuto un rischio"], n:"To take a risk = correre un rischio."},
+    {t:"calchi", f:"Solo dopo *ho realizzato* che era tardi.", k:"mi sono resa conto", d:["ho fatto conto","ho realizzato di"], n:"Realizzare = fare, costruire: realizzare un progetto."},
+    {t:"calchi", f:"*Attualmente* non è vero, ti sbagli.", k:"In realtà", d:["Al momento","Attuale"], n:"Attualmente = adesso, oggi."},
+    {t:"calchi", f:"Lo spettacolo *ha preso posto* al teatro Argentina.", k:"si è svolto", d:["ha trovato posto","si è messo"], n:"To take place = svolgersi, avere luogo."},
+    {t:"calchi", f:"Nel film *gioca il ruolo* della madre.", k:"interpreta il ruolo", d:["suona il ruolo","fa il gioco"], n:"Si gioca solo a un gioco."},
+    {t:"calchi", f:"Corri, se no *manchi* il treno!", k:"perdi", d:["lasci","salti"], n:"Perdere il treno, l'aereo, un'occasione."},
+    {t:"calchi", f:"Prima di uscire *prendo una doccia*.", k:"faccio la doccia", d:["tengo la doccia","do una doccia"], n:"Fare la doccia, il bagno, colazione, una pausa."},
+    {t:"calchi", f:"È un argomento molto *sensibile* per lei.", k:"delicato", d:["sensato","sentito"], n:"Sensibile si dice delle persone."},
+    {t:"calchi", f:"È una persona molto *piacevole*, mi ha aiutata subito.", k:"gentile", d:["piacente","gradevole"], n:"Erano parole sue (23/10). Piacevole: una serata, un posto."},
+    {t:"calchi", f:"Posso pagare *cash*?", k:"in contanti", d:["in cassa","in soldi"], n:"Erano parole sue (23/10)."},
+    {t:"calchi", f:"*Mi scusa*, non volevo. (all'amica)", k:"Scusami", d:["Mi scusi","Scusa me"], n:"Mi scusi col Lei, scusami col tu."},
+    {t:"calchi", f:"A Berlino *abbiamo avuto un tempo meraviglioso*.", k:"ci siamo divertite un sacco", d:["abbiamo passato un tempo meraviglioso","abbiamo fatto un tempo meraviglioso"], n:"To have a great time. Anche: siamo state benissimo."},
+    {t:"calchi", f:"Ho *passato* l'esame di jujitsu!", k:"superato", d:["sorpassato","trascorso"], n:"Passato si sente, superato è più preciso."},
+    {t:"calchi", f:"Non *ho l'abitudine della* vita di città.", k:"sono abituata alla", d:["sono abitata alla","ho abituato la"], n:"Essere abituata a qualcosa."},
+    {t:"prep", f:"Il mio corso è *differente di* quello di prima.", k:"diverso da", d:["diverso di","differente a"], n:"Erano parole sue (23/10)."},
+    {t:"prep", f:"Domani devo *prenderlo al* veterinario.", k:"portarlo dal", d:["prenderlo dal","portarlo al"], n:"Take to = portare. Da + persona: dal medico, dal veterinario."},
+    {t:"prep", f:"Sarebbe bello *di cambiare* casa.", k:"cambiare", d:["a cambiare","per cambiare"], n:"È bello, è importante, è facile + infinito, senza di. Torna spesso!"},
+    {t:"prep", f:"*Se c'è il bisogno*, chiamami.", k:"Se ce n'è bisogno", d:["Se ci ne è bisogno","Se c'è di bisogno"], n:"Erano parole sue (23/10)."},
+    {t:"prep", f:"Dipende *di* te.", k:"da", d:["a","per"], n:""},
+    {t:"prep", f:"Sono molto interessata *in* teatro.", k:"al", d:["nel","di"], n:"Interessata a, appassionata di."},
+    {t:"prep", f:"Mia sorella è sposata *a* un italiano.", k:"con", d:["da","per"], n:""},
+    {t:"prep", f:"Penso *a* partire a marzo.", k:"di", d:["da","per"], n:"Pensare di fare qualcosa, pensare a qualcuno."},
+    {t:"prep", f:"Ho cominciato *di* studiare il russo.", k:"a", d:["da","per"], n:"Cominciare a, finire di, smettere di."},
+    {t:"prep", f:"Sono pronta *di* partire.", k:"a", d:["da","per"], n:""},
+    {t:"prep", f:"È un libro facile *di* leggere.", k:"da", d:["a","per"], n:"Facile da, difficile da, bello da + infinito."},
+    {t:"prep", f:"Ho molta esperienza *in insegnare*.", k:"nell'insegnamento", d:["di insegnare","a insegnare"], n:""}
   ];
-  var gp = giocoCarte({p:"p", carte:PAROLE, tipi:[["preciso","Più preciso"],["calchi","Calchi e falsi amici"],["prep","Preposizioni"]]});
+  var P_TIPI = [["tutte","Tutte"],["preciso","Più preciso"],["calchi","Calchi e falsi amici"],["prep","Preposizioni"]];
+  var pFiltro="tutte", pCoda=[], pOra=null, pTentato=false, pFatta=false, pG=0, pS=0, pSerie=0, pSbagliate=[];
+  function fraseCon(f, cls, k, tag){ tag=tag||"span"; var m=f.match(/\*([^*]+)\*/); var parti=f.split(m[0]); var dentro=(k===undefined)?m[1]:k; return esc(parti[0])+"<"+tag+(cls?' class="'+cls+'"':"")+">"+esc(dentro)+"</"+tag+">"+esc(parti.slice(1).join(m[0])); }
+  P_TIPI.forEach(function(t){
+    var b=document.createElement("button"); b.type="button"; b.textContent=t[1]; b.dataset.k=t[0];
+    if(t[0]==="tutte") b.classList.add("on");
+    b.addEventListener("click", function(){ pFiltro=t[0]; Array.prototype.forEach.call($("pFiltri").children,function(x){ x.classList.toggle("on",x.dataset.k===pFiltro); }); pCoda=[]; pNuova(); });
+    $("pFiltri").appendChild(b);
+  });
+  function pNuova(){
+    if(!pCoda.length) pCoda = mescola(PAROLE.filter(function(c){ return pFiltro==="tutte"||c.t===pFiltro; }));
+    pOra = pCoda.shift(); pTentato=false; pFatta=false;
+    $("pTipo").textContent = P_TIPI.filter(function(t){ return t[0]===pOra.t; })[0][1];
+    $("pResto").textContent = pCoda.length+" nel mazzo";
+    $("pFrase").innerHTML = fraseCon(pOra.f, "sbaglio");
+    $("pSvela").innerHTML = "";
+    var box=$("pOpz"); box.innerHTML="";
+    mescola([pOra.k].concat(pOra.d)).forEach(function(o){
+      var b=document.createElement("button"); b.type="button"; b.textContent=o;
+      b.addEventListener("click", function(){ pScegli(b, o); });
+      box.appendChild(b);
+    });
+  }
+  function pScegli(b, o){
+    if(pFatta) return;
+    if(o===pOra.k){
+      b.classList.add("si"); pFatta=true;
+      Array.prototype.forEach.call($("pOpz").children,function(x){ x.disabled=true; });
+      if(!pTentato){ pG++; pSerie++; }
+      $("pFrase").innerHTML = fraseCon(pOra.f, "giusto", pOra.k);
+      $("pSvela").innerHTML = (pOra.n?'<p class="perche">'+esc(pOra.n)+'</p>':'')+'<div class="ora-tu">Ora dilla intera, poi una frase tua con «'+esc(pOra.k)+'».</div>';
+    } else {
+      b.classList.add("no"); b.disabled=true;
+      if(!pTentato){ pS++; pSerie=0; pTentato=true; if(pSbagliate.indexOf(pOra)<0) pSbagliate.push(pOra); pCoda.splice(Math.min(3,pCoda.length),0,pOra); }
+    }
+    $("pG").textContent=pG; $("pS").textContent=pS; $("pSerie").textContent=pSerie;
+    $("pRivedi").innerHTML = pSbagliate.map(function(c){ return "<li>"+fraseCon(c.f,"",c.k,"b")+"</li>"; }).join("");
+  }
+  $("pAvanti").addEventListener("click", pNuova);
+  pNuova();
 
   /* ---------- 3. Ho ragione io ---------- */
   var TESI = [
-    "Il teatro dal vivo emoziona più del cinema.",
-    "A scuola bisognerebbe insegnare un'arte marziale a tutti i bambini.",
-    "Le vacanze attive sono meglio di una settimana al mare a non fare niente.",
-    "Il telefono a tavola andrebbe vietato.",
-    "Imparare una lingua da adulti è più facile che da bambini.",
-    "Una grande città è il posto migliore per crescere dei figli.",
-    "I nonni hanno il diritto di viziare i nipoti.",
-    "Gli attori dovrebbero tenere per sé le loro opinioni politiche.",
-    "Il lavoro da remoto rende le persone più sole.",
-    "Viaggiare da soli è meglio che in compagnia.",
-    "I musei dovrebbero essere gratis per tutti.",
-    "I classici letti a scuola fanno odiare la lettura.",
-    "Il turismo di massa sta rovinando le città d'arte.",
-    "Dovremmo lavorare quattro giorni a settimana.",
-    "Le recensioni online valgono più dei consigli degli amici.",
-    "È meglio essere sinceri anche quando la verità fa male.",
-    "Lo sport agonistico fa più male che bene.",
-    "Con l'intelligenza artificiale, imparare le lingue non servirà più.",
-    "Ai bambini bisognerebbe dare la paghetta solo in cambio di lavori in casa.",
-    "Un attore può interpretare bene solo i personaggi che gli somigliano."
+    {t:"Il teatro dal vivo emoziona più del cinema.", pro:["L'energia del pubblico in sala, il rischio.","Ogni sera è diversa: niente montaggio, niente seconda volta."], contro:["Il cinema arriva ovunque e costa meno.","Primi piani e musica ti portano dentro la storia."]},
+    {t:"A scuola bisognerebbe insegnare un'arte marziale a tutti i bambini.", pro:["Disciplina, rispetto, controllo di sé.","Sapersi difendere dà sicurezza."], contro:["Non a tutti piace il contatto fisico.","Meglio lasciare scegliere lo sport ai bambini."]},
+    {t:"Le vacanze attive sono meglio di una settimana al mare a non fare niente.", pro:["Si torna con ricordi veri.","Il corpo si stanca, la testa si riposa."], contro:["Tutto l'anno corriamo già.","Il vero lusso è annoiarsi."]},
+    {t:"Il telefono a tavola andrebbe vietato.", pro:["Ci si guarda e si parla davvero.","I bambini imparano dall'esempio."], contro:["A volte serve: lavoro, emergenze.","Vietare non educa."]},
+    {t:"Imparare una lingua da adulti è più facile che da bambini.", pro:["Si capisce la grammatica e si sa perché si studia.","Si hanno strategie e motivazione."], contro:["I bambini non hanno paura di sbagliare.","La pronuncia viene naturale."]},
+    {t:"Una grande città è il posto migliore per crescere dei figli.", pro:["Scuole, musei, persone diverse.","Da ragazzi si è più liberi, coi mezzi."], contro:["Traffico, smog, poco verde.","In un paese i bambini escono da soli."]},
+    {t:"I nonni hanno il diritto di viziare i nipoti.", pro:["Le regole le fanno i genitori, i nonni danno affetto.","È un legame speciale, senza ansia."], contro:["Confonde i bambini.","Poi tocca ai genitori rimediare."]},
+    {t:"Gli attori dovrebbero tenere per sé le loro opinioni politiche.", pro:["Il pubblico è di tutti.","Rischiano di dividere e di distrarre dall'opera."], contro:["Sono cittadini come gli altri.","L'arte è sempre stata anche politica."]},
+    {t:"Il lavoro da remoto rende le persone più sole.", pro:["Niente pause caffè, niente colleghi.","Si lavora e basta, la giornata è tutta uguale."], contro:["Più tempo per famiglia e amici.","Si sceglie con chi stare."]},
+    {t:"Viaggiare da soli è meglio che in compagnia.", pro:["Decidi tu, sempre.","Conosci più gente del posto."], contro:["Le emozioni condivise valgono doppio.","È più sicuro e costa meno."]},
+    {t:"I musei dovrebbero essere gratis per tutti.", pro:["La cultura è un diritto.","Più giovani e più famiglie nei musei."], contro:["Qualcuno deve pagare la manutenzione.","Quello che è gratis si rispetta meno."]},
+    {t:"I classici letti a scuola fanno odiare la lettura.", pro:["Lingua lontana, imposti, con la verifica.","Non parlano ai ragazzi di oggi."], contro:["Senza la scuola molti non li leggerebbero mai.","Con un buon insegnante diventano vivi."]},
+    {t:"Il turismo di massa sta rovinando le città d'arte.", pro:["Affitti alle stelle, i residenti se ne vanno.","Centri storici come parchi a tema."], contro:["Porta lavoro e soldi.","Tutti hanno il diritto di vedere Venezia."]},
+    {t:"Dovremmo lavorare quattro giorni a settimana.", pro:["Più riposati, più produttivi.","Più tempo per vivere."], contro:["Non tutti i lavori lo permettono.","Il carico si concentra in meno giorni."]},
+    {t:"Le recensioni online valgono più dei consigli degli amici.", pro:["Migliaia di opinioni, non una sola.","Dettagli concreti e foto vere."], contro:["Molte sono false o pagate.","L'amico conosce i tuoi gusti."]},
+    {t:"È meglio essere sinceri anche quando la verità fa male.", pro:["La fiducia nasce dalla verità.","Le bugie prima o poi tornano indietro."], contro:["A volte la gentilezza conta di più.","Non tutto va detto, non sempre."]},
+    {t:"Lo sport agonistico fa più male che bene.", pro:["Pressione, infortuni, ansia da risultato.","Si smette di divertirsi."], contro:["Insegna a perdere e a rialzarsi.","Dà obiettivi e disciplina."]},
+    {t:"Con l'intelligenza artificiale, imparare le lingue non servirà più.", pro:["Traduzione istantanea ovunque.","Si risparmiano anni di studio."], contro:["Una lingua è cultura e relazione.","Non si fa amicizia con un traduttore."]},
+    {t:"Un attore può interpretare bene solo i personaggi che gli somigliano.", pro:["Porta in scena la sua verità.","Le emozioni non si inventano."], contro:["Recitare è proprio diventare un altro.","I grandi attori sorprendono."]},
+    {t:"Ai bambini bisognerebbe dare la paghetta solo in cambio di lavori in casa.", pro:["Imparano il valore dei soldi.","Collaborano in famiglia."], contro:["Aiutare in casa è un dovere, non un lavoro.","Imparano a fare tutto per soldi."]}
   ];
   var CONN = [
     ["aprire",["innanzitutto","tanto per cominciare","prima di tutto"]],
@@ -426,51 +519,104 @@ select{font-family:var(--display);font-size:.9rem;border:1px solid var(--line);b
   ];
   var OBIEZ = [
     "Sì, ma non tutti possono permetterselo.",
-    "Questo vale per te, non per la maggior parte delle persone.",
-    "Hai qualche dato o è solo un'impressione?",
-    "E i rischi? Non ne parli mai.",
+    "Questo vale per lei, non per la maggior parte delle persone.",
+    "Ha qualche dato, o è solo un'impressione?",
+    "E i rischi? Non ne ha parlato.",
     "Forse una volta, ma oggi le cose sono cambiate.",
     "Mi sembra una generalizzazione bella e buona.",
-    "E chi ci rimette? Ci hai pensato?",
-    "In teoria hai ragione, ma in pratica non funziona.",
-    "Scusa, ma questo contraddice quello che hai detto prima."
+    "E chi ci rimette? Ci ha pensato?",
+    "In teoria ha ragione, ma in pratica non funziona.",
+    "Scusi, ma questo contraddice quello che ha detto prima."
   ];
-  var tesiM = mazzo(TESI), obM = mazzo(OBIEZ), lato = true, aTimer = null, aFatte = 0;
-  function aUsatiConta(){ var n=$("aChips").querySelectorAll(".usata").length; $("aUsati").textContent = n+"/"+$("aChips").children.length; }
-  function aStop(){ if(aTimer){ clearInterval(aTimer); aTimer=null; } }
-  function aLato(){ var el=$("aLato"); el.textContent = lato ? "difendi: a favore" : "difendi: contro"; el.className = "lato "+(lato?"pro":"contro"); }
-  function aNuova(){
-    aStop();
-    $("aTesi").textContent = tesiM();
-    $("aObiez").textContent = "";
-    lato = Math.random()<.5; aLato();
-    var sec=+$("aSec").value; $("aCrono").textContent = sec ? fmt(sec) : ""; $("aCrono").classList.remove("poco");
-    // quattro gruppi su cinque, uno a caso escluso (aprire o concludere restano spesso)
-    var gruppi = mescola(CONN).slice(0,4);
-    gruppi.sort(function(a,b){ return CONN.indexOf(a)-CONN.indexOf(b); });
-    $("aChips").innerHTML = "";
-    gruppi.forEach(function(gr){
-      var b=document.createElement("button"); b.type="button";
-      b.innerHTML = '<span class="g">'+esc(gr[0])+'</span>'+esc(pesca(gr[1]));
-      b.addEventListener("click", function(){ b.classList.toggle("usata"); aUsatiConta(); });
-      $("aChips").appendChild(b);
-    });
-    aUsatiConta();
-  }
+  var APPLAUSI = ["Applausi a scena aperta!","Bis! Bis!","La corte è convinta.","Il pubblico si alza in piedi.","Assolta con formula piena.","Arringa da manuale."];
+  var TURNI = [
+    {n:"Prepara", sec:30, c:"Trenta secondi per pensare. Sceglie due argomenti (anche suoi, non solo questi) e come aprire."},
+    {n:"Arringa", sec:90, c:"Un minuto e mezzo per difendere la tesi. Dentro devono entrare i quattro connettivi: li tocchi quando li dice."},
+    {n:"Obiezione", sec:40, c:"Leggi l'obiezione con la voce del pubblico ministero. Lei concede e contrattacca, col Lei."},
+    {n:"Verdetto", sec:0, c:"Tu sei il giudice: da una a tre stelle per voce. Poi la tesi dopo."}
+  ];
+  var tesiM = mazzo(TESI), obM = mazzo(OBIEZ), aOra=null, aLatoPro=true, aTurno=0, aTimer=null, aObiezione="", aVoti={}, aConn=[];
+  var CIRC = 2*Math.PI*52;
   function fmt(n){ var m=Math.floor(n/60), s=n%60; return m+":"+(s<10?"0":"")+s; }
-  $("aVia").addEventListener("click", function(){
-    aStop(); var sec=+$("aSec").value; if(!sec) return;
-    var fine = Date.now()+sec*1000;
-    aTimer = setInterval(function(){
-      var r = Math.max(0, Math.round((fine-Date.now())/1000));
-      $("aCrono").textContent = fmt(r); $("aCrono").classList.toggle("poco", r<=15);
-      if(r<=0){ aStop(); $("aCrono").textContent = "Tempo!"; aFatte++; $("aTot").textContent=aFatte; }
-    }, 250);
-  });
-  $("aObj").addEventListener("click", function(){ $("aObiez").textContent = "«"+obM()+"»"; });
-  $("aCambia").addEventListener("click", function(){ lato=!lato; aLato(); $("aObiez").textContent=""; });
-  $("aAvanti").addEventListener("click", aNuova);
-  $("aSec").addEventListener("change", function(){ aStop(); var sec=+$("aSec").value; $("aCrono").textContent = sec?fmt(sec):""; });
+  function aStop(){ if(aTimer){ clearInterval(aTimer); aTimer=null; } }
+  function aArco(frac){ $("aArco").style.strokeDashoffset = String(CIRC*(1-frac)); $("aArco").style.stroke = frac<.2 ? "#C4312B" : "#E8A33D"; }
+  function aDisegnaLato(){ var el=$("aLato"); el.textContent = aLatoPro ? "difende: a favore" : "difende: contro"; el.className="lato "+(aLatoPro?"pro":"contro"); }
+  function aNuova(){
+    aStop(); aOra=tesiM(); aLatoPro=Math.random()<.5; aTurno=0; aObiezione=""; aVoti={};
+    var gruppi = mescola(CONN).slice(0,4); gruppi.sort(function(a,b){ return CONN.indexOf(a)-CONN.indexOf(b); });
+    aConn = gruppi.map(function(g){ return {g:g[0], p:pesca(g[1]), u:false}; });
+    $("aTesi").textContent = aOra.t; aDisegnaLato(); aTurnoMostra();
+  }
+  function aTurnoMostra(){
+    aStop();
+    var T=TURNI[aTurno];
+    $("aTurni").innerHTML = TURNI.map(function(x,i){ return '<span class="'+(i===aTurno?"on":(i<aTurno?"fatto":""))+'">'+(i+1)+" · "+x.n+'</span>'; }).join("");
+    $("aConsegna").textContent = T.c;
+    $("aCrono").textContent = T.sec ? fmt(T.sec) : "★"; $("aCronoLab").textContent = T.sec ? "pronta?" : "verdetto"; aArco(1);
+    $("aVia").style.display = T.sec ? "" : "none";
+    $("aAvanti").firstChild.textContent = aTurno<3 ? "Turno dopo" : "Nuova tesi";
+    $("aNuova").style.display = aTurno===3 ? "none" : "";
+    var c=$("aCorpo"), h="";
+    if(aTurno===0){
+      var sp = aLatoPro ? aOra.pro : aOra.contro;
+      h = '<div class="spunti">'+sp.map(function(s){ return "<div>"+esc(s)+"</div>"; }).join("")+'</div>';
+    } else if(aTurno===1){
+      h = '<div class="chips" id="aChips"></div>';
+    } else if(aTurno===2){
+      if(!aObiezione) aObiezione = obM();
+      h = '<div class="obiez">«'+esc(aObiezione)+'»</div><div class="formula" style="color:var(--kraft);border-color:rgba(255,255,255,.25)">Per rispondere: <b style="color:var(--paper)">Ammetto che..., però</b> · <b style="color:var(--paper)">Sarà anche vero che..., ma</b> · <b style="color:var(--paper)">Pur riconoscendo che..., resto convinta che</b> · <b style="color:var(--paper)">Benché + congiuntivo</b></div>';
+    } else {
+      var voci=[["struttura","Struttura chiara"],["connettivi","Connettivi e concessione"],["lessico","Parole precise e Lei"]];
+      h = '<div class="voti">'+voci.map(function(v){ return '<div class="v"><span>'+v[1]+'</span><span class="stelle" data-v="'+v[0]+'">'+[1,2,3].map(function(n){ return '<button type="button" data-n="'+n+'" aria-label="'+n+' stelle">★</button>'; }).join("")+'</span></div>'; }).join("")+'</div><div class="applauso" id="aApplauso"></div>';
+    }
+    c.innerHTML = h;
+    if(aTurno===1){
+      aConn.forEach(function(x){
+        var b=document.createElement("button"); b.type="button"; if(x.u) b.classList.add("usata");
+        b.innerHTML='<span class="g">'+esc(x.g)+'</span>'+esc(x.p);
+        b.addEventListener("click", function(){ x.u=!x.u; b.classList.toggle("usata",x.u); });
+        $("aChips").appendChild(b);
+      });
+    }
+    if(aTurno===3){
+      var usati = aConn.filter(function(x){ return x.u; }).length;
+      Array.prototype.forEach.call(c.querySelectorAll(".stelle"), function(s){
+        s.addEventListener("click", function(e){
+          var n=+e.target.dataset.n; if(!n) return; aVoti[s.dataset.v]=n;
+          Array.prototype.forEach.call(s.children,function(x){ x.classList.toggle("on", +x.dataset.n<=n); });
+          var tot=0, k=0; for(var q in aVoti){ tot+=aVoti[q]; k++; }
+          $("aCrono").textContent = tot+"/9";
+          if(k===3) $("aApplauso").textContent = tot>=7 ? pesca(APPLAUSI) : (tot>=5 ? "Buona arringa, la corte si ritira a riflettere." : "La corte non è convinta. Si rifà!");
+        });
+      });
+      $("aCronoLab").textContent = "voto";
+      c.insertAdjacentHTML("afterbegin", '<p class="perche" style="margin:10px 0 0;color:var(--kraft)">Connettivi usati nell\'arringa: <b style="color:var(--lemon)">'+usati+' su 4</b></p>');
+    }
+  }
+  function aVia(){
+    var T=TURNI[aTurno]; if(!T.sec) return; aStop();
+    var fine=Date.now()+T.sec*1000; $("aCronoLab").textContent="parla!";
+    aTimer=setInterval(function(){
+      var r=Math.max(0,(fine-Date.now())/1000);
+      $("aCrono").textContent=fmt(Math.ceil(r)); aArco(r/T.sec);
+      if(r<=0){ aStop(); $("aCrono").textContent="Stop"; $("aCronoLab").textContent="tempo!"; }
+    },200);
+  }
+  function aAvanti(){
+    if(aTurno<3){ aTurno++; aTurnoMostra(); return; }
+    // salva nello storico e passa alla tesi dopo
+    var tot=0; for(var q in aVoti) tot+=aVoti[q];
+    var li=document.createElement("li");
+    li.innerHTML = '<span>'+esc(aOra.t)+' <i style="color:var(--muted)">('+(aLatoPro?"a favore":"contro")+')</i></span><b>'+(Object.keys(aVoti).length?tot+"/9":"senza voto")+'</b>';
+    var st=$("aStorico"); if(st.firstChild && st.firstChild.style && st.firstChild.style.color) st.innerHTML="";
+    st.appendChild(li);
+    aNuova();
+  }
+  $("aVia").addEventListener("click", aVia);
+  $("aAvanti").addEventListener("click", aAvanti);
+  $("aCambia").addEventListener("click", function(){ aLatoPro=!aLatoPro; aDisegnaLato(); if(aTurno===0) aTurnoMostra(); });
+  $("aNuova").addEventListener("click", aNuova);
+  aNuova();
 
   /* ---------- 4. Detto in breve ---------- */
   var DETTO = [
@@ -511,11 +657,11 @@ select{font-family:var(--display);font-size:.9rem;border:1px solid var(--line);b
     var t = e.target.tagName; if(t==="INPUT"||t==="TEXTAREA"||t==="SELECT") return;
     if(e.key===" "){
       e.preventDefault();
-      if(faseOn===1) regNuova(); else if(faseOn===2) gp.svela(); else if(faseOn===3) aNuova(); else gd.svela();
-    } else if((e.key==="o"||e.key==="O") && faseOn===3){ $("aObj").click(); }
+      if(faseOn===1) regNuova(); else if(faseOn===2) pNuova(); else if(faseOn===3) aAvanti(); else gd.svela();
+    }
   });
 
-  regNuova(); aNuova(); vai(1);
+  regNuova(); vai(1);
 })();
 </script>
 </body>

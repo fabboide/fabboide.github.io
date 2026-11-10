@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "10 novembre 2026, 04:29";
+var PIANO_AGGIORNATO = "10 novembre 2026, 20:40";
 
 var PIANO = {
 
@@ -640,40 +640,41 @@ var PIANO = {
 
   "sophie-6zk": {
     "nome": "Sophie",
-    "aggiornato": "3 novembre 2026",
+    "aggiornato": "10 novembre 2026",
     "ultima": {
-      "quando": "2026-11-03T11:30:00+01:00",
+      "quando": "2026-11-10T12:00:00+01:00",
       "fatto": [
-        "Senza ripetere: ne, ci e i pronomi dentro il discorso",
-        "Rispondi al volo, il racconto e l'amica curiosa"
+        "Senza ripetere: rispondi al volo e l'amica curiosa",
+        "Prove generali: due registri e ho ragione io",
+        "Paroline in gioco: il segreto"
       ]
     },
     "prossima": {
-      "quando": "2026-11-10T10:30:00+01:00",
-      "obiettivo": "Ne, ci e i pronomi sempre più dentro il parlato, anche due insieme: glielo, ce l'ho, me ne ricordo.",
+      "quando": "2026-11-16T17:00:00+01:00",
+      "obiettivo": "Più sicura con tutto quello che ruota attorno al verbo: tempi, modi, ausiliare, verbi come farcela e cavarsela. Alla fine, un quarto d'ora di letteratura.",
       "attivita": [
         {
-          "titolo": "Senza ripetere",
+          "titolo": "Il motore del verbo",
           "href": "",
-          "nota": "Domande nuove, i pronomi doppi, racconti e temi nuovi"
+          "nota": "Il cambio, i verbi con la sorpresa e una storia con i tempi obbligati"
         },
         {
-          "titolo": "Paroline in gioco",
+          "titolo": "Letteratura: Pirandello, «Il treno ha fischiato»",
           "href": "",
-          "nota": "Il segreto, l'eredità della zia e passa la palla"
+          "nota": "Ne parliamo e lo mettiamo in scena"
         }
       ]
     },
     "compiti": [
       {
-        "titolo": "Ne, ci e i pronomi",
-        "href": "https://talkwithfabio.com/esercizi/pronomi/",
-        "nota": "Ci vado spesso, ne ho due, la chiamo, le scrivo"
+        "titolo": "Leggere «Il treno ha fischiato» di Pirandello",
+        "href": "",
+        "nota": "È breve: il testo te lo manda Fabio"
       },
       {
-        "titolo": "Due pronomi insieme",
-        "href": "https://talkwithfabio.com/esercizi/pronomi-combinati/",
-        "nota": "Glielo do, me l'ha detto, ce n'è ancora"
+        "titolo": "Il congiuntivo, passo dopo passo",
+        "href": "https://talkwithfabio.com/esercizi/congiuntivo/",
+        "nota": "Ripasso delle forme prima della lezione"
       }
     ]
   }
