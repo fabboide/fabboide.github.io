@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dieci minuti: speak Italian together every day · Talk with Fabio</title>
+<meta name="description" content="Ten minutes a day to speak Italian with a partner: a new topic every day, questions to ask each other, one minute to tell, one phrase to use. A1.">
+<link rel="canonical" href="https://talkwithfabio.com/esercizi/dieci-minuti/">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+
+
+
+/* Dieci minuti */
+.mini{font-size:.9rem;color:var(--muted);margin:10px 0 0}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.btn.giallo{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+.btn.grande{font-size:1.1rem;padding:12px 22px}
+.nomi{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.nomi input{border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:var(--paper);font-family:var(--display);font-weight:700;width:150px}
+.oggi{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between;margin:22px 0 10px}
+.oggi .giorno{font-family:var(--hand);font-size:1.4rem;color:var(--basil)}
+.tema{border:2px solid var(--ink);border-radius:20px;background:var(--paper);padding:18px 20px}
+.tema h2{margin:0;font-size:clamp(1.7rem,6vw,2.4rem);font-weight:800;color:var(--tomato)}
+.tema .en{display:block}
+.passo{margin-top:16px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.passo h3{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline;margin:0 0 6px}
+.passo h3 .min{font-family:var(--hand);font-weight:400;font-size:1.2rem;color:var(--basil)}
+.passo .cosa{margin:0 0 10px}
+.domande{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.domande li{border:1px solid var(--line);border-radius:12px;padding:8px 12px;background:var(--stone);cursor:pointer}
+.domande li b{font-family:var(--display);font-size:1.1rem}
+.domande li span{display:none;color:var(--muted);font-style:italic;font-size:.92rem}
+.domande li.aperta span{display:block}
+.domande li.fatta{background:#E7F0EA;border-color:#CBDDD2}
+.turno{font-family:var(--display);font-weight:700;color:var(--basil)}
+.racconta{font-size:1.25rem;font-family:var(--display);font-weight:700;margin:0}
+.frase{font-size:1.35rem;font-family:var(--display);font-weight:800;color:var(--basil);margin:0}
+.timer{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{font-size:1.6rem;min-width:3.2em;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.settimana{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
+.settimana span{width:36px;text-align:center;font-family:var(--display);font-size:.78rem;color:var(--muted)}
+.settimana span i{display:block;width:28px;height:28px;margin:0 auto 2px;border-radius:50%;border:2px solid var(--line);background:var(--paper)}
+.settimana span.si i{background:var(--basil);border-color:var(--basil)}
+.settimana span.oggi-g{color:var(--ink);font-weight:700}
+</style>
+</head>
+
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; All exercises</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Dieci minuti</h1>
+    <p>Dieci minuti al giorno per parlare in due, senza preparare niente. Ogni giorno la pagina vi dà un tema nuovo: domande da farvi, un minuto per raccontare, una frase da usare. <span class="en">Ten minutes a day to speak Italian together, with nothing to prepare. Every day there is a new topic: questions to ask each other, one minute to tell, one phrase to use.</span></p>
+    <div class="nomi">
+      <input id="nomeA" value="" placeholder="Name 1" aria-label="Nome della prima persona">
+      <input id="nomeB" value="" placeholder="Name 2" aria-label="Nome della seconda persona">
+      <span class="en">Write your names once: the page remembers them.</span>
+    </div>
+  </header>
+
+  <div class="oggi">
+    <span class="giorno" id="giorno"></span>
+    <button class="btn ghost" id="altro" type="button">Another topic</button>
+  </div>
+
+  <div class="tema">
+    <h2 id="tit"></h2>
+    <span class="en" id="titEn"></span>
+  </div>
+
+  <section class="passo">
+    <h3>1 · Tre domande a testa <span class="min">4 minuti</span></h3>
+    <p class="cosa"><span class="turno" id="turno1"></span> <span class="en">Pick three questions and ask them. Tap a question to see the English. Answer with a whole sentence, then swap.</span></p>
+    <ul class="domande" id="domande"></ul>
+    <div class="riga"><button class="btn ghost" id="scambia" type="button">Swap: now the other asks</button></div>
+  </section>
+
+  <section class="passo">
+    <h3>2 · Racconta <span class="min">1 minuto a testa</span></h3>
+    <p class="racconta" id="racconta"></p>
+    <p class="en" id="raccontaEn" style="margin:2px 0 10px"></p>
+    <div class="riga">
+      <button class="btn red" id="via" type="button">Start: 1 minute</button>
+      <div class="timer" id="timer"><output id="clock">1:00</output></div>
+    </div>
+    <p class="mini">One talks for a minute without stopping, the other listens and then asks one question. Then swap. Don't stop for a missing word: say it in a different way, or ask «Come si dice...?»</p>
+  </section>
+
+  <section class="passo">
+    <h3>3 · La frase di oggi <span class="min">tutto il giorno</span></h3>
+    <p class="frase" id="frase"></p>
+    <p class="en" id="fraseEn" style="margin:2px 0 0"></p>
+    <p class="mini">Use it at least three times today, with each other.</p>
+  </section>
+
+  <section class="passo">
+    <h3>Questa settimana <span class="min">tre volte è già ottimo</span></h3>
+    <div class="settimana" id="settimana"></div>
+    <div class="riga"><button class="btn green grande" id="fatto" type="button">We did it today</button></div>
+    <p class="mini">No streaks, no pressure: if you miss a day, just start again tomorrow.</p>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function orologio(s){ s = Math.max(0, s); return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
+
+  /* Un tema al giorno. q: [domanda, inglese]; r: racconta; f: la frase di oggi */
+  var TEMI = [
+    {t:"La colazione", en:"Breakfast", q:[["Cosa mangi a colazione?","What do you eat for breakfast?"],["Bevi il caffè o il tè?","Coffee or tea?"],["A che ora fai colazione?","What time do you have breakfast?"],["Fai colazione a casa o al bar?","At home or at a café?"],["Qual è la tua colazione preferita?","Your favourite breakfast?"],["Cosa hai mangiato stamattina?","What did you eat this morning?"]], r:["Racconta la tua colazione perfetta, in un hotel in Italia.","Describe your perfect breakfast in an Italian hotel."], f:["Per me un cappuccino, grazie.","A cappuccino for me, thanks."]},
+    {t:"Il lavoro", en:"Work", q:[["Che lavoro fai?","What's your job?"],["Dove lavori?","Where do you work?"],["A che ora cominci?","What time do you start?"],["Ti piace il tuo lavoro?","Do you like your job?"],["Come vai al lavoro?","How do you get to work?"],["Qual è il lavoro dei tuoi sogni?","Your dream job?"]], r:["Racconta una giornata di lavoro normale.","Describe a normal working day."], f:["Che lavoro fai?","What do you do for a living?"]},
+    {t:"Stasera", en:"This evening", q:[["Cosa mangiamo stasera?","What shall we eat tonight?"],["Chi cucina?","Who's cooking?"],["Guardiamo un film?","Shall we watch a film?"],["A che ora andiamo a letto?","What time are we going to bed?"],["Usciamo o restiamo a casa?","Going out or staying in?"],["Cosa vuoi fare dopo cena?","What do you want to do after dinner?"]], r:["Racconta la tua serata ideale.","Describe your ideal evening."], f:["Che ne dici di...?","How about...?"]},
+    {t:"Il tempo", en:"The weather", q:[["Che tempo fa oggi?","What's the weather like today?"],["Fa freddo o fa caldo?","Is it cold or hot?"],["Ti piace la pioggia?","Do you like rain?"],["Qual è la tua stagione preferita?","Your favourite season?"],["Che tempo fa in Italia adesso, secondo te?","What's the weather in Italy now, in your opinion?"],["Cosa fai quando piove?","What do you do when it rains?"]], r:["Racconta il tuo giorno preferito dell'anno: che tempo fa, cosa fai.","Your favourite day of the year: the weather, what you do."], f:["Che bella giornata!","What a beautiful day!"]},
+    {t:"Il weekend", en:"The weekend", q:[["Cosa fai sabato?","What are you doing on Saturday?"],["E domenica?","And on Sunday?"],["Dormi fino a tardi?","Do you sleep in?"],["Vedi gli amici?","Do you see your friends?"],["Cosa hai fatto lo scorso weekend?","What did you do last weekend?"],["Il weekend perfetto: mare, montagna o città?","Perfect weekend: sea, mountains or city?"]], r:["Racconta il tuo weekend perfetto.","Describe your perfect weekend."], f:["Buon fine settimana!","Have a nice weekend!"]},
+    {t:"Il telefono", en:"Your phone", q:[["Quante ore usi il telefono?","How many hours do you use your phone?"],["Qual è la tua app preferita?","Your favourite app?"],["Fai tante foto?","Do you take lots of photos?"],["Chi chiami più spesso?","Who do you call most?"],["Mandi messaggi vocali?","Do you send voice messages?"],["Puoi vivere senza telefono?","Could you live without your phone?"]], r:["Fai vedere l'ultima foto del telefono e raccontala.","Show the last photo on your phone and talk about it."], f:["Ti mando un messaggio.","I'll send you a message."]},
+    {t:"La spesa", en:"Grocery shopping", q:[["Dove fai la spesa?","Where do you do your shopping?"],["Quando fai la spesa?","When do you go shopping?"],["Cosa compri sempre?","What do you always buy?"],["Cosa non compri mai?","What do you never buy?"],["Ti piacciono i mercati?","Do you like markets?"],["Cosa manca in frigo adesso?","What's missing in the fridge right now?"]], r:["Fate insieme la lista della spesa per una cena italiana.","Write a shopping list together for an Italian dinner."], f:["Quanto costa?","How much is it?"]},
+    {t:"Le vacanze", en:"Holidays", q:[["Dove vai in vacanza quest'anno?","Where are you going on holiday this year?"],["Preferisci il mare o la montagna?","Sea or mountains?"],["Con chi vai in vacanza?","Who do you go on holiday with?"],["Dove sei andato/a l'ultima volta?","Where did you go last time?"],["Che cosa porti sempre in valigia?","What do you always pack?"],["Qual è la tua città italiana preferita?","Your favourite Italian city?"]], r:["Racconta la vacanza più bella della tua vita.","Tell the best holiday of your life."], f:["Non vedo l'ora!","I can't wait!"]},
+    {t:"Gli amici", en:"Friends", q:[["Come si chiama il tuo migliore amico?","What's your best friend's name?"],["Dove vi siete conosciuti?","Where did you meet?"],["Cosa fate insieme?","What do you do together?"],["Quando lo vedi?","When do you see him or her?"],["Hai amici italiani?","Do you have Italian friends?"],["Com'è il tuo amico: simpatico, divertente, tranquillo?","What's your friend like?"]], r:["Descrivi un amico: com'è e cosa fate insieme.","Describe a friend: what they're like and what you do together."], f:["Ci vediamo domani!","See you tomorrow!"]},
+    {t:"Lo sport", en:"Sport", q:[["Fai sport?","Do you do any sport?"],["Quante volte alla settimana?","How many times a week?"],["Ti piace camminare?","Do you like walking?"],["Guardi lo sport in TV?","Do you watch sport on TV?"],["Qual è la tua squadra?","What's your team?"],["Vai in bicicletta?","Do you cycle?"]], r:["Racconta la tua settimana: quando ti muovi e quando stai fermo.","Your week: when you move and when you sit still."], f:["Andiamo a fare una passeggiata?","Shall we go for a walk?"]},
+    {t:"La musica", en:"Music", q:[["Che musica ascolti?","What music do you listen to?"],["Chi è il tuo cantante preferito?","Your favourite singer?"],["Suoni uno strumento?","Do you play an instrument?"],["Canti sotto la doccia?","Do you sing in the shower?"],["Conosci una canzone italiana?","Do you know an Italian song?"],["Vai ai concerti?","Do you go to concerts?"]], r:["Racconta il concerto più bello che hai visto, o quello che vorresti vedere.","The best concert you've seen, or one you'd like to see."], f:["Mi piace tantissimo!","I love it!"]},
+    {t:"Film e serie", en:"Films and series", q:[["Cosa guardi in questo periodo?","What are you watching at the moment?"],["Preferisci i film o le serie?","Films or series?"],["Hai visto un film italiano?","Have you seen an Italian film?"],["Guardi la TV la sera?","Do you watch TV in the evening?"],["Qual è il tuo attore preferito?","Your favourite actor?"],["Vai al cinema?","Do you go to the cinema?"]], r:["Racconta un film che ti è piaciuto, senza dire il titolo: l'altro indovina.","Tell a film you liked without the title: the other guesses."], f:["Secondo me...","In my opinion..."]},
+    {t:"La mattina", en:"Your morning", q:[["A che ora ti svegli?","What time do you wake up?"],["Ti alzi subito?","Do you get up straight away?"],["Fai la doccia la mattina o la sera?","Shower in the morning or evening?"],["Cosa fai prima di uscire?","What do you do before going out?"],["Ti piace la mattina presto?","Are you a morning person?"],["A che ora ti sei svegliato/a oggi?","What time did you wake up today?"]], r:["Racconta la tua mattina, dalla sveglia alla porta di casa.","Your morning, from the alarm to the front door."], f:["Ho sonno!","I'm sleepy!"]},
+    {t:"Gli animali", en:"Animals", q:[["Hai un animale?","Do you have a pet?"],["Preferisci i cani o i gatti?","Dogs or cats?"],["Come si chiama?","What's its name?"],["Che animale vorresti?","What animal would you like?"],["Da piccolo/a avevi un animale?","Did you have a pet as a child?"],["Qual è l'animale più bello?","The most beautiful animal?"]], r:["Descrivi un animale: l'altro indovina quale.","Describe an animal: the other guesses which."], f:["Che carino!","How cute!"]},
+    {t:"I vestiti", en:"Clothes", q:[["Cosa porti oggi?","What are you wearing today?"],["Qual è il tuo colore preferito?","Your favourite colour?"],["Ti piace fare shopping?","Do you like shopping?"],["Cosa metti per una festa?","What do you wear to a party?"],["Scarpe comode o eleganti?","Comfortable or smart shoes?"],["Cosa hai comprato l'ultima volta?","What did you buy last time?"]], r:["Descrivi i vestiti dell'altro, dalla testa ai piedi.","Describe what the other is wearing, head to toe."], f:["Ti sta benissimo!","It really suits you!"]},
+    {t:"Ieri", en:"Yesterday", q:[["Cosa hai fatto ieri?","What did you do yesterday?"],["Cosa hai mangiato a cena?","What did you have for dinner?"],["Sei uscito/a?","Did you go out?"],["Con chi hai parlato?","Who did you talk to?"],["A che ora sei andato/a a letto?","What time did you go to bed?"],["Hai visto qualcosa in TV?","Did you watch anything on TV?"]], r:["Racconta la giornata di ieri, dalla mattina alla sera.","Tell yesterday, from morning to evening."], f:["Che giornata!","What a day!"]},
+    {t:"Domani", en:"Tomorrow", q:[["Cosa fai domani?","What are you doing tomorrow?"],["A che ora ti alzi?","What time are you getting up?"],["Lavori domani?","Are you working tomorrow?"],["Cosa mangiamo domani?","What are we eating tomorrow?"],["Hai un appuntamento?","Do you have an appointment?"],["Cosa vuoi fare di bello?","What nice thing do you want to do?"]], r:["Organizzate insieme la giornata di domani, ora per ora.","Plan tomorrow together, hour by hour."], f:["Va bene, d'accordo.","OK, agreed."]},
+    {t:"Al ristorante", en:"Eating out", q:[["Qual è il tuo ristorante preferito?","Your favourite restaurant?"],["Cosa ordini sempre?","What do you always order?"],["Pizza o pasta?","Pizza or pasta?"],["Ti piace il cibo piccante?","Do you like spicy food?"],["Dolce o caffè alla fine?","Dessert or coffee at the end?"],["Quando sei andato/a al ristorante l'ultima volta?","When did you last eat out?"]], r:["Uno è il cameriere, l'altro il cliente: ordinate una cena. Poi scambiate.","One is the waiter, one the customer: order dinner. Then swap."], f:["Il conto, per favore.","The bill, please."]},
+    {t:"La famiglia", en:"Family", q:[["Hai fratelli o sorelle?","Do you have brothers or sisters?"],["Dove abitano i tuoi genitori?","Where do your parents live?"],["Quante persone ci sono nella tua famiglia?","How many people are in your family?"],["Chi senti più spesso?","Who do you hear from most?"],["Cosa fate a Natale?","What do you do at Christmas?"],["Assomigli a tua madre o a tuo padre?","Do you look like your mother or father?"]], r:["Fai vedere una foto di famiglia e presenta le persone.","Show a family photo and introduce the people."], f:["Ti presento...","Let me introduce you to..."]},
+    {t:"L'Italia", en:"Italy", q:[["Sei stato/a in Italia?","Have you been to Italy?"],["Dove vuoi andare in Italia?","Where do you want to go in Italy?"],["Cosa ti piace dell'Italia?","What do you like about Italy?"],["Qual è il tuo piatto italiano preferito?","Your favourite Italian dish?"],["Perché studi l'italiano?","Why are you learning Italian?"],["Conosci un italiano famoso?","Do you know a famous Italian?"]], r:["Organizzate un viaggio di tre giorni in Italia: dove, come, cosa fate.","Plan a three-day trip to Italy: where, how, what you do."], f:["Mi piacerebbe andare a...","I'd love to go to..."]},
+    {t:"I regali", en:"Presents", q:[["Qual è il regalo più bello che hai ricevuto?","The best present you've received?"],["Quando è il tuo compleanno?","When is your birthday?"],["Come festeggi il compleanno?","How do you celebrate your birthday?"],["Preferisci fare o ricevere regali?","Giving or receiving presents?"],["Cosa regali a un amico?","What do you give a friend?"],["Cosa vuoi per il tuo compleanno?","What do you want for your birthday?"]], r:["Scegliete insieme un regalo per un amico: cosa, dove lo comprate, quanto costa.","Choose a present for a friend together: what, where, how much."], f:["Grazie mille, sei gentilissimo/a!","Thank you so much, you're so kind!"]}
+  ];
+
+  /* ============ MEMORIA ============ */
+  var CHIAVE = "twf-dieci-minuti";
+  var mem = { a:"", b:"", fatti:[] };
+  try{ var m0 = JSON.parse(localStorage.getItem(CHIAVE) || "null"); if(m0 && typeof m0 === "object"){ for(var k in mem){ if(m0[k] !== undefined) mem[k] = m0[k]; } } }catch(e){}
+  if(!Array.isArray(mem.fatti)) mem.fatti = [];
+  function salva(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(mem)); }catch(e){} }
+
+  function chiaveGiorno(d){ return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
+  var oggi = new Date();
+  var oggiK = chiaveGiorno(oggi);
+  /* il tema del giorno: cambia a mezzanotte, uguale per tutti e due */
+  var giorno = Math.floor(Date.UTC(oggi.getFullYear(), oggi.getMonth(), oggi.getDate()) / 86400000);
+  var idx = giorno % TEMI.length;
+
+  $("nomeA").value = mem.a; $("nomeB").value = mem.b;
+  ["a","b"].forEach(function(x){
+    $("nome" + x.toUpperCase()).addEventListener("input", function(){ mem[x] = this.value; salva(); turno(); });
+  });
+  function nome(x){ var n = (mem[x] || "").trim(); return n || (x === "a" ? "Person 1" : "Person 2"); }
+
+  var chiChiede = "a";
+  function turno(){
+    var altro = chiChiede === "a" ? "b" : "a";
+    $("turno1").textContent = nome(chiChiede) + " chiede, " + nome(altro) + " risponde.";
+  }
+
+  function mostra(){
+    var T = TEMI[idx];
+    $("giorno").textContent = idx === giorno % TEMI.length ? "Il tema di oggi" : "Un altro tema";
+    $("tit").textContent = T.t; $("titEn").textContent = T.en;
+    $("domande").innerHTML = T.q.map(function(q){ return "<li><b>" + esc(q[0]) + "</b><span>" + esc(q[1]) + "</span></li>"; }).join("");
+    Array.prototype.forEach.call($("domande").querySelectorAll("li"), function(li){
+      li.addEventListener("click", function(){
+        if(!li.classList.contains("aperta")) li.classList.add("aperta");
+        else { li.classList.remove("aperta"); li.classList.toggle("fatta"); }
+      });
+    });
+    $("racconta").textContent = T.r[0]; $("raccontaEn").textContent = T.r[1];
+    $("frase").textContent = T.f[0]; $("fraseEn").textContent = T.f[1];
+    chiChiede = "a"; turno(); ferma();
+  }
+  $("altro").addEventListener("click", function(){ idx = (idx + 1) % TEMI.length; mostra(); });
+  $("scambia").addEventListener("click", function(){
+    chiChiede = chiChiede === "a" ? "b" : "a"; turno();
+    Array.prototype.forEach.call($("domande").querySelectorAll("li"), function(li){ li.classList.remove("fatta", "aperta"); });
+  });
+
+  /* cronometro da un minuto */
+  var t = null, resta = 60;
+  function ferma(){ clearInterval(t); t = null; resta = 60; $("clock").textContent = "1:00"; $("timer").classList.remove("zero"); }
+  $("via").addEventListener("click", function(){
+    ferma();
+    t = setInterval(function(){
+      resta--; $("clock").textContent = orologio(resta);
+      if(resta <= 0){ clearInterval(t); t = null; $("timer").classList.add("zero"); $("clock").textContent = "Swap!"; }
+    }, 1000);
+  });
+
+  /* la settimana: gli ultimi sette giorni */
+  var NOMI_G = ["dom","lun","mar","mer","gio","ven","sab"];
+  function settimana(){
+    var h = "";
+    for(var i = 6; i >= 0; i--){
+      var d = new Date(oggi.getFullYear(), oggi.getMonth(), oggi.getDate() - i);
+      var k = chiaveGiorno(d);
+      h += '<span class="' + (mem.fatti.indexOf(k) !== -1 ? "si " : "") + (i === 0 ? "oggi-g" : "") + '"><i></i>' + (i === 0 ? "oggi" : NOMI_G[d.getDay()]) + "</span>";
+    }
+    $("settimana").innerHTML = h;
+    var fatto = mem.fatti.indexOf(oggiK) !== -1;
+    $("fatto").textContent = fatto ? "Done today. Bravi!" : "We did it today";
+    $("fatto").disabled = fatto;
+  }
+  $("fatto").addEventListener("click", function(){
+    if(mem.fatti.indexOf(oggiK) === -1){ mem.fatti.push(oggiK); mem.fatti = mem.fatti.slice(-60); salva(); }
+    settimana();
+  });
+
+  mostra(); settimana();
+})();
+</script>
+
+<style>
+.twf-cta{max-width:760px;margin:56px auto 40px;padding:0 16px;box-sizing:border-box;font-family:var(--text,"Newsreader"),Georgia,serif;color:var(--ink,#16233F);}
+.twf-cta *{box-sizing:border-box;}
+.twf-cta-in{background:var(--paper-2,#FFFDF8);border:1px solid var(--rule,#DFD8C7);border-radius:22px;padding:24px 26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 28px;}
+.twf-cta-txt{flex:1 1 320px;min-width:0;}
+.twf-cta-pen{font-family:"Caveat",cursive;font-size:1.45rem;color:var(--verde,#2E5E4E);margin:0 0 2px;line-height:1.1;}
+.twf-cta-h{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-0.01em;line-height:1.2;margin:0 0 6px;}
+.twf-cta-p{margin:0;color:var(--ink-soft,#4A5670);font-size:1rem;line-height:1.55;}
+.twf-cta-btn{flex:none;display:inline-block;font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:700;font-size:1rem;text-decoration:none;background:var(--ink,#16233F);color:var(--paper,#F7F4EC) !important;padding:13px 22px;border-radius:999px;transition:background .15s;}
+.twf-cta-btn:hover{background:var(--rosso,#C4312B);}
+@media (max-width:560px){.twf-cta-in{padding:20px;}.twf-cta-btn{width:100%;text-align:center;}}
+</style>
+<aside class="twf-cta" aria-label="Lessons with Fabio">
+  <div class="twf-cta-in">
+    <div class="twf-cta-txt">
+      <p class="twf-cta-pen">e adesso?</p>
+      <p class="twf-cta-h">Ready to say it out loud?</p>
+      <p class="twf-cta-p">Exercises train your memory. Talking is what makes it stick. One to one with me, 50 minutes on video, and the first lesson is a conversation, not a test.</p>
+    </div>
+    <a class="twf-cta-btn" href="/prenota/">Book a lesson &rarr;</a>
+  </div>
+</aside>
+</body>
+</html>

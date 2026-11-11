@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "10 novembre 2026, 20:40";
+var PIANO_AGGIORNATO = "11 novembre 2026, 17:06";
 
 var PIANO = {
 
@@ -466,31 +466,27 @@ var PIANO = {
 
   "rafaela-yrd": {
     "nome": "Rafaela",
-    "aggiornato": "9 novembre 2026",
+    "aggiornato": "11 novembre 2026",
     "ultima": {
-      "quando": "2026-11-09T09:00:00+01:00",
+      "quando": "2026-11-11T09:30:00+01:00",
       "fatto": [
-        "How do you say it? Talking only in Italian, even when a word is missing"
+        "Useful phrases",
+        "Parliamo!: talking without stopping"
       ]
     },
     "prossima": {
-      "quando": "2026-11-10T09:30:00+01:00",
-      "obiettivo": "Talk, talk, talk: only Italian, as much as you can.",
+      "quando": "2026-11-12T09:30:00+01:00",
+      "obiettivo": "Talk about your family, then about your work, your day and your free time. Only Italian!",
       "attivita": [
         {
-          "titolo": "My words",
+          "titolo": "The disappearing dialogue: family",
           "href": "",
-          "nota": "The words you were missing today come back"
+          "nota": "Then the same dialogue with your real family"
         },
         {
-          "titolo": "Three jokers",
+          "titolo": "Two plus one",
           "href": "",
-          "nota": "Two topics, only three English words allowed"
-        },
-        {
-          "titolo": "How do you say it?",
-          "href": "",
-          "nota": "Explain places, people and actions in Italian"
+          "nota": "Two pieces of information and one question back"
         }
       ]
     },
@@ -549,44 +545,35 @@ var PIANO = {
 
   "robmarie-7vc": {
     "nome": "Rob & Marie",
-    "aggiornato": "9 novembre 2026",
+    "aggiornato": "11 novembre 2026",
     "ultima": {
-      "quando": "2026-11-09T10:00:00+01:00",
+      "quando": "2026-11-11T13:00:00+01:00",
       "fatto": [
-        "Parliamo! A whole lesson of speaking. Well done!"
+        "Parliamo!: the house",
+        "The building: who lives on which floor"
       ]
     },
     "prossima": {
-      "quando": "2026-11-11T13:00:00+01:00",
-      "obiettivo": "More conversation: your topic first, then new games where only you two talk.",
+      "quando": "2026-11-16T10:00:00+01:00",
+      "obiettivo": "I can say what there is in a room and understand someone describing one.",
       "attivita": [
         {
-          "titolo": "Your topic",
+          "titolo": "Two rooms: spot the differences",
           "href": "",
-          "nota": "Tell me the topic you chose at home and say it without the screen"
+          "nota": "Each of you describes a room to the other"
         },
         {
-          "titolo": "Parliamo!",
+          "titolo": "Parliamo!: home and town",
           "href": "",
-          "nota": "Two plus one and Who are you today?"
-        },
-        {
-          "titolo": "Three jokers",
-          "href": "",
-          "nota": "Three minutes on a topic, only three English words allowed"
+          "nota": "Ask each other the questions"
         }
       ]
     },
     "compiti": [
       {
-        "titolo": "Parliamo! at home",
-        "href": "https://talkwithfabio.com/aula-pfr2u9/parliamo/",
-        "nota": "Choose a topic, 10 to 15 minutes: the instructions are in my email"
-      },
-      {
-        "titolo": "Dialogues to repeat",
-        "href": "https://talkwithfabio.com/dialoghi/",
-        "nota": "Read in two voices, then hide your lines"
+        "titolo": "Draw your building",
+        "href": "",
+        "nota": "Who lives where? Tell me at the start of the lesson: Abito al ... piano"
       }
     ]
   },
