@@ -9,13 +9,13 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "11 novembre 2026, 17:06";
+var PIANO_AGGIORNATO = "11 novembre 2026, 23:41";
 
 var PIANO = {
 
   "ari-p49": {
     "nome": "Ari",
-    "aggiornato": "9 novembre 2026",
+    "aggiornato": "11 novembre 2026",
     "ultima": {
       "quando": "2026-11-04T22:00:00+01:00",
       "fatto": [
@@ -23,7 +23,7 @@ var PIANO = {
       ]
     },
     "prossima": {
-      "quando": "2026-11-11T22:00:00+01:00",
+      "quando": "2026-11-18T22:00:00+01:00",
       "obiettivo": "Ne, ci e i pronomi in gioco, poi un argomento nuovo: l'imperativo con i pronomi. Chiamala! Dimmelo! Non farlo!",
       "attivita": [
         {
@@ -506,7 +506,7 @@ var PIANO = {
 
   "robert-zll": {
     "nome": "Robert",
-    "aggiornato": "5 novembre 2026",
+    "aggiornato": "11 novembre 2026",
     "ultima": {
       "quando": "2026-11-05T18:00:00+01:00",
       "fatto": [
@@ -514,7 +514,7 @@ var PIANO = {
       ]
     },
     "prossima": {
-      "quando": "2026-11-11T19:00:00+01:00",
+      "quando": "",
       "obiettivo": "Describe a person from head to toe: face, height, build, age, beard and glasses. The last step before A2!",
       "attivita": [
         {
@@ -538,7 +538,7 @@ var PIANO = {
       {
         "titolo": "Guess who, in Italian",
         "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
-        "nota": "Practise the questions before Wednesday"
+        "nota": "Practise the questions before the next lesson"
       }
     ]
   },
