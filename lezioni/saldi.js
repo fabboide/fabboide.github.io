@@ -54,7 +54,7 @@
    mail, niente cifre pagate, codici difficili da indovinare.
    ===================================================================== */
 
-var SALDI_AGGIORNATO = "11 novembre 2026, 12:52";
+var SALDI_AGGIORNATO = "12 novembre 2026, 13:42";
 
 var SALDI = {
 
@@ -121,17 +121,17 @@ var SALDI = {
     pacchetto: 26,
     inizio: "2026-09-15",
     fatte_prima: 0,
-    fatte: 4,
-    prenotate: 2,
+    fatte: 5,
+    prenotate: 1,
     rimaste: 20,
     passate: [
       "2026-09-21T14:00:00+02:00",
       "2026-10-15T09:30:00+02:00",
       "2026-10-16T09:30:00+02:00",
-      "2026-10-19T09:00:00+02:00"
+      "2026-10-19T09:00:00+02:00",
+      "2026-11-12T09:30:00+01:00"
     ],
     prossime: [
-      { quando: "2026-11-12T09:30:00+01:00", fine: "2026-11-12T10:20:00+01:00", gestisci: "https://cal.com/booking/5gAV5gGZe2e53mSi5Pm6xj?changes=true" },
       { quando: "2026-11-16T09:00:00+01:00", fine: "2026-11-16T09:50:00+01:00", gestisci: "https://cal.com/booking/eM1UTX8a74SBk3d7fMF8xd?changes=true" }
     ],
     promemoria: "Per Fabio: Rafaela prenota con due indirizzi, uno con una enne e uno con due. Vanno tenuti tutti e due in mail-studenti.json, se no metà delle sue lezioni non viene contata."
@@ -157,15 +157,14 @@ var SALDI = {
     pacchetto: 2,
     inizio: "2026-10-12",
     fatte_prima: 0,
-    fatte: 1,
-    prenotate: 1,
+    fatte: 2,
+    prenotate: 0,
     rimaste: 0,
     passate: [
-      "2026-10-28T12:00:00+01:00"
+      "2026-10-28T12:00:00+01:00",
+      "2026-11-11T13:00:00+01:00"
     ],
-    prossime: [
-      { quando: "2026-11-11T13:00:00+01:00", fine: "2026-11-11T13:50:00+01:00", gestisci: "https://cal.com/booking/118cYUjMemfHLr177oCisx?changes=true" }
-    ]
+    prossime: []
   },
 
   "catherina-d4h": {
