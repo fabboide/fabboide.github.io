@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "11 novembre 2026, 23:41";
+var PIANO_AGGIORNATO = "12 novembre 2026, 13:36";
 
 var PIANO = {
 
@@ -466,27 +466,27 @@ var PIANO = {
 
   "rafaela-yrd": {
     "nome": "Rafaela",
-    "aggiornato": "11 novembre 2026",
+    "aggiornato": "12 novembre 2026",
     "ultima": {
-      "quando": "2026-11-11T09:30:00+01:00",
+      "quando": "2026-11-12T09:30:00+01:00",
       "fatto": [
-        "Useful phrases",
-        "Parliamo!: talking without stopping"
+        "The weather: Che tempo fa?",
+        "My postcards and True or made up?"
       ]
     },
     "prossima": {
-      "quando": "2026-11-12T09:30:00+01:00",
-      "obiettivo": "Talk about your family, then about your work, your day and your free time. Only Italian!",
+      "quando": "2026-11-13T09:00:00+01:00",
+      "obiettivo": "Say what the weather is like where you are: fa caldo, c'è il sole, piove...",
       "attivita": [
         {
-          "titolo": "The disappearing dialogue: family",
+          "titolo": "fa, c'è or alone?",
           "href": "",
-          "nota": "Then the same dialogue with your real family"
+          "nota": "Sort the weather words and find the rule"
         },
         {
-          "titolo": "Two plus one",
+          "titolo": "Your postcard",
           "href": "",
-          "nota": "Two pieces of information and one question back"
+          "nota": "Your city and today's weather"
         }
       ]
     },
