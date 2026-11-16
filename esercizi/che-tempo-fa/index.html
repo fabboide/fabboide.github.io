@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Che tempo fa? The weather in Italian · Talk with Fabio</title>
+<meta name="description" content="The weather in Italian: ten phrases, the fa / c'è rule as a 60-second game, and a TV weather forecast to present to a partner. A1.">
+<link rel="canonical" href="https://talkwithfabio.com/esercizi/che-tempo-fa/">
+<link rel="icon" href="https://talkwithfabio.com/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://talkwithfabio.com/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://talkwithfabio.com/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F4EC">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{
+  --basil:#2E5E4E; --basil-deep:#16233F; --tomato:#C4312B; --lemon:#E8A33D;
+  --kraft:#D9BC8C; --stone:#F7F4EC; --paper:#FFFDF8;
+  --ink:#16233F; --muted:#4A5670; --line:#DFD8C7; --ok:#2E5E4E; --warn:#C4312B;
+  --bubble:#E7F0EA;
+  --hand:"Caveat","Segoe Script",cursive;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --text:"Newsreader",Georgia,"Times New Roman",serif;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--text);font-size:1.05rem;line-height:1.6}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+
+/* Barra e testata */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar-in{max-width:1080px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-weight:700}
+.logo-mark{width:21px;height:21px;border-radius:50%;border:1px solid var(--ink);background:conic-gradient(from 180deg,#E8A33D 0 25%,#C4312B 0 50%,#2E5E4E 0 75%,#16233F 0)}
+.back-link{font-family:var(--display);font-weight:600;font-size:.9rem;color:inherit}
+.ribbon{height:8px;background:repeating-linear-gradient(135deg,var(--tomato) 0 14px,var(--lemon) 14px 28px,var(--basil) 28px 42px)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+header.sign{padding:40px 0 6px}
+.sign h1{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,4.2rem);line-height:.95;margin:0;color:var(--tomato)}
+.sign p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.en{color:var(--muted);font-style:italic;font-size:.88em}
+
+/* Linguette */
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;margin:22px 0 18px;border-bottom:2px solid var(--line)}
+nav.steps button{font-family:var(--display);background:none;border:0;padding:10px 13px 12px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-2px}
+nav.steps button .n{font-family:var(--hand);font-size:1.4rem;margin-right:6px;font-weight:400}
+nav.steps button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--tomato)}
+nav.steps .side{margin-left:auto;color:var(--basil)}
+section.phase{display:none}
+section.phase.active{display:block}
+h2{font-family:var(--display);font-weight:700;font-size:1.7rem;margin:10px 0 4px}
+h3{font-family:var(--display);font-size:1.08rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+
+/* Pezzi comuni */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+.btn{font-family:var(--display);font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 16px}
+.btn.red{background:var(--tomato);border-color:var(--tomato)}
+.btn.green{background:var(--basil);border-color:var(--basil)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.timer{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700}
+.timer output{min-width:3.4em;text-align:right;font-variant-numeric:tabular-nums}
+.timer.zero output{color:var(--tomato)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font-family:var(--display);font-size:.9rem;font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-family:var(--display);font-weight:700;color:var(--basil)}
+
+
+
+
+/* Che tempo fa? */
+.mini{font-size:.9rem;color:var(--muted);margin:10px 0 0}
+.riga{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.carte{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.carta{position:relative;border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:14px 12px 12px;text-align:center;min-height:132px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.carta .ic{font-size:2.3rem;line-height:1}
+.carta b{font-family:var(--display);font-size:1.12rem;line-height:1.2}
+.carta .en{display:block}
+.carta .voce{position:absolute;top:6px;right:6px;border:0;background:none;font-size:1.05rem;padding:4px;border-radius:8px}
+.quiz{margin-top:18px}
+.quiz .grande{font-size:3.4rem;line-height:1;text-align:center;margin:6px 0 12px}
+.scelte{display:grid;gap:8px}
+.scelte button,.scatole button{font-family:var(--display);font-weight:700;font-size:1.05rem;border:2px solid var(--line);background:var(--paper);border-radius:14px;padding:12px 14px;text-align:left}
+.scelte button.si,.scatole button.si{background:#E7F0EA;border-color:var(--basil)}
+.scelte button.no,.scatole button.no{background:#F8E3E1;border-color:var(--tomato)}
+.parola{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,8vw,2.6rem);text-align:center;margin:8px 0 4px;color:var(--basil)}
+.scatole{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+.scatole button{text-align:center;padding:16px 6px}
+.scatole button small{display:block;font-weight:400;font-family:var(--text);font-size:.82rem;color:var(--muted)}
+.esito{min-height:1.8em;text-align:center;font-family:var(--display);font-weight:700;margin-top:10px}
+.esito.ok{color:var(--basil)}
+.esito.ko{color:var(--tomato)}
+.regola{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-top:16px}
+.regola div{border:1px solid var(--line);border-radius:14px;background:var(--paper);padding:12px 14px}
+.regola h3{color:var(--tomato);margin-bottom:4px}
+.regola p{margin:0}
+.trappola{margin-top:12px;border-left:4px solid var(--tomato);padding:8px 12px;background:var(--paper);border-radius:0 12px 12px 0}
+.record{font-family:var(--hand);font-size:1.35rem;color:var(--basil)}
+.citta{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:12px}
+.cart{border:2px solid var(--ink);border-radius:16px;background:var(--paper);padding:12px 14px}
+.cart h3{margin:0 0 6px;font-size:1.2rem}
+.cart .icone{font-size:2.2rem;line-height:1.1;min-height:2.4rem}
+.cart .scelta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.cart .scelta button{border:1px solid var(--line);background:var(--stone);border-radius:10px;font-size:1.35rem;padding:4px 7px;line-height:1}
+.cart .scelta button[aria-pressed="true"]{background:var(--lemon);border-color:var(--ink)}
+.cart.giusta{border-color:var(--basil);background:#E7F0EA}
+.cart.sbagliata{border-color:var(--tomato);background:#F8E3E1}
+.cart .sol{font-size:.92rem;margin-top:6px}
+.copione{margin-top:12px;font-family:var(--display);font-size:1.08rem;line-height:1.5}
+.fase-tit{font-family:var(--hand);font-size:1.5rem;color:var(--basil);margin:0}
+.costruisci{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.costruisci button{font-family:var(--display);font-weight:600;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 12px}
+.costruisci button[aria-pressed="true"]{background:var(--basil);color:var(--paper);border-color:var(--basil)}
+.frase-voi{font-family:var(--display);font-weight:800;font-size:1.35rem;color:var(--basil);margin:14px 0 0;min-height:1.6em}
+.campo{border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:var(--paper);font-family:var(--display);font-weight:700;width:200px;max-width:100%}
+.missione{margin-top:16px;border:2px dashed var(--kraft);border-radius:16px;padding:14px 16px;background:var(--paper)}
+.missione h3{color:var(--tomato)}
+</style>
+</head>
+
+<body>
+<header class="topbar"><div class="topbar-in"><a class="logo" href="https://talkwithfabio.com/"><span class="logo-mark" aria-hidden="true"></span>Talk with Fabio</a><a class="back-link" href="../">&larr; All exercises</a></div></header>
+<div class="ribbon" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="sign">
+    <h1>Che tempo fa?</h1>
+    <p>Il tempo in italiano: le parole, la regola di fa e c'è, e un meteo da presentare in due. <span class="en">The weather in Italian: the words, the fa / c'è rule, and a weather forecast to present to each other. Best with a partner, works alone too.</span></p>
+  </header>
+
+  <nav class="steps" role="tablist" aria-label="Steps">
+    <button role="tab" id="t1" aria-selected="true" data-p="p1"><span class="n">1</span>Le parole</button>
+    <button role="tab" id="t2" aria-selected="false" data-p="p2"><span class="n">2</span>Fa, c'è o da solo?</button>
+    <button role="tab" id="t3" aria-selected="false" data-p="p3"><span class="n">3</span>Il meteo</button>
+    <button role="tab" id="t4" aria-selected="false" data-p="p4"><span class="n">4</span>Da voi</button>
+  </nav>
+
+  <section class="phase active" id="p1" role="tabpanel" aria-labelledby="t1">
+    <h2>Le parole del tempo</h2>
+    <p class="lead">Ten phrases, that's all you need. Say each one out loud, with the gesture if you like (brr for <i>fa freddo</i>). <span id="audioNota">Tap 🔊 to hear it.</span></p>
+    <div class="carte" id="carte"></div>
+    <div class="panel quiz">
+      <h3>Che tempo fa? <span class="count" id="qPunti"></span></h3>
+      <p class="mini" style="margin:0">Look at the picture and pick the phrase. Then say it out loud.</p>
+      <div class="grande" id="qIcona" aria-live="polite"></div>
+      <div class="scelte" id="qScelte"></div>
+      <div class="esito" id="qEsito" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="phase" id="p2" role="tabpanel" aria-labelledby="t2">
+    <h2>Fa, c'è o da solo?</h2>
+    <p class="lead">In Italian the weather takes <b>fa</b>, <b>c'è</b> or nothing at all. Say the whole sentence out loud (<i>«Fa caldo!»</i>), then tap the box. 60 seconds: how many can you sort?</p>
+    <div class="panel">
+      <div class="toolbar">
+        <button class="btn red" id="sVia" type="button">Start: 60 seconds</button>
+        <span class="record" id="sRecord"></span>
+        <div class="timer" id="sTimer"><output id="sClock">1:00</output></div>
+      </div>
+      <div class="parola" id="sParola">caldo</div>
+      <p class="mini" style="text-align:center;margin:0" id="sEn">hot</p>
+      <div class="scatole" id="sScatole">
+        <button type="button" data-k="fa">fa ...<small>fa caldo</small></button>
+        <button type="button" data-k="ce">c'è ...<small>c'è vento</small></button>
+        <button type="button" data-k="solo">da solo<small>on its own</small></button>
+      </div>
+      <div class="esito" id="sEsito" aria-live="polite"></div>
+      <p class="count" style="text-align:center;margin:4px 0 0" id="sPunti"></p>
+    </div>
+    <div class="regola" id="regola">
+      <div><h3>fa ...</h3><p>fa caldo, fa freddo, fa bel tempo, fa brutto tempo</p></div>
+      <div><h3>c'è ...</h3><p>c'è il sole, c'è vento, c'è la nebbia</p></div>
+      <div><h3>da solo</h3><p>piove, nevica <span class="en">(no it, no fa: just the verb)</span></p></div>
+    </div>
+    <p class="trappola"><b>The English trap:</b> <i>it is hot</i> is not «è caldo». It's <b>fa caldo</b>. And the question is always <b>Che tempo fa?</b> <span class="en">Only one with è: è nuvoloso, it's cloudy.</span></p>
+  </section>
+
+  <section class="phase" id="p3" role="tabpanel" aria-labelledby="t3">
+    <h2>Il meteo</h2>
+    <p class="lead">You are on Italian TV. One of you is the presenter and reads the weather, the other listens and puts it on the cards. Then swap. <span class="en">Alone? Choose «Play alone»: you read the forecast and rebuild it.</span></p>
+    <div class="toolbar">
+      <button class="btn red" id="mNuovo" type="button">New forecast, in two</button>
+      <button class="btn ghost" id="mSolo" type="button">Play alone</button>
+      <div class="timer" id="mTimer" hidden><output id="mClock">1:00</output></div>
+    </div>
+    <div id="mFase1" hidden>
+      <p class="fase-tit">1 · Presenter only</p>
+      <p class="mini" style="margin-top:0">Don't show the screen! Look at the forecast, then tap <b>Hide and present</b> and tell your partner: <i>«Buongiorno! Oggi a Milano piove...»</i></p>
+      <div class="citta" id="mVedi"></div>
+      <div class="riga">
+        <button class="btn green" id="mNascondi" type="button">Hide and present</button>
+        <button class="btn ghost" id="mAiuto" type="button">Show me how to say it</button>
+      </div>
+      <p class="copione" id="mCopione" hidden></p>
+    </div>
+    <div id="mFase2" hidden>
+      <p class="fase-tit" id="mTit2">2 · Listener</p>
+      <p class="mini" style="margin-top:0" id="mIstr2">Now give the phone to your partner. Listener: tap the weather for each city. Ask «Come?» or «Che tempo fa a Roma?» if you need to.</p>
+      <p class="copione" id="mLeggi" hidden></p>
+      <div class="citta" id="mScegli"></div>
+      <div class="riga">
+        <button class="btn green" id="mControlla" type="button">Check</button>
+        <span class="count" id="mPunti"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="phase" id="p4" role="tabpanel" aria-labelledby="t4">
+    <h2>Da voi</h2>
+    <p class="lead">Now the real weather. Look out of the window and build your sentence, then say it to each other. Every day this week, ask each other: <b>Che tempo fa oggi?</b></p>
+    <div class="panel">
+      <label class="mini" for="vCitta" style="margin:0">Where are you?</label><br>
+      <input class="campo" id="vCitta" placeholder="città" autocomplete="off">
+      <div class="costruisci" id="vScelte"></div>
+      <p class="frase-voi" id="vFrase" aria-live="polite"></p>
+    </div>
+    <div class="missione">
+      <h3>La missione</h3>
+      <p style="margin:0">At the start of the next lesson, each of you tells Fabio in 30 seconds: <b>the weather where you are today</b> and <b>the weather in a city you'd love to be in</b>. <i>«Oggi qui piove e fa freddo. A Palermo invece c'è il sole e fa caldo!»</i></p>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function orologio(s){ s = Math.max(0, s); return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
+  function mescola(a){ a = a.slice(); for(var i = a.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  /* k: la scatola (fa, ce, solo); w: la parola da smistare */
+  var W = [
+    {id:"sole", ic:"☀️", it:"c'è il sole", en:"it's sunny", k:"ce", w:"il sole"},
+    {id:"nuvoloso", ic:"☁️", it:"è nuvoloso", en:"it's cloudy"},
+    {id:"piove", ic:"🌧️", it:"piove", en:"it's raining", k:"solo", w:"piove"},
+    {id:"nevica", ic:"❄️", it:"nevica", en:"it's snowing", k:"solo", w:"nevica"},
+    {id:"vento", ic:"💨", it:"c'è vento", en:"it's windy", k:"ce", w:"vento"},
+    {id:"nebbia", ic:"🌫️", it:"c'è la nebbia", en:"it's foggy", k:"ce", w:"la nebbia"},
+    {id:"caldo", ic:"🥵", it:"fa caldo", en:"it's hot", k:"fa", w:"caldo"},
+    {id:"freddo", ic:"🥶", it:"fa freddo", en:"it's cold", k:"fa", w:"freddo"},
+    {id:"bello", ic:"😎", it:"fa bel tempo", en:"the weather is nice", k:"fa", w:"bel tempo"},
+    {id:"brutto", ic:"⛈️", it:"fa brutto tempo", en:"the weather is bad", k:"fa", w:"brutto tempo"}
+  ];
+  var BY = {}; W.forEach(function(x){ BY[x.id] = x; });
+  var CIELO = ["sole", "nuvoloso", "piove", "nevica", "nebbia", "vento"];
+  var TEMP = ["caldo", "freddo"];
+  var CITTA = ["Milano", "Torino", "Venezia", "Bologna", "Firenze", "Roma", "Napoli", "Bari", "Palermo", "Cagliari", "Genova", "Trieste"];
+
+  /* memoria: record del gioco e città */
+  var CHIAVE = "twf-che-tempo-fa";
+  var mem = {rec:0, citta:""};
+  try{ var m0 = JSON.parse(localStorage.getItem(CHIAVE) || "null"); if(m0 && typeof m0 === "object"){ for(var k in mem){ if(m0[k] !== undefined) mem[k] = m0[k]; } } }catch(e){}
+  function salva(){ try{ localStorage.setItem(CHIAVE, JSON.stringify(mem)); }catch(e){} }
+
+  /* voce italiana, se il browser ce l'ha */
+  var voce = null, puoParlare = false;
+  try{ puoParlare = "speechSynthesis" in window && typeof SpeechSynthesisUtterance === "function"; }catch(e){}
+  function trovaVoce(){
+    try{ var v = speechSynthesis.getVoices(); for(var i = 0; i < v.length; i++){ if(/^it/i.test(v[i].lang)){ voce = v[i]; return; } } }catch(e){}
+  }
+  if(puoParlare){ trovaVoce(); try{ speechSynthesis.onvoiceschanged = trovaVoce; }catch(e){} }
+  function parla(t){
+    if(!puoParlare) return;
+    try{ speechSynthesis.cancel(); var u = new SpeechSynthesisUtterance(t); u.lang = "it-IT"; if(voce) u.voice = voce; u.rate = .9; speechSynthesis.speak(u); }catch(e){}
+  }
+  if(!puoParlare) $("audioNota").textContent = "";
+
+  /* linguette */
+  var tabs = document.querySelectorAll("nav.steps button");
+  Array.prototype.forEach.call(tabs, function(b){
+    b.addEventListener("click", function(){
+      Array.prototype.forEach.call(tabs, function(x){ x.setAttribute("aria-selected", String(x === b)); });
+      Array.prototype.forEach.call(document.querySelectorAll("section.phase"), function(s){ s.classList.toggle("active", s.id === b.dataset.p); });
+    });
+  });
+
+  /* 1 · carte e quiz */
+  $("carte").innerHTML = W.map(function(x){
+    return '<div class="carta"><span class="ic" aria-hidden="true">' + x.ic + '</span><b>' + esc(cap(x.it)) + '</b><span class="en">' + esc(x.en) + '</span>' +
+      (puoParlare ? '<button class="voce" type="button" data-say="' + esc(cap(x.it)) + '" aria-label="Listen: ' + esc(x.it) + '">🔊</button>' : '') + '</div>';
+  }).join("");
+  Array.prototype.forEach.call(document.querySelectorAll("[data-say]"), function(b){ b.addEventListener("click", function(){ parla(b.dataset.say); }); });
+
+  var q = {giuste:0, fatte:0, ora:null, bloccato:false};
+  function nuovaDomanda(){
+    var giro = mescola(W), x = giro[0];
+    if(q.ora && x.id === q.ora.id) x = giro[1];
+    q.ora = x; q.bloccato = false;
+    var altre = mescola(W.filter(function(y){ return y.id !== x.id; })).slice(0, 2);
+    $("qIcona").textContent = x.ic;
+    $("qEsito").textContent = ""; $("qEsito").className = "esito";
+    $("qScelte").innerHTML = mescola([x].concat(altre)).map(function(y){ return '<button type="button" data-id="' + y.id + '">' + esc(cap(y.it)) + '</button>'; }).join("");
+    Array.prototype.forEach.call($("qScelte").querySelectorAll("button"), function(b){ b.addEventListener("click", function(){ rispondi(b); }); });
+    $("qPunti").textContent = q.fatte ? q.giuste + " / " + q.fatte : "";
+  }
+  function rispondi(b){
+    if(q.bloccato) return; q.bloccato = true;
+    var ok = b.dataset.id === q.ora.id; q.fatte++; if(ok) q.giuste++;
+    b.classList.add(ok ? "si" : "no");
+    if(!ok){ var g = $("qScelte").querySelector('[data-id="' + q.ora.id + '"]'); if(g) g.classList.add("si"); }
+    $("qEsito").textContent = ok ? cap(q.ora.it) + "! Now say it out loud." : "It's «" + cap(q.ora.it) + "». Say it out loud.";
+    $("qEsito").className = "esito " + (ok ? "ok" : "ko");
+    parla(cap(q.ora.it));
+    $("qPunti").textContent = q.giuste + " / " + q.fatte;
+    setTimeout(nuovaDomanda, ok ? 1500 : 2400);
+  }
+  nuovaDomanda();
+
+  /* 2 · fa, c'è o da solo? */
+  var MAZZO = W.filter(function(x){ return x.k; });
+  var s = {mazzo:[], ora:null, punti:0, gioca:false, fine:0, t:null, bloccato:false};
+  function mostraRecord(){ $("sRecord").textContent = mem.rec ? "Record: " + mem.rec : ""; }
+  function prossima(){
+    if(!s.mazzo.length) s.mazzo = mescola(MAZZO);
+    var x = s.mazzo.shift();
+    if(s.ora && x.id === s.ora.id && MAZZO.length > 1){ s.mazzo.push(x); x = s.mazzo.shift(); }
+    s.ora = x; s.bloccato = false;
+    $("sParola").textContent = x.w; $("sEn").textContent = x.en;
+    Array.prototype.forEach.call($("sScatole").querySelectorAll("button"), function(b){ b.className = ""; });
+  }
+  function frase(x){ return cap(x.it) + "!"; }
+  Array.prototype.forEach.call($("sScatole").querySelectorAll("button"), function(b){
+    b.addEventListener("click", function(){
+      if(s.bloccato || !s.ora) return;
+      s.bloccato = true;
+      var ok = b.dataset.k === s.ora.k;
+      b.classList.add(ok ? "si" : "no");
+      if(!ok){ var g = $("sScatole").querySelector('[data-k="' + s.ora.k + '"]'); if(g) g.classList.add("si"); }
+      $("sEsito").textContent = ok ? frase(s.ora) + " ✓" : "No: «" + frase(s.ora) + "»";
+      $("sEsito").className = "esito " + (ok ? "ok" : "ko");
+      if(ok && s.gioca){ s.punti++; $("sPunti").textContent = s.punti + " sorted"; }
+      setTimeout(prossima, ok ? 450 : 1300);
+    });
+  });
+  function tick(){
+    var resta = Math.ceil((s.fine - Date.now()) / 1000);
+    $("sClock").textContent = orologio(resta);
+    if(resta <= 0){
+      clearInterval(s.t); s.gioca = false;
+      $("sTimer").classList.add("zero");
+      var nuovo = s.punti > mem.rec;
+      if(nuovo){ mem.rec = s.punti; salva(); }
+      $("sEsito").textContent = "Time! " + s.punti + " sorted." + (nuovo ? " New record!" : "");
+      $("sEsito").className = "esito ok";
+      $("sVia").textContent = "Again: 60 seconds"; $("sVia").disabled = false;
+      mostraRecord();
+    }
+  }
+  $("sVia").addEventListener("click", function(){
+    s.punti = 0; s.gioca = true; s.fine = Date.now() + 60000; s.mazzo = [];
+    $("sPunti").textContent = "0 sorted"; $("sEsito").textContent = ""; $("sTimer").classList.remove("zero");
+    $("sVia").disabled = true;
+    prossima(); clearInterval(s.t); s.t = setInterval(tick, 250); tick();
+  });
+  mostraRecord(); prossima();
+
+  /* 3 · il meteo */
+  var m = {prev:[], solo:false, t:null, fine:0, scelte:{}};
+  function generaPrevisione(){
+    return mescola(CITTA).slice(0, 4).map(function(c){
+      var cielo = CIELO[Math.floor(Math.random() * CIELO.length)];
+      var r = Math.random(), temp = "";
+      if(cielo === "nevica") temp = r < .7 ? "freddo" : "";
+      else if(cielo === "sole") temp = r < .45 ? "caldo" : r < .7 ? "freddo" : "";
+      else temp = r < .2 ? "caldo" : r < .55 ? "freddo" : "";
+      return {c:c, cielo:cielo, temp:temp};
+    });
+  }
+  function fraseCitta(p){ return "A " + p.c + " " + BY[p.cielo].it + (p.temp ? " e " + BY[p.temp].it : "") + "."; }
+  function copione(){ return "Buongiorno! Ecco il meteo di oggi. " + m.prev.map(fraseCitta).join(" ") + " Buona giornata!"; }
+  function cartVedi(p){ return '<div class="cart"><h3>' + esc(p.c) + '</h3><div class="icone">' + BY[p.cielo].ic + (p.temp ? " " + BY[p.temp].ic : "") + '</div></div>'; }
+  function cartScegli(p, i){
+    return '<div class="cart" id="mc' + i + '"><h3>' + esc(p.c) + '</h3><div class="icone" id="mi' + i + '"></div>' +
+      '<div class="scelta">' + CIELO.map(function(id){ return '<button type="button" data-i="' + i + '" data-g="cielo" data-v="' + id + '" aria-pressed="false" aria-label="' + esc(BY[id].it) + '">' + BY[id].ic + '</button>'; }).join("") + '</div>' +
+      '<div class="scelta">' + TEMP.map(function(id){ return '<button type="button" data-i="' + i + '" data-g="temp" data-v="' + id + '" aria-pressed="false" aria-label="' + esc(BY[id].it) + '">' + BY[id].ic + '</button>'; }).join("") + '</div>' +
+      '<div class="sol" id="ms' + i + '"></div></div>';
+  }
+  function fermaTimer(){ clearInterval(m.t); $("mTimer").hidden = true; }
+  function avvia(solo){
+    m.solo = solo; m.prev = generaPrevisione(); m.scelte = {};
+    fermaTimer();
+    $("mCopione").hidden = true; $("mCopione").textContent = copione();
+    $("mPunti").textContent = "";
+    if(solo){
+      $("mFase1").hidden = true;
+      $("mTit2").textContent = "Read the forecast";
+      $("mIstr2").textContent = "Read it out loud first, then tap the weather for each city.";
+      $("mLeggi").hidden = false; $("mLeggi").textContent = copione();
+      faseDue();
+    } else {
+      $("mFase2").hidden = true; $("mFase1").hidden = false; $("mLeggi").hidden = true;
+      $("mTit2").textContent = "2 · Listener";
+      $("mIstr2").textContent = "Now give the phone to your partner. Listener: tap the weather for each city. Ask «Come?» or «Che tempo fa a Roma?» if you need to.";
+      $("mVedi").innerHTML = m.prev.map(cartVedi).join("");
+      $("mNascondi").disabled = false;
+    }
+  }
+  function faseDue(){
+    $("mFase2").hidden = false;
+    $("mScegli").innerHTML = m.prev.map(cartScegli).join("");
+    $("mControlla").disabled = false;
+    Array.prototype.forEach.call($("mScegli").querySelectorAll("[data-g]"), function(b){
+      b.addEventListener("click", function(){
+        var i = b.dataset.i, g = b.dataset.g, sc = m.scelte[i] || (m.scelte[i] = {cielo:"", temp:""});
+        sc[g] = sc[g] === b.dataset.v ? "" : b.dataset.v;
+        Array.prototype.forEach.call($("mScegli").querySelectorAll('[data-i="' + i + '"][data-g="' + g + '"]'), function(x){ x.setAttribute("aria-pressed", String(x.dataset.v === sc[g])); });
+        $("mi" + i).textContent = (sc.cielo ? BY[sc.cielo].ic : "") + (sc.temp ? " " + BY[sc.temp].ic : "");
+      });
+    });
+  }
+  $("mNuovo").addEventListener("click", function(){ avvia(false); });
+  $("mSolo").addEventListener("click", function(){ avvia(true); });
+  $("mAiuto").addEventListener("click", function(){ $("mCopione").hidden = !$("mCopione").hidden; });
+  $("mNascondi").addEventListener("click", function(){
+    $("mFase1").hidden = true; $("mNascondi").disabled = true;
+    m.fine = Date.now() + 60000; $("mTimer").hidden = false; $("mTimer").classList.remove("zero");
+    clearInterval(m.t);
+    m.t = setInterval(function(){
+      var r = Math.ceil((m.fine - Date.now()) / 1000);
+      $("mClock").textContent = orologio(r);
+      if(r <= 0){ clearInterval(m.t); $("mTimer").classList.add("zero"); }
+    }, 250);
+    $("mClock").textContent = "1:00";
+    faseDue();
+  });
+  $("mControlla").addEventListener("click", function(){
+    var giuste = 0;
+    m.prev.forEach(function(p, i){
+      var sc = m.scelte[i] || {cielo:"", temp:""}, ok = sc.cielo === p.cielo && sc.temp === p.temp;
+      if(ok) giuste++;
+      $("mc" + i).className = "cart " + (ok ? "giusta" : "sbagliata");
+      $("ms" + i).innerHTML = ok ? "✓ " + esc(fraseCitta(p)) : "It was: " + BY[p.cielo].ic + (p.temp ? " " + BY[p.temp].ic : "") + " " + esc(fraseCitta(p));
+    });
+    fermaTimer();
+    $("mControlla").disabled = true;
+    $("mPunti").textContent = giuste + " / 4" + (giuste === 4 ? " Perfetto!" : "") + (m.solo ? "" : " Now swap roles: New forecast.");
+  });
+
+  /* 4 · da voi */
+  $("vCitta").value = mem.citta || "";
+  var vSel = [];
+  $("vScelte").innerHTML = W.map(function(x){ return '<button type="button" data-v="' + x.id + '" aria-pressed="false">' + x.ic + " " + esc(x.it) + '</button>'; }).join("");
+  function fraseVoi(){
+    var dove = $("vCitta").value.trim();
+    if(!vSel.length){ $("vFrase").textContent = ""; return; }
+    var pezzi = vSel.map(function(id){ return BY[id].it; });
+    var corpo = pezzi.length === 1 ? pezzi[0] : pezzi.slice(0, -1).join(", ") + " e " + pezzi[pezzi.length - 1];
+    $("vFrase").textContent = (dove ? "Oggi a " + dove + " " : "Oggi qui ") + corpo + ".";
+  }
+  Array.prototype.forEach.call($("vScelte").querySelectorAll("button"), function(b){
+    b.addEventListener("click", function(){
+      var id = b.dataset.v, i = vSel.indexOf(id);
+      if(i >= 0) vSel.splice(i, 1); else { vSel.push(id); if(vSel.length > 3) vSel.shift(); }
+      Array.prototype.forEach.call($("vScelte").querySelectorAll("button"), function(x){ x.setAttribute("aria-pressed", String(vSel.indexOf(x.dataset.v) >= 0)); });
+      fraseVoi();
+    });
+  });
+  $("vCitta").addEventListener("input", function(){ mem.citta = $("vCitta").value.trim().slice(0, 40); salva(); fraseVoi(); });
+})();
+</script>
+
+
+<style>
+.twf-cta{max-width:760px;margin:56px auto 40px;padding:0 16px;box-sizing:border-box;font-family:var(--text,"Newsreader"),Georgia,serif;color:var(--ink,#16233F);}
+.twf-cta *{box-sizing:border-box;}
+.twf-cta-in{background:var(--paper-2,#FFFDF8);border:1px solid var(--rule,#DFD8C7);border-radius:22px;padding:24px 26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 28px;}
+.twf-cta-txt{flex:1 1 320px;min-width:0;}
+.twf-cta-pen{font-family:"Caveat",cursive;font-size:1.45rem;color:var(--verde,#2E5E4E);margin:0 0 2px;line-height:1.1;}
+.twf-cta-h{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-0.01em;line-height:1.2;margin:0 0 6px;}
+.twf-cta-p{margin:0;color:var(--ink-soft,#4A5670);font-size:1rem;line-height:1.55;}
+.twf-cta-btn{flex:none;display:inline-block;font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:700;font-size:1rem;text-decoration:none;background:var(--ink,#16233F);color:var(--paper,#F7F4EC) !important;padding:13px 22px;border-radius:999px;transition:background .15s;}
+.twf-cta-btn:hover{background:var(--rosso,#C4312B);}
+@media (max-width:560px){.twf-cta-in{padding:20px;}.twf-cta-btn{width:100%;text-align:center;}}
+</style>
+<aside class="twf-cta" aria-label="Lessons with Fabio">
+  <div class="twf-cta-in">
+    <div class="twf-cta-txt">
+      <p class="twf-cta-pen">e adesso?</p>
+      <p class="twf-cta-h">Ready to say it out loud?</p>
+      <p class="twf-cta-p">Exercises train your memory. Talking is what makes it stick. One to one with me, 50 minutes on video, and the first lesson is a conversation, not a test.</p>
+    </div>
+    <a class="twf-cta-btn" href="/prenota/">Book a lesson &rarr;</a>
+  </div>
+</aside>
+</body>
+</html>

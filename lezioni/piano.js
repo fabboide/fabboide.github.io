@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "12 novembre 2026, 13:36";
+var PIANO_AGGIORNATO = "16 novembre 2026, 17:55";
 
 var PIANO = {
 
@@ -59,31 +59,26 @@ var PIANO = {
 
   "bianca-hco": {
     "nome": "Bianca",
-    "aggiornato": "9 novembre 2026",
+    "aggiornato": "16 novembre 2026",
     "ultima": {
-      "quando": "2026-11-09T15:00:00+01:00",
+      "quando": "2026-11-16T15:00:00+01:00",
       "fatto": [
-        "Fluency with Il filo: one story, told three times, without stopping. Very useful!"
+        "A whole hour of conversation, using what you already know"
       ]
     },
     "prossima": {
-      "quando": "2026-11-16T15:00:00+01:00",
-      "obiettivo": "Real conversation: start your sentences easily, ask questions back, and get what you need in a role-play.",
+      "quando": "2026-11-23T15:00:00+01:00",
+      "obiettivo": "From now on, only Italian! Keep talking with what you know, then tell a trip: where you left from, where you went, how long you stayed.",
       "attivita": [
         {
-          "titolo": "Warm-up: what did you do at the weekend?",
+          "titolo": "How was your week?",
           "href": "",
-          "nota": "Use the bridge phrases from last time"
+          "nota": "Only Italian: if a word is missing, say it another way"
         },
         {
-          "titolo": "Attacca e rilancia",
+          "titolo": "There and back",
           "href": "",
-          "nota": "Start with allora, beh, secondo me... and always ask something back"
-        },
-        {
-          "titolo": "Missioni in Italia",
-          "href": "https://talkwithfabio.com/missioni/",
-          "nota": "Two missions: the bar and the station. I play the barista!"
+          "nota": "Draw my friend's trip on the map, then tell me yours"
         }
       ]
     },
@@ -96,7 +91,7 @@ var PIANO = {
       {
         "titolo": "Missioni in Italia",
         "href": "https://talkwithfabio.com/missioni/",
-        "nota": "After the lesson: try another mission on your own"
+        "nota": "Try a mission on your own"
       }
     ]
   },
@@ -466,7 +461,7 @@ var PIANO = {
 
   "rafaela-yrd": {
     "nome": "Rafaela",
-    "aggiornato": "12 novembre 2026",
+    "aggiornato": "16 novembre 2026",
     "ultima": {
       "quando": "2026-11-12T09:30:00+01:00",
       "fatto": [
@@ -475,7 +470,7 @@ var PIANO = {
       ]
     },
     "prossima": {
-      "quando": "2026-11-13T09:00:00+01:00",
+      "quando": "2026-11-17T09:30:00+01:00",
       "obiettivo": "Say what the weather is like where you are: fa caldo, c'è il sole, piove...",
       "attivita": [
         {
@@ -492,14 +487,14 @@ var PIANO = {
     },
     "compiti": [
       {
+        "titolo": "Che tempo fa?",
+        "href": "https://talkwithfabio.com/esercizi/che-tempo-fa/",
+        "nota": "The weather words and the 60-second game"
+      },
+      {
         "titolo": "The first 190 words",
         "href": "https://talkwithfabio.com/esercizi/parole-a1/",
         "nota": "Ten minutes a day: more words, less English"
-      },
-      {
-        "titolo": "Passato prossimo 1: essere or avere?",
-        "href": "https://talkwithfabio.com/esercizi/passato-prossimo/?mode=aux",
-        "nota": "A few minutes every day"
       }
     ]
   },
@@ -545,35 +540,29 @@ var PIANO = {
 
   "robmarie-7vc": {
     "nome": "Rob & Marie",
-    "aggiornato": "11 novembre 2026",
+    "aggiornato": "16 novembre 2026",
     "ultima": {
-      "quando": "2026-11-11T13:00:00+01:00",
+      "quando": "2026-11-16T10:00:00+01:00",
       "fatto": [
-        "Parliamo!: the house",
-        "The building: who lives on which floor"
+        "The weather: Che tempo fa?"
       ]
     },
     "prossima": {
-      "quando": "2026-11-16T10:00:00+01:00",
-      "obiettivo": "I can say what there is in a room and understand someone describing one.",
+      "quando": "",
+      "obiettivo": "Say what the weather is like where you are, then a new topic.",
       "attivita": [
         {
-          "titolo": "Two rooms: spot the differences",
+          "titolo": "Your weather mission",
           "href": "",
-          "nota": "Each of you describes a room to the other"
-        },
-        {
-          "titolo": "Parliamo!: home and town",
-          "href": "",
-          "nota": "Ask each other the questions"
+          "nota": "30 seconds each: the weather where you are, and in a city you'd love to be in"
         }
       ]
     },
     "compiti": [
       {
-        "titolo": "Draw your building",
-        "href": "",
-        "nota": "Who lives where? Tell me at the start of the lesson: Abito al ... piano"
+        "titolo": "Che tempo fa?",
+        "href": "https://talkwithfabio.com/esercizi/che-tempo-fa/",
+        "nota": "Together: the words, the 60-second game, then present the TV weather to each other"
       }
     ]
   },
