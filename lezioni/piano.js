@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "16 novembre 2026, 17:55";
+var PIANO_AGGIORNATO = "16 novembre 2026, 19:26";
 
 var PIANO = {
 
@@ -616,41 +616,46 @@ var PIANO = {
 
   "sophie-6zk": {
     "nome": "Sophie",
-    "aggiornato": "10 novembre 2026",
+    "aggiornato": "16 novembre 2026",
     "ultima": {
-      "quando": "2026-11-10T12:00:00+01:00",
+      "quando": "2026-11-16T18:00:00+01:00",
       "fatto": [
-        "Senza ripetere: rispondi al volo e l'amica curiosa",
-        "Prove generali: due registri e ho ragione io",
-        "Paroline in gioco: il segreto"
+        "Acqua in bocca: una lezione sui segreti",
+        "Verbi con la sorpresa: prendersela, cavarsela, passarsela",
+        "Il treno ha fischiato: i primi due paragrafi"
       ]
     },
     "prossima": {
-      "quando": "2026-11-16T17:00:00+01:00",
-      "obiettivo": "Più sicura con tutto quello che ruota attorno al verbo: tempi, modi, ausiliare, verbi come farcela e cavarsela. Alla fine, un quarto d'ora di letteratura.",
+      "quando": "",
+      "obiettivo": "Tre parti: un ripasso e poi avanti, altri verbi con la sorpresa, e Pirandello da dove ci siamo fermati.",
       "attivita": [
         {
-          "titolo": "Il motore del verbo",
+          "titolo": "Ripasso e lezione nuova",
           "href": "",
-          "nota": "Il cambio, i verbi con la sorpresa e una storia con i tempi obbligati"
+          "nota": "Un ripasso veloce di Acqua in bocca, poi avanti"
         },
         {
-          "titolo": "Letteratura: Pirandello, «Il treno ha fischiato»",
+          "titolo": "Verbi con la sorpresa",
           "href": "",
-          "nota": "Ne parliamo e lo mettiamo in scena"
+          "nota": "Farcela, metterci, volerci, andarsene, sentirsela..."
+        },
+        {
+          "titolo": "Il treno ha fischiato",
+          "href": "",
+          "nota": "Da «Orbene, cento volte...» alla notte del fischio"
         }
       ]
     },
     "compiti": [
       {
-        "titolo": "Leggere «Il treno ha fischiato» di Pirandello",
+        "titolo": "Rileggere «Il treno ha fischiato»",
         "href": "",
-        "nota": "È breve: il testo te lo manda Fabio"
+        "nota": "I due paragrafi di oggi e il pezzo dopo, a voce alta"
       },
       {
         "titolo": "Il congiuntivo, passo dopo passo",
         "href": "https://talkwithfabio.com/esercizi/congiuntivo/",
-        "nota": "Ripasso delle forme prima della lezione"
+        "nota": "Ripasso delle forme"
       }
     ]
   }
