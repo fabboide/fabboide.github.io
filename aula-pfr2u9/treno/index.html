@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Il treno ha fischiato · La mia aula</title>
+<link rel="icon" href="../../favicon.svg">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+/* Layout: una striscia di binario in alto, cinque tappe a schede, una alla volta; il blu notte resta per le citazioni di Pirandello. Un solo aspetto, chiaro, voluto. */
+:root{
+  --basil:#2E5E4E; --tomato:#C4312B; --lemon:#E8A33D; --kraft:#D9BC8C; --pink:#F4A79F;
+  --stone:#F7F4EC; --paper:#FFFDF8; --ink:#16233F; --muted:#4A5670; --line:#DFD8C7;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --serif:"Newsreader",Georgia,serif;
+  --pen:"Caveat","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--stone);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.55}
+.nastro{height:6px;background:linear-gradient(90deg,var(--tomato) 0 25%,var(--lemon) 25% 50%,var(--basil) 50% 75%,var(--kraft) 75% 100%)}
+.wrap{max-width:860px;margin:0 auto;padding-block:20px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.testa{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.testa > div{min-width:0}
+.occhiello{font-family:var(--display);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0}
+h1{font-family:var(--display);font-weight:800;font-size:2.3rem;letter-spacing:-.03em;line-height:1.05;margin:4px 0 0;text-wrap:balance}
+h2{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.02em;margin:0 0 6px;text-wrap:balance}
+.orologio{display:flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 8px 6px 16px}
+.orologio .t{font-family:var(--display);font-weight:800;font-size:1.35rem;font-variant-numeric:tabular-nums;min-width:3.2ch}
+.orologio .t.poco{color:var(--tomato)}
+.btn{font-family:var(--display);font-weight:700;font-size:.95rem;border:1px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:9px 17px;cursor:pointer}
+.btn.piccolo{padding:6px 13px;font-size:.85rem}
+.btn.verde{background:var(--basil);border-color:var(--basil)}
+.btn.rosso{background:var(--tomato);border-color:var(--tomato)}
+.btn.giallo{background:var(--lemon);border-color:var(--lemon);color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn:focus-visible,#fasi button:focus-visible,.chips button:focus-visible,input:focus-visible{outline:3px solid var(--lemon);outline-offset:2px}
+.riga{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#fasi{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 16px}
+#fasi button{font-family:var(--display);font-weight:700;font-size:.9rem;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
+#fasi button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+#fasi button .n{color:var(--lemon);margin-right:6px}
+#fasi button .m{opacity:.6;font-weight:600;margin-left:6px;font-size:.8em}
+.sez{display:none}
+.sez.on{display:block}
+.notte{background:var(--ink);color:var(--paper);border-radius:20px;padding:24px 22px;margin:12px 0;position:relative;overflow:hidden}
+.notte .cit{font-family:var(--serif);font-style:italic;font-size:1.55rem;line-height:1.35;color:var(--paper);margin:0;text-wrap:balance}
+.notte .cit::before{content:"«"}
+.notte .cit::after{content:"»"}
+.notte .fonte{font-family:var(--display);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--kraft);margin:10px 0 0}
+.binario{position:absolute;left:0;right:0;bottom:12px;height:10px;opacity:.35;
+  background:repeating-linear-gradient(90deg,var(--kraft) 0 4px,transparent 4px 22px);border-top:2px solid var(--kraft)}
+.domanda{font-family:var(--display);font-weight:700;font-size:1.45rem;line-height:1.3;letter-spacing:-.01em;margin:16px 0 4px;text-wrap:balance}
+.sotto{color:var(--muted);margin:4px 0}
+.penna{font-family:var(--pen);font-size:1.5rem;color:var(--basil);line-height:1.2;margin:8px 0}
+.due{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.due > *{min-width:0}
+@media (max-width:620px){.due{grid-template-columns:1fr}}
+.carta{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.carta .et{font-family:var(--pen);font-size:1.6rem;line-height:1;color:var(--tomato)}
+.carta.prima .et{color:var(--basil)}
+.carta blockquote{margin:8px 0 0;font-style:italic;font-size:1.12rem}
+.carta blockquote::before{content:"«"} .carta blockquote::after{content:"»"}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.chips button{font-family:var(--display);font-weight:700;font-size:1rem;border:2px dashed var(--kraft);background:var(--paper);color:var(--ink);border-radius:14px;padding:8px 14px;cursor:pointer;text-align:left}
+.chips button .g{display:block;font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.chips button.usata{border-style:solid;border-color:var(--basil);background:var(--basil);color:var(--paper)}
+.chips button.usata .g{color:var(--kraft)}
+.scala{margin:18px 0 6px}
+.scala input{width:100%;accent-color:var(--tomato);height:28px}
+.scala .poli{display:flex;justify-content:space-between;font-family:var(--display);font-weight:800;font-size:1.05rem}
+.scala .poli span:last-child{color:var(--basil)} .scala .poli span:first-child{color:var(--tomato)}
+.verdetto{font-family:var(--pen);font-size:2rem;line-height:1.1;margin:10px 0 2px}
+.attacchi{display:flex;flex-direction:column;gap:6px;margin:8px 0 0;padding:0;list-style:none}
+.attacchi li{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-family:var(--display);font-weight:600}
+.obiezione{font-family:var(--display);font-weight:700;font-size:1.35rem;line-height:1.3;color:var(--paper);margin:4px 0 0;min-height:1.3em;text-wrap:balance}
+.obiezione.vuota{color:var(--kraft);font-weight:500;font-size:1.05rem}
+.etich{font-family:var(--display);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--kraft)}
+.svelato{margin-top:12px}
+.formula{font-family:var(--display);font-size:.98rem;color:var(--muted);border:1px dashed var(--line);border-radius:12px;padding:8px 12px;margin-top:10px}
+.formula b{color:var(--ink)}
+.scena{font-family:var(--display);font-weight:800;font-size:1.6rem;line-height:1.25;letter-spacing:-.015em;color:var(--lemon);margin:6px 0 0;text-wrap:balance}
+.ruolo h3{font-family:var(--display);font-size:1.15rem;margin:0 0 4px}
+.ruolo ul{margin:6px 0 0;padding-left:20px}
+.ruolo li{margin:3px 0}
+.ruolo.lei{border-top:5px solid var(--lemon)} .ruolo.lui{border-top:5px solid var(--ink)}
+.pallini{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.pallini button{width:40px;height:40px;border-radius:50%;border:2px solid var(--basil);background:var(--paper);color:var(--basil);font-family:var(--display);font-weight:800;cursor:pointer}
+.pallini button.si{background:var(--basil);color:var(--paper)}
+.pallini span{font-family:var(--display);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.lettura{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin:12px 0;max-width:68ch;font-size:1.12rem;line-height:1.7}
+.lettura p{margin:0 0 .9em}
+.lettura p:last-child{margin-bottom:0}
+.lettura .gl{text-decoration:underline dotted var(--tomato);text-decoration-thickness:2px;text-underline-offset:4px;cursor:pointer}
+.lettura .gl[aria-expanded="true"]{background:var(--lemon);border-radius:4px;color:var(--ink)}
+.lettura .nota{display:inline-block;font-family:var(--pen);font-size:1.3rem;line-height:1.1;color:var(--basil);margin:0 4px}
+.lettura .nota::before{content:"= "}
+.lettura .taglio{color:var(--muted);text-align:center}
+.fonte-l{font-family:var(--display);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 0 0}
+.fondo{margin-top:28px;color:var(--muted);font-size:.92rem}
+.fondo a{color:var(--basil)}
+.kbd{font-size:.72em;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin-left:7px}
+@media (hover:none){.kbd{display:none}}
+@media (max-width:480px){h1{font-size:1.85rem}.notte .cit{font-size:1.28rem}.domanda{font-size:1.22rem}.scena{font-size:1.3rem}}
+@media (prefers-reduced-motion:no-preference){.sez.on{animation:entra .25s ease-out}@keyframes entra{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<div class="nastro"></div>
+<div class="wrap">
+  <div class="testa">
+    <div>
+      <p class="occhiello">Luigi Pirandello · Novelle per un anno</p>
+      <h1>Il treno ha fischiato</h1>
+    </div>
+    <div class="orologio" aria-label="Tempo della tappa">
+      <span class="t" id="tempo">2:00</span>
+      <button class="btn piccolo verde" id="via" type="button">Via</button>
+      <button class="btn piccolo ghost" id="azzera" type="button" aria-label="Rimetti il tempo">↺</button>
+    </div>
+  </div>
+
+  <nav id="fasi" aria-label="Tappe"></nav>
+
+  <!-- 1 -->
+  <section class="sez" data-fase="1" data-nome="Il fischio" data-min="1">
+    <div class="notte">
+      <p class="cit">aveva sentito, da lontano, fischiare un treno.</p>
+      <p class="fonte">Pirandello, Il treno ha fischiato</p>
+      <div class="riga" style="margin-top:16px;padding-bottom:18px">
+        <button class="btn giallo" id="fischio1" type="button">Ascolta il fischio</button>
+      </div>
+      <div class="binario" aria-hidden="true"></div>
+    </div>
+    <p class="domanda">È notte fonda e non riesci a dormire. Da lontano fischia un treno. A cosa pensi?</p>
+    <p class="sotto">E poi: cosa può cambiare, nella vita di una persona, un rumore così?</p>
+  </section>
+
+  <!-- 2 -->
+  <section class="sez" data-fase="2" data-nome="Leggiamo" data-min="4">
+    <h2>La notte del fischio</h2>
+    <p class="sotto">Il narratore, vicino di casa di Belluca, va a trovarlo all'ospizio. Leggiamo a voce alta, un paragrafo a testa. Tocca le parole sottolineate per la spiegazione.</p>
+    <article class="lettura" id="lettura">
+      <p>Ebbene, signori: a Belluca, in queste condizioni, era accaduto un fatto naturalissimo.</p>
+      <p>Quando andai a trovarlo all’ospizio, me lo raccontò lui stesso, per filo e per segno. Era, sì, ancora <span class="gl" data-g="agitato, fuori di sé per l'entusiasmo">esaltato</span> un po’, ma naturalissimamente, per ciò che gli era accaduto. Rideva dei medici e degli infermieri e di tutti i suoi colleghi, che lo credevano impazzito.</p>
+      <p>«Magari!» diceva. «Magari!».</p>
+      <p>Signori, Belluca, s’era dimenticato da tanti e tanti anni – ma proprio dimenticato – che il mondo esisteva.</p>
+      <p>Assorto nel continuo tormento di quella sua <span class="gl" data-g="disgraziata, infelice">sciagurata</span> esistenza, assorto tutto il giorno nei conti del suo ufficio, senza mai un momento di respiro, come una bestia bendata, <span class="gl" data-g="legata con il giogo, come un bue">aggiogata</span> alla <span class="gl" data-g="la barra di legno a cui si lega l'animale che, girando in tondo, fa muovere la ruota per tirare su l'acqua">stanga d’una nòria</span> o d’un molino, sissignori, s’era dimenticato da anni e anni – ma proprio dimenticato – che il mondo esisteva.</p>
+      <p>Due sere avanti, buttandosi a dormire <span class="gl" data-g="sfinito, senza più forze">stremato</span> su quel <span class="gl" data-g="divano vecchio e brutto (-accio = peggiorativo)">divanaccio</span>, forse per l’eccessiva stanchezza, insolitamente, non gli era riuscito d’addormentarsi subito. E, d’improvviso, nel silenzio profondo della notte, aveva sentito, da lontano, fischiare un treno.</p>
+      <p>Gli era parso che gli orecchi, dopo tant’anni, chi sa come, d’improvviso gli si fossero <span class="gl" data-g="liberati, aperti (come un lavandino che non è più otturato)">sturati</span>.</p>
+      <p>Il fischio di quel treno gli aveva <span class="gl" data-g="strappato, aperto con violenza">squarciato</span> e portato via d’un tratto la miseria di tutte quelle sue orribili <span class="gl" data-g="sofferenze, ristrettezze">angustie</span>, e quasi da un sepolcro <span class="gl" data-g="senza più il coperchio, aperto">scoperchiato</span> s’era ritrovato a spaziare <span class="gl" data-g="con il fiato corto, pieno di desiderio">anelante</span> nel vuoto arioso del mondo che gli si spalancava enorme tutt’intorno.</p>
+      <p>S’era tenuto istintivamente alle coperte che ogni sera si buttava addosso, ed era corso col pensiero dietro a quel treno che s’allontanava nella notte.</p>
+      <p>C’era, ah! c’era, fuori di quella casa orrenda, fuori di tutti i suoi tormenti, c’era il mondo, tanto, tanto mondo lontano, a cui quel treno s’avviava... Firenze, Bologna, Torino, Venezia... tante città, in cui egli da giovine era stato e che ancora, certo, in quella notte <span class="gl" data-g="brillavano, scintillavano">sfavillavano</span> di luci sulla terra.</p>
+      <p class="taglio">[...]</p>
+      <p>E, dunque, lui – ora che il mondo gli era rientrato nello spirito – poteva in qualche modo consolarsi! Sì, levandosi ogni tanto dal suo tormento, per prendere con l’immaginazione una boccata d’aria nel mondo.</p>
+      <p>Gli bastava!</p>
+      <p>Sarebbe andato, appena ricomposto del tutto, a chiedere scusa al capo-ufficio, e avrebbe ripreso come prima la sua <span class="gl" data-g="il lavoro di contabilità, i conti">computisteria</span>. Soltanto il capo-ufficio ormai non doveva pretender troppo da lui come per il passato: doveva concedergli che di tanto in tanto, tra una partita e l’altra da registrare, egli facesse una <span class="gl" data-g="una visita breve, un salto">capatina</span>, sì, in Siberia... oppure oppure... nelle foreste del Congo: «Si fa in un attimo, signor Cavaliere mio. Ora che il treno ha fischiato...».</p>
+    </article>
+    <p class="fonte-l">Luigi Pirandello, «Il treno ha fischiato...» (1914), dalle Novelle per un anno. Brano tagliato.</p>
+  </section>
+
+  <!-- 3 -->
+  <section class="sez" data-fase="3" data-nome="Belluca" data-min="2">
+    <h2>Belluca, prima e dopo</h2>
+    <div class="due">
+      <div class="carta prima">
+        <div class="et">prima</div>
+        <blockquote>uomo più mansueto e sottomesso, più metodico e paziente di Belluca non si sarebbe potuto immaginare.</blockquote>
+      </div>
+      <div class="carta">
+        <div class="et">dopo</div>
+        <blockquote>Farneticava. Principio di febbre cerebrale, avevano detto i medici.</blockquote>
+        <blockquote>Il treno, signor Cavaliere.</blockquote>
+      </div>
+    </div>
+    <p class="domanda">Racconta la storia di Belluca in un minuto, senza fermarti.</p>
+    <p class="sotto">Usa questi attacchi. Ogni volta che ne usi uno, si colora.</p>
+    <div class="chips" id="chipsStoria"></div>
+  </section>
+
+  <!-- 4 -->
+  <section class="sez" data-fase="4" data-nome="Pazzo o guarito?" data-min="3">
+    <h2>Belluca è impazzito o è guarito?</h2>
+    <p class="sotto">Sposta il cursore dove la pensi tu, poi difendi la tua posizione.</p>
+    <div class="scala">
+      <label for="cursore" class="poli"><span>È impazzito</span><span>È guarito</span></label>
+      <input type="range" id="cursore" min="0" max="100" value="50">
+    </div>
+    <div class="verdetto" id="verdetto"></div>
+    <ul class="attacchi" id="attacchi"></ul>
+
+    <div class="notte" style="margin-top:16px">
+      <div class="riga" style="justify-content:space-between">
+        <span class="etich">Ti rispondo così</span>
+        <span class="etich">rispondi con «Anche se...»</span>
+      </div>
+      <p class="obiezione vuota" id="obiezione">Premi «Ma...» e prova a ribattere.</p>
+      <div class="riga" style="margin-top:14px">
+        <button class="btn rosso" id="ma" type="button">Ma...<span class="kbd">spazio</span></button>
+        <button class="btn ghost" id="narratore" type="button" style="color:var(--paper);border-color:var(--muted)">E Pirandello?</button>
+      </div>
+      <div class="svelato" id="narratoreTesto" hidden>
+        <p class="cit">il suo caso poteva anche essere naturalissimo</p>
+        <p class="fonte">Lo dice il narratore, il vicino di casa di Belluca</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="sez" data-fase="5" data-nome="Il tuo treno" data-min="2">
+    <div class="notte">
+      <p class="cit">In Siberia... oppure oppure... nelle foreste del Congo...</p>
+      <p class="fonte">Dove va Belluca con la fantasia</p>
+    </div>
+    <h2>E il tuo treno?</h2>
+    <div class="notte" style="background:var(--basil)">
+      <span class="etich" style="color:var(--paper);opacity:.8">la scena</span>
+      <p class="scena" id="scena"></p>
+    </div>
+    <p class="domanda">Il treno fischia. Dove vai con la fantasia? Cosa vedi, cosa senti, cosa fai?</p>
+    <div class="formula">Se adesso <b>potessi</b> partire, <b>andrei</b>... · <b>Vorrei</b> che il treno mi <b>portasse</b>... · Lì <b>sentirei</b>, <b>vedrei</b>...</div>
+    <div class="riga" style="margin-top:12px">
+      <button class="btn" id="altraScena" type="button">Un'altra scena<span class="kbd">spazio</span></button>
+      <button class="btn giallo" id="fischio2" type="button">Fai fischiare il treno</button>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="sez" data-fase="6" data-nome="In scena" data-min="3">
+    <h2>Belluca torna in ufficio</h2>
+    <div class="due">
+      <div class="carta ruolo lei">
+        <h3>Tu sei Belluca</h3>
+        <p style="margin:0">Esci dall'ospizio e vai dal capufficio.</p>
+        <ul>
+          <li><b>Obiettivo:</b> farti riprendere al lavoro e ottenere il permesso di fare, ogni tanto, una capatina con la fantasia.</li>
+          <li>Gli dai del <b>Lei</b>.</li>
+          <li>Almeno <b>tre congiuntivi</b>: <i>Vorrei che Lei capisse..., Non pensi che io sia..., Le prometto di..., purché...</i></li>
+        </ul>
+        <div class="pallini" id="pallini">
+          <span>congiuntivi</span>
+          <button type="button" aria-pressed="false">1</button>
+          <button type="button" aria-pressed="false">2</button>
+          <button type="button" aria-pressed="false">3</button>
+        </div>
+      </div>
+      <div class="carta ruolo lui">
+        <h3>Il signor Cavaliere</h3>
+        <p style="margin:0">Vuole capire, ma non si fida. Ha un ufficio da mandare avanti e i colleghi ridono ancora.</p>
+      </div>
+    </div>
+    <div class="notte">
+      <span class="etich">il Cavaliere</span>
+      <p class="obiezione vuota" id="cavaliere">Premi il bottone: il Cavaliere ti fa una domanda.</p>
+      <div class="riga" style="margin-top:14px">
+        <button class="btn rosso" id="ribatte" type="button">Il Cavaliere ribatte<span class="kbd">spazio</span></button>
+        <button class="btn giallo" id="finale" type="button">L'ultima battuta</button>
+      </div>
+      <div class="svelato" id="finaleTesto" hidden>
+        <p class="cit">Si fa in un attimo, signor Cavaliere mio. Ora che il treno ha fischiato...</p>
+        <p class="fonte">Così finisce la novella. Chiudi la scena con queste parole.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="fondo">Il testo completo è su <a href="https://it.wikisource.org/wiki/Il_treno_ha_fischiato" target="_blank" rel="noopener">Wikisource</a>. Frecce ← → per cambiare tappa.</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
+  function mescola(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+  function mazzo(arr){ var m=[]; return function(){ if(!m.length) m=mescola(arr); return m.shift(); }; }
+  function fmt(n){ var m=Math.floor(n/60), s=n%60; return m+":"+(s<10?"0":"")+s; }
+
+  /* ---------- tappe e tempo ---------- */
+  var sez=Array.prototype.slice.call(document.querySelectorAll(".sez"));
+  var fase=1, resto=0, giro=null;
+  sez.forEach(function(s){
+    var b=document.createElement("button"); b.type="button";
+    b.innerHTML='<span class="n">'+s.dataset.fase+'</span>'+s.dataset.nome+'<span class="m">'+s.dataset.min+"'</span>";
+    b.addEventListener("click",function(){ vai(+s.dataset.fase); });
+    $("fasi").appendChild(b);
+  });
+  function ferma(){ if(giro){ clearInterval(giro); giro=null; } $("via").textContent="Via"; }
+  function mostra(){ $("tempo").textContent=fmt(resto); $("tempo").classList.toggle("poco",resto<=20); }
+  function azzera(){ ferma(); resto=(+sez[fase-1].dataset.min)*60; mostra(); }
+  function vai(n){
+    fase=Math.max(1,Math.min(sez.length,n));
+    sez.forEach(function(s,i){ var on=i===fase-1; s.classList.toggle("on",on); $("fasi").children[i].classList.toggle("on",on); });
+    azzera();
+  }
+  $("via").addEventListener("click",function(){
+    if(giro){ ferma(); return; }
+    if(resto<=0) azzera();
+    $("via").textContent="Pausa";
+    giro=setInterval(function(){ resto--; mostra(); if(resto<=0){ ferma(); } },1000);
+  });
+  $("azzera").addEventListener("click",azzera);
+
+  /* ---------- il fischio (Web Audio) ---------- */
+  var ctx=null;
+  function fischia(){
+    try{
+      if(!ctx) ctx=new (window.AudioContext||window.webkitAudioContext)();
+      if(ctx.state==="suspended") ctx.resume();
+      var t=ctx.currentTime, dur=2.6;
+      var out=ctx.createGain(); out.gain.setValueAtTime(0,t);
+      out.gain.linearRampToValueAtTime(.22,t+.25); out.gain.setValueAtTime(.22,t+dur-.7); out.gain.exponentialRampToValueAtTime(.001,t+dur);
+      var filtro=ctx.createBiquadFilter(); filtro.type="lowpass"; filtro.frequency.value=2600;
+      filtro.connect(out); out.connect(ctx.destination);
+      [[392,"triangle"],[466,"triangle"],[587,"sine"]].forEach(function(f,i){
+        var o=ctx.createOscillator(), g=ctx.createGain(); o.type=f[1];
+        o.frequency.setValueAtTime(f[0]*.94,t); o.frequency.linearRampToValueAtTime(f[0],t+.3); o.frequency.linearRampToValueAtTime(f[0]*.97,t+dur);
+        var lfo=ctx.createOscillator(), lg=ctx.createGain(); lfo.frequency.value=5.5; lg.gain.value=3; lfo.connect(lg); lg.connect(o.frequency);
+        g.gain.value=i===2?.25:.4; o.connect(g); g.connect(filtro);
+        o.start(t); lfo.start(t); o.stop(t+dur); lfo.stop(t+dur);
+      });
+      /* un filo di vapore */
+      var n=ctx.createBuffer(1,ctx.sampleRate*dur,ctx.sampleRate), d=n.getChannelData(0);
+      for(var k=0;k<d.length;k++) d[k]=(Math.random()*2-1)*.12;
+      var src=ctx.createBufferSource(); src.buffer=n;
+      var bp=ctx.createBiquadFilter(); bp.type="bandpass"; bp.frequency.value=1800; bp.Q.value=.8;
+      src.connect(bp); bp.connect(out); src.start(t);
+    }catch(e){}
+  }
+  $("fischio1").addEventListener("click",fischia);
+  $("fischio2").addEventListener("click",fischia);
+
+  /* ---------- 2. lettura: glossario ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll("#lettura .gl"),function(g){
+    g.setAttribute("tabindex","0"); g.setAttribute("role","button"); g.setAttribute("aria-expanded","false");
+    function gira(){
+      var n=g.nextSibling;
+      if(n && n.classList && n.classList.contains("nota")){ n.remove(); g.setAttribute("aria-expanded","false"); return; }
+      var s=document.createElement("span"); s.className="nota"; s.textContent=g.dataset.g;
+      g.parentNode.insertBefore(s,g.nextSibling); g.setAttribute("aria-expanded","true");
+    }
+    g.addEventListener("click",gira);
+    g.addEventListener("keydown",function(e){ if(e.key==="Enter"){ gira(); e.preventDefault(); } });
+  });
+
+  /* ---------- 3. la storia ---------- */
+  [["Era un impiegato che...","imperfetto"],["Ogni giorno...","imperfetto"],["Una notte aveva sentito...","trapassato prossimo"],
+   ["Il giorno dopo, in ufficio...","passato prossimo"],["Tutti pensavano che fosse...","congiuntivo imperfetto"],["Da quel momento...","passato prossimo"]
+  ].forEach(function(c){
+    var b=document.createElement("button"); b.type="button"; b.setAttribute("aria-pressed","false");
+    b.innerHTML='<span class="g">'+c[1]+"</span>"+c[0];
+    b.addEventListener("click",function(){ var u=b.classList.toggle("usata"); b.setAttribute("aria-pressed",u?"true":"false"); });
+    $("chipsStoria").appendChild(b);
+  });
+
+  /* ---------- 3. pazzo o guarito ---------- */
+  var zone=[
+    {v:"Secondo me è impazzito.",c:"var(--tomato)",a:["Credo che abbia perso il contatto con...","Non è normale che un uomo...","Mi sembra che i medici..."]},
+    {v:"Né pazzo né guarito.",c:"var(--muted)",a:["Non è che sia pazzo, è che...","Dipende da che cosa intendiamo per...","Da una parte..., dall'altra..."]},
+    {v:"Secondo me è guarito.",c:"var(--basil)",a:["Mi sembra che finalmente si sia...","Il vero pazzo è chi...","Prima viveva come se..."]}
+  ];
+  function aggiorna(){
+    var x=+$("cursore").value, z=zone[x<34?0:(x<67?1:2)];
+    $("verdetto").textContent=z.v; $("verdetto").style.color=z.c;
+    $("attacchi").innerHTML=z.a.map(function(s){ return "<li>"+s+"</li>"; }).join("");
+  }
+  $("cursore").addEventListener("input",aggiorna); aggiorna();
+  var obiezioni=mazzo([
+    "Ma ha una famiglia da mantenere: non può permettersi di sognare.",
+    "Ma ha risposto male al capufficio: è una mancanza di rispetto.",
+    "Ma i medici hanno parlato di febbre cerebrale.",
+    "Ma se tutti facessero come lui, chi lavorerebbe?",
+    "Ma la fantasia non paga l'affitto.",
+    "Ma un fischio è solo un rumore. Perché esagerare?",
+    "Ma in ufficio ridono di lui. Avranno pure un motivo.",
+    "Ma è scappato dalla realtà invece di cambiarla."
+  ]);
+  $("ma").addEventListener("click",function(){ var o=$("obiezione"); o.classList.remove("vuota"); o.textContent=obiezioni(); });
+  $("narratore").addEventListener("click",function(){ $("narratoreTesto").hidden=!$("narratoreTesto").hidden; });
+
+  /* ---------- 4. il tuo treno ---------- */
+  var scene=mazzo([
+    "Sei in riunione da due ore e nessuno arriva al punto.",
+    "Sei in coda alla posta. Hai il numero 87 e chiamano il 42.",
+    "È domenica sera e domani si ricomincia.",
+    "Sei ferma nel traffico, sotto la pioggia.",
+    "Stai compilando un modulo di sei pagine.",
+    "Sei a una cena dove non conosci nessuno.",
+    "Sei sul palco e hai dimenticato la battuta.",
+    "Sono le sette di mattina e suona la sveglia per la terza volta."
+  ]);
+  function nuovaScena(){ $("scena").textContent=scene(); }
+  $("altraScena").addEventListener("click",nuovaScena); nuovaScena();
+
+  /* ---------- 5. in scena ---------- */
+  Array.prototype.forEach.call($("pallini").querySelectorAll("button"),function(b){
+    b.addEventListener("click",function(){ var s=b.classList.toggle("si"); b.setAttribute("aria-pressed",s?"true":"false"); });
+  });
+  var battute=mazzo([
+    "Belluca, l'altro giorno Lei mi ha mancato di rispetto davanti a tutti!",
+    "E se il treno Le fischia durante l'orario d'ufficio?",
+    "I conti chi me li fa, il treno?",
+    "I colleghi ridono ancora di Lei. Cosa devo dire loro?",
+    "Mi spieghi bene: dov'è andato, con questa fantasia?",
+    "Lei ha una famiglia. Ci ha pensato?",
+    "Che garanzie mi dà che non succeda più?",
+    "E va bene. Ma me lo promette?"
+  ]);
+  $("ribatte").addEventListener("click",function(){ var c=$("cavaliere"); c.classList.remove("vuota"); c.textContent=battute(); });
+  $("finale").addEventListener("click",function(){ $("finaleTesto").hidden=!$("finaleTesto").hidden; });
+
+  /* ---------- tastiera ---------- */
+  document.addEventListener("keydown",function(e){
+    if(e.target && /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
+    if(e.key==="ArrowRight"){ vai(fase+1); e.preventDefault(); }
+    else if(e.key==="ArrowLeft"){ vai(fase-1); e.preventDefault(); }
+    else if(e.key===" "){
+      var b={4:"ma",5:"altraScena",6:"ribatte"}[fase];
+      if(b){ $(b).click(); e.preventDefault(); }
+    }
+  });
+
+  vai(1);
+})();
+</script>
+</body>
+</html>
