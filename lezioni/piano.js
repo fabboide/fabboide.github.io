@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "16 novembre 2026, 19:26";
+var PIANO_AGGIORNATO = "17 novembre 2026, 03:04";
 
 var PIANO = {
 
@@ -92,6 +92,45 @@ var PIANO = {
         "titolo": "Missioni in Italia",
         "href": "https://talkwithfabio.com/missioni/",
         "nota": "Try a mission on your own"
+      }
+    ]
+  },
+
+  "brett-fjh": {
+    "nome": "Brett",
+    "aggiornato": "16 novembre 2026",
+    "ultima": {
+      "quando": "2026-11-16T19:00:00+01:00",
+      "fatto": [
+        "The weather: Che tempo fa?"
+      ]
+    },
+    "prossima": {
+      "quando": "2026-11-23T18:00:00+01:00",
+      "obiettivo": "Back to the basics: all the Italian words you already know, then packing a suitcase.",
+      "attivita": [
+        {
+          "titolo": "What's the weather like today?",
+          "href": "",
+          "nota": "Warm-up: tell me the weather where you are"
+        },
+        {
+          "titolo": "Words you already know",
+          "href": "",
+          "nota": "You know more Italian than you think!"
+        }
+      ]
+    },
+    "compiti": [
+      {
+        "titolo": "Che tempo fa?",
+        "href": "https://talkwithfabio.com/esercizi/che-tempo-fa/",
+        "nota": "The weather words with audio and the 60-second game"
+      },
+      {
+        "titolo": "Your first 80 phrases",
+        "href": "https://talkwithfabio.com/esercizi/prime-frasi/",
+        "nota": "A few minutes a day"
       }
     ]
   },
