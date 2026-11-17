@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "17 novembre 2026, 03:04";
+var PIANO_AGGIORNATO = "17 novembre 2026, 20:47";
 
 var PIANO = {
 
@@ -199,51 +199,40 @@ var PIANO = {
 
   "ellie-3mw": {
     "nome": "Ellie",
-    "aggiornato": "2 novembre 2026",
+    "aggiornato": "17 novembre 2026",
     "ultima": {
-      "quando": "2026-10-29T14:30:00+01:00",
+      "quando": "2026-11-17T15:00:00+01:00",
       "fatto": [
-        "Verb roulette",
-        "Guess who? Very good!",
-        "A bit of Halloween"
+        "The weather: Che tempo fa?",
+        "The body: mi fa male la testa"
       ]
     },
     "prossima": {
-      "quando": "2026-11-03T15:00:00+01:00",
-      "obiettivo": "Tell me about your Halloween party, then clothes and colours.",
+      "quando": "2026-11-18T15:00:00+01:00",
+      "obiettivo": "Read Italian signs and say what you can and can't do: posso, non posso, devo.",
       "attivita": [
         {
-          "titolo": "How was the party?",
+          "titolo": "Warm-up",
           "href": "",
-          "nota": "Com'eri vestita? Quante persone sono venute?"
+          "nota": "What's the weather like? Does anything hurt?"
         },
         {
-          "titolo": "Verb roulette",
+          "titolo": "Can I?",
           "href": "",
-          "nota": "Ten minutes of verbs"
-        },
-        {
-          "titolo": "Il guardaroba",
-          "href": "",
-          "nota": "Clothes and colours: maglietta rossa, pantaloni neri"
-        },
-        {
-          "titolo": "Conversation",
-          "href": "",
-          "nota": "Ten minutes at the end"
+          "nota": "Help Kim at the museum and on the train"
         }
       ]
     },
     "compiti": [
       {
-        "titolo": "Chi è? Guess who, on your own",
-        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
-        "nota": "Now it understands eye colours and skin too"
+        "titolo": "Che tempo fa?",
+        "href": "https://talkwithfabio.com/esercizi/che-tempo-fa/",
+        "nota": "The weather words with audio and the 60-second game"
       },
       {
         "titolo": "Describing people",
         "href": "https://talkwithfabio.com/esercizi/descrivere/",
-        "nota": "Look at the clothes and colours"
+        "nota": "Flashcards: the body and more"
       }
     ]
   },
