@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "17 novembre 2026, 20:47";
+var PIANO_AGGIORNATO = "18 novembre 2026, 20:22";
 
 var PIANO = {
 
@@ -370,27 +370,33 @@ var PIANO = {
 
   "jasmine-jo9": {
     "nome": "Jasmine",
-    "aggiornato": "9 novembre 2026",
+    "aggiornato": "18 novembre 2026",
     "ultima": {
-      "quando": "2026-11-09T19:00:00+01:00",
+      "quando": "2026-11-18T19:00:00+01:00",
       "fatto": [
-        "Getting to know each other: your Italian roots and your summers in Tuscany",
-        "A first look at where your Italian flows and where it gets stuck"
+        "Verbi in tasca: ready-made phrases",
+        "The body and clothes",
+        "The verb roulette"
       ]
     },
     "prossima": {
-      "quando": "2026-11-18T19:00:00+01:00",
-      "obiettivo": "Talk about your day and your summers in Italy, with the verbs coming out on their own. No grammar tables, just conversation.",
+      "quando": "2026-11-23T20:00:00+01:00",
+      "obiettivo": "Talk about your plans: what are you doing this weekend, with whom, where are you going? Just conversation.",
       "attivita": [
         {
-          "titolo": "Verbi in tasca: ready-made phrases",
+          "titolo": "Your weekend",
           "href": "",
-          "nota": "I ask, you answer, then you ask me back"
+          "nota": "Cosa fai questo weekend? Con chi?"
         },
         {
-          "titolo": "Small talk about your week",
+          "titolo": "Verbi in tasca",
           "href": "",
-          "nota": "Just chatting, in Italian"
+          "nota": "The cards that are not in your pocket yet"
+        },
+        {
+          "titolo": "Are you free on Saturday?",
+          "href": "",
+          "nota": "Invitations and plans: forse andiamo a cena insieme!"
         }
       ]
     },
