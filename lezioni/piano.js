@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "19 novembre 2026, 02:28";
+var PIANO_AGGIORNATO = "19 novembre 2026, 19:39";
 
 var PIANO = {
 
@@ -599,47 +599,50 @@ var PIANO = {
 
   "samy-k74": {
     "nome": "Samy",
-    "aggiornato": "3 novembre 2026",
+    "aggiornato": "19 novembre 2026",
     "ultima": {
-      "quando": "2026-10-29T11:30:00+01:00",
+      "quando": "2026-11-19T18:00:00+01:00",
       "fatto": [
-        "Verb roulette",
-        "Describing people: hair and eyes",
-        "Guess who, with the faces game",
-        "Describing your family"
+        "What shall I wear? Clothes and colours",
+        "Can I? Italian signs: posso, non posso, devo"
       ]
     },
     "prossima": {
-      "quando": "2026-11-12T18:00:00+01:00",
-      "obiettivo": "Describe a person from head to toe, asking the questions on your own.",
+      "quando": "2026-11-26T18:00:00+01:00",
+      "obiettivo": "Tell me your outfit and explain a real sign, then a new lesson: a postcard from Italy.",
       "attivita": [
         {
-          "titolo": "Verb roulette",
+          "titolo": "Your homework, out loud",
           "href": "",
-          "nota": "Ten minutes: passato prossimo, essere or avere"
+          "nota": "Your outfit and your sign"
         },
         {
-          "titolo": "Identikit",
+          "titolo": "A postcard",
           "href": "",
-          "nota": "You ask the questions, without help on the screen"
-        },
-        {
-          "titolo": "Conversation",
-          "href": "",
-          "nota": "Describe a real person: a friend, a colleague, someone famous"
+          "nota": "Write and tell a postcard from your holiday"
         }
       ]
     },
     "compiti": [
       {
-        "titolo": "Guess who, in Italian",
-        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
-        "nota": "Optional. Level 2: write the questions yourself"
-      },
-      {
         "titolo": "Describing people",
         "href": "https://talkwithfabio.com/esercizi/descrivere/",
-        "nota": "Optional. Hair, face, clothes"
+        "nota": "Flashcards: clothes and colours"
+      },
+      {
+        "titolo": "Che tempo fa?",
+        "href": "https://talkwithfabio.com/esercizi/che-tempo-fa/",
+        "nota": "The weather decides what you wear!"
+      },
+      {
+        "titolo": "Mission 1: your outfit",
+        "href": "",
+        "nota": "Describe what you wear today in 3 sentences, with the colours"
+      },
+      {
+        "titolo": "Mission 2: a real sign",
+        "href": "",
+        "nota": "Take a photo of a sign and explain it: puoi, non puoi, devi"
       }
     ]
   },
