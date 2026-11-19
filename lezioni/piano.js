@@ -9,50 +9,41 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "18 novembre 2026, 20:22";
+var PIANO_AGGIORNATO = "19 novembre 2026, 02:28";
 
 var PIANO = {
 
   "ari-p49": {
     "nome": "Ari",
-    "aggiornato": "11 novembre 2026",
+    "aggiornato": "18 novembre 2026",
     "ultima": {
-      "quando": "2026-11-04T22:00:00+01:00",
+      "quando": "2026-11-18T22:00:00+01:00",
       "fatto": [
-        "Senza ripetere: ne, ci e i pronomi parlando"
+        "Ti è successo davvero? Due storie vere e una inventata",
+        "Le reazioni: Ma dai!, Non ci credo!, Che figuraccia!"
       ]
     },
     "prossima": {
-      "quando": "2026-11-18T22:00:00+01:00",
-      "obiettivo": "Ne, ci e i pronomi in gioco, poi un argomento nuovo: l'imperativo con i pronomi. Chiamala! Dimmelo! Non farlo!",
+      "quando": "",
+      "obiettivo": "Raccontare aneddoti come un italiano: la scena, cosa è successo, il finale. Più attività, meno grammatica.",
       "attivita": [
         {
-          "titolo": "Senza ripetere",
+          "titolo": "Prova generale",
           "href": "",
-          "nota": "Dieci minuti di ripasso al volo"
+          "nota": "La tua storia migliore in un minuto, ancora meglio"
         },
         {
-          "titolo": "Paroline in gioco",
+          "titolo": "Che figuraccia!",
           "href": "",
-          "nota": "Passa la palla, e se c'è tempo Il segreto"
-        },
-        {
-          "titolo": "Dimmelo!",
-          "href": "",
-          "nota": "A chi parla? e Posso?"
+          "nota": "Le figuracce: le tue e le mie"
         }
       ]
     },
     "compiti": [
       {
-        "titolo": "Due pronomi insieme",
-        "href": "https://talkwithfabio.com/esercizi/pronomi-combinati/",
-        "nota": "Glielo, me ne, ce l'ho: servono anche nell'imperativo"
-      },
-      {
-        "titolo": "Ne, ci e i pronomi",
-        "href": "https://talkwithfabio.com/esercizi/pronomi/",
-        "nota": "La sfida da 60 secondi: batti il tuo record"
+        "titolo": "La volta che...",
+        "href": "",
+        "nota": "Mandami un vocale di 60-90 secondi su Preply: vero o inventato? Ti dico se ti credo!"
       }
     ]
   },
@@ -411,35 +402,40 @@ var PIANO = {
 
   "luana-zqy": {
     "nome": "Luana",
-    "aggiornato": "9 novembre 2026",
+    "aggiornato": "18 novembre 2026",
     "ultima": {
-      "quando": "2026-11-09T20:30:00+01:00",
+      "quando": "2026-11-18T20:30:00+01:00",
       "fatto": [
-        "Fluency with Il filo: one story, told without stopping"
+        "A whole lesson of conversation: your stories, books, music and favourite fandoms"
       ]
     },
     "prossima": {
-      "quando": "2026-11-18T20:30:00+01:00",
-      "obiettivo": "Talk about what you did: yesterday, last weekend, your last shopping trip. Just conversation.",
+      "quando": "2026-11-23T21:00:00+01:00",
+      "obiettivo": "Tell your story in the past: what you did, and what it was like back then. Conversation, plus a real bit of lesson.",
       "attivita": [
         {
-          "titolo": "Warm-up: what did you do at the weekend?",
+          "titolo": "Your story",
           "href": "",
-          "nota": "Free chat"
+          "nota": "What is it about? When did you start writing it?"
         },
         {
-          "titolo": "Verbi in tasca: yesterday",
+          "titolo": "Back in the Tumblr days",
           "href": "",
-          "nota": "I ask, you answer, then you ask me back"
+          "nota": "How old were you? What did you listen to?"
         },
         {
-          "titolo": "Your last shopping trip",
+          "titolo": "Pitch it to a publisher",
           "href": "",
-          "nota": "Clothes, shoes or a perfume: tell me everything!"
+          "nota": "One minute to convince me!"
         }
       ]
     },
     "compiti": [
+      {
+        "titolo": "Your story in Italian",
+        "href": "",
+        "nota": "Write the plot in 5-6 lines and send it to Fabio on Preply"
+      },
       {
         "titolo": "Chi è? Guess who, on your own",
         "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
