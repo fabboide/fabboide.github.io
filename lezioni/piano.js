@@ -9,33 +9,33 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "19 novembre 2026, 19:39";
+var PIANO_AGGIORNATO = "24 novembre 2026, 01:19";
 
 var PIANO = {
 
   "ari-p49": {
     "nome": "Ari",
-    "aggiornato": "18 novembre 2026",
+    "aggiornato": "23 novembre 2026",
     "ultima": {
-      "quando": "2026-11-18T22:00:00+01:00",
+      "quando": "2026-11-23T22:00:00+01:00",
       "fatto": [
-        "Ti è successo davvero? Due storie vere e una inventata",
-        "Le reazioni: Ma dai!, Non ci credo!, Che figuraccia!"
+        "Che figuraccia! Le figuracce raccontate",
+        "Era già partito! Quando arrivi tardi"
       ]
     },
     "prossima": {
-      "quando": "",
-      "obiettivo": "Raccontare aneddoti come un italiano: la scena, cosa è successo, il finale. Più attività, meno grammatica.",
+      "quando": "2026-11-25T22:00:00+01:00",
+      "obiettivo": "Un mistero da risolvere, facendo le domande giuste. Più attività, meno grammatica.",
       "attivita": [
         {
-          "titolo": "Prova generale",
+          "titolo": "Riscaldamento",
           "href": "",
-          "nota": "La tua storia migliore in un minuto, ancora meglio"
+          "nota": "Una figuraccia di questa settimana?"
         },
         {
-          "titolo": "Che figuraccia!",
+          "titolo": "Chi è stato?",
           "href": "",
-          "nota": "Le figuracce: le tue e le mie"
+          "nota": "Trova il colpevole"
         }
       ]
     },
@@ -43,28 +43,33 @@ var PIANO = {
       {
         "titolo": "La volta che...",
         "href": "",
-        "nota": "Mandami un vocale di 60-90 secondi su Preply: vero o inventato? Ti dico se ti credo!"
+        "nota": "Se non l'hai ancora mandato: un vocale di 60-90 secondi su Preply, vero o inventato?"
       }
     ]
   },
 
   "bianca-hco": {
     "nome": "Bianca",
-    "aggiornato": "16 novembre 2026",
+    "aggiornato": "23 novembre 2026",
     "ultima": {
-      "quando": "2026-11-16T15:00:00+01:00",
+      "quando": "2026-11-23T15:00:00+01:00",
       "fatto": [
-        "A whole hour of conversation, using what you already know"
+        "What did you see? Guess my holiday photos, then yours"
       ]
     },
     "prossima": {
-      "quando": "2026-11-23T15:00:00+01:00",
-      "obiettivo": "From now on, only Italian! Keep talking with what you know, then tell a trip: where you left from, where you went, how long you stayed.",
+      "quando": "2026-11-30T13:30:00+01:00",
+      "obiettivo": "Only Italian! Tell a holiday: where you went, what you saw and did, how it was.",
       "attivita": [
         {
-          "titolo": "How was your week?",
+          "titolo": "-tto, -so, -sto",
           "href": "",
-          "nota": "Only Italian: if a word is missing, say it another way"
+          "nota": "fatto, preso, visto: the past forms everybody uses"
+        },
+        {
+          "titolo": "A voice postcard",
+          "href": "",
+          "nota": "Your holiday in 3 sentences"
         },
         {
           "titolo": "There and back",
@@ -75,53 +80,54 @@ var PIANO = {
     },
     "compiti": [
       {
+        "titolo": "3 photos from your phone",
+        "href": "",
+        "nota": "One sentence each with fatto, visto or preso. I'll guess them before you show me!"
+      },
+      {
         "titolo": "Dialogues to repeat",
         "href": "https://talkwithfabio.com/dialoghi/",
         "nota": "Read aloud, then hide your lines and say them again"
-      },
-      {
-        "titolo": "Missioni in Italia",
-        "href": "https://talkwithfabio.com/missioni/",
-        "nota": "Try a mission on your own"
       }
     ]
   },
 
   "brett-fjh": {
     "nome": "Brett",
-    "aggiornato": "16 novembre 2026",
+    "aggiornato": "23 novembre 2026",
     "ultima": {
-      "quando": "2026-11-16T19:00:00+01:00",
+      "quando": "2026-11-23T18:00:00+01:00",
       "fatto": [
+        "The address book: names, numbers and details",
         "The weather: Che tempo fa?"
       ]
     },
     "prossima": {
-      "quando": "2026-11-23T18:00:00+01:00",
-      "obiettivo": "Back to the basics: all the Italian words you already know, then packing a suitcase.",
+      "quando": "2026-11-30T18:00:00+01:00",
+      "obiettivo": "Say whose things they are: il mio, il tuo, di Marco...",
       "attivita": [
         {
-          "titolo": "What's the weather like today?",
+          "titolo": "Warm-up",
           "href": "",
-          "nota": "Warm-up: tell me the weather where you are"
+          "nota": "What's the weather like? What's your phone number?"
         },
         {
-          "titolo": "Words you already know",
+          "titolo": "Whose is it?",
           "href": "",
-          "nota": "You know more Italian than you think!"
+          "nota": "A new lesson, step by step"
         }
       ]
     },
     "compiti": [
       {
-        "titolo": "Che tempo fa?",
-        "href": "https://talkwithfabio.com/esercizi/che-tempo-fa/",
-        "nota": "The weather words with audio and the 60-second game"
+        "titolo": "Numbers 1 to 1000",
+        "href": "https://talkwithfabio.com/esercizi/numeri/",
+        "nota": "Phone numbers and prices"
       },
       {
-        "titolo": "Your first 80 phrases",
-        "href": "https://talkwithfabio.com/esercizi/prime-frasi/",
-        "nota": "A few minutes a day"
+        "titolo": "Che tempo fa?",
+        "href": "https://talkwithfabio.com/esercizi/che-tempo-fa/",
+        "nota": "The weather words and the 60-second game"
       }
     ]
   },
@@ -361,37 +367,35 @@ var PIANO = {
 
   "jasmine-jo9": {
     "nome": "Jasmine",
-    "aggiornato": "18 novembre 2026",
+    "aggiornato": "23 novembre 2026",
     "ultima": {
-      "quando": "2026-11-18T19:00:00+01:00",
+      "quando": "2026-11-23T20:00:00+01:00",
       "fatto": [
-        "Verbi in tasca: ready-made phrases",
-        "The body and clothes",
-        "The verb roulette"
+        "What did you see? Guess my holiday photos, then yours"
       ]
     },
     "prossima": {
-      "quando": "2026-11-23T20:00:00+01:00",
-      "obiettivo": "Talk about your plans: what are you doing this weekend, with whom, where are you going? Just conversation.",
+      "quando": "2026-11-30T20:00:00+01:00",
+      "obiettivo": "Tell me about your photos, then tell me about a crazy day. Just conversation.",
       "attivita": [
         {
-          "titolo": "Your weekend",
+          "titolo": "Your 3 photos",
           "href": "",
-          "nota": "Cosa fai questo weekend? Con chi?"
+          "nota": "I guess them before you show me!"
         },
         {
-          "titolo": "Verbi in tasca",
+          "titolo": "What a day!",
           "href": "",
-          "nota": "The cards that are not in your pocket yet"
-        },
-        {
-          "titolo": "Are you free on Saturday?",
-          "href": "",
-          "nota": "Invitations and plans: forse andiamo a cena insieme!"
+          "nota": "A new lesson, all speaking"
         }
       ]
     },
     "compiti": [
+      {
+        "titolo": "3 photos from your phone",
+        "href": "",
+        "nota": "One sentence each with fatto, visto or preso. No studying!"
+      },
       {
         "titolo": "First phrases",
         "href": "https://talkwithfabio.com/esercizi/prime-frasi/",
@@ -402,44 +406,44 @@ var PIANO = {
 
   "luana-zqy": {
     "nome": "Luana",
-    "aggiornato": "18 novembre 2026",
+    "aggiornato": "23 novembre 2026",
     "ultima": {
-      "quando": "2026-11-18T20:30:00+01:00",
+      "quando": "2026-11-23T21:00:00+01:00",
       "fatto": [
-        "A whole lesson of conversation: your stories, books, music and favourite fandoms"
+        "Free conversation"
       ]
     },
     "prossima": {
-      "quando": "2026-11-23T21:00:00+01:00",
-      "obiettivo": "Tell your story in the past: what you did, and what it was like back then. Conversation, plus a real bit of lesson.",
+      "quando": "2026-11-30T21:00:00+01:00",
+      "obiettivo": "Describe a person: what they look like, what they are like, what they must and mustn't do.",
       "attivita": [
         {
-          "titolo": "Your story",
+          "titolo": "Your list",
           "href": "",
-          "nota": "What is it about? When did you start writing it?"
+          "nota": "Read it to me and I ask questions"
         },
         {
-          "titolo": "Back in the Tumblr days",
+          "titolo": "Personality words",
           "href": "",
-          "nota": "How old were you? What did you listen to?"
+          "nota": "Simpatico or simpatica? Opposites game"
         },
         {
-          "titolo": "Pitch it to a publisher",
+          "titolo": "Your favourite characters",
           "href": "",
-          "nota": "One minute to convince me!"
+          "nota": "Would they be a good partner? You defend, I attack!"
         }
       ]
     },
     "compiti": [
       {
-        "titolo": "Your story in Italian",
+        "titolo": "The list",
         "href": "",
-        "nota": "Write the plot in 5-6 lines and send it to Fabio on Preply"
+        "nota": "Your ideal partner: write the list and bring it to the lesson"
       },
       {
-        "titolo": "Chi è? Guess who, on your own",
-        "href": "https://talkwithfabio.com/esercizi/indovina-chi/",
-        "nota": "Try level 2: you write the questions"
+        "titolo": "Your story in Italian",
+        "href": "",
+        "nota": "Still waiting: the plot in 5-6 lines"
       }
     ]
   },
