@@ -9,7 +9,7 @@
    File pubblico: niente mail, niente cognomi, niente note private.
    =================================================================== */
 
-var PIANO_AGGIORNATO = "24 novembre 2026, 01:19";
+var PIANO_AGGIORNATO = "26 novembre 2026, 16:45";
 
 var PIANO = {
 
@@ -653,23 +653,22 @@ var PIANO = {
 
   "sophie-6zk": {
     "nome": "Sophie",
-    "aggiornato": "16 novembre 2026",
+    "aggiornato": "26 novembre 2026",
     "ultima": {
-      "quando": "2026-11-16T18:00:00+01:00",
+      "quando": "2026-11-26T10:00:00+01:00",
       "fatto": [
-        "Acqua in bocca: una lezione sui segreti",
-        "Verbi con la sorpresa: prendersela, cavarsela, passarsela",
-        "Il treno ha fischiato: i primi due paragrafi"
+        "Un filmetto: raccontare e consigliare un film",
+        "Il treno ha fischiato: fino a «Non avevo veduto mai un uomo vivere come Belluca»"
       ]
     },
     "prossima": {
-      "quando": "",
-      "obiettivo": "Tre parti: un ripasso e poi avanti, altri verbi con la sorpresa, e Pirandello da dove ci siamo fermati.",
+      "quando": "2026-11-30T17:00:00+01:00",
+      "obiettivo": "Tre parti: ripasso di Un filmetto, altri verbi con la sorpresa, e Pirandello da dove ci siamo fermati.",
       "attivita": [
         {
-          "titolo": "Ripasso e lezione nuova",
+          "titolo": "Ripasso: Un filmetto",
           "href": "",
-          "nota": "Un ripasso veloce di Acqua in bocca, poi avanti"
+          "nota": "E i compiti nell'area studenti"
         },
         {
           "titolo": "Verbi con la sorpresa",
@@ -679,20 +678,20 @@ var PIANO = {
         {
           "titolo": "Il treno ha fischiato",
           "href": "",
-          "nota": "Da «Orbene, cento volte...» alla notte del fischio"
+          "nota": "Da «Non avevo veduto mai un uomo vivere come Belluca»"
         }
       ]
     },
     "compiti": [
       {
-        "titolo": "Rileggere «Il treno ha fischiato»",
+        "titolo": "I compiti di Un filmetto",
         "href": "",
-        "nota": "I due paragrafi di oggi e il pezzo dopo, a voce alta"
+        "nota": "Nell'area studenti che ti ha mandato Fabio"
       },
       {
-        "titolo": "Il congiuntivo, passo dopo passo",
-        "href": "https://talkwithfabio.com/esercizi/congiuntivo/",
-        "nota": "Ripasso delle forme"
+        "titolo": "Rileggere «Il treno ha fischiato»",
+        "href": "",
+        "nota": "Il pezzo che leggeremo, a voce alta"
       }
     ]
   }
